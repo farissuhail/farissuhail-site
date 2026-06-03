@@ -1,0 +1,348 @@
+/* ===== QURAN REFLECTIONS HUB ===== */
+/* Layered on top of style.css */
+
+body.reflections-hub {
+  background: #0a0a0f;
+  /* Neon-green accent for the dakwah / reflections side (portfolio stays orange) */
+  --accent: #00ff85;
+  --accent-2: #5bff3b;
+  --accent-grad: linear-gradient(135deg, #00ff85 0%, #5bff3b 100%);
+}
+
+/* Re-tint the global primary button glow to green on this page */
+body.reflections-hub .btn-primary {
+  box-shadow: 0 8px 24px -8px rgba(0,255,133,0.5);
+}
+body.reflections-hub .btn-primary:hover {
+  box-shadow: 0 12px 32px -8px rgba(0,255,133,0.7);
+}
+
+/* Ambient backdrop, matching the reflection reading page */
+body.reflections-hub::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(0,255,133,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(91,255,59,0.05) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+body.reflections-hub main { position: relative; z-index: 1; }
+
+/* ===== HUB HERO ===== */
+.hub-hero {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 90px 32px 56px;
+  text-align: center;
+}
+.hub-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.hub-kicker b { color: var(--accent); font-weight: 700; }
+.hub-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(40px, 6.5vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 26px;
+  color: var(--text);
+}
+.hub-title .grad {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hub-deck {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+.hub-stats {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.hub-stats span.sep { color: var(--border-strong); }
+
+/* ===== SECTION SHELL ===== */
+.hub-section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 40px 32px 60px;
+}
+.hub-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.hub-section-head h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.hub-section-head .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-mute);
+  letter-spacing: 0.08em;
+}
+
+/* ===== FEATURED REFLECTION ===== */
+.ref-featured {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ref-featured:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,255,133,0.45);
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,0.7);
+}
+/* Cover panel — echoes the Al-Baqarah hero treatment */
+.ref-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 320px;
+  padding: 48px 28px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0,255,133,0.16) 0%, transparent 60%),
+    linear-gradient(160deg, #14141e 0%, #0a0a0f 100%);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+.ref-cover-surah {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.ref-cover-the {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 34px);
+  color: var(--text-dim);
+  line-height: 0.9;
+  margin-bottom: -4px;
+}
+.ref-cover-word {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(64px, 9vw, 104px);
+  letter-spacing: -0.04em;
+  line-height: 0.82;
+  background: linear-gradient(180deg, #fff 0%, #b9b9cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ref-cover-arabic {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--accent-2);
+  margin-top: 16px;
+}
+/* Meta panel */
+.ref-body {
+  padding: 40px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ref-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.ref-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+}
+.ref-badge.live {
+  color: var(--accent-2);
+  background: rgba(91,255,59,0.12);
+  border-color: rgba(91,255,59,0.3);
+}
+.ref-body h3 {
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0 0 14px;
+}
+.ref-body h3 em {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ref-body p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin: 0 0 26px;
+  max-width: 460px;
+}
+.ref-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  align-self: flex-start;
+  transition: gap 0.2s ease;
+}
+.ref-featured:hover .ref-cta { gap: 14px; }
+
+/* ===== UPCOMING GRID ===== */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.ref-soon {
+  position: relative;
+  padding: 30px 26px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.ref-soon-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 18px;
+}
+.ref-soon-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.ref-soon-en {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: auto;
+}
+.ref-soon-status {
+  margin-top: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ref-soon-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  opacity: 0.7;
+}
+/* Invitation / collab card */
+.ref-invite {
+  background: linear-gradient(150deg, rgba(91,255,59,0.07) 0%, var(--surface) 60%);
+  border-color: rgba(91,255,59,0.22);
+}
+.ref-invite .ref-soon-name { font-style: normal; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+.ref-invite a {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* ===== INTENTION STRIP ===== */
+.hub-intention {
+  max-width: 760px;
+  margin: 30px auto 0;
+  padding: 56px 32px 80px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.hub-intention p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.5;
+  color: var(--text-dim);
+  margin: 0 0 18px;
+}
+.hub-intention .src {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .ref-featured { grid-template-columns: 1fr; }
+  .ref-cover { border-right: 0; border-bottom: 1px solid var(--border); min-height: 240px; }
+  .ref-body { padding: 30px 28px 32px; }
+  .ref-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .hub-hero { padding: 64px 22px 40px; }
+  .hub-section { padding: 30px 20px 50px; }
+  .ref-grid { grid-template-columns: 1fr; }
+}
