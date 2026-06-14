@@ -253,11 +253,45 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   box-shadow: 0 30px 70px -30px rgba(255,94,58,0.35);
 }
 
+/* Inspiration — warm dusk gold */
+.split-pane.gold::before {
+  background: radial-gradient(ellipse at 75% 0%, rgba(255,194,77,0.16) 0%, transparent 60%);
+}
+.split-pane.gold .split-eyebrow,
+.split-pane.gold .split-cta,
+.split-pane.gold .split-num { color: #ffc24d; }
+.split-pane.gold:hover {
+  border-color: rgba(255,194,77,0.5);
+  box-shadow: 0 30px 70px -30px rgba(255,194,77,0.35);
+}
+
 @media (max-width: 760px) {
   .split-section { padding: 16px 20px 40px; }
   .split-hero { grid-template-columns: 1fr; min-height: 0; gap: 16px; }
   .split-pane { min-height: 280px; padding: 32px; }
 }
+
+/* Secondary path strip (app development link under the split) */
+.split-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 16px 22px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.02);
+  font-size: 14px;
+  color: var(--text-dim);
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.split-secondary:hover { border-color: var(--border-strong); background: rgba(255,255,255,0.04); }
+.split-secondary strong { color: var(--accent); font-weight: 600; white-space: nowrap; }
+@media (max-width: 560px) { .split-secondary { border-radius: 16px; } }
 
 /* ===== HERO ===== */
 .hero {
