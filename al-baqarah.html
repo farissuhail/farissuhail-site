@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Al-Baqarah — The Cow. Why the longest chapter of the Qur'an is named after an animal that barely appears in it. A reflection by Faris Suhail." />
+  <meta name="description" content="Al-Baqarah — The Cow. Why the longest chapter of the Qur'an is named after an animal that barely appears in it. A reflection by Faris Suhail. English / BM." />
   <title>Al-Baqarah — The Cow · A reflection · Faris Suhail</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0a0a0f" />
@@ -26,9 +26,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="al-baqarah.css" />
+  <style>.rf-nav-right { display: flex; align-items: center; gap: 16px; }</style>
 </head>
 <body class="reflection">
 
@@ -37,7 +38,12 @@
   <a href="index.html" class="brand">
     <span class="brand-name">FARISSUHAIL</span>
   </a>
-  <a href="reflections.html" class="rf-back">← <span>All reflections</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
+    </button>
+    <a href="reflections.html" class="rf-back">← <span data-en="All reflections" data-bm="Semua refleksi">All reflections</span></a>
+  </div>
 </header>
 
 <main>
@@ -47,302 +53,331 @@
     <div class="rf-publisher">THE MDRN URBAN · 01</div>
     <div class="rf-surah">SURAH 02</div>
     <h1 class="rf-title">
-      <span class="rf-the">The</span>
-      <span class="rf-cow">COW</span>
+      <span class="rf-the" data-en="The" data-bm="Si">The</span>
+      <span class="rf-cow" data-en="COW" data-bm="LEMBU">COW</span>
     </h1>
     <div class="rf-arabic">AL-BAQARAH</div>
-    <p class="rf-deck">
+    <p class="rf-deck"
+       data-en="Why the longest chapter of the Qur'an is named after an animal that barely appears in it."
+       data-bm="Mengapa surah terpanjang Al-Quran dinamakan sempena seekor haiwan yang hampir tidak muncul di dalamnya.">
       Why the longest chapter of the Qur'an is named after an animal that barely appears in it.
     </p>
     <div class="rf-meta">
-      <span>A reflection</span>
+      <span data-en="A reflection" data-bm="Refleksi">A reflection</span>
       <span>·</span>
       <span>Qur'an 2:67–71</span>
       <span>·</span>
-      <span>25 parts</span>
+      <span data-en="25 parts" data-bm="25 bahagian">25 parts</span>
     </div>
-    <div class="rf-scroll-hint" aria-hidden="true">↓ Scroll to begin</div>
+    <div class="rf-scroll-hint" aria-hidden="true" data-en="↓ Scroll to begin" data-bm="↓ Tatal untuk mula">↓ Scroll to begin</div>
   </section>
 
-  <!-- ===== SLIDE 2: DID YOU WONDER ===== -->
+  <!-- 01 -->
   <section class="rf-slide" data-num="01">
-    <div class="rf-eyebrow">? &nbsp; Did you ever wonder</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="? &nbsp; Did you ever wonder" data-bm="? &nbsp; Pernahkah anda terfikir">? &nbsp; Did you ever wonder</div>
+    <h2 class="rf-big" data-en="Why is it called <em>The Cow?</em>" data-bm="Mengapa ia dinamakan <em>Lembu?</em>">
       Why is it called <em>The Cow?</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Not the miracle. Not the murder. Not even Musa <span class='rf-honorific'>(عليه السلام)</span>. A cow."
+       data-bm="Bukan mukjizat. Bukan pembunuhan. Bukan juga Musa <span class='rf-honorific'>(عليه السلام)</span>. Seekor lembu.">
       Not the miracle. Not the murder. Not even Musa <span class="rf-honorific">(عليه السلام)</span>. A cow.
     </p>
   </section>
 
-  <!-- ===== SLIDE 3: 286 VERSES ===== -->
+  <!-- 02 -->
   <section class="rf-slide" data-num="02">
-    <div class="rf-eyebrow">The longest chapter</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="The longest chapter" data-bm="Surah terpanjang">The longest chapter</div>
+    <h2 class="rf-big" data-en="286 verses that hold a <em>whole way of life.</em>" data-bm="286 ayat yang memuatkan <em>satu cara hidup yang lengkap.</em>">
       286 verses that hold a <em>whole way of life.</em>
     </h2>
     <ul class="rf-pills">
-      <li>Law</li>
-      <li>Justice</li>
-      <li>Fasting</li>
-      <li>Economy</li>
-      <li>Identity</li>
-      <li>Marriage</li>
+      <li data-en="Law" data-bm="Hukum">Law</li>
+      <li data-en="Justice" data-bm="Keadilan">Justice</li>
+      <li data-en="Fasting" data-bm="Puasa">Fasting</li>
+      <li data-en="Economy" data-bm="Ekonomi">Economy</li>
+      <li data-en="Identity" data-bm="Identiti">Identity</li>
+      <li data-en="Marriage" data-bm="Perkahwinan">Marriage</li>
     </ul>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="And of everything it carries… it is named after a cow."
+       data-bm="Dan daripada segala yang dikandungnya… ia dinamakan sempena seekor lembu.">
       And of everything it carries… it is named after a cow.
     </p>
   </section>
 
-  <!-- ===== SLIDE 4: WHY A COW ===== -->
+  <!-- 03 -->
   <section class="rf-slide rf-slide-quiet" data-num="03">
-    <h2 class="rf-mega">
-      Why<br/>
-      <em>a&nbsp;cow</em>?
+    <h2 class="rf-mega" data-en="Why<br/><em>a&nbsp;cow</em>?" data-bm="Mengapa<br/><em>seekor&nbsp;lembu</em>?">
+      Why<br/><em>a&nbsp;cow</em>?
     </h2>
   </section>
 
-  <!-- ===== SLIDE 5: THE REAL SUBJECT ===== -->
+  <!-- 04 -->
   <section class="rf-slide" data-num="04">
-    <div class="rf-eyebrow">The real subject</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="The real subject" data-bm="Subjek sebenarnya">The real subject</div>
+    <h2 class="rf-big" data-en="The cow was never about the <em>animal.</em>" data-bm="Lembu itu tidak pernah tentang <em>haiwannya.</em>">
       The cow was never about the <em>animal.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="It was about what happens to the human soul when Allah gives a command — and the ego starts negotiating."
+       data-bm="Ia tentang apa yang berlaku kepada jiwa manusia apabila Allah memberi perintah — dan ego mula tawar-menawar.">
       It was about what happens to the human soul when Allah gives a command — and the ego starts negotiating.
     </p>
   </section>
 
-  <!-- ===== SLIDE 6: THE STORY ===== -->
+  <!-- 05 -->
   <section class="rf-slide" data-num="05">
-    <div class="rf-eyebrow">The story · Qur'an 2:67–71</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="The story · Qur'an 2:67–71" data-bm="Kisahnya · Al-Quran 2:67–71">The story · Qur'an 2:67–71</div>
+    <h2 class="rf-big" data-en="A murder happened among <em>Bani Isra'il.</em>" data-bm="Satu pembunuhan berlaku dalam kalangan <em>Bani Isra'il.</em>">
       A murder happened among <em>Bani Isra'il.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="A man was killed. The killer was unknown. The community turned to their Prophet for an answer."
+       data-bm="Seorang lelaki dibunuh. Pembunuhnya tidak diketahui. Masyarakat berpaling kepada Nabi mereka untuk mencari jawapan.">
       A man was killed. The killer was unknown. The community turned to their Prophet for an answer.
     </p>
   </section>
 
-  <!-- ===== SLIDE 7: THE COMMAND ===== -->
+  <!-- 06 -->
   <section class="rf-slide rf-slide-accent" data-num="06">
-    <div class="rf-eyebrow">The command</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="The command" data-bm="Perintahnya">The command</div>
+    <h2 class="rf-quote" data-en="“Slaughter <em>a cow.”</em>" data-bm="“Sembelihlah <em>seekor lembu.”</em>">
       “Slaughter <em>a cow.”</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="That was it. One instruction, through Musa <span class='rf-honorific'>(عليه السلام)</span>. Simple. Complete. Enough."
+       data-bm="Itu sahaja. Satu arahan, melalui Musa <span class='rf-honorific'>(عليه السلام)</span>. Mudah. Lengkap. Memadai.">
       That was it. One instruction, through Musa <span class="rf-honorific">(عليه السلام)</span>. Simple. Complete. Enough.
     </p>
   </section>
 
-  <!-- ===== SLIDE 8: DELAYED ===== -->
+  <!-- 07 -->
   <section class="rf-slide" data-num="07">
-    <div class="rf-eyebrow">Instead of obeying</div>
-    <h2 class="rf-big">They <em>delayed.</em></h2>
-    <p class="rf-body">
+    <div class="rf-eyebrow" data-en="Instead of obeying" data-bm="Daripada mentaati">Instead of obeying</div>
+    <h2 class="rf-big" data-en="They <em>delayed.</em>" data-bm="Mereka <em>berlengah.</em>">They <em>delayed.</em></h2>
+    <p class="rf-body"
+       data-en="Obedience was available immediately. They chose, instead, to ask."
+       data-bm="Ketaatan tersedia serta-merta. Sebaliknya, mereka memilih untuk bertanya.">
       Obedience was available immediately. They chose, instead, to ask.
     </p>
   </section>
 
-  <!-- ===== SLIDE 9: THE INTERROGATION ===== -->
+  <!-- 08 -->
   <section class="rf-slide" data-num="08">
-    <div class="rf-eyebrow">The interrogation</div>
+    <div class="rf-eyebrow" data-en="The interrogation" data-bm="Soal siasat">The interrogation</div>
     <ol class="rf-questions">
-      <li><span>01</span> "What kind of cow?"</li>
-      <li><span>02</span> "What color?"</li>
-      <li><span>03</span> "How old?"</li>
-      <li><span>04</span> "What exactly do you mean?"</li>
+      <li><span>01</span> <span data-en="“What kind of cow?”" data-bm="“Lembu jenis apa?”">“What kind of cow?”</span></li>
+      <li><span>02</span> <span data-en="“What color?”" data-bm="“Apa warnanya?”">“What color?”</span></li>
+      <li><span>03</span> <span data-en="“How old?”" data-bm="“Berapa umurnya?”">“How old?”</span></li>
+      <li><span>04</span> <span data-en="“What exactly do you mean?”" data-bm="“Apa sebenarnya maksudnya?”">“What exactly do you mean?”</span></li>
     </ol>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Each question made the command harder than it ever needed to be."
+       data-bm="Setiap soalan menjadikan perintah itu lebih sukar daripada yang sepatutnya.">
       Each question made the command harder than it ever needed to be.
     </p>
   </section>
 
-  <!-- ===== SLIDE 10: HARDER ===== -->
+  <!-- 09 -->
   <section class="rf-slide" data-num="09">
-    <h2 class="rf-big">The command became <em>harder.</em></h2>
-    <p class="rf-body">
+    <h2 class="rf-big" data-en="The command became <em>harder.</em>" data-bm="Perintah itu menjadi <em>lebih sukar.</em>">The command became <em>harder.</em></h2>
+    <p class="rf-body"
+       data-en="Every requirement they invented narrowed the search — until almost no cow on earth would do."
+       data-bm="Setiap syarat yang mereka cipta menyempitkan pencarian — sehingga hampir tiada lembu di bumi yang layak.">
       Every requirement they invented narrowed the search — until almost no cow on earth would do.
     </p>
   </section>
 
-  <!-- ===== SLIDE 11: DEEPEST PATTERN ===== -->
+  <!-- 10 -->
   <section class="rf-slide rf-slide-accent" data-num="10">
-    <div class="rf-eyebrow">One of the Qur'an's deepest patterns</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="One of the Qur'an's deepest patterns" data-bm="Antara corak terdalam Al-Quran">One of the Qur'an's deepest patterns</div>
+    <h2 class="rf-quote"
+        data-en="The more the ego hates surrender, the more it hides behind <em>over-analysis.</em>"
+        data-bm="Semakin ego membenci ketundukan, semakin ia bersembunyi di sebalik <em>analisis berlebihan.</em>">
       The more the ego hates surrender, the more it hides behind <em>over-analysis.</em>
     </h2>
   </section>
 
-  <!-- ===== SLIDE 12: WHAT THE QUESTIONS WERE ===== -->
+  <!-- 11 -->
   <section class="rf-slide" data-num="11">
-    <div class="rf-eyebrow">What the questions really were</div>
+    <div class="rf-eyebrow" data-en="What the questions really were" data-bm="Apa sebenarnya soalan-soalan itu">What the questions really were</div>
     <div class="rf-two-col">
       <div class="rf-col">
-        <div class="rf-col-label">Not for clarity</div>
-        <p>They already had everything they needed to act.</p>
+        <div class="rf-col-label" data-en="Not for clarity" data-bm="Bukan untuk kejelasan">Not for clarity</div>
+        <p data-en="They already had everything they needed to act." data-bm="Mereka sudah memiliki segala yang diperlukan untuk bertindak.">They already had everything they needed to act.</p>
       </div>
       <div class="rf-col">
-        <div class="rf-col-label">For escape</div>
-        <p>Every question bought a little more distance from doing the thing.</p>
+        <div class="rf-col-label" data-en="For escape" data-bm="Untuk melarikan diri">For escape</div>
+        <p data-en="Every question bought a little more distance from doing the thing." data-bm="Setiap soalan membeli sedikit jarak daripada melakukannya.">Every question bought a little more distance from doing the thing.</p>
       </div>
     </div>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="A simple act of obedience turned into an interrogation."
+       data-bm="Satu ketaatan yang mudah bertukar menjadi soal siasat.">
       A simple act of obedience turned into an interrogation.
     </p>
   </section>
 
-  <!-- ===== SLIDE 13: STILL TODAY ===== -->
+  <!-- 12 -->
   <section class="rf-slide rf-slide-quiet" data-num="12">
     <div class="rf-bang">!</div>
-    <h2 class="rf-mega">
+    <h2 class="rf-mega" data-en="And this still <em>happens</em> today." data-bm="Dan ini masih <em>berlaku</em> hari ini.">
       And this still <em>happens</em> today.
     </h2>
   </section>
 
-  <!-- ===== SLIDE 14: ALLAH SAYS ===== -->
+  <!-- 13 -->
   <section class="rf-slide" data-num="13">
-    <div class="rf-eyebrow">Allah says</div>
+    <div class="rf-eyebrow" data-en="Allah says" data-bm="Allah berfirman">Allah says</div>
     <ul class="rf-commands">
-      <li>Lower your gaze.</li>
-      <li>Pray.</li>
-      <li>Forgive.</li>
-      <li>Be truthful.</li>
-      <li>Leave the haram.</li>
+      <li data-en="Lower your gaze." data-bm="Jagalah pandanganmu.">Lower your gaze.</li>
+      <li data-en="Pray." data-bm="Dirikan solat.">Pray.</li>
+      <li data-en="Forgive." data-bm="Maafkanlah.">Forgive.</li>
+      <li data-en="Be truthful." data-bm="Berlaku benar.">Be truthful.</li>
+      <li data-en="Leave the haram." data-bm="Tinggalkan yang haram.">Leave the haram.</li>
     </ul>
   </section>
 
-  <!-- ===== SLIDE 15: NAFS RESPONDS ===== -->
+  <!-- 14 -->
   <section class="rf-slide rf-slide-accent" data-num="14">
-    <div class="rf-eyebrow">And the nafs responds with</div>
-    <h2 class="rf-quote">
-      "Yes, <em>but…"</em>
-    </h2>
-    <p class="rf-body">
+    <div class="rf-eyebrow" data-en="And the nafs responds with" data-bm="Dan nafsu menjawab dengan">And the nafs responds with</div>
+    <h2 class="rf-quote" data-en="“Yes, <em>but…”</em>" data-bm="“Ya, <em>tetapi…”</em>">“Yes, <em>but…”</em></h2>
+    <p class="rf-body"
+       data-en="The same delay. The same negotiation. A different millennium."
+       data-bm="Penangguhan yang sama. Tawar-menawar yang sama. Milenium yang berbeza.">
       The same delay. The same negotiation. A different millennium.
     </p>
   </section>
 
-  <!-- ===== SLIDE 16: NOT NAMED AFTER ===== -->
+  <!-- 15 -->
   <section class="rf-slide" data-num="15">
-    <div class="rf-eyebrow">It is not named after</div>
+    <div class="rf-eyebrow" data-en="It is not named after" data-bm="Ia tidak dinamakan sempena">It is not named after</div>
     <ul class="rf-not-list">
       <li>
         <span class="rf-x">✕</span>
         <div>
-          <strong>The miracle</strong>
-          <span>the dead man brought back to speak</span>
+          <strong data-en="The miracle" data-bm="Mukjizat itu">The miracle</strong>
+          <span data-en="the dead man brought back to speak" data-bm="si mati yang dihidupkan untuk berkata-kata">the dead man brought back to speak</span>
         </div>
       </li>
       <li>
         <span class="rf-x">✕</span>
         <div>
-          <strong>The murder</strong>
-          <span>the crime that started it all</span>
+          <strong data-en="The murder" data-bm="Pembunuhan itu">The murder</strong>
+          <span data-en="the crime that started it all" data-bm="jenayah yang memulakan segalanya">the crime that started it all</span>
         </div>
       </li>
       <li>
         <span class="rf-x">✕</span>
         <div>
           <strong>Musa <span class="rf-honorific">عليه السلام</span></strong>
-          <span>the Prophet who carried the command</span>
+          <span data-en="the Prophet who carried the command" data-bm="Nabi yang membawa perintah itu">the Prophet who carried the command</span>
         </div>
       </li>
     </ul>
   </section>
 
-  <!-- ===== SLIDE 17: IT IS NAMED AFTER ===== -->
+  <!-- 16 -->
   <section class="rf-slide rf-slide-accent" data-num="16">
-    <div class="rf-eyebrow">It is named after</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="It is named after" data-bm="Ia dinamakan sempena">It is named after</div>
+    <h2 class="rf-big" data-en="The moment human beings <em>complicated submission.</em>" data-bm="Detik manusia <em>merumitkan ketundukan.</em>">
       The moment human beings <em>complicated submission.</em>
     </h2>
-    <p class="rf-warning">That's the warning.</p>
+    <p class="rf-warning" data-en="That's the warning." data-bm="Itulah amarannya.">That's the warning.</p>
   </section>
 
-  <!-- ===== SLIDE 18: SURAH KEEPS TESTING ===== -->
+  <!-- 17 -->
   <section class="rf-slide" data-num="17">
-    <div class="rf-eyebrow">And so the surah keeps testing</div>
+    <div class="rf-eyebrow" data-en="And so the surah keeps testing" data-bm="Maka surah ini terus menguji">And so the surah keeps testing</div>
     <ol class="rf-tests">
-      <li><span>01</span> Fasting</li>
-      <li><span>02</span> Inheritance</li>
-      <li><span>03</span> Marriage</li>
-      <li><span>04</span> Money</li>
-      <li><span>05</span> War</li>
-      <li><span>06</span> Justice</li>
-      <li><span>07</span> Interest</li>
-      <li><span>08</span> Divorce</li>
+      <li><span>01</span> <span data-en="Fasting" data-bm="Puasa">Fasting</span></li>
+      <li><span>02</span> <span data-en="Inheritance" data-bm="Pusaka">Inheritance</span></li>
+      <li><span>03</span> <span data-en="Marriage" data-bm="Perkahwinan">Marriage</span></li>
+      <li><span>04</span> <span data-en="Money" data-bm="Harta">Money</span></li>
+      <li><span>05</span> <span data-en="War" data-bm="Perang">War</span></li>
+      <li><span>06</span> <span data-en="Justice" data-bm="Keadilan">Justice</span></li>
+      <li><span>07</span> <span data-en="Interest" data-bm="Riba">Interest</span></li>
+      <li><span>08</span> <span data-en="Divorce" data-bm="Perceraian">Divorce</span></li>
     </ol>
   </section>
 
-  <!-- ===== SLIDE 19: THE SAME QUESTION ===== -->
+  <!-- 18 -->
   <section class="rf-slide rf-slide-quiet" data-num="18">
-    <div class="rf-eyebrow">The same question, every time</div>
-    <h2 class="rf-mega">
-      Will you obey Allah<br/>
-      or obey your <em>impulses?</em>
+    <div class="rf-eyebrow" data-en="The same question, every time" data-bm="Soalan yang sama, setiap kali">The same question, every time</div>
+    <h2 class="rf-mega"
+        data-en="Will you obey Allah<br/>or obey your <em>impulses?</em>"
+        data-bm="Akan kamu taati Allah<br/>atau menurut <em>hawa nafsumu?</em>">
+      Will you obey Allah<br/>or obey your <em>impulses?</em>
     </h2>
   </section>
 
-  <!-- ===== SLIDE 20: SO WHY THE COW ===== -->
+  <!-- 19 -->
   <section class="rf-slide" data-num="19">
-    <div class="rf-eyebrow">So why "The Cow"?</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="So why “The Cow”?" data-bm="Jadi mengapa “Lembu”?">So why “The Cow”?</div>
+    <h2 class="rf-big"
+        data-en="Because one unnecessary hesitation in front of Allah can expose an <em>entire spiritual disease.</em>"
+        data-bm="Kerana satu keraguan yang tidak perlu di hadapan Allah boleh mendedahkan <em>satu penyakit rohani yang menyeluruh.</em>">
       Because one unnecessary hesitation in front of Allah can expose an <em>entire spiritual disease.</em>
     </h2>
   </section>
 
-  <!-- ===== SLIDE 21: HARDEST FOR THE NAFS ===== -->
+  <!-- 20 -->
   <section class="rf-slide rf-slide-accent" data-num="20">
-    <div class="rf-eyebrow">The hardest thing for the nafs</div>
-    <h2 class="rf-quote">
-      It has never been <em>understanding.</em><br/>
-      It has always been <em>surrender.</em>
+    <div class="rf-eyebrow" data-en="The hardest thing for the nafs" data-bm="Perkara paling sukar bagi nafsu">The hardest thing for the nafs</div>
+    <h2 class="rf-quote"
+        data-en="It has never been <em>understanding.</em><br/>It has always been <em>surrender.</em>"
+        data-bm="Ia tidak pernah <em>kefahaman.</em><br/>Ia sentiasa <em>ketundukan.</em>">
+      It has never been <em>understanding.</em><br/>It has always been <em>surrender.</em>
     </h2>
   </section>
 
-  <!-- ===== SLIDE 22: TWO SURAHS ===== -->
+  <!-- 21 -->
   <section class="rf-slide" data-num="21">
-    <div class="rf-eyebrow">A conversation between two surahs</div>
+    <div class="rf-eyebrow" data-en="A conversation between two surahs" data-bm="Satu perbualan antara dua surah">A conversation between two surahs</div>
     <div class="rf-dialogue">
       <div class="rf-dia-row">
-        <div class="rf-dia-label">Al-Fātihah asks</div>
-        <p>"Guide us to the straight path."</p>
+        <div class="rf-dia-label" data-en="Al-Fātihah asks" data-bm="Al-Fātihah bertanya">Al-Fātihah asks</div>
+        <p data-en="“Guide us to the straight path.”" data-bm="“Tunjukilah kami jalan yang lurus.”">“Guide us to the straight path.”</p>
       </div>
       <div class="rf-dia-row">
-        <div class="rf-dia-label">Al-Baqarah responds</div>
-        <p>"Here is the path. <em>Now — will you walk it?"</em></p>
+        <div class="rf-dia-label" data-en="Al-Baqarah responds" data-bm="Al-Baqarah menjawab">Al-Baqarah responds</div>
+        <p data-en="“Here is the path. <em>Now — will you walk it?”</em>" data-bm="“Inilah jalannya. <em>Sekarang — akan kamu menempuhnya?”</em>">“Here is the path. <em>Now — will you walk it?”</em></p>
       </div>
     </div>
   </section>
 
-  <!-- ===== SLIDE 23: WILL YOU WALK IT ===== -->
+  <!-- 22 -->
   <section class="rf-slide rf-slide-quiet" data-num="22">
-    <h2 class="rf-mega">
+    <h2 class="rf-mega" data-en="Will you <em>walk it?</em>" data-bm="Akan kamu <em>menempuhnya?</em>">
       Will you <em>walk it?</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body" data-en="The whole surah waits on your answer." data-bm="Seluruh surah menanti jawapanmu.">
       The whole surah waits on your answer.
     </p>
   </section>
 
-  <!-- ===== SLIDE 24: ONE LINE TO KEEP ===== -->
+  <!-- 23 -->
   <section class="rf-slide rf-slide-accent" data-num="23">
-    <div class="rf-eyebrow">One line to keep</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="One line to keep" data-bm="Satu baris untuk disimpan">One line to keep</div>
+    <h2 class="rf-quote"
+        data-en="Don't answer Allah's command with a question you don't need."
+        data-bm="Jangan jawab perintah Allah dengan soalan yang tidak kamu perlukan.">
       Don't answer Allah's command with a question you don't need.
     </h2>
-    <p class="rf-tagline">
+    <p class="rf-tagline" data-en="Answer it with your <em>feet.</em>" data-bm="Jawablah ia dengan <em>langkahmu.</em>">
       Answer it with your <em>feet.</em>
     </p>
   </section>
 
-  <!-- ===== SLIDE 25: CLOSING ===== -->
+  <!-- 24 — CLOSING -->
   <section class="rf-slide rf-closing" data-num="24">
     <div class="rf-publisher">AL-BAQARAH</div>
-    <h2 class="rf-big">"The Cow" · Qur'an 2:67–71</h2>
-    <p class="rf-body">
-      Save this. Share it with someone wrestling with a <em>"yes, but…"</em>
+    <h2 class="rf-big" data-en="“The Cow” · Qur'an 2:67–71" data-bm="“Lembu” · Al-Quran 2:67–71">“The Cow” · Qur'an 2:67–71</h2>
+    <p class="rf-body"
+       data-en="Save this. Share it with someone wrestling with a <em>“yes, but…”</em>"
+       data-bm="Simpan ini. Kongsikan dengan seseorang yang sedang bergelut dengan <em>“ya, tetapi…”</em>">
+      Save this. Share it with someone wrestling with a <em>“yes, but…”</em>
     </p>
     <div class="rf-credit">
       <div>THE MDRN URBAN · MODERNLINE</div>
@@ -350,8 +385,8 @@
     </div>
 
     <div class="rf-actions">
-      <a href="#top" class="btn btn-ghost btn-lg">↑ Read again</a>
-      <a href="index.html" class="btn btn-primary btn-lg">See my work →</a>
+      <a href="#top" class="btn btn-ghost btn-lg" data-en="↑ Read again" data-bm="↑ Baca semula">↑ Read again</a>
+      <a href="al-mutaffifin.html" class="btn btn-primary btn-lg">Al-Mutaffifin →</a>
     </div>
   </section>
 
@@ -360,24 +395,31 @@
 <footer class="rf-footer">
   <p>
     <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
-    <span>Reflection by THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span data-en="A reflection by THE MDRN URBAN" data-bm="Refleksi oleh THE MDRN URBAN">A reflection by THE MDRN URBAN</span> &nbsp;·&nbsp;
     <span>© <span id="year"></span></span>
   </p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Reveal slides on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        en.target.classList.add('in-view');
-        io.unobserve(en.target);
-      }
-    });
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.rf-slide').forEach(s => io.observe(s));
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
 </script>
 <script src="feedback.js"></script>
 </body>

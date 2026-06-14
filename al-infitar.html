@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" data-lang="bm">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kamu tidak pernah bersendirian — tentang dua malaikat mulia yang sentiasa mencatat, dan mengapa ayat ini terasa lebih dekat di zaman skrin peribadi. Refleksi Surah Al-Infitar (82:10–12) oleh The Mdrn Urban." />
+  <meta name="description" content="Kamu tidak pernah bersendirian — tentang dua malaikat mulia yang sentiasa mencatat. Refleksi Surah Al-Infitar (82:10–12) oleh The Mdrn Urban. BM / English." />
   <title>Kamu Tidak Pernah Bersendirian — Al-Infitar · The Mdrn Urban</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0a0a0f" />
@@ -12,7 +12,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
   <meta property="og:title" content="Kamu tidak pernah bersendirian — Al-Infitar" />
-  <meta property="og:description" content="Dua malaikat mulia (kiraman katibin) yang tidak pernah jemu mencatat setiap perbuatan kita. Di zaman bilik tertutup dan chat peribadi, Al-Quran mengingatkan: kamu tidak pernah bersendirian. Al-Infitar 82:10–12." />
+  <meta property="og:description" content="Dua malaikat mulia (kiraman katibin) yang tidak pernah jemu mencatat. Di zaman bilik tertutup dan chat peribadi, Al-Quran mengingatkan: kamu tidak pernah bersendirian. Al-Infitar 82:10–12." />
   <meta property="og:url" content="https://farissuhail.com/al-infitar.html" />
   <meta property="og:image" content="https://farissuhail.com/assets/og-al-infitar.png" />
   <meta property="og:image:width" content="1200" />
@@ -31,40 +31,22 @@
   <link rel="stylesheet" href="al-baqarah.css" />
   <style>
     .rf-slide[data-num]::before { content: attr(data-num); }
-    .rf-ayah {
-      font-family: 'Amiri', serif;
-      font-size: clamp(28px, 4.6vw, 50px);
-      line-height: 1.95;
-      color: var(--text);
-      direction: rtl;
-      margin: 0 0 22px;
-    }
-    .rf-ayah-tr {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(21px, 2.6vw, 30px);
-      line-height: 1.4;
-      color: var(--text);
-      margin: 0 0 12px;
-    }
-    .rf-ayah-ref {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin: 0 0 26px;
-    }
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(28px, 4.6vw, 50px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.6vw, 30px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0 0 26px; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
   </style>
 </head>
 <body class="reflection">
 
-<!-- Minimal nav -->
 <header class="rf-nav">
-  <a href="index.html" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
-  <a href="reflections.html" class="rf-back">← <span>Semua refleksi</span></a>
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="reflections.html" class="rf-back">← <span data-en="All reflections" data-bm="Semua refleksi">Semua refleksi</span></a>
+  </div>
 </header>
 
 <main>
@@ -74,147 +56,193 @@
     <div class="rf-publisher">THE MDRN URBAN · 03</div>
     <div class="rf-surah">SURAH 82</div>
     <h1 class="rf-title">
-      <span class="rf-the">kamu tak pernah</span>
-      <span class="rf-cow">SENDIRI</span>
+      <span class="rf-the" data-en="you are never" data-bm="kamu tak pernah">kamu tak pernah</span>
+      <span class="rf-cow" data-en="ALONE" data-bm="SENDIRI">SENDIRI</span>
     </h1>
     <div class="rf-arabic">AL-INFITAR</div>
-    <p class="rf-deck">
+    <p class="rf-deck"
+       data-en="About two noble angels who never tire of recording — and why, in an age of closed rooms and private screens, this passage feels closer than ever."
+       data-bm="Tentang dua malaikat mulia yang tidak pernah jemu mencatat — dan mengapa, di zaman bilik tertutup dan skrin peribadi, ayat ini terasa lebih dekat daripada sebelumnya.">
       Tentang dua malaikat mulia yang tidak pernah jemu mencatat — dan mengapa, di zaman bilik tertutup dan skrin peribadi, ayat ini terasa lebih dekat daripada sebelumnya.
     </p>
     <div class="rf-meta">
-      <span>Refleksi</span>
+      <span data-en="Reflection" data-bm="Refleksi">Refleksi</span>
       <span>·</span>
       <span>Al-Infitar 82:10–12</span>
       <span>·</span>
-      <span>Baca perlahan</span>
+      <span data-en="Read slowly" data-bm="Baca perlahan">Baca perlahan</span>
     </div>
-    <div class="rf-scroll-hint" aria-hidden="true">↓ Tatal untuk mula</div>
+    <div class="rf-scroll-hint" aria-hidden="true" data-en="↓ Scroll to begin" data-bm="↓ Tatal untuk mula">↓ Tatal untuk mula</div>
   </section>
 
   <!-- 01 — THE VERSES -->
   <section class="rf-slide rf-slide-accent" data-num="01">
-    <div class="rf-eyebrow">Allah berfirman</div>
+    <div class="rf-eyebrow" data-en="Allah says" data-bm="Allah berfirman">Allah berfirman</div>
     <p class="rf-ayah" lang="ar" dir="rtl">وَإِنَّ عَلَيْكُمْ لَحافِظِينَ · كِرامًا كاتِبِينَ · يَعْلَمُونَ ما تَفْعَلُونَ</p>
-    <p class="rf-ayah-tr">"Padahal sesungguhnya ada penjaga-penjaga yang mengawasi kamu — yang mulia lagi sentiasa mencatat — mereka mengetahui apa yang kamu lakukan."</p>
+    <p class="rf-ayah-tr"
+       data-en="“And indeed, over you are keepers — noble, recording — who know whatever you do.”"
+       data-bm="“Padahal sesungguhnya ada penjaga-penjaga yang mengawasi kamu — yang mulia lagi sentiasa mencatat — mereka mengetahui apa yang kamu lakukan.”">
+      “Padahal sesungguhnya ada penjaga-penjaga yang mengawasi kamu — yang mulia lagi sentiasa mencatat — mereka mengetahui apa yang kamu lakukan.”
+    </p>
     <p class="rf-ayah-ref">Al-Infitar 82:10–12</p>
   </section>
 
   <!-- 02 — CONTEXT BEFORE -->
   <section class="rf-slide" data-num="02">
-    <div class="rf-eyebrow">Sejurus sebelum itu</div>
+    <div class="rf-eyebrow" data-en="Just before this" data-bm="Sejurus sebelum itu">Sejurus sebelum itu</div>
     <p class="rf-ayah" lang="ar" dir="rtl">كَلّا بَلْ تُكَذِّبُونَ بِالدِّينِ</p>
-    <p class="rf-ayah-tr">"Sekali-kali tidak! Bahkan kamu mendustakan hari pembalasan."</p>
+    <p class="rf-ayah-tr"
+       data-en="“No indeed! But you deny the Recompense.”"
+       data-bm="“Sekali-kali tidak! Bahkan kamu mendustakan hari pembalasan.”">
+      “Sekali-kali tidak! Bahkan kamu mendustakan hari pembalasan.”
+    </p>
     <p class="rf-ayah-ref">Al-Infitar 82:9</p>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="As if Allah is saying: You think there is no reckoning? You think it all simply passes by? You think there is no record?"
+       data-bm="Seolah-olah Allah berkata: Kamu sangka tiada hisab? Kamu sangka semuanya berlalu begitu sahaja? Kamu sangka tiada rekod?">
       Seolah-olah Allah berkata: Kamu sangka tiada hisab? Kamu sangka semuanya berlalu begitu sahaja? Kamu sangka tiada rekod?
     </p>
   </section>
 
   <!-- 03 — THE ANSWER -->
   <section class="rf-slide" data-num="03">
-    <h2 class="rf-big">
+    <h2 class="rf-big"
+        data-en="No. There are creations of Allah who are <em>always with you.</em>"
+        data-bm="Tidak. Ada makhluk Allah yang <em>sentiasa bersama kamu.</em>">
       Tidak. Ada makhluk Allah yang <em>sentiasa bersama kamu.</em>
     </h2>
   </section>
 
   <!-- 04 — GUARDIAN NOT WRITER -->
   <section class="rf-slide rf-slide-accent" data-num="04">
-    <div class="rf-eyebrow">Ustaz Nouman Ali Khan menyentuh satu perkataan</div>
+    <div class="rf-eyebrow" data-en="Ustaz Nouman Ali Khan draws out one word" data-bm="Ustaz Nouman Ali Khan menyentuh satu perkataan">Ustaz Nouman Ali Khan menyentuh satu perkataan</div>
     <p class="rf-ayah" lang="ar" dir="rtl" style="margin-bottom:28px">لَحافِظِينَ</p>
-    <h2 class="rf-big">
-      Allah tidak sekadar berkata "penulis." Allah memilih <em>"penjaga."</em>
+    <h2 class="rf-big"
+        data-en="Allah doesn't merely say “writers.” He chooses <em>“guardians.”</em>"
+        data-bm="Allah tidak sekadar berkata “penulis.” Allah memilih <em>“penjaga.”</em>">
+      Allah tidak sekadar berkata “penulis.” Allah memilih <em>“penjaga.”</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="And a guardian carries a deeper meaning: something constantly watched, constantly kept, constantly recorded, constantly in view."
+       data-bm="Dan penjaga membawa makna yang lebih dalam: sesuatu yang sentiasa dipantau, sentiasa dijaga, sentiasa direkod, sentiasa dalam perhatian.">
       Dan penjaga membawa makna yang lebih dalam: sesuatu yang sentiasa dipantau, sentiasa dijaga, sentiasa direkod, sentiasa dalam perhatian.
     </p>
   </section>
 
   <!-- 05 — NOBLE -->
   <section class="rf-slide" data-num="05">
-    <div class="rf-eyebrow">Dan mereka digelar</div>
+    <div class="rf-eyebrow" data-en="And they are called" data-bm="Dan mereka digelar">Dan mereka digelar</div>
     <p class="rf-ayah" lang="ar" dir="rtl" style="margin-bottom:18px">كِرامًا</p>
-    <h2 class="rf-big">"Mulia."</h2>
-    <p class="rf-body">
+    <h2 class="rf-big" data-en="“Noble.”" data-bm="“Mulia.”">“Mulia.”</h2>
+    <p class="rf-body"
+       data-en="Allah is the Most Noble; and the angels He assigns are noble too. So a person in the middle of a sin is being watched by noble beings."
+       data-bm="Allah Maha Mulia; dan malaikat yang ditugaskan-Nya juga mulia. Maka seseorang yang sedang melakukan dosa sebenarnya sedang diperhatikan oleh makhluk-makhluk yang mulia.">
       Allah Maha Mulia; dan malaikat yang ditugaskan-Nya juga mulia. Maka seseorang yang sedang melakukan dosa sebenarnya sedang diperhatikan oleh makhluk-makhluk yang mulia.
     </p>
   </section>
 
   <!-- 06 — THE SCENE -->
   <section class="rf-slide" data-num="06">
-    <h2 class="rf-quote">
+    <h2 class="rf-quote"
+        data-en="While someone is backbiting, slandering, lying, or looking at the forbidden — beside them is a noble angel who <em>never tires of recording.</em>"
+        data-bm="Ketika seseorang sedang mengumpat, memfitnah, menipu, atau memandang yang haram — di sisinya ada malaikat mulia yang <em>tidak pernah jemu mencatat.</em>">
       Ketika seseorang sedang mengumpat, memfitnah, menipu, atau memandang yang haram — di sisinya ada malaikat mulia yang <em>tidak pernah jemu mencatat.</em>
     </h2>
   </section>
 
   <!-- 07 — TAF'ALUN vs TA'MALUN -->
   <section class="rf-slide" data-num="07">
-    <div class="rf-eyebrow">Perhatikan pilihan perkataan</div>
-    <p class="rf-body" style="margin-bottom:18px">
-      Allah tidak berkata <span class="rf-honorific" lang="ar" dir="rtl">يَعْلَمُونَ ما تَعْمَلُونَ</span> ("apa yang kamu <em>usahakan</em>"). Allah berkata:
+    <div class="rf-eyebrow" data-en="Notice the word chosen" data-bm="Perhatikan pilihan perkataan">Perhatikan pilihan perkataan</div>
+    <p class="rf-body" style="margin-bottom:18px"
+       data-en="Allah does not say <span class='rf-honorific' lang='ar' dir='rtl'>يَعْلَمُونَ ما تَعْمَلُونَ</span> (“what you <em>labour at</em>”). He says:"
+       data-bm="Allah tidak berkata <span class='rf-honorific' lang='ar' dir='rtl'>يَعْلَمُونَ ما تَعْمَلُونَ</span> (“apa yang kamu <em>usahakan</em>”). Allah berkata:">
+      Allah tidak berkata <span class="rf-honorific" lang="ar" dir="rtl">يَعْلَمُونَ ما تَعْمَلُونَ</span> (“apa yang kamu <em>usahakan</em>”). Allah berkata:
     </p>
     <p class="rf-ayah" lang="ar" dir="rtl">يَعْلَمُونَ ما تَفْعَلُونَ</p>
-    <p class="rf-ayah-tr">"Mereka mengetahui apa yang kamu <em>lakukan</em>."</p>
-    <p class="rf-body">
+    <p class="rf-ayah-tr"
+       data-en="“They know whatever you <em>do</em>.”"
+       data-bm="“Mereka mengetahui apa yang kamu <em>lakukan</em>.”">
+      “Mereka mengetahui apa yang kamu <em>lakukan</em>.”
+    </p>
+    <p class="rf-body"
+       data-en="The word <span class='rf-honorific' lang='ar' dir='rtl'>تَفْعَلُونَ</span> is broader — it includes the unthinking acts, the things we deem trivial, the things we ourselves later forget. We may forget; the angels do not."
+       data-bm="Perkataan <span class='rf-honorific' lang='ar' dir='rtl'>تَفْعَلُونَ</span> lebih luas — termasuk perbuatan tanpa fikir panjang, perkara yang dianggap remeh, perkara yang kemudiannya kita sendiri lupa. Kita mungkin terlupa; malaikat tidak.">
       Perkataan <span class="rf-honorific" lang="ar" dir="rtl">تَفْعَلُونَ</span> lebih luas — termasuk perbuatan tanpa fikir panjang, perkara yang dianggap remeh, perkara yang kemudiannya kita sendiri lupa. Kita mungkin terlupa; malaikat tidak.
     </p>
   </section>
 
   <!-- 08 — WE MINIMISE -->
   <section class="rf-slide" data-num="08">
-    <div class="rf-eyebrow">Kita sering memandang ringan</div>
+    <div class="rf-eyebrow" data-en="We so often make it small" data-bm="Kita sering memandang ringan">Kita sering memandang ringan</div>
     <ul class="rf-commands">
-      <li>"Alaa… gurau je."</li>
-      <li>"Alaa… sekali je."</li>
-      <li>"Alaa… benda kecil je."</li>
+      <li data-en="“It's just a joke.”" data-bm="“Alaa… gurau je.”">“Alaa… gurau je.”</li>
+      <li data-en="“Just this once.”" data-bm="“Alaa… sekali je.”">“Alaa… sekali je.”</li>
+      <li data-en="“It's a small thing.”" data-bm="“Alaa… benda kecil je.”">“Alaa… benda kecil je.”</li>
     </ul>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="But the recording continues. The angels write the deed; and Allah knows even the intention behind it."
+       data-bm="Tetapi catatan tetap berjalan. Malaikat mencatat perbuatan; dan Allah mengetahui hingga ke niat di sebaliknya.">
       Tetapi catatan tetap berjalan. Malaikat mencatat perbuatan; dan Allah mengetahui hingga ke niat di sebaliknya.
     </p>
   </section>
 
   <!-- 09 — DEEDS vs INTENTION -->
   <section class="rf-slide" data-num="09">
-    <div class="rf-eyebrow">Malaikat menulis</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="The angels write" data-bm="Malaikat menulis">Malaikat menulis</div>
+    <h2 class="rf-big"
+        data-en="he prays · he gives · <em>he teaches.</em>"
+        data-bm="dia solat · dia bersedekah · <em>dia mengajar.</em>">
       dia solat · dia bersedekah · <em>dia mengajar.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="But Allah knows — was it for Allah, or for people? That is why some deeds look great in this world, yet turn to dust in the next."
+       data-bm="Tetapi Allah tahu — adakah semua itu kerana Allah, atau kerana manusia? Itulah sebabnya ada amalan yang nampak besar di dunia, namun menjadi debu di akhirat.">
       Tetapi Allah tahu — adakah semua itu kerana Allah, atau kerana manusia? Itulah sebabnya ada amalan yang nampak besar di dunia, namun menjadi debu di akhirat.
     </p>
   </section>
 
   <!-- 10 — MODERN APPLICATION -->
   <section class="rf-slide rf-slide-accent" data-num="10">
-    <div class="rf-eyebrow">Dan inilah yang ayat ini ajar hari ini</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="And here is what it teaches us today" data-bm="Dan inilah yang ayat ini ajar hari ini">Dan inilah yang ayat ini ajar hari ini</div>
+    <h2 class="rf-big"
+        data-en="We live as though <em>no one is watching.</em>"
+        data-bm="Kita hidup seolah-olah <em>tiada siapa melihat.</em>">
       Kita hidup seolah-olah <em>tiada siapa melihat.</em>
     </h2>
     <ul class="rf-commands">
-      <li>Bilik tertutup.</li>
-      <li>Telefon di tangan.</li>
-      <li>Media sosial.</li>
-      <li>Chat peribadi.</li>
-      <li>Search history.</li>
+      <li data-en="A closed room." data-bm="Bilik tertutup.">Bilik tertutup.</li>
+      <li data-en="A phone in hand." data-bm="Telefon di tangan.">Telefon di tangan.</li>
+      <li data-en="Social media." data-bm="Media sosial.">Media sosial.</li>
+      <li data-en="Private chats." data-bm="Chat peribadi.">Chat peribadi.</li>
+      <li data-en="Search history." data-bm="Search history.">Search history.</li>
     </ul>
   </section>
 
   <!-- 11 — YOU ARE NEVER ALONE -->
   <section class="rf-slide rf-slide-quiet" data-num="11">
-    <h2 class="rf-mega">
+    <h2 class="rf-mega"
+        data-en="You are never <em>alone.</em>"
+        data-bm="Kamu tidak pernah <em>bersendirian.</em>">
       Kamu tidak pernah <em>bersendirian.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Every step. Every word. Every click. Every glance. Every choice."
+       data-bm="Setiap langkah. Setiap perkataan. Setiap klik. Setiap pandangan. Setiap pilihan.">
       Setiap langkah. Setiap perkataan. Setiap klik. Setiap pandangan. Setiap pilihan.
     </p>
   </section>
 
   <!-- 12 — ONE LINE TO KEEP -->
   <section class="rf-slide rf-slide-accent" data-num="12">
-    <div class="rf-eyebrow">Satu baris untuk disimpan</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="One line to keep" data-bm="Satu baris untuk disimpan">Satu baris untuk disimpan</div>
+    <h2 class="rf-quote"
+        data-en="It is all being written. And one day, all of it will be opened."
+        data-bm="Semuanya sedang ditulis. Dan satu hari nanti, semuanya akan dibuka.">
       Semuanya sedang ditulis. Dan satu hari nanti, semuanya akan dibuka.
     </h2>
-    <p class="rf-tagline">
+    <p class="rf-tagline"
+       data-en="So live as though that record is <em>one we will read again.</em>"
+       data-bm="Maka hiduplah seolah-olah catatan itu <em>akan kita baca semula.</em>">
       Maka hiduplah seolah-olah catatan itu <em>akan kita baca semula.</em>
     </p>
   </section>
@@ -222,18 +250,19 @@
   <!-- 13 — CLOSING -->
   <section class="rf-slide rf-closing" data-num="13">
     <div class="rf-publisher">AL-INFITAR</div>
-    <h2 class="rf-big">Kamu Tidak Pernah Bersendirian · 82:10–12</h2>
-    <p class="rf-body">
+    <h2 class="rf-big" data-en="You Are Never Alone · 82:10–12" data-bm="Kamu Tidak Pernah Bersendirian · 82:10–12">Kamu Tidak Pernah Bersendirian · 82:10–12</h2>
+    <p class="rf-body"
+       data-en="Save this. Share it with someone who needs a <em>gentle reminder</em> today."
+       data-bm="Simpan ini. Kongsikan dengan seseorang yang memerlukan <em>peringatan lembut</em> hari ini.">
       Simpan ini. Kongsikan dengan seseorang yang memerlukan <em>peringatan lembut</em> hari ini.
     </p>
     <div class="rf-credit">
       <div>THE MDRN URBAN · MODERNLINE</div>
       <a href="https://farissuhail.com">www.farissuhail.com</a>
     </div>
-
     <div class="rf-actions">
       <a href="al-mutaffifin.html" class="btn btn-ghost btn-lg">← Al-Mutaffifin</a>
-      <a href="reflections.html" class="btn btn-primary btn-lg">Semua refleksi →</a>
+      <a href="reflections.html" class="btn btn-primary btn-lg" data-en="All reflections →" data-bm="Semua refleksi →">Semua refleksi →</a>
     </div>
   </section>
 
@@ -242,19 +271,31 @@
 <footer class="rf-footer">
   <p>
     <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
-    <span>Refleksi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span data-en="A reflection by THE MDRN URBAN" data-bm="Refleksi oleh THE MDRN URBAN">Refleksi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
     <span>© <span id="year"></span></span>
   </p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
-    });
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.rf-slide').forEach(s => io.observe(s));
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
 </script>
 <script src="feedback.js"></script>
 </body>

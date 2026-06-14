@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" data-lang="bm">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Al-Mutaffifin — bila ketawa menjadi jenayah. Bagaimana Al-Quran memandang ejekan, buli dan sindiran, dan bagaimana Allah sendiri menutup kisahnya di Hari Akhirat. Refleksi Surah Al-Mutaffifin (83:29–36) oleh The Mdrn Urban." />
+  <meta name="description" content="Al-Mutaffifin — bila ketawa menjadi jenayah. Bagaimana Al-Quran memandang ejekan, buli dan sindiran. Refleksi Surah Al-Mutaffifin (83:29–36) oleh The Mdrn Urban. BM / English." />
   <title>Al-Mutaffifin — bila ketawa menjadi jenayah · The Mdrn Urban</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0a0a0f" />
@@ -30,42 +30,23 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="al-baqarah.css" />
   <style>
-    /* drop the "/ 25" denominator inherited from the Al-Baqarah pack */
     .rf-slide[data-num]::before { content: attr(data-num); }
-    .rf-ayah {
-      font-family: 'Amiri', serif;
-      font-size: clamp(28px, 4.6vw, 50px);
-      line-height: 1.95;
-      color: var(--text);
-      direction: rtl;
-      margin: 0 0 22px;
-    }
-    .rf-ayah-tr {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(21px, 2.6vw, 30px);
-      line-height: 1.4;
-      color: var(--text);
-      margin: 0 0 12px;
-    }
-    .rf-ayah-ref {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin: 0 0 26px;
-    }
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(28px, 4.6vw, 50px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.6vw, 30px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0 0 26px; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
   </style>
 </head>
 <body class="reflection">
 
-<!-- Minimal nav -->
 <header class="rf-nav">
-  <a href="index.html" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
-  <a href="reflections.html" class="rf-back">← <span>Semua refleksi</span></a>
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="reflections.html" class="rf-back">← <span data-en="All reflections" data-bm="Semua refleksi">Semua refleksi</span></a>
+  </div>
 </header>
 
 <main>
@@ -75,207 +56,266 @@
     <div class="rf-publisher">THE MDRN URBAN · 02</div>
     <div class="rf-surah">SURAH 83</div>
     <h1 class="rf-title">
-      <span class="rf-the">ketawa yang jadi</span>
-      <span class="rf-cow">JENAYAH</span>
+      <span class="rf-the" data-en="laughter into" data-bm="ketawa yang jadi">ketawa yang jadi</span>
+      <span class="rf-cow" data-en="CRIME" data-bm="JENAYAH">JENAYAH</span>
     </h1>
     <div class="rf-arabic">AL-MUTAFFIFIN</div>
-    <p class="rf-deck">
+    <p class="rf-deck"
+       data-en="After showing us Paradise, Allah brings us back to earth — to those who made mockery their entertainment, and how Allah Himself writes the ending."
+       data-bm="Selepas memperlihatkan syurga, Allah membawa kita kembali ke bumi — kepada mereka yang menjadikan penghinaan sebagai hiburan, dan bagaimana Allah sendiri yang menutup kisahnya.">
       Selepas memperlihatkan syurga, Allah membawa kita kembali ke bumi — kepada mereka yang menjadikan penghinaan sebagai hiburan, dan bagaimana Allah sendiri yang menutup kisahnya.
     </p>
     <div class="rf-meta">
-      <span>Refleksi</span>
+      <span data-en="Reflection" data-bm="Refleksi">Refleksi</span>
       <span>·</span>
       <span>Al-Mutaffifin 83:29–36</span>
       <span>·</span>
-      <span>Baca perlahan</span>
+      <span data-en="Read slowly" data-bm="Baca perlahan">Baca perlahan</span>
     </div>
-    <div class="rf-scroll-hint" aria-hidden="true">↓ Tatal untuk mula</div>
+    <div class="rf-scroll-hint" aria-hidden="true" data-en="↓ Scroll to begin" data-bm="↓ Tatal untuk mula">↓ Tatal untuk mula</div>
   </section>
 
   <!-- 01 — AFTER PARADISE -->
   <section class="rf-slide" data-num="01">
-    <div class="rf-eyebrow">Selepas memperlihatkan syurga</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="After showing us Paradise" data-bm="Selepas memperlihatkan syurga">Selepas memperlihatkan syurga</div>
+    <h2 class="rf-big" data-en="Suddenly Allah brings us <em>back to earth.</em>" data-bm="Tiba-tiba Allah membawa kita <em>kembali ke bumi.</em>">
       Tiba-tiba Allah membawa kita <em>kembali ke bumi.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="We were just shown Paradise — 'Illiyyin, the spring of Tasneem, the drawn-near Muqarrabun. Then at once Allah sets us back down into the reality the Companions were facing then."
+       data-bm="Baru sahaja kita dibawa melihat syurga — 'Illiyyin, mata air Tasneem, golongan Muqarrabun yang didekatkan. Lalu serta-merta Allah menurunkan kita semula kepada realiti yang sedang dihadapi para sahabat ketika itu.">
       Baru sahaja kita dibawa melihat syurga — 'Illiyyin, mata air Tasneem, golongan Muqarrabun yang didekatkan. Lalu serta-merta Allah menurunkan kita semula kepada realiti yang sedang dihadapi para sahabat ketika itu.
     </p>
   </section>
 
   <!-- 02 — VERSE 83:29 -->
   <section class="rf-slide rf-slide-accent" data-num="02">
-    <div class="rf-eyebrow">Allah berfirman</div>
+    <div class="rf-eyebrow" data-en="Allah says" data-bm="Allah berfirman">Allah berfirman</div>
     <p class="rf-ayah" lang="ar" dir="rtl">إِنَّ الَّذِينَ أَجْرَمُوا كَانُوا مِنَ الَّذِينَ آمَنُوا يَضْحَكُونَ</p>
-    <p class="rf-ayah-tr">"Sesungguhnya orang-orang yang melakukan jenayah dahulu sering mentertawakan orang-orang yang beriman."</p>
+    <p class="rf-ayah-tr"
+       data-en="“Indeed, those who committed crimes used to laugh at those who believed.”"
+       data-bm="“Sesungguhnya orang-orang yang melakukan jenayah dahulu sering mentertawakan orang-orang yang beriman.”">
+      “Sesungguhnya orang-orang yang melakukan jenayah dahulu sering mentertawakan orang-orang yang beriman.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:29</p>
   </section>
 
   <!-- 03 — THE WORD AJRAMU -->
   <section class="rf-slide" data-num="03">
-    <div class="rf-eyebrow">Perhatikan perkataan yang Allah pilih</div>
+    <div class="rf-eyebrow" data-en="Notice the word Allah chose" data-bm="Perhatikan perkataan yang Allah pilih">Perhatikan perkataan yang Allah pilih</div>
     <p class="rf-ayah" lang="ar" dir="rtl" style="margin-bottom:30px">أَجْرَمُوا</p>
-    <h2 class="rf-big">
+    <h2 class="rf-big" data-en="Allah calls it a <em>crime.</em>" data-bm="Allah memanggilnya satu <em>jenayah.</em>">
       Allah memanggilnya satu <em>jenayah.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="What crime did they commit? They merely laughed. Mocked. Belittled the believers. Yet in Allah's sight, that was no joke — it was a crime."
+       data-bm="Apa jenayah yang mereka lakukan? Mereka hanya ketawa. Mengejek. Memperlekehkan orang beriman. Namun di sisi Allah, perbuatan itu bukan gurauan — ia satu jenayah.">
       Apa jenayah yang mereka lakukan? Mereka hanya ketawa. Mengejek. Memperlekehkan orang beriman. Namun di sisi Allah, perbuatan itu bukan gurauan — ia satu jenayah.
     </p>
   </section>
 
   <!-- 04 — WE TREAT IT LIGHTLY -->
   <section class="rf-slide" data-num="04">
-    <div class="rf-eyebrow">Kita sering pandang ringan</div>
+    <div class="rf-eyebrow" data-en="We so often treat it lightly" data-bm="Kita sering pandang ringan">Kita sering pandang ringan</div>
     <ul class="rf-commands">
-      <li>"Alaa… gurau je."</li>
-      <li>"Sembang kosong je."</li>
-      <li>"Main-main je."</li>
+      <li data-en="“It's just a joke.”" data-bm="“Alaa… gurau je.”">“Alaa… gurau je.”</li>
+      <li data-en="“Just idle talk.”" data-bm="“Sembang kosong je.”">“Sembang kosong je.”</li>
+      <li data-en="“We're only playing.”" data-bm="“Main-main je.”">“Main-main je.”</li>
     </ul>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="But in Allah's sight, toying with a person's dignity was never a small matter."
+       data-bm="Tetapi di sisi Allah, mempermainkan maruah seorang manusia tidak pernah menjadi perkara kecil.">
       Tetapi di sisi Allah, mempermainkan maruah seorang manusia tidak pernah menjadi perkara kecil.
     </p>
   </section>
 
   <!-- 05 — VERSE 83:30 -->
   <section class="rf-slide rf-slide-accent" data-num="05">
-    <div class="rf-eyebrow">Allah menyambung</div>
+    <div class="rf-eyebrow" data-en="Allah continues" data-bm="Allah menyambung">Allah menyambung</div>
     <p class="rf-ayah" lang="ar" dir="rtl">وَإِذَا مَرُّوا بِهِمْ يَتَغَامَزُونَ</p>
-    <p class="rf-ayah-tr">"Dan apabila melintasi orang beriman, mereka berkerling-kerlingan sesama sendiri."</p>
+    <p class="rf-ayah-tr"
+       data-en="“And when they passed by the believers, they would wink at one another.”"
+       data-bm="“Dan apabila melintasi orang beriman, mereka berkerling-kerlingan sesama sendiri.”">
+      “Dan apabila melintasi orang beriman, mereka berkerling-kerlingan sesama sendiri.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:30</p>
   </section>
 
   <!-- 06 — NOT ALWAYS WORDS -->
   <section class="rf-slide" data-num="06">
-    <h2 class="rf-quote">
+    <h2 class="rf-quote" data-en="It isn't always with words." data-bm="Bukan semestinya dengan kata-kata.">
       Bukan semestinya dengan kata-kata.
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Sometimes a single side-glance is enough. A smirk. An eye-roll. One emoji. One message in the group chat. Enough of a look to make someone feel worthless."
+       data-bm="Kadang cukup dengan satu jelingan. Senyuman sinis. Eye-roll. Satu emoji. Satu mesej dalam group chat. Cukup dengan pandangan yang membuat seseorang terasa dirinya tidak bernilai.">
       Kadang cukup dengan satu jelingan. Senyuman sinis. Eye-roll. Satu emoji. Satu mesej dalam group chat. Cukup dengan pandangan yang membuat seseorang terasa dirinya tidak bernilai.
     </p>
   </section>
 
   <!-- 07 — MODERN PARALLELS -->
   <section class="rf-slide" data-num="07">
-    <div class="rf-eyebrow">Ayat ini terasa sangat dekat hari ini</div>
+    <div class="rf-eyebrow" data-en="This verse feels very close today" data-bm="Ayat ini terasa sangat dekat hari ini">Ayat ini terasa sangat dekat hari ini</div>
     <ul class="rf-commands">
-      <li>Buli.</li>
-      <li>Body shaming.</li>
-      <li>Sindiran &amp; cancel culture.</li>
-      <li>Meme yang menghina.</li>
-      <li>Screenshot disebar tanpa izin.</li>
-      <li>Group chat yang jadikan seseorang bahan lawak.</li>
+      <li data-en="Bullying." data-bm="Buli.">Buli.</li>
+      <li data-en="Body shaming." data-bm="Body shaming.">Body shaming.</li>
+      <li data-en="Snark &amp; cancel culture." data-bm="Sindiran &amp; cancel culture.">Sindiran &amp; cancel culture.</li>
+      <li data-en="Mocking memes." data-bm="Meme yang menghina.">Meme yang menghina.</li>
+      <li data-en="Screenshots shared without consent." data-bm="Screenshot disebar tanpa izin.">Screenshot disebar tanpa izin.</li>
+      <li data-en="Group chats that make someone the joke." data-bm="Group chat yang jadikan seseorang bahan lawak.">Group chat yang jadikan seseorang bahan lawak.</li>
     </ul>
-    <p class="rf-body" style="margin-top:24px">
+    <p class="rf-body" style="margin-top:24px"
+       data-en="All of it, in truth, shares the same spirit — <span class='rf-honorific' lang='ar' dir='rtl'>يَتَغَامَزُونَ</span>."
+       data-bm="Semuanya, pada hakikatnya, berkongsi roh yang sama — <span class='rf-honorific' lang='ar' dir='rtl'>يَتَغَامَزُونَ</span>.">
       Semuanya, pada hakikatnya, berkongsi roh yang sama — <span class="rf-honorific" lang="ar" dir="rtl">يَتَغَامَزُونَ</span>.
     </p>
   </section>
 
   <!-- 08 — VERSE 83:31 -->
   <section class="rf-slide rf-slide-accent" data-num="08">
-    <div class="rf-eyebrow">Kemudian Allah menyebut</div>
+    <div class="rf-eyebrow" data-en="Then Allah says" data-bm="Kemudian Allah menyebut">Kemudian Allah menyebut</div>
     <p class="rf-ayah" lang="ar" dir="rtl">وَإِذَا انقَلَبُوا إِلَىٰ أَهْلِهِمُ انقَلَبُوا فَكِهِينَ</p>
-    <p class="rf-ayah-tr">"Dan apabila pulang kepada keluarga mereka, mereka pulang dengan penuh rasa seronok."</p>
+    <p class="rf-ayah-tr"
+       data-en="“And when they returned to their own people, they returned delighted.”"
+       data-bm="“Dan apabila pulang kepada keluarga mereka, mereka pulang dengan penuh rasa seronok.”">
+      “Dan apabila pulang kepada keluarga mereka, mereka pulang dengan penuh rasa seronok.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:31</p>
   </section>
 
   <!-- 09 — THE SADDEST PART -->
   <section class="rf-slide" data-num="09">
-    <div class="rf-eyebrow">Dan inilah yang paling menyedihkan</div>
-    <h2 class="rf-big">
+    <div class="rf-eyebrow" data-en="And this is the saddest part" data-bm="Dan inilah yang paling menyedihkan">Dan inilah yang paling menyedihkan</div>
+    <h2 class="rf-big" data-en="They didn't just mock — they <em>enjoyed it.</em>" data-bm="Mereka bukan sekadar menghina — mereka <em>menikmatinya.</em>">
       Mereka bukan sekadar menghina — mereka <em>menikmatinya.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="They went home and retold it to their circle. Replayed the story. Laughed again about the one they mocked. Then said, casually:"
+       data-bm="Mereka pulang, lalu menceritakannya kepada geng. Mengulang semula kisah itu. Ketawa sekali lagi tentang orang yang mereka hina. Lalu dengan selamba berkata:">
       Mereka pulang, lalu menceritakannya kepada geng. Mengulang semula kisah itu. Ketawa sekali lagi tentang orang yang mereka hina. Lalu dengan selamba berkata:
     </p>
     <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:24px">إِنَّ هَٰؤُلَاءِ لَضَالُّونَ</p>
-    <p class="rf-ayah-tr">"Sesungguhnya orang-orang ini benar-benar sesat."</p>
+    <p class="rf-ayah-tr"
+       data-en="“Indeed, these people are truly astray.”"
+       data-bm="“Sesungguhnya orang-orang ini benar-benar sesat.”">
+      “Sesungguhnya orang-orang ini benar-benar sesat.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:32</p>
   </section>
 
   <!-- 10 — THE IRONY -->
   <section class="rf-slide" data-num="10">
-    <div class="rf-eyebrow">Ironinya</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="The irony" data-bm="Ironinya">Ironinya</div>
+    <h2 class="rf-quote"
+        data-en="The one mocking feels better. The one belittling feels nobler. The one looking down feels <em>higher.</em>"
+        data-bm="Yang menghina rasa dirinya lebih baik. Yang memperlekeh rasa dirinya lebih mulia. Yang memandang rendah rasa dirinya <em>lebih tinggi.</em>">
       Yang menghina rasa dirinya lebih baik. Yang memperlekeh rasa dirinya lebih mulia. Yang memandang rendah rasa dirinya <em>lebih tinggi.</em>
     </h2>
   </section>
 
   <!-- 11 — ALLAH REVERSES -->
   <section class="rf-slide rf-slide-accent" data-num="11">
-    <div class="rf-eyebrow">Tetapi Allah melihatnya dari sudut yang berbeza</div>
+    <div class="rf-eyebrow" data-en="But Allah sees it from a different angle" data-bm="Tetapi Allah melihatnya dari sudut yang berbeza">Tetapi Allah melihatnya dari sudut yang berbeza</div>
     <p class="rf-ayah" lang="ar" dir="rtl">فَالْيَوْمَ الَّذِينَ آمَنُوا مِنَ الْكُفَّارِ يَضْحَكُونَ</p>
-    <p class="rf-ayah-tr">"Maka pada hari ini pula, orang-orang yang beriman mentertawakan orang-orang kafir."</p>
+    <p class="rf-ayah-tr"
+       data-en="“So on that Day, it is the believers who laugh at the disbelievers.”"
+       data-bm="“Maka pada hari ini pula, orang-orang yang beriman mentertawakan orang-orang kafir.”">
+      “Maka pada hari ini pula, orang-orang yang beriman mentertawakan orang-orang kafir.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:34</p>
   </section>
 
   <!-- 12 — BUT NOTICE HOW -->
   <section class="rf-slide" data-num="12">
-    <div class="rf-eyebrow">Tetapi lihat caranya</div>
-    <p class="rf-body" style="margin-bottom:24px">
+    <div class="rf-eyebrow" data-en="But notice how" data-bm="Tetapi lihat caranya">Tetapi lihat caranya</div>
+    <p class="rf-body" style="margin-bottom:24px"
+       data-en="Allah doesn't show the believers mocking back. Not insulting. Not taking revenge. He only says:"
+       data-bm="Allah tidak menggambarkan orang beriman mengejek balik. Tidak menghina. Tidak membalas dendam. Allah hanya menyebut:">
       Allah tidak menggambarkan orang beriman mengejek balik. Tidak menghina. Tidak membalas dendam. Allah hanya menyebut:
     </p>
     <p class="rf-ayah" lang="ar" dir="rtl">عَلَى الْأَرَائِكِ يَنظُرُونَ</p>
-    <p class="rf-ayah-tr">"Sambil berehat di atas pelamin, mereka hanya memandang."</p>
+    <p class="rf-ayah-tr"
+       data-en="“Reclining on couches, they simply look on.”"
+       data-bm="“Sambil berehat di atas pelamin, mereka hanya memandang.”">
+      “Sambil berehat di atas pelamin, mereka hanya memandang.”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:35</p>
   </section>
 
   <!-- 13 — NO NEED -->
   <section class="rf-slide" data-num="13">
-    <h2 class="rf-quote">
+    <h2 class="rf-quote"
+        data-en="No need to retaliate. No need to defend oneself. No need to explain who was right."
+        data-bm="Tidak perlu lagi membalas. Tidak perlu lagi mempertahankan diri. Tidak perlu lagi menjelaskan siapa yang benar.">
       Tidak perlu lagi membalas. Tidak perlu lagi mempertahankan diri. Tidak perlu lagi menjelaskan siapa yang benar.
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="They need only watch — because Allah Himself has perfected His justice."
+       data-bm="Mereka cukup hanya melihat — kerana Allah sendiri sudah menyempurnakan keadilan-Nya.">
       Mereka cukup hanya melihat — kerana Allah sendiri sudah menyempurnakan keadilan-Nya.
     </p>
   </section>
 
   <!-- 14 — THE CLOSING QUESTION -->
   <section class="rf-slide rf-slide-accent" data-num="14">
-    <div class="rf-eyebrow">Lalu surah ini ditutup dengan satu soalan</div>
+    <div class="rf-eyebrow" data-en="Then the surah closes with a question" data-bm="Lalu surah ini ditutup dengan satu soalan">Lalu surah ini ditutup dengan satu soalan</div>
     <p class="rf-ayah" lang="ar" dir="rtl">هَلْ ثُوِّبَ الْكُفَّارُ مَا كَانُوا يَفْعَلُونَ</p>
-    <p class="rf-ayah-tr">"Bukankah orang-orang kafir itu telah dibalas atas apa yang dahulu mereka lakukan?"</p>
+    <p class="rf-ayah-tr"
+       data-en="“Have the disbelievers not been repaid for what they used to do?”"
+       data-bm="“Bukankah orang-orang kafir itu telah dibalas atas apa yang dahulu mereka lakukan?”">
+      “Bukankah orang-orang kafir itu telah dibalas atas apa yang dahulu mereka lakukan?”
+    </p>
     <p class="rf-ayah-ref">Al-Mutaffifin 83:36</p>
-    <p class="rf-body">
-      Seolah-olah Allah bertanya: "Sudah cukup jelas sekarang? Sudah nampak bagaimana setiap perbuatan akhirnya kembali kepada pelakunya?"
+    <p class="rf-body"
+       data-en="As if Allah asks: “Is it clear enough now? Do you see how every deed returns, in the end, to the one who did it?”"
+       data-bm="Seolah-olah Allah bertanya: “Sudah cukup jelas sekarang? Sudah nampak bagaimana setiap perbuatan akhirnya kembali kepada pelakunya?”">
+      Seolah-olah Allah bertanya: “Sudah cukup jelas sekarang? Sudah nampak bagaimana setiap perbuatan akhirnya kembali kepada pelakunya?”
     </p>
   </section>
 
   <!-- 15 — TAKEAWAY -->
   <section class="rf-slide rf-slide-quiet" data-num="15">
-    <h2 class="rf-mega">
+    <h2 class="rf-mega" data-en="Not every story ends in <em>this world.</em>" data-bm="Bukan semua kisah berakhir di <em>dunia.</em>">
       Bukan semua kisah berakhir di <em>dunia.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Some stories Allah keeps the ending for the Last Day. And when Allah Himself writes the ending, not a single wrong escapes the scale of His justice."
+       data-bm="Ada kisah yang Allah simpan penutupnya untuk Hari Akhirat. Dan apabila Allah sendiri yang menulis pengakhirannya, tiada satu pun kezaliman akan terlepas daripada neraca keadilan-Nya.">
       Ada kisah yang Allah simpan penutupnya untuk Hari Akhirat. Dan apabila Allah sendiri yang menulis pengakhirannya, tiada satu pun kezaliman akan terlepas daripada neraca keadilan-Nya.
     </p>
   </section>
 
   <!-- 16 — ONE LINE TO KEEP -->
   <section class="rf-slide rf-slide-accent" data-num="16">
-    <div class="rf-eyebrow">Satu baris untuk disimpan</div>
-    <h2 class="rf-quote">
+    <div class="rf-eyebrow" data-en="One line to keep" data-bm="Satu baris untuk disimpan">Satu baris untuk disimpan</div>
+    <h2 class="rf-quote"
+        data-en="When Allah writes the ending, no injustice slips away."
+        data-bm="Apabila Allah yang menutup kisahnya, tiada kezaliman yang terlepas.">
       Apabila Allah yang menutup kisahnya, tiada kezaliman yang terlepas.
     </h2>
-    <p class="rf-tagline">
-      Maka berhati-hatilah dengan apa yang kita anggap <em>"gurauan".</em>
+    <p class="rf-tagline"
+       data-en="So be careful with what we call <em>“just a joke.”</em>"
+       data-bm="Maka berhati-hatilah dengan apa yang kita anggap <em>“gurauan”.</em>">
+      Maka berhati-hatilah dengan apa yang kita anggap <em>“gurauan”.</em>
     </p>
   </section>
 
   <!-- 17 — CLOSING -->
   <section class="rf-slide rf-closing" data-num="17">
     <div class="rf-publisher">AL-MUTAFFIFIN</div>
-    <h2 class="rf-big">Bila ketawa menjadi jenayah · 83:29–36</h2>
-    <p class="rf-body">
+    <h2 class="rf-big" data-en="When laughter becomes a crime · 83:29–36" data-bm="Bila ketawa menjadi jenayah · 83:29–36">Bila ketawa menjadi jenayah · 83:29–36</h2>
+    <p class="rf-body"
+       data-en="Save this. Share it with someone who was once <em>made the joke.</em>"
+       data-bm="Simpan ini. Kongsikan dengan seseorang yang pernah <em>dijadikan bahan lawak.</em>">
       Simpan ini. Kongsikan dengan seseorang yang pernah <em>dijadikan bahan lawak.</em>
     </p>
     <div class="rf-credit">
       <div>THE MDRN URBAN · MODERNLINE</div>
       <a href="https://farissuhail.com">www.farissuhail.com</a>
     </div>
-
     <div class="rf-actions">
       <a href="al-baqarah.html" class="btn btn-ghost btn-lg">← Al-Baqarah</a>
-      <a href="reflections.html" class="btn btn-primary btn-lg">Semua refleksi →</a>
+      <a href="al-infitar.html" class="btn btn-primary btn-lg">Al-Infitar →</a>
     </div>
   </section>
 
@@ -284,19 +324,31 @@
 <footer class="rf-footer">
   <p>
     <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
-    <span>Refleksi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span data-en="A reflection by THE MDRN URBAN" data-bm="Refleksi oleh THE MDRN URBAN">Refleksi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
     <span>© <span id="year"></span></span>
   </p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
-    });
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.rf-slide').forEach(s => io.observe(s));
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
 </script>
 <script src="feedback.js"></script>
 </body>
