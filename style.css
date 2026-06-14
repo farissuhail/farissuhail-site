@@ -149,7 +149,7 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 }
 .split-hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   min-height: calc(100vh - 230px);
 }
@@ -263,6 +263,18 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 .split-pane.gold:hover {
   border-color: rgba(255,194,77,0.5);
   box-shadow: 0 30px 70px -30px rgba(255,194,77,0.35);
+}
+
+/* Book reviews — calm blue */
+.split-pane.blue::before {
+  background: radial-gradient(ellipse at 75% 0%, rgba(94,170,255,0.16) 0%, transparent 60%);
+}
+.split-pane.blue .split-eyebrow,
+.split-pane.blue .split-cta,
+.split-pane.blue .split-num { color: #5eaaff; }
+.split-pane.blue:hover {
+  border-color: rgba(94,170,255,0.5);
+  box-shadow: 0 30px 70px -30px rgba(94,170,255,0.35);
 }
 
 @media (max-width: 760px) {
