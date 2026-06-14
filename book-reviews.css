@@ -347,3 +347,29 @@ body.book-reviews-hub main { position: relative; z-index: 1; }
   .hub-section { padding: 30px 20px 50px; }
   .ref-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== BOOK REVIEW CARDS ===== */
+.bk-list { display: flex; flex-direction: column; gap: 20px; }
+.bk { display: grid; grid-template-columns: 250px 1fr; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.bk-cover { padding: 30px 26px; display: flex; flex-direction: column; justify-content: center; min-height: 230px; position: relative; }
+.bk-cover .bk-cat { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.9; margin-bottom: 12px; }
+.bk-cover h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 31px; line-height: 1.08; margin: 0 0 12px; color: #fff; font-weight: 600; }
+.bk-cover .bk-author { font-size: 14px; opacity: 0.9; }
+.bk-c1 { background: linear-gradient(155deg, #b45309, #f97316); color: #fff; }
+.bk-c2 { background: linear-gradient(155deg, #172554, #1e40af); color: #fff; }
+.bk-c3 { background: linear-gradient(155deg, #171717, #44403c); color: #f5d98a; }
+.bk-c4 { background: linear-gradient(155deg, #14532d, #15803d); color: #fff; }
+.bk-c5 { background: linear-gradient(155deg, #1c1917, #9a3412); color: #fff; }
+.bk-body { padding: 26px 30px; }
+.bk-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.bk-rating { color: #ffce5a; font-size: 15px; letter-spacing: 1px; }
+.bk-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--text-dim); }
+.bk-tag.live { color: var(--accent); border-color: rgba(94,170,255,0.35); }
+.bk-body p { font-size: 14.5px; color: var(--text-dim); line-height: 1.62; margin: 0 0 12px; }
+.bk-body p b { color: var(--text); }
+.bk-h { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin: 16px 0 8px; }
+.bk-ideas { margin: 0 0 12px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.bk-ideas li { font-size: 14px; color: var(--text-dim); padding-left: 18px; position: relative; line-height: 1.5; }
+.bk-ideas li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.bk-keep { border-left: 2px solid var(--accent); padding-left: 14px; font-style: italic; color: var(--text) !important; margin-top: 14px !important; }
+@media (max-width: 680px) { .bk { grid-template-columns: 1fr; } .bk-cover { min-height: 150px; } }
