@@ -1,4 +1,4 @@
-/* ===== BOOK REVIEWS HUB ===== (generated from reflections.css, blue theme) */
+/* ===== BOOK SUMMARIES HUB ===== (generated from reflections.css, blue theme) */
 /* ===== QURAN REFLECTIONS HUB ===== */
 /* Layered on top of style.css */
 
@@ -348,7 +348,7 @@ body.book-reviews-hub main { position: relative; z-index: 1; }
   .ref-grid { grid-template-columns: 1fr; }
 }
 
-/* ===== BOOK REVIEW CARDS ===== */
+/* ===== BOOK SUMMARY CARDS ===== */
 .bk-list { display: flex; flex-direction: column; gap: 20px; }
 .bk { display: grid; grid-template-columns: 250px 1fr; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
 .bk-cover { padding: 30px 26px; display: flex; flex-direction: column; justify-content: center; min-height: 230px; position: relative; }
