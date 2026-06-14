@@ -73,6 +73,7 @@
     <button class="k-tab active" data-tab="overview" data-en="Overview" data-bm="Gambaran">Overview</button>
     <button class="k-tab" data-tab="words" data-en="Words" data-bm="Perkataan">Words</button>
     <button class="k-tab" data-tab="roots" data-en="Roots" data-bm="Akar">Roots</button>
+    <button class="k-tab" data-tab="names" data-en="Names" data-bm="Nama">Names</button>
     <button class="k-tab" data-tab="numbers" data-en="Numbers" data-bm="Nombor">Numbers</button>
     <button class="k-tab" data-tab="surahs" data-en="Surahs" data-bm="Surah">Surahs</button>
   </nav>
@@ -139,6 +140,19 @@
       </p>
     </div>
     <div class="k-freq" id="rootList"></div>
+  </section>
+
+  <!-- ===== NAMES / CONSTELLATION ===== -->
+  <section id="panel-names" class="k-panel">
+    <div class="k-panel-head">
+      <h2 data-en="Who is named with whom" data-bm="Siapa disebut bersama siapa">Who is named with whom</h2>
+      <p data-en="Every prophet and key figure named in the Qur'an. Bar depth = how often they are named; each arc links two figures mentioned in the same ayah. Hover a name to trace its connections."
+         data-bm="Setiap nabi dan tokoh utama yang disebut dalam Al-Quran. Dalam palang = kekerapan disebut; setiap lengkungan menyambung dua tokoh yang disebut dalam ayat yang sama. Tuding nama untuk menjejak hubungannya.">
+        Every prophet and key figure named in the Qur'an. Bar depth = how often they are named; each arc links two figures mentioned in the same ayah. Hover a name to trace its connections.
+      </p>
+    </div>
+    <div class="k-arc-wrap"><div id="arcMap"></div></div>
+    <div class="k-names-legend" id="namesLegend"></div>
   </section>
 
   <!-- ===== NUMBERS ===== -->

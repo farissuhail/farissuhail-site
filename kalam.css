@@ -211,6 +211,20 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
 .k-srow .ty.makki { color: var(--k-cyan); }
 .k-srow .ty.madani { color: var(--k-violet); }
 
+/* ===== NAMES / CONSTELLATION ARC MAP ===== */
+.k-arc-wrap { overflow-x: auto; padding: 10px 0 6px; border: 1px solid var(--k-line); border-radius: var(--radius); background: rgba(255,255,255,0.012); }
+.k-arc { display: block; margin: 0 auto; min-width: 820px; }
+.k-arc-edge { fill: none; stroke: var(--k-cyan); transition: stroke-opacity .15s, stroke .15s; }
+.k-arc.focus .k-arc-edge { stroke-opacity: .035 !important; }
+.k-arc.focus .k-arc-edge.on { stroke-opacity: .9 !important; stroke: var(--k-violet); }
+.k-node { cursor: pointer; transition: opacity .15s; }
+.k-node text { font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+.k-node .cnt { fill: var(--text-mute); font-size: 9px; }
+.k-arc.focus .k-node { opacity: .28; }
+.k-arc.focus .k-node.on { opacity: 1; }
+.k-names-legend { display: flex; gap: 16px 22px; flex-wrap: wrap; margin-top: 20px; font-size: 13px; color: var(--text-dim); }
+.k-names-legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; margin-right: 7px; vertical-align: middle; }
+
 /* ===== FOOTER ===== */
 .k-footer { border-top: 1px solid var(--k-line); padding: 36px 32px; text-align: center; position: relative; z-index: 1; }
 .k-footer p { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-mute); margin: 6px 0; }

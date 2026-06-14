@@ -120,6 +120,92 @@
     document.getElementById('rootView').innerHTML = core + cards;
   }
 
+  /* ---------- NAMES / CONSTELLATION ---------- */
+  var GROUP = {
+    divine: { c: '#e8e8ee', en: 'The Divine', ms: 'Ilahi' },
+    prophet: { c: '#22d3ee', en: 'Prophets', ms: 'Para Nabi' },
+    angel: { c: '#a78bfa', en: 'Angels', ms: 'Malaikat' },
+    figure: { c: '#2dd4bf', en: 'Other figures', ms: 'Tokoh lain' },
+    foe: { c: '#fb7185', en: 'Adversaries', ms: 'Penentang' }
+  };
+  function renderNames() {
+    var N = DATA.names, nodes = N.nodes, edges = N.edges;
+    var n = nodes.length, padX = 48, step = 30, base = 330, H = 565;
+    var W = padX * 2 + (n - 1) * step;
+    var maxC = nodes[0].count, maxW = edges.length ? edges[0].w : 1;
+    var x = function (i) { return padX + i * step; };
+    var svg = '<svg class="k-arc" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">';
+    // arcs first (behind)
+    edges.forEach(function (e) {
+      var xa = x(e.a), xb = x(e.b), span = Math.abs(xb - xa);
+      var arcH = Math.min(290, 22 + span * 0.55);
+      var op = (0.06 + e.w / maxW * 0.34).toFixed(3);
+      svg += '<path class="k-arc-edge" data-a="' + e.a + '" data-b="' + e.b + '" ' +
+        'style="stroke-opacity:' + op + ';stroke-width:' + (e.w >= 10 ? 1.6 : 1) + '" ' +
+        'd="M ' + xa + ' ' + base + ' Q ' + ((xa + xb) / 2) + ' ' + (base - 2 * arcH) + ' ' + xb + ' ' + base + '"/>';
+    });
+    // nodes: dot + bar + label + count
+    nodes.forEach(function (nd, i) {
+      var col = (GROUP[nd.group] || GROUP.figure).c;
+      var barH = 14 + Math.sqrt(nd.count) / Math.sqrt(maxC) * 198;
+      var px = x(i), nm = lang() === 'bm' ? nd.ms : nd.en;
+      svg += '<g class="k-node" data-i="' + i + '">' +
+        '<rect class="bar" x="' + (px - 2.5) + '" y="' + base + '" width="5" height="' + barH.toFixed(1) + '" rx="2" fill="' + col + '" opacity="0.85"/>' +
+        '<circle cx="' + px + '" cy="' + base + '" r="3.4" fill="' + col + '"/>' +
+        '<text x="' + px + '" y="' + (base - 9) + '" fill="' + col + '" text-anchor="start" transform="rotate(-58 ' + px + ' ' + (base - 9) + ')">' + nm + '</text>' +
+        '<text class="cnt" x="' + px + '" y="' + (base + barH + 12).toFixed(1) + '" text-anchor="middle">' + fmt(nd.count) + '</text>' +
+        '</g>';
+    });
+    svg += '</svg>';
+    var wrap = document.getElementById('arcMap');
+    wrap.innerHTML = svg;
+
+    // legend
+    var groupsPresent = {};
+    nodes.forEach(function (nd) { groupsPresent[nd.group] = 1; });
+    document.getElementById('namesLegend').innerHTML = Object.keys(GROUP)
+      .filter(function (k) { return groupsPresent[k]; })
+      .map(function (k) {
+        return '<span><i style="background:' + GROUP[k].c + '"></i>' + L(GROUP[k].en, GROUP[k].ms) + '</span>';
+      }).join('');
+
+    // adjacency for hover
+    var adj = {};
+    edges.forEach(function (e) { (adj[e.a] = adj[e.a] || []).push(e.b); (adj[e.b] = adj[e.b] || []).push(e.a); });
+    var svgEl = wrap.querySelector('.k-arc');
+    var nodeEls = svgEl.querySelectorAll('.k-node');
+    var edgeEls = svgEl.querySelectorAll('.k-arc-edge');
+    nodeEls.forEach(function (g) {
+      g.addEventListener('mouseenter', function () {
+        var i = +g.dataset.i; svgEl.classList.add('focus');
+        var near = {}; (adj[i] || []).forEach(function (j) { near[j] = 1; }); near[i] = 1;
+        nodeEls.forEach(function (x2) { x2.classList.toggle('on', !!near[+x2.dataset.i]); });
+        edgeEls.forEach(function (ed) {
+          ed.classList.toggle('on', +ed.dataset.a === i || +ed.dataset.b === i);
+        });
+        var nd = nodes[i], deg = (adj[i] || []).length;
+        tipShow(g, '<div class="ar">' + nd.ar + '</div><b>' + (lang() === 'bm' ? nd.ms : nd.en) + '</b><br>' +
+          fmt(nd.count) + ' ' + L('mentions', 'sebutan') + ' · ' + L('linked to', 'berkait dengan') + ' ' + deg + ' ' + L('others', 'tokoh'));
+      });
+      g.addEventListener('mousemove', function (e) { tipMove(e); });
+      g.addEventListener('mouseleave', function () {
+        svgEl.classList.remove('focus');
+        nodeEls.forEach(function (x2) { x2.classList.remove('on'); });
+        edgeEls.forEach(function (ed) { ed.classList.remove('on'); });
+        if (tip) tip.style.opacity = 0;
+      });
+    });
+  }
+  function tipShow(el, htmlc) {
+    if (!tip) { tip = document.createElement('div'); tip.className = 'k-tip'; document.body.appendChild(tip); }
+    tip.innerHTML = htmlc; tip.style.opacity = 1;
+  }
+  function tipMove(e) {
+    if (!tip) return;
+    var x2 = Math.min(e.clientX + 14, window.innerWidth - 250);
+    tip.style.left = x2 + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+  }
+
   /* ---------- NUMBERS ---------- */
   function renderNumbers() {
     document.getElementById('numCards').innerHTML = DATA.notable.map(function (n) {
@@ -163,7 +249,7 @@
   }
 
   function renderAll() {
-    renderOverview(); renderWords(); renderRoots(); renderNumbers(); renderSurahs();
+    renderOverview(); renderWords(); renderRoots(); renderNames(); renderNumbers(); renderSurahs();
   }
 
   function init() {
