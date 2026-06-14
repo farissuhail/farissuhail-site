@@ -104,39 +104,43 @@
       c.classList.add('active'); showRoot(c.dataset.root);
     });
   }
-  function showRoot(key) {
-    var r = DATA.featuredRoots[key];
+  /* generic radial star map: centre node + orbiting items [{ar,count,gloss,big}] */
+  function buildRadial(center, items, opts) {
+    opts = opts || {};
     var W = 820, Hh = 560, cx = W / 2, cy = 268, R = 196;
-    var der = r.derived, n = der.length;
-    var maxD = der.reduce(function (m, d) { return Math.max(m, d.count); }, 1);
-    var pts = der.map(function (d, i) {
+    var n = items.length || 1;
+    var maxD = items.reduce(function (m, d) { return Math.max(m, d.count); }, 1);
+    var pts = items.map(function (d, i) {
       var ang = (-90 + i * (360 / n)) * Math.PI / 180;
-      var rad = 22 + Math.sqrt(d.count) / Math.sqrt(maxD) * 26; // node radius by frequency
+      var rad = 22 + Math.sqrt(d.count) / Math.sqrt(maxD) * 26;
       return { x: cx + R * Math.cos(ang), y: cy + R * Math.sin(ang), r: rad, d: d, i: i };
     });
     var svg = '<svg class="k-radial" viewBox="0 0 ' + W + ' ' + Hh + '" preserveAspectRatio="xMidYMid meet">';
-    // links
     pts.forEach(function (p) { svg += '<line class="k-rlink" x1="' + cx + '" y1="' + cy + '" x2="' + p.x.toFixed(1) + '" y2="' + p.y.toFixed(1) + '"/>'; });
-    // derived nodes
     pts.forEach(function (p) {
-      var col = p.i % 2 ? '#a78bfa' : '#22d3ee';
-      var gl = g(p.d);
+      var col = p.d.col || (p.i % 2 ? '#a78bfa' : '#22d3ee');
+      var gl = p.d.gloss || '';
+      var pre = opts.prefix || '';
       svg += '<g class="k-rnode">' +
         '<circle class="ring" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + p.r.toFixed(1) + '" fill="rgba(34,211,238,0.06)" stroke="' + col + '" stroke-width="1.4"/>' +
-        '<text class="w" x="' + p.x.toFixed(1) + '" y="' + (p.y - 1).toFixed(1) + '" style="font-size:' + Math.max(15, p.r * 0.62).toFixed(0) + 'px">' + p.d.ar + '</text>' +
-        '<text class="c" x="' + p.x.toFixed(1) + '" y="' + (p.y + p.r - 6).toFixed(1) + '">' + fmt(p.d.count) + '</text>' +
+        '<text class="w" x="' + p.x.toFixed(1) + '" y="' + (p.y - 1).toFixed(1) + '" style="font-size:' + Math.max(15, p.r * 0.6).toFixed(0) + 'px">' + p.d.ar + '</text>' +
+        '<text class="c" x="' + p.x.toFixed(1) + '" y="' + (p.y + p.r - 6).toFixed(1) + '">' + pre + fmt(p.d.count) + '</text>' +
         (gl ? '<text class="gl" x="' + p.x.toFixed(1) + '" y="' + (p.y + p.r + 15).toFixed(1) + '">' + gl + '</text>' : '') +
         '</g>';
     });
-    // centre (the root)
     svg += '<g class="k-rcore">' +
       '<circle class="halo" cx="' + cx + '" cy="' + cy + '" r="92"/>' +
       '<circle class="disc" cx="' + cx + '" cy="' + cy + '" r="64"/>' +
-      '<text class="root" x="' + cx + '" y="' + (cy + 6) + '" style="font-size:46px">' + r.ar + '</text>' +
-      '<text class="sub" x="' + cx + '" y="' + (cy + 40) + '">' + r.tr + '</text>' +
-      '</g>';
-    svg += '</svg>';
+      '<text class="root" x="' + cx + '" y="' + (cy + 6) + '" style="font-size:' + (center.size || 46) + 'px">' + center.ar + '</text>' +
+      '<text class="sub" x="' + cx + '" y="' + (cy + 40) + '">' + center.sub + '</text>' +
+      '</g></svg>';
+    return svg;
+  }
 
+  function showRoot(key) {
+    var r = DATA.featuredRoots[key];
+    var items = r.derived.map(function (d) { return { ar: d.ar, count: d.count, gloss: g(d) }; });
+    var svg = buildRadial({ ar: r.ar, sub: r.tr }, items);
     var stats = '<div class="k-radial-stats">' +
       '<div class="k-mini"><div style="font-family:Amiri,serif;font-size:30px;color:#fff">' + r.ar + '</div>' +
         '<div class="lbl">' + L('root', 'akar') + ' · ' + g(r) + '</div></div>' +
@@ -145,8 +149,39 @@
       '<div class="k-mini"><div class="num">' + r.forms + '</div>' +
         '<div class="lbl">' + L('distinct derived words', 'perkataan terbitan berbeza') + '</div></div>' +
       '</div>';
-
     document.getElementById('rootView').innerHTML = '<div class="k-radial-wrap">' + svg + '</div>' + stats;
+  }
+
+  /* ego radial for a named figure: who shares an ayah with them */
+  function showEgo(i) {
+    var nodes = DATA.names.nodes, edges = DATA.names.edges;
+    var nb = [];
+    edges.forEach(function (e) {
+      if (e.a === i) nb.push({ j: e.b, w: e.w });
+      else if (e.b === i) nb.push({ j: e.a, w: e.w });
+    });
+    nb.sort(function (a, b) { return b.w - a.w; });
+    var total = nb.length;
+    nb = nb.slice(0, 11);
+    var c = nodes[i];
+    var items = nb.map(function (x) {
+      var nn = nodes[x.j];
+      return { ar: nn.ar, count: x.w, gloss: (lang() === 'bm' ? nn.ms : nn.en), col: (GROUP[nn.group] || GROUP.figure).c };
+    });
+    var svg = nb.length
+      ? buildRadial({ ar: c.ar, sub: (lang() === 'bm' ? c.ms : c.en), size: 38 }, items, { prefix: '×' })
+      : '<p style="color:var(--text-mute);text-align:center;padding:40px">' + L('Named alone — no same-ayah links.', 'Disebut bersendirian — tiada kaitan seayat.') + '</p>';
+    var stats = '<div class="k-radial-stats">' +
+      '<div class="k-mini"><div style="font-family:Amiri,serif;font-size:30px;color:#fff">' + c.ar + '</div>' +
+        '<div class="lbl">' + (lang() === 'bm' ? c.ms : c.en) + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + fmt(c.count) + '</div>' +
+        '<div class="lbl">' + L('times named', 'kali disebut') + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + total + '</div>' +
+        '<div class="lbl">' + L('figures share an ayah', 'tokoh berkongsi ayat') + '</div></div>' +
+      '</div>';
+    document.getElementById('egoView').innerHTML = '<div class="k-radial-wrap">' + svg + '</div>' + stats;
+    var chips = document.querySelectorAll('#nameChips .k-chip');
+    chips.forEach(function (ch) { ch.classList.toggle('active', +ch.dataset.i === i); });
   }
 
   /* ---------- NAMES / CONSTELLATION ---------- */
@@ -197,6 +232,19 @@
       .map(function (k) {
         return '<span><i style="background:' + GROUP[k].c + '"></i>' + L(GROUP[k].en, GROUP[k].ms) + '</span>';
       }).join('');
+
+    // per-figure ego chips (skip Allah as default since it links to nearly all)
+    var chipEl = document.getElementById('nameChips');
+    if (chipEl) {
+      chipEl.innerHTML = nodes.map(function (nd, i) {
+        return '<button class="k-chip" data-i="' + i + '">' + nd.ar + '</button>';
+      }).join('');
+      chipEl.onclick = function (e) {
+        var c = e.target.closest('.k-chip'); if (c) showEgo(+c.dataset.i);
+      };
+      var def = nodes.length > 1 ? 1 : 0; // default: Moses (most-named prophet)
+      showEgo(def);
+    }
 
     // adjacency for hover
     var adj = {};
