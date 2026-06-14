@@ -278,21 +278,21 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   box-shadow: 0 30px 70px -30px rgba(94,170,255,0.35);
 }
 
-/* Pillar hero artwork (cropped from the design mockups) */
+/* Pillar hero artwork (cropped from the design mockups) — centrepiece, in-flow */
 .split-art {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 82%;
-  max-width: 320px;
-  opacity: 0.6;
-  z-index: 0;
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 280px;
+  margin: 18px auto 16px;
+  opacity: 0.96;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 76%);
-  mask-image: radial-gradient(ellipse at center, #000 50%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 70% at center, #000 60%, transparent 90%);
+  mask-image: radial-gradient(ellipse 72% 70% at center, #000 60%, transparent 90%);
+  transition: transform 0.4s ease;
 }
-.split-pane:hover .split-art { opacity: 0.72; transition: opacity 0.3s; }
+.split-pane:hover .split-art { transform: scale(1.03); }
 
 /* Pillar preview blocks (homepage cards) */
 .split-extra { position: relative; z-index: 1; margin: 20px 0 6px; display: flex; flex-direction: column; gap: 11px; }
