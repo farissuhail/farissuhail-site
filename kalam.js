@@ -73,7 +73,7 @@
   function freqRow(item, rank, max) {
     var w = Math.max(3, Math.round(item.count / max * 100));
     var gl = g(item);
-    return '<div class="k-row" data-search="' + (item.ar + ' ' + item.tr + ' ' + item.en + ' ' + item.ms).toLowerCase() + '">' +
+    return '<div class="k-row" data-i="' + (rank - 1) + '" data-search="' + (item.ar + ' ' + item.tr + ' ' + item.en + ' ' + item.ms).toLowerCase() + '">' +
       '<div class="rank">' + (rank < 10 ? '0' + rank : rank) + '</div>' +
       '<div class="term"><span class="ar">' + item.ar + '</span><span class="tr">' + item.tr + '</span></div>' +
       '<div class="gloss">' + gl + '</div>' +
@@ -83,8 +83,32 @@
   }
   function renderWords() {
     var max = DATA.topWords[0].count;
-    document.getElementById('wordList').innerHTML =
-      DATA.topWords.map(function (it, i) { return freqRow(it, i + 1, max); }).join('');
+    var list = document.getElementById('wordList');
+    list.innerHTML = DATA.topWords.map(function (it, i) { return freqRow(it, i + 1, max); }).join('');
+    list.onclick = function (e) {
+      var row = e.target.closest('.k-row'); if (!row) return;
+      showWordSurah(+row.dataset.i);
+    };
+    showWordSurah(0);
+  }
+  function showWordSurah(i) {
+    var w = DATA.topWords[i];
+    if (!w.surahs) { document.getElementById('wordFocus').innerHTML = ''; return; }
+    var top = w.surahs.slice(0, 11).map(function (pair) {
+      var s = DATA.surahs[pair[0] - 1];
+      return { ar: s ? s.en : ('S' + pair[0]), count: pair[1], gloss: L('surah', 'surah') + ' ' + pair[0] };
+    });
+    var svg = buildRadial({ ar: w.ar, sub: w.tr, size: 38 }, top, { prefix: '×' });
+    var stats = '<div class="k-radial-stats">' +
+      '<div class="k-mini"><div style="font-family:Amiri,serif;font-size:30px;color:#fff">' + w.ar + '</div>' +
+        '<div class="lbl">' + (g(w) || w.tr) + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + fmt(w.count) + '</div>' +
+        '<div class="lbl">' + L('total occurrences', 'jumlah kemunculan') + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + w.nSurah + '</div>' +
+        '<div class="lbl">' + L('of 114 surahs', 'daripada 114 surah') + '</div></div>' +
+      '</div>';
+    document.getElementById('wordFocus').innerHTML = '<div class="k-radial-wrap">' + svg + '</div>' + stats;
+    document.querySelectorAll('#wordList .k-row').forEach(function (r) { r.classList.toggle('active', +r.dataset.i === i); });
   }
 
   /* ---------- ROOTS ---------- */

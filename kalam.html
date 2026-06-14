@@ -40,13 +40,11 @@
     <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
     <a href="kalam.html" class="nav-reflections" data-en="Kalam ✦" data-bm="Kalam ✦">Kalam ✦</a>
     <a href="book-reviews.html" data-en="Book reviews" data-bm="Ulasan buku">Book reviews</a>
-    <a href="apps.html" data-en="App development" data-bm="Pembangunan app">App development</a>
   </nav>
   <div class="nav-cta">
     <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
       <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
     </button>
-    <a href="apps.html#contact" class="btn btn-primary" data-en="Work with me" data-bm="Bekerja dengan saya">Work with me</a>
   </div>
 </header>
 
@@ -113,6 +111,12 @@
         Top content words by how often their dictionary form appears. Search the list below.
       </p>
     </div>
+    <div id="wordFocus"></div>
+    <p class="hint" style="margin:16px 0 18px;font-size:13px;color:var(--text-mute)"
+       data-en="↑ The chosen word sits at the centre; the surahs it appears in orbit around it. Tap any word below to explore it."
+       data-bm="↑ Perkataan terpilih berada di tengah; surah tempat ia muncul mengelilinginya. Tuding mana-mana perkataan di bawah untuk meneroka.">
+      ↑ The chosen word sits at the centre; the surahs it appears in orbit around it. Tap any word below to explore it.
+    </p>
     <input id="wordSearch" class="k-searchbar" type="text"
            data-en="Search a word, meaning, or transliteration…"
            data-bm="Cari perkataan, makna, atau transliterasi…"
@@ -210,5 +214,6 @@
 </footer>
 
 <script src="kalam.js"></script>
+<script src="feedback.js"></script>
 </body>
 </html>
