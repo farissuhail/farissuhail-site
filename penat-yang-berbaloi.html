@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" data-lang="bm">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Penat yang berbaloi — mengapa jalan menuju Allah penuh penat lelah, dan ke mana sebenarnya segala penat itu membawa kita. Kisah inspirasi dari Surah Al-Insyiqaq (84:6) oleh The Mdrn Urban." />
+  <meta name="description" content="Penat yang berbaloi — mengapa jalan menuju Allah penuh penat lelah, dan ke mana sebenarnya segala penat itu membawa kita. Kisah inspirasi dari Surah Al-Insyiqaq (84:6) oleh The Mdrn Urban. BM / English." />
   <title>Penat Yang Berbaloi · Al-Insyiqaq · The Mdrn Urban</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0a0a0f" />
@@ -30,200 +30,344 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="inspiration-story.css" />
   <style>
-    .rf-ayah {
-      font-family: 'Amiri', serif;
-      font-size: clamp(28px, 4.6vw, 48px);
-      line-height: 2;
-      color: var(--text);
-      direction: rtl;
-      margin: 0 0 22px;
-    }
-    .rf-ayah-tr {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(21px, 2.6vw, 30px);
-      line-height: 1.4;
-      color: var(--text);
-      margin: 0 0 12px;
-    }
-    .rf-ayah-ref {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin: 0 0 26px;
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(28px, 4.6vw, 48px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.6vw, 30px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar (bottom edge) ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro card ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(38px, 6vw, 70px); margin-bottom: -6px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 148px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em, .rf-quotecard p em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head (number + label) ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- icon box ----- */
+    .rf-ic { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent); background: rgba(255,194,77,0.06); }
+    .rf-ic svg { width: 22px; height: 22px; }
+
+    /* ----- icon question list ----- */
+    .rf-qlist { list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; }
+    .rf-qlist li { display: flex; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-qtext { flex: 1; }
+    .rf-qtext .q { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(19px, 2.1vw, 24px); color: var(--text); line-height: 1.3; display: block; }
+    .rf-qtext .qref { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; color: var(--text-mute); text-transform: uppercase; margin-top: 6px; display: block; }
+    .rf-qarrow { color: var(--text-mute); flex-shrink: 0; display: flex; }
+
+    /* ----- icon test list ----- */
+    .rf-testlist { list-style: none; padding: 0; margin: 0 0 12px; display: flex; flex-direction: column; }
+    .rf-testlist li { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); font-family: 'Inter', sans-serif; font-weight: 600; font-size: clamp(15px, 1.7vw, 18px); color: var(--text); }
+    .rf-testlist .rf-ic { width: 40px; height: 40px; }
+    .rf-testlist .rf-ic svg { width: 20px; height: 20px; }
+
+    /* ----- 5 domains ----- */
+    .rf-domains { list-style: none; padding: 0; margin: 30px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .rf-domains li { display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; }
+    .rf-domains .rf-ic { width: 54px; height: 54px; border-radius: 15px; }
+    .rf-domains .rf-ic svg { width: 26px; height: 26px; }
+    .rf-domains span { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.03em; color: var(--text-dim); text-transform: uppercase; }
+
+    /* ----- sub-eyebrow inside a slide ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 34px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- big single word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(62px, 12vw, 116px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 32px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- ayah art ----- */
+    .rf-ayah-art { display: block; width: 100%; max-width: 230px; margin: 0 auto 28px; opacity: 0.9; -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, #000 52%, transparent 88%); mask-image: radial-gradient(ellipse 70% 70% at center, #000 52%, transparent 88%); }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .rf-domains { grid-template-columns: repeat(3, 1fr); gap: 18px 12px; }
     }
   </style>
 </head>
 <body class="inspiration-story">
 
-<!-- Minimal nav -->
+<!-- Nav -->
 <header class="rf-nav">
-  <a href="index.html" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
-  <a href="inspiration.html" class="rf-back">← <span>Semua kisah inspirasi</span></a>
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">← <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
 </header>
 
 <main>
 
-  <!-- ===== HERO ===== -->
-  <section class="rf-hero">
-    <div class="rf-publisher">THE MDRN URBAN · 02</div>
-    <div class="rf-surah">SURAH 84</div>
-    <h1 class="rf-title">
-      <span class="rf-the">kadih —</span>
-      <span class="rf-cow">PENAT</span>
-    </h1>
-    <div class="rf-arabic">AL-INSYIQAQ</div>
-    <p class="rf-deck">
-      Mengapa jalan menuju Allah terasa penuh penat lelah — dan ke mana sebenarnya segala penat itu sedang membawa kita.
-    </p>
-    <div class="rf-meta">
-      <span>Kisah inspirasi</span>
-      <span>·</span>
-      <span>Al-Insyiqaq 84:6</span>
-      <span>·</span>
-      <span>Baca perlahan</span>
+  <!-- ===== INTRO (two-column card) ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH 84</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">kadih —</span>
+        <span class="rf-cow">PENAT</span>
+      </h1>
+      <div class="rf-arabic">AL-INSYIQAQ</div>
     </div>
-    <div class="rf-scroll-hint" aria-hidden="true">↓ Tatal untuk mula</div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="Live" data-bm="Tersedia">Live</span>
+        <span class="story-badge">Al-Insyiqaq 84:6</span>
+        <span class="story-badge" data-en="3 min read" data-bm="Baca 3 minit">3 min read</span>
+      </div>
+      <h2 data-en="Penat yang berbaloi — <em>where is your striving taking you?</em>"
+          data-bm="Penat yang berbaloi — <em>ke mana penat ini membawa kita?</em>">
+        Penat yang berbaloi — <em>where is your striving taking you?</em>
+      </h2>
+      <p data-en="Allah chose the word ‘kadih’ — to toil, to struggle, to wear yourself out. Life is tiring for everyone. The real question isn't whether the road is hard — it's where all that tiredness is carrying us."
+         data-bm="Allah memilih perkataan ‘kadih’ — berpenat, berjuang, bersusah payah. Hidup ini memang penat untuk semua. Persoalannya bukan sama ada jalan ini susah — tetapi ke mana segala penat itu membawa kita.">
+        Allah chose the word ‘kadih’ — to toil, to struggle, to wear yourself out. Life is tiring for everyone. The real question isn't whether the road is hard — it's where all that tiredness is carrying us.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Read the story</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
   </section>
 
   <!-- 01 — THE QUESTIONS -->
-  <section class="rf-slide" data-num="01">
-    <div class="rf-eyebrow">Soalan yang sering terlintas</div>
-    <ol class="rf-questions">
-      <li><span>01</span> "Kenapa jalan menuju Allah ini susah?"</li>
-      <li><span>02</span> "Kenapa terlalu banyak ujian?"</li>
-      <li><span>03</span> "Kenapa hidup ini penuh penat lelah?"</li>
-    </ol>
-    <p class="rf-body">
+  <section class="rf-slide" id="start">
+    <div class="rf-head">
+      <span class="rf-head-num">01</span>
+      <span class="rf-head-label" data-en="Questions that often cross the mind" data-bm="Soalan yang sering terlintas">Soalan yang sering terlintas</span>
+    </div>
+    <ul class="rf-qlist">
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></span>
+        <span class="rf-qtext">
+          <span class="q" data-en="“Why is this road to Allah so hard?”" data-bm="“Kenapa jalan menuju Allah ini susah?”">“Kenapa jalan menuju Allah ini susah?”</span>
+          <span class="qref">Al-Insyiqaq 84:6</span>
+        </span>
+        <span class="rf-qarrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="M8.5 12h7M8.5 16h4.5"/></svg></span>
+        <span class="rf-qtext">
+          <span class="q" data-en="“Why are there so many trials?”" data-bm="“Kenapa terlalu banyak ujian?”">“Kenapa terlalu banyak ujian?”</span>
+          <span class="qref">Al-Insyiqaq 84:6</span>
+        </span>
+        <span class="rf-qarrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.5A4 4 0 0 1 12 7a4 4 0 0 1 7 3.5C19 15.7 12 20 12 20z"/></svg></span>
+        <span class="rf-qtext">
+          <span class="q" data-en="“Why is life so full of exhaustion?”" data-bm="“Kenapa hidup ini penuh penat lelah?”">“Kenapa hidup ini penuh penat lelah?”</span>
+          <span class="qref">Al-Insyiqaq 84:6</span>
+        </span>
+        <span class="rf-qarrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </li>
+    </ul>
+    <p class="rf-body"
+       data-en="These questions play on almost every one of our minds. And in truth, Surah Al-Insyiqaq has already answered them."
+       data-bm="Soalan-soalan ini bermain di fikiran hampir setiap kita. Dan sebenarnya, Surah Al-Insyiqaq sudah pun menjawabnya.">
       Soalan-soalan ini bermain di fikiran hampir setiap kita. Dan sebenarnya, Surah Al-Insyiqaq sudah pun menjawabnya.
     </p>
   </section>
 
-  <!-- 02 — THE VERSE 84:6 -->
-  <section class="rf-slide rf-slide-accent" data-num="02">
-    <div class="rf-eyebrow">Allah berfirman</div>
+  <!-- 02 — ALLAH SAYS -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head">
+      <span class="rf-head-num">02</span>
+      <span class="rf-head-label" data-en="Allah says" data-bm="Allah berfirman">Allah berfirman</span>
+    </div>
+    <img class="rf-ayah-art" src="assets/art-reflections.png" alt="" aria-hidden="true" />
     <p class="rf-ayah" lang="ar" dir="rtl">يَا أَيُّهَا الْإِنْسَانُ إِنَّكَ كَادِحٌ إِلَىٰ رَبِّكَ كَدْحًا فَمُلَاقِيهِ</p>
-    <p class="rf-ayah-tr">"Wahai manusia, sesungguhnya engkau sedang berusaha bersungguh-sungguh menuju Tuhanmu, lalu engkau pasti akan menemui-Nya."</p>
+    <p class="rf-ayah-tr"
+       data-en="“O mankind, indeed you are labouring toward your Lord with great exertion — and you will surely meet Him.”"
+       data-bm="“Wahai manusia, sesungguhnya engkau sedang berusaha bersungguh-sungguh menuju Tuhanmu, lalu engkau pasti akan menemui-Nya.”">
+      “Wahai manusia, sesungguhnya engkau sedang berusaha bersungguh-sungguh menuju Tuhanmu, lalu engkau pasti akan menemui-Nya.”
+    </p>
     <p class="rf-ayah-ref">Al-Insyiqaq 84:6</p>
   </section>
 
   <!-- 03 — THE WORD -->
-  <section class="rf-slide" data-num="03">
-    <div class="rf-eyebrow">Perhatikan perkataan yang Allah pilih</div>
-    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-bottom:30px">كَادِح</p>
-    <h2 class="rf-big">
+  <section class="rf-slide">
+    <div class="rf-head">
+      <span class="rf-head-num">03</span>
+      <span class="rf-head-label" data-en="Notice the word Allah chose" data-bm="Perhatikan perkataan yang Allah pilih">Perhatikan perkataan yang Allah pilih</span>
+    </div>
+    <p class="rf-word" lang="ar" dir="rtl">كَدْحُ</p>
+    <h2 class="rf-big"
+        data-en="Not strolling. Not resting. But <em>toiling.</em>"
+        data-bm="Bukan berjalan. Bukan bersantai. Tetapi <em>berpenat.</em>">
       Bukan berjalan. Bukan bersantai. Tetapi <em>berpenat.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Not an easy stroll, not a leisurely walk. Allah chose a word that carries the meaning of struggling, straining, and wearing yourself out until you are spent."
+       data-bm="Bukan melenggang santai, bukan bersiar-siar. Allah memilih perkataan yang membawa makna berjuang, bertungkus-lumus, bersusah payah sehingga letih.">
       Bukan melenggang santai, bukan bersiar-siar. Allah memilih perkataan yang membawa makna berjuang, bertungkus-lumus, bersusah payah sehingga letih.
     </p>
   </section>
 
-  <!-- 04 — THE HILL -->
-  <section class="rf-slide" data-num="04">
-    <h2 class="rf-quote">
-      Seperti orang mendaki bukit — semakin tinggi dia naik, semakin berat nafasnya, semakin terasa <em>letihnya.</em>
-    </h2>
-  </section>
-
-  <!-- 05 — LIFE IS HARD -->
-  <section class="rf-slide" data-num="05">
-    <div class="rf-eyebrow">Dan bukan jalan menuju Allah sahaja</div>
-    <h2 class="rf-big">
+  <!-- 04 — LIFE ITSELF IS TIRING -->
+  <section class="rf-slide">
+    <div class="rf-head">
+      <span class="rf-head-num">04</span>
+      <span class="rf-head-label" data-en="And not only the road to Allah" data-bm="Dan bukan jalan menuju Allah sahaja">Dan bukan jalan menuju Allah sahaja</span>
+    </div>
+    <h2 class="rf-big"
+        data-en="Life itself <em>is exhausting.</em>"
+        data-bm="Hidup itu sendiri <em>memang penat.</em>">
       Hidup itu sendiri <em>memang penat.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="This verse uncovers a truth many try to avoid: exhaustion is not a sign you've taken the wrong road. It is the nature of this world itself."
+       data-bm="Ayat ini menyingkap satu kebenaran yang ramai cuba elak: kepenatan bukan tanda kita salah jalan. Ia tabiat dunia itu sendiri.">
       Ayat ini menyingkap satu kebenaran yang ramai cuba elak: kepenatan bukan tanda kita salah jalan. Ia tabiat dunia itu sendiri.
     </p>
-  </section>
-
-  <!-- 06 — EVERYONE IS TESTED -->
-  <section class="rf-slide" data-num="06">
-    <div class="rf-eyebrow">Tiada siapa terkecuali</div>
-    <ul class="rf-commands">
-      <li>Yang solat, ada ujiannya.</li>
-      <li>Yang meninggalkan solat pun, ada ujiannya.</li>
-      <li>Yang menjaga agama, ada ujiannya.</li>
-      <li>Yang mengabaikan agama pun, ada ujiannya.</li>
+    <ul class="rf-domains">
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M8 3v3l4 4 4-4V3M8 21v-3l4-4 4 4v3"/></svg></span>
+        <span data-en="Trials" data-bm="Ujian">Ujian</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h11M8 12h11M8 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span>
+        <span data-en="Duties" data-bm="Tanggungjawab">Tanggungjawab</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
+        <span data-en="Work" data-bm="Kerja">Kerja</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="9" r="2.2"/><path d="M3.5 19c0-2.7 2-4.5 4.5-4.5s4.5 1.8 4.5 4.5M14 19c.2-2 1.7-3.7 4-3.7"/></svg></span>
+        <span data-en="Family" data-bm="Keluarga">Keluarga</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6"/></svg></span>
+        <span data-en="Yourself" data-bm="Diri sendiri">Diri sendiri</span>
+      </li>
     </ul>
+    <div class="rf-quotecard">
+      <p data-en="“And you will surely meet Him.”" data-bm="“Lalu engkau pasti akan menemui-Nya.”">“Lalu engkau pasti akan menemui-Nya.”</p>
+      <p class="rf-ayah-ref">Al-Insyiqaq 84:6</p>
+    </div>
   </section>
 
-  <!-- 07 — THE DIFFERENCE -->
-  <section class="rf-slide rf-slide-accent" data-num="07">
-    <div class="rf-eyebrow">Maka bezanya bukan pada penat itu</div>
-    <h2 class="rf-quote">
+  <!-- 05 — NO ONE IS EXCEPTED -->
+  <section class="rf-slide">
+    <div class="rf-head">
+      <span class="rf-head-num">05</span>
+      <span class="rf-head-label" data-en="No one is excepted" data-bm="Tiada siapa terkecuali">Tiada siapa terkecuali</span>
+    </div>
+    <ul class="rf-testlist">
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V11a8 8 0 0 1 16 0v10M3 21h18M9 21v-4a3 3 0 0 1 6 0v4M12 2.5V5"/></svg></span>
+        <span data-en="Those who pray have their trials." data-bm="Yang solat, ada ujiannya.">Yang solat, ada ujiannya.</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5M10 12H3M6 8l-4 4 4 4"/></svg></span>
+        <span data-en="Those who leave prayer have their trials too." data-bm="Yang meninggalkan solat pun, ada ujiannya.">Yang meninggalkan solat pun, ada ujiannya.</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></span>
+        <span data-en="Those who guard the faith have their trials." data-bm="Yang menjaga agama, ada ujiannya.">Yang menjaga agama, ada ujiannya.</span>
+      </li>
+      <li>
+        <span class="rf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+        <span data-en="Those who neglect the faith have their trials too." data-bm="Yang mengabaikan agama pun, ada ujiannya.">Yang mengabaikan agama pun, ada ujiannya.</span>
+      </li>
+    </ul>
+    <div class="rf-subeyebrow" data-en="So the difference is not in the exhaustion itself" data-bm="Maka bezanya bukan pada penat itu">Maka bezanya bukan pada penat itu</div>
+    <h2 class="rf-quote"
+        data-en="One exhaustion moves <em>toward</em> Allah. The other moves <em>away</em> from Him."
+        data-bm="Satu penat <em>menuju</em> Allah. Satu lagi penat <em>menjauhi</em>-Nya.">
       Satu penat <em>menuju</em> Allah. Satu lagi penat <em>menjauhi</em>-Nya.
     </h2>
-    <p class="rf-body">
-      Satu kepenatan yang akhirnya membawa kepada pertemuan dengan Tuhan. Satu lagi kepenatan yang berakhir dengan penyesalan.
-    </p>
   </section>
 
-  <!-- 08 — TIRED MODE -->
-  <section class="rf-slide" data-num="08">
-    <div class="rf-eyebrow">Kita semua diletakkan dalam mod penat</div>
-    <ul class="rf-commands">
-      <li>Penat bekerja.</li>
-      <li>Penat menguruskan keluarga.</li>
-      <li>Penat mencari rezeki.</li>
-      <li>Penat di sepanjang jalan.</li>
-    </ul>
-    <p class="rf-body">
-      Segala macam penat. Tetapi soalan sebenarnya — penat itu sedang membawa kita ke mana?
-    </p>
-  </section>
-
-  <!-- 09 — MOVING TOWARD HIM -->
-  <section class="rf-slide" data-num="09">
-    <div class="rf-eyebrow">Tanpa kita sedar</div>
-    <h2 class="rf-big">
+  <!-- 06 — TIRED MODE -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head">
+      <span class="rf-head-num">06</span>
+      <span class="rf-head-label" data-en="We are all placed in tired mode" data-bm="Kita semua diletakkan dalam mod penat">Kita semua diletakkan dalam mod penat</span>
+    </div>
+    <h2 class="rf-big"
+        data-en="Every grey hair. Every wrinkle. Every year that <em>passes.</em>"
+        data-bm="Setiap uban. Setiap kedut. Setiap tahun yang <em>berlalu.</em>">
       Setiap uban. Setiap kedut. Setiap tahun yang <em>berlalu.</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Every bit of strength that drains away is quietly moving us toward the end of this verse:"
+       data-bm="Setiap secebis tenaga yang berkurang sebenarnya sedang menggerakkan kita menuju penghujung ayat ini:">
       Setiap secebis tenaga yang berkurang sebenarnya sedang menggerakkan kita menuju penghujung ayat ini:
     </p>
-    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:24px">فَمُلَاقِيهِ</p>
-    <p class="rf-ayah-tr">"Lalu engkau pasti akan menemui-Nya."</p>
-    <p class="rf-ayah-ref">Al-Insyiqaq 84:6</p>
+    <p class="rf-word" lang="ar" dir="rtl" style="margin-top:34px">فَمُلَاقِيهِ</p>
+    <div class="rf-quotecard">
+      <p data-en="“And you will surely meet Him.”" data-bm="“Lalu engkau pasti akan menemui-Nya.”">“Lalu engkau pasti akan menemui-Nya.”</p>
+      <p class="rf-ayah-ref">Al-Insyiqaq 84:6</p>
+    </div>
   </section>
 
-  <!-- 10 — GETTING CLOSER -->
-  <section class="rf-slide rf-slide-accent" data-num="10">
-    <h2 class="rf-quote">
-      Kita mungkin rasa perjalanan ini masih jauh. Tetapi setiap hari, sedar atau tidak, kita sebenarnya <em>semakin hampir dengan Allah.</em>
-    </h2>
-  </section>
-
-  <!-- 11 — THE REAL QUESTION -->
-  <section class="rf-slide rf-slide-quiet" data-num="11">
-    <h2 class="rf-mega">
+  <!-- THE REAL QUESTION -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Where do we carry <em>this exhaustion?</em>"
+        data-bm="Ke mana kita bawa <em>penat ini?</em>">
       Ke mana kita bawa <em>penat ini?</em>
     </h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="We are all moving toward Allah. The question is not whether the journey is hard — it always is. The question is where we carry all that tiredness."
+       data-bm="Kita semua sedang menuju Allah. Persoalannya bukan sama ada perjalanan ini susah atau tidak — ia memang susah. Persoalannya, ke mana kita membawa segala penat itu.">
       Kita semua sedang menuju Allah. Persoalannya bukan sama ada perjalanan ini susah atau tidak — ia memang susah. Persoalannya, ke mana kita membawa segala penat itu.
     </p>
   </section>
 
-  <!-- 12 — ONE LINE TO KEEP -->
-  <section class="rf-slide rf-slide-accent" data-num="12">
-    <div class="rf-eyebrow">Satu baris untuk disimpan</div>
-    <h2 class="rf-quote">
+  <!-- ONE LINE TO KEEP -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head">
+      <span class="rf-head-num">✦</span>
+      <span class="rf-head-label" data-en="One line to keep" data-bm="Satu baris untuk disimpan">Satu baris untuk disimpan</span>
+    </div>
+    <h2 class="rf-quote"
+        data-en="Exhaustion is certain. All we ever choose is its direction."
+        data-bm="Penat itu pasti. Yang kita pilih hanyalah arahnya.">
       Penat itu pasti. Yang kita pilih hanyalah arahnya.
     </h2>
-    <p class="rf-tagline">
+    <p class="rf-tagline"
+       data-en="Exhaustion that's <em>worth it</em> — or wasted in the hereafter?"
+       data-bm="Penat yang <em>berbaloi</em> — atau sia-sia di akhirat nanti?">
       Penat yang <em>berbaloi</em> — atau sia-sia di akhirat nanti?
     </p>
   </section>
 
-  <!-- 13 — CLOSING -->
-  <section class="rf-slide rf-closing" data-num="13">
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
     <div class="rf-publisher">AL-INSYIQAQ</div>
     <h2 class="rf-big">Penat Yang Berbaloi · Al-Insyiqaq 84:6</h2>
-    <p class="rf-body">
+    <p class="rf-body"
+       data-en="Save this. Share it with someone who is <em>weary</em> in the middle of their journey."
+       data-bm="Simpan ini. Kongsikan dengan seseorang yang sedang <em>keletihan</em> di tengah perjalanannya.">
       Simpan ini. Kongsikan dengan seseorang yang sedang <em>keletihan</em> di tengah perjalanannya.
     </p>
     <div class="rf-credit">
@@ -233,28 +377,67 @@
 
     <div class="rf-actions">
       <a href="tahap-demi-tahap.html" class="btn btn-ghost btn-lg">← Tahap demi tahap</a>
-      <a href="inspiration.html" class="btn btn-primary btn-lg">Semua kisah →</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories →" data-bm="Semua kisah →">Semua kisah →</a>
     </div>
   </section>
 
 </main>
 
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
 <footer class="rf-footer">
   <p>
     <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
-    <span>Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
     <span>© <span id="year"></span></span>
   </p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
-    });
+
+  // ----- language toggle -----
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  // ----- reveal on scroll -----
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.rf-slide').forEach(s => io.observe(s));
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  // ----- reading-progress bar -----
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  // ----- smooth scroll for the intro CTA -----
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 </script>
 <script src="feedback.js"></script>
 </body>
