@@ -106,18 +106,47 @@
   }
   function showRoot(key) {
     var r = DATA.featuredRoots[key];
-    var core = '<div class="k-root-core"><div class="big">' + r.ar + '</div>' +
-      '<div class="tr">' + r.tr + '</div>' +
-      '<div class="gloss">' + g(r) + '</div>' +
-      '<div class="meta"><b>' + fmt(r.count) + '</b>' + L('occurrences', 'kemunculan') +
-      ' · ' + r.forms + ' ' + L('derived words', 'perkataan terbitan') + '</div></div>';
-    var cards = '<div class="k-derived">' + r.derived.map(function (d) {
-      return '<div class="k-card"><div class="ar">' + d.ar + '</div>' +
-        '<div class="tr">' + d.tr + '</div>' +
-        '<div class="gloss">' + g(d) + '</div>' +
-        '<div class="count">' + fmt(d.count) + '</div></div>';
-    }).join('') + '</div>';
-    document.getElementById('rootView').innerHTML = core + cards;
+    var W = 820, Hh = 560, cx = W / 2, cy = 268, R = 196;
+    var der = r.derived, n = der.length;
+    var maxD = der.reduce(function (m, d) { return Math.max(m, d.count); }, 1);
+    var pts = der.map(function (d, i) {
+      var ang = (-90 + i * (360 / n)) * Math.PI / 180;
+      var rad = 22 + Math.sqrt(d.count) / Math.sqrt(maxD) * 26; // node radius by frequency
+      return { x: cx + R * Math.cos(ang), y: cy + R * Math.sin(ang), r: rad, d: d, i: i };
+    });
+    var svg = '<svg class="k-radial" viewBox="0 0 ' + W + ' ' + Hh + '" preserveAspectRatio="xMidYMid meet">';
+    // links
+    pts.forEach(function (p) { svg += '<line class="k-rlink" x1="' + cx + '" y1="' + cy + '" x2="' + p.x.toFixed(1) + '" y2="' + p.y.toFixed(1) + '"/>'; });
+    // derived nodes
+    pts.forEach(function (p) {
+      var col = p.i % 2 ? '#a78bfa' : '#22d3ee';
+      var gl = g(p.d);
+      svg += '<g class="k-rnode">' +
+        '<circle class="ring" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + p.r.toFixed(1) + '" fill="rgba(34,211,238,0.06)" stroke="' + col + '" stroke-width="1.4"/>' +
+        '<text class="w" x="' + p.x.toFixed(1) + '" y="' + (p.y - 1).toFixed(1) + '" style="font-size:' + Math.max(15, p.r * 0.62).toFixed(0) + 'px">' + p.d.ar + '</text>' +
+        '<text class="c" x="' + p.x.toFixed(1) + '" y="' + (p.y + p.r - 6).toFixed(1) + '">' + fmt(p.d.count) + '</text>' +
+        (gl ? '<text class="gl" x="' + p.x.toFixed(1) + '" y="' + (p.y + p.r + 15).toFixed(1) + '">' + gl + '</text>' : '') +
+        '</g>';
+    });
+    // centre (the root)
+    svg += '<g class="k-rcore">' +
+      '<circle class="halo" cx="' + cx + '" cy="' + cy + '" r="92"/>' +
+      '<circle class="disc" cx="' + cx + '" cy="' + cy + '" r="64"/>' +
+      '<text class="root" x="' + cx + '" y="' + (cy + 6) + '" style="font-size:46px">' + r.ar + '</text>' +
+      '<text class="sub" x="' + cx + '" y="' + (cy + 40) + '">' + r.tr + '</text>' +
+      '</g>';
+    svg += '</svg>';
+
+    var stats = '<div class="k-radial-stats">' +
+      '<div class="k-mini"><div style="font-family:Amiri,serif;font-size:30px;color:#fff">' + r.ar + '</div>' +
+        '<div class="lbl">' + L('root', 'akar') + ' · ' + g(r) + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + fmt(r.count) + '</div>' +
+        '<div class="lbl">' + L('occurrences in the Qur’an', 'kemunculan dalam Al-Quran') + '</div></div>' +
+      '<div class="k-mini"><div class="num">' + r.forms + '</div>' +
+        '<div class="lbl">' + L('distinct derived words', 'perkataan terbitan berbeza') + '</div></div>' +
+      '</div>';
+
+    document.getElementById('rootView').innerHTML = '<div class="k-radial-wrap">' + svg + '</div>' + stats;
   }
 
   /* ---------- NAMES / CONSTELLATION ---------- */

@@ -166,9 +166,7 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
 }
 .k-chip:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 .k-chip.active { color: #07070c; background: var(--accent-grad); border-color: transparent; }
-.k-root-view {
-  display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start;
-}
+.k-root-view { display: block; }
 .k-root-core {
   text-align: center; padding: 40px 24px; border: 1px solid rgba(34,211,238,0.3); border-radius: var(--radius);
   background: radial-gradient(circle at 50% 35%, rgba(34,211,238,0.12), transparent 70%);
@@ -210,6 +208,26 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
 .k-srow .ty { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace; }
 .k-srow .ty.makki { color: var(--k-cyan); }
 .k-srow .ty.madani { color: var(--k-violet); }
+
+/* ===== ROOT RADIAL "STAR" MAP ===== */
+.k-radial-wrap {
+  border: 1px solid var(--k-line); border-radius: var(--radius);
+  background: radial-gradient(circle at 50% 44%, rgba(34,211,238,0.07), transparent 66%), rgba(255,255,255,0.012);
+  overflow-x: auto; padding: 8px;
+}
+.k-radial { display: block; margin: 0 auto; width: 100%; min-width: 580px; max-width: 860px; }
+.k-rlink { stroke: rgba(34,211,238,0.30); stroke-width: 1; fill: none; transition: stroke .2s; }
+.k-rnode { cursor: default; }
+.k-rnode .ring { transition: stroke-width .2s, fill .2s; }
+.k-rnode:hover .ring { stroke-width: 2.4; }
+.k-rnode .w { font-family: 'Amiri', serif; fill: #fff; text-anchor: middle; }
+.k-rnode .c { font-family: 'JetBrains Mono', monospace; fill: var(--k-cyan); text-anchor: middle; font-size: 11px; }
+.k-rnode .gl { fill: var(--text-dim); text-anchor: middle; font-size: 11px; }
+.k-rcore .halo { fill: rgba(34,211,238,0.10); }
+.k-rcore .disc { fill: #0b0b14; stroke: var(--k-cyan); stroke-width: 1.5; }
+.k-rcore .root { font-family: 'Amiri', serif; fill: #fff; text-anchor: middle; }
+.k-rcore .sub { font-family: 'JetBrains Mono', monospace; fill: var(--k-cyan); text-anchor: middle; font-size: 12px; }
+.k-radial-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
 
 /* ===== NAMES / CONSTELLATION ARC MAP ===== */
 .k-arc-wrap { overflow-x: auto; padding: 10px 0 6px; border: 1px solid var(--k-line); border-radius: var(--radius); background: rgba(255,255,255,0.012); }
