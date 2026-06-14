@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KALAM — a data observatory of the Qur'an by The Mdrn Urban. Every figure computed from the text itself: 114 surahs, 6,236 ayahs, 77,429 words, 1,651 roots, word frequencies, and a root explorer." />
+  <title>KALAM — the Qur'an in data · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#07070c" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="KALAM — the Qur'an in data" />
+  <meta property="og:description" content="A data observatory of the Qur'an — 114 surahs, 6,236 ayahs, 77,429 words, 1,651 roots. Every figure computed from the text itself." />
+  <meta property="og:url" content="https://farissuhail.com/kalam.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-kalam.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="KALAM — the Qur'an in data. By The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KALAM — the Qur'an in data" />
+  <meta name="twitter:description" content="A data observatory of the Qur'an — every figure computed from the text itself." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-kalam.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="kalam.css" />
+</head>
+<body class="kalam">
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <nav class="nav-links">
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+    <a href="kalam.html" class="nav-reflections" data-en="Kalam ✦" data-bm="Kalam ✦">Kalam ✦</a>
+    <a href="book-reviews.html" data-en="Book reviews" data-bm="Ulasan buku">Book reviews</a>
+    <a href="apps.html" data-en="App development" data-bm="Pembangunan app">App development</a>
+  </nav>
+  <div class="nav-cta">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
+    </button>
+    <a href="apps.html#contact" class="btn btn-primary" data-en="Work with me" data-bm="Bekerja dengan saya">Work with me</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="k-hero">
+    <div class="k-kicker" data-en="Data · The Mdrn Urban" data-bm="Data · The Mdrn Urban">Data · The Mdrn Urban</div>
+    <div class="k-arabic-mark" aria-hidden="true">كلام</div>
+    <div class="k-wordmark">KALAM</div>
+    <p class="k-deck"
+       data-en="A data observatory of the Qur'an. Every number here is <em>computed from the text itself</em> — not copied — so you can explore its words, roots and structure with confidence."
+       data-bm="Sebuah observatori data Al-Quran. Setiap angka di sini <em>dikira terus daripada teks</em> — bukan disalin — supaya anda boleh meneroka perkataan, akar dan strukturnya dengan yakin.">
+      A data observatory of the Qur'an. Every number here is <em>computed from the text itself</em> — not copied — so you can explore its words, roots and structure with confidence.
+    </p>
+    <div class="k-source" data-en="Sources: Tanzil (Uthmani) · Quranic Arabic Corpus morphology"
+         data-bm="Sumber: Tanzil (Uthmani) · morfologi Quranic Arabic Corpus">
+      Sources: Tanzil (Uthmani) · Quranic Arabic Corpus morphology
+    </div>
+  </section>
+
+  <!-- ===== TABS ===== -->
+  <nav class="k-tabs">
+    <button class="k-tab active" data-tab="overview" data-en="Overview" data-bm="Gambaran">Overview</button>
+    <button class="k-tab" data-tab="words" data-en="Words" data-bm="Perkataan">Words</button>
+    <button class="k-tab" data-tab="roots" data-en="Roots" data-bm="Akar">Roots</button>
+    <button class="k-tab" data-tab="numbers" data-en="Numbers" data-bm="Nombor">Numbers</button>
+    <button class="k-tab" data-tab="surahs" data-en="Surahs" data-bm="Surah">Surahs</button>
+  </nav>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section id="panel-overview" class="k-panel active">
+    <div class="k-panel-head">
+      <h2 data-en="The whole Qur'an, at a glance" data-bm="Seluruh Al-Quran, sepintas lalu">The whole Qur'an, at a glance</h2>
+      <p data-en="The headline counts — each one tallied directly from the Uthmani text and its morphology."
+         data-bm="Kiraan utama — setiap satu dihitung terus daripada teks Uthmani dan morfologinya.">
+        The headline counts — each one tallied directly from the Uthmani text and its morphology.
+      </p>
+    </div>
+    <div class="k-stats" id="ovStats"></div>
+    <div class="k-subgrid" id="ovSub"></div>
+
+    <div class="k-chart-card">
+      <h3 data-en="Every surah by length" data-bm="Setiap surah mengikut panjang">Every surah by length</h3>
+      <p class="hint" data-en="Mushaf order (1–114) · bar height = number of ayahs · hover for the surah"
+         data-bm="Tertib mushaf (1–114) · tinggi palang = bilangan ayat · tuding untuk nama surah">
+        Mushaf order (1–114) · bar height = number of ayahs · hover for the surah
+      </p>
+      <div class="k-bars" id="surahBars"></div>
+      <div class="k-legend">
+        <span><i class="mk"></i><span data-en="Makki (Makkah)" data-bm="Makki (Makkah)">Makki (Makkah)</span></span>
+        <span><i class="md"></i><span data-en="Madani (Madinah)" data-bm="Madani (Madinah)">Madani (Madinah)</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORDS ===== -->
+  <section id="panel-words" class="k-panel">
+    <div class="k-panel-head">
+      <h2 data-en="The most-repeated words" data-bm="Perkataan paling kerap">The most-repeated words</h2>
+      <p data-en="Top content words by how often their dictionary form appears. Search the list below."
+         data-bm="Perkataan kandungan teratas mengikut kekerapan bentuk kamusnya. Cari dalam senarai di bawah.">
+        Top content words by how often their dictionary form appears. Search the list below.
+      </p>
+    </div>
+    <input id="wordSearch" class="k-searchbar" type="text"
+           data-en="Search a word, meaning, or transliteration…"
+           data-bm="Cari perkataan, makna, atau transliterasi…"
+           placeholder="Search a word, meaning, or transliteration…" />
+    <div class="k-freq" id="wordList"></div>
+  </section>
+
+  <!-- ===== ROOTS ===== -->
+  <section id="panel-roots" class="k-panel">
+    <div class="k-panel-head">
+      <h2 data-en="One root, many words" data-bm="Satu akar, banyak perkataan">One root, many words</h2>
+      <p data-en="Arabic grows from three-letter roots. Pick a root to see the family of words it produces — with how often each appears."
+         data-bm="Bahasa Arab tumbuh daripada akar tiga huruf. Pilih satu akar untuk melihat keluarga perkataan yang terhasil — dengan kekerapan setiap satu.">
+        Arabic grows from three-letter roots. Pick a root to see the family of words it produces — with how often each appears.
+      </p>
+    </div>
+    <div class="k-chips" id="rootChips"></div>
+    <div class="k-root-view" id="rootView"></div>
+
+    <div class="k-panel-head" style="margin-top:48px">
+      <h2 data-en="The most-used roots" data-bm="Akar paling kerap">The most-used roots</h2>
+      <p data-en="Counting every word that grows from each root, across the whole Qur'an."
+         data-bm="Mengira setiap perkataan yang tumbuh dari setiap akar, di seluruh Al-Quran.">
+        Counting every word that grows from each root, across the whole Qur'an.
+      </p>
+    </div>
+    <div class="k-freq" id="rootList"></div>
+  </section>
+
+  <!-- ===== NUMBERS ===== -->
+  <section id="panel-numbers" class="k-panel">
+    <div class="k-panel-head">
+      <h2 data-en="Numbers worth pausing on" data-bm="Nombor yang menarik direnung">Numbers worth pausing on</h2>
+      <p data-en="A few counts that tell their own story — all verified from the text."
+         data-bm="Beberapa kiraan yang membawa kisahnya sendiri — semua disahkan daripada teks.">
+        A few counts that tell their own story — all verified from the text.
+      </p>
+    </div>
+    <div class="k-subgrid" id="numCards"></div>
+  </section>
+
+  <!-- ===== SURAHS ===== -->
+  <section id="panel-surahs" class="k-panel">
+    <div class="k-panel-head">
+      <h2 data-en="All 114 surahs" data-bm="Kesemua 114 surah">All 114 surahs</h2>
+      <p data-en="Search by name or number; filter by where they were revealed."
+         data-bm="Cari mengikut nama atau nombor; tapis mengikut tempat penurunan.">
+        Search by name or number; filter by where they were revealed.
+      </p>
+    </div>
+    <div class="k-filters">
+      <button class="k-filter active" data-filter="all" data-en="All" data-bm="Semua">All</button>
+      <button class="k-filter" data-filter="makki" data-en="Makki" data-bm="Makki">Makki</button>
+      <button class="k-filter" data-filter="madani" data-en="Madani" data-bm="Madani">Madani</button>
+    </div>
+    <input id="surahSearch" class="k-searchbar" type="text"
+           data-en="Search a surah…" data-bm="Cari surah…" placeholder="Search a surah…" />
+    <div class="k-table" id="surahTable"></div>
+  </section>
+
+</main>
+
+<footer class="k-footer">
+  <p data-en="KALAM · a data observatory by The Mdrn Urban" data-bm="KALAM · observatori data oleh The Mdrn Urban">
+    KALAM · a data observatory by The Mdrn Urban
+  </p>
+  <p data-en="Data computed from Tanzil (Uthmani) &amp; the Quranic Arabic Corpus. Counts may vary slightly by counting method; the method is stated per figure."
+     data-bm="Data dikira daripada Tanzil (Uthmani) &amp; Quranic Arabic Corpus. Kiraan mungkin berbeza sedikit mengikut kaedah; kaedah dinyatakan bagi setiap angka.">
+    Data computed from Tanzil (Uthmani) &amp; the Quranic Arabic Corpus. Counts may vary slightly by counting method; the method is stated per figure.
+  </p>
+  <p><a href="index.html">← FARISSUHAIL</a> · © <span id="year"></span></p>
+</footer>
+
+<script src="kalam.js"></script>
+</body>
+</html>

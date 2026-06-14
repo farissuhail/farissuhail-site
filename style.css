@@ -277,6 +277,18 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   box-shadow: 0 30px 70px -30px rgba(94,170,255,0.35);
 }
 
+/* Kalam (data) — cyan→violet */
+.split-pane.violet::before {
+  background: radial-gradient(ellipse at 75% 0%, rgba(167,139,250,0.18) 0%, transparent 60%);
+}
+.split-pane.violet .split-eyebrow,
+.split-pane.violet .split-cta,
+.split-pane.violet .split-num { color: #22d3ee; }
+.split-pane.violet:hover {
+  border-color: rgba(167,139,250,0.5);
+  box-shadow: 0 30px 70px -30px rgba(167,139,250,0.35);
+}
+
 @media (max-width: 760px) {
   .split-section { padding: 16px 20px 40px; }
   .split-hero { grid-template-columns: 1fr; min-height: 0; gap: 16px; }
