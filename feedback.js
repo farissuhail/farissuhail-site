@@ -62,6 +62,15 @@
     cursor:pointer;line-height:1;}
   .fb-close:hover{color:#f1f1f5;}
   @media(max-width:520px){.fb-panel{right:8px;left:8px;width:auto;bottom:78px;}}
+  .fb-count{position:fixed;left:20px;bottom:20px;z-index:9000;display:none;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent,#ff5e3a);
+    background:rgba(10,10,15,.72);border:1px solid rgba(255,255,255,.12);border-radius:999px;
+    padding:9px 14px;text-decoration:none;backdrop-filter:blur(12px);}
+  .fb-count .fb-dot{width:7px;height:7px;border-radius:50%;background:var(--accent,#ff5e3a);
+    box-shadow:0 0 0 0 currentColor;animation:fbpulse 2s infinite;}
+  .fb-count b{color:#f1f1f5;font-weight:700;}
+  @keyframes fbpulse{0%{box-shadow:0 0 0 0 rgba(120,200,120,.5)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  @media(max-width:520px){.fb-count{left:8px;bottom:14px;font-size:11px;padding:7px 11px;}}
   `;
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -154,4 +163,24 @@
   if (lb) lb.addEventListener('click', function () { setTimeout(function () { relabelBtn(panel.classList.contains('open')); if (panel.classList.contains('open')) renderForm(); }, 0); });
 
   relabelBtn(false);
+
+  // ---------- live cumulative visitor counter ----------
+  (function () {
+    var NS = 'farissuhail-com', KEY = 'visits';
+    var pill = document.createElement('a');
+    pill.className = 'fb-count'; pill.href = 'javascript:void(0)';
+    pill.title = T('Total visits to this site', 'Jumlah kunjungan ke laman ini');
+    document.body.appendChild(pill);
+    var counted = false;
+    try { counted = sessionStorage.getItem('fs-visited') === '1'; } catch (e) {}
+    // /hit increments + returns; /get only reads — count once per browser session
+    var url = 'https://abacus.jasoncameron.dev/' + (counted ? 'get' : 'hit') + '/' + NS + '/' + KEY;
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var n = (d && (d.value != null ? d.value : d.count));
+      if (typeof n !== 'number') return;
+      try { sessionStorage.setItem('fs-visited', '1'); } catch (e) {}
+      pill.innerHTML = '<span class="fb-dot"></span><b>' + n.toLocaleString('en-US') + '</b> ' + T('visits', 'kunjungan');
+      pill.style.display = 'inline-flex';
+    }).catch(function () { /* counter service unavailable — stay hidden */ });
+  })();
 })();

@@ -277,6 +277,28 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   box-shadow: 0 30px 70px -30px rgba(94,170,255,0.35);
 }
 
+/* Pillar preview blocks (homepage cards) */
+.split-extra { position: relative; z-index: 1; margin: 20px 0 6px; display: flex; flex-direction: column; gap: 11px; }
+.split-feats { display: flex; flex-direction: column; gap: 8px; }
+.split-feat { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-dim); }
+.split-feat .ic { width: 22px; height: 22px; flex: 0 0 22px; display: grid; place-items: center; border-radius: 7px; background: rgba(255,255,255,0.05); }
+.split-feat .ic svg { width: 13px; height: 13px; }
+.split-verse { padding: 13px 15px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.02); }
+.split-verse .vt { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 15px; color: var(--text); line-height: 1.4; }
+.split-verse .vr { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--text-mute); margin-top: 7px; text-transform: uppercase; }
+.split-stats { display: flex; flex-wrap: wrap; gap: 6px; }
+.split-stat { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; color: var(--text-dim); }
+.split-stat b { color: var(--text); font-weight: 700; }
+.split-roots { font-size: 12px; color: var(--text-mute); display: flex; gap: 16px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; }
+.split-roots span ar, .split-roots .ar { font-family: 'Amiri', serif; font-size: 16px; color: var(--text-dim); margin-right: 5px; }
+.split-roots b { color: #22d3ee; font-weight: 700; }
+.split-rating { display: flex; align-items: center; gap: 12px; }
+.split-rating .score { font-size: 30px; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.02em; }
+.split-rating .stars { color: #ffce5a; font-size: 15px; letter-spacing: 1px; }
+.split-rating .rlabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+.split-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.split-tags span { font-size: 11px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--text-dim); }
+
 /* Kalam (data) — cyan→violet */
 .split-pane.violet::before {
   background: radial-gradient(ellipse at 75% 0%, rgba(167,139,250,0.18) 0%, transparent 60%);
