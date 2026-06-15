@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none">
+  <defs>
+    <radialGradient id="kGlow" cx="52%" cy="46%" r="60%">
+      <stop offset="0%" stop-color="#7fe7ff" stop-opacity="0.5"/>
+      <stop offset="45%" stop-color="#22d3ee" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="kHead" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a2030"/>
+      <stop offset="100%" stop-color="#06121f"/>
+    </linearGradient>
+    <linearGradient id="kStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="kBar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#155e75"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <filter id="kb1" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter>
+    <clipPath id="kHeadClip">
+      <path d="M150,64 C176,66 196,76 206,92 C218,114 220,132 220,146 C220,152 214,153 214,158 C214,162 216,160 216,164 C224,172 244,180 244,186 C244,192 228,192 220,196 C226,200 232,198 232,204 C232,208 230,208 230,212 C228,220 222,226 220,232 C212,244 198,248 190,252 C182,258 178,278 176,292 L132,292 C132,272 130,258 122,244 C106,216 96,196 96,168 C96,128 112,86 150,64 Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="178" cy="200" rx="150" ry="172" fill="url(#kGlow)"/>
+
+  <!-- head silhouette -->
+  <path d="M150,64 C176,66 196,76 206,92 C218,114 220,132 220,146 C220,152 214,153 214,158 C214,162 216,160 216,164 C224,172 244,180 244,186 C244,192 228,192 220,196 C226,200 232,198 232,204 C232,208 230,208 230,212 C228,220 222,226 220,232 C212,244 198,248 190,252 C182,258 178,278 176,292 L132,292 C132,272 130,258 122,244 C106,216 96,196 96,168 C96,128 112,86 150,64 Z"
+        fill="url(#kHead)" stroke="url(#kStroke)" stroke-width="2.4"/>
+
+  <!-- data inside the head -->
+  <g clip-path="url(#kHeadClip)">
+    <!-- dotted globe arcs -->
+    <g stroke="#2dd4bf" stroke-width="0.7" opacity="0.35" fill="none">
+      <ellipse cx="165" cy="160" rx="58" ry="58"/>
+      <ellipse cx="165" cy="160" rx="58" ry="22"/>
+      <path d="M107,160 a58,58 0 0 1 116,0"/>
+    </g>
+    <!-- network nodes + links -->
+    <g stroke="#67e8f9" stroke-width="0.8" opacity="0.55">
+      <path d="M132,128 L168,112 L200,146 L150,176 L132,128 M168,112 L150,176 M200,146 L196,196 M150,176 L168,210 M196,196 L168,210 M132,128 L122,170 L150,176"/>
+    </g>
+    <g fill="#a5f3fc">
+      <circle cx="132" cy="128" r="2.4"/><circle cx="168" cy="112" r="2.6"/><circle cx="200" cy="146" r="2.4"/>
+      <circle cx="150" cy="176" r="2.8"/><circle cx="196" cy="196" r="2.2"/><circle cx="168" cy="210" r="2.4"/>
+      <circle cx="122" cy="170" r="2"/>
+    </g>
+    <!-- bar chart -->
+    <g fill="url(#kBar)">
+      <rect x="138" y="222" width="11" height="22"/>
+      <rect x="153" y="210" width="11" height="34"/>
+      <rect x="168" y="194" width="11" height="50"/>
+      <rect x="183" y="178" width="11" height="66"/>
+    </g>
+    <!-- rising line over bars -->
+    <path d="M143,236 L158,224 L173,206 L188,188 L206,172" stroke="#e0fbff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#e0fbff"><circle cx="143" cy="236" r="1.8"/><circle cx="173" cy="206" r="1.8"/><circle cx="206" cy="172" r="2"/></g>
+  </g>
+
+  <!-- neck / data stream flowing down -->
+  <g stroke="url(#kStroke)" stroke-width="1.2" opacity="0.6" fill="none" stroke-linecap="round">
+    <path d="M140,292 L140,330 L120,356 L120,392"/>
+    <path d="M154,292 L154,340 L176,366 L176,400"/>
+    <path d="M168,292 L168,326 L210,352 L210,388"/>
+    <path d="M176,300 L150,326"/>
+  </g>
+  <g fill="#67e8f9">
+    <circle cx="120" cy="392" r="2"/><circle cx="176" cy="400" r="2"/><circle cx="210" cy="388" r="2"/>
+    <circle cx="150" cy="326" r="1.6" opacity="0.8"/><circle cx="176" cy="366" r="1.6" opacity="0.8"/>
+  </g>
+
+  <!-- floating particles -->
+  <g filter="url(#kb1)" fill="#a5f3fc" opacity="0.8">
+    <circle cx="250" cy="150" r="2"/><circle cx="96" cy="120" r="1.8"/><circle cx="244" cy="232" r="1.8"/>
+  </g>
+</svg>

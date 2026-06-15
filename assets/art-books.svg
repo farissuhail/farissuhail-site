@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none">
+  <defs>
+    <radialGradient id="bGlow" cx="58%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#bcd9ff" stop-opacity="0.5"/>
+      <stop offset="42%" stop-color="#5eaaff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#5eaaff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bBookGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#dcebff" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#5eaaff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#5eaaff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bBook" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf3ff"/>
+      <stop offset="100%" stop-color="#5eaaff"/>
+    </linearGradient>
+    <filter id="bb2" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <ellipse cx="200" cy="214" rx="158" ry="176" fill="url(#bGlow)"/>
+
+  <!-- cosmic rings -->
+  <g stroke="#5eaaff" fill="none">
+    <circle cx="190" cy="210" r="170" opacity="0.10"/>
+    <circle cx="190" cy="210" r="126" opacity="0.18"/>
+    <circle cx="190" cy="210" r="84" opacity="0.28"/>
+  </g>
+  <!-- dots riding the rings -->
+  <g fill="#8ec9ff">
+    <circle cx="190" cy="84" r="2.4"/><circle cx="316" cy="210" r="2"/><circle cx="106" cy="262" r="2.2"/>
+    <circle cx="262" cy="300" r="2"/><circle cx="190" cy="294" r="2.4"/><circle cx="120" cy="150" r="1.8"/>
+  </g>
+  <!-- stars -->
+  <g fill="#cfe3ff">
+    <circle cx="70" cy="120" r="1.3"/><circle cx="300" cy="120" r="1.4"/><circle cx="80" cy="300" r="1.2"/>
+    <circle cx="310" cy="280" r="1.2"/><circle cx="150" cy="70" r="1.1"/><circle cx="250" cy="80" r="1.2"/>
+    <circle cx="60" cy="200" r="1"/><circle cx="320" cy="180" r="1"/>
+  </g>
+
+  <!-- armchair back -->
+  <path d="M96,400 L96,206 C96,152 136,128 190,128 C244,128 284,152 284,206 L284,400 Z" fill="#0b1426" stroke="#5eaaff" stroke-opacity="0.22" stroke-width="1.5"/>
+
+  <!-- reader silhouette (bust, facing the book) -->
+  <path d="M128,400 C128,330 124,256 148,228 C158,216 162,208 176,204 C186,202 194,204 200,212 C216,236 222,300 224,400 Z" fill="#0e1a31" stroke="#5eaaff" stroke-opacity="0.4" stroke-width="1.5"/>
+  <circle cx="166" cy="176" r="23" fill="#0e1a31" stroke="#5eaaff" stroke-opacity="0.4" stroke-width="1.5"/>
+  <!-- light catching the face/shoulder on the book side -->
+  <path d="M183,168 A23,23 0 0 1 180,196" stroke="#bcd9ff" stroke-width="2.2" fill="none" opacity="0.9"/>
+  <path d="M196,214 C205,224 210,236 212,248" stroke="#8ec9ff" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- forearms to the book -->
+  <path d="M192,238 L214,214" stroke="#0e1a31" stroke-width="11" stroke-linecap="round"/>
+  <path d="M192,238 L214,214" stroke="#5eaaff" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- book glow -->
+  <ellipse cx="216" cy="216" rx="70" ry="60" fill="url(#bBookGlow)"/>
+  <!-- light beams to the face -->
+  <g fill="#dcebff" opacity="0.14"><path d="M210,206 L150,150 L168,206 Z"/><path d="M210,210 L150,196 L176,224 Z"/></g>
+
+  <!-- open glowing book -->
+  <g filter="url(#bb2)" opacity="0.7"><path d="M216,202 L186,214 L186,236 L216,228 L246,236 L246,214 Z" fill="#5eaaff"/></g>
+  <path d="M216,200 L184,212 L184,234 L216,226 L248,234 L248,212 Z" fill="url(#bBook)"/>
+  <path d="M216,200 L216,226" stroke="#16243f" stroke-width="2.2"/>
+  <g stroke="#2b4a7a" stroke-width="1" opacity="0.55">
+    <path d="M193,214 L212,209"/><path d="M193,220 L212,215"/>
+    <path d="M220,209 L240,214"/><path d="M220,215 L240,220"/>
+  </g>
+</svg>
