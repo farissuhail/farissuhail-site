@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sakaratul maut — perkara yang paling hampir dengan manusia tetapi paling banyak dilupakan. Apa ertinya, mengapa ia terjadi, dan persediaan yang ditinggalkan ulama. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Sakaratul Maut · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Sakaratul Maut — pintu pertama menuju akhirat" />
+  <meta property="og:description" content="Perkara yang paling hampir dengan kita, tetapi paling banyak dilupakan. Apa erti sakaratul maut, dan persediaan yang ditinggalkan ulama." />
+  <meta property="og:url" content="https://farissuhail.com/sakaratul-maut.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sakaratul Maut — kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sakaratul Maut — pintu pertama menuju akhirat" />
+  <meta name="twitter:description" content="Apa erti sakaratul maut, dan persediaan yang ditinggalkan ulama." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 150px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered preparation steps ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    /* ----- the grave's three questions ----- */
+    .rf-ask { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-direction: column; gap: 13px; }
+    .rf-ask li { display: flex; align-items: center; gap: 20px; padding: 16px 22px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius); }
+    .rf-ask .q { font-family: 'Amiri', serif; font-size: clamp(26px, 4vw, 34px); color: var(--accent); direction: rtl; flex-shrink: 0; line-height: 1; }
+    .rf-ask .m { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(19px, 2.2vw, 24px); color: var(--text); }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+    }
+  </style>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">← <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah" data-en="A REMINDER" data-bm="SATU PERINGATAN">SATU PERINGATAN</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">sakaratul</span>
+        <span class="rf-cow">MAUT</span>
+      </h1>
+      <div class="rf-arabic">AR-RAHMAN 55:26</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="Live" data-bm="Tersedia">Live</span>
+        <span class="story-badge" data-en="On death" data-bm="Ingatan kematian">Ingatan kematian</span>
+        <span class="story-badge" data-en="8 min read" data-bm="Baca 8 minit">8 min read</span>
+      </div>
+      <h2 data-en="The closest thing to us — yet the most <em>forgotten.</em>"
+          data-bm="Yang paling hampir dengan kita — namun paling <em>dilupakan.</em>">
+        Yang paling hampir dengan kita — namun paling <em>dilupakan.</em>
+      </h2>
+      <p data-en="Death is the nearest thing to every one of us, yet the one we forget the most. This is the single moment no one can avoid — the throes of death — and the preparation the scholars quietly left behind for us."
+         data-bm="Mati ialah perkara paling hampir dengan setiap kita, tetapi paling banyak dilupakan. Inilah satu saat yang tidak dapat dielakkan oleh sesiapa — sakaratul maut — dan persediaan yang ditinggalkan para ulama untuk kita.">
+        Mati ialah perkara paling hampir dengan setiap kita, tetapi paling banyak dilupakan. Inilah satu saat yang tidak dapat dielakkan oleh sesiapa — sakaratul maut — dan persediaan yang ditinggalkan para ulama untuk kita.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 — THE MOST FORGOTTEN -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The most forgotten thing" data-bm="Perkara yang paling dilupakan">Perkara yang paling dilupakan</span></div>
+    <h2 class="rf-big"
+        data-en="The closest thing to us is the one we <em>forget the most.</em>"
+        data-bm="Yang paling hampir dengan kita, itulah yang paling <em>kita lupakan.</em>">
+      Yang paling hampir dengan kita, itulah yang paling <em>kita lupakan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The thing nearest to a person, yet the most forgotten, is death."
+       data-bm="Perkara yang paling hampir dengan manusia tetapi paling banyak dilupakan ialah mati.">
+      Perkara yang paling hampir dengan manusia tetapi paling banyak dilupakan ialah mati.
+    </p>
+    <div class="rf-subeyebrow" data-en="The scholars say" data-bm="Kata ulama">Kata ulama</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">كُلُّ مَنْ عَلَيْهَا فَانٍ</p>
+    <p class="rf-ayah-tr"
+       data-en="“Everyone upon the earth will perish.”"
+       data-bm="“Setiap yang ada di atas muka bumi ini akan binasa.”">
+      “Setiap yang ada di atas muka bumi ini akan binasa.”
+    </p>
+    <p class="rf-ayah-ref">Ar-Rahman 55:26</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="However high a person's rank, however deep his knowledge, however vast his wealth — in the end he arrives at one unavoidable moment: the throes of death."
+       data-bm="Walau sebesar mana pangkat seseorang, setinggi mana ilmunya, sebanyak mana hartanya — akhirnya dia akan sampai kepada satu saat yang tidak dapat dielakkan, iaitu sakaratul maut.">
+      Walau sebesar mana pangkat seseorang, setinggi mana ilmunya, sebanyak mana hartanya — akhirnya dia akan sampai kepada satu saat yang tidak dapat dielakkan, iaitu sakaratul maut.
+    </p>
+  </section>
+
+  <!-- 02 — WHAT IT MEANS -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="What does it mean?" data-bm="Apa erti sakaratul maut?">Apa erti sakaratul maut?</span></div>
+    <p class="rf-body"
+       data-en="The word <em>sakarat</em> comes from Arabic, meaning the difficulty, the pain, the confusion and the sheer terror that overwhelm a person."
+       data-bm="Perkataan <em>sakarat</em> berasal daripada bahasa Arab — bermaksud kesukaran, kesakitan, kebingungan dan kedahsyatan yang menimpa seseorang.">
+      Perkataan <em>sakarat</em> berasal daripada bahasa Arab — bermaksud kesukaran, kesakitan, kebingungan dan kedahsyatan yang menimpa seseorang.
+    </p>
+    <h2 class="rf-big" style="margin-top:20px"
+        data-en="So the throes of death are the pain and terror <em>as the soul is drawn from the body.</em>"
+        data-bm="Maka sakaratul maut ialah kesakitan dan kedahsyatan <em>ketika roh dicabut daripada jasad.</em>">
+      Maka sakaratul maut ialah kesakitan dan kedahsyatan <em>ketika roh dicabut daripada jasad.</em>
+    </h2>
+    <p class="rf-ayah" lang="ar" dir="rtl">سَكَرَاتُ الْمَوْتِ غَمَرَاتُهُ وَشَدَائِدُهُ</p>
+    <p class="rf-ayah-tr"
+       data-en="“The throes of death are its overwhelming distress and its severities.”"
+       data-bm="“Sakaratul maut ialah kesusahan dan kesakitan kematian.”">
+      “Sakaratul maut ialah kesusahan dan kesakitan kematian.”
+    </p>
+    <p class="rf-ayah-ref" data-en="As stated in the books of the scholars" data-bm="Sebagaimana disebut dalam kitab ulama">Sebagaimana disebut dalam kitab ulama</p>
+  </section>
+
+  <!-- 03 — WHY IT HAPPENS -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="Why it happens" data-bm="Mengapa ia terjadi?">Mengapa ia terjadi?</span></div>
+    <p class="rf-body"
+       data-en="Because the soul and the body have lived together throughout a person's whole life. When the term Allah has decreed arrives, the soul is commanded to leave the body."
+       data-bm="Kerana roh dan jasad telah hidup bersama sepanjang umur manusia. Apabila sampai ajal yang telah ditetapkan Allah, maka roh diperintahkan keluar daripada jasad.">
+      Kerana roh dan jasad telah hidup bersama sepanjang umur manusia. Apabila sampai ajal yang telah ditetapkan Allah, maka roh diperintahkan keluar daripada jasad.
+    </p>
+    <div class="rf-subeyebrow" data-en="Allah says" data-bm="Firman Allah">Firman Allah</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً وَلَا يَسْتَقْدِمُونَ</p>
+    <p class="rf-ayah-tr"
+       data-en="“When their term comes, they cannot delay it by an hour, nor can they bring it forward.”"
+       data-bm="“Apabila datang ajal mereka, tidak dapat mereka lewatkan walau sesaat dan tidak dapat mereka percepatkan walau sesaat.”">
+      “Apabila datang ajal mereka, tidak dapat mereka lewatkan walau sesaat dan tidak dapat mereka percepatkan walau sesaat.”
+    </p>
+    <p class="rf-ayah-ref">Al-A'raf 7:34</p>
+    <p class="rf-tagline"
+       data-en="And it is then that the throes of death <em>begin.</em>"
+       data-bm="Maka ketika itulah bermulanya <em>sakaratul maut.</em>">
+      Maka ketika itulah bermulanya <em>sakaratul maut.</em>
+    </p>
+  </section>
+
+  <!-- 04 — NO ONE IS EXCEPTED -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="No one is excepted" data-bm="Tiada siapa terkecuali">Tiada siapa terkecuali</span></div>
+    <p class="rf-body"
+       data-en="Every human being will pass through it — prophet, saint, scholar, king, the poor, the righteous, the sinful, anyone at all. Even the Messenger ﷺ himself felt it."
+       data-bm="Semua manusia akan melaluinya — Nabi, wali, ulama, raja, orang miskin, orang soleh, orang fasik, atau siapa sahaja. Bahkan Rasulullah ﷺ sendiri merasainya.">
+      Semua manusia akan melaluinya — Nabi, wali, ulama, raja, orang miskin, orang soleh, orang fasik, atau siapa sahaja. Bahkan Rasulullah ﷺ sendiri merasainya.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">إِنَّ لِلْمَوْتِ سَكَرَاتٍ</p>
+    <p class="rf-ayah-tr"
+       data-en="“Indeed, death has its throes.”"
+       data-bm="“Sesungguhnya bagi kematian itu ada sakarat.”">
+      “Sesungguhnya bagi kematian itu ada sakarat.”
+    </p>
+    <p class="rf-ayah-ref" data-en="Hadith · narrated by Aisha RA" data-bm="Hadis · riwayat Aisyah RA">Hadis · riwayat Aisyah RA</p>
+    <p class="rf-tagline"
+       data-en="If the master of all creation tasted it, what then of us — full of <em>sin and heedlessness?</em>"
+       data-bm="Kalau penghulu sekalian makhluk merasainya, apatah lagi kita yang penuh <em>dosa dan kelalaian.</em>">
+      Kalau penghulu sekalian makhluk merasainya, apatah lagi kita yang penuh <em>dosa dan kelalaian.</em>
+    </p>
+  </section>
+
+  <!-- 05 — CUT OFF FROM THE WORLD -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="Severed from the world" data-bm="Putus hubungan dengan dunia">Putus hubungan dengan dunia</span></div>
+    <p class="rf-body"
+       data-en="For decades a person lives with family, home, wealth, vehicles and position. But when the throes of death arrive, all of it is severed at once. No more titles, no more rank — what remains is only one thing:"
+       data-bm="Selama berpuluh tahun manusia hidup dengan keluarga, rumah, harta, kenderaan dan jawatan. Tetapi apabila datang sakaratul maut, semuanya terputus serta-merta. Tiada lagi gelaran, tiada lagi pangkat — yang tinggal hanya satu perkara:">
+      Selama berpuluh tahun manusia hidup dengan keluarga, rumah, harta, kenderaan dan jawatan. Tetapi apabila datang sakaratul maut, semuanya terputus serta-merta. Tiada lagi gelaran, tiada lagi pangkat — yang tinggal hanya satu perkara:
+    </p>
+    <h2 class="rf-big"
+        data-en="Your deeds — the <em>good</em>, or the <em>bad.</em>"
+        data-bm="Amalmu — yang <em>soleh,</em> atau yang <em>jahat.</em>">
+      Amalmu — yang <em>soleh,</em> atau yang <em>jahat.</em>
+    </h2>
+    <p class="rf-ayah" lang="ar" dir="rtl">الدُّنْيَا مَزْرَعَةُ الْآخِرَةِ</p>
+    <p class="rf-ayah-tr"
+       data-en="“The world is the tillage of the hereafter.”"
+       data-bm="“Dunia ialah tempat bercucuk tanam untuk akhirat.”">
+      “Dunia ialah tempat bercucuk tanam untuk akhirat.”
+    </p>
+    <p class="rf-ayah-ref" data-en="A saying of the scholars" data-bm="Kata ulama">Kata ulama</p>
+  </section>
+
+  <!-- 06 — THE HEREAFTER BEGINS -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="The hereafter begins" data-bm="Bermula perjalanan akhirat">Bermula perjalanan akhirat</span></div>
+    <h2 class="rf-big"
+        data-en="One world ends, and <em>another begins.</em>"
+        data-bm="Satu alam berakhir, dan <em>satu alam bermula.</em>">
+      Satu alam berakhir, dan <em>satu alam bermula.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="At that moment a person leaves this world and enters the <em>barzakh</em> — the realm between this life and the next. There begin the bliss of the grave, the punishment of the grave, and the questioning of Munkar and Nakir."
+       data-bm="Ketika itu seseorang meninggalkan alam dunia dan memasuki alam <em>barzakh</em> — alam antara dunia dan akhirat. Di situlah bermula nikmat kubur, azab kubur, dan soal Munkar serta Nakir.">
+      Ketika itu seseorang meninggalkan alam dunia dan memasuki alam <em>barzakh</em> — alam antara dunia dan akhirat. Di situlah bermula nikmat kubur, azab kubur, dan soal Munkar serta Nakir.
+    </p>
+  </section>
+
+  <!-- 07 — THE ANGEL ARRIVES -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="The angel arrives" data-bm="Kehadiran malaikat">Kehadiran malaikat</span></div>
+    <div class="rf-subeyebrow" data-en="Allah says" data-bm="Firman Allah">Firman Allah</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">قُلْ يَتَوَفَّاكُمْ مَلَكُ الْمَوْتِ الَّذِي وُكِّلَ بِكُمْ</p>
+    <p class="rf-ayah-tr"
+       data-en="“Say: the angel of death, who has been entrusted with you, will take you.”"
+       data-bm="“Katakanlah: Malaikat maut yang ditugaskan akan mematikan kamu.”">
+      “Katakanlah: Malaikat maut yang ditugaskan akan mematikan kamu.”
+    </p>
+    <p class="rf-ayah-ref">As-Sajdah 32:11</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The angel of death comes accompanied by angels of mercy, or by angels of punishment. For the believer, they arrive bearing glad tidings:"
+       data-bm="Malaikat maut datang bersama malaikat rahmat, atau malaikat azab. Bagi orang mukmin, malaikat datang membawa berita gembira:">
+      Malaikat maut datang bersama malaikat rahmat, atau malaikat azab. Bagi orang mukmin, malaikat datang membawa berita gembira:
+    </p>
+    <div class="rf-quotecard">
+      <p lang="ar" dir="rtl" style="font-family:'Amiri',serif;font-style:normal;font-size:clamp(22px,3vw,32px)">أَلَّا تَخَافُوا وَلَا تَحْزَنُوا</p>
+      <p data-en="“Do not fear, and do not grieve.”" data-bm="“Janganlah kamu takut, dan janganlah kamu berdukacita.”">“Janganlah kamu takut, dan janganlah kamu berdukacita.”</p>
+      <p class="rf-ayah-ref">Fussilat 41:30</p>
+    </div>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="But for the disbeliever, they come with threat and the whip of punishment. We seek refuge in Allah."
+       data-bm="Bagi orang kafir pula, malaikat datang dengan ancaman dan cemeti azab. Nauzubillah.">
+      Bagi orang kafir pula, malaikat datang dengan ancaman dan cemeti azab. Nauzubillah.
+    </p>
+  </section>
+
+  <!-- 08 — ARE THE RIGHTEOUS SPARED -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">08</span><span class="rf-head-label" data-en="Are the righteous spared?" data-bm="Adakah orang soleh terlepas?">Adakah orang soleh terlepas?</span></div>
+    <h2 class="rf-big" data-en="Not <em>necessarily.</em>" data-bm="Tidak <em>semestinya.</em>">Tidak <em>semestinya.</em></h2>
+    <p class="rf-body"
+       data-en="Many of Allah's beloved endured a heavy, agonising death. Yet the severity of the throes is not a bad sign — at times Allah makes it an eraser of sins, a raiser of ranks, a completion of trials. It follows each person's portion."
+       data-bm="Ramai wali Allah mengalami sakit nazak yang berat. Namun beratnya sakaratul maut bukan tanda buruk — kadangkala Allah menjadikannya penghapus dosa, pengangkat darjat, dan penyempurna ujian. Ikut rezeki masing-masing.">
+      Ramai wali Allah mengalami sakit nazak yang berat. Namun beratnya sakaratul maut bukan tanda buruk — kadangkala Allah menjadikannya penghapus dosa, pengangkat darjat, dan penyempurna ujian. Ikut rezeki masing-masing.
+    </p>
+    <p class="rf-tagline"
+       data-en="So do not weigh the pain itself — look instead at <em>how a person ends with Allah.</em>"
+       data-bm="Maka jangan lihat pada berat atau ringannya — tetapi lihat pada <em>bagaimana pengakhiran seseorang di sisi Allah.</em>">
+      Maka jangan lihat pada berat atau ringannya — tetapi lihat pada <em>bagaimana pengakhiran seseorang di sisi Allah.</em>
+    </p>
+  </section>
+
+  <!-- 09 — THE GREATEST REGRET -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">09</span><span class="rf-head-label" data-en="The greatest regret" data-bm="Penyesalan terbesar">Penyesalan terbesar</span></div>
+    <p class="rf-body"
+       data-en="As the veil of the world is drawn back, a person realises: life was far too short, the world far too small, the hereafter far too near. And then he longs to return."
+       data-bm="Apabila tabir dunia mula tersingkap, manusia menyedari: umur terlalu pendek, dunia terlalu sedikit, akhirat terlalu dekat. Ketika itu dia ingin kembali.">
+      Apabila tabir dunia mula tersingkap, manusia menyedari: umur terlalu pendek, dunia terlalu sedikit, akhirat terlalu dekat. Ketika itu dia ingin kembali.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">رَبِّ ارْجِعُونِ · لَعَلِّي أَعْمَلُ صَالِحًا</p>
+    <p class="rf-ayah-tr"
+       data-en="“My Lord, send me back — that I might do righteous deeds.”"
+       data-bm="“Wahai Tuhanku, kembalikanlah aku — supaya aku dapat melakukan amal soleh.”">
+      “Wahai Tuhanku, kembalikanlah aku — supaya aku dapat melakukan amal soleh.”
+    </p>
+    <p class="rf-ayah-ref">Al-Mu'minun 23:99–100</p>
+    <p class="rf-tagline"
+       data-en="But by then — it is <em>already too late.</em>"
+       data-bm="Tetapi ketika itu — <em>sudah terlambat.</em>">
+      Tetapi ketika itu — <em>sudah terlambat.</em>
+    </p>
+  </section>
+
+  <!-- 10 — OUR PREPARATION -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">10</span><span class="rf-head-label" data-en="Our preparation — five things" data-bm="Persediaan kita — lima perkara">Persediaan kita — lima perkara</span></div>
+    <p class="rf-body"
+       data-en="In the old pondok learning, the teachers always stressed five things:"
+       data-bm="Dalam pengajian pondok, guru-guru selalu menekankan lima perkara:">
+      Dalam pengajian pondok, guru-guru selalu menekankan lima perkara:
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div><h3 data-en="Set your creed right" data-bm="Betulkan akidah">Betulkan akidah</h3><p data-en="A person dies upon what he believes. So learn to truly know Allah and His Messenger." data-bm="Seseorang mati atas apa yang diyakininya. Maka belajarlah mengenal Allah dan Rasul-Nya dengan benar.">Seseorang mati atas apa yang diyakininya. Maka belajarlah mengenal Allah dan Rasul-Nya dengan benar.</p></div></li>
+      <li><span class="n">2</span><div><h3 data-en="Guard your prayer" data-bm="Jaga solat">Jaga solat</h3><p data-en="Prayer is the very first deed to be brought to account." data-bm="Solat ialah amalan pertama yang akan dihisab.">Solat ialah amalan pertama yang akan dihisab.</p></div></li>
+      <li><span class="n">3</span><div><h3 data-en="Repent often" data-bm="Banyak taubat">Banyak taubat</h3><p data-en="Never sleep without repenting. Imam al-Ghazali said: the wise one takes account of himself before Allah takes account of him." data-bm="Jangan tidur malam tanpa taubat. Kata Imam al-Ghazali: orang yang bijak ialah yang sentiasa menghisab dirinya sebelum dihisab oleh Allah.">Jangan tidur malam tanpa taubat. Kata Imam al-Ghazali: orang yang bijak ialah yang sentiasa menghisab dirinya sebelum dihisab oleh Allah.</p></div></li>
+      <li><span class="n">4</span><div><h3 data-en="Remember Allah abundantly" data-bm="Banyakkan zikir">Banyakkan zikir</h3><p data-en="Above all the kalimah La ilaha illallah — for the Prophet ﷺ said: prompt your dying ones with La ilaha illallah." data-bm="Terutama kalimah La ilaha illallah — kerana sabda Nabi ﷺ: talqinkan orang yang hampir mati dengan kalimah La ilaha illallah.">Terutama kalimah La ilaha illallah — kerana sabda Nabi ﷺ: talqinkan orang yang hampir mati dengan kalimah La ilaha illallah.</p></div></li>
+      <li><span class="n">5</span><div><h3 data-en="Wrong no one" data-bm="Jangan zalim kepada manusia">Jangan zalim kepada manusia</h3><p data-en="Debt, slander, backbiting and taking what belongs to others are terribly heavy on the day you meet Allah." data-bm="Hutang, fitnah, mengumpat dan mengambil hak orang lain adalah perkara yang sangat berat ketika bertemu Allah.">Hutang, fitnah, mengumpat dan mengambil hak orang lain adalah perkara yang sangat berat ketika bertemu Allah.</p></div></li>
+    </ul>
+    <div class="rf-quotecard">
+      <p lang="ar" dir="rtl" style="font-family:'Amiri',serif;font-style:normal;font-size:clamp(20px,2.8vw,28px)">لَقِّنُوا مَوْتَاكُمْ لَا إِلَهَ إِلَّا الله</p>
+      <p data-en="“Prompt your dying ones to say: There is no god but Allah.”" data-bm="“Talqinkan orang yang hampir mati dengan kalimah: La ilaha illallah.”">“Talqinkan orang yang hampir mati dengan kalimah: La ilaha illallah.”</p>
+      <p class="rf-ayah-ref" data-en="Hadith · Muslim" data-bm="Hadis · Muslim">Hadis · Muslim</p>
+    </div>
+  </section>
+
+  <!-- 11 — PROVISION FOR DEATH -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">11</span><span class="rf-head-label" data-en="Provision for death" data-bm="Bekal untuk mati">Bekal untuk mati</span></div>
+    <h2 class="rf-quote"
+        data-en="“The clever one is not skilled at chasing the world — but at <em>preparing provision for death.</em>”"
+        data-bm="“Orang cerdik bukan yang pandai mencari dunia, tetapi yang pandai <em>menyediakan bekal untuk mati.</em>”">
+      “Orang cerdik bukan yang pandai mencari dunia, tetapi yang pandai <em>menyediakan bekal untuk mati.</em>”
+    </h2>
+    <p class="rf-body"
+       data-en="The grave never asks how much money, how many followers, or how big a house. It asks only three things:"
+       data-bm="Kerana kubur tidak bertanya berapa banyak wang, berapa ramai pengikut, atau berapa besar rumah. Yang ditanya hanya tiga:">
+      Kerana kubur tidak bertanya berapa banyak wang, berapa ramai pengikut, atau berapa besar rumah. Yang ditanya hanya tiga:
+    </p>
+    <ul class="rf-ask">
+      <li><span class="q" lang="ar" dir="rtl">مَنْ رَبُّكَ؟</span><span class="m" data-en="Who is your Lord?" data-bm="Siapa Tuhanmu?">Siapa Tuhanmu?</span></li>
+      <li><span class="q" lang="ar" dir="rtl">مَا دِينُكَ؟</span><span class="m" data-en="What is your religion?" data-bm="Apa agamamu?">Apa agamamu?</span></li>
+      <li><span class="q" lang="ar" dir="rtl">مَنْ نَبِيُّكَ؟</span><span class="m" data-en="Who is your Prophet?" data-bm="Siapa nabimu?">Siapa nabimu?</span></li>
+    </ul>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Whoever lived knowing Allah, acting upon His religion, and following the Messenger ﷺ — Allah will keep him firm with the true answer. Allahu rabbi."
+       data-bm="Sesiapa yang hidup mengenal Allah, beramal dengan agama-Nya, dan mengikut Rasulullah ﷺ — Allah akan menetapkannya dengan jawapan yang benar. Allahu rabbi.">
+      Sesiapa yang hidup mengenal Allah, beramal dengan agama-Nya, dan mengikut Rasulullah ﷺ — Allah akan menetapkannya dengan jawapan yang benar. Allahu rabbi.
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Not the end — only the <em>first door.</em>"
+        data-bm="Bukan pengakhiran — hanya <em>pintu pertama.</em>">
+      Bukan pengakhiran — hanya <em>pintu pertama.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The throes of death are not the end of a person's journey. They are only the first door into the hereafter."
+       data-bm="Sakaratul maut bukanlah pengakhiran perjalanan manusia. Ia hanyalah pintu pertama menuju alam akhirat.">
+      Sakaratul maut bukanlah pengakhiran perjalanan manusia. Ia hanyalah pintu pertama menuju alam akhirat.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">الدُّنْيَا سَاعَةٌ فَاجْعَلْهَا طَاعَةً</p>
+    <p class="rf-ayah-tr"
+       data-en="“The world is but an hour — so make it an hour of obedience.”"
+       data-bm="“Dunia ini hanya sesaat, maka jadikanlah ia dalam ketaatan.”">
+      “Dunia ini hanya sesaat, maka jadikanlah ia dalam ketaatan.”
+    </p>
+    <p class="rf-ayah-ref" data-en="A saying of the scholars" data-bm="Kata ulama">Kata ulama</p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher">INGATAN MATI</div>
+    <h2 class="rf-big">Sakaratul Maut</h2>
+    <p class="rf-body"
+       data-en="May Allah grant us a good ending, ease us through the throes of death, widen our graves, and gather us with the Prophet Muhammad ﷺ and the righteous. <em>Aameen.</em>"
+       data-bm="Semoga Allah mengurniakan kita husnul khatimah, dimudahkan sakaratul maut, diluaskan kubur, serta dihimpunkan bersama Nabi Muhammad ﷺ dan orang-orang soleh. <em>Aameen.</em>">
+      Semoga Allah mengurniakan kita husnul khatimah, dimudahkan sakaratul maut, diluaskan kubur, serta dihimpunkan bersama Nabi Muhammad ﷺ dan orang-orang soleh. <em>Aameen.</em>
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="penat-yang-berbaloi.html" class="btn btn-ghost btn-lg" data-en="← Penat yang berbaloi" data-bm="← Penat yang berbaloi">← Penat yang berbaloi</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories →" data-bm="Semua kisah →">Semua kisah →</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
