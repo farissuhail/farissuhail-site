@@ -284,15 +284,19 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 280px;
-  margin: 18px auto 16px;
-  opacity: 0.96;
+  max-width: 320px;
+  margin: 12px auto 14px;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 72% 70% at center, #000 60%, transparent 90%);
-  mask-image: radial-gradient(ellipse 72% 70% at center, #000 60%, transparent 90%);
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
-.split-pane:hover .split-art { transform: scale(1.03); }
+.split-pane:hover .split-art { transform: scale(1.04); }
+/* Striking per-pillar colour glow on the silhouette art */
+.split-pane.green  .split-art { filter: drop-shadow(0 6px 26px rgba(0,255,133,0.45)); }
+.split-pane.violet .split-art { filter: drop-shadow(0 6px 26px rgba(34,211,238,0.45)); }
+.split-pane.blue   .split-art { filter: drop-shadow(0 6px 26px rgba(94,170,255,0.45)); }
+.split-pane.green:hover  .split-art { filter: drop-shadow(0 8px 34px rgba(0,255,133,0.65)); }
+.split-pane.violet:hover .split-art { filter: drop-shadow(0 8px 34px rgba(34,211,238,0.65)); }
+.split-pane.blue:hover   .split-art { filter: drop-shadow(0 8px 34px rgba(94,170,255,0.65)); }
 
 /* Pillar preview blocks (homepage cards) */
 .split-extra { position: relative; z-index: 1; margin: 20px 0 6px; display: flex; flex-direction: column; gap: 11px; }
