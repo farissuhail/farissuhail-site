@@ -1,70 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none">
-  <defs>
-    <radialGradient id="bBulb" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#dcebff"/>
-      <stop offset="70%" stop-color="#5eaaff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#5eaaff" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="bBookGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#eaf3ff" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#5eaaff" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#5eaaff" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="bCone" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#bcd9ff" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#5eaaff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="bBook" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#eaf3ff"/><stop offset="100%" stop-color="#5eaaff"/>
-    </linearGradient>
-  </defs>
-
-  <!-- cord -->
-  <line x1="180" y1="0" x2="180" y2="92" stroke="#37527a" stroke-width="1.6"/>
-
-  <!-- light cone -->
-  <path d="M180,104 L92,360 L268,360 Z" fill="url(#bCone)"/>
-
-  <!-- bulb glow + bulb -->
-  <circle cx="180" cy="108" r="66" fill="url(#bBulb)"/>
-  <path d="M180,94 a13,13 0 0 1 9,22 l-2,8 h-14 l-2,-8 a13,13 0 0 1 9,-22 Z" fill="#eef5ff"/>
-  <rect x="173" y="122" width="14" height="6" rx="1.5" fill="#9bb8e0"/>
-  <path d="M176,108 l4,5 l4,-5" stroke="#7fa0d4" stroke-width="1" fill="none"/>
-
-  <!-- pool of light on the lap/desk -->
-  <ellipse cx="182" cy="330" rx="96" ry="26" fill="#5eaaff" opacity="0.12"/>
-
-  <!-- reader silhouette (head bowed to the book) -->
-  <path d="M120,372 C120,322 124,294 146,278 C158,269 168,266 180,272 C200,282 212,322 214,372 Z" fill="#0d1830"/>
-  <circle cx="166" cy="250" r="23" fill="#0d1830"/>
-  <!-- light catching the brow/cheek facing the book -->
-  <path d="M150,262 A23,23 0 0 0 178,266" stroke="#bcd9ff" stroke-width="2.2" fill="none" opacity="0.85"/>
-  <!-- forearms up to the book -->
-  <path d="M176,300 L188,282" stroke="#0d1830" stroke-width="12" stroke-linecap="round"/>
-  <path d="M176,300 L188,282" stroke="#5eaaff" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-
-  <!-- book glow -->
-  <ellipse cx="188" cy="284" rx="66" ry="52" fill="url(#bBookGlow)"/>
-  <!-- light rays from book up to the face -->
-  <g fill="#dcebff" opacity="0.13"><path d="M186,276 L150,238 L172,276 Z"/><path d="M190,278 L200,240 L210,280 Z"/></g>
-
-  <!-- open glowing book -->
-  <path d="M188,272 L156,284 L156,306 L188,298 L220,306 L220,284 Z" fill="url(#bBook)"/>
-  <path d="M188,272 L188,298" stroke="#16243f" stroke-width="2.2"/>
-  <g stroke="#2b4a7a" stroke-width="1" opacity="0.5">
-    <path d="M165,286 L184,281"/><path d="M165,292 L184,287"/>
-    <path d="M192,281 L212,286"/><path d="M192,287 L212,292"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- ===== Book summaries — geometric open book (line art) ===== -->
+  <!-- frame circle + arcs of radiating knowledge -->
+  <g stroke="#5eaaff">
+    <circle cx="180" cy="214" r="98" stroke-opacity="0.22"/>
+    <path d="M120,150 A86,86 0 0 1 240,150" stroke-opacity="0.4" stroke-dasharray="3 8"/>
+  </g>
+  <!-- radiating lines above the spine -->
+  <g stroke="#8ec9ff" stroke-width="1.3" stroke-opacity="0.7">
+    <path d="M180,150 L180,120"/>
+    <path d="M158,156 L146,130"/><path d="M202,156 L214,130"/>
+    <path d="M138,168 L118,150"/><path d="M222,168 L242,150"/>
+  </g>
+  <g fill="#bcd9ff">
+    <circle cx="180" cy="116" r="2.2"/><circle cx="144" cy="126" r="1.8"/><circle cx="216" cy="126" r="1.8"/>
+    <circle cx="114" cy="146" r="1.6"/><circle cx="246" cy="146" r="1.6"/>
   </g>
 
-  <!-- ambient motes -->
-  <g fill="#8ec9ff" opacity="0.7">
-    <circle cx="250" cy="170" r="1.6"/><circle cx="110" cy="190" r="1.5"/><circle cx="276" cy="250" r="1.4"/>
+  <!-- open book -->
+  <g stroke="#5eaaff" stroke-width="1.8">
+    <path d="M180,196 C152,184 120,186 96,200 L96,272 C120,258 152,256 180,268 Z"/>
+    <path d="M180,196 C208,184 240,186 264,200 L264,272 C240,258 208,256 180,268 Z"/>
+    <path d="M180,196 L180,268" stroke-opacity="0.85"/>
   </g>
+  <!-- page text lines -->
+  <g stroke="#8ec9ff" stroke-width="1" stroke-opacity="0.55">
+    <path d="M110,210 L168,202"/><path d="M110,222 L168,214"/><path d="M110,234 L160,226"/><path d="M110,246 L168,238"/>
+    <path d="M192,202 L250,210"/><path d="M192,214 L250,222"/><path d="M200,226 L250,234"/><path d="M192,238 L250,246"/>
+  </g>
+  <!-- bookmark ribbon -->
+  <path d="M214,188 L214,236 L222,228 L230,236 L230,188" stroke="#bcd9ff" stroke-width="1.4" stroke-opacity="0.8"/>
+
+  <!-- base shelf line + node dots -->
+  <path d="M104,300 L256,300" stroke="#5eaaff" stroke-width="1.3" stroke-opacity="0.4"/>
+  <g fill="#bcd9ff">
+    <circle cx="96" cy="200" r="2.4"/><circle cx="264" cy="200" r="2.4"/>
+    <circle cx="120" cy="300" r="2"/><circle cx="240" cy="300" r="2"/>
+  </g>
+
   <!-- corner dot grid -->
-  <g fill="#5eaaff" opacity="0.5">
-    <circle cx="318" cy="404" r="1.4"/><circle cx="330" cy="404" r="1.4"/><circle cx="342" cy="404" r="1.4"/>
-    <circle cx="318" cy="416" r="1.4"/><circle cx="330" cy="416" r="1.4"/><circle cx="342" cy="416" r="1.4"/>
-    <circle cx="318" cy="428" r="1.4"/><circle cx="330" cy="428" r="1.4"/><circle cx="342" cy="428" r="1.4"/>
+  <g fill="#5eaaff" fill-opacity="0.55">
+    <circle cx="316" cy="404" r="1.5"/><circle cx="330" cy="404" r="1.5"/><circle cx="344" cy="404" r="1.5"/>
+    <circle cx="316" cy="418" r="1.5"/><circle cx="330" cy="418" r="1.5"/><circle cx="344" cy="418" r="1.5"/>
+    <circle cx="316" cy="432" r="1.5"/><circle cx="330" cy="432" r="1.5"/><circle cx="344" cy="432" r="1.5"/>
   </g>
 </svg>

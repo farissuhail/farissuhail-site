@@ -1,76 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none">
-  <defs>
-    <radialGradient id="kHalo" cx="50%" cy="48%" r="60%">
-      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.4"/>
-      <stop offset="45%" stop-color="#22d3ee" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="kCore" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#e0fbff"/>
-      <stop offset="55%" stop-color="#22d3ee" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="kBar" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#155e75"/><stop offset="100%" stop-color="#67e8f9"/>
-    </linearGradient>
-  </defs>
-
-  <ellipse cx="180" cy="210" rx="172" ry="186" fill="url(#kHalo)"/>
-
-  <!-- concentric observatory rings -->
-  <g stroke="#22d3ee" fill="none">
-    <circle cx="180" cy="210" r="162" opacity="0.14"/>
-    <circle cx="180" cy="210" r="126" opacity="0.5" stroke-dasharray="3 7"/>
-    <circle cx="180" cy="210" r="92" opacity="0.7"/>
-    <circle cx="180" cy="210" r="56" opacity="0.4" stroke-dasharray="2 6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- ===== Kalam — geometric data observatory (line art) ===== -->
+  <!-- concentric rings -->
+  <g stroke="#22d3ee">
+    <circle cx="180" cy="206" r="134" stroke-opacity="0.16"/>
+    <circle cx="180" cy="206" r="104" stroke-opacity="0.45" stroke-dasharray="3 8"/>
+    <circle cx="180" cy="206" r="74" stroke-opacity="0.7" stroke-width="1.2"/>
+    <circle cx="180" cy="206" r="40" stroke-opacity="0.35" stroke-dasharray="2 7"/>
+    <circle cx="180" cy="206" r="3.4" fill="#e0fbff" stroke="none"/>
   </g>
 
-  <!-- 40% data arc on the 126 ring -->
-  <circle cx="180" cy="210" r="126" fill="none" stroke="#67e8f9" stroke-width="3"
-          stroke-dasharray="318 474" stroke-linecap="round" transform="rotate(-90 180 210)" opacity="0.9"/>
-
-  <!-- radar ticks (every 45°) -->
-  <g stroke="#67e8f9" stroke-width="1.4" opacity="0.6" stroke-linecap="round">
-    <path d="M310,210 L326,210"/><path d="M50,210 L34,210"/>
-    <path d="M180,80 L180,64"/><path d="M180,340 L180,356"/>
-    <path d="M272,302 L283,313"/><path d="M88,118 L77,107"/>
-    <path d="M272,118 L283,107"/><path d="M88,302 L77,313"/>
+  <!-- radial spokes -->
+  <g stroke="#22d3ee" stroke-width="1" stroke-opacity="0.22">
+    <path d="M180,206 L180,72"/><path d="M180,206 L180,340"/>
+    <path d="M180,206 L314,206"/><path d="M180,206 L46,206"/>
+    <path d="M180,206 L275,111"/><path d="M180,206 L85,301"/>
+    <path d="M180,206 L275,301"/><path d="M180,206 L85,111"/>
   </g>
 
-  <!-- glowing core -->
-  <circle cx="180" cy="210" r="46" fill="url(#kCore)"/>
-  <circle cx="180" cy="210" r="9" fill="#e0fbff"/>
+  <!-- 40% data arc on the 104 ring -->
+  <circle cx="180" cy="206" r="104" fill="none" stroke="#67e8f9" stroke-width="2.6"
+          stroke-dasharray="262 392" transform="rotate(-90 180 206)" stroke-opacity="0.9"/>
 
-  <!-- radial mini bar-graph inside lower core -->
-  <g fill="url(#kBar)">
-    <rect x="160" y="226" width="6" height="14"/>
-    <rect x="169" y="220" width="6" height="20"/>
-    <rect x="178" y="212" width="6" height="28"/>
-    <rect x="187" y="218" width="6" height="22"/>
-    <rect x="196" y="228" width="6" height="12"/>
+  <!-- rising data polyline + nodes -->
+  <path d="M120,250 L146,236 L166,242 L190,210 L214,196 L242,168" stroke="#e0fbff" stroke-width="1.8"/>
+  <g fill="#a5f3fc">
+    <circle cx="120" cy="250" r="2.6"/><circle cx="146" cy="236" r="2.2"/><circle cx="166" cy="242" r="2.2"/>
+    <circle cx="190" cy="210" r="2.6"/><circle cx="214" cy="196" r="2.2"/><circle cx="242" cy="168" r="2.8"/>
   </g>
-  <path d="M163,224 L172,217 L181,209 L190,215 L199,225" stroke="#e0fbff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
 
-  <!-- data nodes on rings + links -->
-  <g stroke="#67e8f9" stroke-width="0.8" opacity="0.5">
-    <path d="M252,150 L292,118 M108,288 L72,316 M255,300 L300,300"/>
+  <!-- chord network across the ring -->
+  <g stroke="#67e8f9" stroke-width="0.9" stroke-opacity="0.5">
+    <path d="M254,134 L108,278 M118,150 L262,250 M180,100 L268,232"/>
   </g>
   <g fill="#a5f3fc">
-    <circle cx="252" cy="150" r="2.6"/><circle cx="292" cy="118" r="2"/>
-    <circle cx="108" cy="288" r="2.6"/><circle cx="72" cy="316" r="2"/>
-    <circle cx="270" cy="92" r="2"/><circle cx="96" cy="132" r="2"/>
-    <circle cx="255" cy="300" r="2.2"/><circle cx="180" cy="84" r="2.2"/>
-    <circle cx="60" cy="210" r="2"/>
+    <circle cx="254" cy="134" r="2.4"/><circle cx="108" cy="278" r="2.4"/><circle cx="118" cy="150" r="2.2"/>
+    <circle cx="262" cy="250" r="2.2"/><circle cx="180" cy="100" r="2.4"/><circle cx="268" cy="232" r="2.2"/>
+    <circle cx="84" cy="206" r="2"/><circle cx="276" cy="206" r="2"/>
   </g>
 
-  <!-- floating particles -->
-  <g fill="#67e8f9" opacity="0.8">
-    <circle cx="316" cy="360" r="1.6"/><circle cx="44" cy="360" r="1.6"/><circle cx="200" cy="372" r="1.4"/>
+  <!-- ring ticks -->
+  <g stroke="#22d3ee" stroke-width="1.3" stroke-opacity="0.6">
+    <path d="M180,72 L180,60"/><path d="M180,340 L180,352"/>
+    <path d="M314,206 L326,206"/><path d="M46,206 L34,206"/>
   </g>
+
   <!-- corner dot grid -->
-  <g fill="#22d3ee" opacity="0.5">
-    <circle cx="318" cy="404" r="1.4"/><circle cx="330" cy="404" r="1.4"/><circle cx="342" cy="404" r="1.4"/>
-    <circle cx="318" cy="416" r="1.4"/><circle cx="330" cy="416" r="1.4"/><circle cx="342" cy="416" r="1.4"/>
-    <circle cx="318" cy="428" r="1.4"/><circle cx="330" cy="428" r="1.4"/><circle cx="342" cy="428" r="1.4"/>
+  <g fill="#22d3ee" fill-opacity="0.55">
+    <circle cx="316" cy="404" r="1.5"/><circle cx="330" cy="404" r="1.5"/><circle cx="344" cy="404" r="1.5"/>
+    <circle cx="316" cy="418" r="1.5"/><circle cx="330" cy="418" r="1.5"/><circle cx="344" cy="418" r="1.5"/>
+    <circle cx="316" cy="432" r="1.5"/><circle cx="330" cy="432" r="1.5"/><circle cx="344" cy="432" r="1.5"/>
   </g>
 </svg>
