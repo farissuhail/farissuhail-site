@@ -385,6 +385,9 @@ body.book-reviews-hub main { position: relative; z-index: 1; }
 .sum-amber { background: linear-gradient(160deg, #3a2812, #8a5418); }
 .sum-royal { background: linear-gradient(160deg, #16224a, #2a3f7a); }
 .sum-emerald { background: linear-gradient(160deg, #13301f, #2f6b46); }
+.sum-gold { background: linear-gradient(160deg, #23221d, #4a3f1c); }
+.sum-grass { background: linear-gradient(160deg, #16361f, #2f7a3f); }
+.sum-crimson { background: linear-gradient(160deg, #341416, #7a2424); }
 .sum-meta { padding: 20px 22px; display: flex; flex-direction: column; }
 .sum-cat { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .sum-meta h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 600; line-height: 1.05; margin: 0 0 6px; color: var(--text); }

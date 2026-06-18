@@ -56,6 +56,39 @@ body.book-summary.theme-emerald {
   --cover-sub: #8fb5a0; --cover-note: #88a596; --cover-blurb: #93d3ad;
   --glow: 95,174,132;
 }
+/* ---- THEME: gold (Stop Acting Rich) ---- */
+body.book-summary.theme-gold {
+  --accent: #e0b34a; --accent-2: #f3d488;
+  --accent-grad: linear-gradient(135deg, #e0b34a 0%, #f3d488 100%);
+  --gold: #e0b34a; --gold-2: #f3d488;
+  --cover-bg: linear-gradient(165deg, #23221d 0%, #141310 55%, #0a0a08 100%);
+  --cover-frame: rgba(224,179,74,0.5);
+  --cover-rule: #e0b34a; --cover-author: #f3d488; --cover-the: #d8cdb4;
+  --cover-sub: #b3a487; --cover-note: #8d8068; --cover-blurb: #f3d488;
+  --glow: 224,179,74;
+}
+/* ---- THEME: grass (The Let Them Theory) ---- */
+body.book-summary.theme-grass {
+  --accent: #57c96a; --accent-2: #9ae6a8;
+  --accent-grad: linear-gradient(135deg, #57c96a 0%, #9ae6a8 100%);
+  --gold: #57c96a; --gold-2: #9ae6a8;
+  --cover-bg: linear-gradient(165deg, #16361f 0%, #0c2014 55%, #07130b 100%);
+  --cover-frame: rgba(87,201,106,0.5);
+  --cover-rule: #57c96a; --cover-author: #b8f0c2; --cover-the: #bfe0c6;
+  --cover-sub: #8fbf9c; --cover-note: #789c82; --cover-blurb: #9ae6a8;
+  --glow: 87,201,106;
+}
+/* ---- THEME: crimson (The Compound Effect) ---- */
+body.book-summary.theme-crimson {
+  --accent: #ef4d4d; --accent-2: #f88b8b;
+  --accent-grad: linear-gradient(135deg, #ef4d4d 0%, #f88b8b 100%);
+  --gold: #ef4d4d; --gold-2: #f88b8b;
+  --cover-bg: linear-gradient(165deg, #341416 0%, #1f0c0d 55%, #130808 100%);
+  --cover-frame: rgba(239,77,77,0.5);
+  --cover-rule: #ef4d4d; --cover-author: #f8b4b4; --cover-the: #e6c4c4;
+  --cover-sub: #c69a9a; --cover-note: #9c7777; --cover-blurb: #f88b8b;
+  --glow: 239,77,77;
+}
 
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
@@ -170,6 +203,8 @@ body.book-summary main { position: relative; z-index: 1; }
 .dg-grid { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
 .dg-main { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .dg-muted { fill: none; stroke: #6b7280; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dg-dot { fill: var(--accent-2); }
+.dg-dot-muted { fill: #6b7280; }
 .dg-dash { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 5; stroke-linecap: round; }
 .dg-band { fill: rgba(var(--glow),0.14); }
 .dg-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: var(--text-dim); }
