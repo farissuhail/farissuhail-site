@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Angan-angan panjang — hadis garisan segi empat: cita-cita kita memanjang melepasi kotak, tetapi ajal sentiasa mengelilingi. Sibuk mengejar dunia, tiba-tiba dijemput. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Angan-Angan Panjang · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Angan-angan panjang — dan ajal yang sentiasa mengelilingi" />
+  <meta property="og:description" content="Hadis garisan segi empat: cita-cita memanjang keluar kotak, tetapi garisan ajal yang paling dekat sentiasa menanti. Sibuk mengejar dunia, tiba-tiba dijemput." />
+  <meta property="og:url" content="https://farissuhail.com/angan-angan-panjang.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Angan-Angan Panjang — kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Angan-angan panjang — dan ajal yang sentiasa mengelilingi" />
+  <meta name="twitter:description" content="Hadis garisan segi empat. Sibuk mengejar dunia, tiba-tiba dijemput." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <style>
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(24px, 4.2vw, 42px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(32px, 5vw, 60px); margin-bottom: -2px; }
+    .story-titleblock .rf-cow { font-size: clamp(72px, 12vw, 128px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* contrast couplets (sibuk → tiba-tiba) */
+    .rf-couplets { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-direction: column; }
+    .rf-couplets li { padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .rf-couplets .a { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.3vw, 26px); color: var(--text); display: block; }
+    .rf-couplets .b { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--accent); margin-top: 4px; display: inline-flex; align-items: center; gap: 8px; }
+    .rf-couplets .b::before { content: '↳'; opacity: 0.8; }
+
+    /* honest checklist */
+    .rf-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .rf-list li { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-dim); padding-left: 18px; position: relative; line-height: 1.5; }
+    .rf-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.7; }
+
+    /* continuing-deeds steps */
+    .rf-steps { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; margin: 0 0 6px; color: var(--text); }
+    .rf-steps p { font-size: 15px; line-height: 1.6; color: var(--text-dim); margin: 0; }
+
+    /* the hadith diagram */
+    .rf-figure { margin: 30px 0 0; padding: 26px 24px 18px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius); }
+    .rf-figure svg { display: block; width: 100%; height: auto; }
+    .rf-figure figcaption { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--text-dim); margin-top: 16px; text-align: center; line-height: 1.5; }
+    .dg-box { stroke: var(--accent); fill: rgba(255,194,77,0.05); stroke-width: 1.8; }
+    .dg-line { stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; }
+    .dg-trial { stroke: #d8d8e0; stroke-width: 1.4; stroke-linecap: round; opacity: 0.8; }
+    .dg-lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--text-dim); }
+    .dg-lbl.acc { fill: var(--accent); }
+
+    /* du'a litany */
+    .rf-dua { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-direction: column; gap: 4px; }
+    .rf-dua li { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(19px, 2.2vw, 25px); color: var(--text); line-height: 1.45; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .rf-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="inspiration-story">
+
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">← <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah" data-en="THE HADITH OF THE LINES" data-bm="HADIS GARIS SEGI EMPAT">HADIS GARIS SEGI EMPAT</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">angan-angan</span>
+        <span class="rf-cow">PANJANG</span>
+      </h1>
+      <div class="rf-arabic">SAHIH AL-BUKHARI</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="Live" data-bm="Tersedia">Live</span>
+        <span class="story-badge" data-en="On long hope" data-bm="Angan-angan & ajal">Angan-angan & ajal</span>
+        <span class="story-badge" data-en="9 min read" data-bm="Baca 9 minit">9 min read</span>
+      </div>
+      <h2 data-en="Our hopes run far past the box — but the <em>nearest line</em> is always death."
+          data-bm="Angan-angan kita memanjang jauh keluar kotak — namun <em>garisan terdekat</em> sentiasa ajal.">
+        Angan-angan kita memanjang jauh keluar kotak — namun <em>garisan terdekat</em> sentiasa ajal.
+      </h2>
+      <p data-en="The Prophet ﷺ drew it once: a man, the box of his lifespan around him, his hopes stretching out beyond it, and the little trials crossing his path. Busy chasing the world — then suddenly, the call comes."
+         data-bm="Nabi ﷺ pernah melukisnya: seorang manusia, kotak ajal yang mengelilinginya, angan-angannya yang memanjang keluar, dan ujian-ujian kecil yang melintang di jalannya. Sibuk mengejar dunia — tiba-tiba, panggilan itu tiba.">
+        Nabi ﷺ pernah melukisnya: seorang manusia, kotak ajal yang mengelilinginya, angan-angannya yang memanjang keluar, dan ujian-ujian kecil yang melintang di jalannya. Sibuk mengejar dunia — tiba-tiba, panggilan itu tiba.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 — THE HADITH OF THE LINES -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The Prophet drew a square" data-bm="Nabi melukis segi empat">Nabi melukis segi empat</span></div>
+    <p class="rf-body" style="margin-bottom:18px"
+       data-en="From Anas ibn Malik (RA): the Prophet ﷺ drew some lines, then said:"
+       data-bm="Daripada Anas bin Malik RA: Nabi ﷺ membuat beberapa garisan, lalu bersabda:">
+      Daripada Anas bin Malik RA: Nabi ﷺ membuat beberapa garisan, lalu bersabda:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">هَذَا الْأَمَلُ وَهَذَا أَجَلُهُ، فَبَيْنَمَا هُوَ كَذَٰلِكَ إِذْ جَاءَهُ الْخَطُّ الْأَقْرَبُ</p>
+    <p class="rf-ayah-tr"
+       data-en="“This is his hope, and this is his appointed term. While he is still amid it — the nearer line, his death, comes upon him.”"
+       data-bm="“Ini adalah cita-cita, dan ini pula adalah ajalnya. Dalam keadaan dia begitu (masih bercita-cita), garisan yang paling dekat (iaitu ajal) datang kepadanya.”">
+      “Ini adalah cita-cita, dan ini pula adalah ajalnya. Dalam keadaan dia begitu (masih bercita-cita), garisan yang paling dekat (iaitu ajal) datang kepadanya.”
+    </p>
+    <p class="rf-ayah-ref">Sahih al-Bukhari · 6418</p>
+
+    <figure class="rf-figure">
+      <svg viewBox="0 0 420 300" role="img" aria-label="A square (the appointed term) encircles a person; a long line of hope extends out beyond the square, and small lines (trials) cross the path inside it.">
+        <rect class="dg-box" x="86" y="80" width="176" height="172" rx="2" />
+        <line class="dg-line" x1="130" y1="166" x2="398" y2="166" />
+        <path class="dg-line" d="M388,159 L400,166 L388,173" />
+        <line class="dg-trial" x1="165" y1="150" x2="165" y2="182" /><line class="dg-trial" x1="192" y1="150" x2="192" y2="182" />
+        <line class="dg-trial" x1="219" y1="150" x2="219" y2="182" /><line class="dg-trial" x1="246" y1="150" x2="246" y2="182" />
+        <circle cx="130" cy="166" r="6" fill="#ffc24d" />
+        <text class="dg-lbl acc" x="130" y="146" text-anchor="middle" data-en="YOU" data-bm="MANUSIA">MANUSIA</text>
+        <text class="dg-lbl" x="174" y="70" text-anchor="middle" data-en="THE APPOINTED TERM" data-bm="AJAL YANG MENGELILINGI">AJAL YANG MENGELILINGI</text>
+        <text class="dg-lbl acc" x="360" y="156" text-anchor="middle" data-en="YOUR HOPES" data-bm="ANGAN-ANGAN">ANGAN-ANGAN</text>
+        <text class="dg-lbl" x="205" y="202" text-anchor="middle" data-en="TRIALS ALONG THE WAY" data-bm="UJIAN DI SEPANJANG JALAN">UJIAN DI SEPANJANG JALAN</text>
+      </svg>
+      <figcaption data-en="Escape one of the small lines, and the next one meets you — until the nearest line of all arrives." data-bm="Terlepas satu garisan kecil, garisan berikutnya menanti — sehingga garisan yang paling dekat tiba.">Terlepas satu garisan kecil, garisan berikutnya menanti — sehingga garisan yang paling dekat tiba.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 02 — BUSY, THEN SUDDENLY -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="Busy — then suddenly" data-bm="Sibuk — tiba-tiba">Sibuk — tiba-tiba</span></div>
+    <h2 class="rf-big"
+        data-en="We are deep in our plans when the <em>nearest line</em> arrives."
+        data-bm="Kita sedang rancak dengan rancangan apabila <em>garisan terdekat</em> tiba.">
+      Kita sedang rancak dengan rancangan apabila <em>garisan terdekat</em> tiba.
+    </h2>
+    <ul class="rf-couplets">
+      <li><span class="a" data-en="Busy with work, lost in the day." data-bm="Sibuk-sibuk bekerja, hanyut dalam hari.">Sibuk-sibuk bekerja, hanyut dalam hari.</span><span class="b" data-en="Suddenly — gone." data-bm="Tiba-tiba — meninggal.">Tiba-tiba — meninggal.</span></li>
+      <li><span class="a" data-en="Chasing the price of gold, gram by gram." data-bm="Sibuk kejar turun-naik harga emas, kumpul gram demi gram.">Sibuk kejar turun-naik harga emas, kumpul gram demi gram.</span><span class="b" data-en="Suddenly — called back to the Lord." data-bm="Tiba-tiba — dijemput Tuhan.">Tiba-tiba — dijemput Tuhan.</span></li>
+      <li><span class="a" data-en="Thrilled, planning the new house." data-bm="Sibuk teruja hendak membina rumah.">Sibuk teruja hendak membina rumah.</span><span class="b" data-en="Suddenly — gone." data-bm="Tiba-tiba — mati.">Tiba-tiba — mati.</span></li>
+      <li><span class="a" data-en="Busy raising the children." data-bm="Sibuk membesarkan anak-anak.">Sibuk membesarkan anak-anak.</span><span class="b" data-en="Suddenly — answered the call of the Divine." data-bm="Tiba-tiba — dijemput Ilahi.">Tiba-tiba — dijemput Ilahi.</span></li>
+      <li><span class="a" data-en="Off in a brand-new car to visit the family graves." data-bm="Baru beli kereta baru, teruja melawat kubur keluarga.">Baru beli kereta baru, teruja melawat kubur keluarga.</span><span class="b" data-en="Then they too are buried, and visited by others." data-bm="Akhirnya mereka pula dikuburkan, dan dilawati orang lain.">Akhirnya mereka pula dikuburkan, dan dilawati orang lain.</span></li>
+      <li><span class="a" data-en="A doctor who resuscitated a patient only yesterday." data-bm="Doktor yang baru semalam mem-CPR pesakit.">Doktor yang baru semalam mem-CPR pesakit.</span><span class="b" data-en="Today, he is the one being resuscitated." data-bm="Hari ini, dia pula yang di-CPR-kan.">Hari ini, dia pula yang di-CPR-kan.</span></li>
+    </ul>
+  </section>
+
+  <!-- 03 — THOSE WHO TEND THE DYING -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="No one is promised tomorrow" data-bm="Tiada siapa dijamin esok">Tiada siapa dijamin esok</span></div>
+    <p class="rf-body"
+       data-en="The visitor who came to comfort a stage-five cancer patient passes away before them. The young, fit doctor who loved cycling is taken by a sudden heart attack. The ambulance driver who carried the injured and the dying for decades is one day in the crash himself. Those who tend death the most closely are not spared from it."
+       data-bm="Pelawat yang datang menghibur pesakit kanser tahap lima, dia pula yang pergi dahulu. Doktor muda yang cergas dan gemar berbasikal, direnggut serangan jantung tiba-tiba. Pemandu ambulans yang berpuluh tahun membawa yang cedera dan nazak, suatu hari dia pula dalam kemalangan itu. Mereka yang paling hampir menjaga kematian pun tidak terkecuali daripadanya.">
+      Pelawat yang datang menghibur pesakit kanser tahap lima, dia pula yang pergi dahulu. Doktor muda yang cergas dan gemar berbasikal, direnggut serangan jantung tiba-tiba. Pemandu ambulans yang berpuluh tahun membawa yang cedera dan nazak, suatu hari dia pula dalam kemalangan itu. Mereka yang paling hampir menjaga kematian pun tidak terkecuali daripadanya.
+    </p>
+    <p class="rf-tagline"
+       data-en="Death is <em>that</em> close. Every soul that breathes will surely taste it."
+       data-bm="Mati itu <em>sedekat</em> itu. Setiap yang bernafas, pasti merasainya.">
+      Mati itu <em>sedekat</em> itu. Setiap yang bernafas, pasti merasainya.
+    </p>
+  </section>
+
+  <!-- 04 — THE LOPSIDED EFFORT -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="The lopsided effort" data-bm="Usaha yang berat sebelah">Usaha yang berat sebelah</span></div>
+    <p class="rf-body"
+       data-en="For the world, we strive endlessly. To build a house — years of instalments. To renovate it — savings gathered for ages. And yet we'll only live in it a short while: twenty, thirty, forty years at most."
+       data-bm="Untuk dunia, kita berusaha tidak henti. Nak bina rumah — bertahun bayaran. Nak ubah suai — duit dikumpul lama. Padahal, kita hanya akan mendudukinya sekejap sahaja: dua puluh, tiga puluh, empat puluh tahun sahaja.">
+      Untuk dunia, kita berusaha tidak henti. Nak bina rumah — bertahun bayaran. Nak ubah suai — duit dikumpul lama. Padahal, kita hanya akan mendudukinya sekejap sahaja: dua puluh, tiga puluh, empat puluh tahun sahaja.
+    </p>
+    <h2 class="rf-big" style="margin-top:18px"
+        data-en="But for the eternal home — <em>we prepare almost nothing.</em>"
+        data-bm="Tetapi untuk negeri yang abadi — <em>hampir tiada bekalan.</em>">
+      Tetapi untuk negeri yang abadi — <em>hampir tiada bekalan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The hereafter has no end. We will dwell there not for forty years, but for thousands upon thousands — and still it will not be the end. Yet for a stay that long, we ready so little."
+       data-bm="Akhirat tiada penghujung. Kita akan tinggal di sana bukan empat puluh tahun, tetapi ribuan demi ribuan tahun — dan ia tetap belum berakhir. Namun untuk tempoh sepanjang itu, terlalu sedikit yang kita sediakan.">
+      Akhirat tiada penghujung. Kita akan tinggal di sana bukan empat puluh tahun, tetapi ribuan demi ribuan tahun — dan ia tetap belum berakhir. Namun untuk tempoh sepanjang itu, terlalu sedikit yang kita sediakan.
+    </p>
+  </section>
+
+  <!-- 05 — THE HONEST MIRROR -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="An honest mirror" data-bm="Cermin yang jujur">Cermin yang jujur</span></div>
+    <p class="rf-body"
+       data-en="And still — somehow — we feel sure of paradise. As though we carried no sin at all, while quietly:"
+       data-bm="Namun — entah bagaimana — kita rasa terpaling pasti akan masuk syurga. Seolah-olah tiada dosa langsung, sedangkan diam-diam:">
+      Namun — entah bagaimana — kita rasa terpaling pasti akan masuk syurga. Seolah-olah tiada dosa langsung, sedangkan diam-diam:
+    </p>
+    <ul class="rf-list">
+      <li data-en="recitation of the Qur'an is little," data-bm="mengaji pun kurang,">mengaji pun kurang,</li>
+      <li data-en="the prayers are few," data-bm="solat pun kurang,">solat pun kurang,</li>
+      <li data-en="fasting feels heavy," data-bm="puasa terasa malas,">puasa terasa malas,</li>
+      <li data-en="remembrance of Allah is reluctant," data-bm="zikir liat,">zikir liat,</li>
+      <li data-en="the tongue is unguarded — quick to backbite," data-bm="mulut tak dijaga — cepat mengumpat,">mulut tak dijaga — cepat mengumpat,</li>
+      <li data-en="modesty is loosened here and there," data-bm="aurat terdedah sana sini,">aurat terdedah sana sini,</li>
+      <li data-en="charity is held back for fear of poverty." data-bm="sedekah dikedekut kerana takut miskin.">sedekah dikedekut kerana takut miskin.</li>
+    </ul>
+    <p class="rf-tagline"
+       data-en="…and then we still hope for paradise. <em>Forgive us, O Allah.</em>"
+       data-bm="…kemudian masih berharap syurga. <em>Ampuni kami, ya Allah.</em>">
+      …kemudian masih berharap syurga. <em>Ampuni kami, ya Allah.</em>
+    </p>
+  </section>
+
+  <!-- 06 — TWO THINGS THAT NEVER GROW OLD -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="Two things never grow old" data-bm="Dua perkara tak pernah tua">Dua perkara tak pernah tua</span></div>
+    <p class="rf-body" style="margin-bottom:18px"
+       data-en="The Prophet ﷺ named exactly what keeps us chasing. From Abu Hurairah (RA):"
+       data-bm="Nabi ﷺ menyebut dengan tepat apa yang membuat kita terus mengejar. Daripada Abu Hurairah RA:">
+      Nabi ﷺ menyebut dengan tepat apa yang membuat kita terus mengejar. Daripada Abu Hurairah RA:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">لَا يَزَالُ قَلْبُ الْكَبِيرِ شَابًّا فِي اثْنَتَيْنِ: فِي حُبِّ الدُّنْيَا، وَطُولِ الْأَمَلِ</p>
+    <p class="rf-ayah-tr"
+       data-en="“The heart of an old man stays forever young in two things: love of the world, and the length of his hopes.”"
+       data-bm="“Hati seorang yang tua kekal muda dalam dua perkara: kecintaan kepada dunia, dan panjangnya angan-angan.”">
+      “Hati seorang yang tua kekal muda dalam dua perkara: kecintaan kepada dunia, dan panjangnya angan-angan.”
+    </p>
+    <p class="rf-ayah-ref">Sahih al-Bukhari · 6420</p>
+    <div class="rf-quotecard">
+      <p lang="ar" dir="rtl" style="font-family:'Amiri',serif;font-style:normal;font-size:clamp(20px,2.8vw,28px)">يَكْبَرُ ابْنُ آدَمَ وَيَكْبَرُ مَعَهُ اثْنَانِ: حُبُّ الْمَالِ، وَطُولُ الْعُمُرِ</p>
+      <p data-en="“The son of Adam grows old, and two things grow with him: love of wealth, and hope for a long life.”" data-bm="“Anak Adam menjadi tua, dan dua perkara membesar bersamanya: kecintaan kepada harta, dan panjangnya umur.”">“Anak Adam menjadi tua, dan dua perkara membesar bersamanya: kecintaan kepada harta, dan panjangnya umur.”</p>
+      <p class="rf-ayah-ref">Sahih al-Bukhari · 6421 · Anas RA</p>
+    </div>
+  </section>
+
+  <!-- 07 — NO BRIDGE TO SIT ON -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Paradise, or the Fire. <em>No in-between.</em>"
+        data-bm="Syurga, atau neraka. <em>Tiada tengah-tengah.</em>">
+      Syurga, atau neraka. <em>Tiada tengah-tengah.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="There is no bridge to sit on, halfway between the two. Whatever we fill our days with — from the age of accountability to our final breath — is what will decide where we land."
+       data-bm="Tiada jambatan untuk duduk berehat di tengah-tengah antara keduanya. Apa yang kita isi sepanjang hari kita — dari baligh sehingga nafas terakhir — itulah yang akan menentukan ke mana kita berlabuh.">
+      Tiada jambatan untuk duduk berehat di tengah-tengah antara keduanya. Apa yang kita isi sepanjang hari kita — dari baligh sehingga nafas terakhir — itulah yang akan menentukan ke mana kita berlabuh.
+    </p>
+  </section>
+
+  <!-- 08 — WHAT CARRIES ON -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="What carries on" data-bm="Yang menyambung amalan">Yang menyambung amalan</span></div>
+    <p class="rf-body"
+       data-en="When the box closes and the lines end, three deeds keep flowing in our favour — the work that continues after the work is done:"
+       data-bm="Apabila kotak itu tertutup dan garisan berakhir, tiga amalan terus mengalir untuk kita — kerja yang bersambung setelah kerja tamat:">
+      Apabila kotak itu tertutup dan garisan berakhir, tiga amalan terus mengalir untuk kita — kerja yang bersambung setelah kerja tamat:
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div><h3 data-en="Ongoing charity" data-bm="Sedekah jariah">Sedekah jariah</h3><p data-en="A giving that keeps giving long after your hand is gone." data-bm="Pemberian yang terus memberi lama selepas tangan anda tiada.">Pemberian yang terus memberi lama selepas tangan anda tiada.</p></div></li>
+      <li><span class="n">2</span><div><h3 data-en="A righteous child's prayer" data-bm="Doa anak yang soleh">Doa anak yang soleh</h3><p data-en="The reason to raise them well is the prayer they'll send after you." data-bm="Sebab untuk mendidik mereka dengan baik ialah doa yang mereka kirim selepas anda.">Sebab untuk mendidik mereka dengan baik ialah doa yang mereka kirim selepas anda.</p></div></li>
+      <li><span class="n">3</span><div><h3 data-en="Knowledge that benefits" data-bm="Ilmu yang dimanfaatkan">Ilmu yang dimanfaatkan</h3><p data-en="Something true you taught or shared, still working while you rest." data-bm="Sesuatu yang benar yang anda ajar atau kongsi, masih bekerja ketika anda berehat.">Sesuatu yang benar yang anda ajar atau kongsi, masih bekerja ketika anda berehat.</p></div></li>
+    </ul>
+  </section>
+
+  <!-- 09 — THE DU'A -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">08</span><span class="rf-head-label" data-en="A quiet prayer" data-bm="Doa yang lembut">Doa yang lembut</span></div>
+    <p class="rf-body" style="margin-bottom:8px"
+       data-en="So let the heart wake, and let the prayer be:"
+       data-bm="Maka biarlah hati kembali sedar, dan jadilah doa kita:">
+      Maka biarlah hati kembali sedar, dan jadilah doa kita:
+    </p>
+    <ul class="rf-dua">
+      <li data-en="May we be taken in a state of readiness." data-bm="Moga dimatikan dalam keadaan bersedia.">Moga dimatikan dalam keadaan bersedia.</li>
+      <li data-en="May this hard work itself be counted as worship." data-bm="Moga kerja kuat-kuat ini menjadi ibadah.">Moga kerja kuat-kuat ini menjadi ibadah.</li>
+      <li data-en="May we reach repentance in time." data-bm="Moga sempat bertaubat.">Moga sempat bertaubat.</li>
+      <li data-en="May the heart stay soft, the tongue always in istighfar." data-bm="Moga hati sentiasa lembut, lidah sentiasa beristighfar.">Moga hati sentiasa lembut, lidah sentiasa beristighfar.</li>
+      <li data-en="May every busy day become a field of reward to harvest there." data-bm="Moga setiap kesibukan menjadi ladang pahala yang dituai di sana.">Moga setiap kesibukan menjadi ladang pahala yang dituai di sana.</li>
+      <li data-en="And may we die upon a good ending — husnul khatimah." data-bm="Dan moga kita mati dalam husnul khatimah.">Dan moga kita mati dalam husnul khatimah.</li>
+    </ul>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher">ANGAN-ANGAN PANJANG</div>
+    <h2 class="rf-big"
+        data-en="How you die is not the point. The <em>state of your heart</em> when you do — that is everything."
+        data-bm="Cara mati bukan persoalannya. <em>Keadaan iman</em> ketika mati — itulah segalanya.">
+      Cara mati bukan persoalannya. <em>Keadaan iman</em> ketika mati — itulah segalanya.
+    </h2>
+    <p class="rf-body"
+       data-en="The world is fleeting; the hereafter is forever. Keep away from us, O Allah, the deception of this world — and let our long hopes never make us forget the nearest line of all. <em>Aameen.</em>"
+       data-bm="Dunia ini sementara; akhirat selamanya. Jauhkan kami, ya Allah, daripada tipu daya dunia — dan jangan biarkan angan-angan panjang membuat kami lupa garisan yang paling dekat. <em>Aameen.</em>">
+      Dunia ini sementara; akhirat selamanya. Jauhkan kami, ya Allah, daripada tipu daya dunia — dan jangan biarkan angan-angan panjang membuat kami lupa garisan yang paling dekat. <em>Aameen.</em>
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="sakaratul-maut.html" class="btn btn-ghost btn-lg" data-en="← Sakaratul Maut" data-bm="← Sakaratul Maut">← Sakaratul Maut</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories →" data-bm="Semua kisah →">Semua kisah →</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() { var d = document.documentElement; var max = d.scrollHeight - d.clientHeight; var top = window.pageYOffset || d.scrollTop || 0; fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%'; }
+    window.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
+  })();
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault(); var t = document.getElementById('start'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
