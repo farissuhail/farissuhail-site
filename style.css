@@ -149,8 +149,8 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 }
 .split-hero {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
   min-height: calc(100vh - 230px);
 }
 .split-pane {
@@ -292,6 +292,8 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
 .split-pane:hover .split-art { transform: scale(1.04); }
 /* Striking per-pillar colour glow on the silhouette art */
 .split-pane.green  .split-art { filter: drop-shadow(0 6px 26px rgba(0,255,133,0.45)); }
+.split-pane.gold   .split-art { filter: drop-shadow(0 6px 26px rgba(255,194,77,0.45)); }
+.split-pane.gold:hover   .split-art { filter: drop-shadow(0 8px 34px rgba(255,194,77,0.65)); }
 .split-pane.violet .split-art { filter: drop-shadow(0 6px 26px rgba(34,211,238,0.45)); }
 .split-pane.blue   .split-art { filter: drop-shadow(0 6px 26px rgba(94,170,255,0.45)); }
 .split-pane.green:hover  .split-art { filter: drop-shadow(0 8px 34px rgba(0,255,133,0.65)); }
@@ -332,6 +334,10 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; col
   box-shadow: 0 30px 70px -30px rgba(167,139,250,0.35);
 }
 
+@media (max-width: 1080px) {
+  .split-hero { grid-template-columns: repeat(2, 1fr); min-height: 0; }
+  .split-pane { min-height: 420px; }
+}
 @media (max-width: 760px) {
   .split-section { padding: 16px 20px 40px; }
   .split-hero { grid-template-columns: 1fr; min-height: 0; gap: 16px; }

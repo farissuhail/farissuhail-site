@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 440" width="360" height="440" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- ===== Inspiration — crescent + guiding star (gold line art) ===== -->
+  <g stroke="#ffc24d">
+    <!-- frame -->
+    <circle cx="184" cy="192" r="100" stroke-opacity="0.22"/>
+    <circle cx="184" cy="192" r="78" stroke-opacity="0.4" stroke-dasharray="3 8"/>
+    <!-- crescent (open arc) -->
+    <path d="M214,116 A82,82 0 1 0 214,268" stroke-width="2.4"/>
+    <!-- guiding star, 4-point sparkle, in the crescent's opening -->
+    <path d="M238,138 Q241,158 262,162 Q241,166 238,186 Q235,166 214,162 Q235,158 238,138 Z" stroke-width="1.6" fill="#ffc24d" fill-opacity="0.12"/>
+    <!-- rays from the star -->
+    <g stroke-width="1.3" stroke-opacity="0.7">
+      <path d="M238,124 L238,132"/><path d="M238,192 L238,200"/>
+      <path d="M270,162 L278,162"/><path d="M198,162 L206,162"/>
+      <path d="M260,140 L266,134"/><path d="M216,184 L210,190"/>
+    </g>
+  </g>
+
+  <!-- small stars + sparkles -->
+  <g fill="#ffd27a">
+    <circle cx="138" cy="132" r="2"/><circle cx="120" cy="236" r="1.8"/>
+    <circle cx="252" cy="248" r="2"/><circle cx="156" cy="276" r="1.6"/><circle cx="284" cy="196" r="1.6"/>
+  </g>
+  <g stroke="#ffd27a" stroke-width="1.1" stroke-opacity="0.8">
+    <path d="M150,110 l0,10 M145,115 l10,0"/>
+    <path d="M276,128 l0,8 M272,132 l8,0"/>
+  </g>
+
+  <!-- corner dot grid -->
+  <g fill="#ffc24d" fill-opacity="0.55">
+    <circle cx="316" cy="404" r="1.5"/><circle cx="330" cy="404" r="1.5"/><circle cx="344" cy="404" r="1.5"/>
+    <circle cx="316" cy="418" r="1.5"/><circle cx="330" cy="418" r="1.5"/><circle cx="344" cy="418" r="1.5"/>
+    <circle cx="316" cy="432" r="1.5"/><circle cx="330" cy="432" r="1.5"/><circle cx="344" cy="432" r="1.5"/>
+  </g>
+</svg>
