@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Mdrn Urban by Faris Suhail — deep reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a Qur'an data observatory (Kalam), and original book summaries. Read with intent. EN / BM." />
+  <title>Faris Suhail · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="The Mdrn Urban — read the Qur'an as if it's speaking to you today" />
+  <meta property="og:description" content="Reflections on the Qur'an, short inspiration stories, a Qur'an data observatory, and book summaries — read with intent." />
+  <meta property="og:url" content="https://farissuhail.com/" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Mdrn Urban · Faris Suhail" />
+  <meta name="twitter:description" content="Reflections on the Qur'an, inspiration stories, data, and book summaries." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --accent: #00ff85; --accent-2: #5bff9d;
+      --gold: #ffc24d; --cyan: #22d3ee; --blue: #5eaaff;
+      --text: #f1f1f5; --dim: #a4a4b5; --mute: #6e7280; --border: rgba(255,255,255,0.1);
+    }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0d; color: var(--text); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== nav ===== */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between; padding: 20px 36px; }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .menu-btn { display: inline-flex; align-items: center; gap: 9px; background: none; border: 0; color: var(--dim); cursor: pointer;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .menu-btn:hover { color: var(--text); }
+    .menu-btn .bars { display: inline-flex; flex-direction: column; gap: 4px; }
+    .menu-btn .bars i { display: block; width: 16px; height: 1.5px; background: currentColor; }
+    nav .brand { font-weight: 800; letter-spacing: -0.02em; font-size: 15px; }
+    .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; color: var(--mute); cursor: pointer; display: inline-flex; align-items: center; gap: 3px; }
+    .lang-toggle::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 6px; }
+    .lang-toggle .active { color: var(--text); }
+    .lang-toggle .sep { opacity: 0.5; }
+
+    /* ===== menu overlay ===== */
+    #menu-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(6,6,8,0.92); backdrop-filter: blur(18px);
+      display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #menu-overlay.open { opacity: 1; pointer-events: auto; }
+    #menu-overlay .close { position: absolute; top: 22px; right: 34px; background: none; border: 0; color: var(--mute); font-size: 26px; cursor: pointer; }
+    #menu-overlay .close:hover { color: var(--text); }
+    #menu-overlay ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+    #menu-overlay ul a { display: inline-flex; align-items: baseline; gap: 16px; padding: 10px 6px;
+      font-size: clamp(28px, 4.6vw, 46px); font-weight: 800; letter-spacing: -0.02em; color: var(--dim); transition: color 0.2s; }
+    #menu-overlay ul a:hover { color: var(--text); }
+    #menu-overlay ul a .n { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    #menu-overlay ul a.m-green .n { color: var(--accent); } #menu-overlay ul a.m-gold .n { color: var(--gold); }
+    #menu-overlay ul a.m-cyan .n { color: var(--cyan); } #menu-overlay ul a.m-blue .n { color: var(--blue); }
+    #menu-overlay .m-contact { margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--mute); }
+    #menu-overlay .m-contact a { color: var(--dim); border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+    #menu-overlay .m-contact a:hover { color: var(--text); }
+
+    /* ===== hero ===== */
+    #hero { position: relative; min-height: 100vh; overflow: hidden;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 42%, rgba(0,255,133,0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #0c0c10 0%, #0a0a0d 60%, #08080b 100%); }
+    /* giant ghosted display type */
+    .ghost { position: absolute; top: 13vh; left: 50%; transform: translateX(-50%); z-index: 1;
+      font-weight: 900; letter-spacing: -0.02em; white-space: nowrap; user-select: none; pointer-events: none;
+      font-size: clamp(64px, 15.5vw, 240px); line-height: 1;
+      color: rgba(255,255,255,0.045); -webkit-text-stroke: 1px rgba(255,255,255,0.05); }
+    /* centerpiece */
+    #centerpiece { position: absolute; z-index: 2; left: 50%; top: 47%; transform: translate(-50%, -50%);
+      width: min(60vw, 560px); pointer-events: none; }
+    #centerpiece svg { display: block; width: 100%; height: auto; }
+    .float-slow { animation: floaty 7s ease-in-out infinite; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    #sq1 { animation: drift1 9s ease-in-out infinite; } #sq2 { animation: drift2 11s ease-in-out infinite; } #sq3 { animation: drift3 13s ease-in-out infinite; }
+    @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(6px,-10px); } }
+    @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-8px,8px); } }
+    @keyframes drift3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(5px,10px); } }
+    .sprout-glow { filter: drop-shadow(0 0 14px rgba(0,255,133,0.65)); animation: pulse 4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
+
+    /* bottom-left intro */
+    .intro { position: absolute; z-index: 5; left: 40px; bottom: 46px; max-width: 360px; }
+    .intro h1 { font-size: clamp(24px, 2.6vw, 34px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.16; margin-bottom: 14px; }
+    .intro h1 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent); }
+    .intro p { font-size: 13.5px; line-height: 1.65; color: var(--dim); margin-bottom: 20px; max-width: 34ch; }
+    .intro .cta { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a; font-weight: 700; font-size: 13.5px;
+      border-radius: 999px; padding: 12px 24px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 12px 30px -12px rgba(0,255,133,0.55); }
+    .intro .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(0,255,133,0.7); }
+
+    /* bottom-right latest writings */
+    .findings { position: absolute; z-index: 5; right: 40px; bottom: 46px; width: 300px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 20px 20px 16px; backdrop-filter: blur(10px); }
+    .findings .fh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .findings .fh span { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    .findings .fh i { color: var(--mute); font-style: normal; font-size: 12px; }
+    .findings a.item { display: block; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .findings a.item .t { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 4px; display: flex; justify-content: space-between; gap: 10px; }
+    .findings a.item .t .idx { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); font-weight: 500; flex-shrink: 0; }
+    .findings a.item .d { font-size: 11.5px; line-height: 1.55; color: var(--mute); }
+    .findings a.item:hover .t { color: var(--accent-2); }
+    .findings .wave { margin-top: 12px; opacity: 0.85; }
+
+    /* ===== pillars (below fold) ===== */
+    #pillars { position: relative; z-index: 2; padding: 90px 36px 70px; border-top: 1px solid rgba(255,255,255,0.06); background: #08080b; }
+    #pillars .ph { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin-bottom: 34px; }
+    #pillars .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .pcard { position: relative; display: flex; flex-direction: column; min-height: 230px; padding: 26px 24px 22px; border: 1px solid var(--border); border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .pcard:hover { transform: translateY(-5px); }
+    .pcard .num { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; margin-bottom: 13px; }
+    .pcard h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 9px; }
+    .pcard p { font-size: 13.5px; line-height: 1.6; color: var(--dim); margin-bottom: auto; }
+    .pcard .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
+    .pcard:hover .go { gap: 12px; }
+    .pcard.green { --c: var(--accent); } .pcard.gold { --c: var(--gold); } .pcard.cyan { --c: var(--cyan); } .pcard.blue { --c: var(--blue); }
+    .pcard .num, .pcard .go { color: var(--c); }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.6; }
+    .pcard:hover { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+
+    /* ===== footer ===== */
+    footer { position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.06); padding: 34px 36px 40px; background: #060609; }
+    footer .tagline { text-align: center; margin-bottom: 22px; }
+    footer .tagline .ar { font-family: 'Amiri', serif; font-size: 21px; color: var(--accent-2); direction: rtl; display: block; margin-bottom: 6px; }
+    footer .tagline .tr { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); }
+    footer .row { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .brand { font-weight: 800; letter-spacing: -0.02em; }
+    footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer .flinks a { font-size: 13px; color: var(--dim); transition: color 0.2s; }
+    footer .flinks a:hover { color: var(--text); }
+    footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.04em; }
+
+    /* ===== responsive ===== */
+    @media (max-width: 1080px) { #pillars .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+      #hero { min-height: 0; padding-bottom: 40px; }
+      .ghost { top: 11vh; }
+      #centerpiece { position: relative; left: auto; top: auto; transform: none; margin: 26vh auto 30px; width: min(78vw, 420px); }
+      .intro { position: relative; left: auto; bottom: auto; margin: 0 24px 22px; max-width: none; }
+      .findings { position: relative; right: auto; bottom: auto; margin: 0 24px; width: auto; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      nav .brand { font-size: 13.5px; }
+      #pillars { padding: 60px 20px 50px; }
+      #pillars .grid { grid-template-columns: 1fr; gap: 12px; }
+      .pcard { min-height: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .float-slow, #sq1, #sq2, #sq3, .sprout-glow { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-left">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span class="bars"><i></i><i></i></span>
+      <span data-en="Menu" data-bm="Menu">Menu</span>
+    </button>
+    <a href="index.html" class="brand">FARISSUHAIL</a>
+  </div>
+  <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+</nav>
+
+<!-- ===== MENU OVERLAY ===== -->
+<div id="menu-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="close" id="menuClose" aria-label="Close menu">✕</button>
+  <div>
+    <ul>
+      <li><a class="m-green" href="reflections.html"><span class="n">01</span><span data-en="Reflections" data-bm="Refleksi">Reflections</span></a></li>
+      <li><a class="m-gold" href="inspiration.html"><span class="n">02</span><span data-en="Inspiration" data-bm="Inspirasi">Inspiration</span></a></li>
+      <li><a class="m-cyan" href="kalam.html"><span class="n">03</span><span data-en="Kalam" data-bm="Kalam">Kalam</span></a></li>
+      <li><a class="m-blue" href="book-reviews.html"><span class="n">04</span><span data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</span></a></li>
+    </ul>
+    <p class="m-contact"><a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a></p>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="ghost" aria-hidden="true">MDRN URBAN</div>
+
+  <!-- centerpiece: geometric floating stone + glowing sprout (the single colour accent) -->
+  <div id="centerpiece" aria-hidden="true">
+    <svg viewBox="0 0 600 480" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g class="float-slow">
+        <!-- glowing sprout (the "flower") -->
+        <g class="sprout-glow">
+          <path d="M300,196 C300,168 296,150 300,122" stroke="#00ff85" stroke-width="2"/>
+          <path d="M300,164 C288,158 282,148 281,138 C292,142 298,150 300,158 Z" stroke="#00ff85" stroke-width="1.4" fill="rgba(0,255,133,0.12)"/>
+          <path d="M300,150 C312,144 318,134 319,124 C308,128 302,136 300,144 Z" stroke="#00ff85" stroke-width="1.4" fill="rgba(0,255,133,0.12)"/>
+          <path d="M300,96 Q303,114 322,118 Q303,122 300,140 Q297,122 278,118 Q297,114 300,96 Z" stroke="#00ff85" stroke-width="1.6" fill="rgba(0,255,133,0.16)"/>
+          <circle cx="300" cy="118" r="3" fill="#b4ffd6"/>
+        </g>
+        <!-- faceted stone (line art) -->
+        <g stroke="rgba(255,255,255,0.42)" stroke-width="1.6" fill="rgba(255,255,255,0.025)">
+          <path d="M132,300 L196,222 L288,196 L398,210 L472,266 L458,340 L364,384 L232,376 L152,344 Z"/>
+        </g>
+        <g stroke="rgba(255,255,255,0.16)" stroke-width="1">
+          <path d="M196,222 L262,286 L288,196 M262,286 L398,210 M262,286 L232,376 M262,286 L152,344 M262,286 L364,384 M398,210 L378,300 L364,384 M378,300 L472,266 M378,300 L262,286"/>
+        </g>
+        <!-- grass ticks on the top edge -->
+        <g stroke="rgba(255,255,255,0.35)" stroke-width="1.3">
+          <path d="M232,212 L228,198"/><path d="M252,206 L250,192"/><path d="M330,198 L334,184"/><path d="M356,202 L362,190"/>
+          <path d="M206,226 L200,214"/><path d="M416,222 L424,210"/>
+        </g>
+        <!-- floating glass squares -->
+        <g id="sq1"><rect x="252" y="238" width="64" height="64" rx="6" stroke="rgba(255,255,255,0.30)" stroke-width="1.2" fill="rgba(255,255,255,0.05)"/></g>
+        <g id="sq2"><rect x="296" y="292" width="44" height="44" rx="5" stroke="rgba(255,255,255,0.26)" stroke-width="1.1" fill="rgba(255,255,255,0.04)"/></g>
+        <g id="sq3"><rect x="268" y="326" width="28" height="28" rx="4" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="rgba(255,255,255,0.03)"/></g>
+      </g>
+      <!-- ground shadow + dotted ring (static) -->
+      <ellipse cx="302" cy="432" rx="150" ry="16" fill="rgba(0,0,0,0.55)"/>
+      <ellipse cx="302" cy="432" rx="150" ry="16" fill="rgba(0,255,133,0.05)"/>
+      <ellipse cx="302" cy="432" rx="196" ry="24" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="2 8"/>
+    </svg>
+  </div>
+
+  <!-- bottom-left intro -->
+  <div class="intro">
+    <h1 data-en="Read the Qur'an as if it's speaking to you <em>today.</em>" data-bm="Baca Al-Quran seolah-olah ia berbicara kepadamu <em>hari ini.</em>">
+      Read the Qur'an as if it's speaking to you <em>today.</em>
+    </h1>
+    <p data-en="Reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a data observatory, and book summaries — made to pause over, save, and share."
+       data-bm="Refleksi Al-Quran, kisah inspirasi ringkas dari Al-Quran & Hadis, observatori data, dan ringkasan buku — dibuat untuk direnung, disimpan, dan dikongsi.">
+      Reflections on the Qur'an, short inspiration stories from the Qur'an &amp; Hadith, a data observatory, and book summaries — made to pause over, save, and share.
+    </p>
+    <a href="reflections.html" class="cta"><span data-en="Start reading" data-bm="Mula membaca">Start reading</span> <span>→</span></a>
+  </div>
+
+  <!-- bottom-right latest writings -->
+  <aside class="findings">
+    <div class="fh"><span data-en="Latest writings" data-bm="Penulisan terkini">Latest writings</span><i>↗</i></div>
+    <a class="item" href="angan-angan-panjang.html">
+      <div class="t"><span>Angan-Angan Panjang</span><span class="idx">No. 04</span></div>
+      <div class="d" data-en="The hadith of the lines — our hopes run past the box, but the nearest line is death." data-bm="Hadis garisan — angan-angan memanjang keluar kotak, namun garisan terdekat ialah ajal.">The hadith of the lines — our hopes run past the box, but the nearest line is death.</div>
+    </a>
+    <a class="item" href="sakaratul-maut.html">
+      <div class="t"><span>Sakaratul Maut</span><span class="idx">No. 03</span></div>
+      <div class="d" data-en="The closest thing to us, yet the most forgotten — and the preparation the scholars left." data-bm="Yang paling hampir dengan kita, namun paling dilupakan — dan persediaan yang ditinggalkan ulama.">The closest thing to us, yet the most forgotten — and the preparation the scholars left.</div>
+    </a>
+    <svg class="wave" width="120" height="18" viewBox="0 0 120 18" fill="none" aria-hidden="true">
+      <path d="M2,9 Q6,2 10,9 T18,9 T26,9 Q30,15 34,9 T42,9 Q46,1 50,9 T58,9 T66,9 Q70,16 74,9 T82,9 Q86,3 90,9 T98,9 T106,9 T114,9" stroke="#00ff85" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </aside>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section id="pillars">
+  <div class="ph" data-en="Four ways in" data-bm="Empat jalan masuk">Four ways in</div>
+  <div class="grid">
+    <a class="pcard green" href="reflections.html">
+      <div class="num">01</div>
+      <h3 data-en="Reflections" data-bm="Refleksi">Reflections</h3>
+      <p data-en="Deep, unhurried reflections on the Qur'an — one surah at a time, read to the heart." data-bm="Refleksi mendalam Al-Quran — satu surah pada satu masa, dibaca hingga ke hati.">Deep, unhurried reflections on the Qur'an — one surah at a time, read to the heart.</p>
+      <span class="go" data-en="Read reflections →" data-bm="Baca refleksi →">Read reflections →</span>
+    </a>
+    <a class="pcard gold" href="inspiration.html">
+      <div class="num">02</div>
+      <h3 data-en="Inspiration" data-bm="Inspirasi">Inspiration</h3>
+      <p data-en="Short, designed stories of value from the Qur'an & Hadith — everyday life, seen by revelation." data-bm="Kisah ringkas penuh nilai dari Al-Quran & Hadis — kehidupan harian, dilihat melalui wahyu.">Short, designed stories of value from the Qur'an &amp; Hadith — everyday life, seen by revelation.</p>
+      <span class="go" data-en="Read the stories →" data-bm="Baca kisah →">Read the stories →</span>
+    </a>
+    <a class="pcard cyan" href="kalam.html">
+      <div class="num">03</div>
+      <h3 data-en="Kalam" data-bm="Kalam">Kalam</h3>
+      <p data-en="The Qur'an in data — 114 surahs, 6,236 ayahs, every figure computed from the text itself." data-bm="Al-Quran dalam data — 114 surah, 6,236 ayat, setiap angka dikira terus dari teks.">The Qur'an in data — 114 surahs, 6,236 ayahs, every figure computed from the text itself.</p>
+      <span class="go" data-en="Open the observatory →" data-bm="Buka observatori →">Open the observatory →</span>
+    </a>
+    <a class="pcard blue" href="book-reviews.html">
+      <div class="num">04</div>
+      <h3 data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</h3>
+      <p data-en="Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping." data-bm="Buku bermanfaat, diringkaskan secara jelas — apa yang ia beri, dan satu idea yang patut disimpan.">Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping.</p>
+      <span class="go" data-en="Browse summaries →" data-bm="Lihat ringkasan →">Browse summaries →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="tagline">
+    <span class="ar" lang="ar" dir="rtl">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</span>
+    <span class="tr" data-en="And my success is only by Allah · Hud 11:88" data-bm="Dan kejayaanku hanyalah dengan Allah · Hud 11:88">And my success is only by Allah · Hud 11:88</span>
+  </div>
+  <div class="row">
+    <span class="brand">FARISSUHAIL</span>
+    <div class="flinks">
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+      <a href="mailto:tech@farissuhail.com">Contact</a>
+    </div>
+    <span class="copy">© <span id="year"></span> · The Mdrn Urban · KL, MY</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ===== language toggle =====
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  // ===== menu overlay =====
+  var overlay = document.getElementById('menu-overlay'), mb = document.getElementById('menuBtn');
+  function setMenu(open) {
+    overlay.classList.toggle('open', open);
+    mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  mb.addEventListener('click', function () { setMenu(true); });
+  document.getElementById('menuClose').addEventListener('click', function () { setMenu(false); });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+})();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
