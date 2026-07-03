@@ -7,7 +7,7 @@
   <title>Quran Reflections · The Mdrn Urban · Faris Suhail</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="theme-color" content="#010101" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -27,256 +27,490 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="reflections.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --accent: #00ff85; --accent-2: #5bff9d;
+      --gold: #ffc24d; --cyan: #22d3ee; --blue: #5eaaff;
+      --text: #f1f1f5; --dim: #a4a4b5; --mute: #6e7280; --border: rgba(255,255,255,0.1);
+    }
+    body { font-family: 'Inter', sans-serif; background: #010101; color: #fff; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    /* ===== scroll-scrubbed video background ===== */
+    #scroll-video-container { position: fixed; inset: 0; top: -12%; height: 124%; z-index: -10; background: #050505; }
+    #scroll-video-container canvas, #scroll-video-container video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    #scroll-video-container video { filter: saturate(1.5) contrast(1.05) brightness(1.04); }
+    #scroll-video-container canvas { filter: saturate(1.5) contrast(1.05) brightness(1.04); }
+    #scroll-video-container .overlay { position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 45%, rgba(0,255,133,0.06) 0%, transparent 60%),
+        linear-gradient(to top, rgba(1,1,1,0.7) 0%, rgba(1,1,1,0.22) 40%, rgba(1,1,1,0.3) 100%); }
+
+    /* ===== particles ===== */
+    #particles-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0.7; }
+
+    /* ===== nav ===== */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between; padding: 20px 36px; }
+    nav .left { display: flex; align-items: center; gap: 26px; }
+    nav .brand { font-weight: 800; letter-spacing: -0.02em; font-size: 16px; color: #fff; }
+    nav .nav-links { display: flex; align-items: center; gap: 24px; }
+    nav .nav-links a { font-size: 12.5px; color: #d1d5db; letter-spacing: 0.04em; transition: color 0.2s; }
+    nav .nav-links a:hover { color: #fff; }
+    nav .nav-links a.on { color: var(--accent); }
+    .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 999px; padding: 7px 13px; color: var(--mute); cursor: pointer;
+      display: inline-flex; align-items: center; backdrop-filter: blur(8px); }
+    .lang-toggle::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 7px; }
+    .lang-toggle .active { color: #fff; }
+    .lang-toggle .sep { opacity: 0.5; margin: 0 3px; }
+    .menu-btn { display: none; background: none; border: 0; color: #fff; cursor: pointer; padding: 6px; }
+    .menu-btn svg { width: 22px; height: 22px; display: block; }
+
+    /* mobile glass menu */
+    #mobile-menu { position: fixed; top: 70px; left: 16px; right: 16px; z-index: 90;
+      border-radius: 16px; padding: 30px 0; display: flex; flex-direction: column; align-items: center; gap: 18px;
+      background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+      opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+    #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #mobile-menu a { color: rgba(255,255,255,0.9); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 300; font-size: 13px; }
+    @media (max-width: 767px) {
+      nav { padding: 14px 18px; }
+      nav .nav-links { display: none; }
+      .menu-btn { display: block; }
+    }
+    @media (min-width: 768px) { #mobile-menu { display: none; } }
+
+    /* ===== hero ===== */
+    #hero { position: relative; height: 100vh; min-height: 620px; width: 100%; display: flex; flex-direction: column; }
+    #hero .gradient-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.62), transparent, transparent); }
+    #hero .content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 88px; }
+    #hero .subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9ca3af; margin-bottom: 18px; letter-spacing: 0.22em; text-transform: uppercase; }
+    #hero .subtitle b { color: var(--accent); font-weight: 600; }
+    #hero h1 { font-size: clamp(28px, 4.6vw, 58px); font-weight: 600; line-height: 1.15; max-width: 21ch; letter-spacing: -0.02em; }
+    #hero h1 .underlined { position: relative; display: inline-block; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
+    #hero h1 .underlined .line { position: absolute; bottom: 0.12em; left: -2px; right: -2px; height: 0.28em; background: var(--accent); opacity: 0.8; border-radius: 3px; }
+    #hero h1 .underlined span { position: relative; }
+    #hero .ctas { display: flex; align-items: center; gap: 14px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
+    #hero .code-box { display: flex; align-items: center; gap: 12px; background: rgba(20,20,26,0.75);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 22px; backdrop-filter: blur(8px); }
+    #hero .code-box .ar { font-family: 'Amiri', serif; font-size: 19px; color: var(--accent-2); direction: rtl; }
+    #hero .code-box .ref { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
+    #hero .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a;
+      font-weight: 700; border-radius: 12px; padding: 13px 26px; font-size: 13.5px; transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 12px 32px -12px rgba(0,255,133,0.6); }
+    #hero .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 42px -12px rgba(0,255,133,0.75); }
+    #hero .bounce-arrow { position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 28px; cursor: pointer; }
+    #hero .bounce-arrow svg { width: 24px; height: 24px; color: #6b7280; animation: bounce 1.4s ease-in-out infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-25%); } }
+
+    /* ===== fixed reveal cards (the three reflections) ===== */
+    #fixed-cards { position: fixed; bottom: 0; left: 0; right: 0; z-index: 4; padding: 34px 40px; opacity: 0; pointer-events: none; }
+    #fixed-cards .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #9ca3af; margin-bottom: 24px; }
+    #fixed-cards .grid { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .rcard { display: flex; flex-direction: column; padding: 26px 26px 22px; border-radius: 18px;
+      background: rgba(8,10,9,0.55); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(14px);
+      transition: transform 0.3s ease, border-color 0.3s ease; }
+    .rcard:hover { transform: translateY(-5px); border-color: rgba(0,255,133,0.45); }
+    .rcard .meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--accent); }
+    .rcard .meta .ref { color: var(--mute); }
+    .rcard h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 9px; }
+    .rcard h3 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent-2); }
+    .rcard p { color: #c3c3cf; font-size: 13.5px; line-height: 1.62; margin-bottom: auto; }
+    .rcard .go { margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
+    .rcard:hover .go { gap: 12px; }
+
+    /* ===== closing (coming next) ===== */
+    #section-three { position: relative; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; padding: 0 40px 110px; }
+    #section-three .inner { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center;
+      opacity: 0; transform: translateY(32px); filter: blur(8px);
+      transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out; }
+    #section-three .inner.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    #section-three .k { font-family: 'JetBrains Mono', monospace; color: #9ca3af; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+    #section-three h2 { font-size: clamp(30px, 6vw, 68px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+    #section-three h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent); }
+    #section-three .sub { margin-top: 18px; color: #c3c3cf; font-size: 15px; line-height: 1.65; max-width: 46ch; }
+    #section-three .row { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+    #section-three .ghostbtn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border); color: #fff; font-weight: 600; font-size: 13.5px; border-radius: 12px; padding: 12px 24px;
+      backdrop-filter: blur(8px); transition: background 0.2s; }
+    #section-three .ghostbtn:hover { background: rgba(255,255,255,0.12); }
+    #section-three .verse { margin-top: 34px; }
+    #section-three .verse .q { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 17px; color: #a4a4b5; }
+    #section-three .verse .src { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+
+    /* ===== footer ===== */
+    footer { position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.06); padding: 34px 36px 40px; background: rgba(1,1,1,0.88); backdrop-filter: blur(10px); }
+    footer .row { max-width: 1150px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .brand { font-weight: 800; letter-spacing: -0.02em; }
+    footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer .flinks a { font-size: 13px; color: var(--dim); transition: color 0.2s; }
+    footer .flinks a:hover { color: #fff; }
+    footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.04em; }
+
+    /* ===== content wrapper ===== */
+    #content { position: relative; z-index: 2; }
+
+    /* ===== responsive ===== */
+    @media (max-width: 1080px) { #fixed-cards .grid { grid-template-columns: repeat(2, 1fr); } .rcard:nth-child(3) { display: none; } }
+    @media (max-width: 768px) {
+      #hero .content { padding-bottom: 72px; }
+      #hero .ctas { flex-direction: column; }
+      #fixed-cards { padding: 18px 16px 64px; }
+      #fixed-cards .grid { grid-template-columns: 1fr; gap: 12px; }
+      .rcard:nth-child(3) { display: flex; }
+      #section-three { padding: 0 22px 90px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #hero .bounce-arrow svg { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
-<body class="reflections-hub">
+<body>
 
-<!-- ===== NAV (shared with portfolio) ===== -->
-<header class="nav">
-  <a href="index.html" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
-  <nav class="nav-links">
-    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
-    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
-    <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
-  </nav>
-  <div class="nav-cta">
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
-      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
-    </button>
-  </div>
-</header>
+<!-- ===== Scroll Video Background ===== -->
+<div id="scroll-video-container">
+  <canvas id="video-canvas"></canvas>
+  <video id="video-fallback" muted playsinline preload="auto" poster="assets/hero-poster.jpg" src="assets/hero.mp4"></video>
+  <div class="overlay"></div>
+</div>
 
-<main id="top">
+<!-- ===== Particles ===== -->
+<canvas id="particles-canvas"></canvas>
 
-  <!-- ===== HERO ===== -->
-  <section class="hub-hero">
-    <div class="hub-kicker">Dakwah · <b>The Mdrn Urban</b></div>
-    <h1 class="hub-title"
-        data-en="Reflections on the Qur'an,<br><span class='grad'>one surah at a time.</span>"
-        data-bm="Refleksi Al-Quran,<br><span class='grad'>satu surah pada satu masa.</span>">
-      Reflections on the Qur'an,<br><span class="grad">one surah at a time.</span>
-    </h1>
-    <p class="hub-deck"
-       data-en="Short, designed reflections that take a single thread from a surah and follow it all the way to the heart. Made to read slowly, save, and share with someone who needs it."
-       data-bm="Refleksi ringkas yang mengambil satu benang dari sesebuah surah dan mengikutnya hingga ke hati. Dibuat untuk dibaca perlahan, disimpan, dan dikongsi dengan yang memerlukannya.">
-      Short, designed reflections that take a single thread from a surah and follow it all the way to the heart. Made to read slowly, save, and share with someone who needs it.
-    </p>
-    <div class="hub-stats">
-      <span data-en="3 reflections live" data-bm="3 refleksi tersedia">3 reflections live</span>
-      <span class="sep">·</span>
-      <span data-en="More on the way" data-bm="Lagi akan datang">More on the way</span>
-      <span class="sep">·</span>
-      <span>EN / BM</span>
-    </div>
-  </section>
-
-  <!-- ===== FEATURED: AL-INFITAR (No. 03) ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="Latest reflection" data-bm="Refleksi terkini">Latest reflection</h2>
-      <span class="count" data-en="No. 03" data-bm="No. 03">No. 03</span>
-    </div>
-
-    <a href="al-infitar.html" class="ref-featured" aria-label="Read: Al-Infitar — kamu tidak pernah bersendirian">
-      <div class="ref-cover" aria-hidden="true">
-        <div class="ref-cover-surah">SURAH 82</div>
-        <div class="ref-cover-the">kamu tak pernah</div>
-        <div class="ref-cover-word">SENDIRI</div>
-        <div class="ref-cover-arabic">AL-INFITAR</div>
-      </div>
-      <div class="ref-body">
-        <div class="ref-badges">
-          <span class="ref-badge live" data-en="Live" data-bm="Tersedia">Live</span>
-          <span class="ref-badge">Al-Infitar 82:10–12</span>
-          <span class="ref-badge" data-en="Bahasa Melayu" data-bm="Bahasa Melayu">Bahasa Melayu</span>
-        </div>
-        <h3 data-en="Al-Infitar — <em>you are never alone</em>"
-            data-bm="Al-Infitar — <em>kamu tidak pernah bersendirian</em>">
-          Al-Infitar — <em>you are never alone</em>
-        </h3>
-        <p data-en="Two noble angels record everything — even the thoughtless, the small, the things we forget. In an age of closed rooms and private screens, the Qur'an reminds us: every step, every click, every glance is being written."
-           data-bm="Dua malaikat mulia mencatat segalanya — termasuk yang tanpa fikir, yang kecil, yang kita lupa. Di zaman bilik tertutup dan skrin peribadi, Al-Quran mengingatkan: setiap langkah, setiap klik, setiap pandangan sedang ditulis.">
-          Two noble angels record everything — even the thoughtless, the small, the things we forget. In an age of closed rooms and private screens, the Qur'an reminds us: every step, every click, every glance is being written.
-        </p>
-        <span class="ref-cta" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
-      </div>
-    </a>
-  </section>
-
-  <!-- ===== FEATURED: AL-MUTAFFIFIN (No. 02) ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="Earlier in the series" data-bm="Lebih awal dalam siri">Earlier in the series</h2>
-      <span class="count" data-en="No. 02" data-bm="No. 02">No. 02</span>
-    </div>
-
-    <a href="al-mutaffifin.html" class="ref-featured" aria-label="Read: Al-Mutaffifin — bila ketawa menjadi jenayah">
-      <div class="ref-cover" aria-hidden="true">
-        <div class="ref-cover-surah">SURAH 83</div>
-        <div class="ref-cover-the">ketawa jadi</div>
-        <div class="ref-cover-word">JENAYAH</div>
-        <div class="ref-cover-arabic">AL-MUTAFFIFIN</div>
-      </div>
-      <div class="ref-body">
-        <div class="ref-badges">
-          <span class="ref-badge live" data-en="Live" data-bm="Tersedia">Live</span>
-          <span class="ref-badge">Al-Mutaffifin 83:29–36</span>
-          <span class="ref-badge" data-en="Bahasa Melayu" data-bm="Bahasa Melayu">Bahasa Melayu</span>
-        </div>
-        <h3 data-en="Al-Mutaffifin — <em>when laughter becomes a crime</em>"
-            data-bm="Al-Mutaffifin — <em>bila ketawa menjadi jenayah</em>">
-          Al-Mutaffifin — <em>when laughter becomes a crime</em>
-        </h3>
-        <p data-en="The Qur'an calls mocking a believer a 'crime'. Bullying, body shaming, cancel culture, the group-chat joke — all share the same spirit. And it's Allah Himself who writes the ending."
-           data-bm="Al-Quran memanggil ejekan terhadap orang beriman sebagai satu 'jenayah'. Buli, body shaming, cancel culture, lawak dalam group chat — semuanya berkongsi roh yang sama. Dan Allah sendiri yang menutup kisahnya.">
-          The Qur'an calls mocking a believer a 'crime'. Bullying, body shaming, cancel culture, the group-chat joke — all share the same spirit. And it's Allah Himself who writes the ending.
-        </p>
-        <span class="ref-cta" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
-      </div>
-    </a>
-  </section>
-
-  <!-- ===== FEATURED: AL-BAQARAH (No. 01) ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="Earlier in the series" data-bm="Lebih awal dalam siri">Earlier in the series</h2>
-      <span class="count" data-en="No. 01" data-bm="No. 01">No. 01</span>
-    </div>
-
-    <a href="al-baqarah.html" class="ref-featured" aria-label="Read: Al-Baqarah — The Cow">
-      <div class="ref-cover" aria-hidden="true">
-        <div class="ref-cover-surah">SURAH 02</div>
-        <div class="ref-cover-the">The</div>
-        <div class="ref-cover-word">COW</div>
-        <div class="ref-cover-arabic">AL-BAQARAH</div>
-      </div>
-      <div class="ref-body">
-        <div class="ref-badges">
-          <span class="ref-badge live" data-en="Live" data-bm="Tersedia">Live</span>
-          <span class="ref-badge">Qur'an 2:67–71</span>
-          <span class="ref-badge" data-en="25 parts" data-bm="25 bahagian">25 parts</span>
-        </div>
-        <h3 data-en="Al-Baqarah — why <em>The Cow?</em>"
-            data-bm="Al-Baqarah — kenapa <em>Lembu?</em>">
-          Al-Baqarah — why <em>The Cow?</em>
-        </h3>
-        <p data-en="Why the longest chapter of the Qur'an is named after an animal that barely appears in it — and what that name warns every one of us about the moment Allah gives a command."
-           data-bm="Mengapa bab terpanjang Al-Quran dinamakan sempena haiwan yang hampir tidak muncul di dalamnya — dan apa yang nama itu ingatkan kepada kita pada saat Allah memberi perintah.">
-          Why the longest chapter of the Qur'an is named after an animal that barely appears in it — and what that name warns every one of us about the moment Allah gives a command.
-        </p>
-        <span class="ref-cta" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
-      </div>
-    </a>
-  </section>
-
-  <!-- ===== UPCOMING ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="In the works" data-bm="Dalam penyediaan">In the works</h2>
-      <span class="count" data-en="Building the series" data-bm="Membina siri ini">Building the series</span>
-    </div>
-
-    <div class="ref-grid">
-      <div class="ref-soon">
-        <div class="ref-soon-tag">SURAH 01</div>
-        <div class="ref-soon-name">Al-Fātihah</div>
-        <div class="ref-soon-en" data-en="The Opening" data-bm="Pembukaan">The Opening</div>
-        <span class="ref-soon-status" data-en="In progress" data-bm="Dalam proses">In progress</span>
-      </div>
-
-      <div class="ref-soon">
-        <div class="ref-soon-tag">SURAH 18</div>
-        <div class="ref-soon-name">Al-Kahf</div>
-        <div class="ref-soon-en" data-en="The Cave" data-bm="Gua">The Cave</div>
-        <span class="ref-soon-status" data-en="Planned" data-bm="Dirancang">Planned</span>
-      </div>
-
-      <div class="ref-soon ref-invite">
-        <div class="ref-soon-tag" data-en="Collaborations" data-bm="Kolaborasi">Collaborations</div>
-        <div class="ref-soon-name" data-en="Build this with me" data-bm="Bina ini bersama saya">Build this with me</div>
-        <div class="ref-soon-en"
-             data-en="Designers, students of knowledge, and developers welcome."
-             data-bm="Pereka, penuntut ilmu, dan pembangun dialu-alukan.">
-          Designers, students of knowledge, and developers welcome.
-        </div>
-        <a href="mailto:tech@farissuhail.com?subject=Quran%20Reflections%20collaboration">tech@farissuhail.com →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== INTENTION ===== -->
-  <section class="hub-intention">
-    <p data-en="&ldquo;Guide us to the straight path.&rdquo; — and so the work is to keep walking it, one reflection at a time."
-       data-bm="&ldquo;Tunjukilah kami jalan yang lurus.&rdquo; — maka kerjanya adalah terus berjalan di atasnya, satu refleksi pada satu masa.">
-      &ldquo;Guide us to the straight path.&rdquo; — and so the work is to keep walking it, one reflection at a time.
-    </p>
-    <div class="src">Al-Fātihah 1:6</div>
-  </section>
-
-</main>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="brand"><span class="brand-name">FARISSUHAIL</span></div>
-      <p class="footer-tag" data-en="Quran reflections · The Mdrn Urban" data-bm="Refleksi Al-Quran · The Mdrn Urban">
-        Quran reflections · The Mdrn Urban
+<!-- ===== Fixed Cards: the three reflections ===== -->
+<div id="fixed-cards">
+  <div class="heading" data-en="The reflections so far — pick a surah" data-bm="Refleksi setakat ini — pilih surah">The reflections so far — pick a surah</div>
+  <div class="grid">
+    <a class="rcard" href="al-infitar.html">
+      <div class="meta"><span>NO. 03 · SURAH 82</span><span class="ref">82:10–12</span></div>
+      <h3 data-en="Al-Infitar — <em>you are never alone</em>" data-bm="Al-Infitar — <em>kamu tak pernah bersendirian</em>">Al-Infitar — <em>you are never alone</em></h3>
+      <p data-en="Two noble angels record everything — even the small things we forget. Every step, every click, every glance is being written."
+         data-bm="Dua malaikat mulia mencatat segalanya — termasuk yang kecil yang kita lupa. Setiap langkah, setiap klik, setiap pandangan sedang ditulis.">
+        Two noble angels record everything — even the small things we forget. Every step, every click, every glance is being written.
       </p>
-      <p class="footer-loc">Kuala Lumpur · Malaysia</p>
-    </div>
+      <span class="go" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
+    </a>
+    <a class="rcard" href="al-mutaffifin.html">
+      <div class="meta"><span>NO. 02 · SURAH 83</span><span class="ref">83:29–36</span></div>
+      <h3 data-en="Al-Mutaffifin — <em>when laughter is a crime</em>" data-bm="Al-Mutaffifin — <em>bila ketawa jadi jenayah</em>">Al-Mutaffifin — <em>when laughter is a crime</em></h3>
+      <p data-en="The Qur'an calls mocking a believer a 'crime'. Bullying, body shaming, the group-chat joke — the same spirit. And Allah writes the ending."
+         data-bm="Al-Quran memanggil ejekan terhadap orang beriman satu 'jenayah'. Buli, body shaming, lawak group chat — roh yang sama. Dan Allah yang menutup kisahnya.">
+        The Qur'an calls mocking a believer a 'crime'. Bullying, body shaming, the group-chat joke — the same spirit. And Allah writes the ending.
+      </p>
+      <span class="go" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
+    </a>
+    <a class="rcard" href="al-baqarah.html">
+      <div class="meta"><span>NO. 01 · SURAH 02</span><span class="ref">2:67–71</span></div>
+      <h3 data-en="Al-Baqarah — <em>why The Cow?</em>" data-bm="Al-Baqarah — <em>kenapa Lembu?</em>">Al-Baqarah — <em>why The Cow?</em></h3>
+      <p data-en="Why the longest surah is named after an animal that barely appears in it — and what that warns us about the moment Allah commands."
+         data-bm="Mengapa surah terpanjang dinamakan sempena haiwan yang hampir tidak muncul — dan apa yang ia ingatkan tentang saat Allah memerintah.">
+        Why the longest surah is named after an animal that barely appears in it — and what that warns us about the moment Allah commands.
+      </p>
+      <span class="go" data-en="Read the reflection →" data-bm="Baca refleksi →">Read the reflection →</span>
+    </a>
+  </div>
+</div>
 
-    <div class="footer-col">
-      <div class="footer-h" data-en="Reflections" data-bm="Refleksi">Reflections</div>
-      <ul>
-        <li><a href="al-infitar.html">Al-Infitar — Kamu Tidak Pernah Bersendirian ✦</a></li>
-        <li><a href="al-mutaffifin.html">Al-Mutaffifin — Bila Ketawa Jadi Jenayah ✦</a></li>
-        <li><a href="al-baqarah.html">Al-Baqarah — The Cow ✦</a></li>
-        <li><a href="inspiration.html" data-en="Inspiration stories" data-bm="Kisah inspirasi">Inspiration stories</a></li>
-        <li><a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-h" data-en="Connect" data-bm="Hubungi">Connect</div>
-      <ul>
-        <li><a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a></li>
-      </ul>
+<!-- ===== Navigation ===== -->
+<nav>
+  <div class="left">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a href="index.html" class="brand">FARISSUHAIL</a>
+    <div class="nav-links">
+      <a href="reflections.html" class="on" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
     </div>
   </div>
+  <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+</nav>
 
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> Faris Suhail</span>
-    <span class="footer-tagline" data-en="Dakwah · Quran reflections · KL, MY" data-bm="Dakwah · Refleksi Al-Quran · KL, MY">
-      Dakwah · Quran reflections · KL, MY
-    </span>
+<!-- mobile glass menu -->
+<div id="mobile-menu" aria-hidden="true">
+  <a href="index.html" data-en="Home" data-bm="Utama">Home</a>
+  <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+  <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+  <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+</div>
+
+<!-- ===== Main Content ===== -->
+<div id="content">
+  <!-- Section 1: Hero -->
+  <section id="hero">
+    <div class="gradient-overlay"></div>
+    <div class="content">
+      <p class="subtitle" data-en="Dakwah · <b>The Mdrn Urban</b>" data-bm="Dakwah · <b>The Mdrn Urban</b>">Dakwah · <b>The Mdrn Urban</b></p>
+      <h1 data-en="Reflections on the Qur'an, <span class='underlined'><span class='line'></span><span>one surah at a time.</span></span>"
+          data-bm="Refleksi Al-Quran, <span class='underlined'><span class='line'></span><span>satu surah pada satu masa.</span></span>">
+        Reflections on the Qur'an, <span class="underlined"><span class="line"></span><span>one surah at a time.</span></span>
+      </h1>
+      <div class="ctas">
+        <div class="code-box">
+          <span class="ar" lang="ar" dir="rtl">أَلَا بِذِكْرِ اللّٰهِ تَطْمَئِنُّ الْقُلُوبُ</span>
+          <span class="ref">13:28</span>
+        </div>
+        <a href="al-infitar.html" class="cta-btn"><span data-en="Latest: Al-Infitar" data-bm="Terkini: Al-Infitar">Latest: Al-Infitar</span> <span>&rarr;</span></a>
+      </div>
+    </div>
+    <div class="bounce-arrow" id="scrollHint">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+    </div>
+  </section>
+
+  <!-- Spacer -->
+  <div style="height:80vh;"></div>
+
+  <!-- Cards Trigger Zone -->
+  <div id="cards-trigger" style="height:190vh;"></div>
+
+  <!-- Spacer -->
+  <div style="height:60vh;"></div>
+
+  <!-- Section 3: coming next -->
+  <section id="section-three">
+    <div class="inner" id="section-three-inner">
+      <p class="k" data-en="Coming next" data-bm="Seterusnya">Coming next</p>
+      <h2 data-en="Al-Fātihah <em>&amp;</em> Al-Kahf" data-bm="Al-Fātihah <em>&amp;</em> Al-Kahf">Al-Fātihah <em>&amp;</em> Al-Kahf</h2>
+      <p class="sub" data-en="The Opening and The Cave are in preparation. Designers, students of knowledge, and developers are welcome to build this series together."
+         data-bm="Pembukaan dan Gua sedang disediakan. Pereka, penuntut ilmu, dan pembangun dialu-alukan membina siri ini bersama.">
+        The Opening and The Cave are in preparation. Designers, students of knowledge, and developers are welcome to build this series together.
+      </p>
+      <div class="row">
+        <a href="mailto:tech@farissuhail.com?subject=Quran%20Reflections%20collaboration" class="ghostbtn" data-en="Collaborate ✉" data-bm="Kolaborasi ✉">Collaborate ✉</a>
+        <a href="al-baqarah.html" class="ghostbtn" data-en="Start from No. 01 →" data-bm="Mula dari No. 01 →">Start from No. 01 →</a>
+      </div>
+      <div class="verse">
+        <div class="q" data-en="“Guide us to the straight path.” — and the work is to keep walking it, one reflection at a time."
+             data-bm="“Tunjukilah kami jalan yang lurus.” — dan kerjanya adalah terus berjalan di atasnya, satu refleksi pada satu masa.">
+          “Guide us to the straight path.” — and the work is to keep walking it, one reflection at a time.
+        </div>
+        <div class="src">AL-FĀTIHAH 1:6</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="row">
+    <span class="brand">FARISSUHAIL</span>
+    <div class="flinks">
+      <a href="al-infitar.html">Al-Infitar ✦</a>
+      <a href="al-mutaffifin.html">Al-Mutaffifin ✦</a>
+      <a href="al-baqarah.html">Al-Baqarah ✦</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+      <a href="mailto:tech@farissuhail.com">Contact</a>
+    </div>
+    <span class="copy">© <span id="year"></span> · The Mdrn Urban · KL, MY</span>
   </div>
 </footer>
 
 <script>
+(function () {
+  'use strict';
   document.getElementById('year').textContent = new Date().getFullYear();
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Language toggle (EN <-> BM) — supports innerHTML for <br> / <em> in titles
-  const langBtn = document.getElementById('langToggle');
-  const html = document.documentElement;
-  function applyLang(lang) {
-    html.setAttribute('data-lang', lang);
-    document.querySelectorAll('[data-en][data-bm]').forEach(el => {
-      el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
-    });
-    langBtn.querySelector('.lang-en').classList.toggle('active', lang === 'en');
-    langBtn.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
-    try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+  // ===== language toggle =====
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  // ===== mobile menu =====
+  var mb = document.getElementById('menuBtn'), mm = document.getElementById('mobile-menu');
+  function setMenu(open) { mm.classList.toggle('open', open); mb.setAttribute('aria-expanded', open ? 'true' : 'false'); mm.setAttribute('aria-hidden', open ? 'false' : 'true'); }
+  mb.addEventListener('click', function () { setMenu(!mm.classList.contains('open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', function (e) { if (mm.classList.contains('open') && !mm.contains(e.target) && !mb.contains(e.target)) setMenu(false); });
+
+  // ===== scroll-scrubbed video (self-hosted assets/hero.mp4) =====
+  var VIDEO_URL = 'assets/hero.mp4';
+  var canvas = document.getElementById('video-canvas');
+  var videoEl = document.getElementById('video-fallback');
+  var ctx = canvas.getContext('2d');
+  var frames = [], framesReady = false, lastFrameIndex = -1, videoSeeking = false;
+
+  function resizeCanvas() {
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    var rect = canvas.getBoundingClientRect();
+    var w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    lastFrameIndex = -1;
   }
-  langBtn.addEventListener('click', () => {
-    applyLang(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en');
+
+  function extractFrames() {
+    fetch(VIDEO_URL).then(function (r) { return r.blob(); }).then(function (blob) {
+      var objectUrl = URL.createObjectURL(blob);
+      var video = document.createElement('video');
+      video.muted = true; video.playsInline = true; video.preload = 'auto'; video.src = objectUrl;
+      return new Promise(function (resolve, reject) {
+        video.onloadedmetadata = function () { resolve(video); };
+        video.onerror = reject;
+        setTimeout(reject, 15000);
+      }).then(function (video) {
+        var cap = (innerWidth < 768) ? 720 : 1024;
+        var scale = Math.min(1, cap / video.videoWidth);
+        var sw = Math.round(video.videoWidth * scale), sh = Math.round(video.videoHeight * scale);
+        var frameCount = 64;
+        var seq = Promise.resolve();
+        var mk = function (i) {
+          return function () {
+            var time = (i / (frameCount - 1)) * (video.duration - 0.05);
+            video.currentTime = time;
+            return new Promise(function (res, rej) {
+              var onSeeked = function () { video.removeEventListener('seeked', onSeeked); res(); };
+              video.addEventListener('seeked', onSeeked);
+              setTimeout(function () { video.removeEventListener('seeked', onSeeked); rej(); }, 3000);
+            }).then(function () {
+              return createImageBitmap(video, { resizeWidth: sw, resizeHeight: sh });
+            }).then(function (bitmap) { frames.push(bitmap); });
+          };
+        };
+        for (var i = 0; i < frameCount; i++) seq = seq.then(mk(i));
+        return seq.then(function () {
+          if (frames.length > 0) {
+            framesReady = true;
+            canvas.style.visibility = 'visible';
+            videoEl.style.display = 'none';
+          }
+          URL.revokeObjectURL(objectUrl);
+        });
+      });
+    }).catch(function () { /* fall back to video seeking */ });
+  }
+
+  function getProgress() {
+    var vh = innerHeight;
+    var start = vh * 0.4, end = document.documentElement.scrollHeight - vh;
+    var range = end - start;
+    if (range <= 0) return 0;
+    return Math.max(0, Math.min(1, (scrollY - start) / range));
+  }
+
+  function drawFrame(frame) {
+    var cw = canvas.width, ch = canvas.height;
+    var s = Math.max(cw / frame.width, ch / frame.height);
+    var dw = frame.width * s, dh = frame.height * s;
+    ctx.drawImage(frame, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }
+
+  function videoTick() {
+    var progress = getProgress();
+    if (framesReady && frames.length > 0) {
+      var idx = Math.round(progress * (frames.length - 1));
+      if (idx !== lastFrameIndex) { lastFrameIndex = idx; if (frames[idx]) drawFrame(frames[idx]); }
+    } else if (videoEl.duration && isFinite(videoEl.duration) && videoEl.readyState >= 1) {
+      var target = progress * videoEl.duration;
+      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.001) { videoSeeking = true; videoEl.currentTime = target; }
+    }
+    requestAnimationFrame(videoTick);
+  }
+  videoEl.addEventListener('seeked', function () { videoSeeking = false; });
+  videoEl.addEventListener('stalled', function () { videoSeeking = false; });
+  videoEl.addEventListener('loadeddata', function () { videoEl.currentTime = 0; });
+  canvas.style.visibility = 'hidden';
+  resizeCanvas();
+  addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(videoTick);
+  extractFrames();
+
+  // ===== particles =====
+  var pCanvas = document.getElementById('particles-canvas'), pCtx = pCanvas.getContext('2d'), particles = [];
+  function resizeParticles() { pCanvas.width = innerWidth; pCanvas.height = innerHeight; createParticles(); }
+  function createParticles() {
+    particles = [];
+    var count = Math.min(150, Math.floor((pCanvas.width * pCanvas.height) / 13000));
+    for (var i = 0; i < count; i++) particles.push({
+      x: Math.random() * pCanvas.width, y: Math.random() * pCanvas.height,
+      vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 1.5 + 0.5, opacity: Math.random() * 0.5 + 0.15
+    });
+  }
+  function animateParticles() {
+    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = pCanvas.width; if (p.x > pCanvas.width) p.x = 0;
+      if (p.y < 0) p.y = pCanvas.height; if (p.y > pCanvas.height) p.y = 0;
+      pCtx.beginPath(); pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      pCtx.fillStyle = 'rgba(180,255,214,' + p.opacity + ')'; pCtx.fill();
+    }
+    if (!reduce) requestAnimationFrame(animateParticles);
+  }
+  resizeParticles();
+  addEventListener('resize', resizeParticles);
+  requestAnimationFrame(animateParticles);
+
+  // ===== hero fade =====
+  function updateHeroOpacity() {
+    document.getElementById('hero').style.opacity = Math.max(0, 1 - scrollY / (innerHeight * 0.35));
+  }
+  addEventListener('scroll', updateHeroOpacity, { passive: true });
+  document.getElementById('scrollHint').addEventListener('click', function () {
+    scrollTo({ top: innerHeight * 1.05, behavior: 'smooth' });
   });
-  try { if (localStorage.getItem('fs-lang') === 'bm') applyLang('bm'); } catch (e) {}
+
+  // ===== fixed cards reveal =====
+  var fixedCards = document.getElementById('fixed-cards');
+  var cardsGrid = fixedCards.querySelector('.grid');
+  function tickCards() {
+    var trigger = document.getElementById('cards-trigger');
+    var rect = trigger.getBoundingClientRect();
+    var triggerTop = rect.top + scrollY, triggerHeight = rect.height, vh = innerHeight;
+    var start = triggerTop - vh * 0.5, end = triggerTop + triggerHeight - vh * 0.3, range = end - start;
+    var progress = range > 0 ? (scrollY - start) / range : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    var isActive = scrollY >= start - vh * 0.2 && scrollY <= end + vh * 0.3;
+    var fadeIn = Math.min(1, Math.max(0, (scrollY - (start - vh * 0.2)) / (vh * 0.2)));
+    var fadeOut = Math.min(1, Math.max(0, (end + vh * 0.3 - scrollY) / (vh * 0.3)));
+    var op = isActive ? Math.min(fadeIn, fadeOut) : 0;
+    fixedCards.style.opacity = op;
+    fixedCards.style.pointerEvents = op > 0.1 ? 'auto' : 'none';
+    var pct = progress * 130;
+    var mask = (innerWidth < 768)
+      ? 'linear-gradient(to bottom, black ' + pct + '%, transparent ' + (pct + 20) + '%)'
+      : 'linear-gradient(to right, black ' + pct + '%, transparent ' + (pct + 15) + '%)';
+    cardsGrid.style.maskImage = mask; cardsGrid.style.webkitMaskImage = mask;
+    requestAnimationFrame(tickCards);
+  }
+  requestAnimationFrame(tickCards);
+
+  // ===== closing reveal =====
+  var inner = document.getElementById('section-three-inner');
+  var obs = new IntersectionObserver(function (e) {
+    if (e[0].isIntersecting) { inner.classList.add('visible'); obs.unobserve(inner); }
+  }, { threshold: 0.15 });
+  obs.observe(inner);
+  setTimeout(function () { inner.classList.add('visible'); }, 6000); // throttled-tab fallback
+})();
 </script>
 <script src="feedback.js"></script>
 </body>
