@@ -6,7 +6,7 @@
   <meta name="description" content="The Mdrn Urban by Faris Suhail — deep reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a Qur'an data observatory (Kalam), and original book summaries. Read with intent. EN / BM." />
   <title>Faris Suhail · The Mdrn Urban</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#050505" />
+  <meta name="theme-color" content="#0a0a0f" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -33,84 +33,109 @@
       --gold: #ffc24d; --cyan: #22d3ee; --blue: #5eaaff;
       --text: #f1f1f5; --dim: #a4a4b5; --mute: #6e7280; --border: rgba(255,255,255,0.1);
     }
-    body { font-family: 'Inter', sans-serif; background: #050505; color: var(--text); -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0d; color: var(--text); -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== fixed background ===== */
-    #bg { position: fixed; inset: 0; z-index: -10;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,255,133,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 40%, #0b1712 0%, #070707 55%, #030303 100%); }
-    #mandala-wrap { position: fixed; inset: 0; z-index: -9; display: grid; place-items: center; pointer-events: none; will-change: transform, opacity; }
-    #mandala { width: min(150vh, 150vw); height: min(150vh, 150vw); opacity: 0.42; animation: spin 160s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    #particles-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0.7; }
-
     /* ===== nav ===== */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
-    nav .brand { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.02em; font-size: 18px; }
-    nav .nav-right { display: flex; align-items: center; gap: 26px; }
-    nav .nav-links { display: flex; align-items: center; gap: 26px; }
-    nav .nav-links a { font-size: 13px; color: var(--dim); transition: color 0.2s; letter-spacing: 0.01em; }
-    nav .nav-links a:hover { color: var(--text); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between; padding: 20px 36px; }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .menu-btn { display: inline-flex; align-items: center; gap: 9px; background: none; border: 0; color: var(--dim); cursor: pointer;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .menu-btn:hover { color: var(--text); }
+    .menu-btn .bars { display: inline-flex; flex-direction: column; gap: 4px; }
+    .menu-btn .bars i { display: block; width: 16px; height: 1.5px; background: currentColor; }
+    nav .brand { font-weight: 800; letter-spacing: -0.02em; font-size: 15px; }
     .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; color: var(--mute); cursor: pointer; }
+      border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; color: var(--mute); cursor: pointer; display: inline-flex; align-items: center; gap: 3px; }
+    .lang-toggle::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 6px; }
     .lang-toggle .active { color: var(--text); }
-    .lang-toggle .sep { opacity: 0.5; margin: 0 3px; }
+    .lang-toggle .sep { opacity: 0.5; }
 
-    /* ===== content ===== */
-    #content { position: relative; z-index: 2; }
+    /* ===== menu overlay ===== */
+    #menu-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(6,6,8,0.92); backdrop-filter: blur(18px);
+      display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #menu-overlay.open { opacity: 1; pointer-events: auto; }
+    #menu-overlay .close { position: absolute; top: 22px; right: 34px; background: none; border: 0; color: var(--mute); font-size: 26px; cursor: pointer; }
+    #menu-overlay .close:hover { color: var(--text); }
+    #menu-overlay ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+    #menu-overlay ul a { display: inline-flex; align-items: baseline; gap: 16px; padding: 10px 6px;
+      font-size: clamp(28px, 4.6vw, 46px); font-weight: 800; letter-spacing: -0.02em; color: var(--dim); transition: color 0.2s; }
+    #menu-overlay ul a:hover { color: var(--text); }
+    #menu-overlay ul a .n { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    #menu-overlay ul a.m-green .n { color: var(--accent); } #menu-overlay ul a.m-gold .n { color: var(--gold); }
+    #menu-overlay ul a.m-cyan .n { color: var(--cyan); } #menu-overlay ul a.m-blue .n { color: var(--blue); }
+    #menu-overlay .m-contact { margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--mute); }
+    #menu-overlay .m-contact a { color: var(--dim); border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+    #menu-overlay .m-contact a:hover { color: var(--text); }
 
-    /* hero */
-    #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; }
-    #hero .inner { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 40px; }
-    #hero .kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin-bottom: 24px; }
-    #hero .kicker b { color: var(--accent); font-weight: 600; }
-    #hero h1 { font-size: clamp(30px, 5.4vw, 66px); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; max-width: 16ch; }
-    #hero h1 .u { position: relative; display: inline-block; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
-    #hero h1 .u::after { content: ''; position: absolute; left: -2px; right: -2px; bottom: 0.12em; height: 0.30em; background: var(--accent); opacity: 0.85; border-radius: 3px; z-index: -1; }
-    #hero .deck { margin-top: 26px; max-width: 46ch; font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: var(--dim); }
-    #hero .ctas { display: flex; align-items: center; gap: 14px; margin-top: 38px; flex-wrap: wrap; justify-content: center; }
-    #hero .verse { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 11px 18px; }
-    #hero .verse .ar { font-family: 'Amiri', serif; font-size: 19px; color: var(--accent-2); direction: rtl; }
-    #hero .verse .ref { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
-    #hero .cta { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a; font-weight: 700; font-size: 14px; border-radius: 12px; padding: 13px 24px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 12px 34px -12px rgba(0,255,133,0.6); }
-    #hero .cta:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -12px rgba(0,255,133,0.75); }
-    #hero .bounce { display: flex; justify-content: center; padding-bottom: 30px; }
-    #hero .bounce svg { width: 24px; height: 24px; color: var(--mute); animation: bounce 1.4s ease-in-out infinite; }
-    @keyframes bounce { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(7px); opacity: 1; } }
+    /* ===== hero ===== */
+    #hero { position: relative; min-height: 100vh; overflow: hidden;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 42%, rgba(0,255,133,0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #0c0c10 0%, #0a0a0d 60%, #08080b 100%); }
+    /* giant ghosted display type */
+    .ghost { position: absolute; top: 13vh; left: 50%; transform: translateX(-50%); z-index: 1;
+      font-weight: 900; letter-spacing: -0.02em; white-space: nowrap; user-select: none; pointer-events: none;
+      font-size: clamp(64px, 15.5vw, 240px); line-height: 1;
+      color: rgba(255,255,255,0.045); -webkit-text-stroke: 1px rgba(255,255,255,0.05); }
+    /* centerpiece */
+    #centerpiece { position: absolute; z-index: 2; left: 50%; top: 47%; transform: translate(-50%, -50%);
+      width: min(60vw, 560px); pointer-events: none; }
+    #centerpiece svg { display: block; width: 100%; height: auto; }
+    .float-slow { animation: floaty 7s ease-in-out infinite; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    #sq1 { animation: drift1 9s ease-in-out infinite; } #sq2 { animation: drift2 11s ease-in-out infinite; } #sq3 { animation: drift3 13s ease-in-out infinite; }
+    @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(6px,-10px); } }
+    @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-8px,8px); } }
+    @keyframes drift3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(5px,10px); } }
+    .sprout-glow { filter: drop-shadow(0 0 14px rgba(0,255,133,0.65)); animation: pulse 4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
 
-    /* fixed reveal cards */
-    #fixed-cards { position: fixed; bottom: 0; left: 0; right: 0; z-index: 4; padding: 40px; opacity: 0; pointer-events: none; }
-    #fixed-cards .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 26px; }
-    #fixed-cards .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .pcard { position: relative; display: flex; flex-direction: column; min-height: 260px; padding: 26px 24px 24px; border: 1px solid var(--border); border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); backdrop-filter: blur(14px); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    /* bottom-left intro */
+    .intro { position: absolute; z-index: 5; left: 40px; bottom: 46px; max-width: 360px; }
+    .intro h1 { font-size: clamp(24px, 2.6vw, 34px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.16; margin-bottom: 14px; }
+    .intro h1 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent); }
+    .intro p { font-size: 13.5px; line-height: 1.65; color: var(--dim); margin-bottom: 20px; max-width: 34ch; }
+    .intro .cta { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a; font-weight: 700; font-size: 13.5px;
+      border-radius: 999px; padding: 12px 24px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 12px 30px -12px rgba(0,255,133,0.55); }
+    .intro .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(0,255,133,0.7); }
+
+    /* bottom-right latest writings */
+    .findings { position: absolute; z-index: 5; right: 40px; bottom: 46px; width: 300px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 20px 20px 16px; backdrop-filter: blur(10px); }
+    .findings .fh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .findings .fh span { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    .findings .fh i { color: var(--mute); font-style: normal; font-size: 12px; }
+    .findings a.item { display: block; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .findings a.item .t { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 4px; display: flex; justify-content: space-between; gap: 10px; }
+    .findings a.item .t .idx { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); font-weight: 500; flex-shrink: 0; }
+    .findings a.item .d { font-size: 11.5px; line-height: 1.55; color: var(--mute); }
+    .findings a.item:hover .t { color: var(--accent-2); }
+    .findings .wave { margin-top: 12px; opacity: 0.85; }
+
+    /* ===== pillars (below fold) ===== */
+    #pillars { position: relative; z-index: 2; padding: 90px 36px 70px; border-top: 1px solid rgba(255,255,255,0.06); background: #08080b; }
+    #pillars .ph { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin-bottom: 34px; }
+    #pillars .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .pcard { position: relative; display: flex; flex-direction: column; min-height: 230px; padding: 26px 24px 22px; border: 1px solid var(--border); border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
     .pcard:hover { transform: translateY(-5px); }
-    .pcard .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
-    .pcard h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .pcard .num { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; margin-bottom: 13px; }
+    .pcard h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 9px; }
     .pcard p { font-size: 13.5px; line-height: 1.6; color: var(--dim); margin-bottom: auto; }
-    .pcard .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; transition: gap 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+    .pcard .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
     .pcard:hover .go { gap: 12px; }
-    .pcard.green { --c: #00ff85; } .pcard.gold { --c: #ffc24d; } .pcard.cyan { --c: #22d3ee; } .pcard.blue { --c: #5eaaff; }
+    .pcard.green { --c: var(--accent); } .pcard.gold { --c: var(--gold); } .pcard.cyan { --c: var(--cyan); } .pcard.blue { --c: var(--blue); }
     .pcard .num, .pcard .go { color: var(--c); }
-    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.65; }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.6; }
     .pcard:hover { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
 
-    /* presenting / closing */
-    #closing { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; }
-    #closing .inner { text-align: center; opacity: 0; transform: translateY(30px); filter: blur(8px); transition: opacity 1s ease, transform 1s ease, filter 1s ease; }
-    #closing .inner.visible { opacity: 1; transform: none; filter: blur(0); }
-    #closing .k { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
-    #closing h2 { font-size: clamp(34px, 7vw, 76px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
-    #closing h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent); }
-    #closing .sub { margin: 26px auto 0; max-width: 44ch; font-size: 16px; line-height: 1.6; color: var(--dim); }
-    #closing .cta2 { display: inline-flex; align-items: center; gap: 9px; margin-top: 34px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 14px; border-radius: 12px; padding: 13px 26px; transition: background 0.2s; }
-    #closing .cta2:hover { background: rgba(255,255,255,0.1); }
-
-    /* footer */
-    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 40px; background: rgba(3,3,3,0.6); backdrop-filter: blur(8px); }
+    /* ===== footer ===== */
+    footer { position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.06); padding: 34px 36px 40px; background: #060609; }
+    footer .tagline { text-align: center; margin-bottom: 22px; }
+    footer .tagline .ar { font-family: 'Amiri', serif; font-size: 21px; color: var(--accent-2); direction: rtl; display: block; margin-bottom: 6px; }
+    footer .tagline .tr { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); }
     footer .row { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
     footer .brand { font-weight: 800; letter-spacing: -0.02em; }
     footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
@@ -118,45 +143,127 @@
     footer .flinks a:hover { color: var(--text); }
     footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.04em; }
 
-    @media (max-width: 1080px) { #fixed-cards .grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ===== responsive ===== */
+    @media (max-width: 1080px) { #pillars .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+      #hero { min-height: 0; padding-bottom: 40px; }
+      .ghost { top: 11vh; }
+      #centerpiece { position: relative; left: auto; top: auto; transform: none; margin: 26vh auto 30px; width: min(78vw, 420px); }
+      .intro { position: relative; left: auto; bottom: auto; margin: 0 24px 22px; max-width: none; }
+      .findings { position: relative; right: auto; bottom: auto; margin: 0 24px; width: auto; }
+    }
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; } nav .nav-links { display: none; }
-      #fixed-cards { padding: 20px 16px; } #fixed-cards .grid { grid-template-columns: 1fr; gap: 12px; }
+      nav { padding: 14px 18px; }
+      nav .brand { font-size: 13.5px; }
+      #pillars { padding: 60px 20px 50px; }
+      #pillars .grid { grid-template-columns: 1fr; gap: 12px; }
       .pcard { min-height: 0; }
-      #mandala { opacity: 0.32; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .float-slow, #sq1, #sq2, #sq3, .sprout-glow { animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-<div id="bg"></div>
-<div id="mandala-wrap">
-  <svg id="mandala" viewBox="0 0 600 600" fill="none" stroke="#00ff85" stroke-width="1" aria-hidden="true">
-    <circle cx="300" cy="300" r="284" stroke-opacity="0.14"/>
-    <circle cx="300" cy="300" r="232" stroke-opacity="0.22" stroke-dasharray="2 10"/>
-    <circle cx="300" cy="300" r="176" stroke-opacity="0.3"/>
-    <circle cx="300" cy="300" r="120" stroke-opacity="0.2"/>
-    <!-- 8-point star: two squares -->
-    <path d="M300,124 L476,300 L300,476 L124,300 Z" stroke-opacity="0.3"/>
-    <path d="M176,176 L424,176 L424,424 L176,424 Z" stroke-opacity="0.3"/>
-    <!-- radial spokes -->
-    <g stroke-opacity="0.12">
-      <path d="M300,16 L300,584"/><path d="M16,300 L584,300"/>
-      <path d="M99,99 L501,501"/><path d="M501,99 L99,501"/>
-    </g>
-    <!-- ring nodes -->
-    <g fill="#00ff85" stroke="none" fill-opacity="0.5">
-      <circle cx="300" cy="68" r="2.4"/><circle cx="532" cy="300" r="2.4"/><circle cx="300" cy="532" r="2.4"/><circle cx="68" cy="300" r="2.4"/>
-      <circle cx="300" cy="124" r="2"/><circle cx="476" cy="300" r="2"/><circle cx="300" cy="476" r="2"/><circle cx="124" cy="300" r="2"/>
-    </g>
-  </svg>
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-left">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span class="bars"><i></i><i></i></span>
+      <span data-en="Menu" data-bm="Menu">Menu</span>
+    </button>
+    <a href="index.html" class="brand">FARISSUHAIL</a>
+  </div>
+  <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+</nav>
+
+<!-- ===== MENU OVERLAY ===== -->
+<div id="menu-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="close" id="menuClose" aria-label="Close menu">✕</button>
+  <div>
+    <ul>
+      <li><a class="m-green" href="reflections.html"><span class="n">01</span><span data-en="Reflections" data-bm="Refleksi">Reflections</span></a></li>
+      <li><a class="m-gold" href="inspiration.html"><span class="n">02</span><span data-en="Inspiration" data-bm="Inspirasi">Inspiration</span></a></li>
+      <li><a class="m-cyan" href="kalam.html"><span class="n">03</span><span data-en="Kalam" data-bm="Kalam">Kalam</span></a></li>
+      <li><a class="m-blue" href="book-reviews.html"><span class="n">04</span><span data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</span></a></li>
+    </ul>
+    <p class="m-contact"><a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a></p>
+  </div>
 </div>
 
-<canvas id="particles-canvas"></canvas>
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="ghost" aria-hidden="true">MDRN URBAN</div>
 
-<!-- ===== FIXED REVEAL CARDS (the four pillars) ===== -->
-<div id="fixed-cards">
-  <div class="heading" data-en="Four ways in" data-bm="Empat jalan masuk">Four ways in</div>
+  <!-- centerpiece: geometric floating stone + glowing sprout (the single colour accent) -->
+  <div id="centerpiece" aria-hidden="true">
+    <svg viewBox="0 0 600 480" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g class="float-slow">
+        <!-- glowing sprout (the "flower") -->
+        <g class="sprout-glow">
+          <path d="M300,196 C300,168 296,150 300,122" stroke="#00ff85" stroke-width="2"/>
+          <path d="M300,164 C288,158 282,148 281,138 C292,142 298,150 300,158 Z" stroke="#00ff85" stroke-width="1.4" fill="rgba(0,255,133,0.12)"/>
+          <path d="M300,150 C312,144 318,134 319,124 C308,128 302,136 300,144 Z" stroke="#00ff85" stroke-width="1.4" fill="rgba(0,255,133,0.12)"/>
+          <path d="M300,96 Q303,114 322,118 Q303,122 300,140 Q297,122 278,118 Q297,114 300,96 Z" stroke="#00ff85" stroke-width="1.6" fill="rgba(0,255,133,0.16)"/>
+          <circle cx="300" cy="118" r="3" fill="#b4ffd6"/>
+        </g>
+        <!-- faceted stone (line art) -->
+        <g stroke="rgba(255,255,255,0.42)" stroke-width="1.6" fill="rgba(255,255,255,0.025)">
+          <path d="M132,300 L196,222 L288,196 L398,210 L472,266 L458,340 L364,384 L232,376 L152,344 Z"/>
+        </g>
+        <g stroke="rgba(255,255,255,0.16)" stroke-width="1">
+          <path d="M196,222 L262,286 L288,196 M262,286 L398,210 M262,286 L232,376 M262,286 L152,344 M262,286 L364,384 M398,210 L378,300 L364,384 M378,300 L472,266 M378,300 L262,286"/>
+        </g>
+        <!-- grass ticks on the top edge -->
+        <g stroke="rgba(255,255,255,0.35)" stroke-width="1.3">
+          <path d="M232,212 L228,198"/><path d="M252,206 L250,192"/><path d="M330,198 L334,184"/><path d="M356,202 L362,190"/>
+          <path d="M206,226 L200,214"/><path d="M416,222 L424,210"/>
+        </g>
+        <!-- floating glass squares -->
+        <g id="sq1"><rect x="252" y="238" width="64" height="64" rx="6" stroke="rgba(255,255,255,0.30)" stroke-width="1.2" fill="rgba(255,255,255,0.05)"/></g>
+        <g id="sq2"><rect x="296" y="292" width="44" height="44" rx="5" stroke="rgba(255,255,255,0.26)" stroke-width="1.1" fill="rgba(255,255,255,0.04)"/></g>
+        <g id="sq3"><rect x="268" y="326" width="28" height="28" rx="4" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="rgba(255,255,255,0.03)"/></g>
+      </g>
+      <!-- ground shadow + dotted ring (static) -->
+      <ellipse cx="302" cy="432" rx="150" ry="16" fill="rgba(0,0,0,0.55)"/>
+      <ellipse cx="302" cy="432" rx="150" ry="16" fill="rgba(0,255,133,0.05)"/>
+      <ellipse cx="302" cy="432" rx="196" ry="24" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="2 8"/>
+    </svg>
+  </div>
+
+  <!-- bottom-left intro -->
+  <div class="intro">
+    <h1 data-en="Read the Qur'an as if it's speaking to you <em>today.</em>" data-bm="Baca Al-Quran seolah-olah ia berbicara kepadamu <em>hari ini.</em>">
+      Read the Qur'an as if it's speaking to you <em>today.</em>
+    </h1>
+    <p data-en="Reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a data observatory, and book summaries — made to pause over, save, and share."
+       data-bm="Refleksi Al-Quran, kisah inspirasi ringkas dari Al-Quran & Hadis, observatori data, dan ringkasan buku — dibuat untuk direnung, disimpan, dan dikongsi.">
+      Reflections on the Qur'an, short inspiration stories from the Qur'an &amp; Hadith, a data observatory, and book summaries — made to pause over, save, and share.
+    </p>
+    <a href="reflections.html" class="cta"><span data-en="Start reading" data-bm="Mula membaca">Start reading</span> <span>→</span></a>
+  </div>
+
+  <!-- bottom-right latest writings -->
+  <aside class="findings">
+    <div class="fh"><span data-en="Latest writings" data-bm="Penulisan terkini">Latest writings</span><i>↗</i></div>
+    <a class="item" href="angan-angan-panjang.html">
+      <div class="t"><span>Angan-Angan Panjang</span><span class="idx">No. 04</span></div>
+      <div class="d" data-en="The hadith of the lines — our hopes run past the box, but the nearest line is death." data-bm="Hadis garisan — angan-angan memanjang keluar kotak, namun garisan terdekat ialah ajal.">The hadith of the lines — our hopes run past the box, but the nearest line is death.</div>
+    </a>
+    <a class="item" href="sakaratul-maut.html">
+      <div class="t"><span>Sakaratul Maut</span><span class="idx">No. 03</span></div>
+      <div class="d" data-en="The closest thing to us, yet the most forgotten — and the preparation the scholars left." data-bm="Yang paling hampir dengan kita, namun paling dilupakan — dan persediaan yang ditinggalkan ulama.">The closest thing to us, yet the most forgotten — and the preparation the scholars left.</div>
+    </a>
+    <svg class="wave" width="120" height="18" viewBox="0 0 120 18" fill="none" aria-hidden="true">
+      <path d="M2,9 Q6,2 10,9 T18,9 T26,9 Q30,15 34,9 T42,9 Q46,1 50,9 T58,9 T66,9 Q70,16 74,9 T82,9 Q86,3 90,9 T98,9 T106,9 T114,9" stroke="#00ff85" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </aside>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section id="pillars">
+  <div class="ph" data-en="Four ways in" data-bm="Empat jalan masuk">Four ways in</div>
   <div class="grid">
     <a class="pcard green" href="reflections.html">
       <div class="num">01</div>
@@ -183,61 +290,14 @@
       <span class="go" data-en="Browse summaries →" data-bm="Lihat ringkasan →">Browse summaries →</span>
     </a>
   </div>
-</div>
+</section>
 
-<!-- ===== NAV ===== -->
-<nav>
-  <a href="index.html" class="brand">FARISSUHAIL</a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
-      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
-      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
-    </div>
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
-  </div>
-</nav>
-
-<!-- ===== MAIN ===== -->
-<div id="content">
-  <section id="hero">
-    <div class="inner">
-      <p class="kicker" data-en="Dakwah · Data · Books · <b>The Mdrn Urban</b>" data-bm="Dakwah · Data · Buku · <b>The Mdrn Urban</b>">Dakwah · Data · Books · <b>The Mdrn Urban</b></p>
-      <h1 data-en="Read the Qur'an <span class='u'>as if it's speaking to you today.</span>" data-bm="Baca Al-Quran <span class='u'>seolah-olah ia berbicara kepadamu hari ini.</span>">
-        Read the Qur'an <span class="u">as if it's speaking to you today.</span>
-      </h1>
-      <p class="deck" data-en="Reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a data observatory, and book summaries — made to pause over, save, and share." data-bm="Refleksi Al-Quran, kisah inspirasi ringkas dari Al-Quran & Hadis, observatori data, dan ringkasan buku — dibuat untuk direnung, disimpan, dan dikongsi.">
-        Reflections on the Qur'an, short inspiration stories from the Qur'an &amp; Hadith, a data observatory, and book summaries — made to pause over, save, and share.
-      </p>
-      <div class="ctas">
-        <span class="verse">
-          <span class="ar" lang="ar" dir="rtl">أَلَا بِذِكْرِ اللّٰهِ تَطْمَئِنُّ الْقُلُوبُ</span>
-          <span class="ref">13:28</span>
-        </span>
-        <a href="reflections.html" class="cta"><span data-en="Enter the reflections" data-bm="Masuk refleksi">Enter the reflections</span> <span>→</span></a>
-      </div>
-    </div>
-    <div class="bounce" id="scrollHint" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-    </div>
-  </section>
-
-  <div style="height:90vh;"></div>
-  <div id="cards-trigger" style="height:190vh;"></div>
-  <div style="height:70vh;"></div>
-
-  <section id="closing">
-    <div class="inner" id="closing-inner">
-      <div class="k" data-en="The Mdrn Urban" data-bm="The Mdrn Urban">The Mdrn Urban</div>
-      <h2 data-en="Reflect. Remember. <em>Return.</em>" data-bm="Renung. Ingat. <em>Kembali.</em>">Reflect. Remember. <em>Return.</em></h2>
-      <p class="sub" data-en="The world is fleeting; the words are eternal. Slow down, and let them speak." data-bm="Dunia sementara; kalam-Nya abadi. Perlahankan langkah, dan biar ia berbicara.">The world is fleeting; the words are eternal. Slow down, and let them speak.</p>
-      <a href="reflections.html" class="cta2"><span data-en="Start reading" data-bm="Mula membaca">Start reading</span> <span>→</span></a>
-    </div>
-  </section>
-</div>
-
+<!-- ===== FOOTER ===== -->
 <footer>
+  <div class="tagline">
+    <span class="ar" lang="ar" dir="rtl">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</span>
+    <span class="tr" data-en="And my success is only by Allah · Hud 11:88" data-bm="Dan kejayaanku hanyalah dengan Allah · Hud 11:88">And my success is only by Allah · Hud 11:88</span>
+  </div>
   <div class="row">
     <span class="brand">FARISSUHAIL</span>
     <div class="flinks">
@@ -270,68 +330,17 @@
     try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
   })();
 
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ===== particles (drifting dust) =====
-  var pc = document.getElementById('particles-canvas'), pctx = pc.getContext('2d'), particles = [];
-  function sizeP() { pc.width = innerWidth; pc.height = innerHeight; makeP(); }
-  function makeP() {
-    particles = [];
-    var n = Math.min(150, Math.floor((pc.width * pc.height) / 14000));
-    for (var i = 0; i < n; i++) particles.push({ x: Math.random() * pc.width, y: Math.random() * pc.height, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, s: Math.random() * 1.4 + 0.4, o: Math.random() * 0.5 + 0.15 });
+  // ===== menu overlay =====
+  var overlay = document.getElementById('menu-overlay'), mb = document.getElementById('menuBtn');
+  function setMenu(open) {
+    overlay.classList.toggle('open', open);
+    mb.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
-  function drawP() {
-    pctx.clearRect(0, 0, pc.width, pc.height);
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i]; p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = pc.width; if (p.x > pc.width) p.x = 0; if (p.y < 0) p.y = pc.height; if (p.y > pc.height) p.y = 0;
-      pctx.beginPath(); pctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
-      pctx.fillStyle = 'rgba(180,255,214,' + p.o + ')'; pctx.fill();
-    }
-    if (!reduce) requestAnimationFrame(drawP);
-  }
-  sizeP(); addEventListener('resize', sizeP); requestAnimationFrame(drawP);
-
-  // ===== scroll-driven background + hero fade =====
-  var hero = document.getElementById('hero'), mandala = document.getElementById('mandala-wrap');
-  function onScroll() {
-    var y = window.scrollY, vh = innerHeight;
-    // hero fades out over the first ~40vh
-    hero.style.opacity = Math.max(0, 1 - y / (vh * 0.4));
-    // mandala zooms & fades as you scroll (scroll-scrubbed feel)
-    var docH = document.documentElement.scrollHeight - vh;
-    var p = docH > 0 ? Math.min(1, y / docH) : 0;
-    mandala.style.transform = 'scale(' + (1 + p * 0.55).toFixed(3) + ')';
-    mandala.style.opacity = (1 - p * 0.55).toFixed(3);
-  }
-  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
-  document.getElementById('scrollHint').addEventListener('click', function () {
-    window.scrollTo({ top: innerHeight * 1.1, behavior: 'smooth' });
-  });
-
-  // ===== fixed reveal cards (mask wipe across the trigger zone) =====
-  var fixedCards = document.getElementById('fixed-cards'), grid = fixedCards.querySelector('.grid'), trigger = document.getElementById('cards-trigger');
-  function tickCards() {
-    var rect = trigger.getBoundingClientRect(), triggerTop = rect.top + window.scrollY, triggerH = rect.height, y = window.scrollY, vh = innerHeight;
-    var start = triggerTop - vh * 0.6, end = triggerTop + triggerH - vh * 0.35, range = end - start;
-    var progress = range > 0 ? (y - start) / range : 0; progress = Math.max(0, Math.min(1, progress));
-    var active = y >= start - vh * 0.2 && y <= end + vh * 0.35;
-    var fin = Math.min(1, Math.max(0, (y - (start - vh * 0.2)) / (vh * 0.2)));
-    var fout = Math.min(1, Math.max(0, (end + vh * 0.35 - y) / (vh * 0.35)));
-    var op = active ? Math.min(fin, fout) : 0;
-    fixedCards.style.opacity = op; fixedCards.style.pointerEvents = op > 0.15 ? 'auto' : 'none';
-    var pct = progress * 135;
-    var mask = (innerWidth < 768)
-      ? 'linear-gradient(to bottom, black ' + pct + '%, transparent ' + (pct + 22) + '%)'
-      : 'linear-gradient(to right, black ' + pct + '%, transparent ' + (pct + 16) + '%)';
-    grid.style.webkitMaskImage = mask; grid.style.maskImage = mask;
-    requestAnimationFrame(tickCards);
-  }
-  requestAnimationFrame(tickCards);
-
-  // ===== closing reveal =====
-  var ci = document.getElementById('closing-inner');
-  new IntersectionObserver(function (e) { if (e[0].isIntersecting) { ci.classList.add('visible'); } }, { threshold: 0.2 }).observe(ci);
+  mb.addEventListener('click', function () { setMenu(true); });
+  document.getElementById('menuClose').addEventListener('click', function () { setMenu(false); });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
 })();
 </script>
 <script src="feedback.js"></script>
