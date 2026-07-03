@@ -49,17 +49,6 @@
         radial-gradient(ellipse 40% 30% at 88% 18%, rgba(255,194,77,0.06) 0%, transparent 70%),
         linear-gradient(to top, rgba(1,1,1,0.8) 0%, rgba(1,1,1,0.18) 32%, rgba(1,1,1,0.08) 55%, rgba(1,1,1,0.32) 100%); }
 
-    /* ===== butterflies ===== */
-    #butterflies { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
-    .bfly { position: absolute; top: 0; left: 0; will-change: transform; }
-    .bfly svg { display: block; overflow: visible; }
-    .bfly .wing { transform-origin: 20px 15px; animation: flap var(--fd, 0.55s) ease-in-out infinite; }
-    @keyframes flap { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.22); } }
-    .bfly.c-green  { color: #00ff85; filter: drop-shadow(0 0 7px rgba(0,255,133,0.85)); }
-    .bfly.c-gold   { color: #ffc24d; filter: drop-shadow(0 0 7px rgba(255,194,77,0.85)); }
-    .bfly.c-cyan   { color: #22d3ee; filter: drop-shadow(0 0 7px rgba(34,211,238,0.85)); }
-    .bfly.c-blue   { color: #5eaaff; filter: drop-shadow(0 0 7px rgba(94,170,255,0.85)); }
-
     /* ===== nav ===== */
     #hero nav { position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 26px 20px 0; }
     #hero nav .brand { color: #fff; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 300; font-size: 15px; }
@@ -181,7 +170,6 @@
     }
     @media (prefers-reduced-motion: reduce) {
       #hero h1 .ch, #hero .subtitle, #hero .cta { transition: none !important; opacity: 1 !important; transform: none !important; }
-      .bfly .wing { animation: none !important; }
       html { scroll-behavior: auto; }
     }
   </style>
@@ -203,7 +191,6 @@
     <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
   <div class="veil" aria-hidden="true"></div>
-  <div id="butterflies" aria-hidden="true"></div>
 
   <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
     <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -382,69 +369,6 @@
         document.addEventListener('keydown', unlock);
       }
     } catch (e) {}
-  })();
-
-  // ===== butterflies (striking colour accents fluttering over the scene) =====
-  (function () {
-    var host = document.getElementById('butterflies');
-    var COLORS = ['c-green', 'c-gold', 'c-cyan', 'c-blue', 'c-green'];
-    var isMobile = innerWidth < 768;
-    var N = isMobile ? 4 : 7;
-    var W = function () { return host.clientWidth; }, H = function () { return host.clientHeight; };
-
-    function makeBfly(i) {
-      var el = document.createElement('div');
-      el.className = 'bfly ' + COLORS[i % COLORS.length];
-      el.style.setProperty('--fd', (0.42 + Math.random() * 0.35).toFixed(2) + 's');
-      el.innerHTML =
-        '<svg width="40" height="30" viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
-        '<g class="wing"><path d="M20,15 C13,4 4,3 3,9 C2,14 9,17 20,15 Z" fill="currentColor" fill-opacity="0.22"/>' +
-        '<path d="M20,15 C12,18 6,24 9,27 C12,29 17,24 20,15 Z" fill="currentColor" fill-opacity="0.16"/></g>' +
-        '<g class="wing"><path d="M20,15 C27,4 36,3 37,9 C38,14 31,17 20,15 Z" fill="currentColor" fill-opacity="0.22"/>' +
-        '<path d="M20,15 C28,18 34,24 31,27 C28,29 23,24 20,15 Z" fill="currentColor" fill-opacity="0.16"/></g>' +
-        '<path d="M20,8 L20,24 M20,8 L16,3 M20,8 L24,3"/>' +
-        '</svg>';
-      host.appendChild(el);
-      return {
-        el: el,
-        cx: Math.random() * 0.8 + 0.1, cy: Math.random() * 0.55 + 0.12,   // centre (as viewport fraction)
-        ax: 0.10 + Math.random() * 0.16, ay: 0.07 + Math.random() * 0.11, // wander amplitude
-        fx: 0.11 + Math.random() * 0.13, fy: 0.13 + Math.random() * 0.17, // wander frequency
-        px: Math.random() * Math.PI * 2, py: Math.random() * Math.PI * 2, // phase
-        bob: 0.5 + Math.random() * 0.9,
-        s: (isMobile ? 0.55 : 0.7) + Math.random() * 0.5,
-        lastX: 0, lastY: 0
-      };
-    }
-
-    var flies = [];
-    for (var i = 0; i < N; i++) flies.push(makeBfly(i));
-
-    function place(b, t) {
-      var x = (b.cx + b.ax * Math.sin(b.fx * t + b.px)) * W();
-      var y = (b.cy + b.ay * Math.sin(b.fy * t + b.py)) * H() + Math.sin(t * 2.2 + b.px) * 6 * b.bob;
-      var dx = x - b.lastX, dy = y - b.lastY;
-      var ang = (Math.abs(dx) + Math.abs(dy) > 0.01) ? Math.atan2(dy, dx) * 180 / Math.PI + 90 : 0;
-      // keep the tilt gentle so they always read as upright butterflies
-      if (ang > 180) ang -= 360;
-      ang = Math.max(-38, Math.min(38, ang * 0.4));
-      b.el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + ang.toFixed(1) + 'deg) scale(' + b.s.toFixed(2) + ')';
-      b.lastX = x; b.lastY = y;
-    }
-
-    // initial placement (works even in throttled/hidden tabs)
-    flies.forEach(function (b) { place(b, Math.random() * 100); });
-
-    if (!reduce) {
-      var t0 = null;
-      var loop = function (ts) {
-        if (t0 === null) t0 = ts;
-        var t = (ts - t0) / 1000;
-        for (var i = 0; i < flies.length; i++) place(flies[i], t + i * 7.3);
-        requestAnimationFrame(loop);
-      };
-      requestAnimationFrame(loop);
-    }
   })();
 
   // ===== language toggle (rebuilds the staggered headline) =====
