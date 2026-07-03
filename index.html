@@ -3,202 +3,336 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Faris Suhail · The Mdrn Urban — Quran reflections and short inspiration stories drawn from the Qur'an & Hadith. Also: custom mobile app development for small businesses. Kuala Lumpur, Malaysia." />
-  <title>Faris Suhail · The Mdrn Urban — Reflections & Inspiration</title>
+  <meta name="description" content="The Mdrn Urban by Faris Suhail — deep reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a Qur'an data observatory (Kalam), and original book summaries. Read with intent. EN / BM." />
+  <title>Faris Suhail · The Mdrn Urban</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="apple-touch-icon" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="theme-color" content="#050505" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
-  <meta property="og:title" content="Faris Suhail — Quran reflections & inspiration" />
-  <meta property="og:description" content="Reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a Qur'an data observatory, and book summaries — by The Mdrn Urban." />
+  <meta property="og:title" content="The Mdrn Urban — read the Qur'an as if it's speaking to you today" />
+  <meta property="og:description" content="Reflections on the Qur'an, short inspiration stories, a Qur'an data observatory, and book summaries — read with intent." />
   <meta property="og:url" content="https://farissuhail.com/" />
   <meta property="og:image" content="https://farissuhail.com/assets/og-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Faris Suhail — Reflections on the Qur'an and Inspiration stories." />
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Faris Suhail — Quran reflections & inspiration" />
-  <meta name="twitter:description" content="Two ways in: reflections on the Qur'an, and short inspiration stories of value from the Qur'an & Hadith." />
+  <meta name="twitter:title" content="The Mdrn Urban · Faris Suhail" />
+  <meta name="twitter:description" content="Reflections on the Qur'an, inspiration stories, data, and book summaries." />
   <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Amiri:wght@400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --accent: #00ff85; --accent-2: #5bff9d;
+      --gold: #ffc24d; --cyan: #22d3ee; --blue: #5eaaff;
+      --text: #f1f1f5; --dim: #a4a4b5; --mute: #6e7280; --border: rgba(255,255,255,0.1);
+    }
+    body { font-family: 'Inter', sans-serif; background: #050505; color: var(--text); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== fixed background ===== */
+    #bg { position: fixed; inset: 0; z-index: -10;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,255,133,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 40%, #0b1712 0%, #070707 55%, #030303 100%); }
+    #mandala-wrap { position: fixed; inset: 0; z-index: -9; display: grid; place-items: center; pointer-events: none; will-change: transform, opacity; }
+    #mandala { width: min(150vh, 150vw); height: min(150vh, 150vw); opacity: 0.42; animation: spin 160s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #particles-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0.7; }
+
+    /* ===== nav ===== */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    nav .brand { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.02em; font-size: 18px; }
+    nav .nav-right { display: flex; align-items: center; gap: 26px; }
+    nav .nav-links { display: flex; align-items: center; gap: 26px; }
+    nav .nav-links a { font-size: 13px; color: var(--dim); transition: color 0.2s; letter-spacing: 0.01em; }
+    nav .nav-links a:hover { color: var(--text); }
+    .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; color: var(--mute); cursor: pointer; }
+    .lang-toggle .active { color: var(--text); }
+    .lang-toggle .sep { opacity: 0.5; margin: 0 3px; }
+
+    /* ===== content ===== */
+    #content { position: relative; z-index: 2; }
+
+    /* hero */
+    #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+    #hero .inner { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 40px; }
+    #hero .kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin-bottom: 24px; }
+    #hero .kicker b { color: var(--accent); font-weight: 600; }
+    #hero h1 { font-size: clamp(30px, 5.4vw, 66px); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; max-width: 16ch; }
+    #hero h1 .u { position: relative; display: inline-block; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
+    #hero h1 .u::after { content: ''; position: absolute; left: -2px; right: -2px; bottom: 0.12em; height: 0.30em; background: var(--accent); opacity: 0.85; border-radius: 3px; z-index: -1; }
+    #hero .deck { margin-top: 26px; max-width: 46ch; font-size: clamp(15px, 1.6vw, 18px); line-height: 1.6; color: var(--dim); }
+    #hero .ctas { display: flex; align-items: center; gap: 14px; margin-top: 38px; flex-wrap: wrap; justify-content: center; }
+    #hero .verse { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 11px 18px; }
+    #hero .verse .ar { font-family: 'Amiri', serif; font-size: 19px; color: var(--accent-2); direction: rtl; }
+    #hero .verse .ref { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
+    #hero .cta { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a; font-weight: 700; font-size: 14px; border-radius: 12px; padding: 13px 24px; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 12px 34px -12px rgba(0,255,133,0.6); }
+    #hero .cta:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -12px rgba(0,255,133,0.75); }
+    #hero .bounce { display: flex; justify-content: center; padding-bottom: 30px; }
+    #hero .bounce svg { width: 24px; height: 24px; color: var(--mute); animation: bounce 1.4s ease-in-out infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(7px); opacity: 1; } }
+
+    /* fixed reveal cards */
+    #fixed-cards { position: fixed; bottom: 0; left: 0; right: 0; z-index: 4; padding: 40px; opacity: 0; pointer-events: none; }
+    #fixed-cards .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 26px; }
+    #fixed-cards .grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .pcard { position: relative; display: flex; flex-direction: column; min-height: 260px; padding: 26px 24px 24px; border: 1px solid var(--border); border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)); backdrop-filter: blur(14px); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .pcard:hover { transform: translateY(-5px); }
+    .pcard .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+    .pcard h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .pcard p { font-size: 13.5px; line-height: 1.6; color: var(--dim); margin-bottom: auto; }
+    .pcard .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; transition: gap 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+    .pcard:hover .go { gap: 12px; }
+    .pcard.green { --c: #00ff85; } .pcard.gold { --c: #ffc24d; } .pcard.cyan { --c: #22d3ee; } .pcard.blue { --c: #5eaaff; }
+    .pcard .num, .pcard .go { color: var(--c); }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.65; }
+    .pcard:hover { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+
+    /* presenting / closing */
+    #closing { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; }
+    #closing .inner { text-align: center; opacity: 0; transform: translateY(30px); filter: blur(8px); transition: opacity 1s ease, transform 1s ease, filter 1s ease; }
+    #closing .inner.visible { opacity: 1; transform: none; filter: blur(0); }
+    #closing .k { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
+    #closing h2 { font-size: clamp(34px, 7vw, 76px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+    #closing h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent); }
+    #closing .sub { margin: 26px auto 0; max-width: 44ch; font-size: 16px; line-height: 1.6; color: var(--dim); }
+    #closing .cta2 { display: inline-flex; align-items: center; gap: 9px; margin-top: 34px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 14px; border-radius: 12px; padding: 13px 26px; transition: background 0.2s; }
+    #closing .cta2:hover { background: rgba(255,255,255,0.1); }
+
+    /* footer */
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 40px; background: rgba(3,3,3,0.6); backdrop-filter: blur(8px); }
+    footer .row { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .brand { font-weight: 800; letter-spacing: -0.02em; }
+    footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer .flinks a { font-size: 13px; color: var(--dim); transition: color 0.2s; }
+    footer .flinks a:hover { color: var(--text); }
+    footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.04em; }
+
+    @media (max-width: 1080px) { #fixed-cards .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; } nav .nav-links { display: none; }
+      #fixed-cards { padding: 20px 16px; } #fixed-cards .grid { grid-template-columns: 1fr; gap: 12px; }
+      .pcard { min-height: 0; }
+      #mandala { opacity: 0.32; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<header class="nav">
-  <a href="#top" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
-  <nav class="nav-links">
-    <a href="reflections.html" class="nav-reflections" data-en="Reflections ✦" data-bm="Refleksi ✦">Reflections ✦</a>
-    <a href="inspiration.html" class="nav-reflections" data-en="Inspiration ✦" data-bm="Inspirasi ✦">Inspiration ✦</a>
-    <a href="kalam.html" class="nav-reflections" data-en="Kalam ✦" data-bm="Kalam ✦">Kalam ✦</a>
-    <a href="book-reviews.html" class="nav-reflections" data-en="Book summaries ✦" data-bm="Ringkasan buku ✦">Book summaries ✦</a>
-  </nav>
-  <div class="nav-cta">
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
-      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
-    </button>
+<div id="bg"></div>
+<div id="mandala-wrap">
+  <svg id="mandala" viewBox="0 0 600 600" fill="none" stroke="#00ff85" stroke-width="1" aria-hidden="true">
+    <circle cx="300" cy="300" r="284" stroke-opacity="0.14"/>
+    <circle cx="300" cy="300" r="232" stroke-opacity="0.22" stroke-dasharray="2 10"/>
+    <circle cx="300" cy="300" r="176" stroke-opacity="0.3"/>
+    <circle cx="300" cy="300" r="120" stroke-opacity="0.2"/>
+    <!-- 8-point star: two squares -->
+    <path d="M300,124 L476,300 L300,476 L124,300 Z" stroke-opacity="0.3"/>
+    <path d="M176,176 L424,176 L424,424 L176,424 Z" stroke-opacity="0.3"/>
+    <!-- radial spokes -->
+    <g stroke-opacity="0.12">
+      <path d="M300,16 L300,584"/><path d="M16,300 L584,300"/>
+      <path d="M99,99 L501,501"/><path d="M501,99 L99,501"/>
+    </g>
+    <!-- ring nodes -->
+    <g fill="#00ff85" stroke="none" fill-opacity="0.5">
+      <circle cx="300" cy="68" r="2.4"/><circle cx="532" cy="300" r="2.4"/><circle cx="300" cy="532" r="2.4"/><circle cx="68" cy="300" r="2.4"/>
+      <circle cx="300" cy="124" r="2"/><circle cx="476" cy="300" r="2"/><circle cx="300" cy="476" r="2"/><circle cx="124" cy="300" r="2"/>
+    </g>
+  </svg>
+</div>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- ===== FIXED REVEAL CARDS (the four pillars) ===== -->
+<div id="fixed-cards">
+  <div class="heading" data-en="Four ways in" data-bm="Empat jalan masuk">Four ways in</div>
+  <div class="grid">
+    <a class="pcard green" href="reflections.html">
+      <div class="num">01</div>
+      <h3 data-en="Reflections" data-bm="Refleksi">Reflections</h3>
+      <p data-en="Deep, unhurried reflections on the Qur'an — one surah at a time, read to the heart." data-bm="Refleksi mendalam Al-Quran — satu surah pada satu masa, dibaca hingga ke hati.">Deep, unhurried reflections on the Qur'an — one surah at a time, read to the heart.</p>
+      <span class="go" data-en="Read reflections →" data-bm="Baca refleksi →">Read reflections →</span>
+    </a>
+    <a class="pcard gold" href="inspiration.html">
+      <div class="num">02</div>
+      <h3 data-en="Inspiration" data-bm="Inspirasi">Inspiration</h3>
+      <p data-en="Short, designed stories of value from the Qur'an & Hadith — everyday life, seen by revelation." data-bm="Kisah ringkas penuh nilai dari Al-Quran & Hadis — kehidupan harian, dilihat melalui wahyu.">Short, designed stories of value from the Qur'an &amp; Hadith — everyday life, seen by revelation.</p>
+      <span class="go" data-en="Read the stories →" data-bm="Baca kisah →">Read the stories →</span>
+    </a>
+    <a class="pcard cyan" href="kalam.html">
+      <div class="num">03</div>
+      <h3 data-en="Kalam" data-bm="Kalam">Kalam</h3>
+      <p data-en="The Qur'an in data — 114 surahs, 6,236 ayahs, every figure computed from the text itself." data-bm="Al-Quran dalam data — 114 surah, 6,236 ayat, setiap angka dikira terus dari teks.">The Qur'an in data — 114 surahs, 6,236 ayahs, every figure computed from the text itself.</p>
+      <span class="go" data-en="Open the observatory →" data-bm="Buka observatori →">Open the observatory →</span>
+    </a>
+    <a class="pcard blue" href="book-reviews.html">
+      <div class="num">04</div>
+      <h3 data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</h3>
+      <p data-en="Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping." data-bm="Buku bermanfaat, diringkaskan secara jelas — apa yang ia beri, dan satu idea yang patut disimpan.">Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping.</p>
+      <span class="go" data-en="Browse summaries →" data-bm="Lihat ringkasan →">Browse summaries →</span>
+    </a>
   </div>
-</header>
+</div>
 
-<main id="top">
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="index.html" class="brand">FARISSUHAIL</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+  </div>
+</nav>
 
-  <!-- ===== SPLIT HERO — choose your path ===== -->
-  <section class="split-section">
-    <p class="split-prompt" data-en="Four ways in — choose where to begin" data-bm="Empat jalan masuk — pilih dari mana untuk bermula">Four ways in — choose where to begin</p>
-    <div class="split-hero">
-      <a href="reflections.html" class="split-pane green">
-        <span class="split-num" aria-hidden="true">01</span>
-        <div class="split-eyebrow" data-en="Reflections · The Mdrn Urban" data-bm="Refleksi · The Mdrn Urban">Reflections · The Mdrn Urban</div>
-        <h2 class="split-title" data-en="Reflections" data-bm="Refleksi">Reflections</h2>
-        <p class="split-desc" data-en="Deep, unhurried reflections on the Qur'an — one surah at a time, read all the way through to the heart." data-bm="Refleksi mendalam dan tidak tergesa-gesa tentang Al-Quran — satu surah pada satu masa, dibaca hingga meresap ke hati.">Deep, unhurried reflections on the Qur'an — one surah at a time, read all the way through to the heart.</p>
-        <img class="split-art" src="assets/art-reflections.svg" alt="" aria-hidden="true" onerror="this.remove()" />
-        <div class="split-extra">
-          <div class="split-feats">
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5h7a3 3 0 0 1 3 3v11a2.5 2.5 0 0 0-2.5-2.5H2zM22 5h-7a3 3 0 0 0-3 3v11a2.5 2.5 0 0 1 2.5-2.5H22z"/></svg></span><span data-en="Qur'anic reflections" data-bm="Refleksi Al-Quran">Qur'anic reflections</span></div>
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span data-en="Verse by verse" data-bm="Ayat demi ayat">Verse by verse</span></div>
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><span data-en="English & Malay" data-bm="English & Melayu">English & Malay</span></div>
-          </div>
-          <div class="split-verse">
-            <div class="vt" data-en="“Indeed, in the remembrance of Allah do hearts find rest.”" data-bm="“Ketahuilah, dengan mengingati Allah, tenanglah hati.”">“Indeed, in the remembrance of Allah do hearts find rest.”</div>
-            <div class="vr">Qur'an · Ar-Ra'd 13:28</div>
-          </div>
-        </div>
-        <span class="split-cta" data-en="Read reflections →" data-bm="Baca refleksi →">Read reflections →</span>
-      </a>
-
-      <a href="inspiration.html" class="split-pane gold">
-        <span class="split-num" aria-hidden="true">02</span>
-        <div class="split-eyebrow" data-en="Inspiration · The Mdrn Urban" data-bm="Inspirasi · The Mdrn Urban">Inspiration · The Mdrn Urban</div>
-        <h2 class="split-title" data-en="Inspiration" data-bm="Inspirasi">Inspiration</h2>
-        <p class="split-desc" data-en="Short, designed stories of value from the Qur'an & Hadith — everyday life, seen through the light of revelation." data-bm="Kisah ringkas penuh nilai dari Al-Quran & Hadis — kehidupan harian, dilihat melalui cahaya wahyu.">Short, designed stories of value from the Qur'an &amp; Hadith — everyday life, seen through the light of revelation.</p>
-        <img class="split-art" src="assets/art-inspiration.svg" alt="" aria-hidden="true" onerror="this.remove()" />
-        <div class="split-extra">
-          <div class="split-feats">
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-en="Hadith wisdom" data-bm="Hikmah Hadis">Hadith wisdom</span></div>
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span data-en="Life lessons" data-bm="Pengajaran hidup">Life lessons</span></div>
-            <div class="split-feat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4 5.7 20.8 8 13.6 2 9.2h7.6z"/></svg></span><span data-en="Daily inspiration" data-bm="Inspirasi harian">Daily inspiration</span></div>
-          </div>
-          <div class="split-verse">
-            <div class="vt" data-en="“So remind, if the reminder benefits.”" data-bm="“Maka berilah peringatan, sekiranya peringatan itu bermanfaat.”">“So remind, if the reminder benefits.”</div>
-            <div class="vr">Qur'an · Al-A'lā 87:9</div>
-          </div>
-        </div>
-        <span class="split-cta" data-en="Read the stories →" data-bm="Baca kisah →">Read the stories →</span>
-      </a>
-
-      <a href="kalam.html" class="split-pane violet">
-        <span class="split-num" aria-hidden="true">03</span>
-        <div class="split-eyebrow" data-en="Data · The Mdrn Urban" data-bm="Data · The Mdrn Urban">Data · The Mdrn Urban</div>
-        <h2 class="split-title" data-en="Kalam — the Qur'an in data" data-bm="Kalam — Al-Quran dalam data">Kalam — the Qur'an in data</h2>
-        <p class="split-desc" data-en="A data observatory — every figure computed from the text itself, never copied." data-bm="Observatori data — setiap angka dikira terus dari teks, bukan disalin.">A data observatory — every figure computed from the text itself, never copied.</p>
-        <img class="split-art" src="assets/art-kalam.svg" alt="" aria-hidden="true" onerror="this.remove()" />
-        <div class="split-extra">
-          <div class="split-stats">
-            <span class="split-stat"><b>114</b> <span data-en="surahs" data-bm="surah">surahs</span></span>
-            <span class="split-stat"><b>6,236</b> <span data-en="ayahs" data-bm="ayat">ayahs</span></span>
-            <span class="split-stat"><b>77,429</b> <span data-en="words" data-bm="kalimah">words</span></span>
-            <span class="split-stat"><b>1,651</b> <span data-en="roots" data-bm="akar">roots</span></span>
-            <span class="split-stat"><b>328,288</b> <span data-en="letters" data-bm="huruf">letters</span></span>
-          </div>
-          <div class="split-roots">
-            <span><span class="ar" lang="ar" dir="rtl">قول</span><b>1,722</b></span>
-            <span><span class="ar" lang="ar" dir="rtl">كون</span><b>1,390</b></span>
-            <span><span class="ar" lang="ar" dir="rtl">علم</span><b>854</b></span>
-          </div>
-        </div>
-        <span class="split-cta" data-en="Open the observatory →" data-bm="Buka observatori →">Open the observatory →</span>
-      </a>
-
-      <a href="book-reviews.html" class="split-pane blue">
-        <span class="split-num" aria-hidden="true">04</span>
-        <div class="split-eyebrow" data-en="Books · The Mdrn Urban" data-bm="Buku · The Mdrn Urban">Books · The Mdrn Urban</div>
-        <h2 class="split-title" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</h2>
-        <p class="split-desc" data-en="Clear, original summaries of beneficial books — what each gave, who it's for, and the one idea worth keeping." data-bm="Ringkasan asli yang jelas tentang buku bermanfaat — apa yang ia beri, untuk siapa, dan satu idea yang patut disimpan.">Clear, original summaries of beneficial books — what each gave, who it's for, and the one idea worth keeping.</p>
-        <img class="split-art" src="assets/art-books.svg" alt="" aria-hidden="true" onerror="this.remove()" />
-        <div class="split-extra">
-          <div class="split-rating">
-            <span class="score">4.8</span>
-            <span><span class="stars">★★★★★</span><br><span class="rlabel" data-en="avg · 6 books" data-bm="purata · 6 buku">avg · 6 books</span></span>
-          </div>
-          <div class="split-tags">
-            <span data-en="Psychology" data-bm="Psikologi">Psychology</span>
-            <span data-en="Risk" data-bm="Risiko">Risk</span>
-            <span data-en="Value" data-bm="Nilai">Value</span>
-            <span data-en="Probability" data-bm="Kebarangkalian">Probability</span>
-          </div>
-        </div>
-        <span class="split-cta" data-en="Browse summaries →" data-bm="Lihat ringkasan →">Browse summaries →</span>
-      </a>
+<!-- ===== MAIN ===== -->
+<div id="content">
+  <section id="hero">
+    <div class="inner">
+      <p class="kicker" data-en="Dakwah · Data · Books · <b>The Mdrn Urban</b>" data-bm="Dakwah · Data · Buku · <b>The Mdrn Urban</b>">Dakwah · Data · Books · <b>The Mdrn Urban</b></p>
+      <h1 data-en="Read the Qur'an <span class='u'>as if it's speaking to you today.</span>" data-bm="Baca Al-Quran <span class='u'>seolah-olah ia berbicara kepadamu hari ini.</span>">
+        Read the Qur'an <span class="u">as if it's speaking to you today.</span>
+      </h1>
+      <p class="deck" data-en="Reflections on the Qur'an, short inspiration stories from the Qur'an & Hadith, a data observatory, and book summaries — made to pause over, save, and share." data-bm="Refleksi Al-Quran, kisah inspirasi ringkas dari Al-Quran & Hadis, observatori data, dan ringkasan buku — dibuat untuk direnung, disimpan, dan dikongsi.">
+        Reflections on the Qur'an, short inspiration stories from the Qur'an &amp; Hadith, a data observatory, and book summaries — made to pause over, save, and share.
+      </p>
+      <div class="ctas">
+        <span class="verse">
+          <span class="ar" lang="ar" dir="rtl">أَلَا بِذِكْرِ اللّٰهِ تَطْمَئِنُّ الْقُلُوبُ</span>
+          <span class="ref">13:28</span>
+        </span>
+        <a href="reflections.html" class="cta"><span data-en="Enter the reflections" data-bm="Masuk refleksi">Enter the reflections</span> <span>→</span></a>
+      </div>
+    </div>
+    <div class="bounce" id="scrollHint" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
     </div>
   </section>
 
-</main>
+  <div style="height:90vh;"></div>
+  <div id="cards-trigger" style="height:190vh;"></div>
+  <div style="height:70vh;"></div>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="brand"><span class="brand-name">FARISSUHAIL</span></div>
-      <p class="footer-tag" data-en="The Mdrn Urban · Reflections · Inspiration · Data" data-bm="The Mdrn Urban · Refleksi · Inspirasi · Data">
-        The Mdrn Urban · Reflections · Inspiration · Data
-      </p>
-      <p class="footer-loc">Kuala Lumpur · Malaysia</p>
+  <section id="closing">
+    <div class="inner" id="closing-inner">
+      <div class="k" data-en="The Mdrn Urban" data-bm="The Mdrn Urban">The Mdrn Urban</div>
+      <h2 data-en="Reflect. Remember. <em>Return.</em>" data-bm="Renung. Ingat. <em>Kembali.</em>">Reflect. Remember. <em>Return.</em></h2>
+      <p class="sub" data-en="The world is fleeting; the words are eternal. Slow down, and let them speak." data-bm="Dunia sementara; kalam-Nya abadi. Perlahankan langkah, dan biar ia berbicara.">The world is fleeting; the words are eternal. Slow down, and let them speak.</p>
+      <a href="reflections.html" class="cta2"><span data-en="Start reading" data-bm="Mula membaca">Start reading</span> <span>→</span></a>
     </div>
+  </section>
+</div>
 
-    <div class="footer-col">
-      <div class="footer-h" data-en="Dakwah" data-bm="Dakwah">Dakwah</div>
-      <ul>
-        <li><a href="reflections.html" data-en="Reflections on the Qur'an" data-bm="Refleksi Al-Quran">Reflections on the Qur'an</a></li>
-        <li><a href="inspiration.html" data-en="Inspiration stories" data-bm="Kisah inspirasi">Inspiration stories</a></li>
-      </ul>
+<footer>
+  <div class="row">
+    <span class="brand">FARISSUHAIL</span>
+    <div class="flinks">
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+      <a href="mailto:tech@farissuhail.com">Contact</a>
     </div>
-
-    <div class="footer-col">
-      <div class="footer-h" data-en="Connect" data-bm="Hubungi">Connect</div>
-      <ul>
-        <li><a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a></li>
-        <li><a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> Faris Suhail</span>
-    <span class="footer-tagline" data-en="The Mdrn Urban · Kuala Lumpur, MY" data-bm="The Mdrn Urban · Kuala Lumpur, MY">
-      The Mdrn Urban · Kuala Lumpur, MY
-    </span>
+    <span class="copy">© <span id="year"></span> · The Mdrn Urban · KL, MY</span>
   </div>
 </footer>
 
 <script>
+(function () {
+  'use strict';
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Language toggle (EN <-> BM)
-  const langBtn = document.getElementById('langToggle');
-  const html = document.documentElement;
-  function applyLang(lang) {
-    html.setAttribute('data-lang', lang);
-    document.querySelectorAll('[data-en][data-bm]').forEach(el => {
-      el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
-    });
-    langBtn.querySelector('.lang-en').classList.toggle('active', lang === 'en');
-    langBtn.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
-    try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+  // ===== language toggle =====
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== particles (drifting dust) =====
+  var pc = document.getElementById('particles-canvas'), pctx = pc.getContext('2d'), particles = [];
+  function sizeP() { pc.width = innerWidth; pc.height = innerHeight; makeP(); }
+  function makeP() {
+    particles = [];
+    var n = Math.min(150, Math.floor((pc.width * pc.height) / 14000));
+    for (var i = 0; i < n; i++) particles.push({ x: Math.random() * pc.width, y: Math.random() * pc.height, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, s: Math.random() * 1.4 + 0.4, o: Math.random() * 0.5 + 0.15 });
   }
-  langBtn.addEventListener('click', () => {
-    applyLang(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en');
+  function drawP() {
+    pctx.clearRect(0, 0, pc.width, pc.height);
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i]; p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = pc.width; if (p.x > pc.width) p.x = 0; if (p.y < 0) p.y = pc.height; if (p.y > pc.height) p.y = 0;
+      pctx.beginPath(); pctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+      pctx.fillStyle = 'rgba(180,255,214,' + p.o + ')'; pctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(drawP);
+  }
+  sizeP(); addEventListener('resize', sizeP); requestAnimationFrame(drawP);
+
+  // ===== scroll-driven background + hero fade =====
+  var hero = document.getElementById('hero'), mandala = document.getElementById('mandala-wrap');
+  function onScroll() {
+    var y = window.scrollY, vh = innerHeight;
+    // hero fades out over the first ~40vh
+    hero.style.opacity = Math.max(0, 1 - y / (vh * 0.4));
+    // mandala zooms & fades as you scroll (scroll-scrubbed feel)
+    var docH = document.documentElement.scrollHeight - vh;
+    var p = docH > 0 ? Math.min(1, y / docH) : 0;
+    mandala.style.transform = 'scale(' + (1 + p * 0.55).toFixed(3) + ')';
+    mandala.style.opacity = (1 - p * 0.55).toFixed(3);
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+  document.getElementById('scrollHint').addEventListener('click', function () {
+    window.scrollTo({ top: innerHeight * 1.1, behavior: 'smooth' });
   });
-  try { if (localStorage.getItem('fs-lang') === 'bm') applyLang('bm'); } catch (e) {}
+
+  // ===== fixed reveal cards (mask wipe across the trigger zone) =====
+  var fixedCards = document.getElementById('fixed-cards'), grid = fixedCards.querySelector('.grid'), trigger = document.getElementById('cards-trigger');
+  function tickCards() {
+    var rect = trigger.getBoundingClientRect(), triggerTop = rect.top + window.scrollY, triggerH = rect.height, y = window.scrollY, vh = innerHeight;
+    var start = triggerTop - vh * 0.6, end = triggerTop + triggerH - vh * 0.35, range = end - start;
+    var progress = range > 0 ? (y - start) / range : 0; progress = Math.max(0, Math.min(1, progress));
+    var active = y >= start - vh * 0.2 && y <= end + vh * 0.35;
+    var fin = Math.min(1, Math.max(0, (y - (start - vh * 0.2)) / (vh * 0.2)));
+    var fout = Math.min(1, Math.max(0, (end + vh * 0.35 - y) / (vh * 0.35)));
+    var op = active ? Math.min(fin, fout) : 0;
+    fixedCards.style.opacity = op; fixedCards.style.pointerEvents = op > 0.15 ? 'auto' : 'none';
+    var pct = progress * 135;
+    var mask = (innerWidth < 768)
+      ? 'linear-gradient(to bottom, black ' + pct + '%, transparent ' + (pct + 22) + '%)'
+      : 'linear-gradient(to right, black ' + pct + '%, transparent ' + (pct + 16) + '%)';
+    grid.style.webkitMaskImage = mask; grid.style.maskImage = mask;
+    requestAnimationFrame(tickCards);
+  }
+  requestAnimationFrame(tickCards);
+
+  // ===== closing reveal =====
+  var ci = document.getElementById('closing-inner');
+  new IntersectionObserver(function (e) { if (e[0].isIntersecting) { ci.classList.add('visible'); } }, { threshold: 0.2 }).observe(ci);
+})();
 </script>
 <script src="feedback.js"></script>
 </body>
