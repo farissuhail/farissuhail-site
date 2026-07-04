@@ -136,8 +136,8 @@ body.am a { color: inherit; text-decoration: none; }
 .am-map-head { font-size: 10.5px; letter-spacing: 0.08em; color: var(--am-dim); padding: 12px 14px 0; text-transform: uppercase; }
 .am-map-head .g { color: var(--am-green); }
 .am-map-wrap { position: relative; width: 100%; padding: 6px 10px 0; }
-.am-map { display: block; width: 100%; height: 320px; }
-.am-land path { fill: rgba(53,226,154,0.06); stroke: rgba(53,226,154,0.5); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.am-map { display: block; width: 100%; height: auto; }
+.am-land path { fill: rgba(53,226,154,0.05); stroke: rgba(53,226,154,0.55); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .am-pin { position: absolute; transform: translate(-50%,-50%); border-radius: 50%; cursor: pointer;
   animation: amBlip 2.6s ease-in-out infinite; }
 .am-pin.neg { background: var(--am-neg); box-shadow: 0 0 14px 2px rgba(255,90,77,0.6); }
