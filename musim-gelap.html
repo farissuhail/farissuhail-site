@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Musim gelap — kisah Nabi Yusuf AS: perigi, penjara, dan takhta. Bagaimana membaca musim sunyi dan tidak adil sebagai persediaan, bukan hukuman. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Musim Gelap — kisah Nabi Yusuf · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Musim Gelap — the logic of the well, the prison, the throne" />
+  <meta property="og:description" content="Yusuf's story is a map for anyone in a dark, lonely, unfair season. Read it as preparation, not punishment." />
+  <meta property="og:url" content="https://farissuhail.com/musim-gelap.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Musim Gelap — kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Musim Gelap — kisah Nabi Yusuf AS" />
+  <meta name="twitter:description" content="Perigi, penjara, dan takhta — musim gelap sebagai persediaan, bukan hukuman." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 150px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+    }
+  </style>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">← <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah" data-en="SURAH YUSUF" data-bm="SURAH YUSUF">SURAH YUSUF</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">musim</span>
+        <span class="rf-cow">GELAP</span>
+      </h1>
+      <div class="rf-arabic">YUSUF 12:15</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">New</span>
+        <span class="story-badge" data-en="Prophet Yusuf AS" data-bm="Nabi Yusuf AS">Nabi Yusuf AS</span>
+        <span class="story-badge" data-en="7 min read" data-bm="Baca 7 minit">7 min read</span>
+      </div>
+      <h2 data-en="Stop reading your dark seasons as <em>punishment.</em>"
+          data-bm="Berhenti membaca musim gelapmu sebagai <em>hukuman.</em>">
+        Berhenti membaca musim gelapmu sebagai <em>hukuman.</em>
+      </h2>
+      <p data-en="The well, the prison, the throne — Yusuf's story is a map for anyone in a dark, lonely or unfair season. To the human eye it looked like ruin. In the divine calculation, it was preparation. Here is how the darkness was doing its work."
+         data-bm="Perigi, penjara, takhta — kisah Yusuf ialah peta bagi sesiapa yang sedang berada dalam musim gelap, sunyi atau tidak adil. Di mata manusia ia nampak seperti kemusnahan. Dalam kiraan Ilahi, ia adalah persediaan. Inilah bagaimana kegelapan itu sedang bekerja.">
+        Perigi, penjara, takhta — kisah Yusuf ialah peta bagi sesiapa yang sedang berada dalam musim gelap, sunyi atau tidak adil. Di mata manusia ia nampak seperti kemusnahan. Dalam kiraan Ilahi, ia adalah persediaan. Inilah bagaimana kegelapan itu sedang bekerja.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 — THE WELL -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The logic of the well" data-bm="Logika perigi">Logika perigi</span></div>
+    <h2 class="rf-big"
+        data-en="Thrown into the dark — and that is where the <em>preparation began.</em>"
+        data-bm="Dicampak ke dalam gelap — dan di situlah <em>persediaan bermula.</em>">
+      Dicampak ke dalam gelap — dan di situlah <em>persediaan bermula.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="When his brothers threw Yusuf into the dark well, his comfortable life vanished in an instant. To the human mind it looked like total destruction. But in the grand divine calculation, that was the exact moment his preparation for Egypt began."
+       data-bm="Ketika saudara-saudaranya mencampakkan Yusuf ke dalam perigi yang gelap, kehidupannya yang selesa lenyap dalam sekelip mata. Pada fikiran manusia, ia kelihatan seperti kemusnahan total. Tetapi dalam kiraan Ilahi yang agung, itulah saat persediaannya untuk Mesir bermula.">
+      Ketika saudara-saudaranya mencampakkan Yusuf ke dalam perigi yang gelap, kehidupannya yang selesa lenyap dalam sekelip mata. Pada fikiran manusia, ia kelihatan seperti kemusnahan total. Tetapi dalam kiraan Ilahi yang agung, itulah saat persediaannya untuk Mesir bermula.
+    </p>
+    <div class="rf-subeyebrow" data-en="Allah says" data-bm="Firman Allah">Firman Allah</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَأَوْحَيْنَآ إِلَيْهِ لَتُنَبِّئَنَّهُم بِأَمْرِهِمْ هَـٰذَا وَهُمْ لَا يَشْعُرُونَ</p>
+    <p class="rf-ayah-tr"
+       data-en="“And We inspired to him: ‘You will surely tell them of this deed of theirs while they do not perceive.’”"
+       data-bm="“Dan Kami wahyukan kepadanya: ‘Sesungguhnya engkau akan menceritakan kepada mereka perbuatan mereka ini, sedang mereka tidak menyedari.’”">
+      “Dan Kami wahyukan kepadanya: ‘Sesungguhnya engkau akan menceritakan kepada mereka perbuatan mereka ini, sedang mereka tidak menyedari.’”
+    </p>
+    <p class="rf-ayah-ref">Yusuf 12:15</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="At the very bottom of the well — cut off from his father, his protection and his status — Allah sent him revelation. The isolation was not abandonment; it was extraction. Every earthly safety-net was removed so his heart would anchor on the Divine alone (tawakkul)."
+       data-bm="Di dasar perigi — terputus daripada ayahnya, perlindungannya dan kedudukannya — Allah menurunkan wahyu kepadanya. Pengasingan itu bukan pembiaran; ia adalah pengeluaran. Setiap sandaran dunia ditanggalkan supaya hatinya bersandar hanya kepada Yang Maha Esa (tawakal).">
+      Di dasar perigi — terputus daripada ayahnya, perlindungannya dan kedudukannya — Allah menurunkan wahyu kepadanya. Pengasingan itu bukan pembiaran; ia adalah pengeluaran. Setiap sandaran dunia ditanggalkan supaya hatinya bersandar hanya kepada Yang Maha Esa (tawakal).
+    </p>
+    <p class="rf-tagline"
+       data-en="When Allah suddenly silences your circle, don't read it as punishment — He is clearing the noise so your heart can finally hear the <em>signal.</em>"
+       data-bm="Apabila Allah tiba-tiba menyepikan lingkunganmu, jangan baca ia sebagai hukuman — Dia sedang membersihkan bising supaya hatimu akhirnya mendengar <em>isyarat.</em>">
+      Apabila Allah tiba-tiba menyepikan lingkunganmu, jangan baca ia sebagai hukuman — Dia sedang membersihkan bising supaya hatimu akhirnya mendengar <em>isyarat.</em>
+    </p>
+  </section>
+
+  <!-- 02 — THE PRISON -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="The prison years" data-bm="Tahun-tahun penjara">Tahun-tahun penjara</span></div>
+    <p class="rf-body"
+       data-en="Years later, Yusuf is thrown into a dark prison over a completely false accusation. He did nothing wrong, yet his isolation grew worse. Why would Allah delay a destiny like that? Because a great, high-level purpose needs deep, quiet preparation."
+       data-bm="Bertahun kemudian, Yusuf dilemparkan pula ke dalam penjara yang gelap atas tuduhan yang sama sekali palsu. Dia tidak bersalah, namun pengasingannya bertambah berat. Mengapa Allah menangguhkan takdir sebegitu? Kerana tujuan yang besar dan tinggi memerlukan persediaan yang dalam dan sunyi.">
+      Bertahun kemudian, Yusuf dilemparkan pula ke dalam penjara yang gelap atas tuduhan yang sama sekali palsu. Dia tidak bersalah, namun pengasingannya bertambah berat. Mengapa Allah menangguhkan takdir sebegitu? Kerana tujuan yang besar dan tinggi memerlukan persediaan yang dalam dan sunyi.
+    </p>
+    <p class="rf-body"
+       data-en="The prison was his quiet training ground. There he practised absolute goodness (ihsan) while surrounded by broken people, and the heavy pressure emptied his heart until there was no room left for bitterness, ego or anger."
+       data-bm="Penjara itu menjadi medan latihannya yang sunyi. Di situ dia mempraktikkan kebaikan sepenuhnya (ihsan) walaupun dikelilingi manusia yang rosak, dan tekanan yang berat itu mengosongkan hatinya sehingga tiada lagi ruang untuk dendam, ego atau marah.">
+      Penjara itu menjadi medan latihannya yang sunyi. Di situ dia mempraktikkan kebaikan sepenuhnya (ihsan) walaupun dikelilingi manusia yang rosak, dan tekanan yang berat itu mengosongkan hatinya sehingga tiada lagi ruang untuk dendam, ego atau marah.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="“The highest station of faith is <em>rida</em> — to be completely at peace with whatever Allah decrees, however dark the moment looks.”"
+         data-bm="“Kedudukan iman yang tertinggi ialah <em>redha</em> — tenang sepenuhnya dengan apa jua yang Allah tetapkan, walau segelap mana keadaan itu kelihatan.”">
+        “Kedudukan iman yang tertinggi ialah <em>redha</em> — tenang sepenuhnya dengan apa jua yang Allah tetapkan, walau segelap mana keadaan itu kelihatan.”
+      </p>
+      <p class="rf-ayah-ref" data-en="In the spirit of Ibn al-Qayyim, on ridā" data-bm="Dalam semangat Ibn al-Qayyim, tentang redha">Dalam semangat Ibn al-Qayyim, tentang redha</p>
+    </div>
+    <p class="rf-tagline"
+       data-en="Your holding pattern or lonely season isn't wasted time. It is a <em>setup.</em>"
+       data-bm="Fasa tergantung atau musim sunyimu bukan masa yang terbuang. Ia sebuah <em>persediaan.</em>">
+      Fasa tergantung atau musim sunyimu bukan masa yang terbuang. Ia sebuah <em>persediaan.</em>
+    </p>
+  </section>
+
+  <!-- 03 — THE SUDDEN ELEVATION -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="The sudden elevation" data-bm="Kenaikan mengejut">Kenaikan mengejut</span></div>
+    <p class="rf-body"
+       data-en="When the inner work was complete, reality shifted in a single instant. The king of Egypt had a dream, and Yusuf was washed, clothed and brought to the palace. In one afternoon he went from a prisoner to the chief minister of the land. He did not climb a corporate ladder — he was raised by a single divine command."
+       data-bm="Apabila kerja dalaman itu selesai, realiti berubah dalam sekelip mata. Raja Mesir bermimpi, lalu Yusuf dimandikan, dipakaikan dan dibawa ke istana. Dalam satu petang, dia berpindah daripada seorang banduan kepada menteri besar negeri itu. Dia tidak menaiki tangga kerjaya — dia diangkat oleh satu perintah Ilahi.">
+      Apabila kerja dalaman itu selesai, realiti berubah dalam sekelip mata. Raja Mesir bermimpi, lalu Yusuf dimandikan, dipakaikan dan dibawa ke istana. Dalam satu petang, dia berpindah daripada seorang banduan kepada menteri besar negeri itu. Dia tidak menaiki tangga kerjaya — dia diangkat oleh satu perintah Ilahi.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">قَالَ إِنَّكَ ٱلْيَوْمَ لَدَيْنَا مَكِينٌ أَمِينٌ</p>
+    <p class="rf-ayah-tr"
+       data-en="“He said: ‘Indeed, today you are established and trusted with us.’”"
+       data-bm="“Baginda berkata: ‘Sesungguhnya engkau pada hari ini di sisi kami adalah orang yang berpangkat lagi dipercayai.’”">
+      “Baginda berkata: ‘Sesungguhnya engkau pada hari ini di sisi kami adalah orang yang berpangkat lagi dipercayai.’”
+    </p>
+    <p class="rf-ayah-ref">Yusuf 12:54</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The prison doors opened the very moment they had finished their purpose. Allah held him in isolation only until his heart was completely detached from the gift and attached solely to the Giver."
+       data-bm="Pintu penjara terbuka pada saat ia selesai memenuhi tujuannya. Allah menahannya dalam pengasingan hanya sehingga hatinya benar-benar lepas daripada pemberian, dan terikat hanya kepada Pemberi.">
+      Pintu penjara terbuka pada saat ia selesai memenuhi tujuannya. Allah menahannya dalam pengasingan hanya sehingga hatinya benar-benar lepas daripada pemberian, dan terikat hanya kepada Pemberi.
+    </p>
+    <p class="rf-tagline"
+       data-en="Stop forcing external doors. Do the inner work inside your quarantine — <em>Allah rewrites the outer reality effortlessly.</em>"
+       data-bm="Berhenti memaksa pintu luaran. Buat kerja dalaman di dalam kuarantinmu — <em>Allah menulis semula realiti luaran dengan mudah.</em>">
+      Berhenti memaksa pintu luaran. Buat kerja dalaman di dalam kuarantinmu — <em>Allah menulis semula realiti luaran dengan mudah.</em>
+    </p>
+  </section>
+
+  <!-- 04 — A SPARK IS NOT A SYSTEM -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="A spark is not a system" data-bm="Percikan bukan sistem">Percikan bukan sistem</span></div>
+    <p class="rf-body"
+       data-en="Learning the deep metaphysics of Yusuf's story will spark inspiration in your mind. But an emotional spark will never fix your daily autopilot or heal deep-seated anxiety."
+       data-bm="Mempelajari metafizik mendalam kisah Yusuf akan menyalakan inspirasi dalam fikiranmu. Tetapi percikan emosi tidak akan pernah membaiki autopilot harianmu atau menyembuhkan resah yang berakar dalam.">
+      Mempelajari metafizik mendalam kisah Yusuf akan menyalakan inspirasi dalam fikiranmu. Tetapi percikan emosi tidak akan pernah membaiki autopilot harianmu atau menyembuhkan resah yang berakar dalam.
+    </p>
+    <h2 class="rf-big" style="margin-top:20px"
+        data-en="Real change means moving past surface scrolling into a <em>repeatable, rooted practice.</em>"
+        data-bm="Perubahan sebenar bermaksud beralih daripada sekadar menyeluk permukaan kepada <em>amalan yang berulang dan berakar.</em>">
+      Perubahan sebenar bermaksud beralih daripada sekadar menyeluk permukaan kepada <em>amalan yang berulang dan berakar.</em>
+    </h2>
+    <div class="rf-quotecard">
+      <p data-en="“A spark lights the room for a moment. A system keeps it lit.”"
+         data-bm="“Percikan menerangi bilik seketika. Sistem mengekalkannya bernyala.”">
+        “A spark lights the room for a moment. A system keeps it lit.”
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 — THE PATH BACK -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="The path back" data-bm="Jalan pulang">Jalan pulang</span></div>
+    <p class="rf-body"
+       data-en="The way out of a dark season isn't a mood — it's a sequence. Six classical stations of the heart, walked one after another, each drawn from the same map Yusuf walked:"
+       data-bm="Jalan keluar daripada musim gelap bukan satu perasaan — ia satu urutan. Enam maqam hati yang klasik, dilalui satu demi satu, semuanya dari peta yang sama yang dilalui Yusuf:">
+      Jalan keluar daripada musim gelap bukan satu perasaan — ia satu urutan. Enam maqam hati yang klasik, dilalui satu demi satu, semuanya dari peta yang sama yang dilalui Yusuf:
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">01</span><div>
+        <h3>Fitrah <span class="ar">فِطْرَة</span></h3>
+        <p data-en="Return to your factory setting — the clean, upright nature Allah first made you upon, before the noise buried it." data-bm="Kembali kepada tetapan asalmu — fitrah yang bersih dan lurus yang Allah ciptakan sebelum bising menimbunnya.">Kembali kepada tetapan asalmu — fitrah yang bersih dan lurus yang Allah ciptakan sebelum bising menimbunnya.</p>
+      </div></li>
+      <li><span class="n">02</span><div>
+        <h3>Tajalli <span class="ar">تَجَلِّي</span></h3>
+        <p data-en="Know Him through His Names, until the Names quietly reshape how you see everything that happens to you." data-bm="Mengenali-Nya melalui nama-nama-Nya, sehingga nama-nama itu perlahan-lahan mengubah cara kau melihat setiap yang menimpamu.">Mengenali-Nya melalui nama-nama-Nya, sehingga nama-nama itu perlahan-lahan mengubah cara kau melihat setiap yang menimpamu.</p>
+      </div></li>
+      <li><span class="n">03</span><div>
+        <h3>Mizan <span class="ar">مِيزَان</span></h3>
+        <p data-en="Audit your boundaries — weigh honestly what you let into your heart and what you send back out." data-bm="Mengaudit sempadanmu — menimbang dengan jujur apa yang kau benarkan masuk ke hati dan apa yang kau keluarkan.">Mengaudit sempadanmu — menimbang dengan jujur apa yang kau benarkan masuk ke hati dan apa yang kau keluarkan.</p>
+      </div></li>
+      <li><span class="n">04</span><div>
+        <h3>Athar <span class="ar">أَثَر</span></h3>
+        <p data-en="Apply the prophetic medicine to emotional pain — the Sunnah taken as healing, not merely as ritual." data-bm="Menyapukan ubat kenabian pada luka emosi — Sunnah diambil sebagai penyembuh, bukan sekadar upacara.">Menyapukan ubat kenabian pada luka emosi — Sunnah diambil sebagai penyembuh, bukan sekadar upacara.</p>
+      </div></li>
+      <li><span class="n">05</span><div>
+        <h3>Awbah <span class="ar">أَوْبَة</span></h3>
+        <p data-en="A structured return — turning back to Allah as a steady, repeated practice, not a one-night burst." data-bm="Pulang yang berstruktur — kembali kepada Allah sebagai amalan yang mantap dan berulang, bukan ledakan semalaman.">Pulang yang berstruktur — kembali kepada Allah sebagai amalan yang mantap dan berulang, bukan ledakan semalaman.</p>
+      </div></li>
+      <li><span class="n">06</span><div>
+        <h3>Qurb <span class="ar">قُرْب</span></h3>
+        <p data-en="Nearness — presence in the prayer, until the salah becomes the meeting your whole day leans toward." data-bm="Kehampiran — kehadiran dalam solat, sehingga solat menjadi pertemuan yang seluruh harimu condong kepadanya.">Kehampiran — kehadiran dalam solat, sehingga solat menjadi pertemuan yang seluruh harimu condong kepadanya.</p>
+      </div></li>
+    </ul>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="The dark was never the punishment — it was the <em>preparation.</em>"
+        data-bm="Kegelapan itu tak pernah jadi hukuman — ia adalah <em>persediaan.</em>">
+      Kegelapan itu tak pernah jadi hukuman — ia adalah <em>persediaan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The well was not the end of Yusuf's journey. Neither was the prison. Each dark room was a door — and it opened the moment his heart was ready. Yours works the same way."
+       data-bm="Perigi bukan pengakhiran perjalanan Yusuf. Penjara juga bukan. Setiap bilik gelap itu ialah sebuah pintu — dan ia terbuka pada saat hatinya sudah bersedia. Milikmu juga begitu.">
+      Perigi bukan pengakhiran perjalanan Yusuf. Penjara juga bukan. Setiap bilik gelap itu ialah sebuah pintu — dan ia terbuka pada saat hatinya sudah bersedia. Milikmu juga begitu.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا</p>
+    <p class="rf-ayah-tr"
+       data-en="“Indeed, with hardship comes ease.”"
+       data-bm="“Sesungguhnya, bersama kesukaran ada kemudahan.”">
+      “Sesungguhnya, bersama kesukaran ada kemudahan.”
+    </p>
+    <p class="rf-ayah-ref">Ash-Sharh 94:6</p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON DARK SEASONS" data-bm="TENTANG MUSIM GELAP">TENTANG MUSIM GELAP</div>
+    <h2 class="rf-big">Musim Gelap</h2>
+    <p class="rf-body"
+       data-en="May Allah make your dark seasons a place of extraction and not despair, anchor your heart to Him alone, and open the doors the moment your heart is ready. <em>Aameen.</em>"
+       data-bm="Semoga Allah menjadikan musim gelapmu tempat pengeluaran dan bukan putus asa, mengikat hatimu hanya kepada-Nya, dan membuka pintu-pintu pada saat hatimu bersedia. <em>Aameen.</em>">
+      Semoga Allah menjadikan musim gelapmu tempat pengeluaran dan bukan putus asa, mengikat hatimu hanya kepada-Nya, dan membuka pintu-pintu pada saat hatimu bersedia. <em>Aameen.</em>
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="angan-angan-panjang.html" class="btn btn-ghost btn-lg" data-en="← Angan-angan panjang" data-bm="← Angan-angan panjang">← Angan-angan panjang</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories →" data-bm="Semua kisah →">Semua kisah →</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
