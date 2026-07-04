@@ -7,7 +7,7 @@
   // ── To collect feedback straight to your inbox (no mail-client popup):
   //    get a free key at https://web3forms.com (use tech@farissuhail.com) and
   //    replace the placeholder below. Until then, it falls back to mailto.
-  var WEB3FORMS_KEY = 'YOUR_WEB3FORMS_KEY';
+  var WEB3FORMS_KEY = '58222a5c-c88b-40f2-b190-b8a11f26fc40';
   var TO = 'tech@farissuhail.com';
 
   var html = document.documentElement;
