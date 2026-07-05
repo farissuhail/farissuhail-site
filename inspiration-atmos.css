@@ -1,0 +1,17 @@
+/* ===== Inspiration atmosphere — scroll-driven serene background ===== */
+/* Original ambient layer for the inspiration story pages: a colour field
+   that warms from night toward dawn/gold as you read, with drifting
+   light-motes + parallax glow. Sits behind the content (z-index 0). */
+
+body.inspiration-story.has-atmos::before { display: none; }  /* replace the static glow */
+
+.atmos {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: #07070e;
+}
+.atmos-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* soft vignette to keep text comfortable to read */
+.atmos::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 90% 70% at 50% 42%, transparent 55%, rgba(4,4,8,0.55) 100%);
+}
