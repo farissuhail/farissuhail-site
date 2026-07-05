@@ -359,3 +359,14 @@ body.am a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) { .am-node .core { animation: none; } }
 @media (max-width: 640px) { .am-node .lab.act { display: none; } .am-node .subt { display: none; } }
+
+/* ===== ENGINE cluster (glowing rotating node core) ===== */
+.am-eng2-rotor { transform-box: view-box; transform-origin: 150px 110px; }
+.am-eng2-rotor.r1 { animation: amSpin1 48s linear infinite; }
+.am-eng2-rotor.r2 { animation: amSpin2 34s linear infinite; }
+@keyframes amSpin1 { to { transform: rotate(360deg); } }
+@keyframes amSpin2 { to { transform: rotate(-360deg); } }
+.am-eng2-link { fill: none; stroke: rgba(53,226,154,0.38); stroke-width: 1; }
+.am-eng2-link.dim { stroke: rgba(53,226,154,0.14); }
+.am-eng2-core { transform-box: fill-box; transform-origin: center; animation: amCore2 2.6s ease-in-out infinite; }
+@keyframes amCore2 { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.22); opacity: 0.72; } }
