@@ -170,6 +170,30 @@
     </em>
   </div>
 
+  <!-- ===== NARRATIVE GRAPH REEL ===== -->
+  <section class="am-reel" id="reel">
+    <canvas class="am-reel-stars" id="amStars"></canvas>
+    <div class="am-reel-head">
+      <div class="eyebrow" data-en="The narrative graph · live" data-bm="Graf naratif · langsung">The narrative graph · live</div>
+      <h2 data-en="From one narrative to the &lt;span class='g'&gt;action that wins it.&lt;/span&gt;"
+          data-bm="Dari satu naratif ke &lt;span class='g'&gt;tindakan yang memenangkannya.&lt;/span&gt;">From one narrative to the <span class="g">action that wins it.</span></h2>
+      <p data-en="Every narrative that captures the public's hearts and minds branches into the sub-stories driving it — and from each, the exact action that improves your position. Hover a node to trace its branch."
+         data-bm="Setiap naratif yang menawan hati dan minda rakyat bercabang kepada sub-cerita yang menggerakkannya — dan dari setiap satu, tindakan tepat yang memperbaiki kedudukan anda. Tuding nod untuk menjejak cabangnya.">
+        Every narrative that captures the public's hearts and minds branches into the sub-stories driving it — and from each, the exact action that improves your position. Hover a node to trace its branch.
+      </p>
+    </div>
+    <div class="am-reel-stage">
+      <svg class="am-reel-svg" id="amReel" viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Narrative-to-action constellation graph (illustrative sample)"></svg>
+    </div>
+    <div class="am-reel-legend">
+      <span><i class="lm"></i><span data-en="Main narrative" data-bm="Naratif utama">Main narrative</span></span>
+      <span><i class="ls"></i><span data-en="Sub-narrative" data-bm="Sub-naratif">Sub-narrative</span></span>
+      <span><i class="la"></i><span data-en="Recommended action" data-bm="Tindakan disyorkan">Recommended action</span></span>
+    </div>
+    <div class="am-reel-cap" id="amReelCap"></div>
+    <div class="am-reel-hint" data-en="Illustrative sample · hover or tap any node" data-bm="Sampel ilustrasi · tuding atau ketik mana-mana nod">Illustrative sample · hover or tap any node</div>
+  </section>
+
   <!-- ===== MARKETING CTA ===== -->
   <section class="am-cta" id="request">
     <h2 data-en="See the signal before it &lt;span class='g'&gt;becomes the story.&lt;/span&gt;"
@@ -318,6 +342,7 @@
 </div>
 
 <script src="analitika.js"></script>
+<script src="analitika-reel.js"></script>
 <script src="feedback.js"></script>
 </body>
 </html>

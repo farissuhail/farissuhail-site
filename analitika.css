@@ -303,3 +303,59 @@ body.am a { color: inherit; text-decoration: none; }
   .am-stats { grid-template-columns: repeat(2,1fr); }
   .am-form .row { flex-direction: column; }
 }
+
+/* ===== NARRATIVE GRAPH REEL (constellation) ===== */
+.am-reel { position: relative; overflow: hidden; padding: 60px 20px 72px; border-top: 1px solid var(--am-line);
+  background: radial-gradient(ellipse 70% 60% at 50% 46%, rgba(53,226,154,0.05), transparent 62%), #05080a; }
+.am-reel-stars { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.am-reel-head { position: relative; z-index: 3; max-width: 760px; margin: 0 auto; text-align: center; }
+.am-reel-head .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--am-gold); margin-bottom: 12px; }
+.am-reel-head h2 { font-family: 'Inter', system-ui, sans-serif; font-size: clamp(23px, 4vw, 38px); font-weight: 800; letter-spacing: -0.02em; color: #eafff5; margin: 0 0 12px; line-height: 1.15; }
+.am-reel-head h2 .g { color: var(--am-green); }
+.am-reel-head p { font-family: 'Inter', system-ui, sans-serif; font-size: 15px; color: var(--am-dim); line-height: 1.6; margin: 0; }
+.am-reel-stage { position: relative; z-index: 1; max-width: 1040px; margin: 6px auto 0; }
+.am-reel-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* links */
+.am-link { fill: none; stroke-linecap: round; stroke-width: 1.4; opacity: 0;
+  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.7s ease, opacity 0.5s ease, stroke-width 0.25s; }
+.am-link.s1 { stroke: rgba(232,196,106,0.55); }
+.am-link.s2 { stroke: rgba(53,226,154,0.4); stroke-width: 1; }
+.am-link.show { opacity: 1; stroke-dashoffset: 0; }
+.am-reel-svg.dim .am-link:not(.lit) { opacity: 0.1 !important; }
+.am-link.lit { stroke-width: 2.2; }
+
+/* node groups */
+.am-node { cursor: pointer; opacity: 0; transition: opacity 0.55s ease; }
+.am-node.show { opacity: 1; }
+.am-node .core { transform: scale(0.1); transform-origin: center; transform-box: fill-box;
+  transition: transform 0.6s cubic-bezier(.2,1.3,.35,1); }
+.am-node.show .core { transform: scale(1); }
+.am-node .core { animation: amBreathe 5s ease-in-out infinite; }
+@keyframes amBreathe { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.3); } }
+.am-node .lab { font-family: 'JetBrains Mono', monospace; fill: var(--am-text); opacity: 0; transition: opacity 0.6s ease; }
+.am-node.show .lab { opacity: 0.92; }
+.am-node .lab.sub { font-size: 12px; fill: #dff7ec; }
+.am-node .lab.act { font-size: 10.5px; fill: var(--am-dim); }
+.am-node .lab.main { font-size: 15px; font-weight: 700; fill: #fff; }
+.am-node .subt { font-family: 'JetBrains Mono', monospace; font-size: 8px; fill: var(--am-mute); letter-spacing: 0.08em; opacity: 0; transition: opacity 0.6s; text-transform: uppercase; }
+.am-node.show .subt { opacity: 0.8; }
+.am-reel-svg.dim .am-node:not(.lit) { opacity: 0.28; }
+.am-node .ring { fill: none; opacity: 0; transition: opacity 0.4s; }
+.am-node.lit .ring { opacity: 0.9; }
+
+/* legend + caption */
+.am-reel-legend { position: relative; z-index: 3; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--am-dim); letter-spacing: 0.04em; }
+.am-reel-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 7px; vertical-align: middle; }
+.am-reel-legend .lm { background: var(--am-gold); box-shadow: 0 0 8px var(--am-gold); }
+.am-reel-legend .ls { background: var(--am-green); box-shadow: 0 0 8px var(--am-green); }
+.am-reel-legend .la { background: var(--am-purple); box-shadow: 0 0 8px var(--am-purple); }
+.am-reel-cap { position: relative; z-index: 3; max-width: 560px; margin: 14px auto 0; min-height: 44px; text-align: center;
+  font-family: 'Inter', system-ui, sans-serif; font-size: 14px; color: var(--am-dim); transition: opacity 0.25s; }
+.am-reel-cap b { color: var(--am-green); font-weight: 700; }
+.am-reel-cap .role { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--am-gold); display: block; margin-bottom: 3px; }
+.am-reel-hint { position: relative; z-index: 3; text-align: center; margin-top: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--am-mute); letter-spacing: 0.06em; }
+
+@media (prefers-reduced-motion: reduce) { .am-node .core { animation: none; } }
+@media (max-width: 640px) { .am-node .lab.act { display: none; } .am-node .subt { display: none; } }
