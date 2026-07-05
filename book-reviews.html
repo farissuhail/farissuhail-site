@@ -7,7 +7,7 @@
   <title>Book Summaries · The Mdrn Urban · Faris Suhail</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="theme-color" content="#09090b" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -27,17 +27,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://covers.openlibrary.org" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="book-reviews.css" />
+  <link rel="stylesheet" href="book-app.css" />
 </head>
-<body class="book-reviews-hub">
+<body class="book-app">
 
 <!-- ===== NAV (shared) ===== -->
 <header class="nav">
-  <a href="index.html" class="brand">
-    <span class="brand-name">FARISSUHAIL</span>
-  </a>
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
   <nav class="nav-links">
     <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
     <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
@@ -52,352 +51,190 @@
   </div>
 </header>
 
-<main id="top">
+<main class="ba" id="top">
 
-  <!-- ===== HERO ===== -->
-  <section class="hub-hero">
-    <div class="hub-kicker">Books · <b>The Mdrn Urban</b></div>
-    <h1 class="hub-title"
-        data-en="Beneficial books,<br><span class='grad'>read with intent.</span>"
-        data-bm="Buku bermanfaat,<br><span class='grad'>dibaca dengan niat.</span>">
-      Beneficial books,<br><span class="grad">read with intent.</span>
-    </h1>
-    <p class="hub-deck"
-       data-en="Clear, original summaries of books worth your time — faith, clear thinking, and investing wisdom. For each: what it's really about, the strongest ideas, who it's for, and the one idea worth keeping."
-       data-bm="Ringkasan asli yang jelas tentang buku yang berbaloi — keimanan, pemikiran jernih, dan hikmah pelaburan. Bagi setiap satu: tentang apa sebenarnya ia, idea terkuat, untuk siapa, dan satu idea yang patut disimpan.">
-      Clear, original summaries of books worth your time — faith, clear thinking, and investing wisdom. For each: what it's really about, the strongest ideas, who it's for, and the one idea worth keeping.
-    </p>
-    <div class="hub-stats">
-      <span data-en="7 full summaries" data-bm="7 ringkasan penuh">7 full summaries</span>
-      <span class="sep">·</span>
-      <span data-en="More to come" data-bm="Lagi akan datang">More to come</span>
-      <span class="sep">·</span>
-      <span data-en="My own words" data-bm="Kata-kata sendiri">My own words</span>
+  <!-- search -->
+  <div class="ba-searchbar">
+    <label class="ba-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="baSearch" type="search" data-en-ph="Search books, authors…" data-bm-ph="Cari buku, penulis…" placeholder="Search books, authors…" />
+    </label>
+    <button class="ba-filter" aria-label="Filter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+    </button>
+  </div>
+
+  <!-- popular hero -->
+  <a class="ba-hero" href="the-psychology-of-money.html">
+    <div class="ba-hero-txt">
+      <span class="ba-hero-badge">🔥 <span data-en="Popular" data-bm="Popular">Popular</span></span>
+      <h2>The Psychology of Money</h2>
+      <p class="auth">Morgan Housel · 2020</p>
+      <span class="ba-hero-cta"><span data-en="Read summary" data-bm="Baca ringkasan">Read summary</span> →</span>
     </div>
-  </section>
-
-  <!-- ===== FULL SUMMARIES ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="Full summaries" data-bm="Ringkasan penuh">Full summaries</h2>
-      <span class="count" data-en="Long reads · 7 live" data-bm="Bacaan panjang · 7 tersedia">Long reads · 7 live</span>
+    <div class="ba-hero-covers">
+      <img src="https://covers.openlibrary.org/b/id/36434-L.jpg" alt="The Intelligent Investor" loading="lazy" />
+      <img src="https://covers.openlibrary.org/b/id/10389354-L.jpg" alt="The Psychology of Money" loading="lazy" />
     </div>
-    <div class="sum-grid">
-      <a class="sum-card" href="the-intelligent-investor.html" aria-label="Read summary: The Intelligent Investor by Benjamin Graham">
-        <div class="sum-spine sum-navy"><span>VALUE</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Value investing" data-bm="Pelaburan nilai">Value investing</div>
-          <h3>The Intelligent Investor</h3>
-          <div class="sum-author">Benjamin Graham</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="thinking-fast-and-slow.html" aria-label="Read summary: Thinking, Fast and Slow by Daniel Kahneman">
-        <div class="sum-spine sum-amber"><span>MIND</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Psychology" data-bm="Psikologi">Psychology</div>
-          <h3>Thinking, Fast and Slow</h3>
-          <div class="sum-author">Daniel Kahneman</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="margin-of-safety.html" aria-label="Read summary: Margin of Safety by Seth A. Klarman">
-        <div class="sum-spine sum-royal"><span>SAFETY</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Value investing" data-bm="Pelaburan nilai">Value investing</div>
-          <h3>Margin of Safety</h3>
-          <div class="sum-author">Seth A. Klarman</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="the-psychology-of-money.html" aria-label="Read summary: The Psychology of Money by Morgan Housel">
-        <div class="sum-spine sum-emerald"><span>MONEY</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Personal finance" data-bm="Kewangan peribadi">Personal finance</div>
-          <h3>The Psychology of Money</h3>
-          <div class="sum-author">Morgan Housel</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="stop-acting-rich.html" aria-label="Read summary: Stop Acting Rich by Thomas J. Stanley">
-        <div class="sum-spine sum-gold"><span>WEALTH</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Personal finance" data-bm="Kewangan peribadi">Personal finance</div>
-          <h3>Stop Acting Rich</h3>
-          <div class="sum-author">Thomas J. Stanley</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="the-compound-effect.html" aria-label="Read summary: The Compound Effect by Darren Hardy">
-        <div class="sum-spine sum-crimson"><span>HABITS</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Habits &amp; success" data-bm="Tabiat &amp; kejayaan">Habits &amp; success</div>
-          <h3>The Compound Effect</h3>
-          <div class="sum-author">Darren Hardy</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
-      <a class="sum-card" href="the-let-them-theory.html" aria-label="Read summary: The Let Them Theory by Mel Robbins">
-        <div class="sum-spine sum-grass"><span>MINDSET</span></div>
-        <div class="sum-meta">
-          <div class="sum-cat" data-en="Mindset" data-bm="Minda">Mindset</div>
-          <h3>The Let Them Theory</h3>
-          <div class="sum-author">Mel Robbins</div>
-          <span class="sum-cta" data-en="Read summary →" data-bm="Baca ringkasan →">Read summary →</span>
-        </div>
-      </a>
+  </a>
+
+  <!-- genres -->
+  <div class="ba-genres" id="baGenres">
+    <button class="ba-genre on" data-g="all" data-en="All" data-bm="Semua">All</button>
+    <button class="ba-genre" data-g="finance" data-en="Finance" data-bm="Kewangan">Finance</button>
+    <button class="ba-genre" data-g="investing" data-en="Investing" data-bm="Pelaburan">Investing</button>
+    <button class="ba-genre" data-g="psychology" data-en="Psychology" data-bm="Psikologi">Psychology</button>
+    <button class="ba-genre" data-g="selfhelp" data-en="Self-help" data-bm="Bantu diri">Self-help</button>
+  </div>
+
+  <!-- section head -->
+  <div class="ba-h">
+    <h3 data-en="All summaries" data-bm="Semua ringkasan">All summaries</h3>
+    <a href="#" id="baCount">7 books</a>
+  </div>
+
+  <!-- grid -->
+  <div class="ba-grid" id="baGrid">
+    <!-- cards injected by JS -->
+  </div>
+
+  <!-- continue reading -->
+  <div class="ba-h"><h3 data-en="Continue reading" data-bm="Sambung membaca">Continue reading</h3></div>
+  <a class="ba-cont" href="the-intelligent-investor.html">
+    <img src="https://covers.openlibrary.org/b/id/36434-L.jpg" alt="The Intelligent Investor" loading="lazy" />
+    <div>
+      <div class="ct-badge">READ NOW</div>
+      <div class="ct-title">The Intelligent Investor</div>
+      <div class="ct-auth"><span data-en="by" data-bm="oleh">by</span> Benjamin Graham</div>
     </div>
-  </section>
+    <div class="ct-rate">★ 4.8</div>
+  </a>
 
-  <!-- ===== ALSO IN THE COLLECTION ===== -->
-  <section class="hub-section">
-    <div class="hub-section-head">
-      <h2 data-en="Also in the collection" data-bm="Turut dalam koleksi">Also in the collection</h2>
-      <span class="count" data-en="Short notes" data-bm="Nota ringkas">Short notes</span>
-    </div>
-
-    <div class="bk-list">
-
-      <!-- 1 — Thinking, Fast and Slow -->
-      <article class="bk">
-        <div class="bk-cover bk-c1">
-          <div class="bk-cat" data-en="Thinking · Psychology" data-bm="Pemikiran · Psikologi">Thinking · Psychology</div>
-          <h3>Thinking,<br>Fast and Slow</h3>
-          <div class="bk-author">Daniel Kahneman</div>
-        </div>
-        <div class="bk-body">
-          <div class="bk-meta"><span class="bk-rating" aria-label="5 out of 5">★★★★★</span><span class="bk-tag live" data-en="Live" data-bm="Tersedia">Live</span><span class="bk-tag">2011</span></div>
-          <p data-en="<b>What it's about.</b> A Nobel laureate maps the mind as two systems: System 1, the fast and automatic one that runs on gut feeling, and System 2, the slow and deliberate one we'd rather not wake. Most of our errors come from letting the fast system answer questions it isn't qualified for."
-             data-bm="<b>Tentang apa.</b> Pemenang Nobel memetakan minda sebagai dua sistem: Sistem 1 yang pantas dan automatik berdasarkan gerak hati, dan Sistem 2 yang perlahan dan berhati-hati yang malas kita gunakan. Kebanyakan kesilapan kita berpunca daripada membiarkan sistem pantas menjawab soalan yang ia tidak layak jawab.">
-            <b>What it's about.</b> A Nobel laureate maps the mind as two systems: System 1, the fast and automatic one that runs on gut feeling, and System 2, the slow and deliberate one we'd rather not wake. Most of our errors come from letting the fast system answer questions it isn't qualified for.
-          </p>
-          <div class="bk-h" data-en="Ideas that stayed with me" data-bm="Idea yang melekat">Ideas that stayed with me</div>
-          <ul class="bk-ideas">
-            <li data-en="Two systems — fast intuition vs. slow reasoning — quietly trade control." data-bm="Dua sistem — gerak hati pantas vs. taakulan perlahan — bertukar kawalan secara senyap.">Two systems — fast intuition vs. slow reasoning — quietly trade control.</li>
-            <li data-en="Anchoring: the first number you hear warps every estimate after it." data-bm="Penambat: nombor pertama yang didengar memesongkan setiap anggaran selepasnya.">Anchoring: the first number you hear warps every estimate after it.</li>
-            <li data-en="“What you see is all there is” — we judge on the little we know and ignore the rest." data-bm="“Apa yang dilihat itu sahaja yang ada” — kita menilai berdasarkan yang sedikit dan abaikan selebihnya.">“What you see is all there is” — we judge on the little we know and ignore the rest.</li>
-            <li data-en="Losing hurts about twice as much as winning the same amount feels good." data-bm="Kehilangan menyakitkan kira-kira dua kali ganda berbanding nikmat menang jumlah yang sama.">Losing hurts about twice as much as winning the same amount feels good.</li>
-          </ul>
-          <p data-en="<b>Who it's for.</b> Anyone who makes decisions under uncertainty — investors, leaders, and honestly all of us."
-             data-bm="<b>Untuk siapa.</b> Sesiapa yang membuat keputusan dalam ketidakpastian — pelabur, pemimpin, dan sebenarnya kita semua.">
-            <b>Who it's for.</b> Anyone who makes decisions under uncertainty — investors, leaders, and honestly all of us.
-          </p>
-          <p class="bk-keep" data-en="One idea to keep: when a judgment feels effortless and certain, that's exactly the moment to slow down and check it."
-             data-bm="Satu idea untuk disimpan: apabila sesuatu penilaian terasa mudah dan pasti, itulah saatnya untuk perlahankan dan semak semula.">
-            One idea to keep: when a judgment feels effortless and certain, that's exactly the moment to slow down and check it.
-          </p>
-          <a class="bk-more" href="thinking-fast-and-slow.html" data-en="Read the full summary →" data-bm="Baca ringkasan penuh →">Read the full summary →</a>
-        </div>
-      </article>
-
-      <!-- 2 — The Most Important Thing -->
-      <article class="bk">
-        <div class="bk-cover bk-c4">
-          <div class="bk-cat" data-en="Investing · Risk" data-bm="Pelaburan · Risiko">Investing · Risk</div>
-          <h3>The Most<br>Important Thing</h3>
-          <div class="bk-author">Howard Marks</div>
-        </div>
-        <div class="bk-body">
-          <div class="bk-meta"><span class="bk-rating" aria-label="5 out of 5">★★★★★</span><span class="bk-tag live" data-en="Live" data-bm="Tersedia">Live</span><span class="bk-tag">2011</span></div>
-          <p data-en="<b>What it's about.</b> Distilled from decades of investor memos, Marks argues that successful investing isn't one thing but many — price versus value, real risk, cycles, and above all the discipline to think one level deeper than the crowd."
-             data-bm="<b>Tentang apa.</b> Diolah daripada memo pelaburan berdekad, Marks berhujah bahawa pelaburan berjaya bukan satu perkara tetapi banyak — harga lawan nilai, risiko sebenar, kitaran, dan paling penting disiplin untuk berfikir satu tahap lebih dalam daripada orang ramai.">
-            <b>What it's about.</b> Distilled from decades of investor memos, Marks argues that successful investing isn't one thing but many — price versus value, real risk, cycles, and above all the discipline to think one level deeper than the crowd.
-          </p>
-          <div class="bk-h" data-en="Ideas that stayed with me" data-bm="Idea yang melekat">Ideas that stayed with me</div>
-          <ul class="bk-ideas">
-            <li data-en="Second-level thinking: don't ask “is it good?” — ask “is it better than the price assumes?”" data-bm="Pemikiran tahap kedua: jangan tanya “bagus tak?” — tanya “lebih baik daripada andaian harga?”">Second-level thinking: don't ask “is it good?” — ask “is it better than the price assumes?”</li>
-            <li data-en="Real risk is the chance of permanent loss, not how much the price wobbles." data-bm="Risiko sebenar ialah kemungkinan kerugian kekal, bukan sekadar turun-naik harga.">Real risk is the chance of permanent loss, not how much the price wobbles.</li>
-            <li data-en="Markets move in cycles; knowing where you stand matters more than predicting." data-bm="Pasaran bergerak dalam kitaran; tahu di mana kita berdiri lebih penting daripada meramal.">Markets move in cycles; knowing where you stand matters more than predicting.</li>
-            <li data-en="“If we avoid the losers, the winners take care of themselves.”" data-bm="“Jika kita elak yang rugi, yang menang akan urus dirinya sendiri.”">“If we avoid the losers, the winners take care of themselves.”</li>
-          </ul>
-          <p data-en="<b>Who it's for.</b> Investors ready to move past tips and slogans into how risk and psychology actually work."
-             data-bm="<b>Untuk siapa.</b> Pelabur yang bersedia meninggalkan tip dan slogan untuk memahami cara risiko dan psikologi benar-benar berfungsi.">
-            <b>Who it's for.</b> Investors ready to move past tips and slogans into how risk and psychology actually work.
-          </p>
-          <p class="bk-keep" data-en="One idea to keep: protect the downside first — survival is what lets you compound."
-             data-bm="Satu idea untuk disimpan: lindungi sisi bawah dahulu — kemandirian itulah yang membolehkan pertumbuhan berganda.">
-            One idea to keep: protect the downside first — survival is what lets you compound.
-          </p>
-        </div>
-      </article>
-
-      <!-- 3 — Margin of Safety -->
-      <article class="bk">
-        <div class="bk-cover bk-c2">
-          <div class="bk-cat" data-en="Investing · Value" data-bm="Pelaburan · Nilai">Investing · Value</div>
-          <h3>Margin<br>of Safety</h3>
-          <div class="bk-author">Seth A. Klarman</div>
-        </div>
-        <div class="bk-body">
-          <div class="bk-meta"><span class="bk-rating" aria-label="4.5 out of 5">★★★★½</span><span class="bk-tag live" data-en="Live" data-bm="Tersedia">Live</span><span class="bk-tag">1991</span></div>
-          <p data-en="<b>What it's about.</b> A famously out-of-print classic on risk-averse value investing. Klarman's whole stance is humble: you will be wrong sometimes, so buy assets far enough below their worth that being wrong still leaves you safe."
-             data-bm="<b>Tentang apa.</b> Klasik terkenal yang sukar didapati tentang pelaburan nilai yang mengelak risiko. Pendirian Klarman penuh rendah diri: anda akan tersilap kadangkala, jadi beli aset cukup jauh di bawah nilainya supaya tersilap pun anda tetap selamat.">
-            <b>What it's about.</b> A famously out-of-print classic on risk-averse value investing. Klarman's whole stance is humble: you will be wrong sometimes, so buy assets far enough below their worth that being wrong still leaves you safe.
-          </p>
-          <div class="bk-h" data-en="Ideas that stayed with me" data-bm="Idea yang melekat">Ideas that stayed with me</div>
-          <ul class="bk-ideas">
-            <li data-en="A margin of safety is the gap between price and value that absorbs your mistakes." data-bm="Margin keselamatan ialah jurang antara harga dan nilai yang menyerap kesilapan anda.">A margin of safety is the gap between price and value that absorbs your mistakes.</li>
-            <li data-en="Beating the market while losing money is still losing — chase absolute returns, not relative." data-bm="Mengatasi pasaran sambil rugi tetap rugi — kejar pulangan mutlak, bukan relatif.">Beating the market while losing money is still losing — chase absolute returns, not relative.</li>
-            <li data-en="The herd manufactures overpriced, overcrowded assets; patience is the edge." data-bm="Orang ramai mencipta aset terlebih harga dan sesak; kesabaran itulah kelebihannya.">The herd manufactures overpriced, overcrowded assets; patience is the edge.</li>
-            <li data-en="The investor's first job is simply not to lose money." data-bm="Tugas pertama pelabur hanyalah untuk tidak rugi wang.">The investor's first job is simply not to lose money.</li>
-          </ul>
-          <p data-en="<b>Who it's for.</b> Patient, long-term investors who value capital preservation over excitement."
-             data-bm="<b>Untuk siapa.</b> Pelabur jangka panjang yang sabar dan mengutamakan pemeliharaan modal berbanding keseronokan.">
-            <b>Who it's for.</b> Patient, long-term investors who value capital preservation over excitement.
-          </p>
-          <p class="bk-keep" data-en="One idea to keep: never confuse a rising price with a sound decision; demand a discount before you act."
-             data-bm="Satu idea untuk disimpan: jangan keliru antara harga naik dan keputusan yang kukuh; tuntut diskaun sebelum bertindak.">
-            One idea to keep: never confuse a rising price with a sound decision; demand a discount before you act.
-          </p>
-          <a class="bk-more" href="margin-of-safety.html" data-en="Read the full summary →" data-bm="Baca ringkasan penuh →">Read the full summary →</a>
-        </div>
-      </article>
-
-      <!-- 4 — One Up On Wall Street -->
-      <article class="bk">
-        <div class="bk-cover bk-c3">
-          <div class="bk-cat" data-en="Investing · Stock-picking" data-bm="Pelaburan · Pilihan saham">Investing · Stock-picking</div>
-          <h3>One Up On<br>Wall Street</h3>
-          <div class="bk-author">Peter Lynch</div>
-        </div>
-        <div class="bk-body">
-          <div class="bk-meta"><span class="bk-rating" aria-label="4.5 out of 5">★★★★½</span><span class="bk-tag live" data-en="Live" data-bm="Tersedia">Live</span><span class="bk-tag">1989</span></div>
-          <p data-en="<b>What it's about.</b> A legendary fund manager makes a cheerful case that ordinary people have real edges over Wall Street — you notice good products and businesses in daily life long before the analysts do, if you do the homework."
-             data-bm="<b>Tentang apa.</b> Pengurus dana legenda berhujah dengan ceria bahawa orang biasa mempunyai kelebihan sebenar berbanding Wall Street — anda perasan produk dan perniagaan yang baik dalam kehidupan harian jauh sebelum penganalisis, jika anda buat kerja rumah.">
-            <b>What it's about.</b> A legendary fund manager makes a cheerful case that ordinary people have real edges over Wall Street — you notice good products and businesses in daily life long before the analysts do, if you do the homework.
-          </p>
-          <div class="bk-h" data-en="Ideas that stayed with me" data-bm="Idea yang melekat">Ideas that stayed with me</div>
-          <ul class="bk-ideas">
-            <li data-en="Invest in what you understand — then verify it with real research." data-bm="Labur dalam apa yang anda faham — kemudian sahkan dengan kajian sebenar.">Invest in what you understand — then verify it with real research.</li>
-            <li data-en="Sort companies into types (slow growers, stalwarts, fast growers, cyclicals, turnarounds, asset plays) — each behaves differently." data-bm="Kelaskan syarikat ikut jenis (tumbuh perlahan, stabil, tumbuh pantas, kitaran, pemulihan, aset tersembunyi) — setiap satu berbeza.">Sort companies into types — each behaves differently.</li>
-            <li data-en="The two-minute drill: if you can't explain the thesis simply, you don't have one." data-bm="Latihan dua minit: jika anda tidak boleh terangkan tesis dengan ringkas, anda tiada tesis.">The two-minute drill: if you can't explain the thesis simply, you don't have one.</li>
-            <li data-en="Individual investors aren't forced to buy or sell — that freedom is an advantage." data-bm="Pelabur individu tidak dipaksa membeli atau menjual — kebebasan itu satu kelebihan.">Individual investors aren't forced to trade on anyone's schedule — that freedom is an edge.</li>
-          </ul>
-          <p data-en="<b>Who it's for.</b> Beginner-to-intermediate stock pickers who want a practical, encouraging starting point."
-             data-bm="<b>Untuk siapa.</b> Pemilih saham peringkat awal hingga pertengahan yang mahukan titik mula praktikal dan memberangsangkan.">
-            <b>Who it's for.</b> Beginner-to-intermediate stock pickers who want a practical, encouraging starting point.
-          </p>
-          <p class="bk-keep" data-en="One idea to keep: know the story of every holding well enough to retell it in two minutes — or don't own it."
-             data-bm="Satu idea untuk disimpan: kenali kisah setiap pegangan cukup baik untuk diceritakan dalam dua minit — atau jangan miliki ia.">
-            One idea to keep: know the story of every holding well enough to retell it in two minutes — or don't own it.
-          </p>
-        </div>
-      </article>
-
-      <!-- 5 — Fooled by Randomness -->
-      <article class="bk">
-        <div class="bk-cover bk-c5">
-          <div class="bk-cat" data-en="Thinking · Probability" data-bm="Pemikiran · Kebarangkalian">Thinking · Probability</div>
-          <h3>Fooled by<br>Randomness</h3>
-          <div class="bk-author">Nassim N. Taleb</div>
-        </div>
-        <div class="bk-body">
-          <div class="bk-meta"><span class="bk-rating" aria-label="4.5 out of 5">★★★★½</span><span class="bk-tag live" data-en="Live" data-bm="Tersedia">Live</span><span class="bk-tag">2001</span></div>
-          <p data-en="<b>What it's about.</b> Taleb on the hidden role of chance — how easily we mistake luck for skill, especially in markets, and why the smart move is to judge the process and survive the rare disaster rather than admire the outcome."
-             data-bm="<b>Tentang apa.</b> Taleb tentang peranan tersembunyi nasib — betapa mudahnya kita menyangka tuah sebagai kemahiran, terutama dalam pasaran, dan mengapa langkah bijak ialah menilai proses dan bertahan daripada bencana jarang berlaku, bukan mengagumi hasil.">
-            <b>What it's about.</b> Taleb on the hidden role of chance — how easily we mistake luck for skill, especially in markets, and why the smart move is to judge the process and survive the rare disaster rather than admire the outcome.
-          </p>
-          <div class="bk-h" data-en="Ideas that stayed with me" data-bm="Idea yang melekat">Ideas that stayed with me</div>
-          <ul class="bk-ideas">
-            <li data-en="A good outcome can still come from a reckless bet — judge the decision, not the result." data-bm="Hasil baik boleh datang dari pertaruhan melulu — nilai keputusan, bukan hasilnya.">A good outcome can still come from a reckless bet — judge the decision, not the result.</li>
-            <li data-en="Survivorship bias: we only see the winners, so success looks easier than it is." data-bm="Bias kemandirian: kita hanya nampak yang menang, jadi kejayaan kelihatan lebih mudah dari sebenarnya.">Survivorship bias: we only see the winners, so success looks easier than it is.</li>
-            <li data-en="Hindsight makes the past feel inevitable when it never was." data-bm="Pandangan ke belakang menjadikan masa lalu terasa pasti walhal ia tidak pernah pasti.">Hindsight makes the past feel inevitable when it never was.</li>
-            <li data-en="Above all: survive the rare catastrophe — the black swan you didn't price in." data-bm="Yang terpenting: bertahan daripada bencana jarang — angsa hitam yang tidak anda jangka.">Above all: survive the rare catastrophe — the black swan you didn't price in.</li>
-          </ul>
-          <p data-en="<b>Who it's for.</b> Anyone who judges people and decisions purely by results — and wants to stop."
-             data-bm="<b>Untuk siapa.</b> Sesiapa yang menilai orang dan keputusan semata-mata melalui hasil — dan mahu berhenti berbuat demikian.">
-            <b>Who it's for.</b> Anyone who judges people and decisions purely by results — and wants to stop.
-          </p>
-          <p class="bk-keep" data-en="One idea to keep: a wise plan can still meet a bad year; build so that one bad year can't end you."
-             data-bm="Satu idea untuk disimpan: rancangan bijak pun boleh bertemu tahun buruk; bina supaya satu tahun buruk tidak menamatkan anda.">
-            One idea to keep: a wise plan can still meet a bad year; build so that one bad year can't end you.
-          </p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ===== SUGGEST ===== -->
-  <section class="hub-section">
-    <div class="ref-grid">
-      <div class="ref-soon ref-invite">
-        <div class="ref-soon-tag" data-en="Your pick" data-bm="Pilihan anda">Your pick</div>
-        <div class="ref-soon-name" data-en="Suggest the next book" data-bm="Cadangkan buku seterusnya">Suggest the next book</div>
-        <div class="ref-soon-en"
-             data-en="Read something that changed how you think? Tell me — it might be summarised next."
-             data-bm="Baca sesuatu yang mengubah cara anda berfikir? Beritahu saya — mungkin ia diringkaskan seterusnya.">
-          Read something that changed how you think? Tell me — it might be summarised next.
-        </div>
-        <a href="mailto:tech@farissuhail.com?subject=Book%20summary%20suggestion">tech@farissuhail.com →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== INTENTION ===== -->
-  <section class="hub-intention">
-    <p data-en="&ldquo;Read — in the name of your Lord who created.&rdquo; The first word revealed was a command to read. These summaries are a small way of honouring it."
-       data-bm="&ldquo;Bacalah dengan nama Tuhanmu yang menciptakan.&rdquo; Wahyu pertama adalah perintah membaca. Ringkasan ini cara kecil untuk meraikannya.">
-      &ldquo;Read — in the name of your Lord who created.&rdquo; The first word revealed was a command to read. These summaries are a small way of honouring it.
-    </p>
-    <div class="src">Al-'Alaq 96:1</div>
-  </section>
+  <p class="ba-credit"
+     data-en="Real covers via Open Library · original summaries by The Mdrn Urban · © <span id='year'></span> Faris Suhail"
+     data-bm="Kulit sebenar melalui Open Library · ringkasan asli oleh The Mdrn Urban · © <span id='year'></span> Faris Suhail">
+    Real covers via Open Library · original summaries by The Mdrn Urban · © <span id="year"></span> Faris Suhail
+  </p>
 
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="brand"><span class="brand-name">FARISSUHAIL</span></div>
-      <p class="footer-tag" data-en="Book summaries · The Mdrn Urban" data-bm="Ringkasan buku · The Mdrn Urban">
-        Book summaries · The Mdrn Urban
-      </p>
-      <p class="footer-loc">Kuala Lumpur · Malaysia</p>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-h" data-en="Dakwah" data-bm="Dakwah">Dakwah</div>
-      <ul>
-        <li><a href="reflections.html" data-en="Reflections on the Qur'an" data-bm="Refleksi Al-Quran">Reflections on the Qur'an</a></li>
-        <li><a href="inspiration.html" data-en="Inspiration stories" data-bm="Kisah inspirasi">Inspiration stories</a></li>
-        <li><a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <div class="footer-h" data-en="Connect" data-bm="Hubungi">Connect</div>
-      <ul>
-        <li><a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> Faris Suhail</span>
-    <span class="footer-tagline" data-en="Dakwah · Book summaries · KL, MY" data-bm="Dakwah · Ringkasan buku · KL, MY">
-      Dakwah · Book summaries · KL, MY
-    </span>
-  </div>
-</footer>
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="ba-bottom">
+  <a class="ba-nav-item on" href="#top" data-nav="top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    <span data-en="Home" data-bm="Utama">Home</span>
+  </a>
+  <a class="ba-nav-item" href="#baGenres" data-nav="explore">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+    <span data-en="Explore" data-bm="Terokai">Explore</span>
+  </a>
+  <a class="ba-nav-item center" href="#baGrid" data-nav="grid" aria-label="Browse">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v15l-6-3-6 3z"/></svg>
+    <span>Browse</span>
+  </a>
+  <a class="ba-nav-item" href="#baGrid" data-nav="reading">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H4z"/><path d="M20 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H20z"/></svg>
+    <span data-en="Reading" data-bm="Bacaan">Reading</span>
+  </a>
+  <a class="ba-nav-item" href="index.html" data-nav="profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+    <span data-en="Profile" data-bm="Profil">Profile</span>
+  </a>
+</nav>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const langBtn = document.getElementById('langToggle');
-  const html = document.documentElement;
+  // ---- book data (real Open Library covers, links to real summaries) ----
+  var BOOKS = [
+    { slug:'the-psychology-of-money', title:'The Psychology of Money', author:'Morgan Housel', cover:10389354, rate:'4.9', genres:'finance psychology', crown:true },
+    { slug:'the-intelligent-investor', title:'The Intelligent Investor', author:'Benjamin Graham', cover:36434, rate:'4.8', genres:'investing finance', crown:true },
+    { slug:'thinking-fast-and-slow', title:'Thinking, Fast and Slow', author:'Daniel Kahneman', cover:13290711, rate:'4.7', genres:'psychology', crown:false },
+    { slug:'the-let-them-theory', title:'The Let Them Theory', author:'Mel Robbins', cover:'https://covers.openlibrary.org/b/isbn/9781401971373-L.jpg', rate:'4.7', genres:'selfhelp psychology', crown:false },
+    { slug:'the-compound-effect', title:'The Compound Effect', author:'Darren Hardy', cover:7115046, rate:'4.6', genres:'selfhelp', crown:false },
+    { slug:'margin-of-safety', title:'Margin of Safety', author:'Seth Klarman', cover:8042651, rate:'4.8', genres:'investing finance', crown:true },
+    { slug:'stop-acting-rich', title:'Stop Acting Rich', author:'Thomas J. Stanley', cover:6408908, rate:'4.5', genres:'finance', crown:false }
+  ];
+  var html = document.documentElement;
+  function bm() { return html.getAttribute('data-lang') === 'bm'; }
+
+  var grid = document.getElementById('baGrid');
+  BOOKS.forEach(function (b) {
+    var a = document.createElement('a');
+    a.className = 'ba-card'; a.href = b.slug + '.html';
+    a.dataset.genres = b.genres; a.dataset.text = (b.title + ' ' + b.author).toLowerCase();
+    a.innerHTML =
+      '<div class="ba-cover">' +
+        '<img src="' + (typeof b.cover === 'number' ? 'https://covers.openlibrary.org/b/id/' + b.cover + '-L.jpg' : b.cover) + '" alt="' + b.title + '" loading="lazy" ' +
+          'onerror="this.remove();this.parentElement.classList.add(\'noimg\')" />' +
+        '<span class="ba-fallback">' + b.title + '</span>' +
+        '<span class="ba-readnow">READ NOW</span>' +
+        '<button class="ba-heart" aria-label="Save">&#9825;</button>' +
+        '<span class="ba-badge-rate">&#9733; ' + b.rate + '</span>' +
+      '</div>' +
+      '<div class="ba-meta">' +
+        '<div class="ba-title">' + b.title + (b.crown ? ' <span class="crown">&#128081;</span>' : '') + '</div>' +
+        '<div class="ba-author"><span data-en="by" data-bm="oleh">by</span> ' + b.author + '</div>' +
+      '</div>';
+    // heart toggle without navigating
+    a.querySelector('.ba-heart').addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation(); this.classList.toggle('on');
+      this.innerHTML = this.classList.contains('on') ? '&#10084;' : '&#9825;';
+    });
+    grid.appendChild(a);
+  });
+
+  // ---- genre + search filter ----
+  var curG = 'all', curQ = '';
+  function applyFilter() {
+    var shown = 0;
+    grid.querySelectorAll('.ba-card').forEach(function (c) {
+      var okG = curG === 'all' || (' ' + c.dataset.genres + ' ').indexOf(' ' + curG + ' ') >= 0;
+      var okQ = !curQ || c.dataset.text.indexOf(curQ) >= 0;
+      var vis = okG && okQ; c.classList.toggle('hide', !vis); if (vis) shown++;
+    });
+    var old = grid.querySelector('.ba-empty'); if (old) old.remove();
+    if (!shown) { var e = document.createElement('div'); e.className = 'ba-empty';
+      e.textContent = bm() ? 'Tiada buku ditemui.' : 'No books found.'; grid.appendChild(e); }
+    document.getElementById('baCount').textContent = shown + (bm() ? ' buku' : ' books');
+  }
+  document.querySelectorAll('.ba-genre').forEach(function (g) {
+    g.addEventListener('click', function () {
+      document.querySelectorAll('.ba-genre').forEach(function (x) { x.classList.toggle('on', x === g); });
+      curG = g.dataset.g; applyFilter();
+    });
+  });
+  document.getElementById('baSearch').addEventListener('input', function () {
+    curQ = this.value.trim().toLowerCase(); applyFilter();
+  });
+
+  // ---- bottom-nav active state on scroll target ----
+  document.querySelectorAll('.ba-nav-item').forEach(function (n) {
+    if (n.dataset.nav === 'profile') return;
+    n.addEventListener('click', function () {
+      document.querySelectorAll('.ba-nav-item').forEach(function (x) { x.classList.remove('on'); });
+      n.classList.add('on');
+    });
+  });
+
+  // ---- year + language toggle (extends shared pattern w/ placeholders) ----
+  function setYears() { document.querySelectorAll('#year').forEach(function (y) { y.textContent = new Date().getFullYear(); }); }
+  var langBtn = document.getElementById('langToggle');
   function applyLang(lang) {
     html.setAttribute('data-lang', lang);
-    document.querySelectorAll('[data-en][data-bm]').forEach(el => {
+    document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
       el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+    });
+    document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
     });
     langBtn.querySelector('.lang-en').classList.toggle('active', lang === 'en');
     langBtn.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
     try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    setYears(); applyFilter();
   }
-  langBtn.addEventListener('click', () => {
-    applyLang(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en');
-  });
+  langBtn.addEventListener('click', function () { applyLang(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+  setYears();
   try { if (localStorage.getItem('fs-lang') === 'bm') applyLang('bm'); } catch (e) {}
+  applyFilter();
 </script>
 <script src="feedback.js"></script>
 </body>
