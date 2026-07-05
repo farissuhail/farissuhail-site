@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="42%" r="62%">
-      <stop offset="0%" stop-color="#0c2411"/>
-      <stop offset="60%" stop-color="#06110a"/>
-      <stop offset="100%" stop-color="#030704"/>
+    <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#0a1c08"/>
+      <stop offset="60%" stop-color="#051004"/>
+      <stop offset="100%" stop-color="#020602"/>
     </radialGradient>
-    <filter id="neon" x="-45%" y="-45%" width="190%" height="190%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+    <filter id="neon" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.7" result="b"/>
       <feMerge>
         <feMergeNode in="b"/>
         <feMergeNode in="b"/>
@@ -16,13 +16,19 @@
   </defs>
 
   <rect width="64" height="64" rx="13" fill="url(#bg)"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="11.5" fill="none" stroke="#1c7a33" stroke-opacity="0.5" stroke-width="1"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="11.5" fill="none" stroke="#2f7a1c" stroke-opacity="0.45" stroke-width="1"/>
 
-  <!-- FS monogram, neon tube -->
-  <g fill="none" stroke-linecap="round" stroke-linejoin="miter" filter="url(#neon)">
-    <path d="M33 15 L18 15 L18 49 M18 30.5 L29 30.5" stroke="#31e654" stroke-width="6"/>
-    <path d="M49 15 L35 15 L35 30 L49 30 L49 49 L35 49" stroke="#31e654" stroke-width="6"/>
-    <path d="M33 15 L18 15 L18 49 M18 30.5 L29 30.5" stroke="#ccffd6" stroke-width="2"/>
-    <path d="M49 15 L35 15 L35 30 L49 30 L49 49 L35 49" stroke="#ccffd6" stroke-width="2"/>
+  <!-- FS monogram — blocky neon bars -->
+  <g fill="#8dff1f" filter="url(#neon)">
+    <!-- F -->
+    <rect x="15" y="17" width="6" height="30" rx="1.6"/>
+    <rect x="15" y="17" width="15.5" height="5.6" rx="1.6"/>
+    <rect x="15" y="28.5" width="12.5" height="5.6" rx="1.6"/>
+    <!-- S -->
+    <rect x="33" y="17" width="16" height="5.6" rx="1.6"/>
+    <rect x="43.4" y="17" width="5.6" height="17" rx="1.6"/>
+    <rect x="33" y="28.5" width="16" height="5.6" rx="1.6"/>
+    <rect x="33" y="28.5" width="5.6" height="18.5" rx="1.6"/>
+    <rect x="33" y="41.4" width="16" height="5.6" rx="1.6"/>
   </g>
 </svg>
