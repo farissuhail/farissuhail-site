@@ -144,7 +144,7 @@
     .pcard p { font-size: 13.5px; line-height: 1.6; color: #a4a4b5; margin-bottom: auto; }
     .pcard .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
     .pcard:hover .go { gap: 12px; }
-    .pcard.green { --c: var(--accent); } .pcard.gold { --c: var(--gold); } .pcard.cyan { --c: var(--cyan); } .pcard.blue { --c: var(--blue); }
+    .pcard.green { --c: var(--accent); } .pcard.gold { --c: var(--gold); } .pcard.cyan { --c: var(--cyan); } .pcard.blue { --c: var(--blue); } .pcard.violet { --c: #a78bfa; }
     .pcard .num, .pcard .go { color: var(--c); }
     .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.6; }
     .pcard:hover { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
@@ -260,7 +260,7 @@
 
 <!-- ===== PILLARS ===== -->
 <section id="pillars">
-  <div class="ph" data-en="Four ways in" data-bm="Empat jalan masuk">Four ways in</div>
+  <div class="ph" data-en="Five ways in" data-bm="Lima jalan masuk">Five ways in</div>
   <div class="pstage" id="pstage">
     <a class="pcard green" href="reflections.html">
       <div class="num">01</div>
@@ -286,13 +286,20 @@
       <p data-en="Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping." data-bm="Buku bermanfaat, diringkaskan secara jelas — apa yang ia beri, dan satu idea yang patut disimpan.">Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping.</p>
       <span class="go" data-en="Browse summaries →" data-bm="Lihat ringkasan →">Browse summaries →</span>
     </a>
+    <a class="pcard violet" href="npam.html">
+      <div class="num">05</div>
+      <h3 data-en="Political View" data-bm="Pandangan Politik">Political View</h3>
+      <p data-en="Malaysia's political mood, mapped — a non-partisan citizen-sentiment dashboard and a sample intelligence showcase." data-bm="Sentimen politik Malaysia, dipetakan — papan pemuka sentimen rakyat tidak berpihak dan pameran perisikan sampel.">Malaysia's political mood, mapped — a non-partisan citizen-sentiment dashboard and a sample intelligence showcase.</p>
+      <span class="go" data-en="Open Political View →" data-bm="Buka Pandangan Politik →">Open Political View →</span>
+    </a>
   </div>
-  <div class="plink-track" id="plinkTrack" role="tablist" aria-label="Four ways in">
+  <div class="plink-track" id="plinkTrack" role="tablist" aria-label="Five ways in">
     <span class="plink-fill" id="plinkFill"></span>
     <button class="pnode" data-i="0" style="left:0%" aria-label="Reflections">01</button>
-    <button class="pnode" data-i="1" style="left:33.333%" aria-label="Inspiration">02</button>
-    <button class="pnode" data-i="2" style="left:66.666%" aria-label="Kalam">03</button>
-    <button class="pnode" data-i="3" style="left:100%" aria-label="Book summaries">04</button>
+    <button class="pnode" data-i="1" style="left:25%" aria-label="Inspiration">02</button>
+    <button class="pnode" data-i="2" style="left:50%" aria-label="Kalam">03</button>
+    <button class="pnode" data-i="3" style="left:75%" aria-label="Book summaries">04</button>
+    <button class="pnode" data-i="4" style="left:100%" aria-label="Political View">05</button>
   </div>
 </section>
 
@@ -473,7 +480,7 @@
   }
   function go(i) { active = (i % N + N) % N; layout(); }
   function next() { go(active + 1); }
-  function start() { stop(); timer = setInterval(next, 4200); }
+  function start() { stop(); timer = setInterval(next, 4600); }
   function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
   var suppress = false;
@@ -485,8 +492,7 @@
   });
   nodes.forEach(function (n) { n.addEventListener('click', function () { go(+n.dataset.i); start(); }); });
 
-  stage.addEventListener('pointerenter', stop); stage.addEventListener('pointerleave', start);
-  track.addEventListener('pointerenter', stop); track.addEventListener('pointerleave', start);
+  // keeps auto-gliding on its own; pauses only while actively pressed/dragged (below)
 
   // drag / swipe
   var down = false, sx = 0, dx = 0;
