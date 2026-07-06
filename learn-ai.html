@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn AI at The Mdrn Urban — free, jargon-free interactive courses for absolute beginners. Start with Learn OpenClaw: 6 lessons with quizzes on personal AI agents." />
+  <title>Learn AI · The Mdrn Urban · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <meta name="theme-color" content="#09090b" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Learn AI · The Mdrn Urban" />
+  <meta property="og:description" content="Free, jargon-free interactive AI courses for absolute beginners — noobs welcome." />
+  <meta property="og:url" content="https://farissuhail.com/learn-ai.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Learn AI · The Mdrn Urban" />
+  <meta name="twitter:description" content="Free, jargon-free interactive AI courses for absolute beginners." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .la-wrap { max-width: 1080px; margin: 0 auto; padding: 120px 24px 80px; }
+    .la-kicker { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff7a59; margin-bottom: 16px; }
+    .la-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(42px, 7vw, 76px); line-height: 1.05; letter-spacing: -0.01em; color: #f1f1f5; margin-bottom: 18px; }
+    .la-sub { color: rgba(255,255,255,0.65); font-weight: 300; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.7; max-width: 42rem; margin-bottom: 56px; }
+    .la-h { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+    .la-h h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #f1f1f5; }
+    .la-h span { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #6e7280; }
+    .la-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .la-card { position: relative; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); padding: 26px 24px 22px; overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease; }
+    .la-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c, #ff7a59); opacity: 0.65; }
+    .la-card:hover { transform: translateY(-5px); border-color: rgba(255,122,89,0.45); }
+    .la-card .emoji { font-size: 32px; margin-bottom: 14px; }
+    .la-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: #f1f1f5; margin-bottom: 8px; }
+    .la-card p { font-size: 13.5px; line-height: 1.65; color: #a4a4b5; margin-bottom: 18px; }
+    .la-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: auto; }
+    .la-tag { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; color: #9aa0b0;
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 4px 10px; }
+    .la-card .go { margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; color: var(--c, #ff7a59);
+      display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
+    .la-card:hover .go { gap: 12px; }
+    .la-card.soon { opacity: 0.65; }
+    .la-card.soon:hover { transform: none; border-color: rgba(255,255,255,0.1); }
+    .la-card.soon .go { color: #6e7280; }
+    .la-note { margin-top: 56px; border-left: 3px solid #ff7a59; background: rgba(255,255,255,0.03); border-radius: 0 14px 14px 0;
+      padding: 18px 22px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 46rem; }
+    .la-note b { color: #f1f1f5; }
+    footer.la-foot { border-top: 1px solid rgba(255,255,255,0.06); padding: 30px 24px 40px; text-align: center; }
+    footer.la-foot .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6e7280; letter-spacing: 0.04em; }
+    footer.la-foot a { color: #a4a4b5; font-size: 13px; margin: 0 9px; }
+    footer.la-foot a:hover { color: #fff; }
+    footer.la-foot .flinks { margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV (shared) ===== -->
+<header class="nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <nav class="nav-links">
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+    <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    <a href="npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
+    <a href="learn-ai.html" data-en="Learn AI" data-bm="Belajar AI">Learn AI</a>
+  </nav>
+  <div class="nav-cta">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
+    </button>
+  </div>
+</header>
+
+<main class="la-wrap">
+  <div class="la-kicker" data-en="AI learning · beginner friendly" data-bm="Pembelajaran AI · mesra pemula">AI learning · beginner friendly</div>
+  <h1 class="la-title" data-en="Learn AI" data-bm="Belajar AI">Learn AI</h1>
+  <p class="la-sub"
+     data-en="Free, interactive, jargon-free courses on AI — built for absolute beginners. No computer-science degree required; noobs are very welcome. Each course is short lessons plus quick quizzes, and your progress saves in your browser."
+     data-bm="Kursus AI percuma, interaktif dan tanpa jargon — dibina untuk pemula tulen. Tak perlu ijazah sains komputer; 'noobs' amat dialu-alukan. Setiap kursus terdiri daripada pelajaran ringkas dan kuiz pantas, dan progres anda disimpan dalam pelayar anda.">
+     Free, interactive, jargon-free courses on AI — built for absolute beginners. No computer-science degree required; noobs are very welcome. Each course is short lessons plus quick quizzes, and your progress saves in your browser.
+  </p>
+
+  <div class="la-h">
+    <h2 data-en="Courses" data-bm="Kursus">Courses</h2>
+    <span id="laCount" data-en="1 course · more coming" data-bm="1 kursus · lebih akan datang">1 course · more coming</span>
+  </div>
+
+  <div class="la-grid">
+    <a class="la-card" href="learn-openclaw.html" style="--c:#ff7a59">
+      <div class="emoji">🦞</div>
+      <h3 data-en="Learn OpenClaw" data-bm="Belajar OpenClaw">Learn OpenClaw</h3>
+      <p data-en="The open-source personal AI agent that runs on your own machine — what it is, how it works, how to set it up safely, and how to extend it with skills."
+         data-bm="Ejen AI peribadi sumber terbuka yang berjalan pada mesin anda sendiri — apa itu, cara ia berfungsi, cara memasangnya dengan selamat, dan cara meluaskannya dengan skills.">
+         The open-source personal AI agent that runs on your own machine — what it is, how it works, how to set it up safely, and how to extend it with skills.</p>
+      <div class="la-tags">
+        <span class="la-tag" data-en="6 lessons" data-bm="6 pelajaran">6 lessons</span>
+        <span class="la-tag" data-en="Quizzes" data-bm="Kuiz">Quizzes</span>
+        <span class="la-tag" data-en="~45 min" data-bm="~45 min">~45 min</span>
+        <span class="la-tag" data-en="Free" data-bm="Percuma">Free</span>
+      </div>
+      <span class="go" data-en="Start the course →" data-bm="Mula kursus →">Start the course →</span>
+    </a>
+
+    <div class="la-card soon" style="--c:#6e7280">
+      <div class="emoji">🌱</div>
+      <h3 data-en="More courses coming" data-bm="Kursus lain akan datang">More courses coming</h3>
+      <p data-en="Prompting basics, AI safety for everyday users, and building your first automation — in the works."
+         data-bm="Asas prompting, keselamatan AI untuk pengguna harian, dan membina automasi pertama anda — sedang diusahakan.">
+         Prompting basics, AI safety for everyday users, and building your first automation — in the works.</p>
+      <div class="la-tags">
+        <span class="la-tag" data-en="In progress" data-bm="Dalam proses">In progress</span>
+      </div>
+      <span class="go" data-en="Stay tuned" data-bm="Nantikan">Stay tuned</span>
+    </div>
+  </div>
+
+  <div class="la-note"
+     data-en="<b>Why this section exists:</b> AI is moving fast, and most explainers assume you already speak the language. These courses assume nothing — plain words, real examples, and honest notes on risks and security."
+     data-bm="<b>Kenapa seksyen ini wujud:</b> AI bergerak pantas, dan kebanyakan penerangan menganggap anda sudah faham istilahnya. Kursus di sini tidak menganggap apa-apa — bahasa mudah, contoh sebenar, dan nota jujur tentang risiko dan keselamatan.">
+     <b>Why this section exists:</b> AI is moving fast, and most explainers assume you already speak the language. These courses assume nothing — plain words, real examples, and honest notes on risks and security.
+  </div>
+</main>
+
+<footer class="la-foot">
+  <div class="flinks">
+    <a href="index.html" data-en="Home" data-bm="Utama">Home</a>
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="kalam.html">Kalam</a>
+    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    <a href="mailto:tech@farissuhail.com" data-en="Contact" data-bm="Hubungi">Contact</a>
+  </div>
+  <span class="copy">© <span id="year"></span> · The Mdrn Urban · KL, MY</span>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var html = document.documentElement;
+  function setYears() { document.querySelectorAll('#year').forEach(function (y) { y.textContent = new Date().getFullYear(); }); }
+  var langBtn = document.getElementById('langToggle');
+  function applyLang(lang) {
+    html.setAttribute('data-lang', lang);
+    document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+      el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+    });
+    langBtn.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+    langBtn.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+    try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    setYears();
+  }
+  langBtn.addEventListener('click', function () { applyLang(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+  setYears();
+  try { if (localStorage.getItem('fs-lang') === 'bm') applyLang('bm'); } catch (e) {}
+})();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
