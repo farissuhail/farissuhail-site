@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analitika Malaya — Narrative Intelligence</title>
+<meta name="description" content="Analitika Malaya — a narrative-intelligence platform that reads Malaysia's public information environment. Aggregate, non-partisan, transparent by charter." />
+<meta property="og:title" content="Analitika Malaya — Narrative Intelligence" />
+<meta property="og:description" content="Read the information environment. Understand the narratives. Respond with facts, not fabrication." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#05070b" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#05070b;
+  --bg-2:#080b12;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.09);
+  --border-2:rgba(255,255,255,.14);
+  --text:#e8eef6;
+  --muted:#93a1b5;
+  --faint:#5d6a7d;
+  --emerald:#35e29a;
+  --cyan:#22d3ee;
+  --violet:#8b7bff;
+  --amber:#ffcf4a;
+  --neg:#ff5a4d;
+  --glow-e:0 0 24px rgba(53,226,154,.45);
+  --glow-c:0 0 24px rgba(34,211,238,.4);
+  --disp:'Space Grotesk',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+body[data-lang="en"] .bm{display:none}
+body[data-lang="bm"] .en{display:none}
+::selection{background:var(--emerald);color:#04120c}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ambient aurora backdrop */
+.aura{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.aura::before,.aura::after{content:"";position:absolute;width:60vw;height:60vw;border-radius:50%;filter:blur(120px);opacity:.5}
+.aura::before{background:radial-gradient(circle,rgba(53,226,154,.22),transparent 62%);top:-18vw;right:-10vw;animation:drift 22s ease-in-out infinite alternate}
+.aura::after{background:radial-gradient(circle,rgba(34,211,238,.18),transparent 62%);bottom:-22vw;left:-14vw;animation:drift2 26s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-6vw,8vw) scale(1.15)}}
+@keyframes drift2{to{transform:translate(8vw,-6vw) scale(1.2)}}
+.grid-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 80%)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+.mono{font-family:var(--mono)}
+.grad{background:linear-gradient(100deg,var(--emerald),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- Nav ---------- */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(1.4);
+  background:linear-gradient(180deg,rgba(5,7,11,.82),rgba(5,7,11,.5));border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:600;letter-spacing:.01em;font-size:16px}
+.brand .orb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--emerald),#0b6a4a 70%);
+  box-shadow:var(--glow-e);position:relative}
+.brand .orb::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(53,226,154,.5);animation:ring 3s ease-out infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+.nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.nav-links a{position:relative;transition:.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--emerald);transition:.25s}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:14px}
+.langtoggle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:var(--panel);border:1px solid var(--border-2);
+  color:var(--muted);padding:7px 11px;cursor:pointer;border-radius:7px;transition:.2s}
+.langtoggle:hover{border-color:var(--emerald);color:var(--text)}
+.btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;cursor:pointer;border:0;
+  padding:12px 20px;border-radius:9px;transition:.22s;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+.btn-primary{background:linear-gradient(100deg,var(--emerald),#19b47f);color:#04120c;font-weight:500;box-shadow:0 6px 24px rgba(53,226,154,.28)}
+.btn-primary:hover{box-shadow:0 10px 34px rgba(53,226,154,.5);transform:translateY(-1px)}
+.btn-ghost{background:var(--panel);border:1px solid var(--border-2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--emerald);background:var(--panel-2)}
+.btn .arr{transition:transform .22s}
+.btn:hover .arr{transform:translateX(4px)}
+.nav-links.only-lg,.brand-tag{display:flex}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;padding:40px 0 70px;overflow:hidden;touch-action:pan-y}
+#cosmos{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;cursor:grab}
+.hero.orbiting #cosmos{cursor:grabbing}
+.orbit-hint{position:absolute;z-index:3;bottom:70px;left:50%;transform:translateX(-50%);pointer-events:none;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(140,220,255,.5);
+  text-shadow:0 0 8px rgba(34,211,238,.4);transition:opacity 1s}
+.orbit-hint.gone{opacity:0}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(5,7,11,.92) 0%,rgba(5,7,11,.62) 34%,rgba(5,7,11,.15) 62%,rgba(5,7,11,.4) 100%),
+             radial-gradient(120% 90% at 20% 50%,transparent 40%,rgba(5,7,11,.55) 100%)}
+.hero-inner{z-index:2}
+/* world-clock HUD */
+.hud-clocks{position:absolute;inset:0;z-index:3;pointer-events:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:rgba(140,220,255,.82);text-shadow:0 0 8px rgba(34,211,238,.55)}
+.hud-clocks .clk{position:absolute;display:flex;flex-direction:column;gap:6px}
+.hud-clocks .clk>div{border:1px solid rgba(34,211,238,.28);background:rgba(6,14,22,.42);backdrop-filter:blur(3px);
+  padding:5px 10px;border-radius:5px;white-space:nowrap}
+.hud-clocks .tl{top:82px;left:26px}
+.hud-clocks .tr{top:82px;right:26px;text-align:right;align-items:flex-end}
+.hud-clocks .bl{bottom:26px;left:26px}
+.hud-clocks .br{bottom:26px;right:26px;text-align:right;align-items:flex-end}
+/* data-music toggle */
+.sound-btn{position:absolute;z-index:4;bottom:26px;left:50%;transform:translateX(-50%);
+  display:inline-flex;align-items:center;gap:11px;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+  color:var(--muted);background:rgba(8,12,20,.5);border:1px solid var(--border-2);padding:9px 16px;border-radius:100px;backdrop-filter:blur(8px);transition:.25s}
+.sound-btn:hover{border-color:var(--emerald);color:var(--text)}
+.sound-btn.on{border-color:var(--cyan);color:#d4f6ff;box-shadow:0 0 22px rgba(34,211,238,.35)}
+.sound-btn .eq{display:inline-flex;align-items:flex-end;gap:2px;height:13px}
+.sound-btn .eq i{width:2.5px;height:4px;background:currentColor;border-radius:1px}
+.sound-btn.on .eq i{animation:eq .9s ease-in-out infinite}
+.sound-btn.on .eq i:nth-child(2){animation-delay:.15s}.sound-btn.on .eq i:nth-child(3){animation-delay:.3s}.sound-btn.on .eq i:nth-child(4){animation-delay:.45s}
+@keyframes eq{0%,100%{height:4px}50%{height:13px}}
+.hero-inner{position:relative;z-index:2;max-width:640px}
+.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--emerald);background:rgba(53,226,154,.08);border:1px solid rgba(53,226,154,.28);padding:7px 13px;border-radius:100px;margin-bottom:26px}
+.badge .live{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:var(--glow-e);animation:blink 1.8s infinite}
+@keyframes blink{50%{opacity:.35}}
+.hero h1{font-family:var(--disp);font-weight:600;font-size:clamp(38px,6.4vw,72px);line-height:1.02;letter-spacing:-.02em}
+.hero h1 .grad{font-style:normal}
+.hero .standfirst{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:52ch;margin-top:26px;line-height:1.6}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;align-items:center}
+.hero-chips{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.chip{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 18px;backdrop-filter:blur(8px);min-width:132px}
+.chip .n{font-family:var(--disp);font-weight:600;font-size:24px;letter-spacing:-.01em;line-height:1}
+.chip .n .u{font-size:15px;color:var(--emerald)}
+.chip .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:9px}
+
+/* signal ticker */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.015);
+  overflow:hidden;white-space:nowrap;padding:12px 0}
+.ticker-track{display:inline-block;animation:scroll 26s linear infinite;font-family:var(--mono);font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.ticker-track span{margin:0 24px}
+.ticker-track b{color:var(--emerald);font-weight:400}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- Section scaffold ---------- */
+.section{padding:100px 0;position:relative}
+.sec-head{margin-bottom:52px;max-width:60ch}
+.sec-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--emerald);
+  display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec-kicker .no{color:var(--faint)}
+.sec-kicker::after{content:"";height:1px;width:56px;background:linear-gradient(90deg,var(--emerald),transparent)}
+.sec-title{font-family:var(--disp);font-weight:600;font-size:clamp(28px,4.2vw,44px);line-height:1.08;letter-spacing:-.015em}
+
+/* Thesis */
+.essay{max-width:64ch;font-size:19px;line-height:1.72;color:var(--muted)}
+.essay p{margin-bottom:1.1em}
+.essay em{color:var(--text);font-style:normal;border-bottom:1px solid rgba(53,226,154,.4)}
+.pull{position:relative;font-family:var(--disp);font-weight:500;font-size:clamp(22px,3.2vw,30px);line-height:1.3;color:var(--text);
+  margin:46px 0;padding:30px 34px;background:var(--panel);border:1px solid var(--border);border-radius:16px;max-width:30ch;overflow:hidden}
+.pull::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--emerald),var(--cyan));box-shadow:var(--glow-e)}
+
+/* Framework tilt cards */
+.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1400px}
+.tier{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:32px 28px 34px;
+  transform-style:preserve-3d;transition:transform .12s ease-out, border-color .3s, box-shadow .3s;will-change:transform;overflow:hidden}
+.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--emerald),var(--cyan));opacity:.85}
+.tier::after{content:"";position:absolute;inset:0;border-radius:18px;opacity:0;transition:.35s;pointer-events:none;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(53,226,154,.12),transparent 60%)}
+.tier:hover{border-color:var(--border-2);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.tier:hover::after{opacity:1}
+.tier .idx{font-family:var(--mono);font-size:12px;color:var(--emerald);letter-spacing:.1em;transform:translateZ(30px)}
+.tier h3{font-family:var(--disp);font-weight:600;font-size:26px;margin:18px 0 4px;transform:translateZ(24px)}
+.tier .gloss{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;transform:translateZ(18px)}
+.tier p{font-size:15.5px;color:var(--muted);line-height:1.6;transform:translateZ(14px)}
+.tier ul{list-style:none;margin-top:16px;transform:translateZ(14px)}
+.tier li{font-family:var(--mono);font-size:13px;color:var(--muted);padding:9px 0;border-top:1px solid var(--border);display:flex;gap:10px}
+.tier li::before{content:"▸";color:var(--emerald)}
+.flow{text-align:center;font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--faint);margin-top:34px}
+.flow b{color:var(--emerald)}
+
+/* Capabilities */
+.caps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cap{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.3s;position:relative;overflow:hidden}
+.cap:hover{border-color:rgba(53,226,154,.4);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.cap .ico{width:42px;height:42px;border-radius:11px;background:rgba(53,226,154,.1);border:1px solid rgba(53,226,154,.3);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.cap .ico svg{width:22px;height:22px;stroke:var(--emerald);fill:none;stroke-width:1.6}
+.cap h4{font-family:var(--disp);font-weight:600;font-size:19px;margin-bottom:8px}
+.cap p{font-size:15px;color:var(--muted);line-height:1.6}
+.cap.shield .ico{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3)}
+.cap.shield .ico svg{stroke:var(--cyan)}
+
+/* Charter */
+.charter{position:relative;border:1px solid var(--border-2);border-radius:22px;padding:clamp(34px,5vw,64px);overflow:hidden;
+  background:linear-gradient(160deg,rgba(53,226,154,.06),rgba(34,211,238,.03) 40%,transparent 70%)}
+.charter::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,rgba(53,226,154,.5),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.charter h2{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.6vw,38px);line-height:1.1;max-width:20ch;margin-bottom:14px;position:relative}
+.charter .intro{color:var(--muted);max-width:56ch;font-size:17px;position:relative;margin-bottom:42px}
+.charter-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;position:relative}
+.principle{background:var(--bg-2);padding:28px 30px}
+.principle .no{font-family:var(--mono);font-size:12px;color:var(--emerald);letter-spacing:.1em;margin-bottom:14px}
+.principle h4{font-family:var(--disp);font-weight:600;font-size:19px;margin-bottom:8px}
+.principle p{font-size:14.5px;color:var(--muted);line-height:1.55}
+
+/* Sample */
+.sample{border:1px solid var(--border-2);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1fr 1.05fr;background:var(--panel)}
+.sample-copy{padding:clamp(30px,4vw,52px)}
+.sample-copy h3{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.4vw,32px);line-height:1.1;margin-bottom:16px}
+.sample-copy p{font-size:16px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.sample-copy .note{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:24px}
+.sample-vis{background:linear-gradient(160deg,#070c11,#040608);position:relative;padding:30px;font-family:var(--mono);
+  border-left:1px solid var(--border);min-height:380px}
+.hud{position:absolute;width:14px;height:14px;border:1px solid rgba(53,226,154,.5)}
+.hud.tl{top:14px;left:14px;border-right:0;border-bottom:0}.hud.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.hud.bl{bottom:14px;left:14px;border-right:0;border-top:0}.hud.br{bottom:14px;right:14px;border-left:0;border-top:0}
+.sample-vis .vtop{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5f7a6d;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:14px}
+.sample-vis .shield{color:var(--emerald)}
+.svtitle{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7f9c8d;margin:24px 0 16px}
+.bars{display:flex;flex-direction:column;gap:14px}
+.bar-row{display:grid;grid-template-columns:92px 1fr 34px;gap:12px;align-items:center;font-size:11px}
+.bar-row .lab{color:#9db7a9}
+.bar-track{height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#19b47f,var(--emerald));width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 12px rgba(53,226,154,.5)}
+.bar-fill.mix{background:linear-gradient(90deg,#d9a72f,var(--amber));box-shadow:0 0 12px rgba(255,207,74,.4)}
+.bar-fill.neg{background:linear-gradient(90deg,#d13e33,var(--neg));box-shadow:0 0 12px rgba(255,90,77,.4)}
+.bar-row .pct{text-align:right;color:#cfe3d8}
+.sample-vis .vfoot{position:absolute;left:30px;right:30px;bottom:24px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#4f6a5d;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;display:flex;justify-content:space-between}
+
+/* CTA */
+.cta{padding:110px 0 100px;text-align:center;position:relative}
+.cta h2{font-family:var(--disp);font-weight:600;font-size:clamp(30px,5.4vw,56px);line-height:1.03;letter-spacing:-.02em;max-width:18ch;margin:0 auto 20px}
+.cta .lead-c{font-size:18px;color:var(--muted);max-width:50ch;margin:0 auto 42px}
+.leadform{max-width:540px;margin:0 auto;text-align:left;background:var(--panel);border:1px solid var(--border-2);
+  border-radius:20px;padding:34px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.leadform::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--emerald),var(--cyan),transparent)}
+.leadform .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.leadform label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);display:block;margin:16px 0 7px}
+.leadform input,.leadform textarea{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--border-2);border-radius:10px;
+  padding:13px 14px;font-family:var(--body);font-size:15px;color:var(--text);transition:.2s}
+.leadform input:focus,.leadform textarea:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(53,226,154,.14)}
+.leadform textarea{resize:vertical;min-height:92px}
+.leadform button{width:100%;margin-top:24px;justify-content:center}
+.formnote{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--faint);text-align:center;margin-top:18px}
+.formstatus{text-align:center;font-family:var(--mono);font-size:12px;margin-top:14px;min-height:18px}
+.formstatus.ok{color:var(--emerald)}.formstatus.err{color:var(--neg)}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:52px 0 60px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer .cols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px}
+footer .brand{font-family:var(--disp);color:var(--text)}
+footer a{color:var(--muted);transition:.2s}footer a:hover{color:var(--emerald)}
+footer .links{display:flex;gap:24px;flex-wrap:wrap}
+footer .fine{margin-top:30px;color:var(--faint);font-size:10px;letter-spacing:.1em;text-transform:uppercase;line-height:1.8}
+
+@media(max-width:900px){
+  .hud-clocks .tl,.hud-clocks .tr{top:74px}
+  .hud-clocks{font-size:9.5px;letter-spacing:.1em}
+  .hud-clocks .clk>div{padding:4px 7px}
+  .hero-scrim{background:linear-gradient(180deg,rgba(5,7,11,.55),rgba(5,7,11,.82) 55%,rgba(5,7,11,.7))}
+  .hero-inner{max-width:none}
+  .triptych{grid-template-columns:1fr}
+  .caps-grid{grid-template-columns:1fr}
+  .charter-grid{grid-template-columns:1fr}
+  .sample{grid-template-columns:1fr}
+  .sample-vis{border-left:0;border-top:1px solid var(--border)}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .leadform .row{grid-template-columns:1fr}
+  .leadform{padding:24px}
+  .hero-chips .chip{min-width:calc(50% - 7px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .aura::before,.aura::after,.ticker-track,.brand .orb::after,.badge .live,.sound-btn .eq i{animation:none}
+}
+</style>
+</head>
+<body data-lang="en">
+<div class="aura"></div>
+<div class="grid-bg"></div>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="orb"></span> Analitika Malaya</a>
+    <div class="nav-links">
+      <a href="#thesis"><span class="en">Thesis</span><span class="bm">Tesis</span></a>
+      <a href="#framework"><span class="en">Method</span><span class="bm">Kaedah</span></a>
+      <a href="#capabilities"><span class="en">Signal</span><span class="bm">Isyarat</span></a>
+      <a href="#charter"><span class="en">Charter</span><span class="bm">Piagam</span></a>
+      <a href="analitika.html"><span class="en">Dashboard</span><span class="bm">Papan Pemuka</span></a>
+    </div>
+    <div class="nav-right">
+      <button class="langtoggle" id="langBtn" aria-label="Toggle language">EN · <span style="opacity:.5">BM</span></button>
+      <a class="btn btn-primary" href="#access"><span class="en">Request access</span><span class="bm">Mohon akses</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="cosmos"></canvas>
+  <div class="hero-scrim"></div>
+  <!-- world-clock HUD -->
+  <div class="hud-clocks" aria-hidden="true">
+    <div class="clk tl"><div data-tz="UTC" data-lab="UTC">UTC 00:00:00</div><div data-tz="Europe/London" data-lab="LND">LND 00:00:00</div></div>
+    <div class="clk tr"><div data-tz="America/Los_Angeles" data-lab="SF">SF 00:00:00</div><div data-tz="Asia/Tokyo" data-lab="TYO">TYO 00:00:00</div></div>
+    <div class="clk bl"><div data-tz="America/New_York" data-lab="NYC">NYC 00:00:00</div></div>
+    <div class="clk br"><div data-tz="Europe/Moscow" data-lab="MOS">MOS 00:00:00</div></div>
+  </div>
+  <div class="orbit-hint" id="orbitHint" aria-hidden="true"><span class="en">⟲ drag to orbit the network</span><span class="bm">⟲ seret untuk mengorbit rangkaian</span></div>
+  <button id="soundBtn" class="sound-btn" aria-pressed="false">
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+    <span class="en">Data music</span><span class="bm">Muzik data</span>
+  </button>
+  <div class="wrap hero-inner">
+    <div class="badge"><span class="live"></span> <span class="en">Narrative Intelligence · Malaysia</span><span class="bm">Perisikan Naratif · Malaysia</span></div>
+    <h1 class="en">Read the <span class="grad">information<br>environment</span> in real time.</h1>
+    <h1 class="bm">Baca <span class="grad">persekitaran<br>maklumat</span> secara masa nyata.</h1>
+    <p class="standfirst en">Analitika Malaya maps how stories move through the nation's public conversation — where sentiment turns, and how inauthentic amplification distorts the signal — so decisions answer to evidence, not noise.</p>
+    <p class="standfirst bm">Analitika Malaya memetakan bagaimana cerita bergerak dalam perbualan awam negara — di mana sentimen berubah, dan bagaimana amplifikasi tidak tulen memesongkan isyarat — supaya keputusan menjawab kepada bukti, bukan bunyi bising.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#access"><span class="en">Request access</span><span class="bm">Mohon akses</span> <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="analitika.html"><span class="en">Launch live dashboard</span><span class="bm">Lancar papan pemuka</span> <span class="arr">↗</span></a>
+    </div>
+    <div class="hero-chips">
+      <div class="chip"><div class="n" data-count="2.4"><span data-suffix>0</span><span class="u">M</span></div><div class="l en">Posts / day · sample</div><div class="l bm">Siaran / hari · sampel</div></div>
+      <div class="chip"><div class="n" data-count="16"><span data-suffix>0</span></div><div class="l en">Regions tracked</div><div class="l bm">Wilayah dijejak</div></div>
+      <div class="chip"><div class="n">0<span class="u"> PII</span></div><div class="l en">Individuals profiled</div><div class="l bm">Individu diprofil</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ticker -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span><b>◆</b> Sentiment</span><span><b>◆</b> Narratives</span><span><b>◆</b> SHIELD coordination</span><span><b>◆</b> Geography</span><span><b>◆</b> Bot detection</span><span><b>◆</b> Coalition mood</span><span><b>◆</b> Fact amplification</span>
+    <span><b>◆</b> Sentiment</span><span><b>◆</b> Narratives</span><span><b>◆</b> SHIELD coordination</span><span><b>◆</b> Geography</span><span><b>◆</b> Bot detection</span><span><b>◆</b> Coalition mood</span><span><b>◆</b> Fact amplification</span>
+  </div>
+</div>
+
+<!-- ============ 01 THESIS ============ -->
+<section class="section" id="thesis">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker"><span class="no">01</span> <span class="en">The Thesis</span><span class="bm">Tesis</span></div>
+      <h2 class="sec-title en">Facts no longer travel alone.</h2>
+      <h2 class="sec-title bm">Fakta tidak lagi bergerak sendirian.</h2>
+    </div>
+    <div class="essay en">
+      <p>A single event — a budget line, a court ruling, a viral clip — enters the public square already wrapped in competing stories. By the time it reaches most citizens, what they receive is not the fact but the frame around it. Whoever shapes that frame first, and loudest, shapes what the event <em>means</em>.</p>
+      <div class="pull">The battle is rarely over what happened. It is over what it is allowed to mean.</div>
+      <p>Traditional polling tells you what people think today; it cannot tell you which narrative is quietly gaining ground, nor whether that momentum is genuine or manufactured by a handful of coordinated accounts. Analitika Malaya was built for exactly that gap — not to spin, not to profile individuals, but to make the shape of the conversation legible, and to answer distortion with verified fact.</p>
+    </div>
+    <div class="essay bm">
+      <p>Satu peristiwa — satu baris belanjawan, satu keputusan mahkamah, satu klip tular — memasuki ruang awam sudah pun berbalut dengan cerita yang bersaing. Ketika ia sampai kepada kebanyakan rakyat, apa yang diterima bukan fakta itu tetapi bingkai di sekelilingnya. Siapa yang membentuk bingkai itu dahulu, dan paling lantang, membentuk <em>makna</em> peristiwa itu.</p>
+      <div class="pull">Pertarungan jarang tentang apa yang berlaku. Ia tentang apa yang dibenarkan untuk bermakna.</div>
+      <p>Tinjauan tradisional memberitahu anda apa yang orang fikir hari ini; ia tidak dapat memberitahu naratif mana yang sedang menguat, atau sama ada momentum itu tulen atau dibuat-buat oleh segelintir akaun terselaras. Analitika Malaya dibina khusus untuk jurang itu — bukan untuk memutar cerita, bukan untuk memprofil individu, tetapi untuk menjadikan bentuk perbualan boleh dibaca, dan menjawab herotan dengan fakta yang disahkan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 FRAMEWORK ============ -->
+<section class="section" id="framework">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker"><span class="no">02</span> <span class="en">The Method — Three Tiers</span><span class="bm">Kaedah — Tiga Peringkat</span></div>
+      <h2 class="sec-title en">Strategik <span class="grad">→</span> Taktikal <span class="grad">→</span> Operasi</h2>
+      <h2 class="sec-title bm">Strategik <span class="grad">→</span> Taktikal <span class="grad">→</span> Operasi</h2>
+    </div>
+    <div class="triptych" id="triptych">
+      <div class="tier">
+        <div class="idx">I / STRATEGIK</div>
+        <h3>Strategik</h3>
+        <div class="gloss en">The narrative to win or counter</div><div class="gloss bm">Naratif untuk menang atau melawan</div>
+        <p class="en">Identify the central story shaping how an issue is understood — the one node everything else orbits. Track its reach, its sentiment, and its trajectory over time.</p>
+        <p class="bm">Kenal pasti cerita utama yang membentuk cara sesuatu isu difahami — satu nod yang segalanya beredar. Jejak jangkauan, sentimen, dan lintasannya sepanjang masa.</p>
+      </div>
+      <div class="tier">
+        <div class="idx">II / TAKTIKAL</div>
+        <h3>Taktikal</h3>
+        <div class="gloss en">Approaches to strengthen or counter</div><div class="gloss bm">Pendekatan untuk mengukuh atau melawan</div>
+        <p class="en">Break the strategy into workable angles — which sub-arguments resonate, which audiences are moving, which framings earn trust rather than resistance.</p>
+        <p class="bm">Pecahkan strategi kepada sudut yang boleh dilaksanakan — hujah kecil mana yang bergema, khalayak mana yang bergerak, bingkai mana yang meraih kepercayaan.</p>
+      </div>
+      <div class="tier">
+        <div class="idx">III / OPERASI</div>
+        <h3>Operasi</h3>
+        <div class="gloss en">Concrete, legitimate action</div><div class="gloss bm">Tindakan konkrit yang sah</div>
+        <ul>
+          <li><span class="en">Amplify verified facts</span><span class="bm">Perkukuh fakta disahkan</span></li>
+          <li><span class="en">Engage media with evidence</span><span class="bm">Libat media dengan bukti</span></li>
+          <li><span class="en">Flag inauthentic / bot activity</span><span class="bm">Tanda aktiviti bot / tidak tulen</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow en">STRATEGIK <b>—</b> TAKTIKAL <b>—</b> OPERASI · <b>one pipeline</b></div>
+    <div class="flow bm">STRATEGIK <b>—</b> TAKTIKAL <b>—</b> OPERASI · <b>satu talian</b></div>
+  </div>
+</section>
+
+<!-- ============ 03 CAPABILITIES ============ -->
+<section class="section" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker"><span class="no">03</span> <span class="en">What It Observes</span><span class="bm">Apa Yang Diperhati</span></div>
+      <h2 class="sec-title en">Signal, not surveillance.</h2>
+      <h2 class="sec-title bm">Isyarat, bukan pengawasan.</h2>
+    </div>
+    <div class="caps-grid">
+      <div class="cap">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h4 class="en">Sentiment</h4><h4 class="bm">Sentimen</h4>
+        <p class="en">National mood, decomposed — positive, neutral and negative sentiment tracked by issue, region and time. The pulse behind the headlines.</p>
+        <p class="bm">Suasana negara, dihurai — sentimen positif, neutral dan negatif dijejak mengikut isu, wilayah dan masa. Nadi di sebalik tajuk berita.</p>
+      </div>
+      <div class="cap">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8M18 8l-5 8"/></svg></div>
+        <h4 class="en">Narratives</h4><h4 class="bm">Naratif</h4>
+        <p class="en">Stories ranked and traced — the top narratives in circulation, their momentum, and the accounts carrying them.</p>
+        <p class="bm">Cerita disenarai dan dijejak — naratif teratas dalam edaran, momentumnya, dan akaun yang membawanya.</p>
+      </div>
+      <div class="cap shield">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>SHIELD</h4>
+        <p class="en">Detects inauthentic amplification and bot-like clustering. It flags manipulation — it never deploys it.</p>
+        <p class="bm">Mengesan amplifikasi tidak tulen dan kelompok seperti bot. Ia menanda manipulasi — ia tidak pernah melancarkannya.</p>
+      </div>
+      <div class="cap">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8z"/></svg></div>
+        <h4 class="en">Geography</h4><h4 class="bm">Geografi</h4>
+        <p class="en">Sentiment mapped region by region across the peninsula and beyond, so local shifts aren't lost in national averages.</p>
+        <p class="bm">Sentimen dipetakan wilayah demi wilayah merentas semenanjung dan seterusnya, supaya anjakan tempatan tidak hilang dalam purata nasional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 CHARTER ============ -->
+<section class="section" id="charter">
+  <div class="wrap">
+    <div class="charter">
+      <div class="sec-kicker"><span class="en">The Charter</span><span class="bm">Piagam</span></div>
+      <h2 class="en">Power to read the information environment demands limits on how it is used.</h2>
+      <h2 class="bm">Kuasa membaca persekitaran maklumat menuntut had pada cara ia digunakan.</h2>
+      <p class="intro en">These are not marketing lines. They are the operating constraints of the platform — why it can be trusted by institutions and scrutinised by the public alike.</p>
+      <p class="intro bm">Ini bukan ayat pemasaran. Ia adalah kekangan operasi platform — sebab ia boleh dipercayai oleh institusi dan diteliti oleh orang awam sekali.</p>
+      <div class="charter-grid">
+        <div class="principle"><div class="no">01</div><h4 class="en">Public posts only</h4><h4 class="bm">Siaran awam sahaja</h4><p class="en">We analyse what is already public. No private messages, no scraped accounts, no back doors.</p><p class="bm">Kami menganalisis apa yang sudah awam. Tiada mesej peribadi, tiada akaun dikikis, tiada pintu belakang.</p></div>
+        <div class="principle"><div class="no">02</div><h4 class="en">Aggregate, not individual</h4><h4 class="bm">Agregat, bukan individu</h4><p class="en">Patterns and populations — never profiles of named people. No PII is stored, ever.</p><p class="bm">Corak dan populasi — bukan profil orang bernama. Tiada maklumat peribadi disimpan.</p></div>
+        <div class="principle"><div class="no">03</div><h4 class="en">SHIELD detects, never deploys</h4><h4 class="bm">SHIELD mengesan, tidak melancar</h4><p class="en">Our coordination detection exposes manipulation. It is structurally incapable of running it.</p><p class="bm">Pengesanan kami mendedahkan manipulasi. Ia secara struktur tidak mampu menjalankannya.</p></div>
+        <div class="principle"><div class="no">04</div><h4 class="en">One tool, every party</h4><h4 class="bm">Satu alat, setiap pihak</h4><p class="en">The same instrument is available to all sides. Non-partisan by design, not by promise.</p><p class="bm">Alat yang sama tersedia untuk semua pihak. Tidak berpihak melalui reka bentuk, bukan janji.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 SAMPLE ============ -->
+<section class="section" id="sample">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker"><span class="no">04</span> <span class="en">See It Working</span><span class="bm">Lihat Ia Berfungsi</span></div>
+      <h2 class="sec-title en">A live sample, with illustrative data.</h2>
+      <h2 class="sec-title bm">Sampel langsung, dengan data ilustrasi.</h2>
+    </div>
+    <div class="sample">
+      <div class="sample-copy">
+        <h3 class="en">The dashboard, in full.</h3>
+        <h3 class="bm">Papan pemuka, sepenuhnya.</h3>
+        <p class="en">Explore signal layers, regional presets, a national sentiment map, live narrative tracking and coalition sentiment — the complete Analitika Malaya interface, running on sample data so you can judge the instrument before you subscribe.</p>
+        <p class="bm">Terokai lapisan isyarat, pratetap wilayah, peta sentimen nasional, penjejakan naratif langsung dan sentimen gabungan — antara muka Analitika Malaya yang lengkap, berjalan atas data sampel supaya anda boleh menilai alat ini sebelum melanggan.</p>
+        <a class="btn btn-primary" href="analitika.html"><span class="en">Open the dashboard</span><span class="bm">Buka papan pemuka</span> <span class="arr">↗</span></a>
+        <div class="note en">Illustrative mockup · Sample data · No live persons</div>
+        <div class="note bm">Olok-olok ilustrasi · Data sampel · Tiada individu sebenar</div>
+      </div>
+      <div class="sample-vis" id="visPanel">
+        <span class="hud tl"></span><span class="hud tr"></span><span class="hud bl"></span><span class="hud br"></span>
+        <div class="vtop"><span>Analitika · Naratif</span><span class="shield">◆ Shield active</span></div>
+        <div class="svtitle en">National sentiment — top issues</div>
+        <div class="svtitle bm" style="display:none">Sentimen nasional — isu teratas</div>
+        <div class="bars">
+          <div class="bar-row"><span class="lab">Cost of living</span><div class="bar-track"><div class="bar-fill neg" data-w="78"></div></div><span class="pct">78</span></div>
+          <div class="bar-row"><span class="lab">Governance</span><div class="bar-track"><div class="bar-fill mix" data-w="54"></div></div><span class="pct">54</span></div>
+          <div class="bar-row"><span class="lab">Unity</span><div class="bar-track"><div class="bar-fill" data-w="61"></div></div><span class="pct">61</span></div>
+          <div class="bar-row"><span class="lab">Economy</span><div class="bar-track"><div class="bar-fill mix" data-w="47"></div></div><span class="pct">47</span></div>
+          <div class="bar-row"><span class="lab">Education</span><div class="bar-track"><div class="bar-fill" data-w="66"></div></div><span class="pct">66</span></div>
+        </div>
+        <div class="vfoot"><span>Sample data</span><span>PRN-16 · Johor</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCESS / CTA ============ -->
+<section class="cta" id="access">
+  <div class="wrap">
+    <div class="sec-kicker" style="justify-content:center"><span class="en">Request Access</span><span class="bm">Mohon Akses</span></div>
+    <h2 class="en">Read the room <span class="grad">before</span> you enter it.</h2>
+    <h2 class="bm">Baca suasana <span class="grad">sebelum</span> anda masuk.</h2>
+    <p class="lead-c en">Analitika Malaya is offered to institutions, campaigns and newsrooms under a signed charter of use. Tell us who you are and we'll be in touch.</p>
+    <p class="lead-c bm">Analitika Malaya ditawarkan kepada institusi, kempen dan bilik berita di bawah piagam penggunaan yang ditandatangani. Beritahu kami siapa anda dan kami akan menghubungi.</p>
+    <form class="leadform" id="leadForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+      <input type="hidden" name="subject" value="[Analitika Malaya] Access request" />
+      <input type="checkbox" name="botcheck" style="display:none" />
+      <div class="row">
+        <div><label class="en">Name</label><label class="bm" style="display:none">Nama</label><input type="text" name="name" required /></div>
+        <div><label class="en">Organisation</label><label class="bm" style="display:none">Organisasi</label><input type="text" name="organisation" /></div>
+      </div>
+      <label class="en">Email</label><label class="bm" style="display:none">E-mel</label>
+      <input type="email" name="email" required />
+      <label class="en">What would you like to understand?</label><label class="bm" style="display:none">Apa yang anda ingin fahami?</label>
+      <textarea name="message" placeholder="Issue, region, or question…"></textarea>
+      <button class="btn btn-primary" type="submit"><span class="en">Send request</span><span class="bm">Hantar permohonan</span> <span class="arr">→</span></button>
+      <div class="formstatus" id="formStatus"></div>
+    </form>
+    <div class="formnote en">Bound by the Charter above · Non-partisan · No PII retained</div>
+    <div class="formnote bm">Terikat dengan Piagam di atas · Tidak berpihak · Tiada maklumat peribadi disimpan</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand" style="font-size:16px;margin-bottom:8px">Analitika Malaya</div>
+        <div class="en">Narrative intelligence for a noisier public square.</div>
+        <div class="bm">Perisikan naratif untuk ruang awam yang lebih bising.</div>
+      </div>
+      <div class="links">
+        <a href="analitika.html">Dashboard</a>
+        <a href="npam.html"><span class="en">Public Poll</span><span class="bm">Tinjauan Awam</span></a>
+        <a href="index.html">farissuhail.com</a>
+        <a href="#access"><span class="en">Access</span><span class="bm">Akses</span></a>
+      </div>
+    </div>
+    <div class="fine en">Illustrative platform concept · All dashboard figures are sample data · A project by Faris Suhail · © 2026</div>
+    <div class="fine bm">Konsep platform ilustrasi · Semua angka papan pemuka ialah data sampel · Projek oleh Faris Suhail · © 2026</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var body=document.body, btn=document.getElementById('langBtn');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---- language ---- */
+  function stored(){try{return localStorage.getItem('fs-lang')}catch(e){return null}}
+  function setLang(l){
+    body.setAttribute('data-lang',l);
+    document.documentElement.lang=(l==='bm')?'ms':'en';
+    btn.innerHTML=(l==='en')?'EN · <span style="opacity:.5">BM</span>':'<span style="opacity:.5">EN</span> · BM';
+    document.querySelectorAll('label.bm,.svtitle.bm,label.en,.svtitle.en').forEach(function(el){
+      var isBm=el.classList.contains('bm');el.style.display=((l==='bm')===isBm)?'':'none';});
+    try{localStorage.setItem('fs-lang',l)}catch(e){}
+  }
+  setLang(stored()==='bm'?'bm':'en');
+  btn.addEventListener('click',function(){setLang(body.getAttribute('data-lang')==='en'?'bm':'en');});
+
+  /* ---- cosmic data-network hero (canvas) : 3D, fluid, harmonic "data music" ---- */
+  var cvs=document.getElementById('cosmos');
+  if(cvs){
+    var ctx=cvs.getContext('2d'), W=0,H=0,DPR=1, ready=false, curT=0.35;
+    function resize(){
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      var r=cvs.getBoundingClientRect(); W=Math.max(1,r.width); H=Math.max(1,r.height);
+      cvs.width=Math.round(W*DPR); cvs.height=Math.round(H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0);
+      if(ready) draw(curT);   // keep the scene painted after a resize even when the rAF loop isn't running
+    }
+    window.addEventListener('resize',resize); resize();
+
+    // deterministic PRNG so the composition is stable frame-to-frame
+    var seed=20260705; function rnd(){seed=(seed*1664525+1013904223)&0x7fffffff;return seed/0x7fffffff;}
+    var PAL=[[34,224,255],[255,61,240],[59,120,255],[160,92,255],[255,154,61],[236,250,255]];
+    var PW=[0,0,0,1,1,1,2,3,4,5]; // weight toward cyan(0)/magenta(1) like the reference
+    function pcol(){return PAL[PW[Math.floor(rnd()*PW.length)]];}
+
+    // clustered 3D node cloud (deep z-spread so orbiting reveals real volume)
+    var CL=[]; for(var c=0;c<5;c++)CL.push([(rnd()*2-1)*0.95,(rnd()*2-1)*0.7,(rnd()*2-1)*1.1]);
+    var NN=(W<620?46:80), NODES=[];
+    for(var i=0;i<NN;i++){
+      var cl=CL[i%CL.length];
+      var harm=[0.5,0.667,0.75,1,1.25,1.5][Math.floor(rnd()*6)]; // musical ratios -> harmonic drift
+      NODES.push({
+        bx:cl[0]+(rnd()*2-1)*0.5, by:cl[1]+(rnd()*2-1)*0.45, bz:cl[2]+(rnd()*2-1)*0.6,
+        ax:0.09+rnd()*0.2, ay:0.09+rnd()*0.2, az:0.09+rnd()*0.2,
+        fx:harm*(0.26+rnd()*0.16), fy:harm*(0.26+rnd()*0.16), fz:harm*(0.26+rnd()*0.16),
+        phx:rnd()*6.28, phy:rnd()*6.28, phz:rnd()*6.28,
+        col:pcol(), r:1.5+rnd()*3.4, beat:Math.floor(rnd()*8), flare:0
+      });
+    }
+    // edges: 2-3 nearest neighbours (base positions), averaged colour
+    var EDGES=[];
+    for(var a=0;a<NN;a++){
+      var ds=[];
+      for(var b=0;b<NN;b++){ if(a===b)continue; var dx=NODES[a].bx-NODES[b].bx,dy=NODES[a].by-NODES[b].by,dz=NODES[a].bz-NODES[b].bz; ds.push([dx*dx+dy*dy+dz*dz,b]); }
+      ds.sort(function(u,v){return u[0]-v[0];});
+      var k=(a%3===0)?3:2;
+      for(var e=0;e<k;e++){ var lo=Math.min(a,ds[e][1]), hi=Math.max(a,ds[e][1]);
+        var ca=NODES[lo].col,cb=NODES[hi].col;
+        EDGES.push({a:lo,b:hi,ph:rnd()*6.28,sp:0.5+rnd()*0.9,col:[(ca[0]+cb[0])/2,(ca[1]+cb[1])/2,(ca[2]+cb[2])/2],c:null,hot:0}); }
+    }
+    // hub nodes: the highest-degree nodes get HUD rings, orbiting satellites & telemetry labels
+    var DEG=[]; for(i=0;i<NN;i++)DEG.push(0);
+    for(e=0;e<EDGES.length;e++){DEG[EDGES[e].a]++;DEG[EDGES[e].b]++;}
+    var byDeg=[]; for(i=0;i<NN;i++)byDeg.push(i);
+    byDeg.sort(function(u,v){return DEG[v]-DEG[u];});
+    var HUBS=[], HN=(W<620?4:6);
+    for(i=0;i<HN;i++){
+      HUBS.push({n:byDeg[i], ph:rnd()*6.28,
+        lab:'NX-'+(16+Math.floor(rnd()*240)).toString(16).toUpperCase(),
+        orb:[{r:0.13+rnd()*0.07,sp:1.0+rnd()*0.8,ph:rnd()*6.28,tl:0.4+rnd()*1.1},
+             {r:0.2+rnd()*0.09,sp:0.5+rnd()*0.5,ph:rnd()*6.28,tl:0.4+rnd()*1.1}]});
+    }
+    // travelling pulses (notes gliding the wires)
+    var PULSES=[], NP=Math.min(EDGES.length, W<620?14:28);
+    for(var p=0;p<NP;p++)PULSES.push({e:Math.floor(rnd()*EDGES.length),t:rnd(),sp:0.4+rnd()*0.7,col:pcol()});
+    var RIPPLES=[];
+    // starfield + faint galaxies
+    var STARS=[]; for(var s=0;s<210;s++)STARS.push({x:rnd(),y:rnd(),r:rnd()*1.3+0.2,tw:rnd()*6.28,ts:0.4+rnd()*1.6});
+    var GALS=[{x:0.13,y:0.17,r:120,rot:0.5},{x:0.87,y:0.19,r:150,rot:-0.6},{x:0.22,y:0.85,r:96,rot:0.3}];
+
+    // ---- 3D orbit camera: auto-spin + eased mouse parallax + drag-to-orbit with inertia ----
+    var mX=0,mY=0,tmX=0,tmY=0;
+    var rotY=0.6, rotX=-0.16, spinV=0, orbiting=false, dPX=0, dPY=0;
+    window.addEventListener('mousemove',function(ev){tmX=(ev.clientX/window.innerWidth-0.5);tmY=(ev.clientY/window.innerHeight-0.5);});
+    var heroEl=document.getElementById('top'), orbitHint=document.getElementById('orbitHint');
+    if(heroEl){
+      heroEl.addEventListener('pointerdown',function(ev){
+        if(ev.target.closest&&ev.target.closest('a,button,input,textarea,select'))return;
+        orbiting=true; dPX=ev.clientX; dPY=ev.clientY; spinV=0;
+        heroEl.classList.add('orbiting');
+        if(orbitHint)orbitHint.classList.add('gone');
+        if(ev.preventDefault)ev.preventDefault();
+      });
+      window.addEventListener('pointermove',function(ev){
+        if(!orbiting)return;
+        var dx=ev.clientX-dPX, dy=ev.clientY-dPY; dPX=ev.clientX; dPY=ev.clientY;
+        rotY+=dx*0.0042; rotX=Math.max(-0.6,Math.min(0.42,rotX+dy*0.0026)); spinV=dx*0.0042;
+      });
+      var endOrbit=function(){orbiting=false; heroEl.classList.remove('orbiting');};
+      window.addEventListener('pointerup',endOrbit);
+      window.addEventListener('pointercancel',endOrbit);
+    }
+    function project(x,y,z,ay,ax){
+      var ca=Math.cos(ay),sa=Math.sin(ay), x1=x*ca-z*sa, z1=x*sa+z*ca;
+      var cb=Math.cos(ax),sb=Math.sin(ax), y2=y*cb-z1*sb, z2=y*sb+z1*cb;
+      var fov=3.0, persp=fov/(fov-Math.min(z2,fov-0.35)), sc=Math.min(W,H)*0.36;
+      return {x:W/2+x1*persp*sc, y:H/2+y2*persp*sc, z:z2, s:persp};
+    }
+    // depth fog: far geometry recedes into the dark instead of stacking flat
+    function fogOf(z){return Math.max(0.06,Math.min(1,(z+1.9)/3.1));}
+
+    // ---- generative "data music" (WebAudio, click-gated, never autoplays) ----
+    var actx=null, master=null, musicOn=false;
+    function freqOf(m){return 440*Math.pow(2,(m-69)/12);}
+    function initAudio(){ try{
+      var AC=window.AudioContext||window.webkitAudioContext; if(!AC)return false;
+      actx=new AC(); master=actx.createGain(); master.gain.value=0;
+      var lp=actx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2500; lp.Q.value=0.5;
+      master.connect(lp); lp.connect(actx.destination);
+      [48,52,55].forEach(function(m,ix){ // soft detuned ambient pad
+        var o=actx.createOscillator(),d=actx.createOscillator(),g=actx.createGain();
+        o.type='sine';d.type='sine';o.frequency.value=freqOf(m);d.frequency.value=freqOf(m)*1.004;
+        g.gain.value=0.05/(ix*0.5+1);o.connect(g);d.connect(g);g.connect(master);o.start();d.start();
+      });
+      return true; }catch(e){return false;} }
+    var SCALE=[60,62,64,67,69,72,74,76,79,81]; // C major pentatonic, 2 octaves
+    function playNote(idx){ if(!actx||!musicOn)return; try{
+      var m=SCALE[((idx%SCALE.length)+SCALE.length)%SCALE.length];
+      var o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime;
+      o.type='triangle'; o.frequency.value=freqOf(m);
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.13,t+0.015); g.gain.exponentialRampToValueAtTime(0.0001,t+1.15);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+1.25);
+    }catch(e){} }
+    var soundBtn=document.getElementById('soundBtn');
+    if(soundBtn) soundBtn.addEventListener('click',function(){
+      if(!actx && !initAudio())return;
+      if(actx.state==='suspended')actx.resume();
+      musicOn=!musicOn;
+      master.gain.cancelScheduledValues(actx.currentTime);
+      master.gain.linearRampToValueAtTime(musicOn?0.85:0.0, actx.currentTime+0.5);
+      soundBtn.classList.toggle('on',musicOn); soundBtn.setAttribute('aria-pressed',musicOn?'true':'false');
+    });
+
+    // ---- beat / harmony driver ----
+    var BPM=84, beatDur=60/BPM, lastBeat=-1;
+    function onBeat(bi,t){ var slot=((bi%8)+8)%8, cnt=0;
+      for(var i=0;i<NN;i++){ if(NODES[i].beat===slot){ NODES[i].flare=1; if(cnt<3){RIPPLES.push({n:i,t0:t}); cnt++;} } }
+      // data-burst: wires touching a flaring node surge bright for a moment
+      for(var e2=0;e2<EDGES.length;e2++){ var ed3=EDGES[e2]; if(NODES[ed3.a].flare===1||NODES[ed3.b].flare===1) ed3.hot=1; }
+      playNote(bi);
+    }
+
+    // ---- render ----
+    function draw(t,dt){
+      curT=t; dt=(dt===undefined?0.016:dt);
+      mX+=(tmX-mX)*0.05; mY+=(tmY-mY)*0.05;
+      if(!orbiting){ rotY+=0.05*dt+spinV; spinV*=0.94; }   // auto-spin + drag inertia
+      var AY=rotY+mX*0.45, AX=rotX+mY*0.3;
+      ctx.fillStyle='#04060a'; ctx.fillRect(0,0,W,H);
+      // nebula
+      var neb=[[0.34,0.36,'34,211,238',0.05],[0.64,0.4,'255,61,240',0.045],[0.5,0.72,'120,80,255',0.04]];
+      for(var k=0;k<neb.length;k++){ var nb=neb[k], cx=(nb[0]+Math.sin(t*0.05+k)*0.03)*W, cy=(nb[1]+Math.cos(t*0.04+k)*0.03)*H;
+        var g=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.55);
+        g.addColorStop(0,'rgba('+nb[2]+','+nb[3]+')'); g.addColorStop(1,'rgba('+nb[2]+',0)'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H); }
+      // galaxies
+      for(var gi=0;gi<GALS.length;gi++){ var gl=GALS[gi], cx=gl.x*W,cy=gl.y*H;
+        var g2=ctx.createRadialGradient(cx,cy,0,cx,cy,gl.r);
+        g2.addColorStop(0,'rgba(205,214,255,.06)'); g2.addColorStop(.5,'rgba(150,120,220,.03)'); g2.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.save(); ctx.translate(cx,cy); ctx.rotate(gl.rot+t*0.012); ctx.scale(1,0.42); ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(0,0,gl.r,0,6.283); ctx.fill(); ctx.restore(); }
+      // stars
+      for(var si=0;si<STARS.length;si++){ var st=STARS[si], tw=0.35+0.65*(0.5+0.5*Math.sin(t*st.ts+st.tw));
+        ctx.globalAlpha=tw; ctx.fillStyle='#e0eaff'; ctx.beginPath(); ctx.arc(st.x*W,st.y*H,st.r,0,6.283); ctx.fill(); }
+      ctx.globalAlpha=1;
+
+      // perspective grid floor — rotates with the constellation, sells the 3D space
+      var gy=1.35, ge=2.1, gs=0.6;
+      ctx.lineWidth=1; ctx.strokeStyle='rgba(34,211,238,0.05)';
+      for(var gv=-ge;gv<=ge+0.01;gv+=gs){
+        var GA=project(gv,gy,-ge,AY,AX), GB=project(gv,gy,ge,AY,AX);
+        if(GA.z<2.2&&GB.z<2.2){ ctx.beginPath(); ctx.moveTo(GA.x,GA.y); ctx.lineTo(GB.x,GB.y); ctx.stroke(); }
+        var GC=project(-ge,gy,gv,AY,AX), GD=project(ge,gy,gv,AY,AX);
+        if(GC.z<2.2&&GD.z<2.2){ ctx.beginPath(); ctx.moveTo(GC.x,GC.y); ctx.lineTo(GD.x,GD.y); ctx.stroke(); }
+      }
+
+      var pr=new Array(NN);
+      for(var i=0;i<NN;i++){ var nd=NODES[i];
+        nd.cx=nd.bx+nd.ax*Math.sin(t*nd.fx+nd.phx); nd.cy=nd.by+nd.ay*Math.sin(t*nd.fy+nd.phy); nd.cz=nd.bz+nd.az*Math.sin(t*nd.fz+nd.phz);
+        pr[i]=project(nd.cx,nd.cy,nd.cz,AY,AX); nd.flare*=0.93;
+      }
+      // fluid curved edges, faded by depth fog + beat surges
+      ctx.lineCap='round';
+      for(var e=0;e<EDGES.length;e++){ var ed=EDGES[e], A=pr[ed.a], B=pr[ed.b];
+        var dx=B.x-A.x,dy=B.y-A.y, len=Math.sqrt(dx*dx+dy*dy)||1, px=-dy/len, py=dx/len;
+        var amp=Math.min(len*0.16,24)*Math.sin(t*ed.sp+ed.ph);
+        var cxp=(A.x+B.x)/2+px*amp, cyp=(A.y+B.y)/2+py*amp; ed.c=[cxp,cyp];
+        ed.hot*=0.93;
+        var al=fogOf((A.z+B.z)/2)*0.5+ed.hot*0.4;
+        if(al<0.02) continue;
+        ctx.strokeStyle='rgba('+(ed.col[0]|0)+','+(ed.col[1]|0)+','+(ed.col[2]|0)+','+Math.min(1,al).toFixed(3)+')';
+        ctx.lineWidth=(0.5+A.s*0.5)*(1+ed.hot*0.9);
+        ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.quadraticCurveTo(cxp,cyp,B.x,B.y); ctx.stroke();
+      }
+      // travelling pulses with comet trails (glide the same flowing curve)
+      ctx.globalCompositeOperation='lighter';
+      for(var p2=0;p2<PULSES.length;p2++){ var pu=PULSES[p2]; pu.t+=pu.sp*0.012; if(pu.t>1){pu.t-=1; pu.e=(pu.e+7)%EDGES.length;}
+        var ed2=EDGES[pu.e], A2=pr[ed2.a], B2=pr[ed2.b], cc=ed2.c||[(A2.x+B2.x)/2,(A2.y+B2.y)/2];
+        var fgP=fogOf((A2.z+B2.z)/2), pS=(A2.s+B2.s)/2;
+        for(var tr=4;tr>=0;tr--){ var tt=pu.t-tr*0.02; if(tt<0)continue;
+          var mN=1-tt, qx=mN*mN*A2.x+2*mN*tt*cc[0]+tt*tt*B2.x, qy=mN*mN*A2.y+2*mN*tt*cc[1]+tt*tt*B2.y;
+          if(tr>0){ ctx.fillStyle='rgba('+pu.col[0]+','+pu.col[1]+','+pu.col[2]+','+(0.22*(1-tr/5)*fgP).toFixed(3)+')';
+            ctx.beginPath(); ctx.arc(qx,qy,2.6*pS,0,6.283); ctx.fill(); continue; }
+          var gp2=ctx.createRadialGradient(qx,qy,0,qx,qy,6*pS);
+          gp2.addColorStop(0,'rgba('+pu.col[0]+','+pu.col[1]+','+pu.col[2]+','+(0.9*fgP).toFixed(3)+')'); gp2.addColorStop(1,'rgba('+pu.col[0]+','+pu.col[1]+','+pu.col[2]+',0)');
+          ctx.fillStyle=gp2; ctx.beginPath(); ctx.arc(qx,qy,6*pS,0,6.283); ctx.fill();
+        }
+      }
+      // beat ripples
+      for(var ri=RIPPLES.length-1;ri>=0;ri--){ var rp=RIPPLES[ri], age=t-rp.t0; if(age>1.5){RIPPLES.splice(ri,1);continue;}
+        var pp=pr[rp.n], rad=age*72*pp.s, al2=(1-age/1.5)*0.5*fogOf(pp.z), col=NODES[rp.n].col;
+        ctx.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+al2.toFixed(3)+')'; ctx.lineWidth=1.4;
+        ctx.beginPath(); ctx.arc(pp.x,pp.y,rad,0,6.283); ctx.stroke();
+      }
+      // nodes, far -> near, with depth fog + depth-of-field (off-focus nodes soften and dim)
+      var ord=[]; for(var n=0;n<NN;n++)ord.push(n); ord.sort(function(u,v){return pr[u].z-pr[v].z;});
+      for(var o=0;o<NN;o++){ var i2=ord[o], nd2=NODES[i2], P=pr[i2];
+        var fg=fogOf(P.z), dof=Math.min(1.6,Math.abs(P.z-0.55)*0.8);
+        var pulseB=0.5+0.5*Math.sin(t*(nd2.fx+0.5)*2.4+nd2.phx), bright=(0.42+pulseB*0.24+nd2.flare*0.9)*fg;
+        var col=nd2.col;
+        // depth-cool: far nodes drift toward deep blue before fading out
+        var cr=(col[0]*fg+46*(1-fg))|0, cg=(col[1]*fg+78*(1-fg))|0, cb=(col[2]*fg+150*(1-fg))|0;
+        var rad=(nd2.r*(0.6+P.s*0.6))*(1+nd2.flare*0.7), halo=rad*(3.8+dof*2.4);
+        var gg=ctx.createRadialGradient(P.x,P.y,0,P.x,P.y,halo);
+        gg.addColorStop(0,'rgba('+cr+','+cg+','+cb+','+(0.5*bright/(1+dof*0.8)).toFixed(3)+')'); gg.addColorStop(1,'rgba('+cr+','+cg+','+cb+',0)');
+        ctx.fillStyle=gg; ctx.beginPath(); ctx.arc(P.x,P.y,halo,0,6.283); ctx.fill();
+        ctx.fillStyle='rgba('+Math.min(255,cr+110)+','+Math.min(255,cg+110)+','+Math.min(255,cb+110)+','+Math.min(1,bright/(1+dof*0.6)+0.15*fg).toFixed(3)+')';
+        ctx.beginPath(); ctx.arc(P.x,P.y,rad,0,6.283); ctx.fill();
+        if(nd2.flare>0.05){ ctx.fillStyle='rgba(255,255,255,'+(nd2.flare*0.9*fg).toFixed(3)+')'; ctx.beginPath(); ctx.arc(P.x,P.y,rad*0.6,0,6.283); ctx.fill(); }
+      }
+      // hub HUD: rotating dashed rings, 3D orbiting satellites & telemetry read-outs
+      ctx.font='600 9px "JetBrains Mono",monospace'; ctx.textBaseline='middle';
+      for(var h=0;h<HUBS.length;h++){ var hb=HUBS[h], hn=NODES[hb.n], P3=pr[hb.n];
+        var fg2=fogOf(P3.z); if(fg2<0.22)continue;
+        var col2=hn.col, rr=(11+hn.r*2.4)*P3.s;
+        ctx.save(); ctx.translate(P3.x,P3.y); ctx.rotate(Math.sin(t*0.3+hb.ph)*0.5); ctx.scale(1,0.42);
+        ctx.strokeStyle='rgba('+col2[0]+','+col2[1]+','+col2[2]+','+(0.5*fg2).toFixed(3)+')';
+        ctx.lineWidth=1; ctx.setLineDash([7,9]); ctx.lineDashOffset=t*26*(h%2?1:-1);
+        ctx.beginPath(); ctx.arc(0,0,rr,0,6.283); ctx.stroke();
+        ctx.setLineDash([]); ctx.restore();
+        for(var ob=0;ob<hb.orb.length;ob++){ var oo=hb.orb[ob], a2=t*oo.sp+oo.ph;
+          var OP=project(hn.cx+Math.cos(a2)*oo.r, hn.cy+Math.sin(a2)*oo.r*Math.sin(oo.tl), hn.cz+Math.sin(a2)*oo.r*Math.cos(oo.tl), AY, AX);
+          ctx.fillStyle='rgba(236,250,255,'+(0.8*fogOf(OP.z)).toFixed(3)+')';
+          ctx.beginPath(); ctx.arc(OP.x,OP.y,1.2*OP.s,0,6.283); ctx.fill();
+        }
+        if(P3.z>-0.2){
+          var val=42+56*(0.5+0.5*Math.sin(t*0.23+hb.ph*3));
+          ctx.fillStyle='rgba(160,235,255,'+(0.55*fg2).toFixed(3)+')';
+          ctx.fillText(hb.lab+' · '+val.toFixed(1),P3.x+rr+9,P3.y-5);
+        }
+      }
+      ctx.globalCompositeOperation='source-over';
+    }
+
+    var t0=null, pT=0, lastTick=0;
+    function frame(ts){ if(t0===null)t0=ts; var t=(ts-t0)/1000, dt=Math.min(0.05,Math.max(0.001,t-pT)); pT=t; lastTick=ts;
+      var bi=Math.floor(t/beatDur); if(bi!==lastBeat){lastBeat=bi; onBeat(bi,t);}
+      draw(t,dt);
+    }
+    function loop(){ frame(performance.now()); requestAnimationFrame(loop); }
+    onBeat(0,0.35); lastBeat=0; draw(0.35); ready=true;   // first frame paints immediately
+    requestAnimationFrame(loop);                          // the network always drifts (motion is the whole point)
+    // watchdog: embedded webviews may suspend rAF (page reported "hidden") — keep animating regardless
+    setInterval(function(){ if(performance.now()-lastTick>200) frame(performance.now()); }, 66);
+  }
+
+  /* ---- world-clock HUD ---- */
+  (function(){
+    var els=[].slice.call(document.querySelectorAll('.hud-clocks [data-tz]'));
+    if(!els.length)return;
+    function fmt(tz){ try{ return new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()); }catch(e){ return '--:--:--'; } }
+    function tick(){ els.forEach(function(el){ el.textContent=el.getAttribute('data-lab')+'  '+fmt(el.getAttribute('data-tz')); }); }
+    tick(); setInterval(tick,1000);
+  })();
+
+  /* ---- 3D tilt cards ---- */
+  document.querySelectorAll('.tier').forEach(function(card){
+    card.addEventListener('mousemove',function(ev){
+      var r=card.getBoundingClientRect(), px=(ev.clientX-r.left)/r.width, py=(ev.clientY-r.top)/r.height;
+      card.style.transform='rotateY('+((px-0.5)*10)+'deg) rotateX('+((0.5-py)*10)+'deg) translateZ(6px)';
+      card.style.setProperty('--mx',(px*100)+'%');card.style.setProperty('--my',(py*100)+'%');
+    });
+    card.addEventListener('mouseleave',function(){card.style.transform='';});
+  });
+
+  /* ---- count-up chips ---- */
+  function countUp(el){
+    var target=parseFloat(el.dataset.count), dec=(target%1!==0), suf=el.querySelector('[data-suffix]');
+    if(!suf)return;
+    var t0=null, done=false;
+    function set(v){suf.textContent=dec?v.toFixed(1):Math.round(v);}
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/1100),v=target*(1-Math.pow(1-k,3));
+      set(v);if(k<1){requestAnimationFrame(step);}else{done=true;}}
+    requestAnimationFrame(step);
+    setTimeout(function(){if(!done)set(target);},1250); // guarantee final value if rAF is throttled
+  }
+
+  /* ---- reveal / bars / counters (scroll-driven, works without IntersectionObserver) ---- */
+  var barsFired=false, chips=[].slice.call(document.querySelectorAll('.chip'));
+  function inView(el,frac){
+    var r=el.getBoundingClientRect(), vh=window.innerHeight||document.documentElement.clientHeight;
+    if(r.height<=0)return false;
+    var vis=Math.min(r.bottom,vh)-Math.max(r.top,0);
+    return vis/Math.min(r.height,vh) >= (frac||0.25);
+  }
+  function fillBars(){document.querySelectorAll('#visPanel .bar-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});}
+  function reveal(){
+    var vp=document.getElementById('visPanel');
+    if(vp&&!barsFired&&inView(vp,0.25)){barsFired=true;fillBars();}
+    chips.forEach(function(c){var n=c.querySelector('[data-count]');if(n&&!n._done&&inView(c,0.4)){n._done=1;countUp(n);}});
+    if(barsFired&&chips.every(function(c){var n=c.querySelector('[data-count]');return !n||n._done;})){
+      window.removeEventListener('scroll',reveal);window.removeEventListener('resize',reveal);
+    }
+  }
+  window.addEventListener('scroll',reveal,{passive:true});
+  window.addEventListener('resize',reveal);
+  reveal();
+
+  /* ---- Web3Forms submit ---- */
+  var form=document.getElementById('leadForm'), status=document.getElementById('formStatus');
+  var isBm=function(){return body.getAttribute('data-lang')==='bm';};
+  form.addEventListener('submit',function(ev){
+    var key=form.querySelector('[name=access_key]').value;
+    if(!key||key==='YOUR_WEB3FORMS_KEY'){
+      ev.preventDefault();var d=new FormData(form);
+      var t='Name: '+(d.get('name')||'')+'\nOrganisation: '+(d.get('organisation')||'')+'\nEmail: '+(d.get('email')||'')+'\n\n'+(d.get('message')||'');
+      window.location.href='mailto:faris.suhail@yahoo.com?subject='+encodeURIComponent('[Analitika Malaya] Access request')+'&body='+encodeURIComponent(t);
+      status.className='formstatus ok';status.textContent=isBm()?'Membuka e-mel anda…':'Opening your email…';return;
+    }
+    ev.preventDefault();status.className='formstatus';status.textContent=isBm()?'Menghantar…':'Sending…';
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json();})
+      .then(function(j){if(j.success){form.reset();status.className='formstatus ok';status.textContent=isBm()?'Diterima. Kami akan menghubungi anda.':'Received. We\'ll be in touch.';}
+        else{status.className='formstatus err';status.textContent=isBm()?'Ralat — cuba lagi.':'Something went wrong — try again.';}})
+      .catch(function(){status.className='formstatus err';status.textContent=isBm()?'Ralat rangkaian — cuba lagi.':'Network error — try again.';});
+  });
+})();
+</script>
+</body>
+</html>
