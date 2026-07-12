@@ -52,6 +52,36 @@
         radial-gradient(ellipse 80% 55% at 50% 45%, rgba(0,255,133,0.06) 0%, transparent 60%),
         linear-gradient(to top, rgba(1,1,1,0.55) 0%, rgba(1,1,1,0.12) 40%, rgba(1,1,1,0.25) 100%); }
 
+    /* ===== living neon aurora — drifting green light over the footage ===== */
+    #scroll-video-container .aurora { position: absolute; inset: -18%; pointer-events: none;
+      mix-blend-mode: screen; }
+    #scroll-video-container .aurora i { content: ''; position: absolute; inset: 0; display: block;
+      will-change: transform, opacity; filter: blur(34px); }
+    #scroll-video-container .aurora i:nth-child(1) {
+      background: radial-gradient(ellipse 40% 26% at 28% 36%, rgba(0,255,133,0.34) 0%, rgba(0,255,133,0.08) 45%, transparent 72%);
+      animation: auroraA 26s ease-in-out infinite alternate; }
+    #scroll-video-container .aurora i:nth-child(2) {
+      background: radial-gradient(ellipse 34% 24% at 74% 58%, rgba(91,255,157,0.26) 0%, rgba(91,255,157,0.06) 48%, transparent 74%);
+      animation: auroraB 34s ease-in-out infinite alternate; }
+    #scroll-video-container .aurora i:nth-child(3) {
+      background: radial-gradient(ellipse 52% 18% at 50% 82%, rgba(0,230,120,0.2) 0%, transparent 70%);
+      animation: auroraC 21s ease-in-out infinite alternate; }
+    @keyframes auroraA {
+      0%   { transform: translate(-7%, -4%) rotate(-5deg) scale(1);    opacity: 0.65; }
+      50%  { transform: translate(2%, 3%)  rotate(2deg)  scale(1.18); opacity: 1; }
+      100% { transform: translate(8%, -2%) rotate(6deg)  scale(1.05); opacity: 0.75; }
+    }
+    @keyframes auroraB {
+      0%   { transform: translate(6%, 5%)  rotate(4deg)  scale(1.1);  opacity: 0.55; }
+      50%  { transform: translate(-3%, -4%) rotate(-3deg) scale(1);   opacity: 0.95; }
+      100% { transform: translate(-8%, 3%) rotate(-7deg) scale(1.22); opacity: 0.7; }
+    }
+    @keyframes auroraC {
+      0%   { transform: translateX(-10%) scaleY(1);   opacity: 0.5; }
+      100% { transform: translateX(10%)  scaleY(1.4); opacity: 0.9; }
+    }
+    @media (prefers-reduced-motion: reduce) { #scroll-video-container .aurora i { animation: none !important; } }
+
     /* ===== particles ===== */
     #particles-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0.7; }
 
@@ -95,10 +125,23 @@
     #hero .content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column;
       align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 88px; }
     #hero .subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9ca3af; margin-bottom: 18px; letter-spacing: 0.22em; text-transform: uppercase; }
-    #hero .subtitle b { color: var(--accent); font-weight: 600; }
+    #hero .subtitle b { color: var(--accent); font-weight: 600;
+      text-shadow: 0 0 10px rgba(0,255,133,0.7), 0 0 26px rgba(0,255,133,0.4);
+      animation: neonBreath 3.2s ease-in-out infinite; }
+    @keyframes neonBreath {
+      0%, 100% { text-shadow: 0 0 8px rgba(0,255,133,0.55), 0 0 20px rgba(0,255,133,0.3); }
+      50%      { text-shadow: 0 0 14px rgba(0,255,133,0.95), 0 0 36px rgba(0,255,133,0.55); }
+    }
+    @media (prefers-reduced-motion: reduce) { #hero .subtitle b, #hero h1 .underlined .line, #hero .cta-btn { animation: none !important; } }
     #hero h1 { font-size: clamp(28px, 4.6vw, 58px); font-weight: 600; line-height: 1.15; max-width: 21ch; letter-spacing: -0.02em; }
     #hero h1 .underlined { position: relative; display: inline-block; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; }
-    #hero h1 .underlined .line { position: absolute; bottom: 0.12em; left: -2px; right: -2px; height: 0.28em; background: var(--accent); opacity: 0.8; border-radius: 3px; }
+    #hero h1 .underlined .line { position: absolute; bottom: 0.12em; left: -2px; right: -2px; height: 0.28em; background: var(--accent); opacity: 0.8; border-radius: 3px;
+      box-shadow: 0 0 14px rgba(0,255,133,0.65), 0 0 34px rgba(0,255,133,0.35);
+      animation: neonLine 3.2s ease-in-out infinite; }
+    @keyframes neonLine {
+      0%, 100% { box-shadow: 0 0 10px rgba(0,255,133,0.5), 0 0 26px rgba(0,255,133,0.25); opacity: 0.75; }
+      50%      { box-shadow: 0 0 20px rgba(0,255,133,0.9), 0 0 48px rgba(0,255,133,0.5); opacity: 0.95; }
+    }
     #hero h1 .underlined span { position: relative; }
     #hero .ctas { display: flex; align-items: center; gap: 14px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
     #hero .code-box { display: flex; align-items: center; gap: 12px; background: rgba(20,20,26,0.75);
@@ -107,7 +150,12 @@
     #hero .code-box .ref { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
     #hero .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #04120a;
       font-weight: 700; border-radius: 12px; padding: 13px 26px; font-size: 13.5px; transition: transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 12px 32px -12px rgba(0,255,133,0.6); }
+      box-shadow: 0 12px 32px -12px rgba(0,255,133,0.6);
+      animation: neonBtn 3.2s ease-in-out infinite; }
+    @keyframes neonBtn {
+      0%, 100% { box-shadow: 0 12px 32px -12px rgba(0,255,133,0.55), 0 0 0 rgba(0,255,133,0); }
+      50%      { box-shadow: 0 12px 40px -10px rgba(0,255,133,0.85), 0 0 24px rgba(0,255,133,0.25); }
+    }
     #hero .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 42px -12px rgba(0,255,133,0.75); }
     #hero .bounce-arrow { position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 28px; cursor: pointer; }
     #hero .bounce-arrow svg { width: 24px; height: 24px; color: #6b7280; animation: bounce 1.4s ease-in-out infinite; }
@@ -208,6 +256,7 @@
   <canvas id="video-canvas"></canvas>
   <video id="video-fallback" muted playsinline preload="auto" crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260322_013248_a74099a8-be2b-4164-a823-eddd5e149fa1.mp4"></video>
   <div class="overlay"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 </div>
 
 <!-- ===== Particles ===== -->
@@ -487,28 +536,46 @@
   requestAnimationFrame(videoTick);
   extractFrames();
 
-  // ===== particles =====
+  // ===== particles — neon fireflies: glow sprite + twinkle =====
   var pCanvas = document.getElementById('particles-canvas'), pCtx = pCanvas.getContext('2d'), particles = [];
+  var glowSprite = (function () {
+    var s = document.createElement('canvas'); s.width = s.height = 64;
+    var g = s.getContext('2d');
+    var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, 'rgba(235,255,245,1)');
+    grad.addColorStop(0.18, 'rgba(140,255,195,0.9)');
+    grad.addColorStop(0.45, 'rgba(0,255,133,0.35)');
+    grad.addColorStop(1, 'rgba(0,255,133,0)');
+    g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
+    return s;
+  })();
   function resizeParticles() { pCanvas.width = innerWidth; pCanvas.height = innerHeight; createParticles(); }
   function createParticles() {
     particles = [];
     var count = Math.min(150, Math.floor((pCanvas.width * pCanvas.height) / 13000));
     for (var i = 0; i < count; i++) particles.push({
       x: Math.random() * pCanvas.width, y: Math.random() * pCanvas.height,
-      vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
-      size: Math.random() * 1.5 + 0.5, opacity: Math.random() * 0.5 + 0.15
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+      size: Math.random() * 2.2 + 0.8, opacity: Math.random() * 0.55 + 0.2,
+      tw: Math.random() * 0.9 + 0.35, ph: Math.random() * Math.PI * 2
     });
   }
   function animateParticles() {
     pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+    var t = performance.now() / 1000;
+    pCtx.globalCompositeOperation = 'lighter';
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0) p.x = pCanvas.width; if (p.x > pCanvas.width) p.x = 0;
       if (p.y < 0) p.y = pCanvas.height; if (p.y > pCanvas.height) p.y = 0;
-      pCtx.beginPath(); pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      pCtx.fillStyle = 'rgba(180,255,214,' + p.opacity + ')'; pCtx.fill();
+      var twinkle = 0.55 + 0.45 * Math.sin(t * p.tw * 2.2 + p.ph);
+      var r = p.size * 5 * (0.8 + 0.35 * twinkle);
+      pCtx.globalAlpha = Math.min(1, p.opacity * (0.5 + 0.9 * twinkle));
+      pCtx.drawImage(glowSprite, p.x - r, p.y - r, r * 2, r * 2);
     }
+    pCtx.globalAlpha = 1;
+    pCtx.globalCompositeOperation = 'source-over';
     if (!reduce) requestAnimationFrame(animateParticles);
   }
   resizeParticles();
