@@ -73,14 +73,17 @@
     .gnav-links { display: flex; align-items: center; gap: 30px; margin-left: 30px; }
     .gnav-links a { color: rgba(255,255,255,0.8); font-size: 13.5px; font-weight: 500; transition: color 0.25s; }
     .gnav-links a:hover { color: #fff; }
-    .gnav-right { display: flex; align-items: center; gap: 18px; }
-    .gnav-right .classic-link { color: #fff; font-size: 13.5px; font-weight: 500; opacity: 0.85; transition: opacity 0.25s; }
-    .gnav-right .classic-link:hover { opacity: 1; }
+    .gnav-right { display: flex; align-items: center; gap: 12px; }
     .gnav-sub { border-radius: 999px; padding: 9px 22px; color: #fff; font-size: 13.5px; font-weight: 500; cursor: pointer; }
+    .gdesign-toggle, .gmm-toggle { display: inline-flex; border-radius: 999px; padding: 3px; }
+    .gdesign-toggle a, #gmobile-menu .gmm-toggle a { font-size: 12.5px; font-weight: 500; padding: 7px 15px; border-radius: 999px;
+      color: rgba(255,255,255,0.55); transition: color 0.25s, background 0.25s; letter-spacing: 0; }
+    .gdesign-toggle a:hover:not(.on), #gmobile-menu .gmm-toggle a:hover:not(.on) { color: #fff; }
+    .gdesign-toggle a.on, #gmobile-menu .gmm-toggle a.on { color: #000; background: #fff; font-weight: 700; }
     .gmenu-btn { display: none; background: none; border: 0; color: #fff; cursor: pointer; padding: 6px; }
     @media (max-width: 767px) {
       .gnav-links { display: none; }
-      .gnav-right .classic-link { display: none; }
+      .gnav-right .gdesign-toggle { display: none; }
       .gmenu-btn { display: block; }
       .gnav { padding: 10px 16px; }
     }
@@ -207,7 +210,10 @@
         </div>
       </div>
       <div class="gnav-right">
-        <a href="/returning" class="classic-link" data-en="Classic view" data-bm="Paparan klasik">Classic view</a>
+        <div class="gdesign-toggle liquid-glass" role="group" aria-label="Choose design">
+          <a href="/new" class="on" data-en="New" data-bm="Baharu">New</a>
+          <a href="/returning" data-en="Classic" data-bm="Klasik">Classic</a>
+        </div>
         <a href="#gsubscribe" class="gnav-sub liquid-glass glass-btn" data-en="Subscribe" data-bm="Langgan">Subscribe</a>
       </div>
       <button class="gmenu-btn" id="gmenuBtn" aria-label="Toggle menu" aria-expanded="false">
@@ -220,7 +226,10 @@
     <a href="#about" data-en="About" data-bm="Tentang">About</a>
     <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
     <a href="/kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-    <a href="/returning" data-en="Classic view" data-bm="Paparan klasik">Classic view</a>
+    <div class="gmm-toggle liquid-glass" role="group" aria-label="Choose design">
+      <a href="/new" class="on" data-en="New" data-bm="Baharu">New</a>
+      <a href="/returning" data-en="Classic" data-bm="Klasik">Classic</a>
+    </div>
     <a href="#gsubscribe" data-en="Subscribe" data-bm="Langgan">Subscribe</a>
   </div>
 
