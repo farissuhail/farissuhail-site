@@ -30,6 +30,7 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
   position: relative;
   max-width: none; margin: 0; padding: 0;
   min-height: 92vh;
+  min-height: 92svh; /* stable on mobile — ignores address-bar collapse */
   display: flex; align-items: center; justify-content: center;
   text-align: center;
   overflow: hidden; isolation: isolate;
@@ -59,6 +60,9 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
 .k-hero-inner .k-wordmark,
 .k-hero-inner .k-deck,
 .k-hero-inner .k-source { text-shadow: 0 2px 10px rgba(0,0,0,0.65), 0 6px 28px rgba(0,0,0,0.55); }
+/* over the video, lift the dim greys to near-white */
+.k-hero-inner .k-deck { color: rgba(241,241,245,0.94); }
+.k-hero-inner .k-source { color: rgba(241,241,245,0.75); }
 .k-hero-inner .k-arabic-mark { filter: drop-shadow(0 3px 14px rgba(0,0,0,0.6)); }
 
 .k-scroll-cue {
@@ -304,6 +308,10 @@ body.kalam .nav-reflections { color: var(--k-cyan); }
   .k-srow { grid-template-columns: 36px 1fr 70px 60px; }
   .k-srow .en small { display: none; }
   .k-srow .ar { font-size: 18px; }
+}
+@media (max-width: 560px) {
+  .k-hero-inner { padding: 56px 20px 26px; }
+  .k-scroll-cue { bottom: 20px; }
 }
 @media (max-width: 520px) {
   .k-bars { height: 170px; }
