@@ -349,8 +349,8 @@
       ticking = false;
       var p = Math.max(0, Math.min(1, window.scrollY / REVEAL_PX));
       var eased = p * p * (3 - 2 * p); // smoothstep
-      inner.style.opacity = String(0.06 + eased * 0.94);
-      inner.style.transform = 'translateY(' + Math.round((1 - eased) * 26) + 'px)';
+      inner.style.opacity = String(0.7 + eased * 0.3);
+      inner.style.transform = 'translateY(' + Math.round((1 - eased) * 12) + 'px)';
       if (cue) cue.style.opacity = String(1 - Math.min(1, p / 0.5));
     }
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
