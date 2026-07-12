@@ -69,13 +69,16 @@
     @media (min-width: 900px) { nav.top .links { display: flex; } .menu-btn { display: none; } }
 
     /* ===== hero ===== */
-    #hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; }
-    #scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
-    #hero .veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    #hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; background: #04070c; }
+    #hero-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(1.5) contrast(1.08) brightness(1.02); }
+    #gl, #fx { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+    #gl { z-index: 1; } #fx { z-index: 2; }
+    #hero .veil { position: absolute; inset: 0; z-index: 3; pointer-events: none;
       background:
-        radial-gradient(60% 55% at 4% 100%, rgba(224,112,45,0.28) 0%, transparent 62%),
-        linear-gradient(to bottom, rgba(10,8,6,0.3) 0%, rgba(10,8,6,0.05) 26%, rgba(10,8,6,0.12) 55%, rgba(10,8,6,0.85) 100%); }
-    #hero .grain { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .4;
+        radial-gradient(60% 55% at 4% 100%, rgba(224,112,45,0.20) 0%, transparent 62%),
+        linear-gradient(to bottom, rgba(10,8,6,0.28) 0%, rgba(10,8,6,0.04) 26%, rgba(10,8,6,0.10) 55%, rgba(10,8,6,0.82) 100%); }
+    #hero .grain { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: .4;
       background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px); }
 
     .viewfinder { position: absolute; top: 36%; left: 50%; transform: translate(-50%, -50%); z-index: 5; pointer-events: none;
@@ -274,21 +277,19 @@
 
 <!-- ============ HERO ============ -->
 <section id="hero">
-  <canvas id="scene" aria-hidden="true"></canvas>
+  <video id="hero-video" muted autoplay loop playsinline preload="auto" aria-hidden="true">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_031045_0e1165dd-ab48-46e3-ad3d-5fe77f217647.mp4" type="video/mp4" />
+  </video>
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
   <div class="veil" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
-
-  <div class="viewfinder" aria-hidden="true">
-    <span class="tick top"></span><span class="tick bottom"></span>
-    <span class="orbit"></span>
-    <span class="corner-dot"></span>
-  </div>
 
   <div class="peek left" id="peekLeft" aria-hidden="true"></div>
   <div class="peek right" id="peekRight" aria-hidden="true"></div>
 
   <div class="hero-text">
-    <span class="kicker" id="kicker" data-en="Reflections, sub-series —" data-bm="Refleksi, sub-siri —">Reflections, sub-series —</span>
+    <span class="kicker" id="kicker" data-en="The Mdrn Urban —" data-bm="The Mdrn Urban —">The Mdrn Urban —</span>
     <h1>
       <span class="l" id="l1"><span data-en="ring structure" data-bm="struktur ring">ring structure</span></span>
     </h1>
@@ -552,126 +553,641 @@
     mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
   })();
 
-  /* ================= 3D HERO SCENE — one elegant glowing ring, restrained ================= */
+  /* ================= GOLDEN RING HERO — WebGL photoreal gold torus, spin 360° + tumble 360° ================= */
   (function () {
-    var canvas = document.getElementById('scene'); if (!canvas) return;
-    var ctx = canvas.getContext('2d'); if (!ctx) return;
-    var W = 0, H = 0, DPR = 1, cx = 0, cy = 0;
-    var mobile = matchMedia('(max-width: 640px)').matches;
-    var N = 120;
-    var outerPts = [], innerPts = [], haloPts = [];
-    for (var i = 0; i < N; i++) {
-      var a = (i / N) * Math.PI * 2;
-      outerPts.push({ x: Math.cos(a) * 1.0, z: Math.sin(a) * 1.0, y: 0 });
-      innerPts.push({ x: Math.cos(a) * 0.86, z: Math.sin(a) * 0.86, y: 0 });
-      haloPts.push({ x: Math.cos(a) * 0.6, z: Math.sin(a) * 0.6, y: 0 });
+    var hero = document.getElementById('hero'); if (!hero) return;
+    var glc = document.getElementById('gl'), fxc = document.getElementById('fx');
+    if (!glc || !fxc) return;
+    var gl = glc.getContext('webgl', { antialias: true, alpha: true, premultipliedAlpha: false });
+    var ftx0 = fxc.getContext('2d');
+    if (!gl || !ftx0) return;
+    var ftx = ftx0;                               // swap target for particle systems
+    var P = document.createElement('canvas');     // particle layer (mirrored on the floor)
+    var ptx = P.getContext('2d');
+
+    // rotation speeds (rad/s) — continuous full revolutions on both axes
+    var YS = reduce ? 0.09 : 0.26;   // yaw   (spin 360°)
+    var PS = reduce ? 0.05 : 0.15;   // pitch (tumble 360°)
+
+    var FRAG = '\n' +
+      'precision highp float;\n' +
+      'uniform vec2 u_res;\n' +
+      'uniform float u_t;\n' +
+      '#define RMAJ 1.0\n' +
+      '#define FLOORY -1.074\n' +
+      '#define FOCAL 1.8\n' +
+      'mat2 rot(float a){ float c=cos(a), s=sin(a); return mat2(c,-s,s,c); }\n' +
+      'float yawA(){ return 0.5 + u_t*' + YS.toFixed(4) + '; }\n' +
+      'float pitA(){ return u_t*' + PS.toFixed(4) + '; }\n' +
+      'float map(vec3 p){\n' +
+      '  vec3 q = p;\n' +
+      '  q.xz = rot(yawA()) * q.xz;\n' +
+      '  q.yz = rot(pitA()) * q.yz;\n' +
+      '  vec2 w = vec2(length(q.xy) - RMAJ, q.z);\n' +
+      '  vec2 dd = abs(w) - vec2(0.050, 0.082);\n' +
+      '  return length(max(dd, 0.0)) + min(max(dd.x, dd.y), 0.0) - 0.022;\n' +
+      '}\n' +
+      'vec3 calcNormal(vec3 p){\n' +
+      '  vec2 e = vec2(0.0016, 0.0);\n' +
+      '  return normalize(vec3(\n' +
+      '    map(p+e.xyy)-map(p-e.xyy),\n' +
+      '    map(p+e.yxy)-map(p-e.yxy),\n' +
+      '    map(p+e.yyx)-map(p-e.yyx)));\n' +
+      '}\n' +
+      'float march(vec3 ro, vec3 rd, out float minD){\n' +
+      '  float t = 0.0; minD = 1e9;\n' +
+      '  for(int i=0;i<90;i++){\n' +
+      '    vec3 p = ro + rd*t;\n' +
+      '    float d = map(p);\n' +
+      '    minD = min(minD, d);\n' +
+      '    if(d < 0.0012) return t;\n' +
+      '    t += d*0.92;\n' +
+      '    if(t > 12.0) break;\n' +
+      '  }\n' +
+      '  return -1.0;\n' +
+      '}\n' +
+      'vec3 env(vec3 d){\n' +
+      '  float up = d.y*0.5 + 0.5;\n' +
+      '  vec3 c = mix(vec3(0.015, 0.018, 0.028), vec3(0.30, 0.26, 0.20), pow(up, 2.2));\n' +
+      '  c += vec3(1.2, 0.95, 0.60) * pow(max(dot(d, normalize(vec3(-0.5, 0.8, 0.45))), 0.0), 7.0) * 1.5;\n' +
+      '  c += vec3(1.0, 0.50, 0.15) * pow(max(dot(d, normalize(vec3(0.1, -0.9, 0.3))), 0.0), 5.0) * 1.0;\n' +
+      '  c += vec3(0.22, 0.30, 0.42) * pow(max(dot(d, normalize(vec3(0.9, 0.1, -0.2))), 0.0), 3.0) * 0.6;\n' +
+      '  return c;\n' +
+      '}\n' +
+      'float wrapd(float x){ return mod(x + 3.14159265, 6.2831853) - 3.14159265; }\n' +
+      'float gph(float x, float w){ float d = wrapd(x); return exp(-d*d/(2.0*w*w)); }\n' +
+      'vec3 shadeTorus(vec3 p, vec3 rd){\n' +
+      '  vec3 n = calcNormal(p);\n' +
+      '  vec3 q = p;\n' +
+      '  q.xz = rot(yawA()) * q.xz;\n' +
+      '  q.yz = rot(pitA()) * q.yz;\n' +
+      '  float phi = atan(q.y, q.x);\n' +
+      '  float spin = u_t * 0.45;\n' +
+      '  float br  = sin((phi - spin) * 90.0);\n' +
+      '  float br2 = sin((phi - spin) * 17.0 + 2.0);\n' +
+      '  vec3 nq = n;\n' +
+      '  nq.xz = rot(yawA()) * nq.xz;\n' +
+      '  nq.yz = rot(pitA()) * nq.yz;\n' +
+      '  vec3 tang = vec3(-sin(phi), cos(phi), 0.0);\n' +
+      '  float k1 = sin((phi - spin) * 160.0) * sin(q.z * 160.0 + (phi - spin) * 40.0);\n' +
+      '  nq = normalize(nq + tang * k1 * 0.015 + vec3(0.0, 0.0, 1.0) * sin((phi - spin) * 120.0) * 0.007);\n' +
+      '  nq.yz = rot(-pitA()) * nq.yz;\n' +
+      '  nq.xz = rot(-yawA()) * nq.xz;\n' +
+      '  n = nq;\n' +
+      '  vec3 alb = vec3(1.00, 0.72, 0.30);\n' +
+      '  vec3 V = -rd;\n' +
+      '  vec3 refl = reflect(rd, n);\n' +
+      '  vec3 e = env(refl) * (0.96 + 0.05*br2 + 0.03*br);\n' +
+      '  vec3 col = alb * e * 1.8;\n' +
+      '  float face = pow(max(n.z, 0.0), 2.0);\n' +
+      '  col += vec3(1.0, 0.93, 0.75) * gph(phi - 2.15, 0.33) * face * 1.5;\n' +
+      '  col += vec3(1.0, 0.75, 0.40) * gph(phi + 1.70, 0.40) * face * 1.7;\n' +
+      '  col += vec3(1.0, 0.88, 0.65) * gph(phi + 0.35, 0.25) * face * 0.5;\n' +
+      '  vec3 L1 = normalize(vec3(-0.55, 0.75, 0.55));\n' +
+      '  col += alb * 0.06 * (0.3 + 0.7*max(dot(n, L1), 0.0));\n' +
+      '  float s1 = pow(max(dot(refl, L1), 0.0), 350.0);\n' +
+      '  col += vec3(1.0, 0.97, 0.90) * s1 * 3.0;\n' +
+      '  vec3 L2 = normalize(vec3(0.15, -0.85, 0.35));\n' +
+      '  float s2 = pow(max(dot(refl, L2), 0.0), 120.0);\n' +
+      '  col += vec3(1.0, 0.65, 0.30) * s2 * 1.6;\n' +
+      '  float fr = pow(1.0 - max(dot(n, V), 0.0), 5.0);\n' +
+      '  col += fr * alb * 0.5;\n' +
+      '  return col;\n' +
+      '}\n' +
+      'vec3 bgCol(vec2 fc){\n' +
+      '  vec2 u = fc / u_res;\n' +
+      '  vec3 c = mix(vec3(0.008, 0.010, 0.018), vec3(0.016, 0.020, 0.032), u.y);\n' +
+      '  vec2 b1 = vec2(0.86 + 0.02*sin(u_t*0.11), 0.42 + 0.03*cos(u_t*0.07));\n' +
+      '  vec2 b2 = vec2(0.12 + 0.02*cos(u_t*0.09), 0.72 + 0.02*sin(u_t*0.13));\n' +
+      '  vec2 b3 = vec2(0.75, 0.12);\n' +
+      '  c += vec3(0.10, 0.13, 0.18) * exp(-dot((u-b1)*vec2(2.0,1.2),(u-b1)*vec2(2.0,1.2))*2.2) * 0.55;\n' +
+      '  c += vec3(0.07, 0.09, 0.13) * exp(-dot((u-b2)*vec2(2.2,1.4),(u-b2)*vec2(2.2,1.4))*3.0) * 0.4;\n' +
+      '  c += vec3(0.09, 0.11, 0.15) * exp(-dot((u-b3)*vec2(1.6,1.6),(u-b3)*vec2(1.6,1.6))*2.5) * 0.35;\n' +
+      '  return c;\n' +
+      '}\n' +
+      'vec3 shadeFloor(vec3 p, vec3 rd, vec2 fc){\n' +
+      '  float d = length(p.xz);\n' +
+      '  vec3 c = mix(vec3(0.030, 0.040, 0.058), bgCol(fc)*0.8 + vec3(0.004,0.005,0.008), clamp(d*0.30, 0.0, 1.0));\n' +
+      '  vec3 rro = p + vec3(0.0, 0.002, 0.0);\n' +
+      '  vec3 rrd = reflect(rd, vec3(0.0, 1.0, 0.0));\n' +
+      '  float mD;\n' +
+      '  march(rro, rrd, mD);\n' +
+      '  c += vec3(1.0, 0.62, 0.25) * exp(-mD*5.0) * 0.28;\n' +
+      '  c += vec3(1.0, 0.42, 0.10) * exp(-d*d*1.5) * 0.5;\n' +
+      '  return c;\n' +
+      '}\n' +
+      'void main(){\n' +
+      '  vec2 fc = gl_FragCoord.xy;\n' +
+      '  vec2 uv = (2.0*fc - u_res) / u_res.y;\n' +
+      '  vec3 ro = vec3(0.0, -0.12, 5.6);\n' +
+      '  vec3 ta = vec3(0.0, -0.05, 0.0);\n' +
+      '  vec3 fw = normalize(ta - ro);\n' +
+      '  vec3 rg = normalize(cross(fw, vec3(0.0,1.0,0.0)));\n' +
+      '  vec3 up = cross(rg, fw);\n' +
+      '  vec3 rd = normalize(rg*uv.x + up*uv.y + fw*FOCAL);\n' +
+      '  float minD;\n' +
+      '  float tt = march(ro, rd, minD);\n' +
+      '  vec3 col;\n' +
+      '  float alpha;\n' +
+      '  if(tt > 0.0){\n' +
+      '    col = shadeTorus(ro + rd*tt, rd);\n' +
+      '    alpha = 1.0;\n' +
+      '  } else {\n' +
+      '    vec3 glow = vec3(1.0, 0.68, 0.28) * exp(-minD*5.5) * 0.75;\n' +
+      '    col = glow;\n' +
+      '    alpha = clamp(max(glow.r, max(glow.g, glow.b)), 0.0, 1.0);\n' +
+      '  }\n' +
+      '  col = col / (1.0 + col*0.35);\n' +
+      '  col = pow(col, vec3(0.90));\n' +
+      '  gl_FragColor = vec4(col, alpha);\n' +
+      '}\n';
+    var VERT = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+
+    function makeProgram() {
+      function sh(type, src) {
+        var s = gl.createShader(type);
+        gl.shaderSource(s, src); gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+        return s;
+      }
+      var p = gl.createProgram();
+      gl.attachShader(p, sh(gl.VERTEX_SHADER, VERT));
+      gl.attachShader(p, sh(gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+      return p;
     }
-    var PART = mobile ? 14 : 26, parts = [];
-    for (var q = 0; q < PART; q++) parts.push({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() * 2 - 1, r: Math.random() * 0.5 + 0.25, sp: Math.random() * 0.0004 + 0.00014 });
+    var prog;
+    try { prog = makeProgram(); } catch (e) { return; }
+    gl.useProgram(prog);
+    gl.clearColor(0, 0, 0, 0);
+
+    // keep the hero video playing behind the transparent ring canvas
+    (function () {
+      var v = document.getElementById('hero-video'); if (!v) return;
+      function kick() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      kick();
+      v.addEventListener('canplay', kick);
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
+    })();
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var locA = gl.getAttribLocation(prog, 'a');
+    gl.enableVertexAttribArray(locA);
+    gl.vertexAttribPointer(locA, 2, gl.FLOAT, false, 0, 0);
+    var uRes = gl.getUniformLocation(prog, 'u_res');
+    var uT = gl.getUniformLocation(prog, 'u_t');
+
+    /* ---- layout / projection shared with the 2D overlay ---- */
+    var W = 0, H = 0, DPR = 1;
+    var CAM = { ro: [0, -0.12, 5.6], ta: [0, -0.05, 0], focal: 1.8 };
+    var basis;
+    function computeBasis() {
+      var ro = CAM.ro, ta = CAM.ta;
+      var f = [ta[0]-ro[0], ta[1]-ro[1], ta[2]-ro[2]];
+      var fl = Math.hypot(f[0], f[1], f[2]); f = [f[0]/fl, f[1]/fl, f[2]/fl];
+      var r = [f[2], 0, -f[0]];
+      var rl = Math.hypot(r[0], r[1], r[2]); var rn = [r[0]/rl, r[1]/rl, r[2]/rl];
+      var u = [rn[1]*f[2]-rn[2]*f[1], rn[2]*f[0]-rn[0]*f[2], rn[0]*f[1]-rn[1]*f[0]];
+      basis = { f: f, r: rn, u: u };
+    }
+    function projectWorld(p) {
+      var pc = [p[0]-CAM.ro[0], p[1]-CAM.ro[1], p[2]-CAM.ro[2]];
+      var cx = pc[0]*basis.r[0] + pc[1]*basis.r[1] + pc[2]*basis.r[2];
+      var cy = pc[0]*basis.u[0] + pc[1]*basis.u[1] + pc[2]*basis.u[2];
+      var cz = pc[0]*basis.f[0] + pc[1]*basis.f[1] + pc[2]*basis.f[2];
+      var s = CAM.focal / cz * (H / 2);
+      return { x: W/2 + cx*s, y: H/2 - cy*s, s: s, z: p[2] };
+    }
+
+    // ring-local → world, mirroring the shader rotations exactly (inverse pitch, then inverse yaw)
+    function ringToWorld(lx, ly, lz, tms) {
+      var ya = 0.5 + tms * (YS * 0.001), pa = tms * (PS * 0.001);
+      var cp = Math.cos(pa), sp = Math.sin(pa);
+      var y1 = cp * ly + sp * lz, z1 = -sp * ly + cp * lz;
+      var cy = Math.cos(ya), sy = Math.sin(ya);
+      return [cy * lx + sy * z1, y1, -sy * lx + cy * z1];
+    }
 
     function resize() {
-      DPR = Math.min(2, window.devicePixelRatio || 1);
-      W = canvas.clientWidth; H = canvas.clientHeight;
-      canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      cx = W / 2; cy = H * 0.33;
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = hero.clientWidth; H = hero.clientHeight;
+      var glScale = 0.7 * DPR;
+      glc.width = Math.round(W * glScale);
+      glc.height = Math.round(H * glScale);
+      gl.viewport(0, 0, glc.width, glc.height);
+      fxc.width = W * DPR; fxc.height = H * DPR;
+      ftx0.setTransform(DPR, 0, 0, DPR, 0, 0);
+      P.width = W * DPR; P.height = H * DPR;
+      ptx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      computeBasis();
+      initDust();
     }
-    window.addEventListener('resize', resize); resize();
+    window.addEventListener('resize', resize);
 
-    var tmx = 0, tmy = 0, mx = 0, my = 0;
-    window.addEventListener('pointermove', function (e) {
-      tmx = (e.clientX / window.innerWidth) * 2 - 1;
-      tmy = (e.clientY / window.innerHeight) * 2 - 1;
-    }, { passive: true });
-    window.addEventListener('deviceorientation', function (e) {
-      if (e.gamma == null) return;
-      tmx = Math.max(-1, Math.min(1, e.gamma / 40));
-      tmy = Math.max(-1, Math.min(1, (e.beta - 45) / 40));
-    });
-
-    function project(p, yaw, pitch, scale) {
-      var cyaw = Math.cos(yaw), syaw = Math.sin(yaw);
-      var x1 = p.x * cyaw - p.z * syaw, z1 = p.x * syaw + p.z * cyaw, y1 = p.y;
-      var cp = Math.cos(pitch), sp = Math.sin(pitch);
-      var y2 = y1 * cp - z1 * sp, z2 = y1 * sp + z1 * cp;
-      var d = 3.0, f = scale * d / (d - z2);
-      return { x: cx + x1 * f + mx * 14, y: cy + y2 * f + my * 10, z: z2, f: f };
+    /* ---- glitter trail (two free comet orbits) ---- */
+    var TILT = 1.02, TILT2 = -0.72, MAXP = 1400;
+    var trail = [];
+    var headAngle = 0, headAngle2 = 0;
+    function orbitPos(th, rad, wob, tilt) {
+      var c = Math.cos(th) * rad, s = Math.sin(th) * rad;
+      return [c*Math.cos(tilt), s + wob, -c*Math.sin(tilt)];
     }
-
-    var yaw = 0.2, pitch = 1.15, running = true, R;
-    var spin = reduce ? 0.0022 : 0.0048;
-    function frame() {
-      if (!running) return;
-      R = Math.min(W, H) * (mobile ? 0.14 : 0.115);
-      if (!reduce) { mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05; }
-      yaw += spin + mx * 0.003;
-      var targetPitch = 1.15 + my * 0.18;
-      pitch += (targetPitch - pitch) * 0.05;
-
-      ctx.clearRect(0, 0, W, H);
-
-      var haloR = R * 6;
-      var halo = ctx.createRadialGradient(cx + mx * 14, cy + my * 10, 0, cx + mx * 14, cy + my * 10, haloR);
-      halo.addColorStop(0, 'rgba(236,208,138,0.16)');
-      halo.addColorStop(0.45, 'rgba(224,112,45,0.05)');
-      halo.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H);
-
-      ctx.globalCompositeOperation = 'lighter';
-      for (var pi = 0; pi < parts.length; pi++) {
-        var pa = parts[pi]; pa.y -= pa.sp * 60; if (pa.y < -1.3) pa.y = 1.3;
-        var pr = project(pa, yaw * 0.3, pitch * 0.4, R * 4.2);
-        var pa2 = Math.max(0, Math.min(1, (pr.z + 1.6) / 3));
-        ctx.beginPath(); ctx.arc(pr.x, pr.y, pa.r * (pr.f / R) * 0.8, 0, 6.283);
-        ctx.fillStyle = 'rgba(236,208,138,' + (0.05 + pa2 * 0.09) + ')'; ctx.fill();
+    function spawnTrail(t) {
+      headAngle = -t * 0.0009 - 1.2;
+      headAngle2 = t * 0.0007 + 2.4;
+      for (var i = 0; i < 15; i++) {
+        if (trail.length >= MAXP) trail.shift();
+        var second = i >= 9;
+        var back = Math.pow(Math.random(), 2.2) * 1.9;
+        trail.push({
+          th: (second ? headAngle2 - back : headAngle + back),
+          tilt: second ? TILT2 : TILT,
+          rad: 1.02 + Math.random() * 0.05,
+          out: 0.0004 + Math.random() * 0.0018,
+          wob: (Math.random() - 0.5) * 0.05,
+          life: 1,
+          decay: 0.003 + Math.random() * 0.008,
+          s: 0.0022 + Math.random() * (second ? 0.005 : 0.007),
+          hot: Math.random() < (second ? 0.06 : 0.10)
+        });
       }
+    }
+    function drawTrail(front) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < trail.length; i++) {
+        var p = trail[i];
+        var w = orbitPos(p.th, p.rad, p.wob, p.tilt);
+        if ((w[2] >= 0) !== front) continue;
+        var pr = projectWorld(w);
+        var depth = 0.6 + 0.4 * (w[2] + 1.1) / 2.2;
+        var a = Math.max(0, p.life) * depth;
+        if (a <= 0.01) continue;
+        var sz = Math.max(0.4, p.s * pr.s) * (p.hot ? 1.5 : 1);
+        if (p.hot && p.life > 0.5) {
+          var gl2 = ftx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, sz*5);
+          gl2.addColorStop(0, 'hsla(38, 100%, 66%, ' + (a*0.45) + ')');
+          gl2.addColorStop(1, 'hsla(38, 100%, 58%, 0)');
+          ftx.fillStyle = gl2;
+          ftx.beginPath(); ftx.arc(pr.x, pr.y, sz*5, 0, Math.PI*2); ftx.fill();
+        }
+        ftx.fillStyle = 'hsla(' + (36 + p.life*14) + ', 100%, ' + (64 + p.life*26) + '%, ' + a + ')';
+        ftx.beginPath(); ftx.arc(pr.x, pr.y, sz, 0, Math.PI*2); ftx.fill();
+      }
+      var heads = [[headAngle, TILT], [headAngle2, TILT2]];
+      for (var h = 0; h < heads.length; h++) {
+        var hw = orbitPos(heads[h][0], 1.05, 0, heads[h][1]);
+        if ((hw[2] >= 0) !== front) continue;
+        var hp = projectWorld(hw);
+        var rr = 0.07 * hp.s;
+        var hg = ftx.createRadialGradient(hp.x, hp.y, 0, hp.x, hp.y, rr);
+        hg.addColorStop(0, 'rgba(255,240,200,0.9)');
+        hg.addColorStop(0.3, 'rgba(255,180,80,0.5)');
+        hg.addColorStop(1, 'rgba(255,150,50,0)');
+        ftx.fillStyle = hg;
+        ftx.beginPath(); ftx.arc(hp.x, hp.y, rr, 0, Math.PI*2); ftx.fill();
+      }
+      ftx.restore();
+    }
+    function stepTrail() {
+      for (var i = trail.length - 1; i >= 0; i--) {
+        var p = trail[i];
+        p.life -= p.decay;
+        p.rad += p.out;
+        p.wob -= 0.0004;
+        if (p.life <= 0) trail.splice(i, 1);
+      }
+    }
 
-      /* faint inner halo ring — thin, sits behind the main tube for a bit of layered depth */
-      (function () {
-        var proj = haloPts.map(function (p) { return project(p, yaw, pitch, R); });
-        ctx.save();
-        ctx.shadowColor = 'rgba(224,112,45,0.7)'; ctx.shadowBlur = 12;
-        ctx.lineWidth = 1.3; ctx.strokeStyle = 'rgba(224,112,45,0.4)';
-        ctx.beginPath();
-        proj.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
-        ctx.closePath(); ctx.stroke();
-        ctx.restore();
-      })();
+    /* ---- dust + bokeh ---- */
+    var dust = [], bokeh = [];
+    function initDust() {
+      dust = [];
+      var n = Math.round(150 * (W * H) / (1380 * 770));
+      for (var i = 0; i < n; i++) {
+        dust.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vy: -(0.03 + Math.random() * 0.12),
+          vx: (Math.random() - 0.5) * 0.05,
+          s: 0.3 + Math.random() * 1.1,
+          tw: Math.random() * Math.PI * 2,
+          twS: 0.6 + Math.random() * 2.5
+        });
+      }
+      bokeh = [];
+      var nb = Math.round(16 * (W * H) / (1380 * 770));
+      for (var b = 0; b < nb; b++) {
+        var warm = Math.random() < 0.75;
+        bokeh.push({
+          x: Math.random() * W, y: Math.random() * H,
+          r: 12 + Math.random() * Math.random() * 80,
+          hue: warm ? 30 + Math.random() * 18 : 210 + Math.random() * 15,
+          sat: warm ? 90 : 25,
+          a: 0.02 + Math.random() * 0.05,
+          vx: (Math.random() - 0.5) * 0.10,
+          vy: (Math.random() - 0.5) * 0.06,
+          ph: Math.random() * Math.PI * 2,
+          pu: 0.2 + Math.random() * 0.6
+        });
+      }
+    }
+    function drawBokeh(t) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < bokeh.length; i++) {
+        var b = bokeh[i];
+        b.x += b.vx; b.y += b.vy;
+        if (b.x < -b.r) b.x = W + b.r; if (b.x > W + b.r) b.x = -b.r;
+        if (b.y < -b.r) b.y = H + b.r; if (b.y > H + b.r) b.y = -b.r;
+        var tw = 0.7 + 0.3 * Math.sin(t * 0.0005 * b.pu + b.ph);
+        var a = b.a * tw;
+        var g = ftx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+        g.addColorStop(0, 'hsla(' + b.hue + ', ' + b.sat + '%, 60%, ' + (a * 0.7) + ')');
+        g.addColorStop(0.82, 'hsla(' + b.hue + ', ' + b.sat + '%, 62%, ' + a + ')');
+        g.addColorStop(1, 'hsla(' + b.hue + ', ' + b.sat + '%, 60%, 0)');
+        ftx.fillStyle = g;
+        ftx.beginPath(); ftx.arc(b.x, b.y, b.r, 0, Math.PI * 2); ftx.fill();
+      }
+      ftx.restore();
+    }
 
-      /* main ring — a filled tube band with a top-lit gradient, reading as a solid dimensional object */
-      (function () {
-        var po = outerPts.map(function (p) { return project(p, yaw, pitch, R); });
-        var pn = innerPts.map(function (p) { return project(p, yaw, pitch, R); });
-        ctx.save();
-        ctx.shadowColor = 'rgba(236,208,138,0.85)'; ctx.shadowBlur = 26;
-        ctx.beginPath();
-        po.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
-        ctx.closePath();
-        pn.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
-        ctx.closePath();
-        var grad = ctx.createLinearGradient(cx, cy - R * 1.15, cx, cy + R * 1.15);
-        grad.addColorStop(0, 'rgba(255,240,205,0.98)');
-        grad.addColorStop(0.42, 'rgba(236,208,138,0.9)');
-        grad.addColorStop(0.75, 'rgba(180,132,60,0.85)');
-        grad.addColorStop(1, 'rgba(94,62,26,0.8)');
-        ctx.fillStyle = grad;
-        ctx.fill('evenodd');
-        ctx.restore();
+    /* ---- film grain ---- */
+    var grain = document.createElement('canvas');
+    grain.width = grain.height = 160;
+    (function () {
+      var gx = grain.getContext('2d');
+      var id = gx.createImageData(160, 160);
+      for (var i = 0; i < id.data.length; i += 4) {
+        var v = 128 + (Math.random() - 0.5) * 255;
+        id.data[i] = id.data[i+1] = id.data[i+2] = v;
+        id.data[i+3] = 26;
+      }
+      gx.putImageData(id, 0, 0);
+    })();
+    function drawGrain() {
+      ftx.save();
+      ftx.globalCompositeOperation = 'overlay';
+      ftx.globalAlpha = 0.5;
+      var ox = Math.floor(Math.random() * 160), oy = Math.floor(Math.random() * 160);
+      for (var x = -ox; x < W; x += 160)
+        for (var y = -oy; y < H; y += 160)
+          ftx.drawImage(grain, x, y);
+      ftx.restore();
+    }
+    function drawDust(t) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < dust.length; i++) {
+        var d = dust[i];
+        d.y += d.vy; d.x += d.vx;
+        if (d.y < -4) { d.y = H + 4; d.x = Math.random() * W; }
+        var tw = Math.max(0, Math.sin(t * 0.0012 * d.twS + d.tw));
+        if (tw < 0.08) continue;
+        ftx.fillStyle = 'hsla(42, 100%, ' + (72 + tw*20) + '%, ' + (0.45*tw) + ')';
+        ftx.beginPath();
+        ftx.arc(d.x, d.y, d.s * (0.4 + tw*0.8), 0, Math.PI*2);
+        ftx.fill();
+      }
+      ftx.restore();
+    }
 
-        /* crisp bright rim highlight along the outer top edge for a glossy, lit-from-above read */
-        ctx.save();
-        ctx.lineWidth = 1.6; ctx.strokeStyle = 'rgba(255,250,235,0.9)';
-        ctx.shadowColor = 'rgba(255,250,235,0.7)'; ctx.shadowBlur = 8;
-        ctx.beginPath();
-        po.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
-        ctx.closePath(); ctx.stroke();
-        ctx.restore();
-      })();
+    /* ---- fairy glitter sweep ---- */
+    var fairy = [];
+    function spawnFairy(t) {
+      var phase = (t % 9000) / 9000;
+      var bandX = -0.25 * W + phase * 1.5 * W;
+      for (var i = 0; i < 3; i++) {
+        if (fairy.length > 260) fairy.shift();
+        fairy.push({
+          x: bandX + (Math.random() - 0.5) * W * 0.22,
+          y: Math.random() * H,
+          vx: -0.12 - Math.random() * 0.25,
+          vy: 0.05 + Math.random() * 0.18,
+          life: 1,
+          decay: 0.004 + Math.random() * 0.007,
+          s: 0.8 + Math.random() * 2.2,
+          tw: Math.random() * Math.PI * 2,
+          twS: 2.5 + Math.random() * 5,
+          star: Math.random() < 0.30
+        });
+      }
+    }
+    function drawFairy(t) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = fairy.length - 1; i >= 0; i--) {
+        var f = fairy[i];
+        f.x += f.vx; f.y += f.vy;
+        f.life -= f.decay;
+        if (f.life <= 0) { fairy.splice(i, 1); continue; }
+        var tw = Math.max(0, Math.sin(t * 0.001 * f.twS + f.tw));
+        if (tw < 0.05) continue;
+        var a = f.life * tw;
+        var sz = f.s * (0.5 + tw);
+        var g = ftx.createRadialGradient(f.x, f.y, 0, f.x, f.y, sz * 4);
+        g.addColorStop(0, 'hsla(44, 100%, 78%, ' + (a * 0.5) + ')');
+        g.addColorStop(1, 'hsla(40, 100%, 65%, 0)');
+        ftx.fillStyle = g;
+        ftx.beginPath(); ftx.arc(f.x, f.y, sz * 4, 0, Math.PI * 2); ftx.fill();
+        ftx.fillStyle = 'hsla(48, 100%, ' + (82 + tw * 14) + '%, ' + a + ')';
+        ftx.beginPath(); ftx.arc(f.x, f.y, sz * 0.6, 0, Math.PI * 2); ftx.fill();
+        if (f.star && tw > 0.6) {
+          var L = sz * 6 * (tw - 0.5);
+          ftx.strokeStyle = 'hsla(48, 100%, 90%, ' + (a * 0.8) + ')';
+          ftx.lineWidth = 0.9;
+          ftx.beginPath();
+          ftx.moveTo(f.x - L, f.y); ftx.lineTo(f.x + L, f.y);
+          ftx.moveTo(f.x, f.y - L); ftx.lineTo(f.x, f.y + L);
+          ftx.stroke();
+          ftx.lineWidth = 0.5;
+          var D = L * 0.55;
+          ftx.beginPath();
+          ftx.moveTo(f.x - D, f.y - D); ftx.lineTo(f.x + D, f.y + D);
+          ftx.moveTo(f.x + D, f.y - D); ftx.lineTo(f.x - D, f.y + D);
+          ftx.stroke();
+        }
+      }
+      ftx.restore();
+    }
 
-      ctx.globalCompositeOperation = 'source-over';
+    /* ---- the ring itself, made of particles (tracks the tumbling torus) ---- */
+    var ringP = [];
+    (function () {
+      for (var i = 0; i < 1500; i++) {
+        var g1 = (Math.random() + Math.random() + Math.random()) / 3;
+        ringP.push({
+          th: Math.random() * Math.PI * 2,
+          rad: 0.93 + g1 * 0.16,
+          z: (Math.random() - 0.5) * 0.16 * Math.random(),
+          spin: 0.00045 + Math.random() * 0.00075,
+          s: 0.0012 + Math.random() * Math.random() * 0.006,
+          tw: Math.random() * Math.PI * 2,
+          twS: 1.2 + Math.random() * 4.5,
+          hot: Math.random() < 0.06
+        });
+      }
+    })();
+    function drawRingP(g, t) {
+      g.save();
+      g.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < ringP.length; i++) {
+        var p = ringP[i];
+        p.th += p.spin * 16;
+        var tw = 0.35 + 0.65 * Math.max(0, Math.sin(t * 0.001 * p.twS + p.tw));
+        var w = ringToWorld(Math.cos(p.th) * p.rad, Math.sin(p.th) * p.rad, p.z, t);
+        var pr = projectWorld(w);
+        var depth = 0.55 + 0.45 * (w[2] + 1.2) / 2.4;
+        var a = tw * depth;
+        var sz = Math.max(0.35, p.s * pr.s) * (0.6 + tw * 0.7);
+        if (p.hot && tw > 0.8) {
+          var gl3 = g.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, sz * 6);
+          gl3.addColorStop(0, 'hsla(40, 100%, 68%, ' + (a * 0.5) + ')');
+          gl3.addColorStop(1, 'hsla(40, 100%, 60%, 0)');
+          g.fillStyle = gl3;
+          g.beginPath(); g.arc(pr.x, pr.y, sz * 6, 0, Math.PI * 2); g.fill();
+        }
+        g.fillStyle = 'hsla(' + (40 + tw * 8) + ', 100%, ' + (62 + tw * 30) + '%, ' + a + ')';
+        g.beginPath(); g.arc(pr.x, pr.y, sz, 0, Math.PI * 2); g.fill();
+      }
+      g.restore();
+    }
+
+    /* ---- sparkling circle frame hugging the ring ---- */
+    var ringSparks = [];
+    for (var rs = 0; rs < 110; rs++) {
+      ringSparks.push({
+        th: Math.random() * Math.PI * 2,
+        rad: 0.99 + Math.random() * 0.10,
+        z: (Math.random() - 0.5) * 0.10,
+        spin: (Math.random() < 0.5 ? 1 : -1) * (0.0002 + Math.random() * 0.0005),
+        s: 0.0015 + Math.random() * 0.0045,
+        tw: Math.random() * Math.PI * 2,
+        twS: 1.5 + Math.random() * 4
+      });
+    }
+    function drawRingSparks(t) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < ringSparks.length; i++) {
+        var p = ringSparks[i];
+        p.th += p.spin * 16;
+        var tw = Math.max(0, Math.sin(t * 0.001 * p.twS + p.tw));
+        if (tw < 0.12) continue;
+        var w = ringToWorld(Math.cos(p.th) * p.rad, Math.sin(p.th) * p.rad, p.z, t);
+        var pr = projectWorld(w);
+        var sz = Math.max(0.4, p.s * pr.s) * (0.5 + tw);
+        ftx.fillStyle = 'hsla(46, 100%, ' + (74 + tw * 20) + '%, ' + (0.75 * tw) + ')';
+        ftx.beginPath(); ftx.arc(pr.x, pr.y, sz, 0, Math.PI * 2); ftx.fill();
+        if (tw > 0.85) {
+          var g = ftx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, sz * 5);
+          g.addColorStop(0, 'hsla(42, 100%, 70%, ' + (0.35 * tw) + ')');
+          g.addColorStop(1, 'hsla(42, 100%, 60%, 0)');
+          ftx.fillStyle = g;
+          ftx.beginPath(); ftx.arc(pr.x, pr.y, sz * 5, 0, Math.PI * 2); ftx.fill();
+        }
+      }
+      ftx.restore();
+    }
+
+    /* ---- spray sparks off the comet head ---- */
+    var spray = [];
+    function spawnSpray() {
+      var hw = orbitPos(headAngle, 1.05, 0, TILT);
+      for (var i = 0; i < 2; i++) {
+        if (spray.length > 160) spray.shift();
+        spray.push({
+          p: [hw[0], hw[1], hw[2]],
+          v: [(Math.random()-0.5)*0.012, (Math.random()-0.3)*0.012, (Math.random()-0.5)*0.008],
+          life: 1,
+          decay: 0.010 + Math.random() * 0.018,
+          s: 0.002 + Math.random() * 0.005
+        });
+      }
+    }
+    function drawSpray() {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      for (var i = spray.length - 1; i >= 0; i--) {
+        var sp = spray[i];
+        sp.p[0] += sp.v[0]; sp.p[1] += sp.v[1]; sp.p[2] += sp.v[2];
+        sp.v[1] -= 0.00012;
+        sp.life -= sp.decay;
+        if (sp.life <= 0) { spray.splice(i, 1); continue; }
+        var pr = projectWorld(sp.p);
+        var a = sp.life * 0.9;
+        ftx.fillStyle = 'hsla(' + (34 + sp.life*16) + ', 100%, ' + (62 + sp.life*30) + '%, ' + a + ')';
+        ftx.beginPath(); ftx.arc(pr.x, pr.y, Math.max(0.4, sp.s * pr.s), 0, Math.PI*2); ftx.fill();
+      }
+      ftx.restore();
+    }
+
+    /* ---- soft bloom over the ring's bright zones (tracks the tumble) ---- */
+    function drawBloom(t) {
+      ftx.save();
+      ftx.globalCompositeOperation = 'lighter';
+      var spots = [
+        { a: 2.30, r: 0.34, al: 0.16 },
+        { a: -1.75, r: 0.42, al: 0.20 }
+      ];
+      for (var i = 0; i < spots.length; i++) {
+        var s = spots[i];
+        var w = ringToWorld(Math.cos(s.a), Math.sin(s.a), 0, t);
+        var pr = projectWorld(w);
+        var rr = s.r * pr.s;
+        var g = ftx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, rr);
+        g.addColorStop(0, 'rgba(255,210,140,' + s.al + ')');
+        g.addColorStop(0.5, 'rgba(255,160,60,' + (s.al * 0.45) + ')');
+        g.addColorStop(1, 'rgba(255,140,50,0)');
+        ftx.fillStyle = g;
+        ftx.beginPath(); ftx.arc(pr.x, pr.y, rr, 0, Math.PI * 2); ftx.fill();
+      }
+      ftx.restore();
+    }
+
+    /* ---- frame loop ---- */
+    var running = true;
+    function frame(t) {
+      if (!running) return;
+      if (W !== hero.clientWidth || H !== hero.clientHeight) resize();
+      if (!W || !H) { requestAnimationFrame(frame); return; }
+      gl.uniform2f(uRes, glc.width, glc.height);
+      gl.uniform1f(uT, t * 0.001);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+      ftx = ptx;
+      ptx.clearRect(0, 0, W, H);
+      spawnTrail(t);
+      spawnSpray();
+      drawRingP(ptx, t);
+      drawTrail(false);
+      drawRingSparks(t);
+      drawTrail(true);
+      drawSpray();
+      stepTrail();
+      ftx = ftx0;
+
+      ftx.clearRect(0, 0, W, H);
+      drawBokeh(t);
+      var fyS = projectWorld([0, -1.074, 0]).y;
+      ftx.save();
+      ftx.globalAlpha = 0.30;
+      ftx.filter = 'blur(4px)';
+      ftx.translate(0, fyS * 2);
+      ftx.scale(1, -1);
+      ftx.drawImage(P, 0, 0, W, H);
+      ftx.restore();
+      ftx.drawImage(P, 0, 0, W, H);
+      spawnFairy(t);
+      drawFairy(t);
+      drawBloom(t);
+      drawDust(t);
+      drawGrain();
+
       requestAnimationFrame(frame);
     }
-
     resize();
     requestAnimationFrame(frame);
     document.addEventListener('visibilitychange', function () {
