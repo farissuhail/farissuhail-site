@@ -53,6 +53,11 @@
 
   <!-- ===== HERO ===== -->
   <section class="k-hero">
+    <video class="k-hero-video" muted autoplay loop playsinline preload="auto" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_055001_8e16d972-3b2b-441c-86ad-2901a54682f9.mp4" type="video/mp4" />
+    </video>
+    <div class="k-hero-veil" aria-hidden="true"></div>
+    <div class="k-hero-inner">
     <div class="k-kicker" data-en="Data · The Mdrn Urban" data-bm="Data · The Mdrn Urban">Data · The Mdrn Urban</div>
     <div class="k-arabic-mark" aria-hidden="true">كلام</div>
     <div class="k-wordmark">KALAM</div>
@@ -65,6 +70,8 @@
          data-bm="Sumber: Tanzil (Uthmani) · morfologi Quranic Arabic Corpus">
       Sources: Tanzil (Uthmani) · Quranic Arabic Corpus morphology
     </div>
+    </div>
+    <div class="k-scroll-cue" id="kScrollCue" aria-hidden="true"><span>Scroll</span><span class="chev"></span></div>
   </section>
 
   <!-- ===== TABS ===== -->
@@ -215,6 +222,29 @@
 </footer>
 
 <script src="kalam.js"></script>
+<script>
+  // ===== hero: video stays vivid, text fades/rises in as you scroll =====
+  (function () {
+    var inner = document.querySelector('.k-hero-inner');
+    var cue = document.getElementById('kScrollCue');
+    if (!inner) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { inner.style.opacity = '1'; inner.style.transform = 'none'; if (cue) cue.style.display = 'none'; return; }
+    var REVEAL_PX = 380;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var p = Math.max(0, Math.min(1, window.scrollY / REVEAL_PX));
+      var eased = p * p * (3 - 2 * p); // smoothstep
+      inner.style.opacity = String(0.06 + eased * 0.94);
+      inner.style.transform = 'translateY(' + Math.round((1 - eased) * 26) + 'px)';
+      if (cue) cue.style.opacity = String(1 - Math.min(1, p / 0.5));
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  })();
+</script>
 <script src="feedback.js"></script>
 </body>
 </html>
