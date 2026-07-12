@@ -79,11 +79,12 @@
   }
 
   /* ===== nav ===== */
-  .a-nav { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 5; }
+  .a-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; position: relative; z-index: 5; }
+  @media (max-width: 760px) { .a-brand span { font-size: 1.25rem; } .a-brand svg { width: 28px; height: 28px; } }
   .a-brand { display: flex; align-items: center; gap: 0.6rem; }
   .a-brand span { font-weight: 600; font-size: 1.5rem; letter-spacing: -0.03em; color: #fff; white-space: nowrap; }
   .a-brand span .brand-malaya { font-family: 'Cormorant Garamond', 'Source Serif 4', serif; font-style: italic; font-weight: 500;
-    font-size: 1.12em; letter-spacing: 0.01em; color: rgba(255,255,255,0.92); margin-left: 0.18rem; }
+    font-size: 1.14em; letter-spacing: 0.01em; color: #a9c9b4; margin-left: 0.4rem; }
   .a-nav-right { display: flex; align-items: center; gap: 0.6rem; }
   .a-menu-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 999px; font-size: 0.85rem; color: rgba(255,255,255,0.85); }
 
@@ -178,7 +179,18 @@
 
       <nav class="a-nav">
         <div class="a-brand">
-          <svg class="a-logo-mark" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" opacity="0.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          <svg class="a-logo-mark" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="amLogoGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f6f8f7"/>
+                <stop offset="0.45" stop-color="#cfe0d6"/>
+                <stop offset="1" stop-color="#74a389"/>
+              </linearGradient>
+            </defs>
+            <circle cx="12" cy="12" r="3" stroke="url(#amLogoGrad)" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="8" stroke="url(#amLogoGrad)" stroke-width="1.7" opacity="0.85"/>
+            <path d="M12 1.2v3M12 19.8v3M1.2 12h3M19.8 12h3" stroke="url(#amLogoGrad)" stroke-width="1.7"/>
+          </svg>
           <span>analitika<em class="brand-malaya">Malaya</em></span>
         </div>
         <div class="a-nav-right">
