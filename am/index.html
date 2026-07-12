@@ -87,6 +87,9 @@
     font-size: 1.14em; letter-spacing: 0.01em; color: #a9c9b4; margin-left: 0.4rem; }
   .a-nav-right { display: flex; align-items: center; gap: 0.6rem; }
   .a-menu-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; border-radius: 999px; font-size: 0.85rem; color: rgba(255,255,255,0.85); }
+  .a-home-btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.6rem 1.1rem; border-radius: 999px; font-size: 0.85rem; color: rgba(255,255,255,0.85); white-space: nowrap; }
+  .a-home-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  @media (max-width: 900px) { .a-home-btn span { display: none; } .a-home-btn { padding: 0.6rem 0.75rem; } }
 
   /* ===== design toggle (Classic / New / AM) ===== */
   .am-toggle { display: none; border-radius: 999px; padding: 3px; }
@@ -163,6 +166,21 @@
   @media (max-width: 1023px) {
     .a-hero h1 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
   }
+
+  /* ===== sound toggle (bottom-left, above the visits pill) ===== */
+  #soundBtn { position: fixed; left: 20px; bottom: 68px; z-index: 9000; width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center; cursor: pointer; color: rgba(255,255,255,0.9); }
+  #soundBtn svg { width: 19px; height: 19px; display: block; }
+  #soundBtn .eq { display: none; align-items: flex-end; gap: 3px; height: 16px; }
+  #soundBtn .eq i { width: 3px; background: #a9c9b4; border-radius: 2px; height: 6px;
+    box-shadow: 0 0 8px rgba(169,201,180,0.7); animation: eqb 1.1s ease-in-out infinite; }
+  #soundBtn .eq i:nth-child(2) { animation-delay: 0.2s; height: 12px; }
+  #soundBtn .eq i:nth-child(3) { animation-delay: 0.45s; height: 8px; }
+  @keyframes eqb { 0%,100% { transform: scaleY(0.5); } 50% { transform: scaleY(1.5); } }
+  #soundBtn.on .eq { display: inline-flex; }
+  #soundBtn.on .ic-off { display: none; }
+  @media (max-width: 520px) { #soundBtn { left: 8px; bottom: 60px; } }
+  @media (prefers-reduced-motion: reduce) { #soundBtn .eq i { animation: none; } }
 </style>
 </head>
 <body>
@@ -171,6 +189,17 @@
   <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" type="video/mp4" />
 </video>
 <div class="bg-veil" aria-hidden="true"></div>
+
+<!-- original instrumental (in-house composition) — opt-in, never autoplays -->
+<audio id="bgm" loop preload="none">
+  <source src="/assets/ambient-am.m4a?v=2" type="audio/mp4" />
+</audio>
+<button id="soundBtn" class="liquid-glass" aria-label="Toggle background music" aria-pressed="false" title="Music">
+  <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 5L6.5 9H3v6h3.5L11 19V5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/>
+  </svg>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+</button>
 
 <div class="split">
   <section class="panel-left">
@@ -194,6 +223,10 @@
           <span>analitika<em class="brand-malaya">Malaya</em></span>
         </div>
         <div class="a-nav-right">
+          <a href="/" class="a-home-btn liquid-glass hoverable" title="Back home to farissuhail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+            <span>farissuhail</span>
+          </a>
           <div class="am-toggle liquid-glass" role="group" aria-label="Choose design">
             <a href="/returning" data-en="Classic" data-bm="Klasik">Classic</a>
             <a href="/new" data-en="New" data-bm="Baharu">New</a>
@@ -204,6 +237,7 @@
             <span data-en="Menu" data-bm="Menu">Menu</span>
           </button>
           <div id="am-menu" aria-hidden="true">
+            <a href="/" data-en="⌂ Back home — farissuhail.com" data-bm="⌂ Kembali — farissuhail.com">⌂ Back home — farissuhail.com</a>
             <a href="/analitika-malaya.html" data-en="Analitika Malaya" data-bm="Analitika Malaya">Analitika Malaya</a>
             <a href="/npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
             <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
@@ -319,6 +353,45 @@
       document.querySelectorAll('[data-en-html]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bmHtml : el.dataset.enHtml; });
     }
     try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  // ===== cinematic instrumental (original composition) — opt-in sound toggle =====
+  (function () {
+    var bgm = document.getElementById('bgm'), btn = document.getElementById('soundBtn');
+    var fadeTimer = null, TARGET = 0.55;
+    function fade(to, done) {
+      clearInterval(fadeTimer);
+      var from = bgm.volume, i = 0, steps = 22;
+      fadeTimer = setInterval(function () {
+        i++;
+        bgm.volume = Math.max(0, Math.min(1, from + (to - from) * (i / steps)));
+        if (i >= steps) { clearInterval(fadeTimer); if (done) done(); }
+      }, 55);
+    }
+    function setUI(on) { btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+    function soundOn() {
+      bgm.volume = 0;
+      var p = bgm.play();
+      if (p && p.then) {
+        p.then(function () { setUI(true); fade(TARGET); try { localStorage.setItem('fs-sound', '1'); } catch (e) {} })
+         .catch(function () { setUI(false); }); // autoplay blocked — wait for a real tap
+      }
+    }
+    function soundOff() { fade(0, function () { bgm.pause(); }); setUI(false); try { localStorage.setItem('fs-sound', '0'); } catch (e) {} }
+    btn.addEventListener('click', function () { (bgm.paused) ? soundOn() : soundOff(); });
+    // returning visitor who had sound on: resume at their first interaction anywhere
+    try {
+      if (localStorage.getItem('fs-sound') === '1') {
+        var unlock = function (e) {
+          document.removeEventListener('pointerdown', unlock);
+          document.removeEventListener('keydown', unlock);
+          if (btn.contains(e.target)) return; // let the button's own handler decide
+          if (bgm.paused) soundOn();
+        };
+        document.addEventListener('pointerdown', unlock);
+        document.addEventListener('keydown', unlock);
+      }
+    } catch (e) {}
   })();
 
   // ===== menu dropdown =====
