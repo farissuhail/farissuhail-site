@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ring Structure — a Reflections sub-series by Faris Suhail. How sūrahs fold around their own centers: A-B-C-X-C′-B′-A′, the opening mirroring the close, the true point sitting not at the end but at the middle. Eleven documented rings, sourced and diagrammed." />
+  <title>Ring Structure · Reflections · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0806" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Ring Structure — the Qur'an folds on itself" />
+  <meta property="og:description" content="A-B-C-X-C′-B′-A′. Eleven sūrahs with documented, sourced concentric structure — mapped, diagrammed, and read honestly." />
+  <meta property="og:url" content="https://farissuhail.com/ring-structure.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ring Structure · Reflections · Faris Suhail" />
+  <meta name="twitter:description" content="How sūrahs fold around their own centers — eleven documented rings, sourced and diagrammed.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --ink: #0a0806; --panel: #150f0a; --line: rgba(243,237,224,0.14);
+      --gold: #c9a54a; --gold-bright: #ecd08a; --amber: #e0704a;
+      --cream: #f3ece0; --dim: rgba(243,237,224,0.68); --mute: rgba(243,237,224,0.5);
+      --center: #d98a4f; --teal: #63b0a6;
+      --serif: 'Cormorant Garamond', Georgia, serif; --arabic: 'Amiri', serif; --sans: 'Inter', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    ::selection { background: rgba(201,165,74,0.32); color: #fff; }
+
+    /* ===== nav ===== */
+    .nav-scrim { position: fixed; top: 0; left: 0; right: 0; height: 110px; z-index: 39; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4), transparent); }
+    nav.top { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 26px 40px; }
+    nav.top .left { display: flex; align-items: center; gap: 10px; }
+    nav.top .brand { color: var(--cream); text-transform: uppercase; letter-spacing: 0.18em; font-weight: 700; font-size: 14px; }
+    nav.top .crumb { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--mute); }
+    nav.top .links { display: none; align-items: center; gap: 32px; }
+    nav.top .links a { position: relative; padding-bottom: 5px; font-size: 11px; color: rgba(243,237,224,0.72); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; transition: color .3s; }
+    nav.top .links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; border-bottom: 1px dashed transparent; transition: border-color .3s; }
+    nav.top .links a:hover, nav.top .links a.here { color: #fff; }
+    nav.top .links a:hover::after, nav.top .links a.here::after { border-color: rgba(255,255,255,0.6); }
+    nav.top .right { display: flex; align-items: center; gap: 14px; }
+    .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; color: var(--mute); cursor: pointer;
+      display: inline-flex; align-items: center; }
+    .lang-toggle::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-bright); margin-right: 6px; }
+    .lang-toggle .active { color: #fff; } .lang-toggle .sep { opacity: .5; margin: 0 3px; }
+    .menu-btn { background: none; border: 0; color: #fff; cursor: pointer; padding: 4px; }
+    .menu-btn svg { width: 20px; height: 20px; display: block; } .menu-btn .ic-x { display: none; }
+    .menu-btn.open .ic-menu { display: none; } .menu-btn.open .ic-x { display: block; }
+    #mobile-menu { position: fixed; top: 66px; left: 16px; right: 16px; z-index: 90; border-radius: 14px; padding: 24px 0;
+      display: flex; flex-direction: column; align-items: center; gap: 15px; background: rgba(10,8,6,0.9);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line);
+      opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .3s, transform .3s; }
+    #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #mobile-menu a { color: rgba(243,237,224,0.9); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; font-size: 12px; }
+    #mobile-menu a.atlas { color: var(--gold-bright); font-weight: 600; }
+    @media (min-width: 900px) { nav.top .links { display: flex; } .menu-btn { display: none; } }
+
+    /* ===== hero ===== */
+    #hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; }
+    #scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
+    #hero .veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(60% 55% at 4% 100%, rgba(224,112,45,0.28) 0%, transparent 62%),
+        linear-gradient(to bottom, rgba(10,8,6,0.3) 0%, rgba(10,8,6,0.05) 26%, rgba(10,8,6,0.12) 55%, rgba(10,8,6,0.85) 100%); }
+    #hero .grain { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .4;
+      background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px); }
+
+    .viewfinder { position: absolute; top: 36%; left: 50%; transform: translate(-50%, -50%); z-index: 5; pointer-events: none;
+      width: min(27vw, 370px); height: min(30vw, 408px); border: 1px dashed rgba(243,237,224,0.32); }
+    .viewfinder .orbit { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 84%; aspect-ratio: 1; border-radius: 50%; border: 1px dashed rgba(236,208,138,0.32); }
+    .viewfinder .tick { position: absolute; left: 50%; width: 1px; height: 12px; background: rgba(243,237,224,0.3); transform: translateX(-50%); }
+    .viewfinder .tick.top { top: -6px; } .viewfinder .tick.bottom { bottom: -6px; }
+    .viewfinder .corner-dot { position: absolute; top: -4px; right: 22%; width: 7px; height: 7px; border-radius: 50%; background: #fff;
+      box-shadow: 0 0 8px #fff, 0 0 20px rgba(236,208,138,0.8); animation: dotPulse 3.2s ease-in-out infinite; }
+    @keyframes dotPulse { 0%,100% { opacity: 0.55; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.15); } }
+    @media (prefers-reduced-motion: reduce) { .viewfinder .corner-dot { animation: none; opacity: 0.9; } }
+
+    .peek { position: fixed; top: 22%; z-index: 4; width: 92px; height: 168px; border-radius: 14px; background: linear-gradient(160deg, #efe4c9, #d8caa2);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6); opacity: 0; transition: opacity 1.1s ease .4s; }
+    .peek.left { left: -76px; border-radius: 0 14px 14px 0; }
+    .peek.right { right: -76px; border-radius: 14px 0 0 14px; top: 46%; }
+    .peek.show { opacity: 0.92; }
+    @media (max-width: 1100px) { .peek { display: none; } }
+
+    .hero-text { position: absolute; left: 5.4vw; right: 5vw; bottom: 13vh; z-index: 6; }
+    .hero-text .kicker { display: block; font-size: clamp(13px, 1.6vw, 19px); letter-spacing: 0.02em; text-transform: uppercase; color: var(--mute); font-weight: 500;
+      opacity: 0; transform: translateY(10px); transition: opacity .8s ease .1s, transform .8s ease .1s; }
+    .hero-text .kicker.show { opacity: 1; transform: none; }
+    #hero h1 { font-weight: 800; letter-spacing: -0.02em; line-height: 0.94; font-size: clamp(40px, 10.8vw, 144px); margin-top: 10px; white-space: nowrap; }
+    #hero h1 .l { display: block; overflow: hidden; }
+    #hero h1 .l span { display: inline-block; transform: translateY(112%); transition: transform 1.05s cubic-bezier(.16,1,.3,1);
+      color: #fdf7ea; text-shadow: 0 0 2px rgba(255,255,255,0.85), 0 0 34px rgba(236,208,138,0.5), 0 0 84px rgba(224,112,45,0.32); }
+    #hero h1 .l.show span { transform: translateY(0); }
+    @media (max-width: 640px) { #hero h1 { white-space: normal; font-size: clamp(38px, 15vw, 64px); } }
+
+    .scroll-cue { position: absolute; left: 50%; transform: translateX(-50%); bottom: 30px; z-index: 6; display: flex; align-items: center; gap: 10px;
+      opacity: 0; transition: opacity 1s ease 1.1s; }
+    .scroll-cue.show { opacity: 1; }
+    .scroll-cue .ring { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--mute); }
+    .scroll-cue .ring svg { width: 12px; height: 12px; animation: chevBounce 1.8s ease-in-out infinite; }
+    .scroll-cue span.mono { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); }
+    @keyframes chevBounce { 0%,100% { transform: translateY(0); opacity:.6; } 50% { transform: translateY(3px); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .scroll-cue .ring svg { animation: none; } }
+
+    /* ===== shared section frame ===== */
+    section.band { position: relative; z-index: 2; padding: 96px 40px; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-bright); }
+
+    /* ===== 01 — feature split, matched to reference proportions ===== */
+    #feat-split { background: var(--ink); border-top: 1px solid var(--line); padding: 0; }
+    .fs-outer { display: grid; grid-template-columns: 34% 66%; min-height: 640px; }
+    .fs-left { padding: 76px 44px; display: flex; flex-direction: column; background: linear-gradient(100deg, #1a120a, transparent 140%); }
+    .fs-left .icon { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--gold-bright); margin-bottom: 30px; }
+    .fs-left .icon svg { width: 18px; height: 18px; }
+    .fs-left h2 { font-size: 17px; font-weight: 700; letter-spacing: 0.01em; color: var(--cream); text-transform: uppercase; }
+    .fs-left p { margin-top: 14px; color: var(--dim); font-size: 13.5px; line-height: 1.65; max-width: 32ch; }
+    .fs-left .divider { margin-top: auto; padding-top: 40px; border-top: 1px dashed var(--line); }
+    .fs-left .stat { margin-top: 24px; font-weight: 800; letter-spacing: -0.01em; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.15; color: var(--gold-bright); }
+    .fs-right { position: relative; background:
+        radial-gradient(1px 1px at 14px 14px, rgba(236,208,138,0.1) 1px, transparent 0) 0 0/30px 30px,
+        radial-gradient(80% 70% at 70% 40%, rgba(224,112,45,0.08), transparent 60%), #100b07;
+      display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .fs-diagram { position: relative; width: min(46%, 320px); aspect-ratio: 1; }
+    .fs-diagram::before, .fs-diagram::after { content: ''; position: absolute; border: 1px dashed rgba(243,237,224,0.14); }
+    .fs-diagram::before { left: 50%; top: -40%; bottom: -40%; width: 0; border-left: 1px dashed rgba(243,237,224,0.14); }
+    .fs-diagram::after { top: 50%; left: -40%; right: -40%; height: 0; border-top: 1px dashed rgba(243,237,224,0.14); }
+    .fs-diagram svg { width: 100%; height: 100%; }
+    .fs-formula { position: absolute; right: 36px; bottom: 30px; text-align: right; }
+    .fs-formula .cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.04em; color: var(--mute); line-height: 1.7; }
+    .fs-formula .f { margin-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 16px; color: var(--gold-bright); }
+    @media (max-width: 860px) { .fs-outer { grid-template-columns: 1fr; } .fs-right { min-height: 380px; } .fs-formula { position: static; text-align: left; margin-top: 22px; } }
+
+    /* ===== 02 — choose a sūrah (tabbed) ===== */
+    #choose { background: var(--panel); border-top: 1px solid var(--line); text-align: center; }
+    #choose .cyclewrap { margin-top: 14px; height: clamp(52px, 8vw, 96px); position: relative; }
+    #choose .cyclewrap .cyc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-weight: 800; letter-spacing: -0.02em; font-size: clamp(32px, 6.6vw, 80px); opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; color: var(--cream); }
+    #choose .cyclewrap .cyc.on { opacity: 1; transform: none; }
+    #choose .cyclewrap .cyc .ar { font-family: var(--arabic); color: var(--gold-bright); font-size: 0.62em; }
+    .tabs { display: flex; gap: 10px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+    .tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 20px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255,255,255,0.02); color: var(--dim); cursor: pointer; transition: all .25s; }
+    .tab:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+    .tab.on { background: linear-gradient(100deg, var(--gold-bright), var(--gold)); color: #1a1206; font-weight: 700; border-color: transparent; }
+
+    .sp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; margin-top: 46px; text-align: left; }
+    .spcard { position: relative; border-radius: 14px; border: 1px solid var(--line); padding: 20px 20px 18px;
+      background: rgba(255,255,255,0.02); transition: transform .3s, border-color .3s; overflow: hidden; }
+    .spcard.hide { display: none; }
+    .spcard:hover { transform: translateY(-4px); border-color: rgba(236,208,138,0.35); }
+    .spcard .top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .spcard .idx { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--gold); font-weight: 700; }
+    .spcard .type { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; }
+    .spcard .ar { font-family: var(--arabic); font-size: 21px; color: var(--cream); margin-top: 12px; direction: rtl; }
+    .spcard h3 { font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--gold-bright); margin-top: 4px; }
+    .spcard .hook { font-size: 12px; color: var(--dim); line-height: 1.55; margin-top: 9px; min-height: 52px; }
+    .spcard .go { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: var(--gold-bright); display: inline-flex; align-items: center; gap: 6px; transition: gap .2s; }
+    .spcard:hover .go { gap: 11px; }
+
+    /* ===== 03 — giant stat headline ===== */
+    #giant-stat { position: relative; padding: 130px 40px; text-align: left; overflow: hidden; background: var(--ink); border-top: 1px solid var(--line); }
+    #giant-stat .glow-bg { position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 60vw; max-width: 720px; aspect-ratio: 1; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(224,112,45,0.16), transparent 70%); pointer-events: none; }
+    #giant-stat .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-bright); }
+    #giant-stat h2 { position: relative; margin-top: 16px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; font-size: clamp(34px, 6.6vw, 82px); max-width: 16ch; }
+    #giant-stat h2 em { font-style: normal; color: var(--gold-bright); }
+    #giant-stat p { position: relative; margin-top: 20px; max-width: 44ch; color: var(--dim); font-size: 14.5px; line-height: 1.7; }
+
+    /* ===== 04 — scholars ===== */
+    #scholars { background: var(--panel); border-top: 1px solid var(--line); }
+    #scholars .claim { text-align: center; max-width: 900px; margin: 0 auto; }
+    #scholars .claim h2 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; font-size: clamp(24px, 4.2vw, 46px); }
+    #scholars .claim p { margin-top: 16px; color: var(--dim); font-size: 14.5px; max-width: 50ch; margin-left: auto; margin-right: auto; }
+    .sch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 44px; }
+    .sch { border: 1px solid var(--line); border-radius: 12px; padding: 22px; background: rgba(255,255,255,0.015); }
+    .sch h3 { font-family: var(--serif); font-size: 16.5px; color: var(--gold-bright); font-weight: 600; margin-bottom: 8px; }
+    .sch p { font-size: 12.5px; color: var(--dim); line-height: 1.6; }
+
+    /* ===== 05 — honesty caveat ===== */
+    #honest { background: var(--ink); }
+    .caveat-box { max-width: 880px; margin: 36px auto 0; border: 1px solid rgba(201,165,74,0.35); background: rgba(201,165,74,0.05); border-radius: 14px; padding: 28px 30px; }
+    .caveat-box .k { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 12px; }
+    .caveat-box p { font-size: 13.5px; line-height: 1.7; color: #e2d6b4; }
+    .caveat-box p + p { margin-top: 12px; }
+    .caveat-box b { color: var(--gold-bright); }
+
+    /* ===== 06 — closing ===== */
+    #closing { background: var(--panel); border-top: 1px solid var(--line); padding: 96px 40px 56px; text-align: center; }
+    .code-block { max-width: 400px; margin: 0 auto; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.85; color: var(--mute);
+      border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; background: rgba(255,255,255,0.012); }
+    .code-block .k2 { color: var(--teal); } .code-block .v2 { color: var(--gold-bright); } .code-block .p2 { color: #6a7a9a; }
+    #closing .reveal-h { margin-top: 42px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-size: clamp(22px, 4vw, 42px); max-width: 20ch; margin-left: auto; margin-right: auto; }
+    #closing .reveal-h em { font-style: normal; color: var(--gold-bright); }
+    #closing .cta-row { display: flex; justify-content: center; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; font-weight: 500;
+      border-radius: 999px; padding: 15px 30px; cursor: pointer; transition: transform .25s, box-shadow .25s; border: 1px solid var(--line); color: #fff; }
+    .btn.gold { background: linear-gradient(100deg, var(--gold-bright), var(--gold)); color: #1a1206; font-weight: 700; border: none; }
+    .btn.gold:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -16px rgba(236,208,138,0.55); }
+    #closing .signature { margin-top: 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); border-top: 1px solid var(--line); padding-top: 20px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+    #closing .signature b { color: var(--gold-bright); }
+
+    /* ===== footer ===== */
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--line); padding: 28px 40px 34px; background: var(--ink); }
+    footer .row { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .brand { font-weight: 800; letter-spacing: -0.02em; color: var(--cream); }
+    footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer .flinks a { font-size: 12.5px; color: var(--dim); transition: color .2s; }
+    footer .flinks a:hover { color: var(--gold-bright); }
+    footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); }
+
+    @media (max-width: 620px) {
+      section.band { padding: 64px 20px; }
+      .fs-left { padding: 54px 26px; }
+      .caveat-box { padding: 22px 20px; }
+      #giant-stat { padding: 84px 20px; }
+      #closing { padding: 70px 20px 44px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+      .reveal, #hero h1 .l span, .hero-text .kicker, .scroll-cue, .peek { transition: none !important; opacity: 1 !important; transform: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<div class="nav-scrim" aria-hidden="true"></div>
+<nav class="top">
+  <div class="left">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="brand">Farissuhail</span>
+    <span class="crumb mono">/ Ring Structure</span>
+  </div>
+  <div class="links">
+    <a href="#feat-split" class="here" data-en="Architecture" data-bm="Senibina">Architecture</a>
+    <a href="#choose" data-en="Sūrahs" data-bm="Surah">Sūrahs</a>
+    <a href="#scholars" data-en="Scholars" data-bm="Sarjana">Scholars</a>
+    <a href="ring-atlas.html" data-en="Atlas" data-bm="Atlas">Atlas</a>
+  </div>
+  <div class="right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+  </div>
+</nav>
+
+<div id="mobile-menu" aria-hidden="true">
+  <a href="#feat-split" data-en="Architecture" data-bm="Senibina">Architecture</a>
+  <a href="#choose" data-en="Sūrahs" data-bm="Surah">Sūrahs</a>
+  <a href="#scholars" data-en="Scholars" data-bm="Sarjana">Scholars</a>
+  <a href="ring-atlas.html" class="atlas" data-en="Enter the Atlas →" data-bm="Buka Atlas →">Enter the Atlas →</a>
+  <a href="reflections.html" data-en="← Reflections" data-bm="← Refleksi">← Reflections</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="viewfinder" aria-hidden="true">
+    <span class="tick top"></span><span class="tick bottom"></span>
+    <span class="orbit"></span>
+    <span class="corner-dot"></span>
+  </div>
+
+  <div class="peek left" id="peekLeft" aria-hidden="true"></div>
+  <div class="peek right" id="peekRight" aria-hidden="true"></div>
+
+  <div class="hero-text">
+    <span class="kicker" id="kicker" data-en="Reflections, sub-series —" data-bm="Refleksi, sub-siri —">Reflections, sub-series —</span>
+    <h1>
+      <span class="l" id="l1"><span data-en="ring structure" data-bm="struktur ring">ring structure</span></span>
+    </h1>
+  </div>
+
+  <div class="scroll-cue" id="scrollCue">
+    <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+    <span class="mono" data-en="Scroll to continue" data-bm="Skrol untuk teruskan">Scroll to continue</span>
+  </div>
+</section>
+
+<!-- ============ 01 — FEATURE SPLIT ============ -->
+<section id="feat-split">
+  <div class="fs-outer">
+    <div class="fs-left reveal">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+      <h2 data-en="Perfectly centered, seriously" data-bm="Berpusat dengan sempurna, serius">Perfectly centered, seriously</h2>
+      <p data-en="A ring folds a passage around its own middle. The opening and closing mirror each other, the second and second-to-last mirror each other, and the center holds the point of it all." data-bm="Ring melipat satu bahagian mengelilingi tengahnya sendiri. Pembukaan dan penutup saling mencerminkan, bahagian kedua dan kedua terakhir saling mencerminkan, dan pusatnya memegang intipati keseluruhan.">A ring folds a passage around its own middle. The opening and closing mirror each other, the second and second-to-last mirror each other, and the center holds the point of it all.</p>
+      <div class="divider">
+        <div class="stat" data-en="Eleven sūrahs, mapped and sourced" data-bm="Sebelas surah, dipetakan dan bersumber">Eleven sūrahs, mapped and sourced</div>
+      </div>
+    </div>
+    <div class="fs-right">
+      <div class="fs-diagram">
+        <svg viewBox="0 0 220 220" aria-hidden="true">
+          <circle cx="110" cy="110" r="98" fill="none" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.55"/>
+          <circle cx="110" cy="110" r="70" fill="none" stroke="var(--teal)" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.55"/>
+          <circle cx="110" cy="110" r="42" fill="none" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.5"/>
+          <circle cx="110" cy="110" r="7" fill="var(--center)"/>
+          <rect x="105" y="7" width="10" height="10" fill="var(--amber)"/>
+          <rect x="105" y="203" width="10" height="10" fill="var(--amber)"/>
+          <rect x="7" y="105" width="10" height="10" fill="var(--amber)"/>
+          <rect x="203" y="105" width="10" height="10" fill="var(--amber)"/>
+        </svg>
+      </div>
+      <div class="fs-formula">
+        <div class="cap" data-en="Concentricity (ring = complete)<br>ABX: A–B–C–X–C′–B′–A′ Reading" data-bm="Konsentrisiti (ring = lengkap)<br>ABX: Bacaan A–B–C–X–C′–B′–A′">Concentricity (ring = complete)<br>ABX: A–B–C–X–C′–B′–A′ Reading</div>
+        <div class="f">A ⟷ A′</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — CHOOSE A SŪRAH ============ -->
+<section class="band" id="choose">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-en="Explore a sūrah" data-bm="Terokai satu surah">Explore a sūrah</span>
+    <div class="cyclewrap reveal" id="cycleWrap"></div>
+    <p class="reveal" style="color:var(--dim);max-width:44ch;margin:14px auto 0;font-size:14px;line-height:1.65"
+       data-en="Eleven sūrahs, fully diagrammed and sourced. Filter by form, then tap any card to open its full ring in the interactive Atlas." data-bm="Sebelas surah, dipetakan sepenuhnya dan bersumber. Tapis mengikut bentuk, kemudian ketik mana-mana kad untuk membuka ring penuhnya dalam Atlas interaktif.">Eleven sūrahs, fully diagrammed and sourced. Filter by form, then tap any card to open its full ring in the interactive Atlas.</p>
+
+    <div class="tabs reveal" id="tabs">
+      <button class="tab on" data-filter="all"><span data-en="All eleven" data-bm="Semua sebelas">All eleven</span></button>
+      <button class="tab" data-filter="ring"><span data-en="Concentric ring" data-bm="Ring konsentrik">Concentric ring</span></button>
+      <button class="tab" data-filter="panels"><span data-en="Refrain panels" data-bm="Panel refrain">Refrain panels</span></button>
+    </div>
+
+    <div class="sp-grid" id="spGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 03 — GIANT STAT HEADLINE ============ -->
+<section id="giant-stat">
+  <div class="glow-bg" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <div class="label" data-en="Not invented — documented" data-bm="Bukan direka — didokumenkan">Not invented — documented</div>
+    <h2 data-en="Eleven rings.<br>One <em>honest</em> map." data-bm="Sebelas ring.<br>Satu peta yang <em>jujur</em>.">Eleven rings.<br>One <em>honest</em> map.</h2>
+    <p data-en="Out of 114 sūrahs, only eleven carry a published, sourced concentric analysis — thirty-two more are covered by Cuypers' rhetorical method. Every other sūrah is marked plainly as unmapped." data-bm="Daripada 114 surah, hanya sebelas yang mempunyai analisis konsentrik yang diterbitkan dan bersumber — tiga puluh dua lagi diliputi kaedah retorik Cuypers. Setiap surah lain ditanda dengan jelas sebagai belum dipetakan.">Out of 114 sūrahs, only eleven carry a published, sourced concentric analysis — thirty-two more are covered by Cuypers' rhetorical method. Every other sūrah is marked plainly as unmapped.</p>
+  </div>
+</section>
+
+<!-- ============ 04 — SCHOLARS ============ -->
+<section class="band" id="scholars">
+  <div class="wrap">
+    <div class="claim reveal">
+      <span class="eyebrow" data-en="The scholars" data-bm="Para sarjana">The scholars</span>
+      <h2 style="margin-top:16px" data-en="Four traditions of scholarship study this structure" data-bm="Empat tradisi keilmuan mengkaji struktur ini">Four traditions of scholarship study this structure</h2>
+      <p data-en="Do not take our word for it — read what each tradition actually argues." data-bm="Jangan percaya kata-kata kami sahaja — baca apa yang setiap tradisi sebenarnya hujahkan.">Do not take our word for it — read what each tradition actually argues.</p>
+    </div>
+    <div class="sch-grid reveal">
+      <div class="sch">
+        <h3>Ḥamīd al-Dīn al-Farāhī &amp; Amīn Aḥsan Iṣlāḥī</h3>
+        <p data-en="The modern coherence (naẓm) tradition: every sūrah has a central pillar-theme (ʿamūd), and sūrahs come in pairs." data-bm="Tradisi keutuhan (naẓm) moden: setiap surah mempunyai tema tunjang pusat (ʿamūd), dan surah datang berpasangan.">The modern coherence (naẓm) tradition: every sūrah has a central pillar-theme (ʿamūd), and sūrahs come in pairs.</p>
+      </div>
+      <div class="sch">
+        <h3>Michel Cuypers</h3>
+        <p data-en="Semitic Rhetorical Analysis: parallelism, mirror (ABC‖C′B′A′), and concentric (ABC-X-C′B′A′) figures at every scale. Book-length studies of Q5 (The Banquet) and Q81–114 (A Qur'anic Apocalypse)." data-bm="Analisis Retorik Semitik: figura selari, cermin (ABC‖C′B′A′), dan konsentrik (ABC-X-C′B′A′) pada setiap skala. Kajian sepanjang buku bagi Q5 (The Banquet) dan Q81–114 (A Qur'anic Apocalypse).">Semitic Rhetorical Analysis: parallelism, mirror (ABC‖C′B′A′), and concentric (ABC-X-C′B′A′) figures at every scale. Book-length studies of Q5 (The Banquet) and Q81–114 (A Qur'anic Apocalypse).</p>
+      </div>
+      <div class="sch">
+        <h3>Raymond Farrin</h3>
+        <p data-en="Structure and Qur'anic Interpretation (2014): ring analyses of Q1, Q2 and Q3, pairing across the whole Qur'an, and the claim that the entire book forms one grand concentric design." data-bm="Structure and Qur'anic Interpretation (2014): analisis ring bagi Q1, Q2 dan Q3, pemasangan merentasi keseluruhan Al-Quran, dan dakwaan bahawa seluruh kitab membentuk satu reka bentuk konsentrik yang besar.">Structure and Qur'anic Interpretation (2014): ring analyses of Q1, Q2 and Q3, pairing across the whole Qur'an, and the claim that the entire book forms one grand concentric design.</p>
+      </div>
+      <div class="sch">
+        <h3>Neal Robinson, Angelika Neuwirth &amp; Nevin Reda</h3>
+        <p data-en="Structural analyses of long sūrahs and Meccan sūrah form that ring theorists build on." data-bm="Analisis struktur surah panjang dan bentuk surah Makkiyyah yang menjadi asas kepada ahli teori ring.">Structural analyses of long sūrahs and Meccan sūrah form that ring theorists build on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — HONESTY CAVEAT ============ -->
+<section class="band" id="honest">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-en="Read this honestly" data-bm="Baca ini dengan jujur">Read this honestly</span>
+    <div class="caveat-box reveal">
+      <div class="k" data-en="Before you explore" data-bm="Sebelum anda meneroka">Before you explore</div>
+      <p data-en="Ring composition in the Qur'an is a live scholarly debate, not a settled fact. Nicolai Sinai's 2017 review essay argues that many of Cuypers' and Farrin's schemes rely on flexible section boundaries and selective emphasis — a careful reader <b>“will have reason to doubt”</b> a number of them." data-bm="Komposisi ring dalam Al-Quran adalah perdebatan ilmiah yang masih hidup, bukan fakta yang sudah muktamad. Esei ulasan Nicolai Sinai (2017) berhujah bahawa banyak skema Cuypers dan Farrin bergantung pada sempadan bahagian yang fleksibel dan penekanan terpilih — pembaca yang teliti <b>“akan mempunyai sebab untuk meragui”</b> beberapa daripadanya.">Ring composition in the Qur'an is a live scholarly debate, not a settled fact. Nicolai Sinai's 2017 review essay argues that many of Cuypers' and Farrin's schemes rely on flexible section boundaries and selective emphasis — a careful reader <b>"will have reason to doubt"</b> a number of them.</p>
+      <p data-en="This atlas therefore diagrams only structures with a published basis, cites the analyst for each, and marks every unmapped sūrah as unmapped rather than inventing rings for all 114. Where you see a diagram, treat it as one scholar's argument about the text — a lens, not a decree." data-bm="Oleh itu, atlas ini hanya memetakan struktur yang mempunyai asas penerbitan, memetik penganalisis bagi setiap satu, dan menandakan setiap surah yang belum dipetakan sebagai belum dipetakan dan bukan mencipta ring untuk kesemua 114. Apabila anda melihat satu gambar rajah, anggaplah ia sebagai hujah seorang sarjana tentang teks itu — satu lensa, bukan satu ketetapan.">This atlas therefore diagrams only structures with a published basis, cites the analyst for each, and marks every unmapped sūrah as unmapped rather than inventing rings for all 114. Where you see a diagram, treat it as one scholar's argument about the text — a lens, not a decree.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — CLOSING ============ -->
+<section id="closing">
+  <div class="code-block reveal">
+    <div>{</div>
+    <div>&nbsp;&nbsp;<span class="k2">title</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="v2">"Ring Composition Atlas"</span>,</div>
+    <div>&nbsp;&nbsp;<span class="k2">sūrahs</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="v2">114</span>,</div>
+    <div>&nbsp;&nbsp;<span class="k2">documented</span>:&nbsp;<span class="v2">11</span>,</div>
+    <div>&nbsp;&nbsp;<span class="k2">status</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="v2">"honestly incomplete"</span> <span class="p2">// by design</span></div>
+    <div>}</div>
+  </div>
+  <h2 class="reveal-h reveal" data-en="This isn't decoration. It's a <em>documented</em> way to read." data-bm="Ini bukan hiasan. Ini cara membaca yang <em>didokumenkan</em>.">This isn't decoration. It's a <em>documented</em> way to read.</h2>
+  <div class="cta-row reveal">
+    <a href="ring-atlas.html" class="btn gold" data-en="Enter the Atlas →" data-bm="Buka Atlas →">Enter the Atlas →</a>
+  </div>
+  <div class="signature reveal">
+    <span data-en="Built by <b>Faris Suhail</b> · read with intent ✦" data-bm="Dibina oleh <b>Faris Suhail</b> · baca dengan niat ✦">Built by <b>Faris Suhail</b> · read with intent ✦</span>
+    <a href="reflections.html" data-en="← Back to Reflections" data-bm="← Kembali ke Refleksi">← Back to Reflections</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="row">
+    <span class="brand">FARISSUHAIL</span>
+    <div class="flinks">
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="ring-atlas.html" data-en="Ring Atlas" data-bm="Atlas Ring">Ring Atlas</a>
+      <a href="index.html" data-en="Home" data-bm="Laman">Home</a>
+      <a href="mailto:tech@farissuhail.com">Contact</a>
+    </div>
+    <span class="copy">© <span id="year"></span> · Ring Structure · KL, MY</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ================= showpiece data ================= */
+  var SP = [
+    {n:1, ar:'الفاتحة', nm:'Al-Fātiḥah', type:'ring', hook:{en:'Seven verses folding around a single hinge: the pivot from speaking ABOUT God to speaking TO Him, at exactly verse 5.', bm:'Tujuh ayat melipat mengelilingi satu engsel: peralihan daripada bercakap TENTANG Allah kepada bercakap KEPADA-Nya, tepat pada ayat 5.'}},
+    {n:2, ar:'البقرة', nm:'Al-Baqarah', type:'ring', hook:{en:'The longest sūrah — nine parts, center at the qibla change and “a middle nation” (2:143): a center verse about being at the center.', bm:'Surah terpanjang — sembilan bahagian, pusat pada penukaran kiblat dan “umat pertengahan” (2:143): ayat pusat tentang berada di tengah.'}},
+    {n:3, ar:'آل عمران', nm:'Āl ʿImrān', type:'ring', hook:{en:'Q2’s twin: where Q2 centers on identity, Q3 centers on the command to hold together and not split apart.', bm:'Kembar kepada Q2: jika Q2 berpusat pada identiti, Q3 berpusat pada perintah untuk berpegang teguh dan tidak berpecah.'}},
+    {n:5, ar:'المائدة', nm:'Al-Māʾidah', type:'ring', hook:{en:'The most detailed ring argument for any sūrah — center (5:48) is one of the Qur’an’s most quoted verses on religious plurality.', bm:'Hujah ring paling terperinci bagi mana-mana surah — pusatnya (5:48) antara ayat paling banyak dipetik tentang kepelbagaian agama.'}},
+    {n:12, ar:'يوسف', nm:'Yūsuf', type:'ring', hook:{en:'The cleanest chiasm in the Qur’an: a dream opens it, its fulfillment closes it, Joseph’s vindication sits at the hinge.', bm:'Kiasma paling jelas dalam Al-Quran: satu mimpi membukanya, kesempurnaannya menutupnya, kebenaran Yusuf terletak di engsel.'}},
+    {n:18, ar:'الكهف', nm:'Al-Kahf', type:'ring', hook:{en:'Four famous stories as two mirrored pairs around a central parable — each a trial: faith, wealth, knowledge, power.', bm:'Empat kisah terkenal sebagai dua pasangan cermin mengelilingi satu perumpamaan pusat — setiap satu ujian: iman, harta, ilmu, kuasa.'}},
+    {n:26, ar:'الشعراء', nm:'Ash-Shuʿarāʾ', type:'panels', hook:{en:'Not one ring but seven parallel panels in a single frame — every prophet’s story stamped shut with the same refrain.', bm:'Bukan satu ring tetapi tujuh panel selari dalam satu bingkai — setiap kisah nabi ditutup dengan refrain yang sama.'}},
+    {n:54, ar:'القمر', nm:'Al-Qamar', type:'panels', hook:{en:'A drumbeat sūrah: five punishment stories, each sealed with the same tolling refrain — shrinking as they go.', bm:'Surah berirama genderang: lima kisah azab, setiap satu dimeteraikan dengan refrain yang sama — mengecil apabila ia berjalan.'}},
+    {n:55, ar:'الرحمن', nm:'Ar-Raḥmān', type:'panels', hook:{en:'Built on TWO-ness: every address is dual, every image comes in pairs — one refrain threading 31 rings through it all.', bm:'Dibina atas keduaan: setiap seruan berpasangan, setiap imej datang berpasangan — satu refrain menjalin 31 ring di sepanjangnya.'}},
+    {n:101, ar:'القارعة', nm:'Al-Qāriʿah', type:'ring', hook:{en:'Eleven verses, perfectly concentric: two terrifying questions frame a center where everything is weighed.', bm:'Sebelas ayat, konsentrik dengan sempurna: dua persoalan dahsyat membingkai pusat tempat segalanya ditimbang.'}},
+    {n:112, ar:'الإخلاص', nm:'Al-Ikhlāṣ', type:'ring', hook:{en:'Four verses in a closed mirror: two affirmations of what God is, reflected by two negations of what He is not.', bm:'Empat ayat dalam cermin tertutup: dua pengakuan tentang hakikat Allah, dicerminkan oleh dua penafian tentang apa Dia bukan.'}}
+  ];
+  function L() { return document.documentElement.getAttribute('data-lang') === 'bm' ? 'bm' : 'en'; }
+
+  var peekGlyph = '<svg viewBox="0 0 60 60" style="width:38%;opacity:0.55"><circle cx="30" cy="30" r="24" fill="none" stroke="#8a6a2e" stroke-width="1.4"/><circle cx="30" cy="30" r="14" fill="none" stroke="#8a6a2e" stroke-width="1.4"/><circle cx="30" cy="30" r="3" fill="#b5763a"/></svg>';
+  document.getElementById('peekLeft').innerHTML = peekGlyph;
+  document.getElementById('peekRight').innerHTML = peekGlyph;
+
+  /* showpiece grid */
+  var grid = document.getElementById('spGrid');
+  function spCard(s) {
+    var typeLabel = s.type === 'panels' ? {en:'Refrain panels', bm:'Panel refrain'} : {en:'Concentric ring', bm:'Ring konsentrik'};
+    return '<a class="spcard" data-type="' + s.type + '" href="ring-atlas.html#' + s.n + '">' +
+      '<div class="top"><span class="idx">Q' + s.n + '</span><span class="type" data-en="' + typeLabel.en + '" data-bm="' + typeLabel.bm + '">' + typeLabel[L()] + '</span></div>' +
+      '<div class="ar">' + s.ar + '</div>' +
+      '<h3>' + s.nm + '</h3>' +
+      '<p class="hook" data-en="' + s.hook.en.replace(/"/g, '&quot;') + '" data-bm="' + s.hook.bm.replace(/"/g, '&quot;') + '">' + s.hook[L()] + '</p>' +
+      '<span class="go" data-en="Open in Atlas →" data-bm="Buka dalam Atlas →">Open in Atlas →</span>' +
+    '</a>';
+  }
+  grid.innerHTML = SP.map(spCard).join('');
+  applyLangTo(grid);
+
+  /* tab filter */
+  var curFilter = 'all';
+  var tabs = [].slice.call(document.querySelectorAll('#tabs .tab'));
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.remove('on'); });
+      t.classList.add('on');
+      curFilter = t.getAttribute('data-filter');
+      [].slice.call(grid.children).forEach(function (c) {
+        c.classList.toggle('hide', curFilter !== 'all' && c.getAttribute('data-type') !== curFilter);
+      });
+    });
+  });
+
+  /* cycling headline through sūrah names */
+  (function () {
+    var wrap = document.getElementById('cycleWrap');
+    if (!wrap) return;
+    SP.forEach(function (s, i) {
+      var el = document.createElement('div');
+      el.className = 'cyc' + (i === 0 ? ' on' : '');
+      el.innerHTML = '<span class="ar">' + s.ar + '</span><span>' + s.nm + '</span>';
+      wrap.appendChild(el);
+    });
+    if (reduce) return;
+    var cycs = [].slice.call(wrap.querySelectorAll('.cyc'));
+    var idx = 0;
+    setInterval(function () {
+      cycs[idx].classList.remove('on');
+      idx = (idx + 1) % cycs.length;
+      cycs[idx].classList.add('on');
+    }, 2400);
+  })();
+
+  /* ================= reveal on scroll ================= */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  [].slice.call(document.querySelectorAll('.reveal')).forEach(function (el) { io.observe(el); });
+
+  /* ================= hero entrance ================= */
+  function show() {
+    document.getElementById('kicker').classList.add('show');
+    document.getElementById('l1').classList.add('show');
+    document.getElementById('scrollCue').classList.add('show');
+    document.getElementById('peekLeft').classList.add('show');
+    document.getElementById('peekRight').classList.add('show');
+  }
+  requestAnimationFrame(show); setTimeout(show, 260);
+
+  /* ================= language + mobile menu ================= */
+  function applyLangTo(root, Lx) {
+    Lx = Lx || L();
+    [].slice.call(root.querySelectorAll('[data-en][data-bm]')).forEach(function (el) { el.innerHTML = Lx === 'bm' ? el.dataset.bm : el.dataset.en; });
+  }
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(Lx) {
+      html.setAttribute('data-lang', Lx);
+      applyLangTo(document, Lx);
+      lb.querySelector('.lang-en').classList.toggle('active', Lx === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', Lx === 'bm');
+      try { localStorage.setItem('fs-lang', Lx); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+  (function () {
+    var mb = document.getElementById('menuBtn'), mm = document.getElementById('mobile-menu');
+    function setMenu(open) { mm.classList.toggle('open', open); mb.classList.toggle('open', open); mb.setAttribute('aria-expanded', open ? 'true' : 'false'); mm.setAttribute('aria-hidden', open ? 'false' : 'true'); }
+    mb.addEventListener('click', function () { setMenu(!mm.classList.contains('open')); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    document.addEventListener('click', function (e) { if (mm.classList.contains('open') && !mm.contains(e.target) && !mb.contains(e.target)) setMenu(false); });
+    mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  })();
+
+  /* ================= 3D HERO SCENE — one elegant glowing ring, restrained ================= */
+  (function () {
+    var canvas = document.getElementById('scene'); if (!canvas) return;
+    var ctx = canvas.getContext('2d'); if (!ctx) return;
+    var W = 0, H = 0, DPR = 1, cx = 0, cy = 0;
+    var mobile = matchMedia('(max-width: 640px)').matches;
+    var N = 120;
+    var outerPts = [], innerPts = [], haloPts = [];
+    for (var i = 0; i < N; i++) {
+      var a = (i / N) * Math.PI * 2;
+      outerPts.push({ x: Math.cos(a) * 1.0, z: Math.sin(a) * 1.0, y: 0 });
+      innerPts.push({ x: Math.cos(a) * 0.86, z: Math.sin(a) * 0.86, y: 0 });
+      haloPts.push({ x: Math.cos(a) * 0.6, z: Math.sin(a) * 0.6, y: 0 });
+    }
+    var PART = mobile ? 14 : 26, parts = [];
+    for (var q = 0; q < PART; q++) parts.push({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random() * 2 - 1, r: Math.random() * 0.5 + 0.25, sp: Math.random() * 0.0004 + 0.00014 });
+
+    function resize() {
+      DPR = Math.min(2, window.devicePixelRatio || 1);
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      cx = W / 2; cy = H * 0.33;
+    }
+    window.addEventListener('resize', resize); resize();
+
+    var tmx = 0, tmy = 0, mx = 0, my = 0;
+    window.addEventListener('pointermove', function (e) {
+      tmx = (e.clientX / window.innerWidth) * 2 - 1;
+      tmy = (e.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+    window.addEventListener('deviceorientation', function (e) {
+      if (e.gamma == null) return;
+      tmx = Math.max(-1, Math.min(1, e.gamma / 40));
+      tmy = Math.max(-1, Math.min(1, (e.beta - 45) / 40));
+    });
+
+    function project(p, yaw, pitch, scale) {
+      var cyaw = Math.cos(yaw), syaw = Math.sin(yaw);
+      var x1 = p.x * cyaw - p.z * syaw, z1 = p.x * syaw + p.z * cyaw, y1 = p.y;
+      var cp = Math.cos(pitch), sp = Math.sin(pitch);
+      var y2 = y1 * cp - z1 * sp, z2 = y1 * sp + z1 * cp;
+      var d = 3.0, f = scale * d / (d - z2);
+      return { x: cx + x1 * f + mx * 14, y: cy + y2 * f + my * 10, z: z2, f: f };
+    }
+
+    var yaw = 0.2, pitch = 1.15, running = true, R;
+    var spin = reduce ? 0.0022 : 0.0048;
+    function frame() {
+      if (!running) return;
+      R = Math.min(W, H) * (mobile ? 0.14 : 0.115);
+      if (!reduce) { mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05; }
+      yaw += spin + mx * 0.003;
+      var targetPitch = 1.15 + my * 0.18;
+      pitch += (targetPitch - pitch) * 0.05;
+
+      ctx.clearRect(0, 0, W, H);
+
+      var haloR = R * 6;
+      var halo = ctx.createRadialGradient(cx + mx * 14, cy + my * 10, 0, cx + mx * 14, cy + my * 10, haloR);
+      halo.addColorStop(0, 'rgba(236,208,138,0.16)');
+      halo.addColorStop(0.45, 'rgba(224,112,45,0.05)');
+      halo.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H);
+
+      ctx.globalCompositeOperation = 'lighter';
+      for (var pi = 0; pi < parts.length; pi++) {
+        var pa = parts[pi]; pa.y -= pa.sp * 60; if (pa.y < -1.3) pa.y = 1.3;
+        var pr = project(pa, yaw * 0.3, pitch * 0.4, R * 4.2);
+        var pa2 = Math.max(0, Math.min(1, (pr.z + 1.6) / 3));
+        ctx.beginPath(); ctx.arc(pr.x, pr.y, pa.r * (pr.f / R) * 0.8, 0, 6.283);
+        ctx.fillStyle = 'rgba(236,208,138,' + (0.05 + pa2 * 0.09) + ')'; ctx.fill();
+      }
+
+      /* faint inner halo ring — thin, sits behind the main tube for a bit of layered depth */
+      (function () {
+        var proj = haloPts.map(function (p) { return project(p, yaw, pitch, R); });
+        ctx.save();
+        ctx.shadowColor = 'rgba(224,112,45,0.7)'; ctx.shadowBlur = 12;
+        ctx.lineWidth = 1.3; ctx.strokeStyle = 'rgba(224,112,45,0.4)';
+        ctx.beginPath();
+        proj.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
+        ctx.closePath(); ctx.stroke();
+        ctx.restore();
+      })();
+
+      /* main ring — a filled tube band with a top-lit gradient, reading as a solid dimensional object */
+      (function () {
+        var po = outerPts.map(function (p) { return project(p, yaw, pitch, R); });
+        var pn = innerPts.map(function (p) { return project(p, yaw, pitch, R); });
+        ctx.save();
+        ctx.shadowColor = 'rgba(236,208,138,0.85)'; ctx.shadowBlur = 26;
+        ctx.beginPath();
+        po.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
+        ctx.closePath();
+        pn.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
+        ctx.closePath();
+        var grad = ctx.createLinearGradient(cx, cy - R * 1.15, cx, cy + R * 1.15);
+        grad.addColorStop(0, 'rgba(255,240,205,0.98)');
+        grad.addColorStop(0.42, 'rgba(236,208,138,0.9)');
+        grad.addColorStop(0.75, 'rgba(180,132,60,0.85)');
+        grad.addColorStop(1, 'rgba(94,62,26,0.8)');
+        ctx.fillStyle = grad;
+        ctx.fill('evenodd');
+        ctx.restore();
+
+        /* crisp bright rim highlight along the outer top edge for a glossy, lit-from-above read */
+        ctx.save();
+        ctx.lineWidth = 1.6; ctx.strokeStyle = 'rgba(255,250,235,0.9)';
+        ctx.shadowColor = 'rgba(255,250,235,0.7)'; ctx.shadowBlur = 8;
+        ctx.beginPath();
+        po.forEach(function (P, i) { i === 0 ? ctx.moveTo(P.x, P.y) : ctx.lineTo(P.x, P.y); });
+        ctx.closePath(); ctx.stroke();
+        ctx.restore();
+      })();
+
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    requestAnimationFrame(frame);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) running = false;
+      else { running = true; requestAnimationFrame(frame); }
+    });
+  })();
+})();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>

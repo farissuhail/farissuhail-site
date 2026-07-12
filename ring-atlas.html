@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ring Composition in the Qur'an — Interactive Atlas · Faris Suhail</title>
+<meta name="description" content="Search all 114 sūrahs for documented ring (chiastic / concentric) composition — eleven fully diagrammed, thirty-two more analyzed by Cuypers, every unmapped sūrah honestly labeled.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<meta name="theme-color" content="#0d1322">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+<meta property="og:title" content="Ring Composition in the Qur'an — Interactive Atlas" />
+<meta property="og:description" content="Search all 114 sūrahs for documented ring composition — sourced, diagrammed, and read honestly." />
+<meta property="og:url" content="https://farissuhail.com/ring-atlas.html" />
+<style>
+  :root{
+    --ink:#0d1322;         /* night ground */
+    --panel:#141d33;       /* lapis panel */
+    --panel-2:#1a2542;
+    --line:#26314f;
+    --gold:#c9a54a;
+    --gold-bright:#ecd08a;
+    --parchment:#ece3cd;
+    --muted:#8d97b0;
+    --teal:#63b0a6;        /* mirror-pair highlight */
+    --center:#d98a4f;      /* the X / pivot */
+    --meccan:#7d8fc4;
+    --medinan:#a9c47d;
+    --radius:10px;
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans: -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --arabic: "Scheherazade New","Amiri","Traditional Arabic",serif;
+    --topbar-h: 46px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, #1c2a4d 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, #17223f 0%, transparent 55%),
+      var(--ink);
+    color:var(--parchment);
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+  a{color:var(--gold-bright)}
+  /* ---------- site chrome topbar ---------- */
+  .topbar{ position:sticky; top:0; z-index:80; height:var(--topbar-h); display:flex; align-items:center; justify-content:space-between;
+    padding:0 16px; background:rgba(10,15,26,0.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .topbar .back{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.04em; color:var(--muted); transition:color .2s; }
+  .topbar .back:hover{ color:var(--gold-bright); }
+  .topbar .back svg{ width:15px; height:15px; }
+  .topbar .brand{ font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:300; }
+  .app{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - var(--topbar-h))}
+  /* ---------- sidebar ---------- */
+  aside{
+    border-right:1px solid var(--line);
+    background:rgba(13,19,34,.6);
+    display:flex;flex-direction:column;
+    max-height:calc(100vh - var(--topbar-h));position:sticky;top:var(--topbar-h);
+  }
+  .brand{padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+  .brand h1{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.2px;color:var(--gold-bright)}
+  .brand p{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .search{padding:10px 14px;border-bottom:1px solid var(--line)}
+  .search input{
+    width:100%;background:var(--panel);border:1px solid var(--line);
+    border-radius:8px;color:var(--parchment);padding:8px 10px;font-size:13px;outline:none;
+  }
+  .search input:focus{border-color:var(--gold)}
+  .legend{padding:8px 14px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 12px;font-size:10.5px;color:var(--muted)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:1px}
+  .d-ring{background:var(--gold)} .d-cuy{background:var(--teal)} .d-part{background:#b78ac9} .d-un{background:#3b4664}
+  nav{overflow-y:auto;flex:1;padding:6px 0 20px}
+  .srow{
+    display:flex;align-items:center;gap:9px;padding:6px 14px;cursor:pointer;
+    border-left:3px solid transparent;font-size:13px;
+  }
+  .srow:hover{background:var(--panel)}
+  .srow.active{background:var(--panel-2);border-left-color:var(--gold)}
+  .srow .num{width:26px;color:var(--muted);font-variant-numeric:tabular-nums;font-size:11.5px;text-align:right;flex:none}
+  .srow .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .srow.top{font-family:var(--serif);color:var(--gold-bright)}
+  /* ---------- main ---------- */
+  main{padding:28px 34px 60px;max-width:980px}
+  .crumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .head h2{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--gold-bright)}
+  .head .ar{font-family:var(--arabic);font-size:30px;color:var(--parchment);opacity:.9}
+  .meta{margin-top:6px;font-size:12.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+  .tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line)}
+  .tag.ring{color:var(--gold-bright);border-color:var(--gold)}
+  .tag.cuy{color:var(--teal);border-color:var(--teal)}
+  .tag.part{color:#cba6dd;border-color:#8a6a9c}
+  .tag.un{color:var(--muted)}
+  .tag.mec{color:var(--meccan);border-color:#3d4c78}
+  .tag.med{color:var(--medinan);border-color:#4c5e33}
+  .lede{margin-top:16px;font-size:15px;max-width:64ch;color:#d8d0bd}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-top:20px}
+  .card h3{font-family:var(--serif);font-size:16px;color:var(--gold-bright);margin-bottom:8px;font-weight:600}
+  .card p{font-size:13.5px;color:#cfc8b6;margin-bottom:8px}
+  .card p:last-child{margin-bottom:0}
+  .src{font-size:11.5px;color:var(--muted);margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+  /* ---------- ring panel ---------- */
+  .ringwrap{display:grid;grid-template-columns:1fr 190px;gap:22px;align-items:start;margin-top:22px}
+  .ladder{display:flex;flex-direction:column;gap:6px}
+  .step{
+    display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:8px;
+    background:var(--panel);border:1px solid var(--line);cursor:default;
+    transition:border-color .15s, background .15s, transform .15s;
+  }
+  .step .chip{
+    flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);background:var(--muted);
+  }
+  .step.center .chip{background:var(--center)}
+  .step .body{min-width:0}
+  .step .rng{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .step .t{font-size:14px;font-weight:600;color:var(--parchment)}
+  .step .d{font-size:12.5px;color:#b9b2a1;margin-top:2px}
+  .step.center{border-color:var(--center);background:linear-gradient(180deg,#22273c,#1b2136)}
+  .step.hl{border-color:var(--teal);background:#17303a;transform:translateX(4px)}
+  .step.hl .chip{background:var(--teal)}
+  .step.center.hl{border-color:var(--center)}
+  .glyphbox{position:sticky;top:calc(var(--topbar-h) + 20px);text-align:center}
+  .glyphbox svg{width:100%;max-width:190px}
+  .glyphbox .cap{font-size:10.5px;color:var(--muted);margin-top:6px}
+  .gring{fill:none;stroke:#39456b;stroke-width:2;transition:stroke .15s, stroke-width .15s}
+  .gring.hl{stroke:var(--teal);stroke-width:3.5}
+  .gcenter{fill:var(--center)}
+  .pairnote{
+    margin-top:14px;min-height:44px;border-left:3px solid var(--teal);
+    background:rgba(99,176,166,.07);border-radius:0 8px 8px 0;
+    padding:9px 12px;font-size:12.5px;color:#cfd8cf;
+  }
+  .pairnote em{color:var(--teal);font-style:normal;font-weight:600}
+  /* panels type (refrain suras) */
+  .panels{display:flex;flex-direction:column;gap:6px;margin-top:22px}
+  .refrain{
+    align-self:center;font-family:var(--arabic);font-size:17px;color:var(--gold-bright);
+    padding:4px 16px;border:1px dashed var(--gold);border-radius:999px;background:rgba(201,165,74,.06);
+  }
+  .refrain small{font-family:var(--sans);display:block;font-size:10.5px;color:var(--muted);text-align:center}
+  .frame{border-color:var(--gold)!important}
+  .frame .chip{background:var(--gold)!important}
+  /* stats bar on intro */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+  .stat b{display:block;font-family:var(--serif);font-size:26px;color:var(--gold-bright);font-weight:600}
+  .stat span{font-size:11.5px;color:var(--muted)}
+  .caveat{
+    margin-top:20px;border:1px solid #6a5a2c;background:rgba(201,165,74,.07);
+    border-radius:var(--radius);padding:14px 16px;font-size:13px;color:#e2d6b4;
+  }
+  .caveat b{color:var(--gold-bright)}
+  .menu-btn{display:none}
+  @media (max-width:860px){
+    .app{grid-template-columns:1fr}
+    aside{position:relative;max-height:none;border-right:none;border-bottom:1px solid var(--line);top:0}
+    nav{max-height:240px}
+    main{padding:20px 16px 60px}
+    .ringwrap{grid-template-columns:1fr}
+    .glyphbox{position:static;margin:0 auto}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back" href="ring-structure.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>Ring Structure</a>
+  <span class="brand">FARISSUHAIL</span>
+</div>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <h1>Ring Composition Atlas</h1>
+      <p>Concentric &amp; mirror structure in the Qur'an, surah by surah</p>
+    </div>
+    <div class="search"><input id="q" type="text" placeholder="Search 114 surahs…" aria-label="Search surahs"></div>
+    <div class="legend">
+      <span><i class="dot d-ring"></i>Documented ring (shown)</span>
+      <span><i class="dot d-cuy"></i>Cuypers SRA (81–114)</span>
+      <span><i class="dot d-part"></i>Partial / proposed</span>
+      <span><i class="dot d-un"></i>Not yet mapped</span>
+    </div>
+    <nav id="nav"></nav>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const MEDINAN = new Set([2,3,4,5,8,9,13,22,24,33,47,48,49,55,57,58,59,60,61,62,63,64,65,66,76,98,99,110]);
+const S = [
+["Al-Fātiḥah","The Opening",7],["Al-Baqarah","The Cow",286],["Āl ʿImrān","The Family of ʿImrān",200],
+["An-Nisāʾ","The Women",176],["Al-Māʾidah","The Table Spread",120],["Al-Anʿām","The Cattle",165],
+["Al-Aʿrāf","The Heights",206],["Al-Anfāl","The Spoils of War",75],["At-Tawbah","The Repentance",129],
+["Yūnus","Jonah",109],["Hūd","Hūd",123],["Yūsuf","Joseph",111],["Ar-Raʿd","The Thunder",43],
+["Ibrāhīm","Abraham",52],["Al-Ḥijr","The Rocky Tract",99],["An-Naḥl","The Bee",128],
+["Al-Isrāʾ","The Night Journey",111],["Al-Kahf","The Cave",110],["Maryam","Mary",98],["Ṭā Hā","Ṭā Hā",135],
+["Al-Anbiyāʾ","The Prophets",112],["Al-Ḥajj","The Pilgrimage",78],["Al-Muʾminūn","The Believers",118],
+["An-Nūr","The Light",64],["Al-Furqān","The Criterion",77],["Ash-Shuʿarāʾ","The Poets",227],
+["An-Naml","The Ants",93],["Al-Qaṣaṣ","The Stories",88],["Al-ʿAnkabūt","The Spider",69],
+["Ar-Rūm","The Romans",60],["Luqmān","Luqmān",34],["As-Sajdah","The Prostration",30],
+["Al-Aḥzāb","The Confederates",73],["Sabaʾ","Sheba",54],["Fāṭir","The Originator",45],
+["Yā Sīn","Yā Sīn",83],["Aṣ-Ṣāffāt","Those in Ranks",182],["Ṣād","Ṣād",88],["Az-Zumar","The Groups",75],
+["Ghāfir","The Forgiver",85],["Fuṣṣilat","Explained in Detail",54],["Ash-Shūrā","The Consultation",53],
+["Az-Zukhruf","The Gold Ornaments",89],["Ad-Dukhān","The Smoke",59],["Al-Jāthiyah","The Kneeling",37],
+["Al-Aḥqāf","The Sand Dunes",35],["Muḥammad","Muḥammad",38],["Al-Fatḥ","The Victory",29],
+["Al-Ḥujurāt","The Chambers",18],["Qāf","Qāf",45],["Adh-Dhāriyāt","The Scattering Winds",60],
+["Aṭ-Ṭūr","The Mount",49],["An-Najm","The Star",62],["Al-Qamar","The Moon",55],
+["Ar-Raḥmān","The Most Merciful",78],["Al-Wāqiʿah","The Inevitable Event",96],["Al-Ḥadīd","The Iron",29],
+["Al-Mujādilah","The Pleading Woman",22],["Al-Ḥashr","The Gathering",24],["Al-Mumtaḥanah","The Examined Woman",13],
+["Aṣ-Ṣaff","The Ranks",14],["Al-Jumuʿah","Friday",11],["Al-Munāfiqūn","The Hypocrites",11],
+["At-Taghābun","Mutual Loss and Gain",18],["Aṭ-Ṭalāq","The Divorce",12],["At-Taḥrīm","The Prohibition",12],
+["Al-Mulk","The Sovereignty",30],["Al-Qalam","The Pen",52],["Al-Ḥāqqah","The Inevitable Reality",52],
+["Al-Maʿārij","The Ascending Ways",44],["Nūḥ","Noah",28],["Al-Jinn","The Jinn",28],
+["Al-Muzzammil","The Enshrouded One",20],["Al-Muddaththir","The Cloaked One",56],["Al-Qiyāmah","The Resurrection",40],
+["Al-Insān","Man",31],["Al-Mursalāt","Those Sent Forth",50],["An-Nabaʾ","The Great News",40],
+["An-Nāziʿāt","Those Who Pull Out",46],["ʿAbasa","He Frowned",42],["At-Takwīr","The Folding Up",29],
+["Al-Infiṭār","The Cleaving",19],["Al-Muṭaffifīn","The Defrauders",36],["Al-Inshiqāq","The Splitting Open",25],
+["Al-Burūj","The Constellations",22],["Aṭ-Ṭāriq","The Night Visitor",17],["Al-Aʿlā","The Most High",19],
+["Al-Ghāshiyah","The Overwhelming",26],["Al-Fajr","The Dawn",30],["Al-Balad","The City",20],
+["Ash-Shams","The Sun",15],["Al-Layl","The Night",21],["Aḍ-Ḍuḥā","The Morning Brightness",11],
+["Ash-Sharḥ","The Expansion",8],["At-Tīn","The Fig",8],["Al-ʿAlaq","The Clot",19],
+["Al-Qadr","The Night of Decree",5],["Al-Bayyinah","The Clear Evidence",8],["Az-Zalzalah","The Earthquake",8],
+["Al-ʿĀdiyāt","The Chargers",11],["Al-Qāriʿah","The Striking Calamity",11],["At-Takāthur","Rivalry in Increase",8],
+["Al-ʿAṣr","The Time",3],["Al-Humazah","The Slanderer",9],["Al-Fīl","The Elephant",5],
+["Quraysh","Quraysh",4],["Al-Māʿūn","Small Kindnesses",7],["Al-Kawthar","The Abundance",3],
+["Al-Kāfirūn","The Disbelievers",6],["An-Naṣr","The Help",3],["Al-Masad","The Palm Fibre",5],
+["Al-Ikhlāṣ","The Purity of Faith",4],["Al-Falaq","The Daybreak",5],["An-Nās","Mankind",6]
+];
+
+const PAIRS = {2:"Read as a pair with Q3 (Farrin).",3:"Read as a pair with Q2 (Farrin).",
+91:"Often paired with Q92 (oath series, night/day).",92:"Often paired with Q91.",
+93:"Paired with Q94 — consolation of the Prophet.",94:"Paired with Q93.",
+105:"Paired with Q106 (Quraysh and the Elephant).",106:"Paired with Q105.",
+113:"With Q114, 'the two refuges' (al-muʿawwidhatān).",114:"With Q113, 'the two refuges'."};
+
+/* Detailed ring maps. pair = index of mirror partner; c = center flag */
+const RINGS = {
+1:{ar:"الفاتحة",type:"ring",src:"Michel Cuypers, Semitic rhetorical analysis; also treated by Farrin.",
+ lede:"Seven verses folding around a single hinge: the surah pivots from speaking ABOUT God to speaking TO God at exactly verse 5.",
+ secs:[
+  ["A","vv. 1–3","Praise of God","Lord of the worlds; the Merciful, the Compassionate — God's attributes declared."],
+  ["B","v. 4","Master of the Day of Judgment","The vertical relation: God as sovereign of humanity's final destiny."],
+  ["X","v. 5","“You alone we worship; You alone we ask for help”","Grammatical pivot: third person → second person. Worship (ends A–B) meets petition (opens B′–A′)."],
+  ["B′","v. 6","Guide us on the straight path","The petition that mirrors judgment: guidance now determines destiny then."],
+  ["A′","v. 7","The two ways of humanity","Those favored vs. those under wrath / astray — mirroring God's attributes with humanity's response."]],
+ note:"A/A′: God's nature ↔ humanity's two responses. B/B′: judgment ↔ guidance. X: the covenant sentence at dead center."},
+2:{ar:"البقرة",type:"ring",src:"Raymond Farrin, “Surat al-Baqara: A Structural Analysis” (2010); popularized widely since.",
+ lede:"The longest surah in the Qur'an, argued by Farrin to be one vast ring of nine parts whose center is the change of qibla and the naming of a “middle community” (2:143) — a center verse about being at the center.",
+ secs:[
+  ["A","vv. 1–39","Faith vs. disbelief","Three audiences (believers, disbelievers, hypocrites); Adam's creation and fall."],
+  ["B","vv. 40–103","Children of Israel","Moses, the covenant given and broken; the cow; prophets rejected."],
+  ["C","vv. 104–141","Abraham's legacy","Abraham tested; builds the Kaʿbah with Ishmael; the true religion before division."],
+  ["X","vv. 142–152","The qibla changes — “a middle nation” (2:143)","The new community faces the Kaʿbah. The structural center declares the ummah wasaṭ — a community in the middle, at the middle of the surah."],
+  ["C′","vv. 153–177","The new community tested","Patience in trial; Ṣafā and Marwah; true piety defined (2:177) — mirroring Abraham's tests."],
+  ["B′","vv. 178–253","Law for the new covenant","Fasting, pilgrimage, fighting, marriage, charity — the legislation Israel's story anticipated."],
+  ["A′","vv. 254–286","Faith, sealed","Āyat al-Kursī (2:255, itself a mini-ring); no compulsion; the closing prayer of the believers."]],
+ note:"Farrin: even section lengths balance. Bonus ring: 2:255 centers on “He knows what is before them and what is behind them” — before/after language at the verse's own middle."},
+3:{ar:"آل عمران",type:"ring",src:"Raymond Farrin, Structure and Qur'anic Interpretation (2014) — simplified here; pairs with Q2.",
+ lede:"Farrin reads Q3 as Q2's twin: where Q2 centers on the community's identity, Q3 centers on the command to hold together and not split apart.",
+ secs:[
+  ["A","vv. 1–32","Revelation and its deniers","The Book confirmed; clear vs. ambiguous verses; obedience to God and Prophet."],
+  ["B","vv. 33–63","The family of ʿImrān","Mary, Zachariah, John, Jesus — election and miraculous birth; the mubāhala challenge."],
+  ["C","vv. 64–99","Debate with the People of the Book","Come to a common word; Abraham was neither Jew nor Christian; obstruction from God's path."],
+  ["X","vv. 100–120","“Hold fast, all together, to the rope of God — and do not divide” (3:103)","The center commands communal unity: the best nation (3:110) must not fracture like those before it."],
+  ["C′","vv. 121–175","Unity tested at Badr and Uḥud","Victory, then near-collapse when ranks broke — the cost of dividing, dramatized."],
+  ["B′","vv. 176–189","The faithful dead and the deniers","Martyrs alive with their Lord; those who sell the covenant — mirroring elect vs. rejecters."],
+  ["A′","vv. 190–200","Revelation answered","Those who remember God standing, sitting, lying down; the closing call: persevere, bind together."]],
+ note:"Simplified after Farrin; his exact section divisions differ in detail. The A/A′ frame moves from receiving the Book to responding to it; the pivot is the unity command."},
+5:{ar:"المائدة",type:"ring",src:"Michel Cuypers, The Banquet: A Reading of the Fifth Sura of the Qur'an (2009).",
+ lede:"Cuypers' book-length analysis — the most detailed ring argument for any surah. The center (5:48) is one of the Qur'an's most quoted verses on religious plurality.",
+ secs:[
+  ["A","vv. 1–11","Covenant and completion","“Fulfill your contracts”; lawful food; “Today I have perfected your religion” (5:3)."],
+  ["B","vv. 12–26","Covenants broken before","Israel's covenant and the Christians' — both taken, both strained; forty years in the wilderness."],
+  ["C","vv. 27–40","Cain and Abel","The first blood; “whoever kills a soul…” (5:32); law answering violence."],
+  ["X","vv. 41–50","“To each of you We have given a law and a way… so compete in good deeds” (5:48)","Torah, Gospel, Qur'an each confirmed as judgment for its people; plurality of paths declared at the exact center."],
+  ["C′","vv. 51–71","Living beside the communities","Alliances, mockery, food and marriage across communities — Cain's question socialized."],
+  ["B′","vv. 72–86","Christ's status resolved","Neither God nor son of God, yet “nearest in love are those who say: we are Christians” (5:82)."],
+  ["A′","vv. 87–120","The Table itself","Food laws return; the disciples ask for a table (māʾidah) from heaven; Jesus questioned — and cleared — on Judgment Day."]],
+ note:"A/A′: covenant meal opens and closes the surah (its very name sits in the last section). X universalizes what A localized: one perfected religion, many revealed ways."},
+12:{ar:"يوسف",type:"ring",src:"Long noted; recent formal treatments (e.g., academic studies of ring composition in Q12) map it in detail.",
+ lede:"The Qur'an's most sustained single narrative is also its cleanest chiasm: a dream opens it, the dream's fulfillment closes it, and Joseph's vindication sits at the hinge.",
+ secs:[
+  ["A","vv. 1–3","“The best of stories”","Prologue: the Arabic Qur'an and the promise of narrative meaning."],
+  ["B","vv. 4–6","The dream","Eleven stars, sun and moon bow to the boy; Jacob warns him to conceal it."],
+  ["C","vv. 7–18","Betrayal and the false shirt","Brothers plot; the well; the shirt with fake blood deceives Jacob into grief."],
+  ["D","vv. 19–35","Egypt and the torn shirt","Sold; the seduction; a shirt torn from behind proves innocence — yet prison follows."],
+  ["X","vv. 36–57","Dreams decoded — Joseph vindicated and raised","Prison dreams, then the king's dream; the women confess; “Today you are established and trusted” (12:54). Descent turns to ascent at the exact middle."],
+  ["D′","vv. 58–79","Egypt reversed","Brothers come needing grain; the planted cup mirrors the planted shirt; Benjamin held as Joseph once was taken."],
+  ["C′","vv. 80–98","Recognition and the healing shirt","Guilt confessed; Joseph's shirt cast on Jacob's face restores his sight — undoing the shirt of C."],
+  ["B′","vv. 99–101","The dream fulfilled","“He raised his parents upon the throne, and they fell down before him” (12:100)."],
+  ["A′","vv. 102–111","Epilogue","“In their stories is a lesson” — the frame of narrative revelation closes."]],
+ note:"Signature mirrors: shirt-as-lie ↔ shirt-as-healing; well ↔ throne; Joseph taken ↔ Benjamin taken; dream ↔ prostration. One of the least contested ring readings in the Qur'an."},
+18:{ar:"الكهف",type:"ring",src:"Contemporary coherence studies (e.g., Khan & Randhawa, Divine Speech, 2016). Popular, not peer-reviewed.",
+ lede:"Four famous stories arranged as two mirrored pairs around a central parable — each story a trial: faith, wealth, knowledge, power.",
+ secs:[
+  ["A","vv. 1–8","Prologue","The straight Book; a warning and good news; the earth's adornment as a test."],
+  ["B","vv. 9–26","The youths of the cave — trial of FAITH","Young believers flee a persecuting power; God shelters and wakes them."],
+  ["C","vv. 32–44","The two gardens — trial of WEALTH","A rich man's arrogance; his garden destroyed; “wealth and children are the adornment of this life” (18:46)."],
+  ["X","vv. 45–59","The parable of this world","Water, vegetation, then chaff; the Record laid open; Iblīs and his progeny — why every trial exists."],
+  ["C′","vv. 60–82","Moses and Khiḍr — trial of KNOWLEDGE","The learned prophet must learn patience; hidden mercy inside apparent harm — inverting C's visible wealth, hidden ruin."],
+  ["B′","vv. 83–98","Dhū'l-Qarnayn — trial of POWER","A righteous king shelters the weak behind a wall — inverting B, where a king persecuted the weak."],
+  ["A′","vv. 99–110","Epilogue","The seas as ink for God's words; “your Lord is One — so work righteousness.”"]],
+ note:"B/B′: persecuted believers ↔ protecting ruler. C/C′: apparent blessing hiding loss ↔ apparent loss hiding blessing. Recited weekly on Fridays; the mirrored trials map onto the tribulations of the Dajjāl in the hadith tradition."},
+26:{ar:"الشعراء",type:"panels",refr:"إِنَّ فِي ذَٰلِكَ لَآيَةً ۖ وَمَا كَانَ أَكْثَرُهُم مُّؤْمِنِينَ",refrEn:"“Surely in that is a sign, yet most of them do not believe…” — closes every panel",
+ src:"Panel symmetry noted across scholarship on Meccan surah form (e.g., Neuwirth); frame + seven episodes.",
+ lede:"Not one ring but seven parallel panels inside a single frame — every prophet's story stamped shut with the identical refrain, hammering one rhythm seven times.",
+ secs:[
+  ["F","vv. 1–9","FRAME: the grieving Prophet","Muḥammad nearly destroys himself over their disbelief; every sign refused."],
+  ["1","vv. 10–68","Moses vs. Pharaoh","The longest panel: commission, contest of sorcerers, sea split."],
+  ["2","vv. 69–104","Abraham","Argues down the idols; the prayer for the Day when hearts alone avail."],
+  ["3","vv. 105–122","Noah","“Shall we believe when the lowest follow you?” — the flood answers."],
+  ["4","vv. 123–140","Hūd and ʿĀd","Monuments and strongholds — “do you build a sign on every height in vanity?”"],
+  ["5","vv. 141–159","Ṣāliḥ and Thamūd","The she-camel hamstrung; the punishment seizes them."],
+  ["6","vv. 160–175","Lot","The cities overturned; a rain of ruin."],
+  ["7","vv. 176–191","Shuʿayb and the Thicket","Fraud in the scales; the Day of the Canopy."],
+  ["F′","vv. 192–227","FRAME: the Qur'an descends","The Trustworthy Spirit brings it down; poets wander every valley — but not this Prophet, and not this Book."]],
+ note:"The frame answers itself: the Prophet who grieves in F is vindicated in F′ as the bearer of what no poet produces. Each panel = one micro-drama of messenger → denial → sign → destruction."},
+54:{ar:"القمر",type:"panels",refr:"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ",refrEn:"“We have made the Qur'an easy for remembrance — is there any who will remember?” — the tolling refrain",
+ src:"Refrain-panel structure widely noted in studies of early Meccan composition.",
+ lede:"A drumbeat surah: five punishment stories, each sealed with the same double refrain — “How were My punishment and My warnings!” / “…is there any who will remember?”",
+ secs:[
+  ["F","vv. 1–8","FRAME: the moon splits","The Hour draws near; they call every sign sorcery; eyes downcast on the Day."],
+  ["1","vv. 9–17","Noah","Denied and restrained; the gates of heaven opened with water."],
+  ["2","vv. 18–22","ʿĀd","A furious wind on a day of unrelenting misery, tearing people up like palm trunks."],
+  ["3","vv. 23–32","Thamūd","The she-camel as a test; one Cry, and they were like a fence-builder's dry twigs."],
+  ["4","vv. 33–40","Lot's people","A storm of stones — except Lot's family at dawn."],
+  ["5","vv. 41–42","Pharaoh's house","Two verses only: warnings denied, seized with the grip of the Mighty."],
+  ["F′","vv. 43–55","FRAME: and you?","“Are your disbelievers better than those?” The righteous end in gardens, “at a seat of truth, near an All-Powerful King.”"]],
+ note:"The panels shrink as they go (9 verses → 2), accelerating toward the audience's own case in F′. Farrin and others place Q54 near the structural heart of the whole Qur'an, paired with Q55."},
+55:{ar:"الرحمن",type:"panels",refr:"فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ",refrEn:"“Then which of your Lord's favors will you both deny?” — 31 times, addressed to humans and jinn in the dual",
+ src:"Refrain and dual-symmetry structure widely noted; paired with Q54.",
+ lede:"A surah built on TWO-ness: every address is dual, every image comes in pairs — two seas, two Easts, two gardens, then two more gardens — with one refrain threading 31 rings through it all.",
+ secs:[
+  ["1","vv. 1–13","The Merciful teaches","Qur'an, humanity, speech; sun and moon in computed courses; the balance (mīzān) set up — do not cheat it."],
+  ["2","vv. 14–25","Two creations, two seas","Man from clay, jinn from smokeless fire; the two seas meet but do not transgress — pearls and coral between."],
+  ["3","vv. 26–45","All things perish; the reckoning","Every face fades but His; the guilty known by their marks; no escape through the zones of heaven and earth."],
+  ["4","vv. 46–61","Two gardens","For whoever feared the standing before his Lord: two gardens, two flowing springs, fruit in pairs."],
+  ["5","vv. 62–78","And beneath them, two more","Two darker-green gardens, two gushing springs — grace doubled and redoubled; “Blessed is the name of your Lord.”"]],
+ note:"Structure by multiplication rather than mirroring: the refrain is itself a ring drawn 31 times. The balance (mīzān) announced in panel 1 becomes the architecture of everything after it."},
+101:{ar:"القارعة",type:"ring",src:"Michel Cuypers, rhetorical analysis of the short surahs (A Qur'anic Apocalypse, 2018).",
+ lede:"Eleven verses, perfectly concentric: two terrifying questions frame a center where everything is weighed.",
+ secs:[
+  ["A","vv. 1–3","“The Striking Calamity — what is the Striking Calamity?”","The triple naming: announcement, question, and 'what will make you know?'"],
+  ["B","vv. 4–5","The world undone","People like scattered moths; mountains like carded wool — solidity dissolved."],
+  ["X","vv. 6–9","THE SCALES","Heavy scales → a pleasing life. Light scales → his mother is the Abyss. Deeds weighed at the exact center."],
+  ["A′/B′","vv. 10–11","“And what will make you know what it is?”","The framing question returns — answered in two words: scorching Fire."]],
+ note:"The surah's grammar mirrors itself: the opening 'mā adrāka' (what will make you know?) about the Calamity returns at the end about the Abyss. The only stable thing in the surah is the balance at its middle."},
+112:{ar:"الإخلاص",type:"ring",src:"Michel Cuypers, rhetorical analysis of the short surahs.",
+ lede:"Four verses in a closed mirror: two affirmations of what God is, reflected by two negations of what God is not.",
+ secs:[
+  ["A","v. 1","“Say: He is God, One”","Affirmation of absolute unity."],
+  ["B","v. 2","“God, the Eternal Refuge (aṣ-Ṣamad)”","Affirmation: all depend on Him; He depends on nothing."],
+  ["B′","v. 3","“He begets not, nor was He begotten”","Negation mirroring B: no dependency of origin in either direction."],
+  ["A′","v. 4","“And there is none comparable to Him”","Negation mirroring A: oneness restated as incomparability."]],
+ note:"AB ‖ B′A′: what He IS (One, Self-Sufficient) folds onto what He is NOT (begetting, begotten, equaled). A complete theology in a mirror of four lines."}
+};
+
+/* status computation */
+function statusOf(n){
+  if(RINGS[n]) return "ring";
+  if(n>=81 && n<=114) return "cuy";
+  if(n===4||n===24) return "part";
+  return "un";
+}
+const STATUS_LABEL={ring:"Documented ring — mapped below",cuy:"Analyzed by Cuypers (Semitic rhetorical analysis)",part:"Partial / proposed structures",un:"No published ring map"};
+const PART_NOTES={
+ 4:"Neal Robinson and others have analyzed Q4's thematic architecture (rights of women, orphans, inheritance framed by taqwā), but no consensus concentric map has been published.",
+ 24:"No whole-surah ring map — but the Verse of Light (24:35) is a famous mini-ring: the lamp / glass / star imagery folds concentrically around 'Light upon Light' (analysis in Khan & Randhawa, Divine Speech)."
+};
+
+/* ================= RENDER ================= */
+const nav=document.getElementById('nav'), main=document.getElementById('main');
+let current=0; // 0 = intro
+
+function buildNav(filter=""){
+  nav.innerHTML="";
+  const intro=document.createElement('div');
+  intro.className="srow top"+(current===0?" active":"");
+  intro.innerHTML='<span class="num">◆</span><span class="nm">What is a ring? (start here)</span>';
+  intro.onclick=()=>go(0);
+  nav.appendChild(intro);
+  const f=filter.trim().toLowerCase();
+  for(let n=1;n<=114;n++){
+    const [nm,en]=S[n-1];
+    if(f && !(nm.toLowerCase().includes(f)||en.toLowerCase().includes(f)||String(n)===f)) continue;
+    const st=statusOf(n);
+    const row=document.createElement('div');
+    row.className="srow"+(current===n?" active":"");
+    row.innerHTML=`<span class="num">${n}</span><i class="dot d-${st==="ring"?"ring":st==="cuy"?"cuy":st==="part"?"part":"un"}"></i><span class="nm">${nm} · <span style="color:var(--muted)">${en}</span></span>`;
+    row.onclick=()=>go(n);
+    nav.appendChild(row);
+  }
+}
+function go(n, skipHash){
+  current=n;buildNav(document.getElementById('q').value);render();window.scrollTo({top:0,behavior:"smooth"});main.focus&&main.focus();
+  if(!skipHash){
+    try{ history.replaceState(null,'', n>0 ? ('#'+n) : (location.pathname+location.search)); }catch(e){}
+  }
+}
+
+function tagHTML(n){
+  const st=statusOf(n);
+  const period=MEDINAN.has(n)?'<span class="tag med">Medinan</span>':'<span class="tag mec">Meccan</span>';
+  const stTag=`<span class="tag ${st==="ring"?"ring":st==="cuy"?"cuy":st==="part"?"part":"un"}">${STATUS_LABEL[st]}</span>`;
+  return period+" "+stTag;
+}
+
+function ladderHTML(r,n){
+  const secs=r.secs;
+  const isPanels=r.type==="panels";
+  /* compute mirror pairs for ring type: i <-> len-1-i (last entry of Q101 is merged frame) */
+  let rows="";
+  secs.forEach((s,i)=>{
+    const [k,rng,t,d]=s;
+    const isCenter=k==="X";
+    const frame=isPanels&&(k==="F"||k==="F′");
+    const depth=isPanels?(frame?0:1):Math.min(i,secs.length-1-i);
+    const pair=isPanels?(frame?(k==="F"?secs.length-1:0):-1):(isCenter?-1:secs.length-1-i);
+    rows+=`<div class="step${isCenter?" center":""}${frame?" frame":""}" data-i="${i}" data-pair="${pair}" style="margin-left:${depth*26}px" tabindex="0">
+      <div class="chip">${k}</div>
+      <div class="body"><div class="rng">${rng}</div><div class="t">${t}</div><div class="d">${d}</div></div>
+    </div>`;
+  });
+  /* concentric glyph: one circle per pair + center dot */
+  const nPairs=isPanels?2:Math.floor(secs.length/2);
+  let circles="";
+  for(let i=0;i<nPairs;i++){
+    const rr=88-(i*(70/Math.max(nPairs,1)));
+    circles+=`<circle class="gring" data-ring="${i}" cx="95" cy="95" r="${rr}"/>`;
+  }
+  const hasCenter=secs.some(s=>s[0]==="X");
+  const glyph=`<svg viewBox="0 0 190 190" aria-hidden="true">${circles}${hasCenter?'<circle class="gcenter" cx="95" cy="95" r="7"/>':'<circle class="gcenter" cx="95" cy="95" r="4" opacity=".5"/>'}</svg>`;
+  const refr=isPanels?`<div class="refrain">${r.refr}<small>${r.refrEn}</small></div>`:"";
+  return `<div class="ringwrap">
+    <div>
+      ${refr?'<div class="panels">'+refr+'</div>':''}
+      <div class="ladder" id="ladder">${rows}</div>
+      <div class="pairnote" id="pairnote">Hover or tap a section to light up its mirror twin and see how they correspond.</div>
+    </div>
+    <div class="glyphbox">${glyph}<div class="cap">${isPanels?"Frame + panels: the outer ring holds repeated inner panels.":"Each circle = one mirrored pair (A/A′ outermost). The dot is the center X."}</div></div>
+  </div>`;
+}
+
+function wireLadder(r){
+  const steps=[...document.querySelectorAll('.step')];
+  const note=document.getElementById('pairnote');
+  const rings=[...document.querySelectorAll('.gring')];
+  const isPanels=r.type==="panels";
+  function ringIndexFor(i){
+    if(isPanels) return (r.secs[i][0]==="F"||r.secs[i][0]==="F′")?0:1;
+    return Math.min(i,r.secs.length-1-i);
+  }
+  function quoted(s){ return /^[“"]/.test(s) ? s : ('“'+s+'”'); }
+  function activate(i){
+    steps.forEach(s=>s.classList.remove('hl'));
+    rings.forEach(c=>c.classList.remove('hl'));
+    const p=parseInt(steps[i].dataset.pair);
+    steps[i].classList.add('hl');
+    const ri=ringIndexFor(i);
+    const rc=rings.find(c=>+c.dataset.ring===ri); if(rc)rc.classList.add('hl');
+    const a=r.secs[i];
+    if(a[0]==="X"){
+      note.innerHTML=`<em>${a[0]} — the center.</em> Everything folds around this: ${a[2]}`;
+    }else if(p>=0&&r.secs[p]){
+      steps[p].classList.add('hl');
+      const b=r.secs[p];
+      note.innerHTML=`<em>${a[0]} ⟷ ${b[0]}.</em> ${quoted(a[2])} mirrors ${quoted(b[2])}.`;
+    }else{
+      note.innerHTML=`<em>${a[0]}.</em> ${a[2]}`;
+    }
+  }
+  steps.forEach((s,i)=>{
+    s.addEventListener('mouseenter',()=>activate(i));
+    s.addEventListener('focus',()=>activate(i));
+    s.addEventListener('click',()=>activate(i));
+  });
+}
+
+function render(){
+  if(current===0){renderIntro();return;}
+  const n=current,[nm,en,vc]=S[n-1],r=RINGS[n],st=statusOf(n);
+  let html=`<div class="crumb">Surah ${n} of 114</div>
+  <div class="head"><h2>${nm}</h2>${r&&r.ar?`<span class="ar">${r.ar}</span>`:""}</div>
+  <div class="meta"><span>“${en}”</span><span>${vc} verses</span></div>
+  <div class="meta" style="margin-top:10px">${tagHTML(n)}</div>`;
+  if(PAIRS[n]) html+=`<p class="lede" style="font-size:13px;color:var(--muted)">${PAIRS[n]}</p>`;
+  if(r){
+    html+=`<p class="lede">${r.lede}</p>`+ladderHTML(r,n)+
+      `<div class="card"><h3>Why these mirrors?</h3><p>${r.note}</p><div class="src">Source basis: ${r.src} Section boundaries vary slightly between analysts; treat verse ranges as approximate.</div></div>`;
+  }else if(st==="cuy"){
+    html+=`<div class="card"><h3>Mapped by Cuypers — not reproduced here</h3>
+    <p>Michel Cuypers analyzed all of surahs 81–114 with Semitic rhetorical analysis (parallel, mirror, and concentric figures) in <i>A Qur'anic Apocalypse</i> (2018). He finds concentric or mirror composition at the level of verses and part-surahs throughout this final section of the Qur'an.</p>
+    <p>His verse-by-verse schemes are too fine-grained (and too debated) to compress faithfully into one diagram, so this atlas shows his fully-worked short-surah examples at Q101 and Q112 as representatives, and marks the rest of 81–114 as “analyzed.”</p>
+    <div class="src">See also Nicolai Sinai's review essay “Going Round in Circles” (JQS 2017) for the case against over-reading these structures.</div></div>`;
+  }else if(st==="part"){
+    html+=`<div class="card"><h3>Partial or proposed structure</h3><p>${PART_NOTES[n]}</p></div>`;
+  }else{
+    html+=`<div class="card"><h3>No published ring map — and that's worth saying plainly</h3>
+    <p>No scholar has published a verified concentric (ring) analysis of this surah. That doesn't mean it lacks structure: the coherence tradition (Farāhī and Iṣlāḥī's <i>ʿamūd</i>, or central-theme, approach; Neuwirth's work on Meccan surah form; Robinson on the Medinan surahs) treats every surah as organized — just not necessarily as a ring.</p>
+    <p>Popular websites sometimes publish ring diagrams for surahs like this one, but without peer review the mirrors are easy to force: with enough freedom in drawing section boundaries, almost any text can be made to look concentric. This atlas only diagrams what has a published scholarly basis.</p></div>`;
+  }
+  main.innerHTML=html;
+  if(r) wireLadder(r);
+}
+
+function renderIntro(){
+  const counts={ring:0,cuy:0,part:0,un:0};
+  for(let n=1;n<=114;n++)counts[statusOf(n)]++;
+  main.innerHTML=`
+  <div class="crumb">Introduction</div>
+  <div class="head"><h2>Ring Composition in the Qur'an</h2></div>
+  <p class="lede">A <b>ring</b> (chiasmus / concentric composition) is a text that folds around its own middle: <b>A – B – C – X – C′ – B′ – A′</b>. The opening and closing mirror each other, the second and second-to-last mirror each other, and the most important idea sits at the <span style="color:var(--center)">center (X)</span> — not at the end, as modern readers expect. It's an ancient Near-Eastern architecture found in the Hebrew Bible, Homer, and — a growing body of scholarship argues — throughout the Qur'an.</p>
+  <div class="stats">
+    <div class="stat"><b>${counts.ring}</b><span>surahs with documented rings, fully diagrammed in this atlas</span></div>
+    <div class="stat"><b>${counts.cuy}</b><span>more surahs (81–114) analyzed by Cuypers' rhetorical method</span></div>
+    <div class="stat"><b>${counts.part}</b><span>surahs with partial / proposed structures</span></div>
+    <div class="stat"><b>${counts.un}</b><span>surahs with no published ring map — honestly labeled</span></div>
+  </div>
+  <div class="card"><h3>The scholars</h3>
+    <p><b>Ḥamīd al-Dīn al-Farāhī &amp; Amīn Aḥsan Iṣlāḥī</b> — the modern coherence (naẓm) tradition: every surah has a central pillar-theme (ʿamūd) and surahs come in pairs.</p>
+    <p><b>Michel Cuypers</b> — Semitic Rhetorical Analysis: parallelism, mirror (ABC‖C′B′A′), and concentric (ABC-X-C′B′A′) figures at every scale. Book-length study of Q5 (<i>The Banquet</i>) and of Q81–114 (<i>A Qur'anic Apocalypse</i>).</p>
+    <p><b>Raymond Farrin</b> — <i>Structure and Qur'anic Interpretation</i> (2014): ring analyses of Q1, Q2 and Q3, pairing across the whole Qur'an, and the claim that the entire book forms one grand concentric design.</p>
+    <p><b>Neal Robinson, Angelika Neuwirth, Nevin Reda</b> — structural analyses of long surahs and Meccan surah form that ring theorists build on.</p>
+  </div>
+  <div class="card"><h3>Start with the showpieces</h3>
+    <p>The five most famous rings: <a href="#" onclick="go(2);return false">Q2 al-Baqarah</a> (center: “a middle nation,” 2:143), <a href="#" onclick="go(12);return false">Q12 Yūsuf</a> (dream → vindication → fulfillment), <a href="#" onclick="go(5);return false">Q5 al-Māʾidah</a> (center: “to each a law and a way,” 5:48), <a href="#" onclick="go(1);return false">Q1 al-Fātiḥah</a> (pivot at v.5), and <a href="#" onclick="go(112);return false">Q112 al-Ikhlāṣ</a> (a four-line mirror). Refrain architectures: <a href="#" onclick="go(26);return false">Q26</a>, <a href="#" onclick="go(54);return false">Q54</a>, <a href="#" onclick="go(55);return false">Q55</a>.</p>
+  </div>
+  <div class="caveat"><b>Read this honestly.</b> Ring composition in the Qur'an is a live scholarly debate, not a settled fact. Nicolai Sinai's 2017 review argues that many of Cuypers' and Farrin's schemes rely on flexible section boundaries and selective emphasis — a careful reader "will have reason to doubt" a number of them. This atlas therefore diagrams only structures with a published basis, cites the analyst for each, and marks every unmapped surah as unmapped rather than inventing rings for all 114. Where you see a diagram, treat it as one scholar's argument about the text — a lens, not a decree.</div>
+  <div class="card"><h3>How to read the diagrams</h3>
+    <p>Sections are shown as an indented ladder: deeper indent = deeper inside the ring. <b>Hover or tap any section</b> to light up its mirror twin (teal) and see the correspondence; the concentric circles on the right show which "shell" of the ring you're in. The <span style="color:var(--center)">amber section</span> is always the center X.</p>
+  </div>`;
+}
+
+document.getElementById('q').addEventListener('input',e=>buildNav(e.target.value));
+
+/* deep-link support: #12 opens surah 12 directly */
+function initFromHash(){
+  const m = location.hash.match(/^#(\d{1,3})$/);
+  const n = m ? parseInt(m[1],10) : 0;
+  go((n>=1 && n<=114) ? n : 0, true);
+}
+window.addEventListener('hashchange', initFromHash);
+buildNav();initFromHash();
+</script>
+</body>
+</html>
