@@ -173,7 +173,7 @@ nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(1.4);
 
 /* Framework tilt cards */
 .triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1400px}
-.tier{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:32px 28px 34px;
+.tier{scroll-margin-top:96px;position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:32px 28px 34px;
   transform-style:preserve-3d;transition:transform .12s ease-out, border-color .3s, box-shadow .3s;will-change:transform;overflow:hidden}
 .tier::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--emerald),var(--cyan));opacity:.85}
 .tier::after{content:"";position:absolute;inset:0;border-radius:18px;opacity:0;transition:.35s;pointer-events:none;
@@ -382,21 +382,21 @@ footer .fine{margin-top:30px;color:var(--faint);font-size:10px;letter-spacing:.1
       <h2 class="sec-title bm">Strategik <span class="grad">→</span> Taktikal <span class="grad">→</span> Operasi</h2>
     </div>
     <div class="triptych" id="triptych">
-      <div class="tier">
+      <div class="tier" id="tier-strategik">
         <div class="idx">I / STRATEGIK</div>
         <h3>Strategik</h3>
         <div class="gloss en">The narrative to win or counter</div><div class="gloss bm">Naratif untuk menang atau melawan</div>
         <p class="en">Identify the central story shaping how an issue is understood — the one node everything else orbits. Track its reach, its sentiment, and its trajectory over time.</p>
         <p class="bm">Kenal pasti cerita utama yang membentuk cara sesuatu isu difahami — satu nod yang segalanya beredar. Jejak jangkauan, sentimen, dan lintasannya sepanjang masa.</p>
       </div>
-      <div class="tier">
+      <div class="tier" id="tier-taktikal">
         <div class="idx">II / TAKTIKAL</div>
         <h3>Taktikal</h3>
         <div class="gloss en">Approaches to strengthen or counter</div><div class="gloss bm">Pendekatan untuk mengukuh atau melawan</div>
         <p class="en">Break the strategy into workable angles — which sub-arguments resonate, which audiences are moving, which framings earn trust rather than resistance.</p>
         <p class="bm">Pecahkan strategi kepada sudut yang boleh dilaksanakan — hujah kecil mana yang bergema, khalayak mana yang bergerak, bingkai mana yang meraih kepercayaan.</p>
       </div>
-      <div class="tier">
+      <div class="tier" id="tier-operasi">
         <div class="idx">III / OPERASI</div>
         <h3>Operasi</h3>
         <div class="gloss en">Concrete, legitimate action</div><div class="gloss bm">Tindakan konkrit yang sah</div>
