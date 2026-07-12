@@ -43,10 +43,9 @@
 
     /* ===== scroll-scrubbed video background ===== */
     #scroll-video-container { position: fixed; inset: 0; top: -12%; height: 124%; z-index: -10; background: #050505; }
-    #scroll-video-container canvas, #scroll-video-container video {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    #scroll-video-container video { filter: saturate(1.85) contrast(1.2) brightness(1.1); }
-    #scroll-video-container canvas { filter: saturate(1.85) contrast(1.2) brightness(1.1); }
+    #scroll-video-container video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(1.85) contrast(1.2) brightness(1.1); }
     #scroll-video-container .overlay { position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 80% 55% at 50% 45%, rgba(0,255,133,0.06) 0%, transparent 60%),
@@ -82,8 +81,6 @@
     }
     @media (prefers-reduced-motion: reduce) { #scroll-video-container .aurora i { animation: none !important; } }
 
-    /* ===== particles ===== */
-    #particles-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0.7; }
 
     /* ===== nav ===== */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60;
@@ -253,14 +250,10 @@
 
 <!-- ===== Scroll Video Background ===== -->
 <div id="scroll-video-container">
-  <canvas id="video-canvas"></canvas>
-  <video id="video-fallback" muted playsinline preload="auto" crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260322_013248_a74099a8-be2b-4164-a823-eddd5e149fa1.mp4"></video>
+  <video id="video-fallback" muted autoplay loop playsinline preload="auto" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260322_013248_a74099a8-be2b-4164-a823-eddd5e149fa1.mp4"></video>
   <div class="overlay"></div>
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 </div>
-
-<!-- ===== Particles ===== -->
-<canvas id="particles-canvas"></canvas>
 
 <!-- ===== Fixed Cards: the three reflections ===== -->
 <div id="fixed-cards">
@@ -445,142 +438,13 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
   document.addEventListener('click', function (e) { if (mm.classList.contains('open') && !mm.contains(e.target) && !mb.contains(e.target)) setMenu(false); });
 
-  // ===== scroll-scrubbed video (self-hosted assets/hero.mp4) =====
-  var VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260322_013248_a74099a8-be2b-4164-a823-eddd5e149fa1.mp4';
-  var canvas = document.getElementById('video-canvas');
+  // ===== background video: autoplaying, looping (was scroll-scrubbed) =====
   var videoEl = document.getElementById('video-fallback');
-  var ctx = canvas.getContext('2d');
-  var frames = [], framesReady = false, lastFrameIndex = -1, videoSeeking = false;
+  function kickVideo() { var p = videoEl.play(); if (p && p.catch) p.catch(function () {}); }
+  kickVideo();
+  videoEl.addEventListener('canplay', kickVideo);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) kickVideo(); });
 
-  function resizeCanvas() {
-    var dpr = Math.min(devicePixelRatio || 1, 2);
-    var rect = canvas.getBoundingClientRect();
-    var w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
-    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-    lastFrameIndex = -1;
-  }
-
-  function extractFrames() {
-    fetch(VIDEO_URL).then(function (r) { return r.blob(); }).then(function (blob) {
-      var objectUrl = URL.createObjectURL(blob);
-      var video = document.createElement('video');
-      video.muted = true; video.playsInline = true; video.preload = 'auto'; video.src = objectUrl;
-      return new Promise(function (resolve, reject) {
-        video.onloadedmetadata = function () { resolve(video); };
-        video.onerror = reject;
-        setTimeout(reject, 15000);
-      }).then(function (video) {
-        var cap = (innerWidth < 768) ? 720 : 1024;
-        var scale = Math.min(1, cap / video.videoWidth);
-        var sw = Math.round(video.videoWidth * scale), sh = Math.round(video.videoHeight * scale);
-        var frameCount = 64;
-        var seq = Promise.resolve();
-        var mk = function (i) {
-          return function () {
-            var time = (i / (frameCount - 1)) * (video.duration - 0.05);
-            video.currentTime = time;
-            return new Promise(function (res, rej) {
-              var onSeeked = function () { video.removeEventListener('seeked', onSeeked); res(); };
-              video.addEventListener('seeked', onSeeked);
-              setTimeout(function () { video.removeEventListener('seeked', onSeeked); rej(); }, 3000);
-            }).then(function () {
-              return createImageBitmap(video, { resizeWidth: sw, resizeHeight: sh });
-            }).then(function (bitmap) { frames.push(bitmap); });
-          };
-        };
-        for (var i = 0; i < frameCount; i++) seq = seq.then(mk(i));
-        return seq.then(function () {
-          if (frames.length > 0) {
-            framesReady = true;
-            canvas.style.visibility = 'visible';
-            videoEl.style.display = 'none';
-          }
-          URL.revokeObjectURL(objectUrl);
-        });
-      });
-    }).catch(function () { /* fall back to video seeking */ });
-  }
-
-  function getProgress() {
-    var vh = innerHeight;
-    var start = vh * 0.4, end = document.documentElement.scrollHeight - vh;
-    var range = end - start;
-    if (range <= 0) return 0;
-    return Math.max(0, Math.min(1, (scrollY - start) / range));
-  }
-
-  function drawFrame(frame) {
-    var cw = canvas.width, ch = canvas.height;
-    var s = Math.max(cw / frame.width, ch / frame.height);
-    var dw = frame.width * s, dh = frame.height * s;
-    ctx.drawImage(frame, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
-  }
-
-  function videoTick() {
-    var progress = getProgress();
-    if (framesReady && frames.length > 0) {
-      var idx = Math.round(progress * (frames.length - 1));
-      if (idx !== lastFrameIndex) { lastFrameIndex = idx; if (frames[idx]) drawFrame(frames[idx]); }
-    } else if (videoEl.duration && isFinite(videoEl.duration) && videoEl.readyState >= 1) {
-      var target = progress * videoEl.duration;
-      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.001) { videoSeeking = true; videoEl.currentTime = target; }
-    }
-    requestAnimationFrame(videoTick);
-  }
-  videoEl.addEventListener('seeked', function () { videoSeeking = false; });
-  videoEl.addEventListener('stalled', function () { videoSeeking = false; });
-  videoEl.addEventListener('loadeddata', function () { videoEl.currentTime = 0; });
-  canvas.style.visibility = 'hidden';
-  resizeCanvas();
-  addEventListener('resize', resizeCanvas);
-  requestAnimationFrame(videoTick);
-  extractFrames();
-
-  // ===== particles — neon fireflies: glow sprite + twinkle =====
-  var pCanvas = document.getElementById('particles-canvas'), pCtx = pCanvas.getContext('2d'), particles = [];
-  var glowSprite = (function () {
-    var s = document.createElement('canvas'); s.width = s.height = 64;
-    var g = s.getContext('2d');
-    var grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0, 'rgba(235,255,245,1)');
-    grad.addColorStop(0.18, 'rgba(140,255,195,0.9)');
-    grad.addColorStop(0.45, 'rgba(0,255,133,0.35)');
-    grad.addColorStop(1, 'rgba(0,255,133,0)');
-    g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
-    return s;
-  })();
-  function resizeParticles() { pCanvas.width = innerWidth; pCanvas.height = innerHeight; createParticles(); }
-  function createParticles() {
-    particles = [];
-    var count = Math.min(150, Math.floor((pCanvas.width * pCanvas.height) / 13000));
-    for (var i = 0; i < count; i++) particles.push({
-      x: Math.random() * pCanvas.width, y: Math.random() * pCanvas.height,
-      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
-      size: Math.random() * 2.2 + 0.8, opacity: Math.random() * 0.55 + 0.2,
-      tw: Math.random() * 0.9 + 0.35, ph: Math.random() * Math.PI * 2
-    });
-  }
-  function animateParticles() {
-    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-    var t = performance.now() / 1000;
-    pCtx.globalCompositeOperation = 'lighter';
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = pCanvas.width; if (p.x > pCanvas.width) p.x = 0;
-      if (p.y < 0) p.y = pCanvas.height; if (p.y > pCanvas.height) p.y = 0;
-      var twinkle = 0.55 + 0.45 * Math.sin(t * p.tw * 2.2 + p.ph);
-      var r = p.size * 5 * (0.8 + 0.35 * twinkle);
-      pCtx.globalAlpha = Math.min(1, p.opacity * (0.5 + 0.9 * twinkle));
-      pCtx.drawImage(glowSprite, p.x - r, p.y - r, r * 2, r * 2);
-    }
-    pCtx.globalAlpha = 1;
-    pCtx.globalCompositeOperation = 'source-over';
-    if (!reduce) requestAnimationFrame(animateParticles);
-  }
-  resizeParticles();
-  addEventListener('resize', resizeParticles);
-  requestAnimationFrame(animateParticles);
 
   // ===== hero fade =====
   function updateHeroOpacity() {
