@@ -91,7 +91,8 @@
     #hero .grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; width: 100%; }
     #hero .kicker { display:inline-flex; align-items:center; gap:9px; }
     #hero .kicker .dot { width:6px; height:6px; border-radius:50%; background: var(--center); box-shadow:0 0 8px var(--center); }
-    #hero h1 { font-size: clamp(42px, 6.6vw, 92px); margin: 22px 0 0; }
+    #hero h1 { font-size: clamp(42px, 6.6vw, 92px); margin: 22px 0 0; line-height: 0.98; }
+    #hero h1 .hline { display: block; }
     #hero h1 .serif { font-family: var(--serif); font-weight: 500; font-style: italic; letter-spacing: 0; }
     #hero h1 .gold { color: var(--gold-bright); text-shadow: 0 0 30px rgba(236,208,138,0.35); }
     #hero .sub { margin-top: 26px; max-width: 460px; font-size: clamp(15px, 1.5vw, 18px); }
@@ -239,8 +240,9 @@
       <div class="copy">
         <span class="kicker eyebrow"><span class="dot"></span><span data-en="Reflections · interactive" data-bm="Refleksi · interaktif">Reflections · interactive</span></span>
         <h1>
-          <span data-en="Every sūrah" data-bm="Setiap surah">Every sūrah</span><br>
-          <span class="serif gold" data-en="folds inward." data-bm="terlipat ke dalam.">folds inward.</span>
+          <span class="hline" data-en="Every sūrah" data-bm="Setiap surah">Every sūrah</span>
+          <span class="hline serif gold" data-en="folds inward." data-bm="terlipat ke dalam.">folds inward.</span>
+          <span class="hline" data-en="Find the centre." data-bm="Cari pusatnya.">Find the centre.</span>
         </h1>
         <p class="sub lede" data-en="Many sūrahs are built as concentric rings — the opening mirrored by the close, the true point resting at the middle, not the end. Choose one below and watch it fold around its centre."
            data-bm="Banyak surah dibina sebagai ring sepusat — pembukaan dicerminkan oleh penutup, titik sebenar berada di tengah, bukan di hujung. Pilih satu di bawah dan lihat ia terlipat pada pusatnya.">Many sūrahs are built as concentric rings — the opening mirrored by the close, the true point resting at the middle, not the end. Choose one below and watch it fold around its centre.</p>
@@ -253,7 +255,7 @@
     </div>
     <div class="scroll-cue">
       <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-      <span class="mono" data-en="Scroll to unfold" data-bm="Skrol untuk buka">Scroll to unfold</span>
+      <span class="mono" data-en="Scroll to unfold the rings" data-bm="Skrol untuk buka ring">Scroll to unfold the rings</span>
     </div>
   </section>
 
@@ -452,18 +454,21 @@
     function P(cx,cy,r,deg){ var a=deg*Math.PI/180; return [cx+Math.cos(a)*r, cy+Math.sin(a)*r]; }
 
     /* ---- exploded concentric rings (hero / composition / crop) ---- */
-    function buildRings(n, tone){
+    function buildRings(n, tone, connectors){
       var s = SURAHS[n], secs = s.secs, N = secs.length, m=(N-1)/2;
       var stroke = tone==='light' ? '#241a10' : '#f3ece0';
       var faint  = tone==='light' ? 'rgba(36,26,16,0.2)' : 'rgba(243,237,224,0.24)';
+      var tick   = tone==='light' ? 'rgba(36,26,16,0.45)' : 'rgba(243,237,224,0.5)';
       var svg = '<svg viewBox="0 0 600 600" role="img" aria-label="Exploded concentric rings of Surah '+s.name+'">';
       svg += '<defs><radialGradient id="rg-'+n+'-'+tone+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.5"/><stop offset="60%" stop-color="'+CENTRE+'" stop-opacity="0.06"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
       // outer reference + fold axis
       svg += '<circle cx="300" cy="300" r="248" fill="none" stroke="'+faint+'" stroke-width="1" stroke-dasharray="2 10"/>';
       svg += '<line x1="300" y1="54" x2="300" y2="546" stroke="'+faint+'" stroke-width="1" stroke-dasharray="4 8"/>';
-      var dirs = ['up','right','down','left'];
+      svg += '<text x="306" y="66" fill="'+tick+'" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2">FOLD AXIS</text>';
+      var dirs = ['up','right','down','left'], radii=[];
       for(var i=0;i<m;i++){
         var r = 210 - i*(150/Math.max(1,m));    // outer shell largest, inner shells step inward
+        radii.push(r);
         var col = secColor(i,N);
         var dir = dirs[i%4];
         svg += '<g class="ering" data-depth="'+(1.6-i*0.28)+'" data-dir="'+dir+'">';
@@ -483,6 +488,20 @@
       svg += '<circle cx="300" cy="300" r="7" fill="'+CENTRE+'" style="filter:drop-shadow(0 0 7px '+CENTRE+')"/>';
       svg += '<text x="300" y="'+(300+72)+'" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="4">X · '+secs[m][1].replace('vv. ','').replace('v. ','')+'</text>';
       svg += '</g>';
+      // connector lines + labels (drawn on) — hero only, mirrors the reference hero exactly
+      if(connectors && m>=2){
+        var r0=radii[0], r1=radii[1];
+        svg += '<g class="connectors" stroke="'+tick+'" stroke-width="1">';
+        svg += '<path class="connector" d="M 306 '+(300-r0)+' L 470 92 L 512 92"/>';
+        svg += '<path class="connector" d="M 306 '+(300+r0)+' L 470 508 L 512 508"/>';
+        svg += '<path class="connector" d="M 294 '+(300-r1)+' L 130 150 L 88 150"/>';
+        svg += '</g>';
+        svg += '<g fill="'+tick+'" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">';
+        svg += '<text class="explabel" x="516" y="96">'+secs[0][0]+' · '+secs[0][1]+' — '+secs[0][2]+'</text>';
+        svg += '<text class="explabel" x="516" y="512">'+secs[N-1][0]+' · '+secs[N-1][1]+' — '+secs[N-1][2]+'</text>';
+        svg += '<text class="explabel" x="10" y="154">'+secs[1][0]+' · '+secs[1][1]+' — '+secs[1][2]+'</text>';
+        svg += '</g>';
+      }
       svg += '</svg>';
       return svg;
     }
@@ -642,7 +661,7 @@
     }
 
     // hero + crop art (static signature = Al-Fātiḥa)
-    document.getElementById('heroArt').innerHTML = buildRings(1,'dark');
+    document.getElementById('heroArt').innerHTML = buildRings(1,'dark',true);
     document.getElementById('cropArt').innerHTML = buildHud(1);
     selectSurah(current);
 
@@ -655,23 +674,39 @@
     if(window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
       var DIR = {up:[0,-1], down:[0,1], left:[-1,0.35], right:[1,-0.35]};
-      function explode(scopeSel, assemble){
+      function explode(scopeSel, assemble, endPct){
+        endPct = endPct || 70;
         var layers = document.querySelectorAll(scopeSel+' .ering');
         var trig = document.querySelector(scopeSel);
-        layers.forEach(function(g){
+        layers.forEach(function(g, idx){
           var depth=parseFloat(g.getAttribute('data-depth')||'1'), dir=g.getAttribute('data-dir')||'up';
           var v=DIR[dir]||[0,-1], spread=(reduce?70:120)*depth;
-          var ex={x:v[0]*spread, y:v[1]*spread, rotate:(depth*8), transformOrigin:'300px 300px', ease:'none'};
+          var ex={x:v[0]*spread, y:v[1]*spread, rotate:(idx%2===0?1:-1)*(6+depth*5), transformOrigin:'300px 300px', ease:'none'};
           if(assemble){ gsap.set(g, ex); gsap.to(g, {x:0,y:0,rotate:0, ease:'power2.inOut',
             scrollTrigger:{trigger:trig, start:'top 80%', end:'top 30%', scrub:1}}); }
-          else { gsap.to(g, Object.assign({}, ex, {scrollTrigger:{trigger:trig, start:'top top', end:'+=70%', scrub:1}})); }
+          else { gsap.to(g, Object.assign({}, ex, {scrollTrigger:{trigger:trig, start:'top top', end:'+='+endPct+'%', scrub:1}})); }
         });
       }
-      // hero: assembled → explode as you scroll through it (pin briefly)
-      ScrollTrigger.create({trigger:'#hero', start:'top top', end:'+=70%', pin:true, pinSpacing:true});
-      explode('#hero .art', false);
-      gsap.from('#hero h1 span, #hero .kicker, #hero .sub, #hero .cta', {opacity:0, y:30, filter:'blur(8px)', duration:0.9, stagger:0.1, ease:'power3.out'});
-      gsap.to('#hero .art', {yPercent:-6, ease:'none', scrollTrigger:{trigger:'#hero', start:'top top', end:'+=70%', scrub:1}});
+      // hero: assembled → explode as you scroll through it (pinned for 90% of viewport height)
+      ScrollTrigger.create({trigger:'#hero', start:'top top', end:'+=90%', pin:true, pinSpacing:true});
+      explode('#hero .art', false, 90);
+      gsap.to('#hero .art', {yPercent:-6, ease:'none', scrollTrigger:{trigger:'#hero', start:'top top', end:'+=90%', scrub:1}});
+      gsap.to('#hero .copy', {yPercent:8, opacity:0.85, ease:'none', scrollTrigger:{trigger:'#hero', start:'top top', end:'+=90%', scrub:1}});
+
+      // hero entrance: staged blur-to-sharp reveal — eyebrow, then headline lines, then sub, then CTA
+      var heroIntro = gsap.timeline({defaults:{ease:'power3.out'}});
+      heroIntro
+        .from('#hero .kicker', {opacity:0, y:16, duration:0.6})
+        .from('#hero h1 .hline', {opacity:0, y:40, filter:'blur(12px)', duration:0.9, stagger:0.12}, '-=0.25')
+        .from('#hero .sub', {opacity:0, y:24, filter:'blur(6px)', duration:0.8}, '-=0.5')
+        .from('#hero .cta > *', {opacity:0, y:14, duration:0.5, stagger:0.08}, '-=0.4');
+
+      // hero connector lines draw on, then their labels fade in
+      var heroConnectors = document.querySelectorAll('#heroArt .connector');
+      heroConnectors.forEach(function(p){ var len=p.getTotalLength(); p.style.strokeDasharray=len; p.style.strokeDashoffset=len; });
+      gsap.to(heroConnectors, {strokeDashoffset:0, duration:1.2, ease:'power2.inOut', stagger:0.15, delay:0.6});
+      gsap.from('#heroArt .explabel', {opacity:0, duration:0.8, stagger:0.15, delay:1.1});
+
       // composition: exploded → assemble
       explode('#composition .art', true);
       // reveals
