@@ -119,6 +119,31 @@
     @keyframes chevBounce { 0%,100% { transform: translateY(0); opacity:.6; } 50% { transform: translateY(3px); opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .scroll-cue .ring svg { animation: none; } }
 
+    /* ===== anatomy — scroll-exploding ring structure ===== */
+    #anatomy { position: relative; background: #05040a; z-index: 2; min-height: 320vh; }
+    .an-pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+    #anCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .an-copy { position: relative; z-index: 2; max-width: 420px; margin-left: 7vw; pointer-events: none; }
+    .an-copy .eyebrow { display: block; }
+    .an-copy h2 { margin-top: 14px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.06; font-size: clamp(28px, 4.4vw, 54px); color: var(--cream); }
+    .an-copy h2 em { font-style: normal; color: var(--gold-bright); }
+    .an-copy p { margin-top: 18px; color: var(--dim); font-size: 14px; line-height: 1.75; max-width: 38ch; }
+    .an-copy .an-legend { margin-top: 26px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .an-copy .an-legend span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; color: var(--mute); display: inline-flex; align-items: center; gap: 6px; }
+    .an-copy .an-legend span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); }
+    .an-copy .an-legend span.x::before { background: var(--center); }
+    .an-scrub { position: absolute; right: 5vw; bottom: 7vh; z-index: 2; display: flex; gap: 2px; align-items: flex-end; height: 22px; pointer-events: none; }
+    .an-scrub i { display: block; width: 2px; background: rgba(243,237,224,0.2); border-radius: 1px; }
+    .an-scrub i.hit { background: var(--amber); }
+    .an-progress { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; z-index: 2; background: rgba(243,237,224,0.08); }
+    .an-progress .fill { position: absolute; left: 0; top: 0; width: 100%; background: linear-gradient(180deg, var(--gold-bright), var(--amber)); transition: height .05s linear; }
+    @media (max-width: 860px) {
+      #anatomy { min-height: 260vh; }
+      .an-copy { margin-left: 6vw; max-width: 78vw; }
+      .an-scrub { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { #anatomy { min-height: 100vh; } .an-pin { position: relative; } }
+
     /* ===== shared section frame ===== */
     section.band { position: relative; z-index: 2; padding: 96px 40px; }
     .wrap { max-width: 1180px; margin: 0 auto; }
@@ -260,6 +285,7 @@
     <a href="#feat-split" class="here" data-en="Architecture" data-bm="Senibina">Architecture</a>
     <a href="#choose" data-en="Sūrahs" data-bm="Surah">Sūrahs</a>
     <a href="#scholars" data-en="Scholars" data-bm="Sarjana">Scholars</a>
+    <a href="nazm.html" data-en="Interactive" data-bm="Interaktif">Interactive</a>
     <a href="ring-atlas.html" data-en="Atlas" data-bm="Atlas">Atlas</a>
   </div>
   <div class="right">
@@ -271,6 +297,7 @@
   <a href="#feat-split" data-en="Architecture" data-bm="Senibina">Architecture</a>
   <a href="#choose" data-en="Sūrahs" data-bm="Surah">Sūrahs</a>
   <a href="#scholars" data-en="Scholars" data-bm="Sarjana">Scholars</a>
+  <a href="nazm.html" data-en="Interactive rings" data-bm="Ring interaktif">Interactive rings</a>
   <a href="ring-atlas.html" class="atlas" data-en="Enter the Atlas →" data-bm="Buka Atlas →">Enter the Atlas →</a>
   <a href="reflections.html" data-en="← Reflections" data-bm="← Refleksi">← Reflections</a>
 </div>
@@ -298,6 +325,25 @@
   <div class="scroll-cue" id="scrollCue">
     <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
     <span class="mono" data-en="Scroll to continue" data-bm="Skrol untuk teruskan">Scroll to continue</span>
+  </div>
+</section>
+
+<!-- ============ ANATOMY — scroll-exploding ring structure ============ -->
+<section id="anatomy">
+  <div class="an-progress" aria-hidden="true"><div class="fill" id="anFill"></div></div>
+  <div class="an-pin">
+    <canvas id="anCanvas" aria-hidden="true"></canvas>
+    <div class="an-copy">
+      <span class="eyebrow" data-en="Anatomy of a ring" data-bm="Anatomi sebuah ring">Anatomy of a ring</span>
+      <h2 data-en="Seven movements.<br>One <em>structure</em>." data-bm="Tujuh gerakan.<br>Satu <em>struktur</em>.">Seven movements.<br>One <em>structure</em>.</h2>
+      <p data-en="Scroll to pull the ring apart. Each layer is a movement of the sūrah — nested so tightly it reads as one shape, until you look at what actually holds it together." data-bm="Skrol untuk meleraikan ring. Setiap lapisan ialah satu gerakan surah — tersusun begitu rapat sehingga kelihatan seperti satu bentuk, sehingga anda melihat apa yang sebenarnya mengikatnya.">Scroll to pull the ring apart. Each layer is a movement of the sūrah — nested so tightly it reads as one shape, until you look at what actually holds it together.</p>
+      <div class="an-legend">
+        <span data-en="A ⟷ A′ opens/closes" data-bm="A ⟷ A′ buka/tutup">A ⟷ A′ opens/closes</span>
+        <span data-en="B ⟷ B′, C ⟷ C′ mirror" data-bm="B ⟷ B′, C ⟷ C′ cermin">B ⟷ B′, C ⟷ C′ mirror</span>
+        <span class="x" data-en="X — the center" data-bm="X — pusatnya">X — the center</span>
+      </div>
+    </div>
+    <div class="an-scrub mono" id="anScrub" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -1194,6 +1240,172 @@
       if (document.hidden) running = false;
       else { running = true; requestAnimationFrame(frame); }
     });
+  })();
+
+  /* ================= ANATOMY — scroll-exploding ring structure ================= */
+  (function () {
+    var sec = document.getElementById('anatomy'); if (!sec) return;
+    var pin = sec.querySelector('.an-pin');
+    var canvas = document.getElementById('anCanvas');
+    var ctx = canvas && canvas.getContext('2d');
+    if (!ctx) return;
+    var scrub = document.getElementById('anScrub');
+    var fillEl = document.getElementById('anFill');
+    var labels = ['A', 'B', 'C', 'X', 'C′', 'B′', 'A′'];
+    var W = 0, H = 0, DPR = 1;
+    var progress = 0, targetProgress = 0;
+
+    function resize() {
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      W = pin.clientWidth; H = pin.clientHeight;
+      canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    window.addEventListener('resize', resize);
+
+    var TICKS = 40, scrubEls = [];
+    if (scrub) {
+      for (var ti = 0; ti < TICKS; ti++) {
+        var el = document.createElement('i');
+        el.style.height = (6 + ((ti * 37) % 15)) + 'px';
+        scrub.appendChild(el);
+      }
+      scrubEls = [].slice.call(scrub.children);
+    }
+
+    function computeProgress() {
+      var r = sec.getBoundingClientRect();
+      var total = sec.offsetHeight - window.innerHeight;
+      if (total <= 4) { targetProgress = 1; return; }
+      targetProgress = Math.min(1, Math.max(0, -r.top / total));
+    }
+    window.addEventListener('scroll', computeProgress, { passive: true });
+    window.addEventListener('resize', computeProgress);
+
+    function draw() {
+      if (!W || !H) { requestAnimationFrame(draw); return; }
+      progress += (targetProgress - progress) * (reduce ? 1 : 0.09);
+      var t = progress;
+      var e = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      ctx.clearRect(0, 0, W, H);
+
+      var cx = W * (W < 860 ? 0.5 : 0.60), cy = H * (W < 860 ? 0.42 : 0.5);
+      var base = Math.min(W, H);
+      var R = base * 0.155;
+      var rx = R, ry = R * 0.40;
+      var rot = -10 * Math.PI / 180;
+      var axisAng = 20 * Math.PI / 180;
+      var dx = Math.cos(axisAng), dy = Math.sin(axisAng);
+      var maxSep = base * 0.115;
+      var centerIdx = 3;
+
+      /* shaft guide line through the whole assembly */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(243,237,224,0.14)';
+      ctx.setLineDash([2, 6]);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx - dx * maxSep * 3.4 * e, cy - dy * maxSep * 3.4 * e);
+      ctx.lineTo(cx + dx * maxSep * 3.4 * e, cy + dy * maxSep * 3.4 * e);
+      ctx.stroke();
+      ctx.restore();
+
+      var positions = [];
+      for (var i = 0; i < 7; i++) {
+        var rel = i - centerIdx;
+        var off = rel * maxSep * e;
+        positions.push({ x: cx + dx * off, y: cy + dy * off, rel: rel });
+      }
+
+      /* mirror-pair connectors: A-A', B-B', C-C' */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(99,176,166,0.4)';
+      ctx.setLineDash([1, 5]);
+      ctx.lineWidth = 1;
+      for (var m = 0; m < 3; m++) {
+        var p1 = positions[m], p2 = positions[6 - m];
+        var arcH = base * (0.10 + m * 0.045) * e;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y - ry * 0.72);
+        ctx.quadraticCurveTo((p1.x + p2.x) / 2, Math.min(p1.y, p2.y) - ry * 0.72 - arcH, p2.x, p2.y - ry * 0.72);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      /* structural struts between adjacent rings */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(201,165,74,0.22)';
+      ctx.lineWidth = 1;
+      for (var s = 0; s < 6; s++) {
+        var a = positions[s], b = positions[s + 1];
+        for (var k = -1; k <= 1; k += 2) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y + ry * 0.55 * k);
+          ctx.lineTo(b.x, b.y + ry * 0.55 * k);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      /* the seven rings */
+      for (var j = 0; j < 7; j++) {
+        var pos = positions[j];
+        var isCenter = pos.rel === 0;
+        var isOuter = Math.abs(pos.rel) === 3;
+        var depthAlpha = 1 - Math.min(0.35, Math.abs(pos.rel) * 0.05);
+        ctx.save();
+        ctx.translate(pos.x, pos.y);
+        ctx.rotate(rot);
+        var col = isCenter ? '217,138,79' : (isOuter ? '236,208,138' : '201,165,74');
+        ctx.strokeStyle = 'rgba(' + col + ',' + depthAlpha + ')';
+        ctx.lineWidth = isCenter ? 2.4 : 1.6;
+        if (!reduce) { ctx.shadowColor = 'rgba(' + col + ',0.65)'; ctx.shadowBlur = isCenter ? 22 : 12; }
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = 'rgba(' + col + ',' + (depthAlpha * 0.4) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx * 0.86, ry * 0.86, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        if (isOuter) {
+          ctx.strokeStyle = 'rgba(' + col + ',' + (depthAlpha * 0.7) + ')';
+          ctx.lineWidth = 1;
+          for (var tk = 0; tk < 28; tk++) {
+            var ang = tk / 28 * Math.PI * 2;
+            ctx.beginPath();
+            ctx.moveTo(Math.cos(ang) * rx * 1.04, Math.sin(ang) * ry * 1.04);
+            ctx.lineTo(Math.cos(ang) * rx * 1.16, Math.sin(ang) * ry * 1.16);
+            ctx.stroke();
+          }
+        }
+        ctx.restore();
+
+        var labelAlpha = Math.min(1, Math.max(0, (e - 0.16) / 0.5));
+        if (labelAlpha > 0.02) {
+          ctx.save();
+          ctx.globalAlpha = labelAlpha;
+          ctx.fillStyle = isCenter ? '#ecd08a' : 'rgba(243,237,224,0.85)';
+          ctx.font = (isCenter ? '700 ' : '600 ') + Math.max(11, Math.round(base * 0.02)) + 'px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(labels[j], pos.x, pos.y + ry + 24);
+          ctx.restore();
+        }
+      }
+
+      if (scrubEls.length) {
+        var hitIdx = Math.round(t * (scrubEls.length - 1));
+        for (var q = 0; q < scrubEls.length; q++) scrubEls[q].classList.toggle('hit', q === hitIdx);
+      }
+      if (fillEl) fillEl.style.height = (t * 100) + '%';
+
+      requestAnimationFrame(draw);
+    }
+    resize(); computeProgress(); progress = targetProgress;
+    requestAnimationFrame(draw);
   })();
 })();
 </script>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Naẓm — an interactive reading of Qur'anic ring composition. Six sūrahs folding around their own centers, mapped as exploded concentric rings and a glowing mirror-HUD. A companion to the Ring Structure Reflections by Faris Suhail." />
+  <title>Naẓm · Interactive Rings · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0806" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Naẓm — the Qur'an folds on itself, interactively" />
+  <meta property="og:description" content="Pick a sūrah and watch it fold: exploded concentric rings, a mirror-HUD, and the centre (X) lit in gold. Six sourced rings, from Al-Fātiḥa to Yūsuf." />
+  <meta property="og:url" content="https://farissuhail.com/nazm.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Naẓm · Interactive Rings · Faris Suhail" />
+  <meta name="twitter:description" content="Six sūrahs folding around their own centers — as exploded rings and a glowing mirror-map." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --ink: #0a0806; --panel: #150f0a; --panel2:#1c140c; --line: rgba(243,237,224,0.14);
+      --gold: #c9a54a; --gold-bright: #ecd08a; --amber: #e0704a;
+      --cream: #f3ece0; --dim: rgba(243,237,224,0.68); --mute: rgba(243,237,224,0.5);
+      --center: #d98a4f; --teal: #63b0a6;
+      --serif: 'Cormorant Garamond', Georgia, serif; --arabic: 'Amiri', serif; --sans: 'Inter', sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    a { text-decoration: none; color: inherit; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .arabic { font-family: var(--arabic); }
+    ::selection { background: rgba(201,165,74,0.32); color: #fff; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 3px; }
+
+    /* ===== nav (matches site) ===== */
+    .nav-scrim { position: fixed; top: 0; left: 0; right: 0; height: 110px; z-index: 39; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), transparent); }
+    nav.top { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    nav.top .left { display: flex; align-items: center; gap: 10px; }
+    nav.top .brand { color: var(--cream); text-transform: uppercase; letter-spacing: 0.18em; font-weight: 700; font-size: 14px; }
+    nav.top .crumb { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--mute); }
+    nav.top .links { display: none; align-items: center; gap: 30px; }
+    nav.top .links a { position: relative; padding-bottom: 5px; font-size: 11px; color: rgba(243,237,224,0.72); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; transition: color .3s; cursor: pointer; }
+    nav.top .links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; border-bottom: 1px dashed transparent; transition: border-color .3s; }
+    nav.top .links a:hover, nav.top .links a.here { color: #fff; }
+    nav.top .links a:hover::after, nav.top .links a.here::after { border-color: rgba(255,255,255,0.6); }
+    nav.top .right { display: flex; align-items: center; gap: 14px; }
+    .lang-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; color: var(--mute); cursor: pointer; display: inline-flex; align-items: center; }
+    .lang-toggle::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-bright); margin-right: 6px; }
+    .lang-toggle .active { color: #fff; } .lang-toggle .sep { opacity: .5; margin: 0 3px; }
+    .menu-btn { background: none; border: 0; color: #fff; cursor: pointer; padding: 4px; }
+    .menu-btn svg { width: 20px; height: 20px; display: block; } .menu-btn .ic-x { display: none; }
+    .menu-btn.open .ic-menu { display: none; } .menu-btn.open .ic-x { display: block; }
+    #mobile-menu { position: fixed; top: 62px; left: 16px; right: 16px; z-index: 90; border-radius: 14px; padding: 24px 0;
+      display: flex; flex-direction: column; align-items: center; gap: 15px; background: rgba(10,8,6,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line);
+      opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .3s, transform .3s; }
+    #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #mobile-menu a { color: rgba(243,237,224,0.9); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; font-size: 12px; cursor: pointer; }
+    #mobile-menu a.atlas { color: var(--gold-bright); font-weight: 600; }
+    @media (min-width: 900px) { nav.top .links { display: flex; } .menu-btn { display: none; } }
+
+    /* ===== scroll progress ===== */
+    #progress { position: fixed; top: 0; left: 0; height: 2px; z-index: 60; width: 100%; transform: scaleX(0); transform-origin: left;
+      background: linear-gradient(90deg, var(--teal), var(--gold-bright), var(--amber)); }
+
+    /* ===== shared type ===== */
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--mute); }
+    h1, h2 { font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; }
+    .lede { color: var(--dim); line-height: 1.7; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 640px){ .wrap{ padding: 0 22px; } nav.top{ padding: 18px 22px; } }
+
+    section { position: relative; }
+    .blueprint { background-image:
+      linear-gradient(to right, rgba(243,237,224,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(243,237,224,0.035) 1px, transparent 1px);
+      background-size: 46px 46px; }
+
+    /* ===== hero ===== */
+    #hero { min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    #hero .grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; width: 100%; }
+    #hero .kicker { display:inline-flex; align-items:center; gap:9px; }
+    #hero .kicker .dot { width:6px; height:6px; border-radius:50%; background: var(--center); box-shadow:0 0 8px var(--center); }
+    #hero h1 { font-size: clamp(42px, 6.6vw, 92px); margin: 22px 0 0; }
+    #hero h1 .serif { font-family: var(--serif); font-weight: 500; font-style: italic; letter-spacing: 0; }
+    #hero h1 .gold { color: var(--gold-bright); text-shadow: 0 0 30px rgba(236,208,138,0.35); }
+    #hero .sub { margin-top: 26px; max-width: 460px; font-size: clamp(15px, 1.5vw, 18px); }
+    #hero .cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { border-radius: 999px; padding: 13px 24px; font-size: 13px; font-weight: 600; letter-spacing: .01em; transition: transform .2s, border-color .3s, background .3s; cursor: pointer; display:inline-block; }
+    .btn.solid { background: var(--cream); color: var(--ink); } .btn.solid:hover { transform: translateY(-2px); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--cream); } .btn.ghost:hover { border-color: rgba(243,237,224,0.55); }
+    .art { position: relative; width: 100%; max-width: 560px; margin: 0 auto; }
+    .art svg { width: 100%; height: auto; display:block; overflow: visible; }
+    .scroll-cue { position: absolute; left: 50%; transform: translateX(-50%); bottom: 26px; display:flex; align-items:center; gap:10px; color: var(--mute); }
+    .scroll-cue .mono { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+    .scroll-cue .ring { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); display:grid; place-items:center; }
+    .scroll-cue .ring svg { width: 11px; height: 11px; animation: chev 1.8s ease-in-out infinite; }
+    @keyframes chev { 0%,100%{ transform: translateY(0); opacity:.6 } 50%{ transform: translateY(3px); opacity:1 } }
+    @media (max-width: 880px){ #hero .grid{ grid-template-columns: 1fr; gap: 20px; } #hero .art{ order:-1; max-width: 380px; } }
+
+    /* ===== mirror (interactive) ===== */
+    #mirror { background: #07060a; padding: 120px 0; }
+    #mirror .head { text-align:center; max-width: 720px; margin: 0 auto 40px; }
+    #mirror h2 { font-size: clamp(32px, 4.6vw, 60px); margin: 16px 0; }
+    #mirror h2 .center { color: var(--gold-bright); }
+    .tabs { display:flex; flex-wrap:wrap; justify-content:center; gap: 8px; margin: 30px auto 8px; max-width: 860px; }
+    .tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .04em; padding: 9px 15px; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--dim); background: rgba(255,255,255,0.02); cursor: pointer; transition: all .25s; }
+    .tab .n { color: var(--mute); margin-right: 7px; }
+    .tab:hover { border-color: rgba(243,237,224,0.4); color: #fff; }
+    .tab.on { background: var(--gold); border-color: var(--gold); color: #1a1206; font-weight: 600; }
+    .tab.on .n { color: rgba(26,18,6,0.65); }
+
+    .mirror-grid { display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items:center; margin-top: 26px; }
+    .hud-wrap { position: relative; }
+    .detail { border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(180deg, var(--panel), var(--ink)); padding: 26px; }
+    .detail .ar { font-family: var(--arabic); font-size: 34px; color: var(--gold-bright); line-height: 1.4; direction: rtl; }
+    .detail .src { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); letter-spacing: .04em; margin-top: 4px; }
+    .detail .lede2 { color: var(--dim); line-height: 1.65; margin-top: 14px; font-size: 15px; }
+    .detail .rowlist { margin-top: 18px; border-top: 1px solid var(--line); }
+    .srow { display:grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 11px 6px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; align-items:start; }
+    .srow:hover, .srow.on { background: rgba(243,237,224,0.045); }
+    .srow .lab { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; }
+    .srow .t { font-size: 14px; font-weight: 600; color: var(--cream); }
+    .srow .v { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); margin-left: 8px; letter-spacing: .03em; }
+    .srow .g { font-size: 12.5px; color: var(--mute); line-height: 1.5; margin-top: 4px; max-height: 0; overflow: hidden; transition: max-height .35s ease, margin .35s ease; }
+    .srow.on .g { max-height: 120px; margin-top: 6px; }
+    .srow.centre .lab, .srow.centre .t { color: var(--gold-bright); }
+    .notecard { margin-top: 16px; border:1px solid var(--line); border-radius: 14px; background: #0b0a10; overflow:hidden; }
+    .notecard .bar { display:flex; align-items:center; gap: 7px; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+    .notecard .bar i { width: 9px; height: 9px; border-radius: 50%; display:block; }
+    .notecard .bar .fn { margin-left: 6px; font-family:'JetBrains Mono',monospace; font-size: 10.5px; color: var(--mute); letter-spacing:.1em; }
+    .notecard pre { padding: 14px 16px; font-family:'JetBrains Mono',monospace; font-size: 12.5px; line-height: 1.8; overflow-x:auto; }
+    @media (max-width: 900px){ .mirror-grid{ grid-template-columns: 1fr; } }
+
+    /* ===== composition (warm) ===== */
+    #composition { background: var(--cream); color: #241a10; padding: 120px 0; }
+    #composition .grid { display:grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items:center; }
+    #composition .eyebrow { color: rgba(36,26,16,0.55); }
+    #composition h2 { font-size: clamp(32px, 4.6vw, 58px); color:#1c130a; }
+    #composition h2 .inward { color: var(--amber); }
+    #composition .lede { color: rgba(36,26,16,0.66); margin-top: 18px; max-width: 440px; }
+    .compcard { margin-top: 26px; border: 1px solid rgba(36,26,16,0.12); border-radius: 16px; background: rgba(255,255,255,0.6); padding: 22px; max-width: 460px; }
+    .compcard .top { display:flex; justify-content:space-between; align-items:baseline; }
+    .compcard .top .nm { font-weight: 700; font-size: 15px; } .compcard .top .nm span { font-family: var(--arabic); margin-left: 8px; color: var(--gold); }
+    .compcard .top .ct { font-family:'JetBrains Mono',monospace; font-size: 11px; color: rgba(36,26,16,0.5); }
+    .compbar { display:flex; height: 13px; border-radius: 999px; overflow:hidden; margin-top: 16px; background: rgba(36,26,16,0.08); }
+    .compbar .seg { height: 100%; transform-origin: left; }
+    .compnote { margin-top: 14px; font-size: 12.5px; color: rgba(36,26,16,0.6); line-height: 1.6; }
+    .compsrc { margin-top: 10px; font-family:'JetBrains Mono',monospace; font-size: 10px; color: rgba(36,26,16,0.45); }
+    @media (max-width: 880px){ #composition .grid{ grid-template-columns: 1fr; } #composition .art{ order:-1; max-width: 400px; } }
+
+    /* ===== closing ===== */
+    #explore { background: var(--ink); padding: 0 0 80px; overflow:hidden; }
+    .crop { position: relative; height: 300px; margin-top: -40px; display:flex; justify-content:center; pointer-events:none; }
+    .crop .art { position: absolute; top: -46%; width: min(680px, 130vw); max-width:none; }
+    .crop::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, transparent 40%, var(--ink)); }
+    #explore .head { text-align:center; max-width: 720px; margin: 10px auto 0; position: relative; z-index: 2; }
+    #explore h2 { font-size: clamp(36px, 5.4vw, 68px); margin: 14px 0; }
+    #explore h2 .g { color: var(--gold-bright); }
+    #explore .sub { color: var(--dim); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    #explore .cta { margin-top: 32px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .fgrid { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 60px auto 0; max-width: 1000px; }
+    .fcard { position: relative; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); padding: 26px; transition: border-color .3s, background .3s; }
+    .fcard:hover { border-color: rgba(243,237,224,0.28); background: var(--panel2); }
+    .fcard .bar { position:absolute; left:0; top:26px; width:3px; height:30px; border-radius: 0 3px 3px 0; }
+    .fcard .ix { font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--mute); letter-spacing:.2em; }
+    .fcard h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-top: 14px; }
+    .fcard p { color: var(--mute); font-size: 13.5px; line-height: 1.6; margin-top: 8px; }
+    footer.foot { border-top: 1px solid var(--line); margin-top: 66px; padding-top: 28px; display:flex; flex-wrap:wrap; justify-content:space-between; gap: 14px;
+      font-family:'JetBrains Mono',monospace; font-size: 12px; color: var(--mute); }
+    footer.foot a:hover { color: #fff; }
+    @media (max-width: 760px){ .fgrid{ grid-template-columns: 1fr; } }
+
+    /* SVG ring/hud helpers */
+    .ering { transform-box: view-box; transform-origin: 300px 300px; }
+    .connector { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+    .spin-a { transform-box: view-box; transform-origin: 300px 300px; animation: spinCW var(--sa,42s) linear infinite; }
+    .spin-b { transform-box: view-box; transform-origin: 300px 300px; animation: spinCCW var(--sb,66s) linear infinite; }
+    @keyframes spinCW { to { transform: rotate(360deg); } }
+    @keyframes spinCCW { to { transform: rotate(-360deg); } }
+    .pulse { transform-box: fill-box; transform-origin: center; animation: pulseA 3s ease-in-out infinite; }
+    @keyframes pulseA { 0%,100%{ opacity:.55; transform: scale(.9);} 50%{ opacity:1; transform: scale(1.12);} }
+    .node { cursor: pointer; }
+    .node circle { transition: r .2s, fill .2s; }
+    .node.hot circle { r: 18; }
+    /* Under reduced motion: slow, don't kill (matches site convention) */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .spin-a { animation-duration: 150s; } .spin-b { animation-duration: 220s; }
+      .pulse { animation-duration: 6s; }
+      .scroll-cue .ring svg { animation: none; }
+    }
+  </style>
+</head>
+<body class="blueprint">
+  <div id="progress"></div>
+  <div class="nav-scrim"></div>
+  <nav class="top">
+    <div class="left">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <span class="brand">Farissuhail</span>
+      <span class="crumb mono">/ Naẓm</span>
+    </div>
+    <div class="links">
+      <a href="#mirror" data-en="The mirror" data-bm="Cermin">The mirror</a>
+      <a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
+      <a href="ring-structure.html" data-en="The essay" data-bm="Esei">The essay</a>
+      <a href="ring-atlas.html" data-en="Atlas" data-bm="Atlas">Atlas</a>
+    </div>
+    <div class="right">
+      <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+    </div>
+  </nav>
+  <div id="mobile-menu" aria-hidden="true">
+    <a href="#mirror" data-en="The mirror" data-bm="Cermin">The mirror</a>
+    <a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
+    <a href="ring-structure.html" data-en="The essay" data-bm="Esei">The essay</a>
+    <a href="ring-atlas.html" class="atlas" data-en="Enter the Atlas →" data-bm="Buka Atlas →">Enter the Atlas →</a>
+    <a href="reflections.html" data-en="← Reflections" data-bm="← Refleksi">← Reflections</a>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="wrap grid">
+      <div class="copy">
+        <span class="kicker eyebrow"><span class="dot"></span><span data-en="Reflections · interactive" data-bm="Refleksi · interaktif">Reflections · interactive</span></span>
+        <h1>
+          <span data-en="Every sūrah" data-bm="Setiap surah">Every sūrah</span><br>
+          <span class="serif gold" data-en="folds inward." data-bm="terlipat ke dalam.">folds inward.</span>
+        </h1>
+        <p class="sub lede" data-en="Many sūrahs are built as concentric rings — the opening mirrored by the close, the true point resting at the middle, not the end. Choose one below and watch it fold around its centre."
+           data-bm="Banyak surah dibina sebagai ring sepusat — pembukaan dicerminkan oleh penutup, titik sebenar berada di tengah, bukan di hujung. Pilih satu di bawah dan lihat ia terlipat pada pusatnya.">Many sūrahs are built as concentric rings — the opening mirrored by the close, the true point resting at the middle, not the end. Choose one below and watch it fold around its centre.</p>
+        <div class="cta">
+          <a href="#mirror" class="btn solid" data-en="Enter the mirror" data-bm="Masuk cermin">Enter the mirror</a>
+          <a href="ring-atlas.html" class="btn ghost" data-en="All eleven rings →" data-bm="Semua sebelas ring →">All eleven rings →</a>
+        </div>
+      </div>
+      <div class="art" id="heroArt"></div>
+    </div>
+    <div class="scroll-cue">
+      <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      <span class="mono" data-en="Scroll to unfold" data-bm="Skrol untuk buka">Scroll to unfold</span>
+    </div>
+  </section>
+
+  <!-- ============ MIRROR (interactive multi-sūrah HUD) ============ -->
+  <section id="mirror">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-en="The mirror" data-bm="Cermin">The mirror</span>
+        <h2>
+          <span data-en="Six sūrahs," data-bm="Enam surah,">Six sūrahs,</span>
+          <span class="center" data-en="one shape." data-bm="satu bentuk.">one shape.</span>
+        </h2>
+        <p class="lede" data-en="Pick a sūrah. Its verses arrange into mirror pairs — A ⟷ A′, B ⟷ B′ — folding around a single centre marked X. Hover a node to read that movement."
+           data-bm="Pilih surah. Ayat-ayatnya tersusun sebagai pasangan cermin — A ⟷ A′, B ⟷ B′ — terlipat pada satu pusat bertanda X. Hover satu nod untuk membaca gerakan itu.">Pick a sūrah. Its verses arrange into mirror pairs — A ⟷ A′, B ⟷ B′ — folding around a single centre marked X. Hover a node to read that movement.</p>
+      </div>
+
+      <div class="tabs" id="tabs"></div>
+
+      <div class="mirror-grid">
+        <div class="hud-wrap art" id="hudArt"></div>
+        <div class="detail">
+          <div class="ar arabic" id="dAr">الفاتحة</div>
+          <div class="src mono" id="dSrc"></div>
+          <div class="lede2" id="dLede"></div>
+          <div class="rowlist" id="dRows"></div>
+          <div class="notecard">
+            <div class="bar"><i style="background:var(--amber)"></i><i style="background:var(--gold)"></i><i style="background:var(--teal)"></i><span class="fn" id="dFn">al-fatiha.naẓm</span></div>
+            <pre id="dNota"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPOSITION (warm) ============ -->
+  <section id="composition">
+    <div class="wrap grid">
+      <div class="art" id="compArt"></div>
+      <div class="copy">
+        <span class="eyebrow" data-en="Composition" data-bm="Komposisi">Composition</span>
+        <h2>
+          <span data-en="The whole" data-bm="Keseluruhan">The whole</span><br>
+          <span class="inward" data-en="folds inward." data-bm="terlipat ke dalam.">folds inward.</span>
+        </h2>
+        <p class="lede" data-en="Scattered shells resolve into one figure. Each movement finds its mirror across the centre — and the sūrah's true subject sits not at the end, but at the exact middle."
+           data-bm="Cengkerang yang berselerak bersatu menjadi satu rajah. Setiap gerakan menemui cerminannya merentasi pusat — dan subjek sebenar surah bukan di hujung, tetapi tepat di tengah.">Scattered shells resolve into one figure. Each movement finds its mirror across the centre — and the sūrah's true subject sits not at the end, but at the exact middle.</p>
+        <div class="compcard">
+          <div class="top"><span class="nm" id="cName">Al-Fātiḥa <span class="arabic">الفاتحة</span></span><span class="ct mono" id="cCount">7 movements</span></div>
+          <div class="compbar" id="cBar"></div>
+          <div class="compnote" id="cNote"></div>
+          <div class="compsrc mono" id="cSrc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section id="explore">
+    <div class="crop"><div class="art" id="cropArt"></div></div>
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-en="Keep reading" data-bm="Teruskan membaca">Keep reading</span>
+        <h2>
+          <span data-en="This is a way" data-bm="Ini satu cara">This is a way</span>
+          <span class="g" data-en="to read." data-bm="untuk membaca.">to read.</span>
+        </h2>
+        <p class="sub" data-en="Ring structure isn't decoration — it's a documented, sourced approach to Qur'anic coherence. This page is the interactive door; the essay and the atlas are the full argument."
+           data-bm="Struktur ring bukan hiasan — ia pendekatan yang didokumenkan dan bersumber terhadap keutuhan al-Qur'an. Halaman ini pintu interaktif; esei dan atlas ialah hujah penuhnya.">Ring structure isn't decoration — it's a documented, sourced approach to Qur'anic coherence. This page is the interactive door; the essay and the atlas are the full argument.</p>
+        <div class="cta">
+          <a href="ring-structure.html" class="btn solid" data-en="Read the essay" data-bm="Baca esei">Read the essay</a>
+          <a href="ring-atlas.html" class="btn ghost" data-en="Open the atlas →" data-bm="Buka atlas →">Open the atlas →</a>
+        </div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fcard">
+          <span class="bar" style="background:var(--teal); box-shadow:0 0 8px var(--teal)"></span>
+          <span class="ix">01</span>
+          <h3 data-en="Concentric symmetry" data-bm="Simetri sepusat">Concentric symmetry</h3>
+          <p data-en="Sūrahs that open and close on the same notes, folding inward shell by shell like rings around a core." data-bm="Surah yang membuka dan menutup pada nada yang sama, terlipat ke dalam lapis demi lapis seperti ring mengelilingi teras.">Sūrahs that open and close on the same notes, folding inward shell by shell like rings around a core.</p>
+        </div>
+        <div class="fcard">
+          <span class="bar" style="background:var(--gold-bright); box-shadow:0 0 8px var(--gold-bright)"></span>
+          <span class="ix">02</span>
+          <h3 data-en="The centre (X)" data-bm="Pusat (X)">The centre (X)</h3>
+          <p data-en="At the heart of a ring sits its message — the verse everything else pivots around, placed at the exact middle." data-bm="Di jantung sebuah ring terletak mesejnya — ayat yang menjadi paksi segalanya, diletakkan tepat di tengah.">At the heart of a ring sits its message — the verse everything else pivots around, placed at the exact middle.</p>
+        </div>
+        <div class="fcard">
+          <span class="bar" style="background:var(--amber); box-shadow:0 0 8px var(--amber)"></span>
+          <span class="ix">03</span>
+          <h3 data-en="Mirror correspondence" data-bm="Kesejajaran cermin">Mirror correspondence</h3>
+          <p data-en="Paired movements illuminate each other: read A beside A′ and the structure becomes a lens on meaning." data-bm="Gerakan berpasangan menerangi satu sama lain: baca A di sebelah A′ dan struktur itu menjadi lensa makna.">Paired movements illuminate each other: read A beside A′ and the structure becomes a lens on meaning.</p>
+        </div>
+      </div>
+
+      <footer class="foot">
+        <span data-en="Naẓm — a companion to Ring Structure. A reading, not the only reading." data-bm="Naẓm — pelengkap kepada Ring Structure. Satu bacaan, bukan satu-satunya bacaan.">Naẓm — a companion to Ring Structure. A reading, not the only reading.</span>
+        <a href="reflections.html" data-en="← Back to Reflections" data-bm="← Kembali ke Refleksi">← Back to Reflections</a>
+      </footer>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+  (function(){
+    "use strict";
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ============ DATA — sourced ring maps (from the Ring Atlas) ============ */
+    /* Each sec = [label, verses, title, gloss]. Middle sec = the centre (X). */
+    var SURAHS = {
+      1:{name:"Al-Fātiḥa", tr:"The Opening", ar:"الفاتحة", fn:"al-fatiha",
+        src:"Michel Cuypers, Semitic rhetorical analysis; also treated by Farrin.",
+        lede:"Seven verses folding around a single hinge: the sūrah pivots from speaking ABOUT God to speaking TO God at exactly verse 5.",
+        secs:[
+          ["A","vv. 1–3","Praise of God","Lord of the worlds; the Merciful, the Compassionate — God's attributes declared."],
+          ["B","v. 4","Master of the Day of Judgment","The vertical relation: God as sovereign of humanity's final destiny."],
+          ["X","v. 5","“You alone we worship; You alone we ask for help”","Grammatical pivot: third person → second person. Worship meets petition."],
+          ["B′","v. 6","Guide us on the straight path","The petition that mirrors judgment: guidance now determines destiny then."],
+          ["A′","v. 7","The two ways of humanity","Those favored vs. those under wrath / astray — mirroring God's attributes."]]},
+      101:{name:"Al-Qāriʿah", tr:"The Calamity", ar:"القارعة", fn:"al-qariah",
+        src:"Michel Cuypers, A Qur'anic Apocalypse (2018).",
+        lede:"Eleven verses, perfectly concentric: two terrifying questions frame a centre where everything is weighed.",
+        secs:[
+          ["A","vv. 1–3","“The Striking Calamity — what is it?”","The triple naming: announcement, question, and 'what will make you know?'"],
+          ["B","vv. 4–5","The world undone","People like scattered moths; mountains like carded wool — solidity dissolved."],
+          ["X","vv. 6–9","The Scales","Heavy scales → a pleasing life. Light scales → the Abyss. Deeds weighed at the exact centre."],
+          ["B′","v. 10","“And what will make you know what it is?”","The framing question returns — the world's dissolution answered by the soul's."],
+          ["A′","v. 11","“A scorching Fire.”","Two words close what three verses opened — the Calamity named at last."]]},
+      18:{name:"Al-Kahf", tr:"The Cave", ar:"الكهف", fn:"al-kahf",
+        src:"Contemporary coherence studies (e.g., Khan & Randhawa, Divine Speech, 2016).",
+        lede:"Four famous stories arranged as two mirrored pairs around a central parable — each story a trial: faith, wealth, knowledge, power.",
+        secs:[
+          ["A","vv. 1–8","Prologue","The straight Book; a warning and good news; the earth's adornment as a test."],
+          ["B","vv. 9–26","Youths of the cave — FAITH","Young believers flee a persecuting power; God shelters and wakes them."],
+          ["C","vv. 32–44","The two gardens — WEALTH","A rich man's arrogance; his garden destroyed; wealth as the adornment of this life."],
+          ["X","vv. 45–59","The parable of this world","Water, vegetation, then chaff; the Record laid open — why every trial exists."],
+          ["C′","vv. 60–82","Moses and Khiḍr — KNOWLEDGE","Hidden mercy inside apparent harm — inverting C's visible wealth, hidden ruin."],
+          ["B′","vv. 83–98","Dhū'l-Qarnayn — POWER","A righteous king shelters the weak behind a wall — inverting B's persecuting king."],
+          ["A′","vv. 99–110","Epilogue","The seas as ink for God's words; “your Lord is One — so work righteousness.”"]]},
+      5:{name:"Al-Māʾidah", tr:"The Table", ar:"المائدة", fn:"al-maidah",
+        src:"Michel Cuypers, The Banquet: A Reading of the Fifth Sura (2009).",
+        lede:"Cuypers' book-length analysis — the most detailed ring argument for any sūrah. Its centre (5:48) is among the most quoted verses on religious plurality.",
+        secs:[
+          ["A","vv. 1–11","Covenant and completion","Lawful food; “Today I have perfected your religion” (5:3)."],
+          ["B","vv. 12–26","Covenants broken before","Israel's covenant and the Christians' — both taken, both strained."],
+          ["C","vv. 27–40","Cain and Abel","The first blood; “whoever kills a soul…” (5:32); law answering violence."],
+          ["X","vv. 41–50","“To each We gave a law and a way… so compete in good” (5:48)","Torah, Gospel, Qur'an confirmed; plurality of paths declared at the exact centre."],
+          ["C′","vv. 51–71","Living beside the communities","Alliances, mockery, food and marriage across communities — Cain's question socialized."],
+          ["B′","vv. 72–86","Christ's status resolved","Neither God nor son of God, yet “nearest in love are those who say: we are Christians”."],
+          ["A′","vv. 87–120","The Table itself","Food laws return; the disciples ask for a table from heaven; Jesus cleared on Judgment Day."]]},
+      3:{name:"Āl ʿImrān", tr:"Family of ʿImrān", ar:"آل عمران", fn:"al-imran",
+        src:"Raymond Farrin, Structure and Qur'anic Interpretation (2014) — simplified; pairs with Q2.",
+        lede:"Farrin reads Q3 as Q2's twin: where Q2 centres on the community's identity, Q3 centres on the command to hold together and not split apart.",
+        secs:[
+          ["A","vv. 1–32","Revelation and its deniers","The Book confirmed; clear vs. ambiguous verses; obedience to God and Prophet."],
+          ["B","vv. 33–63","The family of ʿImrān","Mary, Zachariah, John, Jesus — election and miraculous birth."],
+          ["C","vv. 64–99","Debate with the People of the Book","Come to a common word; Abraham was neither Jew nor Christian."],
+          ["X","vv. 100–120","“Hold fast, all together, to the rope of God” (3:103)","The centre commands communal unity: the best nation must not fracture."],
+          ["C′","vv. 121–175","Unity tested at Badr and Uḥud","Victory, then near-collapse when ranks broke — the cost of dividing."],
+          ["B′","vv. 176–189","The faithful dead and the deniers","Martyrs alive with their Lord; those who sell the covenant."],
+          ["A′","vv. 190–200","Revelation answered","Those who remember God standing, sitting, lying down; persevere, bind together."]]},
+      12:{name:"Yūsuf", tr:"Joseph", ar:"يوسف", fn:"yusuf",
+        src:"Long noted; recent formal treatments map Q12's ring composition in detail.",
+        lede:"The Qur'an's most sustained narrative is also its cleanest chiasm: a dream opens it, the dream's fulfilment closes it, and Joseph's vindication sits at the hinge.",
+        secs:[
+          ["A","vv. 1–3","“The best of stories”","Prologue: the Arabic Qur'an and the promise of narrative meaning."],
+          ["B","vv. 4–6","The dream","Eleven stars, sun and moon bow to the boy; Jacob warns him to conceal it."],
+          ["C","vv. 7–18","Betrayal and the false shirt","The well; the shirt with fake blood deceives Jacob into grief."],
+          ["D","vv. 19–35","Egypt and the torn shirt","Sold; the seduction; a shirt torn from behind proves innocence — yet prison follows."],
+          ["X","vv. 36–57","Dreams decoded — Joseph raised","“Today you are established and trusted” (12:54). Descent turns to ascent at the exact middle."],
+          ["D′","vv. 58–79","Egypt reversed","The planted cup mirrors the planted shirt; Benjamin held as Joseph once was taken."],
+          ["C′","vv. 80–98","Recognition and the healing shirt","Joseph's shirt cast on Jacob's face restores his sight — undoing the shirt of C."],
+          ["B′","vv. 99–101","The dream fulfilled","“He raised his parents upon the throne, and they fell down before him” (12:100)."],
+          ["A′","vv. 102–111","Epilogue","“In their stories is a lesson” — the frame of narrative revelation closes."]]}
+    };
+    var ORDER = [1,101,18,5,3,12];
+
+    /* shell colours from the site palette (outer → inner); centre = gold-bright */
+    var SHELL = ['#63b0a6','#c9a54a','#e0704a','#7f9cc4'];
+    var CENTRE = '#ecd08a';
+    function secColor(i, n){
+      var m = (n-1)/2;                 // centre index
+      if(i === m) return CENTRE;
+      var shell = Math.min(i, n-1-i);  // 0 = outer
+      return SHELL[shell % SHELL.length];
+    }
+    function secLen(sec){ // rough weight from a "vv. a–b" label, for the composition bar
+      var nums = (sec[1].match(/\d+/g)||[1,1]).map(Number);
+      var a = nums[0], b = nums[1]||nums[0];
+      return Math.max(1, b - a + 1);
+    }
+
+    var CX=300, CY=300;
+    function P(cx,cy,r,deg){ var a=deg*Math.PI/180; return [cx+Math.cos(a)*r, cy+Math.sin(a)*r]; }
+
+    /* ---- exploded concentric rings (hero / composition / crop) ---- */
+    function buildRings(n, tone){
+      var s = SURAHS[n], secs = s.secs, N = secs.length, m=(N-1)/2;
+      var stroke = tone==='light' ? '#241a10' : '#f3ece0';
+      var faint  = tone==='light' ? 'rgba(36,26,16,0.2)' : 'rgba(243,237,224,0.24)';
+      var svg = '<svg viewBox="0 0 600 600" role="img" aria-label="Exploded concentric rings of Surah '+s.name+'">';
+      svg += '<defs><radialGradient id="rg-'+n+'-'+tone+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.5"/><stop offset="60%" stop-color="'+CENTRE+'" stop-opacity="0.06"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
+      // outer reference + fold axis
+      svg += '<circle cx="300" cy="300" r="248" fill="none" stroke="'+faint+'" stroke-width="1" stroke-dasharray="2 10"/>';
+      svg += '<line x1="300" y1="54" x2="300" y2="546" stroke="'+faint+'" stroke-width="1" stroke-dasharray="4 8"/>';
+      var dirs = ['up','right','down','left'];
+      for(var i=0;i<m;i++){
+        var r = 210 - i*(150/Math.max(1,m));    // outer shell largest, inner shells step inward
+        var col = secColor(i,N);
+        var dir = dirs[i%4];
+        svg += '<g class="ering" data-depth="'+(1.6-i*0.28)+'" data-dir="'+dir+'">';
+        svg += '<circle cx="300" cy="300" r="'+r.toFixed(1)+'" fill="none" stroke="'+stroke+'" stroke-width="1.4"/>';
+        svg += '<circle cx="300" cy="300" r="'+(r-8).toFixed(1)+'" fill="none" stroke="'+faint+'" stroke-width="0.8"/>';
+        // mirrored node markers top & bottom
+        svg += '<circle cx="300" cy="'+(300-r).toFixed(1)+'" r="6" fill="'+col+'" style="filter:drop-shadow(0 0 5px '+col+')"/>';
+        svg += '<circle cx="300" cy="'+(300+r).toFixed(1)+'" r="6" fill="'+col+'" style="filter:drop-shadow(0 0 5px '+col+')"/>';
+        svg += '<text x="316" y="'+(300-r+4).toFixed(1)+'" fill="'+faint+'" font-family="JetBrains Mono,monospace" font-size="12">'+secs[i][0]+'</text>';
+        svg += '<text x="316" y="'+(300+r+4).toFixed(1)+'" fill="'+faint+'" font-family="JetBrains Mono,monospace" font-size="12">'+secs[N-1-i][0]+'</text>';
+        svg += '</g>';
+      }
+      // centre X
+      svg += '<g class="ering" data-depth="0.25" data-dir="down">';
+      svg += '<circle cx="300" cy="300" r="52" fill="url(#rg-'+n+'-'+tone+')"/>';
+      svg += '<circle cx="300" cy="300" r="30" fill="none" stroke="'+CENTRE+'" stroke-width="1.6" style="filter:drop-shadow(0 0 7px '+CENTRE+')"/>';
+      svg += '<circle cx="300" cy="300" r="7" fill="'+CENTRE+'" style="filter:drop-shadow(0 0 7px '+CENTRE+')"/>';
+      svg += '<text x="300" y="'+(300+72)+'" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="4">X · '+secs[m][1].replace('vv. ','').replace('v. ','')+'</text>';
+      svg += '</g>';
+      svg += '</svg>';
+      return svg;
+    }
+
+    /* ---- HUD mirror-map (interactive) ---- */
+    function buildHud(n){
+      var s = SURAHS[n], secs = s.secs, N = secs.length, m=(N-1)/2;
+      var Rn = 150, spread = 150*Math.PI/180;
+      var svg = '<svg viewBox="0 0 600 600" role="img" aria-label="Mirror-map of Surah '+s.name+'">';
+      svg += '<defs><radialGradient id="hg-'+n+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.35"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
+      svg += '<circle cx="300" cy="300" r="150" fill="url(#hg-'+n+')"/>';
+      // decorative rotating rings
+      svg += '<g class="spin-a" style="--sa:'+(30+N*3)+'s"><circle cx="300" cy="300" r="250" fill="none" stroke="rgba(243,237,224,0.14)" stroke-width="1"/>';
+      for(var k=0;k<N;k++){ var pp=P(300,300,250,(k*360/N)-90); var pp2=P(300,300,250,(k*360/N)-90+30); var cc=secColor(k,N);
+        svg += '<path d="M '+pp[0].toFixed(1)+' '+pp[1].toFixed(1)+' A 250 250 0 0 1 '+pp2[0].toFixed(1)+' '+pp2[1].toFixed(1)+'" fill="none" stroke="'+cc+'" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 5px '+cc+')"/>'; }
+      svg += '</g>';
+      svg += '<g class="spin-b" style="--sb:'+(56+N*4)+'s"><circle cx="300" cy="300" r="214" fill="none" stroke="rgba(243,237,224,0.34)" stroke-width="1.3" stroke-dasharray="2 12"/></g>';
+      // fine tick ring (static)
+      var ticks='';
+      for(var t=0;t<56;t++){ var ang=t*Math.PI*2/56, lng=(t%8===0); var a1=P(300,300,182,t*360/56), a2=P(300,300,lng?170:176,t*360/56);
+        ticks += '<line x1="'+a1[0].toFixed(1)+'" y1="'+a1[1].toFixed(1)+'" x2="'+a2[0].toFixed(1)+'" y2="'+a2[1].toFixed(1)+'" stroke="rgba(243,237,224,0.28)" stroke-width="'+(lng?1.4:0.7)+'"/>'; }
+      svg += '<g class="spin-b" style="--sb:'+(44+N*3)+'s">'+ticks+'</g>';
+      // fold axis
+      svg += '<line x1="300" y1="120" x2="300" y2="480" stroke="rgba(243,237,224,0.18)" stroke-width="1" stroke-dasharray="4 8"/>';
+
+      // node positions
+      var pos = {};
+      for(var i=0;i<m;i++){
+        var u = (m===1)?0:(i/(m-1))-0.5;
+        var ang = u*spread;                 // -spread/2 .. spread/2
+        var dx = Math.cos(ang)*Rn, dy = Math.sin(ang)*Rn;
+        pos[i]       = [300-dx, 300+dy];    // left member (A,B,C…)
+        pos[N-1-i]   = [300+dx, 300+dy];    // right mirror (A′,B′…)
+      }
+      pos[m] = [300,300];
+      // chords (mirror pairs) — drawn under nodes
+      var chords='';
+      for(var j=0;j<m;j++){ var col=secColor(j,N); var L=pos[j], R=pos[N-1-j];
+        chords += '<line x1="'+L[0].toFixed(1)+'" y1="'+L[1].toFixed(1)+'" x2="'+R[0].toFixed(1)+'" y2="'+R[1].toFixed(1)+'" stroke="'+col+'" stroke-width="1.1" stroke-opacity="0.5" stroke-dasharray="3 5"/>';
+        chords += '<line x1="'+L[0].toFixed(1)+'" y1="'+L[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(243,237,224,0.1)" stroke-width="0.7"/>';
+        chords += '<line x1="'+R[0].toFixed(1)+'" y1="'+R[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(243,237,224,0.1)" stroke-width="0.7"/>';
+      }
+      svg += '<g>'+chords+'</g>';
+      // nodes
+      var nodes='';
+      for(var q=0;q<N;q++){
+        if(q===m) continue;
+        var pnt=pos[q], col=secColor(q,N);
+        nodes += '<g class="node" data-sec="'+q+'" tabindex="0" role="button" aria-label="'+secs[q][0]+' '+secs[q][1]+'">'
+          + '<circle cx="'+pnt[0].toFixed(1)+'" cy="'+pnt[1].toFixed(1)+'" r="15" fill="rgba(8,7,10,0.75)" stroke="'+col+'" stroke-width="1.7" style="filter:drop-shadow(0 0 4px '+col+')"/>'
+          + '<text x="'+pnt[0].toFixed(1)+'" y="'+(pnt[1]+4).toFixed(1)+'" text-anchor="middle" fill="'+col+'" font-family="JetBrains Mono,monospace" font-size="12" font-weight="600" style="pointer-events:none">'+secs[q][0]+'</text></g>';
+      }
+      svg += nodes;
+      // centre X (pulsing)
+      svg += '<g class="node" data-sec="'+m+'" tabindex="0" role="button" aria-label="Centre X">'
+        + '<circle class="pulse" cx="300" cy="300" r="34" fill="none" stroke="'+CENTRE+'" stroke-width="1.4" stroke-opacity="0.5"/>'
+        + '<circle cx="300" cy="300" r="21" fill="rgba(8,7,10,0.88)" stroke="'+CENTRE+'" stroke-width="2" style="filter:drop-shadow(0 0 8px '+CENTRE+')"/>'
+        + '<text x="300" y="305" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" style="pointer-events:none">X</text></g>';
+      // readouts
+      svg += '<text x="300" y="66" text-anchor="middle" fill="rgba(243,237,224,0.6)" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">'+s.name.toUpperCase()+' · '+N+' MOVEMENTS</text>';
+      svg += '<text x="300" y="548" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">CENTRE · '+secs[m][1]+'</text>';
+      svg += '</svg>';
+      return svg;
+    }
+
+    /* ---- notation (nested chiasm) ---- */
+    function buildNotation(n){
+      var s=SURAHS[n], secs=s.secs, N=secs.length, m=(N-1)/2, out='ring "'+s.fn+'" {\n';
+      for(var i=0;i<N;i++){
+        var depth = m - Math.min(i, N-1-i);       // A→0 … X→m
+        var pad = '  '+ Array(depth+1).join('  ');
+        var isX = (i===m);
+        out += pad + (isX?'▸ ':'· ') + secs[i][0].padEnd(2,' ') + '  ' + secs[i][1] + (isX?'   ← centre':'') + '\n';
+      }
+      out += '}';
+      return out;
+    }
+
+    /* ---- detail rows ---- */
+    function buildRows(n){
+      var s=SURAHS[n], secs=s.secs, N=secs.length, m=(N-1)/2, html='';
+      for(var i=0;i<N;i++){
+        var col=secColor(i,N), isX=(i===m);
+        html += '<div class="srow'+(isX?' centre':'')+'" data-sec="'+i+'">'
+          + '<div class="lab" style="color:'+col+'">'+secs[i][0]+'</div>'
+          + '<div><span class="t">'+secs[i][2]+'</span><span class="v">'+secs[i][1]+'</span>'
+          + '<div class="g">'+secs[i][3]+'</div></div></div>';
+      }
+      return html;
+    }
+
+    /* ---- composition bar ---- */
+    function buildBar(n){
+      var s=SURAHS[n], secs=s.secs, N=secs.length, tot=0, i;
+      for(i=0;i<N;i++) tot+=secLen(secs[i]);
+      var html='';
+      for(i=0;i<N;i++){ var w=secLen(secs[i])/tot*100, col=secColor(i,N);
+        html+='<div class="seg" style="width:'+w.toFixed(2)+'%;background:'+col+';'+((i===(N-1)/2)?'box-shadow:0 0 8px '+col+';':'')+'" title="'+secs[i][0]+' '+secs[i][1]+'"></div>'; }
+      return html;
+    }
+
+    /* ============ RENDER + WIRE ============ */
+    var current = ORDER[0];
+    var hudArt=document.getElementById('hudArt'), compArt=document.getElementById('compArt');
+    var tabsEl=document.getElementById('tabs');
+
+    // tabs
+    ORDER.forEach(function(n){
+      var s=SURAHS[n], b=document.createElement('button');
+      b.className='tab'; b.dataset.n=n;
+      b.innerHTML='<span class="n mono">Q'+n+'</span>'+s.name;
+      b.addEventListener('click', function(){ selectSurah(n); });
+      tabsEl.appendChild(b);
+    });
+
+    function highlight(sec){
+      [].forEach.call(hudArt.querySelectorAll('.node'), function(nd){ nd.classList.toggle('hot', nd.dataset.sec===String(sec)); });
+      [].forEach.call(document.querySelectorAll('#dRows .srow'), function(r){ r.classList.toggle('on', r.dataset.sec===String(sec)); });
+    }
+    function wireInteractions(){
+      [].forEach.call(hudArt.querySelectorAll('.node'), function(nd){
+        var sec=nd.dataset.sec;
+        nd.addEventListener('mouseenter', function(){ highlight(sec); });
+        nd.addEventListener('focus', function(){ highlight(sec); });
+        nd.addEventListener('click', function(){ highlight(sec); });
+      });
+      [].forEach.call(document.querySelectorAll('#dRows .srow'), function(r){
+        r.addEventListener('mouseenter', function(){ highlight(r.dataset.sec); });
+        r.addEventListener('click', function(){ highlight(r.dataset.sec); });
+      });
+    }
+
+    function selectSurah(n){
+      current=n; var s=SURAHS[n], N=s.secs.length, m=(N-1)/2;
+      [].forEach.call(tabsEl.children, function(b){ b.classList.toggle('on', b.dataset.n===String(n)); });
+      hudArt.innerHTML = buildHud(n);
+      compArt.innerHTML = buildRings(n,'light');
+      document.getElementById('dAr').textContent = s.ar;
+      document.getElementById('dSrc').textContent = s.src;
+      document.getElementById('dLede').textContent = s.lede;
+      document.getElementById('dRows').innerHTML = buildRows(n);
+      document.getElementById('dFn').textContent = s.fn+'.naẓm';
+      document.getElementById('dNota').textContent = buildNotation(n);
+      document.getElementById('cName').innerHTML = s.name+' <span class="arabic">'+s.ar+'</span>';
+      document.getElementById('cCount').textContent = N+' movements';
+      document.getElementById('cBar').innerHTML = buildBar(n);
+      document.getElementById('cNote').textContent = s.lede;
+      document.getElementById('cSrc').textContent = s.src;
+      wireInteractions();
+      highlight(m);                       // default: the centre
+      // entrance for hud nodes + comp bar
+      if(window.gsap){
+        gsap.from(hudArt.querySelectorAll('.node'), {opacity:0, scale:0.4, transformOrigin:'center', duration:0.5, stagger:0.05, ease:'back.out(1.5)'});
+        gsap.from('#cBar .seg', {scaleX:0, transformOrigin:'left center', duration:0.6, stagger:0.05, ease:'power2.out'});
+      }
+      if(window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+
+    // hero + crop art (static signature = Al-Fātiḥa)
+    document.getElementById('heroArt').innerHTML = buildRings(1,'dark');
+    document.getElementById('cropArt').innerHTML = buildHud(1);
+    selectSurah(current);
+
+    /* ============ MOTION ============ */
+    // scroll progress
+    var prog=document.getElementById('progress');
+    function onScroll(){ var d=document.documentElement, mx=d.scrollHeight-d.clientHeight; prog.style.transform='scaleX('+(mx>0?d.scrollTop/mx:0)+')'; }
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    if(window.gsap && window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      var DIR = {up:[0,-1], down:[0,1], left:[-1,0.35], right:[1,-0.35]};
+      function explode(scopeSel, assemble){
+        var layers = document.querySelectorAll(scopeSel+' .ering');
+        var trig = document.querySelector(scopeSel);
+        layers.forEach(function(g){
+          var depth=parseFloat(g.getAttribute('data-depth')||'1'), dir=g.getAttribute('data-dir')||'up';
+          var v=DIR[dir]||[0,-1], spread=(reduce?70:120)*depth;
+          var ex={x:v[0]*spread, y:v[1]*spread, rotate:(depth*8), transformOrigin:'300px 300px', ease:'none'};
+          if(assemble){ gsap.set(g, ex); gsap.to(g, {x:0,y:0,rotate:0, ease:'power2.inOut',
+            scrollTrigger:{trigger:trig, start:'top 80%', end:'top 30%', scrub:1}}); }
+          else { gsap.to(g, Object.assign({}, ex, {scrollTrigger:{trigger:trig, start:'top top', end:'+=70%', scrub:1}})); }
+        });
+      }
+      // hero: assembled → explode as you scroll through it (pin briefly)
+      ScrollTrigger.create({trigger:'#hero', start:'top top', end:'+=70%', pin:true, pinSpacing:true});
+      explode('#hero .art', false);
+      gsap.from('#hero h1 span, #hero .kicker, #hero .sub, #hero .cta', {opacity:0, y:30, filter:'blur(8px)', duration:0.9, stagger:0.1, ease:'power3.out'});
+      gsap.to('#hero .art', {yPercent:-6, ease:'none', scrollTrigger:{trigger:'#hero', start:'top top', end:'+=70%', scrub:1}});
+      // composition: exploded → assemble
+      explode('#composition .art', true);
+      // reveals
+      ['#mirror .head','#composition h2','#composition .lede','#composition .compcard','#explore .head','.fcard'].forEach(function(sel){
+        gsap.from(sel, {opacity:0, y:34, filter:'blur(6px)', duration:0.8, stagger:0.1, ease:'power3.out',
+          scrollTrigger:{trigger:sel, start:'top 85%'}});
+      });
+      gsap.to('#cropArt', {yPercent:-10, ease:'none', scrollTrigger:{trigger:'#explore', start:'top bottom', end:'bottom top', scrub:true}});
+      window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+      setTimeout(function(){ ScrollTrigger.refresh(); }, 500);
+    }
+
+    /* ============ language + mobile menu (matches site) ============ */
+    function L(){ return document.documentElement.getAttribute('data-lang')||'en'; }
+    function applyLangTo(root, Lx){ Lx=Lx||L();
+      [].slice.call(root.querySelectorAll('[data-en][data-bm]')).forEach(function(el){ el.innerHTML = Lx==='bm'?el.dataset.bm:el.dataset.en; }); }
+    (function(){ var html=document.documentElement, lb=document.getElementById('langToggle');
+      function apply(Lx){ html.setAttribute('data-lang',Lx); applyLangTo(document,Lx);
+        lb.querySelector('.lang-en').classList.toggle('active',Lx==='en'); lb.querySelector('.lang-bm').classList.toggle('active',Lx==='bm');
+        try{ localStorage.setItem('fs-lang',Lx); }catch(e){} }
+      lb.addEventListener('click', function(){ apply(html.getAttribute('data-lang')==='en'?'bm':'en'); });
+      try{ var s=localStorage.getItem('fs-lang'); if(s==='en'||s==='bm') apply(s); }catch(e){} })();
+    (function(){ var mb=document.getElementById('menuBtn'), mm=document.getElementById('mobile-menu');
+      function setMenu(o){ mm.classList.toggle('open',o); mb.classList.toggle('open',o); mb.setAttribute('aria-expanded',o?'true':'false'); mm.setAttribute('aria-hidden',o?'false':'true'); }
+      mb.addEventListener('click', function(){ setMenu(!mm.classList.contains('open')); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+      mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+    })();
+  })();
+  </script>
+</body>
+</html>
