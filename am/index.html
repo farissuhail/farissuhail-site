@@ -120,6 +120,13 @@
     font-size: 0.95rem; font-weight: 500; color: #fff; width: fit-content; }
   .a-cta .circ { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
   .a-cta .circ svg { width: 15px; height: 15px; }
+  .a-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+  .a-cta-live { display: inline-flex; align-items: center; gap: 0.6rem; border-radius: 999px; padding: 0.7rem 1.25rem;
+    font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.9); width: fit-content; }
+  .a-cta-live .liv { width: 7px; height: 7px; border-radius: 50%; background: #35e29a; box-shadow: 0 0 8px #35e29a; flex-shrink: 0; animation: livp 1.9s infinite; }
+  .a-cta-live svg { width: 14px; height: 14px; opacity: 0.75; }
+  @keyframes livp { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .a-cta-live .liv { animation: none; } }
   .a-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.85rem; }
   .a-pill { border-radius: 999px; padding: 0.55rem 1.1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.8); transition: color 0.2s; }
   a.a-pill:hover { color: #fff; }
@@ -239,6 +246,7 @@
           <div id="am-menu" aria-hidden="true">
             <a href="/" data-en="⌂ Back home — farissuhail.com" data-bm="⌂ Kembali — farissuhail.com">⌂ Back home — farissuhail.com</a>
             <a href="/analitika-malaya.html" data-en="Analitika Malaya" data-bm="Analitika Malaya">Analitika Malaya</a>
+            <a href="/analitika.html" data-en="Live cockpit" data-bm="Kokpit langsung">Live cockpit</a>
             <a href="/npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
             <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
             <a href="/inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
@@ -258,10 +266,17 @@
 
       <div class="a-hero">
         <h1 data-en-html="Decoding the <em>architecture of narrative</em>" data-bm-html="Merungkai <em>seni bina naratif</em>">Decoding the <em>architecture of narrative</em></h1>
-        <a href="/analitika-malaya.html" class="a-cta liquid-glass-strong hoverable">
-          <span data-en="Explore Now" data-bm="Teroka Sekarang">Explore Now</span>
-          <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
-        </a>
+        <div class="a-ctas">
+          <a href="/analitika-malaya.html" class="a-cta liquid-glass-strong hoverable">
+            <span data-en="Explore Now" data-bm="Teroka Sekarang">Explore Now</span>
+            <span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+          </a>
+          <a href="/analitika.html" class="a-cta-live liquid-glass hoverable" title="Open the live narrative cockpit — refreshed 3× daily">
+            <span class="liv" aria-hidden="true"></span>
+            <span data-en="Live cockpit" data-bm="Kokpit langsung">Live cockpit</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
         <div class="a-pills">
           <a href="/analitika-malaya.html#tier-strategik" class="a-pill liquid-glass hoverable" data-en="Strategic" data-bm="Strategik" title="Strategik — the narrative to win or counter">Strategic</a>
           <a href="/analitika-malaya.html#tier-taktikal" class="a-pill liquid-glass hoverable" data-en="Tactical" data-bm="Taktikal" title="Taktikal — approaches to strengthen or counter">Tactical</a>
