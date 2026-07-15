@@ -7,7 +7,7 @@
   <title>Naẓm · Interactive Rings · Faris Suhail</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0806" />
+  <meta name="theme-color" content="#111214" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
@@ -27,9 +27,12 @@
     html { scroll-behavior: smooth; }
     html, body { overflow-x: hidden; }
     :root {
-      --ink: #0a0806; --panel: #150f0a; --panel2:#1c140c; --line: rgba(243,237,224,0.14);
+      /* Neutral charcoal/cream, matching the Kinetica/Naẓm reference exactly
+         (not the site's warm ink/gold — this page intentionally follows the
+         reference's cooler palette). */
+      --ink: #111214; --panel: rgba(23,25,28,0.6); --panel2:#17191c; --line: rgba(244,241,234,0.14);
       --gold: #c9a54a; --gold-bright: #ecd08a; --amber: #e0704a;
-      --cream: #f3ece0; --dim: rgba(243,237,224,0.68); --mute: rgba(243,237,224,0.5);
+      --cream: #f4f1ea; --dim: rgba(244,241,234,0.68); --mute: rgba(244,241,234,0.5);
       --center: #d98a4f; --teal: #63b0a6;
       --serif: 'Cormorant Garamond', Georgia, serif; --arabic: 'Amiri', serif; --sans: 'Inter', sans-serif;
     }
@@ -48,7 +51,7 @@
     nav.top .brand { color: var(--cream); text-transform: uppercase; letter-spacing: 0.18em; font-weight: 700; font-size: 14px; }
     nav.top .crumb { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--mute); }
     nav.top .links { display: none; align-items: center; gap: 30px; }
-    nav.top .links a { position: relative; padding-bottom: 5px; font-size: 11px; color: rgba(243,237,224,0.72); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; transition: color .3s; cursor: pointer; }
+    nav.top .links a { position: relative; padding-bottom: 5px; font-size: 11px; color: rgba(244,241,234,0.72); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; transition: color .3s; cursor: pointer; }
     nav.top .links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; border-bottom: 1px dashed transparent; transition: border-color .3s; }
     nav.top .links a:hover, nav.top .links a.here { color: #fff; }
     nav.top .links a:hover::after, nav.top .links a.here::after { border-color: rgba(255,255,255,0.6); }
@@ -61,11 +64,11 @@
     .menu-btn svg { width: 20px; height: 20px; display: block; } .menu-btn .ic-x { display: none; }
     .menu-btn.open .ic-menu { display: none; } .menu-btn.open .ic-x { display: block; }
     #mobile-menu { position: fixed; top: 62px; left: 16px; right: 16px; z-index: 90; border-radius: 14px; padding: 24px 0;
-      display: flex; flex-direction: column; align-items: center; gap: 15px; background: rgba(10,8,6,0.92);
+      display: flex; flex-direction: column; align-items: center; gap: 15px; background: rgba(17,18,20,0.92);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line);
       opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity .3s, transform .3s; }
     #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #mobile-menu a { color: rgba(243,237,224,0.9); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; font-size: 12px; cursor: pointer; }
+    #mobile-menu a { color: rgba(244,241,234,0.9); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; font-size: 12px; cursor: pointer; }
     #mobile-menu a.atlas { color: var(--gold-bright); font-weight: 600; }
     @media (min-width: 900px) { nav.top .links { display: flex; } .menu-btn { display: none; } }
 
@@ -82,8 +85,8 @@
 
     section { position: relative; }
     .blueprint { background-image:
-      linear-gradient(to right, rgba(243,237,224,0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(243,237,224,0.035) 1px, transparent 1px);
+      linear-gradient(to right, rgba(244,241,234,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(244,241,234,0.035) 1px, transparent 1px);
       background-size: 46px 46px; }
 
     /* ===== hero ===== */
@@ -99,7 +102,7 @@
     #hero .cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
     .btn { border-radius: 999px; padding: 13px 24px; font-size: 13px; font-weight: 600; letter-spacing: .01em; transition: transform .2s, border-color .3s, background .3s; cursor: pointer; display:inline-block; }
     .btn.solid { background: var(--cream); color: var(--ink); } .btn.solid:hover { transform: translateY(-2px); }
-    .btn.ghost { border: 1px solid var(--line); color: var(--cream); } .btn.ghost:hover { border-color: rgba(243,237,224,0.55); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--cream); } .btn.ghost:hover { border-color: rgba(244,241,234,0.55); }
     .art { position: relative; width: 100%; max-width: 560px; margin: 0 auto; }
     .art svg { width: 100%; height: auto; display:block; overflow: visible; }
     .scroll-cue { position: absolute; left: 50%; transform: translateX(-50%); bottom: 26px; display:flex; align-items:center; gap:10px; color: var(--mute); }
@@ -110,7 +113,7 @@
     @media (max-width: 880px){ #hero .grid{ grid-template-columns: 1fr; gap: 20px; } #hero .art{ order:-1; max-width: 380px; } }
 
     /* ===== mirror (interactive) ===== */
-    #mirror { background: #07060a; padding: 120px 0; }
+    #mirror { background: #0a0b0d; padding: 120px 0; }
     #mirror .head { text-align:center; max-width: 720px; margin: 0 auto 40px; }
     #mirror h2 { font-size: clamp(32px, 4.6vw, 60px); margin: 16px 0; }
     #mirror h2 .center { color: var(--gold-bright); }
@@ -118,7 +121,7 @@
     .tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .04em; padding: 9px 15px; border-radius: 999px;
       border: 1px solid var(--line); color: var(--dim); background: rgba(255,255,255,0.02); cursor: pointer; transition: all .25s; }
     .tab .n { color: var(--mute); margin-right: 7px; }
-    .tab:hover { border-color: rgba(243,237,224,0.4); color: #fff; }
+    .tab:hover { border-color: rgba(244,241,234,0.4); color: #fff; }
     .tab.on { background: var(--gold); border-color: var(--gold); color: #1a1206; font-weight: 600; }
     .tab.on .n { color: rgba(26,18,6,0.65); }
 
@@ -130,7 +133,7 @@
     .detail .lede2 { color: var(--dim); line-height: 1.65; margin-top: 14px; font-size: 15px; }
     .detail .rowlist { margin-top: 18px; border-top: 1px solid var(--line); }
     .srow { display:grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 11px 6px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; align-items:start; }
-    .srow:hover, .srow.on { background: rgba(243,237,224,0.045); }
+    .srow:hover, .srow.on { background: rgba(244,241,234,0.045); }
     .srow .lab { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; }
     .srow .t { font-size: 14px; font-weight: 600; color: var(--cream); }
     .srow .v { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--mute); margin-left: 8px; letter-spacing: .03em; }
@@ -145,20 +148,20 @@
     @media (max-width: 900px){ .mirror-grid{ grid-template-columns: 1fr; } }
 
     /* ===== composition (warm) ===== */
-    #composition { background: var(--cream); color: #241a10; padding: 120px 0; }
+    #composition { background: var(--cream); color: #111214; padding: 120px 0; }
     #composition .grid { display:grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items:center; }
-    #composition .eyebrow { color: rgba(36,26,16,0.55); }
-    #composition h2 { font-size: clamp(32px, 4.6vw, 58px); color:#1c130a; }
+    #composition .eyebrow { color: rgba(17,18,20,0.55); }
+    #composition h2 { font-size: clamp(32px, 4.6vw, 58px); color:#111214; }
     #composition h2 .inward { color: var(--amber); }
-    #composition .lede { color: rgba(36,26,16,0.66); margin-top: 18px; max-width: 440px; }
-    .compcard { margin-top: 26px; border: 1px solid rgba(36,26,16,0.12); border-radius: 16px; background: rgba(255,255,255,0.6); padding: 22px; max-width: 460px; }
+    #composition .lede { color: rgba(17,18,20,0.66); margin-top: 18px; max-width: 440px; }
+    .compcard { margin-top: 26px; border: 1px solid rgba(17,18,20,0.1); border-radius: 16px; background: rgba(255,255,255,0.7); padding: 22px; max-width: 460px; }
     .compcard .top { display:flex; justify-content:space-between; align-items:baseline; }
     .compcard .top .nm { font-weight: 700; font-size: 15px; } .compcard .top .nm span { font-family: var(--arabic); margin-left: 8px; color: var(--gold); }
-    .compcard .top .ct { font-family:'JetBrains Mono',monospace; font-size: 11px; color: rgba(36,26,16,0.5); }
-    .compbar { display:flex; height: 13px; border-radius: 999px; overflow:hidden; margin-top: 16px; background: rgba(36,26,16,0.08); }
+    .compcard .top .ct { font-family:'JetBrains Mono',monospace; font-size: 11px; color: rgba(17,18,20,0.5); }
+    .compbar { display:flex; height: 13px; border-radius: 999px; overflow:hidden; margin-top: 16px; background: rgba(17,18,20,0.08); }
     .compbar .seg { height: 100%; transform-origin: left; }
-    .compnote { margin-top: 14px; font-size: 12.5px; color: rgba(36,26,16,0.6); line-height: 1.6; }
-    .compsrc { margin-top: 10px; font-family:'JetBrains Mono',monospace; font-size: 10px; color: rgba(36,26,16,0.45); }
+    .compnote { margin-top: 14px; font-size: 12.5px; color: rgba(17,18,20,0.6); line-height: 1.6; }
+    .compsrc { margin-top: 10px; font-family:'JetBrains Mono',monospace; font-size: 10px; color: rgba(17,18,20,0.45); }
     @media (max-width: 880px){ #composition .grid{ grid-template-columns: 1fr; } #composition .art{ order:-1; max-width: 400px; } }
 
     /* ===== closing ===== */
@@ -173,7 +176,7 @@
     #explore .cta { margin-top: 32px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
     .fgrid { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 60px auto 0; max-width: 1000px; }
     .fcard { position: relative; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); padding: 26px; transition: border-color .3s, background .3s; }
-    .fcard:hover { border-color: rgba(243,237,224,0.28); background: var(--panel2); }
+    .fcard:hover { border-color: rgba(244,241,234,0.28); background: var(--panel2); }
     .fcard .bar { position:absolute; left:0; top:26px; width:3px; height:30px; border-radius: 0 3px 3px 0; }
     .fcard .ix { font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--mute); letter-spacing:.2em; }
     .fcard h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-top: 14px; }
@@ -458,9 +461,9 @@
     /* ---- exploded concentric rings (hero / composition / crop) ---- */
     function buildRings(n, tone, connectors){
       var s = SURAHS[n], secs = s.secs, N = secs.length, m=(N-1)/2;
-      var stroke = tone==='light' ? '#241a10' : '#f3ece0';
-      var faint  = tone==='light' ? 'rgba(36,26,16,0.2)' : 'rgba(243,237,224,0.24)';
-      var tick   = tone==='light' ? 'rgba(36,26,16,0.45)' : 'rgba(243,237,224,0.5)';
+      var stroke = tone==='light' ? '#17191c' : '#f4f1ea';
+      var faint  = tone==='light' ? 'rgba(23,25,28,0.2)' : 'rgba(244,241,234,0.26)';
+      var tick   = tone==='light' ? 'rgba(23,25,28,0.45)' : 'rgba(244,241,234,0.5)';
       var svg = '<svg viewBox="0 0 600 600" role="img" aria-label="Exploded concentric rings of Surah '+s.name+'">';
       svg += '<defs><radialGradient id="rg-'+n+'-'+tone+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.5"/><stop offset="60%" stop-color="'+CENTRE+'" stop-opacity="0.06"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
       // outer reference + fold axis
@@ -516,18 +519,18 @@
       svg += '<defs><radialGradient id="hg-'+n+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.35"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
       svg += '<circle cx="300" cy="300" r="150" fill="url(#hg-'+n+')"/>';
       // decorative rotating rings
-      svg += '<g class="spin-a" style="--sa:'+(30+N*3)+'s"><circle cx="300" cy="300" r="250" fill="none" stroke="rgba(243,237,224,0.14)" stroke-width="1"/>';
+      svg += '<g class="spin-a" style="--sa:'+(30+N*3)+'s"><circle cx="300" cy="300" r="250" fill="none" stroke="rgba(244,241,234,0.14)" stroke-width="1"/>';
       for(var k=0;k<N;k++){ var pp=P(300,300,250,(k*360/N)-90); var pp2=P(300,300,250,(k*360/N)-90+30); var cc=secColor(k,N);
         svg += '<path d="M '+pp[0].toFixed(1)+' '+pp[1].toFixed(1)+' A 250 250 0 0 1 '+pp2[0].toFixed(1)+' '+pp2[1].toFixed(1)+'" fill="none" stroke="'+cc+'" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 5px '+cc+')"/>'; }
       svg += '</g>';
-      svg += '<g class="spin-b" style="--sb:'+(56+N*4)+'s"><circle cx="300" cy="300" r="214" fill="none" stroke="rgba(243,237,224,0.34)" stroke-width="1.3" stroke-dasharray="2 12"/></g>';
+      svg += '<g class="spin-b" style="--sb:'+(56+N*4)+'s"><circle cx="300" cy="300" r="214" fill="none" stroke="rgba(244,241,234,0.34)" stroke-width="1.3" stroke-dasharray="2 12"/></g>';
       // fine tick ring (static)
       var ticks='';
       for(var t=0;t<56;t++){ var ang=t*Math.PI*2/56, lng=(t%8===0); var a1=P(300,300,182,t*360/56), a2=P(300,300,lng?170:176,t*360/56);
-        ticks += '<line x1="'+a1[0].toFixed(1)+'" y1="'+a1[1].toFixed(1)+'" x2="'+a2[0].toFixed(1)+'" y2="'+a2[1].toFixed(1)+'" stroke="rgba(243,237,224,0.28)" stroke-width="'+(lng?1.4:0.7)+'"/>'; }
+        ticks += '<line x1="'+a1[0].toFixed(1)+'" y1="'+a1[1].toFixed(1)+'" x2="'+a2[0].toFixed(1)+'" y2="'+a2[1].toFixed(1)+'" stroke="rgba(244,241,234,0.28)" stroke-width="'+(lng?1.4:0.7)+'"/>'; }
       svg += '<g class="spin-b" style="--sb:'+(44+N*3)+'s">'+ticks+'</g>';
       // fold axis
-      svg += '<line x1="300" y1="120" x2="300" y2="480" stroke="rgba(243,237,224,0.18)" stroke-width="1" stroke-dasharray="4 8"/>';
+      svg += '<line x1="300" y1="120" x2="300" y2="480" stroke="rgba(244,241,234,0.18)" stroke-width="1" stroke-dasharray="4 8"/>';
 
       // node positions
       var pos = {};
@@ -543,8 +546,8 @@
       var chords='';
       for(var j=0;j<m;j++){ var col=secColor(j,N); var L=pos[j], R=pos[N-1-j];
         chords += '<line x1="'+L[0].toFixed(1)+'" y1="'+L[1].toFixed(1)+'" x2="'+R[0].toFixed(1)+'" y2="'+R[1].toFixed(1)+'" stroke="'+col+'" stroke-width="1.1" stroke-opacity="0.5" stroke-dasharray="3 5"/>';
-        chords += '<line x1="'+L[0].toFixed(1)+'" y1="'+L[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(243,237,224,0.1)" stroke-width="0.7"/>';
-        chords += '<line x1="'+R[0].toFixed(1)+'" y1="'+R[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(243,237,224,0.1)" stroke-width="0.7"/>';
+        chords += '<line x1="'+L[0].toFixed(1)+'" y1="'+L[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(244,241,234,0.1)" stroke-width="0.7"/>';
+        chords += '<line x1="'+R[0].toFixed(1)+'" y1="'+R[1].toFixed(1)+'" x2="300" y2="300" stroke="rgba(244,241,234,0.1)" stroke-width="0.7"/>';
       }
       svg += '<g>'+chords+'</g>';
       // nodes
@@ -563,7 +566,7 @@
         + '<circle cx="300" cy="300" r="21" fill="rgba(8,7,10,0.88)" stroke="'+CENTRE+'" stroke-width="2" style="filter:drop-shadow(0 0 8px '+CENTRE+')"/>'
         + '<text x="300" y="305" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" style="pointer-events:none">X</text></g>';
       // readouts
-      svg += '<text x="300" y="66" text-anchor="middle" fill="rgba(243,237,224,0.6)" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">'+s.name.toUpperCase()+' · '+N+' MOVEMENTS</text>';
+      svg += '<text x="300" y="66" text-anchor="middle" fill="rgba(244,241,234,0.6)" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">'+s.name.toUpperCase()+' · '+N+' MOVEMENTS</text>';
       svg += '<text x="300" y="548" text-anchor="middle" fill="'+CENTRE+'" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">CENTRE · '+secs[m][1]+'</text>';
       svg += '</svg>';
       return svg;
