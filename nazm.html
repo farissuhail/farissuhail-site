@@ -282,7 +282,7 @@
           <div class="lede2" id="dLede"></div>
           <div class="rowlist" id="dRows"></div>
           <div class="notecard">
-            <div class="bar"><i style="background:var(--amber)"></i><i style="background:var(--gold)"></i><i style="background:var(--teal)"></i><span class="fn" id="dFn">al-fatiha.naẓm</span></div>
+            <div class="bar"><i style="background:#ff4d4d"></i><i style="background:#ffd93d"></i><i style="background:#3ddc84"></i><span class="fn" id="dFn">al-fatiha.naẓm</span></div>
             <pre id="dNota"></pre>
           </div>
         </div>
@@ -435,9 +435,11 @@
     };
     var ORDER = [1,101,18,5,3,12];
 
-    /* shell colours from the site palette (outer → inner); centre = gold-bright */
-    var SHELL = ['#63b0a6','#c9a54a','#e0704a','#7f9cc4'];
-    var CENTRE = '#ecd08a';
+    /* shell colours, outer → inner — matches the Kinetica/Naẓm reference exactly
+       (blue/cyan/green for A/B/C, lime continuing the spectrum for a 4th shell
+       on longer sūrahs like Yūsuf); centre (X) is always gold. */
+    var SHELL = ['#4d94ff','#3ddbd9','#3ddc84','#a8e05f'];
+    var CENTRE = '#f5c451';
     function secColor(i, n){
       var m = (n-1)/2;                 // centre index
       if(i === m) return CENTRE;
