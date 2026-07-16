@@ -166,9 +166,9 @@
 
     /* ===== closing ===== */
     #explore { background: var(--ink); padding: 0 0 80px; overflow:hidden; }
-    .crop { position: relative; height: 300px; margin-top: -40px; display:flex; justify-content:center; pointer-events:none; }
-    .crop .art { position: absolute; top: -46%; width: min(680px, 130vw); max-width:none; }
-    .crop::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, transparent 40%, var(--ink)); }
+    .crop { position: relative; height: 260px; margin-top: -20px; display:flex; justify-content:center; overflow:hidden; pointer-events:none; }
+    .crop .art { position: absolute; top: -58%; width: min(460px, 90vw); max-width:none; }
+    .crop::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, transparent 25%, var(--ink) 92%); }
     #explore .head { text-align:center; max-width: 720px; margin: 10px auto 0; position: relative; z-index: 2; }
     #explore h2 { font-size: clamp(36px, 5.4vw, 68px); margin: 14px 0; }
     #explore h2 .g { color: var(--gold-bright); }
@@ -572,6 +572,27 @@
       return svg;
     }
 
+    /* ---- decorative-only ring motif: glow + orbiting arcs, no labels/nodes/text.
+       Used where the HUD bleeds into a background crop (e.g. #explore) so a crop
+       can never clip mid-label — there's no readable content to clip. ---- */
+    function buildHudDecor(n){
+      var s = SURAHS[n], N = s.secs.length;
+      var svg = '<svg viewBox="0 0 600 600" role="img" aria-hidden="true">';
+      svg += '<defs><radialGradient id="hgd-'+n+'" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="'+CENTRE+'" stop-opacity="0.3"/><stop offset="100%" stop-color="'+CENTRE+'" stop-opacity="0"/></radialGradient></defs>';
+      svg += '<circle cx="300" cy="300" r="150" fill="url(#hgd-'+n+')"/>';
+      svg += '<g class="spin-a" style="--sa:'+(30+N*3)+'s"><circle cx="300" cy="300" r="250" fill="none" stroke="rgba(244,241,234,0.14)" stroke-width="1"/>';
+      for(var k=0;k<N;k++){ var pp=P(300,300,250,(k*360/N)-90); var pp2=P(300,300,250,(k*360/N)-90+30); var cc=secColor(k,N);
+        svg += '<path d="M '+pp[0].toFixed(1)+' '+pp[1].toFixed(1)+' A 250 250 0 0 1 '+pp2[0].toFixed(1)+' '+pp2[1].toFixed(1)+'" fill="none" stroke="'+cc+'" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 5px '+cc+')"/>'; }
+      svg += '</g>';
+      svg += '<g class="spin-b" style="--sb:'+(56+N*4)+'s"><circle cx="300" cy="300" r="214" fill="none" stroke="rgba(244,241,234,0.34)" stroke-width="1.3" stroke-dasharray="2 12"/></g>';
+      var dticks='';
+      for(var t=0;t<56;t++){ var ang=t*Math.PI*2/56, lng=(t%8===0); var a1=P(300,300,182,t*360/56), a2=P(300,300,lng?170:176,t*360/56);
+        dticks += '<line x1="'+a1[0].toFixed(1)+'" y1="'+a1[1].toFixed(1)+'" x2="'+a2[0].toFixed(1)+'" y2="'+a2[1].toFixed(1)+'" stroke="rgba(244,241,234,0.28)" stroke-width="'+(lng?1.4:0.7)+'"/>'; }
+      svg += '<g class="spin-b" style="--sb:'+(44+N*3)+'s">'+dticks+'</g>';
+      svg += '</svg>';
+      return svg;
+    }
+
     /* ---- notation (nested chiasm) ---- */
     function buildNotation(n){
       var s=SURAHS[n], secs=s.secs, N=secs.length, m=(N-1)/2, out='ring "'+s.fn+'" {\n';
@@ -667,7 +688,7 @@
 
     // hero + crop art (static signature = Al-Fātiḥa)
     document.getElementById('heroArt').innerHTML = buildRings(1,'dark',true);
-    document.getElementById('cropArt').innerHTML = buildHud(1);
+    document.getElementById('cropArt').innerHTML = buildHudDecor(1);
     selectSurah(current);
 
     /* ============ MOTION ============ */
