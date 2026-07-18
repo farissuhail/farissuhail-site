@@ -37,6 +37,15 @@ header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 4px 
 .chip.nav:hover{border-color:var(--cy);color:var(--cy)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
+/* home brand — top-right, links back to farissuhail.com */
+.homebrand{display:flex;align-items:center;gap:9px;text-decoration:none;border:1px solid var(--line);background:var(--panel);border-radius:26px;padding:5px 15px 5px 6px;transition:border-color .15s,background .15s,transform .15s}
+.homebrand:hover{border-color:var(--em);background:rgba(47,232,154,.07);transform:translateY(-1px)}
+.homebrand img{width:30px;height:30px;border-radius:8px;display:block}
+.homebrand .bt{display:flex;flex-direction:column;line-height:1.18}
+.homebrand .bt b{color:var(--white);font-size:12.5px;font-weight:700;letter-spacing:.3px}
+.homebrand .bt span{color:var(--muted);font-size:8.5px;text-transform:uppercase;letter-spacing:1.3px}
+.homebrand:hover .bt span{color:var(--em)}
+
 .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
 .kpi .lab{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
@@ -163,6 +172,10 @@ footer b{color:var(--amber)}
     <span class="chip">FB + Threads (via open web)</span>
     <a class="chip nav" href="am/">⇄ farissuhail.com · AM</a>
   </div>
+  <a class="homebrand" href="/" title="Kembali ke laman utama · farissuhail.com">
+    <img src="favicon.svg" alt="Faris Suhail" />
+    <span class="bt"><b>Faris&nbsp;Suhail</b><span>↩ Laman utama</span></span>
+  </a>
 </header>
 
 <div class="kpis">
