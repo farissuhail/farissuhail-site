@@ -93,6 +93,24 @@ header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 4px 
 .srcs a{display:block;font-size:10.5px;margin:3px 0;color:var(--cy);text-decoration:none}
 .srcs a:hover{text-decoration:underline}
 
+/* top public posts — FB + Threads, engagement observed on the post (not API) */
+.socwrap{display:flex;flex-direction:column;gap:8px}
+.socpost{display:block;text-decoration:none;border:1px solid var(--line);background:var(--panel2);border-radius:9px;padding:9px 11px;transition:border-color .15s}
+.socpost:hover{border-color:var(--blue)}
+.socrow{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pf{font-size:8.5px;font-weight:800;letter-spacing:.5px;padding:2px 6px;border-radius:4px}
+.pf.fb{background:rgba(91,168,255,.16);color:#8bc0ff}
+.pf.th{background:rgba(180,140,255,.16);color:#c7abff}
+.soch{font-size:11px;color:var(--light);font-weight:600}
+.socarrow{margin-left:auto;color:var(--muted);font-size:12px}
+.soct{font-size:11px;color:var(--muted);line-height:1.35;margin-bottom:6px}
+.soceng{display:flex;gap:6px;flex-wrap:wrap}
+.sc{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--light);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 8px;font-variant-numeric:tabular-nums}
+.sc i{font-style:normal;font-size:10px;opacity:.85}
+.sc.na{color:var(--muted)}
+.socnote{font-size:10.5px;color:var(--muted);border-left:2px solid var(--line);padding:4px 0 4px 9px;margin-top:8px;line-height:1.4}
+.soccap{font-size:9px;color:var(--muted);margin-top:7px;letter-spacing:.3px}
+
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
 .wl{list-style:none}
 .wl li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:11.5px;color:var(--light);display:flex;gap:8px;align-items:baseline}
@@ -139,7 +157,7 @@ footer b{color:var(--amber)}
   </div>
   <div class="hmeta">
     <!-- AM:STAMP — updated automatically by the 3×-daily narrative run (08:00 / 12:00 / 20:00 MYT). Keep the "LIVE · updated <date> · <HH:MM> MYT" shape. -->
-    <span class="chip livep" id="amStamp">LIVE · updated 14 Jul 2026 · 22:00 MYT</span>
+    <span class="chip livep" id="amStamp">LIVE · updated 18 Jul 2026 · 08:00 MYT</span>
     <span class="chip proxy">⚠ PROXY DATA — no platform API</span>
     <span class="chip">Scope: <b>Malaysia-wide</b> · no client</span>
     <span class="chip">FB + Threads (via open web)</span>
@@ -148,20 +166,20 @@ footer b{color:var(--amber)}
 </header>
 
 <div class="kpis">
-  <div class="kpi"><div class="lab">Narratives tracked</div><div class="val">10</div><div class="sub">+4 bubbling under</div></div>
-  <div class="kpi"><div class="lab">Breaking today</div><div class="val neg">2</div><div class="sub">Melaka exit · FOI referral</div></div>
-  <div class="kpi"><div class="lab">Misinformation flags</div><div class="val amber">1</div><div class="sub">"Nga letak jawatan" rumour</div></div>
-  <div class="kpi"><div class="lab">Avg confidence</div><div class="val cy">78</div><div class="sub">identification, not measurement</div></div>
+  <div class="kpi"><div class="lab">Narratives tracked</div><div class="val">10</div><div class="sub">+3 bubbling under</div></div>
+  <div class="kpi"><div class="lab">Breaking today</div><div class="val neg">3</div><div class="sub">NS nomination eve · Parlimen wrap · fuel up</div></div>
+  <div class="kpi"><div class="lab">Misinformation flags</div><div class="val amber">2</div><div class="sub">AI investment scams · NS campaign 3R risk</div></div>
+  <div class="kpi"><div class="lab">Avg confidence</div><div class="val cy">80</div><div class="sub">identification, not measurement</div></div>
   <div class="kpi"><div class="lab">Volume / sentiment</div><div class="val mut">N/A</div><div class="sub">not measurable — none invented</div></div>
-  <div class="kpi"><div class="lab">Sources verified</div><div class="val em">25+</div><div class="sub">news portals · official · public posts</div></div>
+  <div class="kpi"><div class="lab">Sources verified</div><div class="val em">28+</div><div class="sub">news portals · official · public posts</div></div>
 </div>
 
 <div class="exec">
-  <h2>Executive finding · 14 Jul 2026</h2>
+  <h2>Executive finding · 18 Jul 2026</h2>
   <ul>
-    <li><b>Politics owns the day:</b> DAP's exit from the Melaka government over appointed-ADUN amendments broke mid-day and compounds the Johor PRN post-mortem — coalition-stability is tonight's dominant frame.</li>
-    <li><b>Syed Saddiq's full acquittal</b> (Federal Court, 2–1) carries strong sympathetic momentum from yesterday, with judiciary-independence and human-interest angles running in parallel.</li>
-    <li><b>Active misinformation vector:</b> claims that Nga Kor Ming has resigned "serta-merta" conflate his on-record pledge to quit if Najib is freed without an appropriate sentence with DAP's Johor loss — two separate things. No resignation has occurred; DAP's special congress is set to decide leadership positions.</li>
+    <li><b>Nomination day owns the morning:</b> the 16th Negeri Sembilan state election files today (Sat 18 Jul) — papers in 9–10am at eight centres, polling 1 Aug. All 36 line-ups are locked: PH fields 36 (PKR 16, DAP 11, Amanah 9), while BN (25) and PN (11) have carved the 36 seats between them for mostly straight fights against PH. DAP's Loke targets 20/36 to keep the state; the first post-Johor test frames every projection.</li>
+    <li><b>The "musuh jadi kawan" frame is the live sub-story:</b> BN–PN seat coordination (no three-cornered fights) drives an opposition-realignment vs mandate discourse. Parallel to it, the Dewan Rakyat wrapped its sitting 16 Jul with 13 Bills passed — including the Cyber Crime Bill 2026 (replacing the 1997 Act) — feeding a digital-rights scorecard conversation.</li>
+    <li><b>Active misinformation vector:</b> two live risks — (1) an AI-driven investment-scam wave ("RM500 jadi RM2,000", voice-clone/deepfake testimonials) that MKN flagged again on 7 Jul and MCMC is mass-removing; and (2) campaign-period 3R/fake content as NS voting opens (MCMC ran 24/7 monitoring in Johor, logging 29 complaints). Fuel also actually rose this window — unsubsidised RON95 to RM3.42, diesel RM4.07 — so exaggerated "kenaikan mendadak" posters are the fake-price risk; only the MOF/OpenDOSM figures are real. Subsidised BUDI95 stays RM1.99.</li>
   </ul>
 </div>
 
@@ -212,19 +230,20 @@ footer b{color:var(--amber)}
 <div class="grid" style="grid-template-columns:1.55fr 1fr">
   <div class="panel">
     <h3><span class="dot" style="background:var(--neg)"></span>Misinformation &amp; verification register</h3>
-    <div class="alertbox"><b>⚠ "Nga Kor Ming letak jawatan serta-merta" — UNVERIFIED.</b> Circulating on Threads/FB alongside legitimate Johor PRN summaries. Nga did pledge (to Oriental Daily) to be first to resign if Najib is released without an appropriate sentence — a real, on-record "red line" — but that is distinct from the Johor result now being used by BN-aligned figures (Puad Zarkashi, Akmal Saleh) to demand his exit. No credible outlet confirms an actual resignation; DAP's special congress is to decide. Even AI accounts have weighed in — Meta's own <b>@meta.ai</b> post actually clarified there is no official resignation. Keep the pledge and the demand separate; attribute both.</div>
+    <div class="alertbox"><b>⚠ AI investment-scam wave — ACTIVE, HIGH.</b> MKN issued a fresh scam warning (7 Jul) as AI voice-clone and deepfake "testimoni" clips promising fast returns ("RM500 jadi RM2,000") spread across FB/WhatsApp; MCMC removed 43,618 scam-related posts Jan–Mar 2026. Treat any "untung cepat" investment testimony as a scam until verified. <b>⚠ NS campaign 3R/fake-content risk — RISING from today.</b> With nomination day (18 Jul) opening the NS campaign, expect provocation, doctored "results" and 3R content; MCMC ran 24/7 monitoring in Johor and logged 29 complaints there. <b>Fuel:</b> unsubsidised RON95/diesel genuinely rose this window (RM3.42 / RM4.07) — but exaggerated "kenaikan mendadak" posters are the fake-price risk; only MOF/OpenDOSM figures are real; BUDI95 stays RM1.99/L. The <b>@sebenarnya.my</b> portal is the check-first reference.</div>
     <ul class="wl">
-      <li><span class="ic" style="color:var(--neg)">●</span>Nga resignation claim — monitor for correction/confirmation; do not repeat without attribution</li>
-      <li><span class="ic" style="color:var(--amber)">●</span>Melaka: whether PKR/Amanah follow DAP out — positions unclear at freeze time</li>
-      <li><span class="ic" style="color:var(--amber)">●</span>FAM/naturalisation: EAIC findings are about citizenship approval process — distinct from FIFA's document-fraud ruling; keep the two claims separate</li>
-      <li><span class="ic" style="color:var(--cy)">●</span>Kedah syndicate: police-sourced only at freeze; await charges before treating scale as fact</li>
+      <li><span class="ic" style="color:var(--neg)">●</span>AI investment scams: any "untung cepat" testimonial / cloned-voice endorsement is a scam until verified — do not forward</li>
+      <li><span class="ic" style="color:var(--amber)">●</span>NS PRN campaign: watch for doctored "keputusan"/nomination content and 3R provocation; keep the royal institution out of campaign framing (PM's explicit caution)</li>
+      <li><span class="ic" style="color:var(--amber)">●</span>Melaka: DAP left the state govt, but BN's 21/28 DUN seats mean the administration does NOT fall — don't report it as "kerajaan tumbang"</li>
+      <li><span class="ic" style="color:var(--cy)">●</span>FAM/naturalisation: EAIC citizenship-process findings are distinct from FIFA's document-fraud ruling — keep the two claims separate</li>
     </ul>
   </div>
   <div class="panel">
     <h3><span class="dot" style="background:var(--cy)"></span>Method &amp; honest limits</h3>
-    <div class="nodata" style="margin-bottom:10px"><b>No volume, engagement, or sentiment figures appear anywhere on this dashboard</b> because no Facebook/Threads API or listening-vendor access was used. Every number shown is a count of narratives, flags, or sources — never platform metrics.</div>
+    <div class="nodata" style="margin-bottom:10px"><b>No aggregate volume or sentiment figures appear anywhere on this dashboard</b> — no Facebook/Threads API or listening-vendor access was used. The only engagement numbers shown are the like/comment/repost/share counts <b>visible on the specific public posts cited under each narrative</b> — read straight off the post at freeze time, never aggregated, estimated, or API-derived. Every other number is a count of narratives, flags, or sources.</div>
     <div class="kv">
-      <div class="k">Method</div><div class="v">Open-web sweep ~19:45 MYT: news portals, official portals, public FB/Threads posts via search</div>
+      <div class="k">Method</div><div class="v">Open-web sweep ~06:40 MYT (08:00 run): news portals, official portals, public FB/Threads posts via search</div>
+      <div class="k">Engagement</div><div class="v">This was a headless auto-run — per-post ♥/💬/⟳/➦ counts were not observed live, so they are shown blank with links to verify. Public posts only; counts move — click through. "—"/blank = not captured at this freeze.</div>
       <div class="k">Blind spots</div><div class="v">Closed groups, WhatsApp/Telegram, TikTok, Mandarin/Tamil vernacular spaces, paid amplification</div>
       <div class="k">Upgrade path</div><div class="v">Meta Content Library or licensed listening vendor → real volumes, sentiment, coordination detection, 12h refresh</div>
     </div>
@@ -233,32 +252,33 @@ footer b{color:var(--amber)}
 
 <div class="grid3">
   <div class="panel">
-    <h3><span class="dot" style="background:var(--amber)"></span>Watchlist · 15 Jul</h3>
+    <h3><span class="dot" style="background:var(--amber)"></span>Watchlist · 18 Jul</h3>
     <ul class="wl">
-      <li><span class="ic">▸</span><b style="color:var(--white)">Fuel price announcement</b> — RM1.99 BUDI95 window ends tomorrow (15 Jul); next-window call is the cost-of-living spike to watch</li>
-      <li><span class="ic">▸</span>Melaka fallout: PKR/Amanah positions, federal spillover</li>
-      <li><span class="ic">▸</span>Nga rumour: correction or confirmation</li>
-      <li><span class="ic">▸</span>Dewan Rakyat final days (ends 16 Jul): FOI motion, PM term-limit RUU</li>
-      <li><span class="ic">▸</span>NS PRN nomination build-up (18 Jul)</li>
+      <li><span class="ic">▸</span><b style="color:var(--white)">NS nomination day (today)</b> — papers 9–10am at 8 centres; count of straight vs multi-cornered fights, any surprise independents</li>
+      <li><span class="ic">▸</span>BN–PN seat 'persefahaman': does it hold cleanly, or do overlaps trigger 3-cornered contests</li>
+      <li><span class="ic">▸</span>Campaign 3R / doctored-content reports to MCMC as the NS race opens</li>
+      <li><span class="ic">▸</span>Cyber Crime Bill 2026: over-reach vs safeguard framing once it moves to the Dewan Negara</li>
+      <li><span class="ic">▸</span>Next fuel window (23 Jul): whether unsubsidised prices climb again</li>
     </ul>
   </div>
   <div class="panel">
     <h3><span class="dot" style="background:var(--purple)"></span>Phrases to track</h3>
     <div class="phrases">
-      <span class="ph-chip"><b>ADUN lantikan</b></span>
-      <span class="ph-chip"><b>letak jawatan</b></span>
+      <span class="ph-chip"><b>penamaan calon</b></span>
+      <span class="ph-chip">PRN NS16</span>
+      <span class="ph-chip"><b>musuh jadi kawan</b></span>
+      <span class="ph-chip"><b>scam pelaburan</b></span>
       <span class="ph-chip">RM1.99</span>
+      <span class="ph-chip">RUU Jenayah Siber</span>
+      <span class="ph-chip">wakil dipilih bukan dilantik</span>
       <span class="ph-chip">kerakyatan pemain</span>
-      <span class="ph-chip">kebebasan maklumat</span>
-      <span class="ph-chip">benteng terakhir</span>
-      <span class="ph-chip">PN 0 kerusi</span>
     </div>
     <h3 style="margin-top:16px"><span class="dot" style="background:var(--em)"></span>Bubbling under</h3>
     <ul class="wl">
+      <li><span class="ic" style="color:var(--em)">▸</span>MCA 7 / MIC 4 seat-share tensions inside BN's NS list</li>
+      <li><span class="ic" style="color:var(--em)">▸</span>Larian Cergas Parlimen 2026 (25 Jul) + MPs' health reminder</li>
+      <li><span class="ic" style="color:var(--em)">▸</span>Cyber Crime Bill deepfake/NCII provisions — creator-community concern</li>
       <li><span class="ic" style="color:var(--em)">▸</span>JS-SEZ master plan finalisation (PM)</li>
-      <li><span class="ic" style="color:var(--em)">▸</span>RUU had tempoh PM 10 tahun</li>
-      <li><span class="ic" style="color:var(--em)">▸</span>RUU Jenayah Siber 2026</li>
-      <li><span class="ic" style="color:var(--em)">▸</span>Raja Zarith Sofiah + SG First Lady autism-centre visit</li>
     </ul>
   </div>
   <div class="panel">
@@ -272,7 +292,7 @@ footer b{color:var(--amber)}
   </div>
 </div>
 
-<footer><b>LIVE PROXY RUN.</b> Narrative identification is evidence-based from cited public sources, refreshed three times daily (08:00 · 12:00 · 20:00 MYT). Platform metrics were not available and are deliberately absent — Analitika Malaya does not fabricate data. Part of <a href="analitika-malaya.html">Analitika Malaya</a> · <a href="am/">farissuhail.com</a>.</footer>
+<footer><b>LIVE PROXY RUN.</b> Narrative identification is evidence-based from cited public sources, refreshed three times daily (08:00 · 12:00 · 20:00 MYT). Aggregate platform metrics remain unavailable and are deliberately absent; the only engagement numbers shown are per-post counts read directly off the cited public FB/Threads posts — Analitika Malaya does not fabricate data. Part of <a href="analitika-malaya.html">Analitika Malaya</a> · <a href="am/">farissuhail.com</a>.</footer>
 </div>
 
 <script>
@@ -281,77 +301,104 @@ footer b{color:var(--amber)}
    Update in place, keeping the same shapes:
      • N[]   — top narratives, ranked. Fields: r,t,sub,mom,mc(up|bk|fl|dn),sent,cat,cc(t-pol|t-gov|t-eco|t-spo|t-cri),conf,ev,why,flag('None.' if clean),src[[label,url],...]
      • GEO{} — one entry per rank r: {place,p:[x,y] in the 0–1000×340 map viewBox, s:'neg'|'mix'|'pos', rad, nat?:true for nationwide}
+     • SOC{} — one entry per rank r: {posts:[{pf:'FB'|'TH',h,u,t, l,c,rp,sh}], note?}. Engagement l/c/rp/sh
+       is the count VISIBLE ON THE POST (open-web search), never an API pull, aggregate, or estimate.
+       Public posts only. Use '' for any count the platform doesn't show; use `note` (no posts) when no
+       high-engagement public post surfaced. Omit a post rather than guess its numbers.
    Also refresh, from the same sources, the HTML above: #amStamp, the KPI row,
    the "Executive finding" list, the misinformation register, watchlist, phrases,
    and "bubbling under". Never invent volume/engagement/sentiment numbers — cited
    public sources only; leave a narrative out rather than fabricate.
    ============================================================ */
 const N=[
- {r:1,t:"DAP keluar kerajaan Melaka — ADUN lantikan",sub:"state constitutional amendment · breaking today",mom:"⚡ BREAKING · rising",mc:"bk",sent:"Charged · split",cat:"Politics",cc:"t-pol",conf:85,
-  ev:"DUN Melaka passed the amendment allowing up to 7 appointed assemblymen (23–5). DAP announced exit from the BN-led state govt — 2 exco, 2 deputy exco, deputy speaker resigning; PH now opposition in Melaka.",
-  why:"'Wakil rakyat dipilih, bukan dilantik' is a clean democratic-principle frame; doubles as a coalition-stability story 3 days after Johor.",
-  flag:"Watch whether PKR/Amanah follow and any federal-level spillover — unclear at freeze time.",
-  src:[["FMT — DAP keluar kerajaan Melaka","https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/07/14/dap-keluar-kerajaan-melaka-selepas-dun-lulus-pindaan-berkait-adun-dilantik"],["Kosmo — PH kini pembangkang","https://www.kosmo.com.my/2026/07/14/dap-tarik-sokongan-ph-kini-pembangkang-di-melaka/"],["Malaysiakini — RUU lulus","https://www.malaysiakini.com/news/779664"]]},
- {r:2,t:"Johor PRN post-mortem — BN 48/56",sub:"PH down to 8 · PN wiped out · day 3",mom:"▲ high · cooling",mc:"up",sent:"Triumphal vs recriminatory",cat:"Politics",cc:"t-pol",conf:88,
-  ev:"Official: BN 48 (59.7% vote), PH 8 (DAP 6 ▼4, PKR 1), PN 0. Onn Hafiz stays MB — BN's best showing since 2008, 2/3 majority kept.",
-  why:"Recrimination inside PH circles + 'PN wipeout' analysis; feeds narratives #1 and #4.",
-  flag:"UNVERIFIED resignation rumour attached to this narrative — see register.",
-  src:[["Malaysia Gazette — keputusan rasmi","https://malaysiagazette.com/2026/07/12/keputusan-rasmi-prn-johor-bn-menang-48-kerusi-ph-lapan/"],["BERNAMA PRN hub","https://prn.bernama.com/johor/keputusan/official/"],["Harian Metro","https://www.hmetro.com.my/utama/2026/07/1383128/rasmi-prn-johor-bn-berjaya-bentuk-kerajaan-menang-48-kerusi-dun-spr"]]},
- {r:3,t:"Syed Saddiq bebas sepenuhnya (2–1)",sub:"Federal Court dismisses final appeal · 13 Jul",mom:"◆ peaked 13 Jul · carryover",mc:"fl",sent:"Largely sympathetic",cat:"Politics",cc:"t-pol",conf:87,
-  ev:"Federal Court (2–1) dismissed the prosecution's final appeal on all four Armada charges. Six-year legal saga ends; he says he needs time to plan next political steps, stays with MUDA.",
-  why:"'Kehakiman benteng terakhir rakyat' institutional angle + judge's remark about his wedding plans (Bella Astillah) = high Threads shareability.",
+ {r:1,t:"PRN Negeri Sembilan — hari penamaan calon",sub:"nomination today (18 Jul) · polling 1 Aug · 36 seats",mom:"⚡ BREAKING · nomination day",mc:"bk",sent:"Anticipatory · partisan",cat:"Politics",cc:"t-pol",conf:84,
+  ev:"Nomination is today (Sat 18 Jul), papers filed 9–10am at eight centres; early voting 28 Jul, polling 1 Aug; 36 seats, ~889,400 voters. Line-ups locked: PH fields all 36 (PKR 16, DAP 11, Amanah 9); BN 25 (with MCA 7, MIC 4); PN 11 — together carving the 36 for mostly straight fights. DAP's Loke says PH targets 20/36 to keep the state.",
+  why:"First multi-seat test after Johor's BN landslide; 'boleh PH bertahan?' momentum framing dominates feeds on nomination morning.",
+  flag:"None on the facts — but campaign-period fake-content / 3R risk is high from today (see register).",
+  src:[["RTM — BN umum calon","https://berita.rtm.gov.my/mandat/senarai-berita-mandat/senarai-artikel/prn-n-sembilan-bn-umum-calon-minggu-ini/"],["Harian Metro — senarai calon PH","https://www.hmetro.com.my/mutakhir/2026/07/1384368/senarai-calon-ph-bagi-prn-negeri-sembilan"],["Malay Mail — Loke targets 20/36","https://www.malaymail.com/news/malaysia/2026/07/16/loke-pakatan-unfazed-by-possible-bn-perikatan-cooperation-in-negeri-sembilan/227819"],["TVS — HPC Sabtu ini (SPR)","https://www.tvsarawak.my/2026/07/15/hari-penamaan-calon-prn-negeri-sembilan-sabtu-ini-spr/"]]},
+ {r:2,t:"BN–PN 'kawan' di Negeri Sembilan",sub:"25 BN + 11 PN = 36 · straight fights vs PH",mom:"▲ rising · realignment frame",mc:"up",sent:"Contested · 'musuh jadi kawan'",cat:"Politics",cc:"t-pol",conf:74,
+  ev:"PN unveiled 11 candidates, completing the 36-seat line-up with 'friendly' rival BN's 25 to avoid three-cornered fights against PH. BN's Mohamad Hasan (Tok Mat) 'buka ruang persefahaman'; PAS leaders claim their approach cost DAP support in Johor and Sabah.",
+  why:"Opposition-cooperation vs mandate-betrayal discourse; echoes the national 'unity govt vs new bloc' storyline right before polling.",
+  flag:"No formal PN–BN pact was declared — it is described as tacit 'persefahaman' on seats; don't report a sealed coalition.",
+  src:[["Malaysiakini — PN 11, completes line-up with BN","https://www.malaysiakini.com/news/779918"],["Malaysia Gazette — Tok Mat, BN 25 calon","https://malaysiagazette.com/2026/07/16/bn-umum-25-calon-tunggu-pengumuman-pihak-sebelah-tok-mat/"],["The Sun — BN allocates MCA 7, MIC 4","https://thesun.my/news/malaysia-news/politics/bn-mca-mic-negeri-sembilan/"]]},
+ {r:3,t:"Dewan Rakyat tangguh — 13 RUU diluluskan",sub:"incl RUU Jenayah Siber 2026 · concluded 16 Jul",mom:"⚡ concluded 16 Jul",mc:"bk",sent:"Institutional · mixed",cat:"Governance",cc:"t-gov",conf:80,
+  ev:"The second sitting adjourned 16 Jul after 16 days (from 22 Jun); 13 Bills passed, including the Cyber Crime Bill 2026 (61 sections, replaces the Computer Crimes Act 1997; covers deepfake forgery & manipulated intimate images), plus Road Transport (Amendment), Sexual Offences Against Children (Amendment) and Competition (Amendment).",
+  why:"Digital-safety vs civil-liberties angle on the Cyber Crime Bill travels well; the omnibus wrap invites reform-scorecard takes.",
+  flag:"Cyber Crime Bill: DPM says no absolute power, no OSA override, criminal intent must be proven — watch over-reach claims vs official reassurances.",
+  src:[["Malay Mail — 13 Bills passed","https://www.malaymail.com/news/malaysia/2026/07/16/dewan-rakyat-concludes-sitting-with-13-bills-passed-health-reminder-for-mps/227889"],["RTM — RUU Jenayah Siber lulus","https://berita.rtm.gov.my/nasional/senarai-berita-nasional/senarai-artikel/ruu-jenayah-siber-2026-diluluskan-dewan-rakyat/"],["Malaysiakini — RUU Jenayah Siber","https://www.malaysiakini.com/news/778659"]]},
+ {r:4,t:"Harga minyak naik 16–22 Julai",sub:"RON95 tanpa subsidi RM3.42 · diesel RM4.07 · BUDI95 kekal RM1.99",mom:"◆ recurring · rose this window",mc:"fl",sent:"Transactional · anxious",cat:"Economy",cc:"t-eco",conf:85,
+  ev:"For 16–22 Jul, unsubsidised RON95 rose 5 sen to RM3.42/L and unsubsidised diesel rose 10 sen to RM4.07/L; RON97 held at RM4.00. Subsidised BUDI95 stays RM1.99/L (200L monthly quota); BUDI Diesel RM2.10/L.",
+  why:"Cost-of-living is the permanent substrate of Malaysian FB conversation; an actual increase reliably spikes the weekly price thread.",
+  flag:"None on the real figures — but fabricated 'kenaikan mendadak' posters exaggerating the hike are the recurring fake-price risk; only the MOF/OpenDOSM numbers are real.",
+  src:[["Paul Tan — harga 16–22 Julai","https://paultan.org/bm/2026/07/15/harga-minyak-16-22-julai-diesel-naik-10-sen-rm4-07-ron95-naik-lima-sen-ke-rm3-42-per-liter/"],["OpenDOSM — fuel price","https://open.dosm.gov.my/data-catalogue/fuelprice"],["RinggitPlus tracker","https://ringgitplus.com/en/blog/personal-finance-news/petrol-price-malaysia-live-updates-ron95-ron97-diesel.html"]]},
+ {r:5,t:"DAP keluar kerajaan Melaka — susulan",sub:"exco letak jawatan · kerajaan BN kekal",mom:"▼ cooling · carryover",mc:"dn",sent:"Charged · principled framing",cat:"Politics",cc:"t-pol",conf:82,
+  ev:"DAP quit the BN-led Melaka govt over the appointed-ADUN amendment: exco Allex Seah, deputy exco Low Chee Leong & Leng Chau Yen, and Deputy Speaker Kerk Chee Yee resigned; the 4 DAP ADUN keep their seats but move to the opposition bench. BN retains 21 of 28 DUN seats — the state govt does not fall. Chairman Khoo Poay Tiong: 'wakil dipilih, bukan dilantik'.",
+  why:"'Elected not appointed' democratic-principle frame; a coalition-stability subplot running just before the NS vote.",
+  flag:"Govt survives on BN's own numbers — don't report DAP's exit as toppling the Melaka administration.",
+  src:[["Berita Harian — CM, tiada rundingan","https://www.bharian.com.my/berita/nasional/2026/07/1588537/dap-melaka-keluar-kerajaan-negeri-tiada-lagi-rundingan-ketua-menteri"],["Malaysiakini — PH kini pembangkang","https://www.malaysiakini.com/news/779674"],["Sinar Harian — umum keluar","https://www.sinarharian.com.my/article/787765/berita/politik/dap-melaka-umum-keluar-kerajaan-negeri-lepas-semua-jawatan-dalam-pentadbiran"]]},
+ {r:6,t:"Skandal naturalisasi FAM — EAIC syor kaji semula",sub:"citizenship approvals 'terlalu cepat' · 10 Jul",mom:"◆ sustained since 10 Jul",mc:"fl",sent:"Anger · embarrassment",cat:"Sport",cc:"t-spo",conf:80,
+  ev:"EAIC found the 7 heritage players' citizenship approvals were processed in an 'extremely short period' and irregularly, recommending a government review. Background: FIFA's falsified-documents ruling; CAS eased the bans to official matches only (Mar 2026); 1-year bans stand.",
+  why:"National-pride wound; low trust in FAM keeps every development hot.",
+  flag:"Keep EAIC's citizenship-process findings separate from FIFA's document-fraud ruling — different claims.",
+  src:[["FMT — EAIC recommends review","https://www.freemalaysiatoday.com/category/nation/2026/07/10/eaic-recommends-review-of-citizenship-approvals-for-7-heritage-players"],["Borneo Post — EAIC report","https://www.theborneopost.com/2026/07/10/eaic-report-citizenship-approvals-for-seven-naturalised-players-processed-too-quickly-not-orderly/"],["The Sun — EAIC urges review","https://thesun.my/sports/football/eaic-urges-review-of-citizenship-for-seven-footballers/"]]},
+ {r:7,t:"Syed Saddiq — 'ambil nafas' selepas bebas",sub:"tak tanding pemilihan MUDA · fokus Muar",mom:"▼ cooling · human-interest",mc:"dn",sent:"Largely sympathetic",cat:"Politics",cc:"t-pol",conf:83,
+  ev:"After the Federal Court's 2–1 dismissal of the final appeal (13 Jul) ended a 6-year saga, Syed Saddiq says he'll take a breather before deciding his next move, will follow MUDA's collective decision, and is not contesting MUDA's 2026 party polls; he kept perfect Dewan attendance and returns to Muar this weekend.",
+  why:"'Kehakiman benteng terakhir rakyat' institutional angle + comeback speculation = high Threads shareability.",
   flag:"None.",
-  src:[["RTM — kekal bebas","https://berita.rtm.gov.my/kes/senarai-berita-kes/senarai-artikel/mahkamah-persekutuan-tolak-rayuan-akhir-pendakwaan-syed-saddiq-kekal-bebas/"],["FMT","https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/07/13/mahkamah-persekutuan-kekal-keputusan-pembebasan-syed-saddiq"],["TRP BM","https://www.therakyatpost.com/trpbm/berita/2026/07/13/syed-saddiq-bebas-sepenuhnya-tuduhan-rasuah-pengubahan-wang-rm1-juta-armada/"]]},
- {r:4,t:"Akmal vs Nga — 'surat letak jawatan'",sub:"UMNO Youth chief's sarcastic template post",mom:"▲ rising · feeds off #1 #2",mc:"up",sent:"Mocking · partisan",cat:"Politics",cc:"t-pol",conf:75,
-  ev:"Akmal Saleh shared a sarcastic 'contoh surat letak jawatan' aimed at Nga Kor Ming after DAP's Johor losses; Puad Zarkashi separately made a formal call for Nga to quit the Cabinet. Nga evaded ('hati saya bersama rakyat, mari elak isu ini').",
-  why:"Personality conflict + schadenfreude; keeps the resignation-demand loop alive.",
-  flag:"Distinguish the demand from Nga's actual pledge (resign only if Najib is freed without an appropriate sentence) — the two are being conflated. No resignation has occurred.",
-  src:[["Malay Mail — Nga stands by pledge; Puad challenges him","https://www.malaymail.com/news/malaysia/2026/07/12/nga-kor-ming-stands-by-pledge-to-resign-over-najib-issue-as-puad-challenges-him-to-quit-cabinet/227317"],["Harian Metro — Nga elak soalan letak jawatan","https://www.hmetro.com.my/utama/2026/07/1383251/hati-saya-bersama-rakyat-mari-elak-isu-ini-nga-kor-ming-elak-soalan-letak"],["Berita Harian — reaksi Kor Ming selepas PRN","https://www.bharian.com.my/berita/nasional/2026/07/1586779/isu-janji-letak-jawatan-ini-reaksi-kor-ming-selepas-bn-menang-prn"]]},
- {r:5,t:"FAM naturalisation scandal — EAIC findings",sub:"citizenship approval irregularities · 10 Jul",mom:"◆ sustained since 10 Jul",mc:"fl",sent:"Anger · embarrassment",cat:"Sport",cc:"t-spo",conf:80,
-  ev:"EAIC found irregularities in the seven players' citizenship approvals and recommended government review. Background: FIFA forfeits, 7 players banned 1 year, Asian Cup elimination (Vietnam qualified).",
-  why:"National pride wound; low trust in FAM statements keeps every development hot.",
-  flag:"Keep EAIC citizenship-process findings separate from FIFA's document-fraud ruling — different claims.",
-  src:[["The Edge — 7 players banned","https://theedgemalaysia.com/node/795213"],["Sinar Daily — EAIC/verification","https://www.sinardaily.my/article/730788/focus/sports/fifa-scandal-demands-full-verification-to-cleanse-national-image---expert"],["Wikipedia — scandal overview","https://en.wikipedia.org/wiki/Malaysian_football_naturalisation_scandal"]]},
- {r:6,t:"RUU Kebebasan Maklumat ke select committee",sub:"FOI Bill referral motion · NGO pushback",mom:"⚡ moved today · rising",mc:"bk",sent:"Critical (NGO-led)",cat:"Governance",cc:"t-gov",conf:72,
-  ev:"Government tabled a motion (14 Jul) referring the FOI Bill to a parliamentary special select committee. NGO coalition argues the draft 'menggalakkan kerahsiaan bukan ketelusan'.",
-  why:"Transparency framing can jump from civil-society circles to mainstream quickly, especially amid coalition-trust questions.",
+  src:[["The Edge — takes a breather","https://theedgemalaysia.com/node/810405"],["The Star — perfect Dewan attendance","https://www.thestar.com.my/news/nation/2026/07/13/cleared-of-charges-syed-saddiq-maintains-perfect-dewan-rakyat-attendance"],["SCMP — top court clears Syed Saddiq","https://www.scmp.com/week-asia/politics/article/3360336/malaysias-top-court-clears-syed-saddiq-corruption-ending-6-year-legal-drama"]]},
+ {r:8,t:"Post-mortem PRN Johor — BN 48/56",sub:"PH 8 · PN 0 · frames the NS contest",mom:"▼ cooling",mc:"dn",sent:"Analytical · recriminatory",cat:"Politics",cc:"t-pol",conf:80,
+  ev:"Official Johor result: BN 48 (59.7% popular vote), PH 8 (DAP 6 ▼4, PKR 1), PN 0. Onn Hafiz stays MB — BN's best showing since 2008, 2/3 majority kept. Now the reference point for every NS projection.",
+  why:"'PN wipeout' + PH-recrimination analysis feeds directly into narratives #1 and #2.",
+  flag:"None.",
+  src:[["Malaysia Gazette — keputusan rasmi","https://malaysiagazette.com/2026/07/12/keputusan-rasmi-prn-johor-bn-menang-48-kerusi-ph-lapan/"],["Wikipedia — 2026 Johor state election","https://en.wikipedia.org/wiki/2026_Johor_state_election"],["Harian Metro — BN bentuk kerajaan","https://www.hmetro.com.my/utama/2026/07/1383128/rasmi-prn-johor-bn-berjaya-bentuk-kerajaan-menang-48-kerusi-dun-spr"]]},
+ {r:9,t:"RUU Kebebasan Maklumat ke jawatankuasa pilihan",sub:"FOI referral · NGO pushback",mom:"◆ moderate · carryover",mc:"fl",sent:"Critical (NGO-led)",cat:"Governance",cc:"t-gov",conf:78,
+  ev:"The FOI Bill was referred (14 Jul) to a parliamentary special select committee. An NGO coalition argues the draft 'menggalakkan kerahsiaan bukan ketelusan' (CIJ, C4 Center, ARTICLE 19).",
+  why:"Transparency framing jumps from civil-society circles to mainstream quickly amid coalition-trust questions.",
   flag:"None — policy dispute, not misinformation.",
   src:[["DagangNews — NGO dakwa","https://www.dagangnews.com/article/terkini/gabungan-ngo-dakwa-ruu-kebebasan-maklumat-2026-lebih-menggalakkan-kerahsiaan-bukan-ketelusan-71478"],["Sinar Harian — RUU tumpuan sidang","https://www.sinarharian.com.my/article/784502/berita/nasional/sidang-kedua-dewan-rakyat-bermula-isnin-beberapa-ruu-penting-jadi-tumpuan"]]},
- {r:7,t:"Harga minyak — BUDI95 RM1.99",sub:"price window ends 15 Jul · BUDI Diesel nationwide",mom:"◆ recurring · spike due tmrw",mc:"fl",sent:"Transactional · anxious",cat:"Economy",cc:"t-eco",conf:78,
-  ev:"BUDI95 at RM1.99/L (200L monthly quota); unsubsidised prices held 9–15 Jul — tomorrow's announcement is a predictable conversation spike. BUDI Diesel standardised nationwide since 1 Jul.",
-  why:"Cost-of-living is the permanent substrate of Malaysian FB conversation; price windows create reliable rhythm.",
-  flag:"None.",
-  src:[["MOF — BUDI Diesel","https://mof.gov.my/portal/ms/berita/siaran-media/budi-madani-diesel-22062026"],["Malaysia Gazette — harga kekal 15 Jul","https://malaysiagazette.com/2026/07/08/harga-petrol-diesel-tanpa-subsidi-kekal-mulai-esok-hingga-15-julai-ini/"],["RinggitPlus tracker","https://ringgitplus.com/en/blog/personal-finance-news/petrol-price-malaysia-live-updates-ron95-ron97-diesel.html"]]},
- {r:8,t:"PRN Negeri Sembilan ramp-up",sub:"nomination 18 Jul · polling 1 Aug",mom:"▲ building",mc:"up",sent:"Anticipatory · partisan",cat:"Politics",cc:"t-pol",conf:74,
-  ev:"NS machinery moving post-Johor: nomination 18 Jul, early voting 28 Jul, polling 1 Aug; 36 seats, ~889k voters. Johor result reframes every NS projection.",
-  why:"'Momentum' storyline — can BN repeat, can PH recover, is PN's collapse structural.",
-  flag:"None.",
-  src:[["RTM — SPR tetapkan tarikh","https://berita.rtm.gov.my/nasional/senarai-berita-nasional/senarai-artikel/spr-tetapkan-prn-johor-pada-11-julai-negeri-sembilan-1-ogos/"],["Pekhabar — tarikh penting","https://pekhabar.com/prn-johor-negeri-sembilan-2026-tarikh-rasmi/"]]},
- {r:9,t:"PP–AG decoupling — backbenchers back revised bill",sub:"institutional reform · elite-driven",mom:"◆ moderate",mc:"fl",sent:"Cautiously positive",cat:"Governance",cc:"t-gov",conf:76,
-  ev:"PKR backbenchers who objected to the original bill said today they welcome the revised edition and will back enactment.",
-  why:"Reform-promise scorecard item; watched by commentariat more than mass audience — but symbolically loaded.",
-  flag:"None.",
-  src:[["Malay Mail — Malaysia news","https://www.malaymail.com/news/malaysia"],["Malaysiakini — sidang tumpuan","https://www.malaysiakini.com/news/777810"]]},
- {r:10,t:"Kedah fake work-permit / UNHCR card syndicate",sub:"police crackdown · foreign masterminds alleged",mom:"⚡ single-day burst",mc:"bk",sent:"Alarm · security framing",cat:"Crime",cc:"t-cri",conf:70,
-  ev:"Kedah police cracked down on a syndicate allegedly issuing fake work permits and UNHCR cards, said to be masterminded by foreigners.",
-  why:"Migration-security sentiment is a reliable amplifier; risk of ethnic framing in comment sections.",
-  flag:"Police-sourced only at freeze; await charges before treating scale as fact. Handle without ethnic framing.",
-  src:[["Malay Mail — Malaysia news","https://www.malaymail.com/news/malaysia"],["BERNAMA","https://www.bernama.com/en/"]]}
+ {r:10,t:"Gelombang scam pelaburan AI — amaran MKN",sub:"'RM500 jadi RM2,000' · voice-clone & deepfake",mom:"⚡ persistent · high",mc:"bk",sent:"Alarm · cautionary",cat:"Crime",cc:"t-cri",conf:72,
+  ev:"MKN issued a fresh investment-scam warning (7 Jul); MCMC removed 43,618 scam-related posts Jan–Mar 2026 (after 98,503 takedowns in 2025). AI voice-cloning and deepfake 'testimoni' clips promising fast returns drive the current wave.",
+  why:"Money-loss fear + 'siapa mangsa seterusnya' virality; a recurring FB/WhatsApp forward pattern.",
+  flag:"Active misinformation vector — treat any 'untung cepat' investment testimony as a scam until verified; @sebenarnya.my is the check-first reference.",
+  src:[["MKN — awas penipuan pelaburan","https://www.mkn.gov.my/web/ms/2026/07/07/awas-penipuan-pelaburan-scammer/"],["Sinar Daily — AI fraud wave","https://www.sinardaily.my/article/737264/focus/national/clone-scam-repeat-inside-the-sophisticated-ai-fraud-wave-targeting-malaysia"],["SEBENARNYA.MY","https://sebenarnya.my/"]]}
 ];
 
 /* geo pins: p = position (true anchor, Klang Valley lightly jittered to avoid a single blob),
    s = sentiment proxy (neg/mix/pos — editorial, not measured), rad = coverage-density proxy */
 const GEO={
- 1:{place:"Melaka",p:[147,253],s:"mix",rad:13},
- 2:{place:"Johor Bahru",p:[222,288],s:"mix",rad:12},
- 3:{place:"Putrajaya · Mahkamah Persekutuan",p:[120,216],s:"pos",rad:12},
- 4:{place:"Kuala Lumpur · online-first",p:[124,200],s:"neg",rad:11},
- 5:{place:"FAM HQ · Kelana Jaya",p:[103,207],s:"neg",rad:10},
- 6:{place:"Parlimen, Kuala Lumpur",p:[112,191],s:"neg",rad:10},
- 7:{place:"Nationwide",p:[370,90],s:"mix",rad:10,nat:true},
- 8:{place:"Seremban",p:[132,226],s:"mix",rad:9},
- 9:{place:"Parlimen, Kuala Lumpur",p:[131,209],s:"pos",rad:9},
- 10:{place:"Alor Setar",p:[53,56],s:"neg",rad:9}
+ 1:{place:"Seremban · Negeri Sembilan",p:[132,226],s:"mix",rad:13},
+ 2:{place:"Kuala Pilah · Negeri Sembilan",p:[143,232],s:"mix",rad:11},
+ 3:{place:"Parlimen, Kuala Lumpur",p:[112,191],s:"neg",rad:10},
+ 4:{place:"Nationwide",p:[370,90],s:"mix",rad:11,nat:true},
+ 5:{place:"Melaka",p:[147,253],s:"mix",rad:10},
+ 6:{place:"FAM HQ · Kelana Jaya",p:[103,207],s:"neg",rad:9},
+ 7:{place:"Putrajaya · Mahkamah Persekutuan",p:[120,216],s:"pos",rad:9},
+ 8:{place:"Johor Bahru",p:[222,288],s:"mix",rad:9},
+ 9:{place:"Parlimen, Kuala Lumpur",p:[131,209],s:"neg",rad:8},
+ 10:{place:"Kuala Lumpur · online-first",p:[124,200],s:"neg",rad:9}
+};
+
+/* SOC — top PUBLIC posts per narrative (Facebook + Threads), found via open-web search.
+   Engagement (l=likes/reactions, c=comments, rp=reposts [Threads only], sh=shares) is the count
+   VISIBLE ON THE POST at freeze time — observed directly, NOT via any platform API and NOT an
+   aggregate. Leave a field '' when the platform did not show it; give a `note` instead of `posts`
+   when no high-engagement public post surfaced. Public posts only — never quote private/closed content.
+   Rule for the 3×-daily run: only real, currently-visible counts; omit the post rather than estimate. */
+const SOC={
+ 1:{posts:[
+   {pf:'FB',h:'bernamaofficial',u:'https://www.facebook.com/bernamaofficial/posts/1485836320242443/',t:'“TERKINI — PRN Negeri Sembilan 1 Ogos 2026, penamaan calon 18 Julai, undi awal 28 Julai.”',l:'',c:'',sh:''},
+   {pf:'TH',h:'@jalalmisai',u:'https://www.threads.com/@jalalmisai/post/DarVD-qk28u/',t:'“PRN Negeri Sembilan — kami rasa siapa bakal bentuk kerajaan negeri baharu?”',l:'',c:'',rp:'',sh:''}],note:'Live engagement counts were not observed at this 08:00 headless freeze — links provided; numbers pending the next browser-enabled refresh.'},
+ 2:{posts:[{pf:'FB',h:'MalaysiaGazette',u:'https://www.facebook.com/MalaysiaGazette/posts/1535044325333600/',t:'“BN hanya umum senarai 25 calon untuk PRN Negeri Sembilan.”',l:'',c:'',sh:''}],note:'Counts not observed at this freeze. The realignment conversation runs heavily in FB comment threads and vernacular Threads accounts.'},
+ 3:{note:'No single dominant public post at this freeze — the Cyber Crime Bill / 13-Bills wrap ran through parliamentary press coverage and reform-commentator accounts rather than one viral consumer post.'},
+ 4:{note:'The weekly fuel thread reliably peaks on automotive/finance pages (Paul Tan, RinggitPlus) and FB share-graphics; specific live counts were not observed at this headless freeze.'},
+ 5:{posts:[
+   {pf:'TH',h:'@cakna.malaysia',u:'https://www.threads.com/@cakna.malaysia/post/DawbONKD16o/',t:'“TERKINI — DAP Melaka umum keluar portfolio kerajaan negeri, lepas semua jawatan.”',l:'',c:'',rp:'',sh:''},
+   {pf:'TH',h:'@meta.ai',u:'https://www.threads.com/@meta.ai/post/Dawg0RDCVNq/',t:'“BN masih ada 21 kerusi DUN Melaka vs DAP 4 — kerajaan negeri tak tumbang automatik.”',l:'',c:'',rp:'',sh:''}],note:'Counts not observed at freeze. Note the second post is a useful corrective against “kerajaan Melaka tumbang” overreach.'},
+ 6:{note:'Louder organic traction sits on TikTok and closed fan groups (JDT-linked) — outside this open-web sweep; no dominant public FB/Threads post surfaced.'},
+ 7:{note:'Sympathetic reaction was broad but press-led; no single dominant public post captured at this headless freeze.'},
+ 8:{note:'Cooling — the Johor result now appears mostly inside NS-projection commentary rather than standalone viral posts.'},
+ 9:{note:'No high-engagement public post at freeze — a civil-society/commentariat topic running through NGO and press channels (CIJ, C4, ARTICLE 19).'},
+ 10:{note:'Scam warnings circulate via MKN/MCMC advisories and FB scam-alert groups; @sebenarnya.my carries the official corrections. No single dominant public post captured at this freeze.'}
 };
 const SENTCOL={neg:"#FF6E5B",mix:"#FFC857",pos:"#2FE89A"};
 function buildPins(){
@@ -397,7 +444,32 @@ function render(){
       <div class="k">Why it resonates</div><div class="v">${n.why}</div>
     </div>
     <h3 style="margin-top:4px"><span class="dot" style="background:var(--cy)"></span>Sources</h3>
-    <div class="srcs">${n.src.map(s=>`<a href="${s[1]}" target="_blank">↗ ${s[0]}</a>`).join('')}</div>`;
+    <div class="srcs">${n.src.map(s=>`<a href="${s[1]}" target="_blank">↗ ${s[0]}</a>`).join('')}</div>
+    <h3 style="margin-top:12px"><span class="dot" style="background:var(--blue)"></span>Top public posts · FB + Threads <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— observed, not API</span></h3>
+    ${renderSoc(n.r)}`;
+}
+function renderSoc(r){
+  const s=SOC[r];
+  if(!s||(!s.posts&&!s.note))return`<div class="nodata">No public-post data captured for this narrative at freeze.</div>`;
+  let html='';
+  if(s.posts&&s.posts.length){
+    html+='<div class="socwrap">'+s.posts.map(p=>{
+      const chips=[];
+      if(p.l)chips.push(`<span class="sc"><i>&#9829;</i>${p.l}</span>`);
+      if(p.c)chips.push(`<span class="sc"><i>&#128172;</i>${p.c}</span>`);
+      if(p.rp)chips.push(`<span class="sc"><i>&#8635;</i>${p.rp}</span>`);
+      if(p.sh)chips.push(`<span class="sc"><i>&#10148;</i>${p.sh}</span>`);
+      const eng=chips.length?chips.join(''):'<span class="sc na">counts not visible on post at freeze</span>';
+      return `<a class="socpost" href="${p.u}" target="_blank" rel="noopener">
+        <div class="socrow"><span class="pf ${p.pf==='FB'?'fb':'th'}">${p.pf==='FB'?'FACEBOOK':'THREADS'}</span><span class="soch">${p.h}</span><span class="socarrow">&#8599;</span></div>
+        <div class="soct">${p.t}</div>
+        <div class="soceng">${eng}</div>
+      </a>`;
+    }).join('')+'</div>';
+  }
+  if(s.note)html+=`<div class="socnote">${s.note}</div>`;
+  html+=`<div class="soccap">Public posts only · ♥ likes · 💬 comments · ⟳ reposts (Threads) · ➦ shares — counts visible on the post at freeze, not aggregated and not via any API. They move; click through to verify.</div>`;
+  return html;
 }
 function pick(i){sel=i;render();}
 document.getElementById('tabs').addEventListener('click',e=>{
