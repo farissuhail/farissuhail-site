@@ -24,6 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="npam.css" />
+  <link rel="stylesheet" href="npam-narratives.css" />
 </head>
 <body class="npam">
 
@@ -51,14 +52,14 @@
   <section class="np-hero">
     <div class="np-kicker">
       <span class="np-live"></span>
-      <span data-en="Live citizen sentiment" data-bm="Sentimen rakyat · langsung">Live citizen sentiment</span>
+      <span data-en="Live narrative analytics" data-bm="Analitik naratif · langsung">Live narrative analytics</span>
     </div>
     <h1 class="np-wordmark"><span class="g">Non-Partisan</span> Analitika Malaya</h1>
     <p class="np-full">N · P · A · M</p>
     <p class="np-deck"
-       data-en="An independent, non-partisan dashboard for the public mood. Cast your view on the issues that matter — every answer is anonymous, and the <em>national pulse builds up live</em> as more people weigh in."
-       data-bm="Sebuah papan pemuka bebas dan tidak berpihak untuk sentimen rakyat. Beri pandangan anda tentang isu yang penting — setiap jawapan tanpa nama, dan <em>nadi negara terbentuk secara langsung</em> apabila lebih ramai memberi pandangan.">
-      An independent, non-partisan dashboard for the public mood. Cast your view on the issues that matter — every answer is anonymous, and the <em>national pulse builds up live</em> as more people weigh in.
+       data-en="An independent, non-partisan read on Malaysia’s political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous."
+       data-bm="Bacaan bebas dan tidak berpihak tentang perbualan politik Malaysia — naratif yang memacu acara utama, setiap satu dipaparkan dengan <em>bingkai bersaing di sekelilingnya</em>. Kemudian tambah pandangan anda: setiap jawapan tanpa nama.">
+      An independent, non-partisan read on Malaysia's political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous.
     </p>
     <span class="np-pledge"
           data-en="Not affiliated with any party, coalition, or government body. <b>No agenda — just the aggregate.</b>"
@@ -82,24 +83,43 @@
 
   <!-- ===== TABS ===== -->
   <nav class="np-tabs">
-    <button class="np-tab active" data-tab="pulse" data-en="Pulse" data-bm="Nadi">Pulse</button>
+    <button class="np-tab active" data-tab="pulse" data-en="Narratives" data-bm="Naratif">Narratives</button>
     <button class="np-tab" data-tab="vote" data-en="Cast your vote" data-bm="Beri undi">Cast your vote</button>
     <button class="np-tab" data-tab="results" data-en="Results" data-bm="Keputusan">Results</button>
     <button class="np-tab" data-tab="method" data-en="How this works" data-bm="Cara ia berfungsi">How this works</button>
   </nav>
 
-  <!-- ===== PULSE ===== -->
+  <!-- ===== NARRATIVE ANALYTICS ===== -->
   <section id="panel-pulse" class="np-panel active">
     <div class="np-panel-head">
-      <h2 data-en="The national pulse, right now" data-bm="Nadi negara, sekarang">The national pulse, right now</h2>
-      <p data-en="A live snapshot built from every response so far. Numbers update the moment someone votes."
-         data-bm="Gambaran langsung yang terbentuk daripada setiap jawapan setakat ini. Angka dikemas kini sebaik sahaja seseorang mengundi.">
-        A live snapshot built from every response so far. Numbers update the moment someone votes.
+      <h2 data-en="The narrative board, right now" data-bm="Papan naratif, sekarang">The narrative board, right now</h2>
+      <p data-en="What Malaysia is actually arguing about — the main political event, today’s dominant narratives, and the week’s arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don’t pick a side."
+         data-bm="Apa yang sebenarnya diperdebatkan Malaysia — acara politik utama, naratif dominan hari ini, dan arka minggu ini. Setiap naratif dipaparkan dengan dua bingkai bersaing yang dimainkan; kami memetakan hujah, bukan memilih pihak.">
+        What Malaysia is actually arguing about — the main political event, today's dominant narratives, and the week's arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don't pick a side.
       </p>
+      <div class="np-nar-stamp" id="npNarStamp"></div>
     </div>
-    <div class="np-stats" id="npStats"></div>
-    <div id="npGauge"></div>
-    <div id="npConcern"></div>
+
+    <div id="npEvent"></div>
+
+    <div class="np-sec-head">
+      <h3 data-en="Today’s narratives" data-bm="Naratif hari ini">Today's narratives</h3>
+      <span data-en="ranked by coverage density × recency" data-bm="disusun ikut ketumpatan liputan × kebaruan">ranked by coverage density × recency</span>
+    </div>
+    <div id="npDaily"></div>
+
+    <div class="np-sec-head">
+      <h3 data-en="This week’s arc" data-bm="Arka minggu ini">This week's arc</h3>
+      <span id="npWeekRange"></span>
+    </div>
+    <div id="npWeekly"></div>
+    <div class="np-bubbling" id="npBubbling"></div>
+
+    <p class="np-nar-note"
+       data-en="Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented."
+       data-bm="Pengenalpastian naratif daripada sumber awam bersumber — portal berita, portal rasmi dan siaran awam. Tiada angka volum, penglibatan atau sentimen di sini: tanpa data platform ia tidak boleh diukur, jadi tiada yang direka.">
+      Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented.
+    </p>
   </section>
 
   <!-- ===== VOTE ===== -->
@@ -191,6 +211,7 @@
 </footer>
 
 <script src="npam.js"></script>
+<script src="npam-narratives.js"></script>
 <script src="feedback.js"></script>
 </body>
 </html>
