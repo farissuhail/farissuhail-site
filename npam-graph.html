@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NPAM — Non-Partisan Analitika Malaya. A citizen sentiment dashboard: share your view on the issues that matter and watch the national mood build up live. Independent, non-partisan, anonymous." />
+  <title>NPAM — Narrative Graph · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#08080c" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail" />
+  <meta property="og:title" content="NPAM — Non-Partisan Analitika Malaya" />
+  <meta property="og:description" content="A non-partisan citizen sentiment dashboard. Cast your view on the issues that matter — watch the national mood build up live." />
+  <meta property="og:url" content="https://farissuhail.com/npam-graph.html" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NPAM — Non-Partisan Analitika Malaya" />
+  <meta name="twitter:description" content="A non-partisan citizen sentiment dashboard — cast your view, watch the national mood build up live." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="npam.css" />
+  <link rel="stylesheet" href="npam-narratives.css" />
+  <style>
+/* ===== NPAM — Narrative Graph view =============================
+   Layered on npam.css + npam-narratives.css. An Obsidian-style
+   force-directed view of the same narrative data: the main event
+   at the centre, today's narratives around it, themes as hollow
+   satellites. Palette discipline: gold + teal + orange + slate
+   only — no party red/blue. The two competing frames reuse
+   .np-frame and stay styled IDENTICALLY (non-partisan contract). */
+
+/* ---- list/graph toggle ---- */
+.np-view-toggle { margin-left: auto; display: flex; gap: 5px; }
+.np-view-toggle button {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--np-line); background: rgba(255,255,255,0.02);
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.np-view-toggle button:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.np-view-toggle button.active {
+  color: #08080c; font-weight: 700; border-color: transparent;
+  background: linear-gradient(135deg, var(--np-gold), var(--np-teal));
+}
+
+/* ---- graph container ---- */
+.np-graph-wrap {
+  position: relative; height: clamp(460px, 62vh, 640px); overflow: hidden;
+  border: 1px solid var(--np-line); border-radius: var(--radius);
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 0%, rgba(245,177,61,0.05), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 90% 100%, rgba(45,212,191,0.045), transparent 60%),
+    rgba(255,255,255,0.015);
+}
+.np-graph-wrap canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  cursor: grab; touch-action: none; display: block;
+}
+.np-graph-wrap canvas.dragging { cursor: grabbing; }
+.np-graph-wrap canvas.hovering { cursor: pointer; }
+
+.np-g-hint {
+  position: absolute; left: 16px; bottom: 13px; pointer-events: none;
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-mute);
+  opacity: 0.85;
+}
+
+/* ---- note panel ---- */
+.np-g-panel {
+  position: absolute; top: 12px; right: 12px; bottom: 12px;
+  width: 342px; max-width: calc(100% - 24px); z-index: 4;
+  background: rgba(10,10,15,0.9);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--np-line); border-radius: 14px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.np-g-panel[hidden] { display: none; }
+.np-g-close {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 26px; height: 26px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--np-line); background: rgba(255,255,255,0.03);
+  color: var(--text-mute); font-size: 12px; line-height: 1; transition: all 0.2s;
+}
+.np-g-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.np-g-body { padding: 16px 18px 16px; overflow-y: auto; flex: 1; }
+.np-g-body::-webkit-scrollbar { width: 7px; }
+.np-g-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+
+.np-g-kind {
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute);
+  display: flex; align-items: center; gap: 8px; margin: 2px 0 9px; padding-right: 30px;
+}
+.np-g-kind i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.np-g-body h4 {
+  margin: 0 0 10px; font-size: 16.5px; font-weight: 800; letter-spacing: -0.01em;
+  color: #fff; line-height: 1.3; padding-right: 20px;
+}
+.np-g-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-bottom: 10px; }
+.np-g-sub { font-size: 11.5px; color: var(--text-mute); margin-bottom: 10px; }
+.np-g-why { margin: 0 0 4px; font-size: 13px; line-height: 1.6; color: var(--text-dim); }
+.np-g-count {
+  display: inline-block; margin-bottom: 12px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #04120c;
+  background: linear-gradient(135deg, #f5b13d, #2dd4bf); border-radius: 999px; padding: 6px 12px;
+}
+
+/* frames stack vertically inside the narrow panel — styling itself
+   comes from .np-frames/.np-frame (identical both sides, by design) */
+.np-g-panel .np-frames { grid-template-columns: 1fr; }
+
+.np-g-lab {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute);
+  margin: 14px 0 4px; padding-top: 12px; border-top: 1px solid var(--np-line);
+}
+.np-g-link {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-bottom: 1px dashed var(--np-line);
+  padding: 8px 2px; font-size: 12.5px; line-height: 1.45; color: var(--np-teal);
+  font-family: inherit; transition: color 0.2s;
+}
+.np-g-link:last-child { border-bottom: 0; }
+.np-g-link:hover { color: #fff; }
+.np-g-link .rk {
+  font-family: 'JetBrains Mono', monospace; color: var(--text-mute);
+  font-size: 11px; margin-right: 8px;
+}
+
+@media (max-width: 720px) {
+  .np-view-toggle { margin-left: 0; }
+  .np-graph-wrap { height: 500px; }
+  .np-g-panel {
+    top: auto; left: 10px; right: 10px; bottom: 10px;
+    width: auto; max-width: none; max-height: 60%;
+  }
+  .np-g-hint { display: none; }
+}
+  </style>
+</head>
+<body class="npam">
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <nav class="nav-links">
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="ring-structure.html" data-en="Ring Structure" data-bm="Struktur Ring">Ring Structure</a>
+    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+    <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    <a href="npam.html" class="nav-reflections" data-en="Political View ✦" data-bm="Pandangan Politik ✦">Political View ✦</a>
+  </nav>
+  <div class="nav-cta">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="np-hero">
+    <div class="np-kicker">
+      <span class="np-live"></span>
+      <span data-en="Live narrative analytics" data-bm="Analitik naratif · langsung">Live narrative analytics</span>
+    </div>
+    <h1 class="np-wordmark"><span class="g">Non-Partisan</span> Analitika Malaya</h1>
+    <p class="np-full">N · P · A · M</p>
+    <p class="np-deck"
+       data-en="An independent, non-partisan read on Malaysia’s political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous."
+       data-bm="Bacaan bebas dan tidak berpihak tentang perbualan politik Malaysia — naratif yang memacu acara utama, setiap satu dipaparkan dengan <em>bingkai bersaing di sekelilingnya</em>. Kemudian tambah pandangan anda: setiap jawapan tanpa nama.">
+      An independent, non-partisan read on Malaysia's political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous.
+    </p>
+    <span class="np-pledge"
+          data-en="Not affiliated with any party, coalition, or government body. <b>No agenda — just the aggregate.</b>"
+          data-bm="Tiada kaitan dengan mana-mana parti, gabungan atau badan kerajaan. <b>Tiada agenda — hanya jumlah keseluruhan.</b>">
+      Not affiliated with any party, coalition, or government body. <b>No agenda — just the aggregate.</b>
+    </span>
+  </section>
+
+  <!-- ===== PRO SHOWCASE BANNER ===== -->
+  <a class="np-pro" href="analitika.html">
+    <span class="np-pro-badge"><i class="np-pro-live" aria-hidden="true"></i>LIVE COCKPIT</span>
+    <span class="np-pro-body">
+      <b data-en="Analitika Malaya — political intelligence" data-bm="Analitika Malaya — perisikan politik">Analitika Malaya — political intelligence</b>
+      <span data-en="A live narrative, sentiment &amp; manipulation cockpit for campaigns, media &amp; researchers — refreshed 3× daily from cited public sources. Open the live cockpit →"
+            data-bm="Kokpit naratif, sentimen &amp; manipulasi langsung untuk kempen, media &amp; penyelidik — dikemas kini 3× sehari dari sumber awam bersumber. Buka kokpit langsung →">
+        A live narrative, sentiment &amp; manipulation cockpit for campaigns, media &amp; researchers — refreshed 3× daily from cited public sources. Open the live cockpit →
+      </span>
+    </span>
+    <span class="np-pro-go">→</span>
+  </a>
+
+  <!-- ===== TABS ===== -->
+  <nav class="np-tabs">
+    <button class="np-tab active" data-tab="pulse" data-en="Narratives" data-bm="Naratif">Narratives</button>
+    <button class="np-tab" data-tab="vote" data-en="Cast your vote" data-bm="Beri undi">Cast your vote</button>
+    <button class="np-tab" data-tab="results" data-en="Results" data-bm="Keputusan">Results</button>
+    <button class="np-tab" data-tab="method" data-en="How this works" data-bm="Cara ia berfungsi">How this works</button>
+  </nav>
+
+  <!-- ===== NARRATIVE ANALYTICS ===== -->
+  <section id="panel-pulse" class="np-panel active">
+    <div class="np-panel-head">
+      <h2 data-en="The narrative board, right now" data-bm="Papan naratif, sekarang">The narrative board, right now</h2>
+      <p data-en="What Malaysia is actually arguing about — the main political event, today’s dominant narratives, and the week’s arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don’t pick a side."
+         data-bm="Apa yang sebenarnya diperdebatkan Malaysia — acara politik utama, naratif dominan hari ini, dan arka minggu ini. Setiap naratif dipaparkan dengan dua bingkai bersaing yang dimainkan; kami memetakan hujah, bukan memilih pihak.">
+        What Malaysia is actually arguing about — the main political event, today's dominant narratives, and the week's arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don't pick a side.
+      </p>
+      <div class="np-nar-stamp" id="npNarStamp"></div>
+    </div>
+
+    <div id="npEvent"></div>
+
+    <div class="np-sec-head">
+      <h3 data-en="Today’s narratives" data-bm="Naratif hari ini">Today's narratives</h3>
+      <span data-en="ranked by coverage density × recency" data-bm="disusun ikut ketumpatan liputan × kebaruan">ranked by coverage density × recency</span>
+      <div class="np-view-toggle" role="group" aria-label="View mode">
+        <button id="npViewList" class="active" aria-pressed="true" data-en="List" data-bm="Senarai">List</button>
+        <button id="npViewGraph" aria-pressed="false" data-en="Graph" data-bm="Graf">Graph</button>
+      </div>
+    </div>
+    <div id="npDaily"></div>
+    <div id="npGraphWrap" class="np-graph-wrap" hidden>
+      <canvas id="npGraphCanvas" aria-label="Narrative graph — every storyline connected to the main event and its theme"></canvas>
+      <div class="np-g-hint"
+           data-en="click a node to read · drag to arrange · ctrl + scroll to zoom"
+           data-bm="klik nod untuk baca · seret untuk susun · ctrl + skrol untuk zum">
+        click a node to read · drag to arrange · ctrl + scroll to zoom
+      </div>
+      <aside class="np-g-panel" id="npGraphPanel" hidden>
+        <button class="np-g-close" id="npGraphClose" aria-label="Close">&#10005;</button>
+        <div class="np-g-body" id="npGraphBody"></div>
+      </aside>
+    </div>
+
+    <div class="np-sec-head">
+      <h3 data-en="This week’s arc" data-bm="Arka minggu ini">This week's arc</h3>
+      <span id="npWeekRange"></span>
+    </div>
+    <div id="npWeekly"></div>
+    <div class="np-bubbling" id="npBubbling"></div>
+
+    <p class="np-nar-note"
+       data-en="Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented."
+       data-bm="Pengenalpastian naratif daripada sumber awam bersumber — portal berita, portal rasmi dan siaran awam. Tiada angka volum, penglibatan atau sentimen di sini: tanpa data platform ia tidak boleh diukur, jadi tiada yang direka.">
+      Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented.
+    </p>
+  </section>
+
+  <!-- ===== VOTE ===== -->
+  <section id="panel-vote" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="Cast your vote" data-bm="Beri undi anda">Cast your vote</h2>
+      <p data-en="Six quick questions. Tap an answer and its live tally appears instantly — no sign-up, one vote per question per device."
+         data-bm="Enam soalan pantas. Tuding satu jawapan dan kiraan langsungnya muncul serta-merta — tanpa pendaftaran, satu undi setiap soalan bagi setiap peranti.">
+        Six quick questions. Tap an answer and its live tally appears instantly — no sign-up, one vote per question per device.
+      </p>
+    </div>
+    <div id="npVote"></div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section id="panel-results" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="Full results" data-bm="Keputusan penuh">Full results</h2>
+      <p data-en="The complete breakdown across all questions — read-only. Prefer to weigh in first? Head to “Cast your vote.”"
+         data-bm="Pecahan lengkap merentas semua soalan — baca sahaja. Mahu beri pandangan dahulu? Pergi ke “Beri undi.”">
+        The complete breakdown across all questions — read-only. Prefer to weigh in first? Head to "Cast your vote."
+      </p>
+    </div>
+    <div id="npResults"></div>
+  </section>
+
+  <!-- ===== METHOD ===== -->
+  <section id="panel-method" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="How this works" data-bm="Cara ia berfungsi">How this works</h2>
+    </div>
+
+    <div class="np-pledge-box">
+      <div class="t" data-en="The non-partisan pledge" data-bm="Ikrar tidak berpihak">The non-partisan pledge</div>
+      <p data-en="NPAM belongs to no party, coalition, candidate, or government body. It sells nothing and endorses no one. Questions are written to measure how people feel about issues — never to push a side. If a question ever reads as slanted, tell us and it will be rewritten or removed."
+         data-bm="NPAM tidak dimiliki mana-mana parti, gabungan, calon atau badan kerajaan. Ia tidak menjual apa-apa dan tidak menyokong sesiapa. Soalan ditulis untuk mengukur perasaan rakyat tentang isu — bukan untuk memihak. Jika ada soalan yang berat sebelah, beritahu kami dan ia akan ditulis semula atau dibuang.">
+        NPAM belongs to no party, coalition, candidate, or government body. It sells nothing and endorses no one. Questions are written to measure how people feel about issues — never to push a side. If a question ever reads as slanted, tell us and it will be rewritten or removed.
+      </p>
+    </div>
+
+    <div class="np-prose">
+      <h3 data-en="How your vote is counted" data-bm="Cara undi anda dikira">How your vote is counted</h3>
+      <p data-en="When you tap an answer, an anonymous tally for that option is incremented and the new totals are read straight back — that is the whole mechanism. No account, no cookie tracking, no personal data. Your device simply remembers which options you picked so you are not asked twice."
+         data-bm="Apabila anda menuding satu jawapan, kiraan tanpa nama untuk pilihan itu ditambah dan jumlah baharu dibaca semula terus — itu sahaja mekanismenya. Tiada akaun, tiada penjejakan kuki, tiada data peribadi. Peranti anda hanya mengingati pilihan anda supaya anda tidak ditanya dua kali.">
+        When you tap an answer, an anonymous tally for that option is incremented and the new totals are read straight back — that is the whole mechanism. No account, no cookie tracking, no personal data. Your device simply remembers which options you picked so you are not asked twice.
+      </p>
+
+      <h3 data-en="What this is — and isn't" data-bm="Apa ini — dan apa bukan">What this is — and isn't</h3>
+      <ul>
+        <li data-en="It is an open, self-selected online snapshot — anyone with the link can answer." data-bm="Ia gambaran dalam talian terbuka dan dipilih sendiri — sesiapa yang ada pautan boleh menjawab.">It is an open, self-selected online snapshot — anyone with the link can answer.</li>
+        <li data-en="It is NOT a scientific or representative poll, and carries no margin of error." data-bm="Ia BUKAN tinjauan saintifik atau mewakili, dan tiada margin ralat.">It is NOT a scientific or representative poll, and carries no margin of error.</li>
+        <li data-en="Vote-once is enforced per device only, so it can be worked around — read the numbers as a mood, not a measurement." data-bm="Undi-sekali dikuatkuasakan setiap peranti sahaja, jadi ia boleh dielak — baca angka sebagai sentimen, bukan ukuran tepat.">Vote-once is enforced per device only, so it can be worked around — read the numbers as a mood, not a measurement.</li>
+        <li data-en="No answer is ever tied to who you are." data-bm="Tiada jawapan yang dikaitkan dengan identiti anda.">No answer is ever tied to who you are.</li>
+      </ul>
+    </div>
+
+    <div class="np-share">
+      <h3 data-en="In your own words" data-bm="Dalam kata-kata anda">In your own words</h3>
+      <p data-en="One change you'd most want to see in the country? Optional, anonymous, and sent straight to Faris."
+         data-bm="Satu perubahan yang paling anda mahu lihat di negara ini? Pilihan, tanpa nama, dihantar terus kepada Faris.">
+        One change you'd most want to see in the country? Optional, anonymous, and sent straight to Faris.
+      </p>
+      <textarea id="npOpinion" rows="3"
+        data-en-ph="The one thing I'd change is…" data-bm-ph="Satu perkara yang saya akan ubah ialah…"
+        placeholder="The one thing I'd change is…"></textarea>
+      <button id="npOpinionSend" data-en="Send anonymously" data-bm="Hantar tanpa nama">Send anonymously</button>
+      <div class="ok" id="npOpinionOk" data-en="Sent — thank you for adding your voice." data-bm="Dihantar — terima kasih kerana menyuarakan pandangan.">Sent — thank you for adding your voice.</div>
+    </div>
+
+    <p class="np-note"
+       data-en="NPAM is an independent civic project by Faris Suhail. Tallies are stored anonymously via a public counter service; if that service is unreachable, live numbers may briefly hide. Nothing here should be read as an election forecast."
+       data-bm="NPAM ialah projek sivik bebas oleh Faris Suhail. Kiraan disimpan tanpa nama melalui perkhidmatan pengira awam; jika perkhidmatan itu tidak dapat dicapai, angka langsung mungkin tersembunyi sebentar. Tiada apa di sini yang patut dibaca sebagai ramalan pilihan raya.">
+      NPAM is an independent civic project by Faris Suhail. Tallies are stored anonymously via a public counter service; if that service is unreachable, live numbers may briefly hide. Nothing here should be read as an election forecast.
+    </p>
+  </section>
+
+</main>
+
+<footer class="np-footer">
+  <p data-en="NPAM · Non-Partisan Analitika Malaya — a civic dashboard by Faris Suhail"
+     data-bm="NPAM · Non-Partisan Analitika Malaya — papan pemuka sivik oleh Faris Suhail">
+    NPAM · Non-Partisan Analitika Malaya — a civic dashboard by Faris Suhail
+  </p>
+  <p data-en="Anonymous · non-partisan · self-selected online snapshot, not a scientific poll."
+     data-bm="Tanpa nama · tidak berpihak · gambaran dalam talian dipilih sendiri, bukan tinjauan saintifik.">
+    Anonymous · non-partisan · self-selected online snapshot, not a scientific poll.
+  </p>
+  <p><a href="index.html">← FARISSUHAIL</a> · © <span id="year"></span></p>
+</footer>
+
+<script src="npam.js"></script>
+<script src="npam-narratives.js"></script>
+<script>
+/* ===== NPAM — Narrative Graph view ====================================
+   An Obsidian-style force-directed graph of the SAME data rendered by
+   npam-narratives.js. The data object is read from that file's source
+   (fetched and sliced between its AM:DATA markers), so npam-narratives.js
+   itself needs no changes and the 3x-daily regeneration flows straight
+   through to the graph. Nothing here is hardcoded: nodes are derived from
+   mainEvent + daily[] + their categories.
+
+   NON-PARTISAN CONTRACT: the note panel reuses .np-frames/.np-frame —
+   the two competing frames stay styled identically. We map the argument,
+   we don't pick a side.
+   ==================================================================== */
+(function () {
+  'use strict';
+
+  var htmlEl = document.documentElement;
+  function isBm() { return htmlEl.getAttribute('data-lang') === 'bm'; }
+  function t(o) { return !o ? '' : (isBm() ? (o.bm || o.en) : o.en); }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function daysUntil(iso) {
+    var p = iso.split('-');
+    var target = new Date(+p[0], +p[1] - 1, +p[2]);
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((target - today) / 86400000);
+  }
+
+  var STR = {
+    rank:      { en: 'Narrative · rank ',        bm: 'Naratif · kedudukan ' },
+    theme:     { en: 'Theme',                    bm: 'Tema' },
+    milestone: { en: 'Milestone',                bm: 'Peristiwa' },
+    onTheme:   { en: 'Narratives on this theme', bm: 'Naratif tema ini' },
+    today:     { en: "Today's narratives",       bm: 'Naratif hari ini' },
+    frame:     { en: 'Frame',                    bm: 'Bingkai' },
+    counter:   { en: 'Counter-frame',            bm: 'Lawan bingkai' },
+    bends:     { en: 'Every narrative on the board bends toward this date.',
+                 bm: 'Setiap naratif di papan ini menghala ke tarikh ini.' }
+  };
+
+  var CAT_COLOR = {
+    'c-elec': '#f5b13d',
+    'c-coal': '#2dd4bf',
+    'c-gov':  '#94a3b8',
+    'c-eco':  '#fb7a45'
+  };
+  var HUB_COLOR = '#f1f1f5';
+  var BG = '#0a0a0f';
+
+  var DATA = null;
+
+  /* Read the NPAM_NARRATIVE object without npam-narratives.js having to
+     export it: use a global if one ever exists, else fetch that file's
+     source and evaluate just the data literal between its markers. */
+  function loadData() {
+    if (window.NPAM_NARRATIVE) return Promise.resolve(window.NPAM_NARRATIVE);
+    return fetch('npam-narratives.js', { cache: 'no-cache' })
+      .then(function (r) { return r.text(); })
+      .then(function (src) {
+        var anchor = src.indexOf('NPAM_NARRATIVE');
+        var start = src.indexOf('{', anchor);
+        var endMark = src.indexOf('end AM:DATA');
+        var stop = src.lastIndexOf('};', endMark === -1 ? src.length : endMark);
+        if (anchor === -1 || start === -1 || stop <= start) throw new Error('AM:DATA block not found');
+        return new Function('return (' + src.slice(start, stop + 1) + ')')();
+      });
+  }
+
+  var wrap, canvas, ctx, panel, panelBody;
+  var nodes = [], links = [], neighbors = {};
+  var view = { x: 0, y: 0, k: 1 };
+  var alpha = 1, hoverNode = null, selNode = null, dragNode = null;
+  var W = 0, H = 0, DPR = 1;
+  var built = false, rafOn = false;
+
+  /* ---------- derive nodes/links from the shared data ---------- */
+  function build() {
+    var D = DATA;
+    if (!D) return false;
+    nodes = []; links = []; neighbors = {};
+
+    var hub = { id: 'hub', kind: 'hub', color: HUB_COLOR, r: 12, hollow: false, x: 0, y: 0, vx: 0, vy: 0 };
+    nodes.push(hub);
+
+    var cats = {};
+    D.daily.forEach(function (n, i) {
+      var node = {
+        id: 'n' + i, kind: 'nar', idx: i,
+        color: CAT_COLOR[n.catClass] || '#94a3b8', r: 9.5 - i * 0.4,
+        hollow: false,
+        x: Math.cos(i * 2.1) * 140, y: Math.sin(i * 2.1) * 110, vx: 0, vy: 0
+      };
+      nodes.push(node);
+      links.push(['hub', node.id]);
+      if (!cats[n.catClass]) {
+        cats[n.catClass] = {
+          id: 'cat:' + n.catClass, kind: 'cat', catClass: n.catClass,
+          color: CAT_COLOR[n.catClass] || '#94a3b8', r: 6.5, hollow: true,
+          x: Math.cos(i * 2.1) * 220, y: Math.sin(i * 2.1) * 180, vx: 0, vy: 0
+        };
+        nodes.push(cats[n.catClass]);
+      }
+      links.push([node.id, cats[n.catClass].id]);
+    });
+
+    if (D.mainEvent && D.mainEvent.pollDate) {
+      nodes.push({ id: 'pd', kind: 'pd', color: HUB_COLOR, r: 7, hollow: true, x: 60, y: -170, vx: 0, vy: 0 });
+      links.push(['hub', 'pd']);
+    }
+
+    var byId = {};
+    nodes.forEach(function (n) { byId[n.id] = n; neighbors[n.id] = {}; neighbors[n.id][n.id] = 1; });
+    links = links.map(function (l) {
+      neighbors[l[0]][l[1]] = 1; neighbors[l[1]][l[0]] = 1;
+      return { a: byId[l[0]], b: byId[l[1]] };
+    });
+    build.byId = byId;
+    return true;
+  }
+
+  function label(n) {
+    var D = DATA;
+    var s = '';
+    if (n.kind === 'hub') s = t(D.mainEvent.title);
+    else if (n.kind === 'nar') s = t(D.daily[n.idx].title);
+    else if (n.kind === 'cat') {
+      for (var i = 0; i < D.daily.length; i++) {
+        if (D.daily[i].catClass === n.catClass) { s = t(D.daily[i].cat); break; }
+      }
+    } else if (n.kind === 'pd') {
+      var ms = D.mainEvent.milestones.filter(function (m) { return m.date === D.mainEvent.pollDate; })[0];
+      s = ms ? t(ms.label) : 'Polling day';
+    }
+    return s.length > 38 ? s.slice(0, 36).replace(/\s+\S*$/, '') + '…' : s;
+  }
+
+  /* ---------- physics ---------- */
+  function tick() {
+    var i, j, a, b, dx, dy, d2, d, f, fx, fy;
+    for (i = 0; i < nodes.length; i++) {
+      for (j = i + 1; j < nodes.length; j++) {
+        a = nodes[i]; b = nodes[j];
+        dx = b.x - a.x; dy = b.y - a.y;
+        d2 = dx * dx + dy * dy || 1; d = Math.sqrt(d2);
+        f = 6200 / d2; fx = dx / d * f; fy = dy / d * f;
+        a.vx -= fx; a.vy -= fy; b.vx += fx; b.vy += fy;
+      }
+    }
+    links.forEach(function (l) {
+      var rest = (l.a.kind === 'hub' || l.b.kind === 'hub') ? 150 : 100;
+      var ddx = l.b.x - l.a.x, ddy = l.b.y - l.a.y;
+      var dd = Math.sqrt(ddx * ddx + ddy * ddy) || 1;
+      var ff = (dd - rest) * 0.014;
+      var ffx = ddx / dd * ff, ffy = ddy / dd * ff;
+      l.a.vx += ffx; l.a.vy += ffy; l.b.vx -= ffx; l.b.vy -= ffy;
+    });
+    nodes.forEach(function (n) {
+      // elliptical centering — the canvas is wider than it is tall
+      n.vx += -n.x * 0.0014; n.vy += -n.y * 0.003;
+      if (n === dragNode) { n.vx = 0; n.vy = 0; return; }
+      n.vx *= 0.86; n.vy *= 0.86;
+      n.x += n.vx * alpha; n.y += n.vy * alpha;
+    });
+    if (alpha > 0.02 && !dragNode) alpha *= 0.995;
+  }
+
+  /* ---------- render ---------- */
+  function hexA(hex, aa) {
+    var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), bl = parseInt(hex.slice(5, 7), 16);
+    return 'rgba(' + r + ',' + g + ',' + bl + ',' + aa + ')';
+  }
+  function draw() {
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.translate(view.x, view.y);
+    ctx.scale(view.k, view.k);
+
+    var focus = hoverNode || selNode;
+    var active = focus ? neighbors[focus.id] : null;
+
+    links.forEach(function (l) {
+      var on = active && (l.a === focus || l.b === focus);
+      ctx.beginPath();
+      ctx.moveTo(l.a.x, l.a.y); ctx.lineTo(l.b.x, l.b.y);
+      ctx.strokeStyle = on ? hexA(focus.color === HUB_COLOR ? '#f5b13d' : focus.color, 0.5)
+        : active ? 'rgba(255,255,255,0.035)' : 'rgba(255,255,255,0.09)';
+      ctx.lineWidth = (on ? 1.6 : 1) / view.k;
+      ctx.stroke();
+    });
+
+    nodes.forEach(function (n) {
+      var dim = active && !active[n.id];
+      var isFocus = focus === n;
+      if (isFocus) {
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 7, 0, Math.PI * 2);
+        ctx.fillStyle = hexA(n.color, 0.12); ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      if (n.hollow) {
+        ctx.fillStyle = BG; ctx.fill();
+        ctx.strokeStyle = dim ? 'rgba(120,126,136,0.3)' : n.color;
+        ctx.lineWidth = 1.6 / view.k; ctx.stroke();
+      } else {
+        ctx.fillStyle = dim ? 'rgba(120,126,136,0.28)' : n.color; ctx.fill();
+      }
+      var fs = (n.kind === 'hub' ? 12 : 10.5) / Math.max(view.k, 0.8);
+      ctx.font = (n.kind === 'hub' ? '600 ' : '') + fs + 'px Inter, sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      var ly = n.y + n.r + 7;
+      ctx.lineWidth = 3.5 / view.k; ctx.strokeStyle = 'rgba(10,10,15,0.85)';
+      ctx.strokeText(label(n), n.x, ly);
+      ctx.fillStyle = dim ? 'rgba(120,126,136,0.3)'
+        : isFocus ? 'rgba(241,241,245,0.96)' : 'rgba(164,164,181,0.85)';
+      ctx.fillText(label(n), n.x, ly);
+    });
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+
+  function loop() {
+    if (!rafOn) return;
+    if (wrap.offsetParent !== null && !wrap.hidden) { tick(); draw(); }
+    requestAnimationFrame(loop);
+  }
+
+  /* ---------- sizing / view ---------- */
+  function resize() {
+    DPR = window.devicePixelRatio || 1;
+    W = wrap.clientWidth; H = wrap.clientHeight;
+    canvas.width = W * DPR; canvas.height = H * DPR;
+    view.x = W / 2; view.y = H / 2;
+  }
+
+  /* ---------- interaction ---------- */
+  function toWorld(px, py) { return { x: (px - view.x) / view.k, y: (py - view.y) / view.k }; }
+  function pick(px, py) {
+    var p = toWorld(px, py), best = null, bd = 1e9;
+    nodes.forEach(function (n) {
+      var dx = n.x - p.x, dy = n.y - p.y, d = Math.sqrt(dx * dx + dy * dy);
+      if (d < n.r + 9 / view.k && d < bd) { best = n; bd = d; }
+    });
+    return best;
+  }
+
+  var panning = false, lastX = 0, lastY = 0, moved = false;
+
+  function bindEvents() {
+    canvas.addEventListener('pointerdown', function (e) {
+      canvas.setPointerCapture(e.pointerId);
+      var rect = canvas.getBoundingClientRect();
+      var px = e.clientX - rect.left, py = e.clientY - rect.top;
+      var n = pick(px, py);
+      moved = false; lastX = px; lastY = py;
+      if (n) { dragNode = n; alpha = Math.max(alpha, 0.5); }
+      else { panning = true; canvas.classList.add('dragging'); }
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var px = e.clientX - rect.left, py = e.clientY - rect.top;
+      if (dragNode) {
+        var p = toWorld(px, py);
+        dragNode.x = p.x; dragNode.y = p.y;
+        if (Math.abs(px - lastX) + Math.abs(py - lastY) > 3) moved = true;
+        alpha = Math.max(alpha, 0.35);
+      } else if (panning) {
+        view.x += px - lastX; view.y += py - lastY;
+        lastX = px; lastY = py; moved = true;
+      } else {
+        hoverNode = pick(px, py);
+        canvas.classList.toggle('hovering', !!hoverNode);
+      }
+    });
+    canvas.addEventListener('pointerup', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      if (dragNode && !moved) select(dragNode);
+      else if (panning && !moved && !pick(e.clientX - rect.left, e.clientY - rect.top)) deselect();
+      dragNode = null; panning = false;
+      canvas.classList.remove('dragging');
+    });
+    canvas.addEventListener('pointerleave', function () { hoverNode = null; });
+    // ctrl/cmd + wheel zooms; a plain wheel keeps scrolling the page
+    canvas.addEventListener('wheel', function (e) {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      var rect = canvas.getBoundingClientRect();
+      var px = e.clientX - rect.left, py = e.clientY - rect.top;
+      var f = Math.exp(-e.deltaY * 0.0012);
+      var nk = Math.min(3, Math.max(0.4, view.k * f));
+      var p = toWorld(px, py);
+      view.x = px - p.x * nk; view.y = py - p.y * nk; view.k = nk;
+    }, { passive: false });
+
+    window.addEventListener('resize', function () { if (built) resize(); });
+    document.getElementById('npGraphClose').addEventListener('click', deselect);
+    panelBody.addEventListener('click', function (e) {
+      var go = e.target.closest ? e.target.closest('[data-go]') : null;
+      if (go && build.byId[go.getAttribute('data-go')]) select(build.byId[go.getAttribute('data-go')]);
+    });
+  }
+
+  /* ---------- note panel ---------- */
+  function chipMom(n) { return '<span class="np-mom ' + n.momClass + '">' + esc(t(n.mom)) + '</span>'; }
+  function chipCat(n) { return '<span class="np-tag ' + n.catClass + '">' + esc(t(n.cat)) + '</span>'; }
+  function framesHtml(n) {
+    return '<div class="np-frames">' +
+      '<div class="np-frame"><span class="np-frame-lab">' + esc(t(STR.frame)) + '</span>' + esc(t(n.frames.a)) + '</div>' +
+      '<div class="np-frame"><span class="np-frame-lab">' + esc(t(STR.counter)) + '</span>' + esc(t(n.frames.b)) + '</div>' +
+      '</div>';
+  }
+  function narLink(i) {
+    var D = DATA;
+    return '<button class="np-g-link" data-go="n' + i + '"><span class="rk">' + (i + 1) + '</span>' +
+      esc(t(D.daily[i].title)) + '</button>';
+  }
+  function countdown() {
+    var D = DATA, bm = isBm(), d = daysUntil(D.mainEvent.pollDate);
+    return d > 1 ? (bm ? d + ' hari lagi mengundi' : d + ' days to polling')
+      : d === 1 ? (bm ? 'Mengundi esok' : 'Polling tomorrow')
+        : d === 0 ? (bm ? 'Hari mengundi' : 'Polling day')
+          : (bm ? 'Mengundi selesai' : 'Polling closed');
+  }
+
+  function panelHtml(n) {
+    var D = DATA;
+    if (n.kind === 'nar') {
+      var d = D.daily[n.idx];
+      return '<div class="np-g-kind"><i style="background:' + n.color + '"></i>' + esc(t(STR.rank)) + (n.idx + 1) + '</div>' +
+        '<h4>' + esc(t(d.title)) + '</h4>' +
+        '<div class="np-g-chips">' + chipCat(d) + chipMom(d) + '</div>' +
+        '<div class="np-g-sub">' + esc(t(d.sub)) + '</div>' +
+        '<p class="np-g-why">' + esc(t(d.why)) + '</p>' +
+        framesHtml(d);
+    }
+    if (n.kind === 'cat') {
+      var items = '';
+      D.daily.forEach(function (d2, i) { if (d2.catClass === n.catClass) items += narLink(i); });
+      return '<div class="np-g-kind"><i style="background:' + n.color + '"></i>' + esc(t(STR.theme)) + '</div>' +
+        '<h4>' + esc(label(n)) + '</h4>' +
+        '<div class="np-g-lab">' + esc(t(STR.onTheme)) + '</div>' + items;
+    }
+    if (n.kind === 'pd') {
+      var ms = D.mainEvent.milestones.filter(function (m) { return m.date === D.mainEvent.pollDate; })[0];
+      return '<div class="np-g-kind"><i style="background:' + n.color + '"></i>' + esc(t(STR.milestone)) + '</div>' +
+        '<h4>' + esc(ms ? t(ms.label) : 'Polling day') + ' · ' + esc(D.mainEvent.pollDate) + '</h4>' +
+        '<span class="np-g-count">' + esc(countdown()) + '</span>' +
+        '<p class="np-g-why">' + esc(t(STR.bends)) + '</p>';
+    }
+    var list = '';
+    D.daily.forEach(function (_, i) { list += narLink(i); });
+    return '<div class="np-g-kind"><i style="background:' + n.color + '"></i>' + esc(t(D.mainEvent.kicker)) + '</div>' +
+      '<h4>' + esc(t(D.mainEvent.title)) + '</h4>' +
+      '<span class="np-g-count">' + esc(countdown()) + '</span>' +
+      '<p class="np-g-why">' + esc(t(D.mainEvent.deck)) + '</p>' +
+      '<div class="np-g-lab">' + esc(t(STR.today)) + '</div>' + list;
+  }
+
+  function select(n) {
+    selNode = n;
+    panelBody.innerHTML = panelHtml(n);
+    panelBody.scrollTop = 0;
+    panel.hidden = false;
+  }
+  function deselect() { selNode = null; panel.hidden = true; }
+
+  /* ---------- list/graph toggle ---------- */
+  function init() {
+    wrap = document.getElementById('npGraphWrap');
+    canvas = document.getElementById('npGraphCanvas');
+    panel = document.getElementById('npGraphPanel');
+    panelBody = document.getElementById('npGraphBody');
+    if (!wrap || !canvas || !DATA) return;
+    ctx = canvas.getContext('2d');
+
+    var btnList = document.getElementById('npViewList');
+    var btnGraph = document.getElementById('npViewGraph');
+    var daily = document.getElementById('npDaily');
+    if (!btnList || !btnGraph || !daily) return;
+
+    function setView(graph) {
+      btnList.classList.toggle('active', !graph);
+      btnGraph.classList.toggle('active', graph);
+      btnList.setAttribute('aria-pressed', String(!graph));
+      btnGraph.setAttribute('aria-pressed', String(graph));
+      daily.hidden = graph;
+      wrap.hidden = !graph;
+      if (graph) {
+        if (!built) { built = build(); resize(); bindEvents(); }
+        else resize();
+        alpha = Math.max(alpha, 0.6);
+        if (!rafOn) { rafOn = true; loop(); }
+      }
+    }
+    btnList.addEventListener('click', function () { setView(false); });
+    btnGraph.addEventListener('click', function () { setView(true); });
+
+    // language flip → refresh open panel (canvas labels re-read live)
+    new MutationObserver(function (muts) {
+      for (var i = 0; i < muts.length; i++) {
+        if (muts[i].attributeName === 'data-lang' && selNode) { select(selNode); return; }
+      }
+    }).observe(htmlEl, { attributes: true, attributeFilter: ['data-lang'] });
+
+    // this standalone page opens straight in Graph view
+    setView(true);
+  }
+
+  function boot() {
+    loadData().then(function (d) { DATA = d; init(); })
+      .catch(function (e) { if (window.console) console.warn('npam-graph: ' + e.message); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>
