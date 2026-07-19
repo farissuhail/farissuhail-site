@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NPAM — Non-Partisan Analitika Malaya. A citizen sentiment dashboard: share your view on the issues that matter and watch the national mood build up live. Independent, non-partisan, anonymous." />
+  <title>NPAM — Non-Partisan Analitika Malaya · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#08080c" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail" />
+  <meta property="og:title" content="NPAM — Non-Partisan Analitika Malaya" />
+  <meta property="og:description" content="A non-partisan citizen sentiment dashboard. Cast your view on the issues that matter — watch the national mood build up live." />
+  <meta property="og:url" content="https://farissuhail.com/npam.html" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NPAM — Non-Partisan Analitika Malaya" />
+  <meta name="twitter:description" content="A non-partisan citizen sentiment dashboard — cast your view, watch the national mood build up live." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="npam.css" />
+  <link rel="stylesheet" href="npam-narratives.css" />
+  <link rel="stylesheet" href="npam-graph.css" />
+</head>
+<body class="npam">
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <nav class="nav-links">
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="ring-structure.html" data-en="Ring Structure" data-bm="Struktur Ring">Ring Structure</a>
+    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+    <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    <a href="npam.html" class="nav-reflections" data-en="Political View ✦" data-bm="Pandangan Politik ✦">Political View ✦</a>
+  </nav>
+  <div class="nav-cta">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="np-hero">
+    <div class="np-kicker">
+      <span class="np-live"></span>
+      <span data-en="Live narrative analytics" data-bm="Analitik naratif · langsung">Live narrative analytics</span>
+    </div>
+    <h1 class="np-wordmark"><span class="g">Non-Partisan</span> Analitika Malaya</h1>
+    <p class="np-full">N · P · A · M</p>
+    <p class="np-deck"
+       data-en="An independent, non-partisan read on Malaysia’s political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous."
+       data-bm="Bacaan bebas dan tidak berpihak tentang perbualan politik Malaysia — naratif yang memacu acara utama, setiap satu dipaparkan dengan <em>bingkai bersaing di sekelilingnya</em>. Kemudian tambah pandangan anda: setiap jawapan tanpa nama.">
+      An independent, non-partisan read on Malaysia's political conversation — the narratives driving the main event, each shown with <em>the competing frames around it</em>. Then add your own view: every answer is anonymous.
+    </p>
+    <span class="np-pledge"
+          data-en="Not affiliated with any party, coalition, or government body. <b>No agenda — just the aggregate.</b>"
+          data-bm="Tiada kaitan dengan mana-mana parti, gabungan atau badan kerajaan. <b>Tiada agenda — hanya jumlah keseluruhan.</b>">
+      Not affiliated with any party, coalition, or government body. <b>No agenda — just the aggregate.</b>
+    </span>
+  </section>
+
+  <!-- ===== PRO SHOWCASE BANNER ===== -->
+  <a class="np-pro" href="analitika.html">
+    <span class="np-pro-badge"><i class="np-pro-live" aria-hidden="true"></i>LIVE COCKPIT</span>
+    <span class="np-pro-body">
+      <b data-en="Analitika Malaya — political intelligence" data-bm="Analitika Malaya — perisikan politik">Analitika Malaya — political intelligence</b>
+      <span data-en="A live narrative, sentiment &amp; manipulation cockpit for campaigns, media &amp; researchers — refreshed 3× daily from cited public sources. Open the live cockpit →"
+            data-bm="Kokpit naratif, sentimen &amp; manipulasi langsung untuk kempen, media &amp; penyelidik — dikemas kini 3× sehari dari sumber awam bersumber. Buka kokpit langsung →">
+        A live narrative, sentiment &amp; manipulation cockpit for campaigns, media &amp; researchers — refreshed 3× daily from cited public sources. Open the live cockpit →
+      </span>
+    </span>
+    <span class="np-pro-go">→</span>
+  </a>
+
+  <!-- ===== TABS ===== -->
+  <nav class="np-tabs">
+    <button class="np-tab active" data-tab="pulse" data-en="Narratives" data-bm="Naratif">Narratives</button>
+    <button class="np-tab" data-tab="vote" data-en="Cast your vote" data-bm="Beri undi">Cast your vote</button>
+    <button class="np-tab" data-tab="results" data-en="Results" data-bm="Keputusan">Results</button>
+    <button class="np-tab" data-tab="method" data-en="How this works" data-bm="Cara ia berfungsi">How this works</button>
+  </nav>
+
+  <!-- ===== NARRATIVE ANALYTICS ===== -->
+  <section id="panel-pulse" class="np-panel active">
+    <div class="np-panel-head">
+      <h2 data-en="The narrative board, right now" data-bm="Papan naratif, sekarang">The narrative board, right now</h2>
+      <p data-en="What Malaysia is actually arguing about — the main political event, today’s dominant narratives, and the week’s arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don’t pick a side."
+         data-bm="Apa yang sebenarnya diperdebatkan Malaysia — acara politik utama, naratif dominan hari ini, dan arka minggu ini. Setiap naratif dipaparkan dengan dua bingkai bersaing yang dimainkan; kami memetakan hujah, bukan memilih pihak.">
+        What Malaysia is actually arguing about — the main political event, today's dominant narratives, and the week's arc. Every narrative is shown with the two competing frames being pushed around it; we map the argument, we don't pick a side.
+      </p>
+      <div class="np-nar-stamp" id="npNarStamp"></div>
+    </div>
+
+    <div id="npEvent"></div>
+
+    <div class="np-sec-head">
+      <h3 data-en="Today’s narratives" data-bm="Naratif hari ini">Today's narratives</h3>
+      <span data-en="ranked by coverage density × recency" data-bm="disusun ikut ketumpatan liputan × kebaruan">ranked by coverage density × recency</span>
+      <div class="np-view-toggle" role="group" aria-label="View mode">
+        <button id="npViewList" class="active" aria-pressed="true" data-en="List" data-bm="Senarai">List</button>
+        <button id="npViewGraph" aria-pressed="false" data-en="Graph" data-bm="Graf">Graph</button>
+      </div>
+    </div>
+    <div id="npDaily"></div>
+    <div id="npGraphWrap" class="np-graph-wrap" hidden>
+      <canvas id="npGraphCanvas" aria-label="Narrative graph — every storyline connected to the main event and its theme"></canvas>
+      <div class="np-g-hint"
+           data-en="click a node to read · drag to arrange · ctrl + scroll to zoom"
+           data-bm="klik nod untuk baca · seret untuk susun · ctrl + skrol untuk zum">
+        click a node to read · drag to arrange · ctrl + scroll to zoom
+      </div>
+      <aside class="np-g-panel" id="npGraphPanel" hidden>
+        <button class="np-g-close" id="npGraphClose" aria-label="Close">&#10005;</button>
+        <div class="np-g-body" id="npGraphBody"></div>
+      </aside>
+    </div>
+
+    <div class="np-sec-head">
+      <h3 data-en="This week’s arc" data-bm="Arka minggu ini">This week's arc</h3>
+      <span id="npWeekRange"></span>
+    </div>
+    <div id="npWeekly"></div>
+    <div class="np-bubbling" id="npBubbling"></div>
+
+    <p class="np-nar-note"
+       data-en="Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented."
+       data-bm="Pengenalpastian naratif daripada sumber awam bersumber — portal berita, portal rasmi dan siaran awam. Tiada angka volum, penglibatan atau sentimen di sini: tanpa data platform ia tidak boleh diukur, jadi tiada yang direka.">
+      Narrative identification from cited public sources — news portals, official portals and public posts. No volume, engagement or sentiment figures appear here: without platform data they cannot be measured, so none are invented.
+    </p>
+  </section>
+
+  <!-- ===== VOTE ===== -->
+  <section id="panel-vote" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="Cast your vote" data-bm="Beri undi anda">Cast your vote</h2>
+      <p data-en="Six quick questions. Tap an answer and its live tally appears instantly — no sign-up, one vote per question per device."
+         data-bm="Enam soalan pantas. Tuding satu jawapan dan kiraan langsungnya muncul serta-merta — tanpa pendaftaran, satu undi setiap soalan bagi setiap peranti.">
+        Six quick questions. Tap an answer and its live tally appears instantly — no sign-up, one vote per question per device.
+      </p>
+    </div>
+    <div id="npVote"></div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section id="panel-results" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="Full results" data-bm="Keputusan penuh">Full results</h2>
+      <p data-en="The complete breakdown across all questions — read-only. Prefer to weigh in first? Head to “Cast your vote.”"
+         data-bm="Pecahan lengkap merentas semua soalan — baca sahaja. Mahu beri pandangan dahulu? Pergi ke “Beri undi.”">
+        The complete breakdown across all questions — read-only. Prefer to weigh in first? Head to "Cast your vote."
+      </p>
+    </div>
+    <div id="npResults"></div>
+  </section>
+
+  <!-- ===== METHOD ===== -->
+  <section id="panel-method" class="np-panel">
+    <div class="np-panel-head">
+      <h2 data-en="How this works" data-bm="Cara ia berfungsi">How this works</h2>
+    </div>
+
+    <div class="np-pledge-box">
+      <div class="t" data-en="The non-partisan pledge" data-bm="Ikrar tidak berpihak">The non-partisan pledge</div>
+      <p data-en="NPAM belongs to no party, coalition, candidate, or government body. It sells nothing and endorses no one. Questions are written to measure how people feel about issues — never to push a side. If a question ever reads as slanted, tell us and it will be rewritten or removed."
+         data-bm="NPAM tidak dimiliki mana-mana parti, gabungan, calon atau badan kerajaan. Ia tidak menjual apa-apa dan tidak menyokong sesiapa. Soalan ditulis untuk mengukur perasaan rakyat tentang isu — bukan untuk memihak. Jika ada soalan yang berat sebelah, beritahu kami dan ia akan ditulis semula atau dibuang.">
+        NPAM belongs to no party, coalition, candidate, or government body. It sells nothing and endorses no one. Questions are written to measure how people feel about issues — never to push a side. If a question ever reads as slanted, tell us and it will be rewritten or removed.
+      </p>
+    </div>
+
+    <div class="np-prose">
+      <h3 data-en="How your vote is counted" data-bm="Cara undi anda dikira">How your vote is counted</h3>
+      <p data-en="When you tap an answer, an anonymous tally for that option is incremented and the new totals are read straight back — that is the whole mechanism. No account, no cookie tracking, no personal data. Your device simply remembers which options you picked so you are not asked twice."
+         data-bm="Apabila anda menuding satu jawapan, kiraan tanpa nama untuk pilihan itu ditambah dan jumlah baharu dibaca semula terus — itu sahaja mekanismenya. Tiada akaun, tiada penjejakan kuki, tiada data peribadi. Peranti anda hanya mengingati pilihan anda supaya anda tidak ditanya dua kali.">
+        When you tap an answer, an anonymous tally for that option is incremented and the new totals are read straight back — that is the whole mechanism. No account, no cookie tracking, no personal data. Your device simply remembers which options you picked so you are not asked twice.
+      </p>
+
+      <h3 data-en="What this is — and isn't" data-bm="Apa ini — dan apa bukan">What this is — and isn't</h3>
+      <ul>
+        <li data-en="It is an open, self-selected online snapshot — anyone with the link can answer." data-bm="Ia gambaran dalam talian terbuka dan dipilih sendiri — sesiapa yang ada pautan boleh menjawab.">It is an open, self-selected online snapshot — anyone with the link can answer.</li>
+        <li data-en="It is NOT a scientific or representative poll, and carries no margin of error." data-bm="Ia BUKAN tinjauan saintifik atau mewakili, dan tiada margin ralat.">It is NOT a scientific or representative poll, and carries no margin of error.</li>
+        <li data-en="Vote-once is enforced per device only, so it can be worked around — read the numbers as a mood, not a measurement." data-bm="Undi-sekali dikuatkuasakan setiap peranti sahaja, jadi ia boleh dielak — baca angka sebagai sentimen, bukan ukuran tepat.">Vote-once is enforced per device only, so it can be worked around — read the numbers as a mood, not a measurement.</li>
+        <li data-en="No answer is ever tied to who you are." data-bm="Tiada jawapan yang dikaitkan dengan identiti anda.">No answer is ever tied to who you are.</li>
+      </ul>
+    </div>
+
+    <div class="np-share">
+      <h3 data-en="In your own words" data-bm="Dalam kata-kata anda">In your own words</h3>
+      <p data-en="One change you'd most want to see in the country? Optional, anonymous, and sent straight to Faris."
+         data-bm="Satu perubahan yang paling anda mahu lihat di negara ini? Pilihan, tanpa nama, dihantar terus kepada Faris.">
+        One change you'd most want to see in the country? Optional, anonymous, and sent straight to Faris.
+      </p>
+      <textarea id="npOpinion" rows="3"
+        data-en-ph="The one thing I'd change is…" data-bm-ph="Satu perkara yang saya akan ubah ialah…"
+        placeholder="The one thing I'd change is…"></textarea>
+      <button id="npOpinionSend" data-en="Send anonymously" data-bm="Hantar tanpa nama">Send anonymously</button>
+      <div class="ok" id="npOpinionOk" data-en="Sent — thank you for adding your voice." data-bm="Dihantar — terima kasih kerana menyuarakan pandangan.">Sent — thank you for adding your voice.</div>
+    </div>
+
+    <p class="np-note"
+       data-en="NPAM is an independent civic project by Faris Suhail. Tallies are stored anonymously via a public counter service; if that service is unreachable, live numbers may briefly hide. Nothing here should be read as an election forecast."
+       data-bm="NPAM ialah projek sivik bebas oleh Faris Suhail. Kiraan disimpan tanpa nama melalui perkhidmatan pengira awam; jika perkhidmatan itu tidak dapat dicapai, angka langsung mungkin tersembunyi sebentar. Tiada apa di sini yang patut dibaca sebagai ramalan pilihan raya.">
+      NPAM is an independent civic project by Faris Suhail. Tallies are stored anonymously via a public counter service; if that service is unreachable, live numbers may briefly hide. Nothing here should be read as an election forecast.
+    </p>
+  </section>
+
+</main>
+
+<footer class="np-footer">
+  <p data-en="NPAM · Non-Partisan Analitika Malaya — a civic dashboard by Faris Suhail"
+     data-bm="NPAM · Non-Partisan Analitika Malaya — papan pemuka sivik oleh Faris Suhail">
+    NPAM · Non-Partisan Analitika Malaya — a civic dashboard by Faris Suhail
+  </p>
+  <p data-en="Anonymous · non-partisan · self-selected online snapshot, not a scientific poll."
+     data-bm="Tanpa nama · tidak berpihak · gambaran dalam talian dipilih sendiri, bukan tinjauan saintifik.">
+    Anonymous · non-partisan · self-selected online snapshot, not a scientific poll.
+  </p>
+  <p><a href="index.html">← FARISSUHAIL</a> · © <span id="year"></span></p>
+</footer>
+
+<script src="npam.js"></script>
+<script src="npam-narratives.js"></script>
+<script src="npam-graph.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>

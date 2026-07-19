@@ -1,0 +1,118 @@
+/* ===== NPAM — Narrative Graph view =============================
+   Layered on npam.css + npam-narratives.css. An Obsidian-style
+   force-directed view of the same narrative data: the main event
+   at the centre, today's narratives around it, themes as hollow
+   satellites. Palette discipline: gold + teal + orange + slate
+   only — no party red/blue. The two competing frames reuse
+   .np-frame and stay styled IDENTICALLY (non-partisan contract). */
+
+/* ---- list/graph toggle ---- */
+.np-view-toggle { margin-left: auto; display: flex; gap: 5px; }
+.np-view-toggle button {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); padding: 6px 13px; border-radius: 999px;
+  border: 1px solid var(--np-line); background: rgba(255,255,255,0.02);
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.np-view-toggle button:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.np-view-toggle button.active {
+  color: #08080c; font-weight: 700; border-color: transparent;
+  background: linear-gradient(135deg, var(--np-gold), var(--np-teal));
+}
+
+/* ---- graph container ---- */
+.np-graph-wrap {
+  position: relative; height: clamp(460px, 62vh, 640px); overflow: hidden;
+  border: 1px solid var(--np-line); border-radius: var(--radius);
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 0%, rgba(245,177,61,0.05), transparent 60%),
+    radial-gradient(ellipse 60% 55% at 90% 100%, rgba(45,212,191,0.045), transparent 60%),
+    rgba(255,255,255,0.015);
+}
+.np-graph-wrap canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  cursor: grab; touch-action: none; display: block;
+}
+.np-graph-wrap canvas.dragging { cursor: grabbing; }
+.np-graph-wrap canvas.hovering { cursor: pointer; }
+
+.np-g-hint {
+  position: absolute; left: 16px; bottom: 13px; pointer-events: none;
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-mute);
+  opacity: 0.85;
+}
+
+/* ---- note panel ---- */
+.np-g-panel {
+  position: absolute; top: 12px; right: 12px; bottom: 12px;
+  width: 342px; max-width: calc(100% - 24px); z-index: 4;
+  background: rgba(10,10,15,0.9);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--np-line); border-radius: 14px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.np-g-panel[hidden] { display: none; }
+.np-g-close {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 26px; height: 26px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--np-line); background: rgba(255,255,255,0.03);
+  color: var(--text-mute); font-size: 12px; line-height: 1; transition: all 0.2s;
+}
+.np-g-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.np-g-body { padding: 16px 18px 16px; overflow-y: auto; flex: 1; }
+.np-g-body::-webkit-scrollbar { width: 7px; }
+.np-g-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+
+.np-g-kind {
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute);
+  display: flex; align-items: center; gap: 8px; margin: 2px 0 9px; padding-right: 30px;
+}
+.np-g-kind i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.np-g-body h4 {
+  margin: 0 0 10px; font-size: 16.5px; font-weight: 800; letter-spacing: -0.01em;
+  color: #fff; line-height: 1.3; padding-right: 20px;
+}
+.np-g-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-bottom: 10px; }
+.np-g-sub { font-size: 11.5px; color: var(--text-mute); margin-bottom: 10px; }
+.np-g-why { margin: 0 0 4px; font-size: 13px; line-height: 1.6; color: var(--text-dim); }
+.np-g-count {
+  display: inline-block; margin-bottom: 12px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #04120c;
+  background: linear-gradient(135deg, #f5b13d, #2dd4bf); border-radius: 999px; padding: 6px 12px;
+}
+
+/* frames stack vertically inside the narrow panel — styling itself
+   comes from .np-frames/.np-frame (identical both sides, by design) */
+.np-g-panel .np-frames { grid-template-columns: 1fr; }
+
+.np-g-lab {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute);
+  margin: 14px 0 4px; padding-top: 12px; border-top: 1px solid var(--np-line);
+}
+.np-g-link {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-bottom: 1px dashed var(--np-line);
+  padding: 8px 2px; font-size: 12.5px; line-height: 1.45; color: var(--np-teal);
+  font-family: inherit; transition: color 0.2s;
+}
+.np-g-link:last-child { border-bottom: 0; }
+.np-g-link:hover { color: #fff; }
+.np-g-link .rk {
+  font-family: 'JetBrains Mono', monospace; color: var(--text-mute);
+  font-size: 11px; margin-right: 8px;
+}
+
+@media (max-width: 720px) {
+  .np-view-toggle { margin-left: 0; }
+  .np-graph-wrap { height: 500px; }
+  .np-g-panel {
+    top: auto; left: 10px; right: 10px; bottom: 10px;
+    width: auto; max-width: none; max-height: 60%;
+  }
+  .np-g-hint { display: none; }
+}
