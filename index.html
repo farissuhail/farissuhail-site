@@ -1,209 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Qur'an reflections in English & Bahasa Malaysia, ring composition, a data observatory of the text, stories and book summaries — by Faris Suhail, Kuala Lumpur." />
-  <title>Faris Suhail · The Mdrn Urban — Qur'an Reflections, Stories & Data</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="theme-color" content="#000000" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faris Suhail · Travel Footprint</title>
+  <meta name="description" content="Every place Faris Suhail has set foot, traced back to Yan and Alor Setar in Kedah: an interactive globe of 54 cities across 20 countries and 3 continents.">
+  <link rel="canonical" href="https://farissuhail.com/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#05070d">
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
-  <meta property="og:title" content="Faris Suhail · The Mdrn Urban" />
-  <meta property="og:description" content="Qur'an reflections, stories and data — everyday life, read through the light of revelation." />
-  <meta property="og:url" content="https://farissuhail.com/" />
-  <meta property="og:image" content="https://farissuhail.com/assets/og-home.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reflect · Faris Suhail" />
-  <meta name="twitter:description" content="Reflections, data, and books — a glass-clear entrance to the site." />
-  <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban">
+  <meta property="og:title" content="Faris Suhail · Travel Footprint">
+  <meta property="og:description" content="Every place I have set foot, traced back to a small town on the Kedah coast: 54 cities, 20 countries, 3 continents on one globe.">
+  <meta property="og:url" content="https://farissuhail.com/">
+  <meta property="og:image" content="https://farissuhail.com/assets/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Faris Suhail · Travel Footprint">
+  <meta name="twitter:description" content="An interactive globe of every city travelled, traced back to Yan and Alor Setar in Kedah.">
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    html, body { overflow-x: hidden; background: #000; }
-    :root { --mute: #6e7280; --border: rgba(255,255,255,0.1); --accent-2: #5bff9d; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; }
-    .serif { font-family: 'Instrument Serif', 'Cormorant Garamond', serif; }
-    .serif-i { font-family: 'Instrument Serif', serif; font-style: italic; color: rgba(255,255,255,0.55); }
-    img, video { max-width: 100%; display: block; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    /* ===== liquid glass (per spec) ===== */
-    .liquid-glass { background: rgba(255, 255, 255, 0.01); background-blend-mode: luminosity;
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
-    .liquid-glass::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.4px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
-    .liquid-glass:hover { background: rgba(255, 255, 255, 0.04); }
-    .glass-btn { transition: background 0.25s, transform 0.15s; }
-    .glass-btn:active { transform: scale(0.97); }
-
-    .icon { width: 20px; height: 20px; display: block; }
-    .icon-24 { width: 24px; height: 24px; display: block; }
-
-    /* ===== reveal-on-scroll (framer-motion equivalent) ===== */
-    [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    [data-reveal].in { opacity: 1; transform: translateY(0); }
-    [data-reveal="left"] { transform: translateX(-40px); }
-    [data-reveal="left"].in { transform: translateX(0); }
-    [data-reveal="right"] { transform: translateX(40px); }
-    [data-reveal="right"].in { transform: translateX(0); }
-    [data-reveal="up-sm"] { transform: translateY(20px); }
-    @media (prefers-reduced-motion: reduce) { [data-reveal] { transition: opacity 0.3s ease; transform: none !important; } }
-
-    /* ===== HERO ===== */
-    #ghero { position: relative; min-height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-    #ghero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: bottom; z-index: 0; opacity: 0; }
-    #ghero .vignette { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.35) 100%); }
-
-    .gnav-wrap { position: relative; z-index: 20; padding: 24px 20px 0; }
-    .gnav { max-width: 64rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; border-radius: 999px; padding: 12px 22px; }
-    .gnav-left { display: flex; align-items: center; gap: 10px; }
-    .gnav-left span { color: #fff; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
-    .gnav-links { display: flex; align-items: center; gap: 30px; margin-left: 30px; }
-    .gnav-links a { color: rgba(255,255,255,0.8); font-size: 13.5px; font-weight: 500; transition: color 0.25s; }
-    .gnav-links a:hover { color: #fff; }
-    .gnav-right { display: flex; align-items: center; gap: 12px; }
-    .gnav-sub { border-radius: 999px; padding: 9px 22px; color: #fff; font-size: 13.5px; font-weight: 500; cursor: pointer; }
-    .gdesign-toggle, .gmm-toggle { display: inline-flex; border-radius: 999px; padding: 3px; }
-    .gdesign-toggle a, #gmobile-menu .gmm-toggle a { font-size: 12.5px; font-weight: 500; padding: 7px 15px; border-radius: 999px;
-      color: rgba(255,255,255,0.55); transition: color 0.25s, background 0.25s; letter-spacing: 0; }
-    .gdesign-toggle a:hover:not(.on), #gmobile-menu .gmm-toggle a:hover:not(.on) { color: #fff; }
-    .gdesign-toggle a.on, #gmobile-menu .gmm-toggle a.on { color: #000; background: #fff; font-weight: 700; }
-    .gmenu-btn { display: none; background: none; border: 0; color: #fff; cursor: pointer; padding: 6px; }
-    @media (max-width: 767px) {
-      .gnav-links { display: none; }
-      .gnav-right .gdesign-toggle { display: none; }
-      .gmenu-btn { display: block; }
-      .gnav { padding: 10px 16px; }
-    }
-    #gmobile-menu { position: fixed; top: 78px; left: 16px; right: 16px; z-index: 50; border-radius: 16px; padding: 30px 0;
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
-      background: rgba(8,8,8,0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      opacity: 0; transform: translateY(-10px); pointer-events: none; transition: opacity 0.3s, transform 0.3s; }
-    #gmobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #gmobile-menu a { color: rgba(255,255,255,0.9); font-size: 14px; letter-spacing: 0.04em; }
-    @media (min-width: 768px) { #gmobile-menu { display: none; } }
-
-    .ghero-content { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px 90px; }
-    .ghero-content h1 { font-size: clamp(46px, 11vw, 128px); font-weight: 400; letter-spacing: -0.01em; line-height: 1.02; color: #fff; margin-bottom: 30px; }
-    .ghero-content h1 em { font-style: italic; }
-    .gemail-form { max-width: 34rem; width: 100%; margin: 0 auto 18px; border-radius: 999px; padding: 8px 8px 8px 22px;
-      display: flex; align-items: center; gap: 10px; }
-    .gemail-form input { flex: 1; background: transparent; border: 0; outline: none; color: #fff; font-size: 14.5px; font-family: inherit; }
-    .gemail-form input::placeholder { color: rgba(255,255,255,0.4); }
-    .gemail-btn { background: #fff; color: #000; border: 0; border-radius: 999px; width: 42px; height: 42px; flex-shrink: 0;
-      display: grid; place-items: center; cursor: pointer; transition: transform 0.15s, background 0.2s; }
-    .gemail-btn:hover { background: #f0f0f0; }
-    .gemail-btn:active { transform: scale(0.94); }
-    .gemail-status { min-height: 18px; font-size: 12.5px; color: var(--accent-2); margin-bottom: 6px; }
-    .ghero-content .sub { color: #fff; font-size: 14px; line-height: 1.65; padding: 0 16px; max-width: 30rem; margin-bottom: 32px; opacity: 0.85; }
-    .gmanifesto { border-radius: 999px; padding: 13px 32px; color: #fff; font-size: 13.5px; font-weight: 500; cursor: pointer; }
-
-    .gsocial-row { position: relative; z-index: 10; display: flex; justify-content: center; gap: 14px; padding-bottom: 44px; }
-    .gsocial { border-radius: 999px; padding: 15px; color: rgba(255,255,255,0.8); transition: color 0.2s; cursor: pointer; }
-    .gsocial:hover { color: #fff; }
-
-    /* ===== ABOUT ===== */
-    #about { background: #000; padding: 110px 24px 40px; position: relative; overflow: hidden; }
-    #about::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top, rgba(255,255,255,0.03) 0%, transparent 70%); pointer-events: none; }
-    .gwrap { max-width: 72rem; margin: 0 auto; position: relative; }
-    .glabel { color: rgba(255,255,255,0.4); font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px; }
-    #about h2 { font-size: clamp(34px, 6vw, 68px); line-height: 1.12; letter-spacing: -0.01em; color: #fff; }
-    #about h2 br.mob-hide { display: none; }
-    @media (min-width: 768px) { #about h2 br.mob-hide { display: block; } }
-
-    /* ===== FEATURED VIDEO ===== */
-    #featured { background: #000; padding: 24px 24px 110px; overflow: hidden; }
-    .gfeature-box { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 16/9; max-width: 72rem; margin: 0 auto; }
-    .gfeature-box video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .gfeature-box .gfeature-fade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent 55%); pointer-events: none; }
-    .gfeature-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
-    @media (min-width: 768px) { .gfeature-overlay { padding: 40px; flex-direction: row; align-items: flex-end; justify-content: space-between; } }
-    .gfeature-card { border-radius: 18px; padding: 24px; max-width: 26rem; }
-    @media (min-width: 768px) { .gfeature-card { padding: 30px; } }
-    .gfeature-card .tag { color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 10px; }
-    .gfeature-card p { color: #fff; font-size: 14.5px; line-height: 1.6; }
-    .gexplore { border-radius: 999px; padding: 13px 32px; color: #fff; font-size: 13.5px; font-weight: 500; cursor: pointer; flex-shrink: 0; }
-
-    /* ===== PHILOSOPHY ===== */
-    #philosophy { background: #000; padding: 100px 24px; overflow: hidden; }
-    #philosophy h2 { font-size: clamp(38px, 8vw, 92px); letter-spacing: -0.01em; color: #fff; margin-bottom: 60px; }
-    @media (min-width: 768px) { #philosophy h2 { margin-bottom: 90px; } }
-    .gphi-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
-    @media (min-width: 768px) { .gphi-grid { grid-template-columns: 1fr 1fr; gap: 44px; } }
-    .gphi-visual { border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; background: #0a0a0a; position: relative; }
-    .gphi-visual video, .gphi-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
-    .gphi-visual:hover video, .gphi-visual:hover img { transform: scale(1.06); }
-    .gphi-text .block { padding: 4px 0; }
-    .gphi-text .glabel { margin-bottom: 12px; }
-    .gphi-text p { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.75; }
-    @media (min-width: 768px) { .gphi-text p { font-size: 18px; } }
-    .gphi-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 26px 0; }
-    .gphi-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-    .gphi-btn { border-radius: 999px; padding: 12px 26px; color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
-
-    /* ===== SERVICES ===== */
-    #services { background: #000; padding: 100px 24px; position: relative; overflow: hidden; }
-    #services::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 60%); pointer-events: none; }
-    .gsrv-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; }
-    .gsrv-head h2 { font-size: clamp(26px, 5vw, 46px); letter-spacing: -0.01em; color: #fff; }
-    .gsrv-head .glabel { margin: 0; display: none; }
-    @media (min-width: 768px) { .gsrv-head .glabel { display: block; } }
-    .gsrv-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
-    @media (min-width: 768px) { .gsrv-grid { grid-template-columns: 1fr 1fr; gap: 30px; } }
-    .gcard { border-radius: 24px; overflow: hidden; }
-    .gcard-media { aspect-ratio: 16/9; overflow: hidden; position: relative; }
-    .gcard-media video, .gcard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-    .gcard:hover .gcard-media video, .gcard:hover .gcard-media img { transform: scale(1.06); }
-    .gcard-media .fade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); }
-    .gcard-body { padding: 24px; }
-    @media (min-width: 768px) { .gcard-body { padding: 30px; } }
-    .gcard-body .toprow { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-    .gcard-body .tag { color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
-    .gcard-arrow { border-radius: 999px; padding: 9px; color: #fff; }
-    .gcard-body h3 { font-size: 22px; letter-spacing: -0.01em; color: #fff; margin-bottom: 10px; }
-    @media (min-width: 768px) { .gcard-body h3 { font-size: 26px; } }
-    .gcard-body p { color: rgba(255,255,255,0.5); font-size: 13.5px; line-height: 1.65; }
-
-    /* ===== sound toggle (bottom-left, above the visits pill) ===== */
-    #soundBtn { position: fixed; left: 20px; bottom: 68px; z-index: 9000; width: 44px; height: 44px; border-radius: 50%;
-      display: grid; place-items: center; cursor: pointer; color: rgba(255,255,255,0.9); border: 0; background: none; }
-    #soundBtn svg { width: 19px; height: 19px; display: block; }
-    #soundBtn .eq { display: none; align-items: flex-end; gap: 3px; height: 16px; }
-    #soundBtn .eq i { width: 3px; background: #fff; border-radius: 2px; height: 6px;
-      box-shadow: 0 0 8px rgba(255,255,255,0.7); animation: eqb 1.1s ease-in-out infinite; }
-    #soundBtn .eq i:nth-child(2) { animation-delay: 0.2s; height: 12px; }
-    #soundBtn .eq i:nth-child(3) { animation-delay: 0.45s; height: 8px; }
-    @keyframes eqb { 0%,100% { transform: scaleY(0.5); } 50% { transform: scaleY(1.5); } }
-    #soundBtn.on .eq { display: inline-flex; }
-    #soundBtn.on .ic-off { display: none; }
-    @media (max-width: 520px) { #soundBtn { left: 8px; bottom: 60px; } }
-    @media (prefers-reduced-motion: reduce) { #soundBtn .eq i { animation: none; } }
-
-    /* ===== FOOTER ===== */
-    #gfooter { border-top: 1px solid rgba(255,255,255,0.06); padding: 34px 24px 40px; background: #000; }
-    #gfooter .tagline { text-align: center; margin-bottom: 22px; }
-    #gfooter .ar { font-family: 'Amiri', serif; font-size: 20px; color: var(--accent-2); direction: rtl; display: block; margin-bottom: 6px; }
-    #gfooter .tr { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
-    #gfooter .row { max-width: 72rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    #gfooter .flinks { display: flex; gap: 16px; flex-wrap: wrap; }
-    #gfooter .flinks a { font-size: 12.5px; color: #a4a4b5; transition: color 0.2s; }
-    #gfooter .flinks a:hover { color: #fff; }
-    #gfooter .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); }
-  </style>
-  <link rel="canonical" href="https://farissuhail.com/" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -212,8 +35,8 @@
         "@type": "WebSite",
         "@id": "https://farissuhail.com/#website",
         "url": "https://farissuhail.com/",
-        "name": "Faris Suhail \u00b7 The Mdrn Urban",
-        "description": "Qur'an reflections, stories, and data \u2014 everyday life read through the light of revelation.",
+        "name": "Faris Suhail · The Mdrn Urban",
+        "description": "Qur'an reflections, stories, and data: everyday life read through the light of revelation.",
         "inLanguage": ["en", "ms"],
         "publisher": { "@id": "https://farissuhail.com/#person" }
       },
@@ -230,356 +53,909 @@
     ]
   }
   </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #05070d; }
+    body {
+      color: #dbe9f5;
+      font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #4fd8ff; text-decoration: none; }
+    a:hover { color: #9beeff; }
+    button { font-family: inherit; }
+    .mono { font-family: 'JetBrains Mono', Consolas, monospace; }
+
+    #globe {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh; height: 100dvh;
+      display: block; cursor: grab; touch-action: none;
+    }
+
+    .page { position: relative; min-height: 100vh; user-select: none; -webkit-user-select: none; pointer-events: none; }
+    .stats, .contact, .card, .bottombar, .pills,
+    .page a, .page button, .page input { pointer-events: auto; }
+    .hero-text, .wordmark, .hints, .mspacer { pointer-events: none; }
+
+    .wordmark { display: flex; align-items: baseline; gap: 12px; }
+    .wordmark .brand { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #dbe9f5; }
+    .wordmark .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(219,233,245,0.35); }
+
+    .hero-text { display: flex; flex-direction: column; gap: 12px; }
+    h1 { font-size: 46px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em; text-wrap: pretty; }
+    .intro { font-size: 16px; line-height: 1.55; color: rgba(219,233,245,0.66); text-wrap: pretty; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat {
+      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 13px 14px; display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat b { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 500; letter-spacing: -0.02em; color: #4fd8ff; }
+    .stat span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(219,233,245,0.42); }
+
+    .contact { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; }
+    .contact a, .contact .base { white-space: nowrap; }
+    .contact .sep { color: rgba(219,233,245,0.2); }
+    .contact .base { color: rgba(219,233,245,0.45); }
+
+    .card {
+      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 15px; display: flex; flex-direction: column;
+    }
+    .card-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
+
+    .regions-card { gap: 11px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      display: flex; align-items: center; gap: 7px; padding: 5px 9px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03);
+      color: rgba(219,233,245,0.62); font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.05em; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
+    }
+    .pill:hover { border-color: rgba(255,255,255,0.35); }
+    .pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .pill .n { color: rgba(219,233,245,0.35); }
+
+    .focus-card { gap: 12px; }
+    .f-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .f-title { font-size: 19px; font-weight: 500; letter-spacing: -0.015em; }
+    .f-kind { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.38); }
+    .f-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .f-stat { display: flex; flex-direction: column; gap: 3px; }
+    .f-stat b { font-family: 'JetBrains Mono', monospace; font-size: 21px; font-weight: 500; }
+    .f-stat:first-child b { color: #4fd8ff; }
+    .f-stat span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
+    .f-note { font-size: 12.5px; line-height: 1.55; color: rgba(219,233,245,0.6); text-wrap: pretty; }
+
+    .longest-card { gap: 11px; }
+    .hops { display: flex; flex-direction: column; gap: 10px; }
+    .hop { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hop-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 12px; }
+    .hop-top .name { color: rgba(219,233,245,0.86); }
+    .hop-top .km { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(219,233,245,0.45); }
+    .hop-track { height: 3px; background: rgba(255,255,255,0.09); }
+    .hop-fill { height: 3px; }
+
+    .bottombar {
+      flex-direction: row; align-items: center; gap: 18px; padding: 13px 17px;
+    }
+    .playbtn {
+      width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18); background: rgba(79,216,255,0.10);
+      color: #dbe9f5; font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .playbtn:hover { background: rgba(79,216,255,0.22); }
+    .readout { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; width: 128px; }
+    .readout b { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 400; letter-spacing: 0.03em; }
+    .readout span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
+    .active-label { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
+
+    input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; flex: 1 1 auto; height: 14px; }
+    input[type="range"]::-webkit-slider-runnable-track { height: 2px; background: rgba(255,255,255,0.16); }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 13px; height: 13px; margin-top: -6px; border-radius: 50%;
+      background: #dbe9f5; box-shadow: 0 0 12px rgba(79,216,255,0.9);
+    }
+    input[type="range"]::-moz-range-track { height: 2px; background: rgba(255,255,255,0.16); }
+    input[type="range"]::-moz-range-thumb {
+      width: 13px; height: 13px; border: 0; border-radius: 50%;
+      background: #dbe9f5; box-shadow: 0 0 12px rgba(79,216,255,0.9);
+    }
+
+    .hints {
+      display: flex; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.3);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    /* ===== Desktop (>=880px): fixed panels over the globe ===== */
+    @media (min-width: 880px) {
+      html, body { overflow: hidden; height: 100%; }
+      .only-mobile { display: none; }
+      .mspacer { display: none; }
+      .wordmark { position: absolute; top: 30px; left: 34px; }
+      .hero {
+        position: absolute; top: 96px; left: 34px; width: 420px;
+        max-height: calc(100vh - 200px); display: flex; flex-direction: column; gap: 18px;
+      }
+      .rightcol {
+        position: absolute; top: 30px; right: 34px; bottom: 104px; width: 306px;
+        display: flex; flex-direction: column; gap: 12px;
+        overflow-y: auto; scrollbar-width: none; pointer-events: auto;
+      }
+      .rightcol::-webkit-scrollbar { display: none; }
+      .bottombar { position: absolute; left: 34px; right: 372px; bottom: 30px; display: flex; }
+      .hints { position: absolute; left: 34px; bottom: 92px; }
+    }
+
+    /* ===== Mobile (<880px): one scrolling column over the globe ===== */
+    @media (max-width: 879.98px) {
+      .only-desktop { display: none; }
+      .page { display: flex; flex-direction: column; gap: 20px; padding: 26px 20px 34px; }
+      .wordmark { order: 0; flex-wrap: wrap; gap: 10px; }
+      .wordmark .brand { font-size: 11px; letter-spacing: 0.22em; }
+      .wordmark .tag { font-size: 9px; }
+      .mspacer { order: 1; height: 42vh; min-height: 240px; }
+      .hero, .rightcol, .regions-card { display: contents; }
+      .hero-text { order: 2; gap: 10px; }
+      h1 { font-size: 34px; line-height: 1.04; letter-spacing: -0.03em; }
+      .intro { font-size: 14px; }
+      .stats { order: 3; gap: 8px; }
+      .stat { padding: 11px 12px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .stat b { font-size: 22px; }
+      .stat span { font-size: 8.5px; letter-spacing: 0.14em; }
+      .focus-card { order: 4; padding: 14px; gap: 10px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .f-title { font-size: 18px; }
+      .f-stat b { font-size: 20px; }
+      .f-stat span { font-size: 8.5px; }
+      .regions-card > .card-label { display: none; }
+      .pills { order: 5; }
+      .pill { padding: 9px 12px; font-size: 10.5px; }
+      .longest-card { display: none; }
+      .bottombar { order: 6; display: flex; gap: 14px; padding: 12px 14px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .playbtn { width: 44px; height: 44px; }
+      .readout { width: auto; }
+      .readout b { font-size: 13px; }
+      .readout span { font-size: 8.5px; letter-spacing: 0.14em; }
+      .active-label { display: none; }
+      input[type="range"] { height: 24px; }
+      input[type="range"]::-webkit-slider-thumb { margin-top: -5.5px; }
+      .contact { order: 7; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 11px; letter-spacing: 0.08em; }
+      .contact .sep { display: none; }
+      .hints { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- original instrumental (in-house composition) — opt-in, never autoplays -->
-<audio id="bgm" loop preload="none">
-  <source src="/assets/ambient-new.m4a" type="audio/mp4" />
-</audio>
-<button id="soundBtn" class="liquid-glass" aria-label="Toggle background music" aria-pressed="false" title="Music">
-  <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M11 5L6.5 9H3v6h3.5L11 19V5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/>
-  </svg>
-  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
-</button>
+<canvas id="globe" aria-hidden="true"></canvas>
 
-<!-- ===== SECTION 1 — HERO ===== -->
-<section id="ghero">
-  <video id="gheroVideo" muted autoplay playsinline preload="auto">
-    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4" type="video/mp4" />
-  </video>
-  <div class="vignette" aria-hidden="true"></div>
+<div class="page">
+  <header class="wordmark">
+    <span class="brand">farissuhail.com</span>
+    <span class="tag">Travel footprint</span>
+  </header>
 
-  <div class="gnav-wrap">
-    <nav class="gnav liquid-glass">
-      <div class="gnav-left">
-        <svg class="icon-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" color="#fff"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
-        <span>Farissuhail</span>
-        <div class="gnav-links">
-          <a href="#about" data-en="About" data-bm="Tentang">About</a>
-          <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
-          <a href="/kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-        </div>
-      </div>
-      <div class="gnav-right">
-        <div class="gdesign-toggle liquid-glass" role="group" aria-label="Choose design">
-          <a href="/new" class="on" data-en="New" data-bm="Baharu">New</a>
-          <a href="/returning" data-en="Classic" data-bm="Klasik">Classic</a>
-          <a href="/am">AM</a>
-          <a href="/nazm.html" data-en="Rings" data-bm="Ring">Rings</a>
-        </div>
-        <a href="#gsubscribe" class="gnav-sub liquid-glass glass-btn" data-en="Subscribe" data-bm="Langgan">Subscribe</a>
-      </div>
-      <button class="gmenu-btn" id="gmenuBtn" aria-label="Toggle menu" aria-expanded="false">
-        <svg class="icon-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </nav>
-  </div>
+  <div class="mspacer" aria-hidden="true"></div>
 
-  <div id="gmobile-menu" aria-hidden="true">
-    <a href="#about" data-en="About" data-bm="Tentang">About</a>
-    <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
-    <a href="/kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-    <div class="gmm-toggle liquid-glass" role="group" aria-label="Choose design">
-      <a href="/new" class="on" data-en="New" data-bm="Baharu">New</a>
-      <a href="/returning" data-en="Classic" data-bm="Klasik">Classic</a>
-      <a href="/am">AM</a>
-      <a href="/nazm.html" data-en="Rings" data-bm="Ring">Rings</a>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Faris Suhail</h1>
+      <p class="intro">Every place I have set foot, traced back to a small town on the Kedah
+        coast. <span class="only-desktop">Drag the globe, follow a line, or pick a region.</span><span
+        class="only-mobile">Drag the globe or tap a city.</span></p>
     </div>
-    <a href="#gsubscribe" data-en="Subscribe" data-bm="Langgan">Subscribe</a>
-  </div>
 
-  <div class="ghero-content">
-    <h1 class="serif" data-en-html="Know Him, then <em>all</em>." data-bm-html="Kenali Dia, baru <em>segalanya</em>.">Know Him, then <em>all</em>.</h1>
-    <form class="gemail-form liquid-glass" id="gsubscribe">
-      <input type="email" id="gemailInput" required placeholder="Enter your email" data-en-ph="Enter your email" data-bm-ph="Masukkan e-mel anda" />
-      <button type="submit" class="gemail-btn" aria-label="Subscribe">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-    </form>
-    <div class="gemail-status" id="gemailStatus"></div>
-    <p class="gprivacy" style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center;"><span data-en="Only new reflections, stories &amp; data — no spam, unsubscribe anytime." data-bm="Hanya refleksi, cerita &amp; data baharu — tiada spam, berhenti bila-bila masa.">Only new reflections, stories &amp; data — no spam, unsubscribe anytime.</span> <a href="/privacy.html" style="color:rgba(255,255,255,.55);text-decoration:underline;" data-en="Privacy" data-bm="Privasi">Privacy</a></p>
-    <p class="sub" data-en="Stay close to the words that matter. Subscribe for new reflections, stories, and data from the Qur'an — sent only when there's something worth your time." data-bm="Kekal dekat dengan kalam yang bermakna. Langgan untuk refleksi, kisah, dan data baharu dari Al-Quran — dihantar hanya bila ada sesuatu yang bernilai.">Stay close to the words that matter. Subscribe for new reflections, stories, and data from the Qur'an — sent only when there's something worth your time.</p>
-    <a href="/about.html" class="gmanifesto liquid-glass glass-btn" data-en="Read the manifesto" data-bm="Baca manifesto">Read the manifesto</a>
-    <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.55);text-align:center;"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5bff9d;" data-en="START HERE" data-bm="MULA DI SINI">START HERE</span><br><a href="/notes/hadith-information-integrity.html" style="color:rgba(255,255,255,.82);text-decoration:underline;" data-en="The muhaddithun solved misinformation — 1,200 years before we named the problem" data-bm="Muhaddithun menyelesaikan misinformasi — 1,200 tahun sebelum kita menamakan masalahnya">The muhaddithun solved misinformation — 1,200 years before we named the problem</a></p>
-  </div>
-
-  <div class="gsocial-row">
-    <a class="gsocial liquid-glass glass-btn" href="mailto:tech@farissuhail.com" aria-label="Email" title="Email">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-    </a>
-    <a class="gsocial liquid-glass glass-btn" href="/reflections.html" aria-label="Reflections" title="Reflections">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-    </a>
-    <a class="gsocial liquid-glass glass-btn" href="/returning" aria-label="Classic homepage" title="Classic homepage">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
-    </a>
-  </div>
-</section>
-
-<!-- ===== SECTION 2 — ABOUT ===== -->
-<section id="about">
-  <div class="gwrap">
-    <div class="glabel" data-reveal="up-sm" data-en="About" data-bm="Tentang">About</div>
-    <h2 class="serif" data-reveal>
-      <span data-en="Pioneering" data-bm="Merintis">Pioneering</span>
-      <span class="serif-i" data-en="reflections" data-bm="refleksi">reflections</span>
-      <span data-en="for hearts that" data-bm="untuk hati yang">for hearts that</span>
-      <br class="mob-hide" />
-      <span class="serif-i" data-en="seek, question, and return." data-bm="mencari, bertanya, dan kembali.">seek, question, and return.</span>
-    </h2>
-  </div>
-</section>
-
-<!-- ===== SECTION 3 — FEATURED VIDEO ===== -->
-<section id="featured">
-  <div class="gfeature-box" data-reveal>
-    <video muted autoplay loop playsinline preload="auto" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8.mp4"></video>
-    <div class="gfeature-fade" aria-hidden="true"></div>
-    <div class="gfeature-overlay">
-      <div class="gfeature-card liquid-glass">
-        <div class="tag" data-en="Our Approach" data-bm="Pendekatan Kami">Our Approach</div>
-        <p data-en="We believe understanding grows from sitting with a single verse, not skimming a hundred. Every reflection here begins with a question, and every answer opens a door back into daily life." data-bm="Kami percaya kefahaman tumbuh dari duduk lama dengan satu ayat, bukan melangkau seratus. Setiap refleksi di sini bermula dengan persoalan, dan setiap jawapan membuka pintu kembali ke kehidupan harian.">We believe understanding grows from sitting with a single verse, not skimming a hundred. Every reflection here begins with a question, and every answer opens a door back into daily life.</p>
-      </div>
-      <a href="/reflections.html" class="gexplore liquid-glass glass-btn" data-en="Explore Reflections" data-bm="Terokai Refleksi">Explore Reflections</a>
+    <div class="stats" aria-label="Headline stats">
+      <div class="stat"><b id="statCities">54</b><span>Cities</span></div>
+      <div class="stat"><b id="statCountries">20</b><span>Countries</span></div>
+      <div class="stat"><b id="statContinents">3</b><span>Continents</span></div>
     </div>
-  </div>
-</section>
 
-<!-- ===== SECTION 4 — PHILOSOPHY ===== -->
-<section id="philosophy">
-  <div class="gwrap">
-    <h2 class="serif" data-reveal><span data-en="Reflection" data-bm="Refleksi">Reflection</span> <em class="serif-i" style="opacity:0.4">x</em> <span data-en="Data" data-bm="Data">Data</span></h2>
-    <div class="gphi-grid">
-      <div class="gphi-visual" data-reveal="left">
-        <video muted autoplay loop playsinline preload="auto" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"></video>
-      </div>
-      <div class="gphi-text" data-reveal="right">
-        <div class="block">
-          <div class="glabel" data-en="Choose your lens" data-bm="Pilih lensa anda">Choose your lens</div>
-          <p data-en="Every meaningful verse sits at the intersection of language, history, and the heart. We study each surah on its own terms, then bring it back to how we live, work, and struggle today." data-bm="Setiap ayat yang bermakna berada di persimpangan bahasa, sejarah, dan hati. Kami mengkaji setiap surah pada terma tersendiri, lalu membawanya kembali kepada cara kita hidup, bekerja, dan bergelut hari ini.">Every meaningful verse sits at the intersection of language, history, and the heart. We study each surah on its own terms, then bring it back to how we live, work, and struggle today.</p>
-        </div>
-        <div class="gphi-divider"></div>
-        <div class="block">
-          <div class="glabel" data-en="See the pattern" data-bm="Lihat corak">See the pattern</div>
-          <p data-en="The Qur'an's structure isn't accidental. From ring composition to statistics computed straight from the Uthmani text, Kalam surfaces patterns that reward patient, careful reading." data-bm="Struktur Al-Quran bukan kebetulan. Dari komposisi cincin kepada statistik yang dikira terus dari teks Uthmani, Kalam mendedahkan corak yang membalas bacaan yang sabar dan teliti.">The Qur'an's structure isn't accidental. From ring composition to statistics computed straight from the Uthmani text, Kalam surfaces patterns that reward patient, careful reading.</p>
-          <div class="gphi-btns">
-            <a href="/kalam.html" class="gphi-btn liquid-glass glass-btn" data-en="Open Kalam" data-bm="Buka Kalam">Open Kalam</a>
-            <a href="/analitika-malaya.html" class="gphi-btn liquid-glass glass-btn" data-en="Analitika Malaya" data-bm="Analitika Malaya">Analitika Malaya</a>
-          </div>
-        </div>
+    <div class="contact">
+      <a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a>
+      <span class="sep">/</span>
+      <span class="base">Home base &middot; Yan, Kedah</span>
+      <span class="sep">/</span>
+      <a href="/about.html">About</a>
+    </div>
+  </section>
+
+  <aside class="rightcol">
+    <div class="card regions-card">
+      <div class="card-label">Regions</div>
+      <div class="pills" id="pills" role="group" aria-label="Filter by region">
+        <button class="pill" data-region="all" data-color="#dbe9f5"><span class="dot" style="background:#dbe9f5"></span><span>Everywhere</span><span class="n">54</span></button>
+        <button class="pill" data-region="my" data-color="#4fd8ff"><span class="dot" style="background:#4fd8ff"></span><span>Malaysia</span><span class="n">14</span></button>
+        <button class="pill" data-region="sea" data-color="#6ee7a8"><span class="dot" style="background:#6ee7a8"></span><span>SE Asia</span><span class="n">5</span></button>
+        <button class="pill" data-region="gulf" data-color="#ffc46b"><span class="dot" style="background:#ffc46b"></span><span>Gulf &amp; Arabia</span><span class="n">8</span></button>
+        <button class="pill" data-region="tr" data-color="#ff9f6b"><span class="dot" style="background:#ff9f6b"></span><span>T&uuml;rkiye &amp; Caucasus</span><span class="n">3</span></button>
+        <button class="pill" data-region="uk" data-color="#ff6fae"><span class="dot" style="background:#ff6fae"></span><span>UK &amp; Ireland</span><span class="n">11</span></button>
+        <button class="pill" data-region="eu" data-color="#b48cff"><span class="dot" style="background:#b48cff"></span><span>Europe</span><span class="n">9</span></button>
+        <button class="pill" data-region="af" data-color="#f2e07a"><span class="dot" style="background:#f2e07a"></span><span>Africa</span><span class="n">4</span></button>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===== SECTION 5 — SERVICES ===== -->
-<section id="services">
-  <div class="gwrap">
-    <div class="gsrv-head" data-reveal>
-      <h2 data-en="What's inside" data-bm="Apa di dalam">What's inside</h2>
-      <div class="glabel" data-en="More ways in" data-bm="Lagi jalan masuk">More ways in</div>
+    <div class="card focus-card">
+      <div class="f-head">
+        <div class="f-title" id="fTitle">Everywhere so far</div>
+        <div class="f-kind" id="fKind">Overview</div>
+      </div>
+      <div class="f-stats">
+        <div class="f-stat"><b id="fStatA">105</b><span id="fLabelA">Routes drawn</span></div>
+        <div class="f-stat"><b id="fStatB">12,550</b><span id="fLabelB">Furthest km</span></div>
+      </div>
+      <div class="f-note" id="fNote">Every line runs from Yan and Alor Setar in Kedah out to
+        somewhere I have stood: the Canaries, Nouakchott, Cappadocia. Pull the slider to grow
+        the radius.</div>
     </div>
-    <div class="gsrv-grid">
-      <a href="/reflections.html" class="gcard liquid-glass" data-reveal>
-        <div class="gcard-media">
-          <video muted autoplay loop playsinline preload="auto" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"></video>
-          <div class="fade" aria-hidden="true"></div>
-        </div>
-        <div class="gcard-body">
-          <div class="toprow">
-            <span class="tag" data-en="Reflection" data-bm="Refleksi">Reflection</span>
-            <span class="gcard-arrow liquid-glass"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-          </div>
-          <h3 data-en="Reflections & Ring Structure" data-bm="Refleksi & Struktur Cincin">Reflections &amp; Ring Structure</h3>
-          <p data-en="Deep, unhurried reflections on the Qur'an — surah by surah — plus an interactive atlas of Qur'anic ring composition (chiasm)." data-bm="Refleksi mendalam Al-Quran — surah demi surah — serta atlas interaktif komposisi cincin (chiasm) Al-Quran.">Deep, unhurried reflections on the Qur'an — surah by surah — plus an interactive atlas of Qur'anic ring composition (chiasm).</p>
-        </div>
-      </a>
-      <a href="/book-reviews.html" class="gcard liquid-glass" data-reveal>
-        <div class="gcard-media">
-          <video muted autoplay loop playsinline preload="auto" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4"></video>
-          <div class="fade" aria-hidden="true"></div>
-        </div>
-        <div class="gcard-body">
-          <div class="toprow">
-            <span class="tag" data-en="Library" data-bm="Perpustakaan">Library</span>
-            <span class="gcard-arrow liquid-glass"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-          </div>
-          <h3 data-en="Book Summaries" data-bm="Ringkasan Buku">Book Summaries</h3>
-          <p data-en="Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping." data-bm="Buku bermanfaat, diringkaskan secara jelas — apa yang ia beri, dan satu idea yang patut disimpan.">Beneficial books, summarised in plain words — what each gave, and the one idea worth keeping.</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- ===== FOOTER ===== -->
-<footer id="gfooter">
-  <div class="tagline">
-    <span class="ar" lang="ar" dir="rtl">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</span>
-    <span class="tr" data-en="And my success is only by Allah · Hud 11:88" data-bm="Dan kejayaanku hanyalah dengan Allah · Hud 11:88">And my success is only by Allah · Hud 11:88</span>
-  </div>
-  <div class="row">
-    <span class="copy" style="font-weight:700;color:#f1f1f5;letter-spacing:-0.02em;">FARISSUHAIL</span>
-    <div class="flinks">
-      <a href="/returning" data-en="Classic view" data-bm="Paparan klasik">Classic view</a>
-      <a href="/am" data-en="AM view" data-bm="Paparan AM">AM view</a>
-      <a href="/reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
-      <a href="/kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
-      <a href="/book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
-      <a href="mailto:tech@farissuhail.com">Contact</a>
+    <div class="card longest-card">
+      <div class="card-label">Longest hops from home</div>
+      <div class="hops" id="hops"></div>
     </div>
-    <span class="copy">© <span id="gyear"></span> · The Mdrn Urban · KL, MY</span>
+  </aside>
+
+  <div class="card bottombar">
+    <button class="playbtn" id="playBtn" aria-label="Play or pause the radius sweep" aria-pressed="true">&#x2759;&#x2759;</button>
+    <div class="readout">
+      <b id="reachLabel">&le; 2,100 km</b>
+      <span>Radius from Kedah</span>
+    </div>
+    <input type="range" id="hopRange" min="1" max="6" step="1" value="1" aria-label="Distance radius from Kedah, band 1 to 6">
+    <div class="active-label" id="activeLabel"></div>
   </div>
-</footer>
+
+  <div class="hints">
+    <span>Drag to spin</span>
+    <span>Scroll to zoom</span>
+    <span>Click a city to isolate</span>
+  </div>
+</div>
+
+<!-- Crawlable, screen-reader-friendly version of everything the globe shows -->
+<section class="sr-only">
+  <h2>All cities, grouped by region</h2>
+  <p>Home bases: Yan and Alor Setar, Kedah, Malaysia. Every route on the globe starts there.</p>
+  <h3>Malaysia</h3>
+  <p>Yan, Alor Setar, Kangar, Penang, Ipoh, Kuala Lumpur, Melaka, Johor Bahru, Kuantan, Kota Bharu, Kuching, Miri, Kota Kinabalu, Labuan.</p>
+  <h3>Southeast Asia</h3>
+  <p>Singapore; Danok, Bangkok and Hua Hin in Thailand; Jakarta in Indonesia.</p>
+  <h3>Gulf and Arabia</h3>
+  <p>Dubai and Abu Dhabi in the UAE; Doha in Qatar; Jeddah, Mecca and Madinah in Saudi Arabia; Karachi and Islamabad in Pakistan.</p>
+  <h3>T&uuml;rkiye and the Caucasus</h3>
+  <p>Istanbul and Cappadocia in T&uuml;rkiye; Baku in Azerbaijan.</p>
+  <h3>UK and Ireland</h3>
+  <p>London, Birmingham, Leeds, Newcastle, Manchester, Liverpool, Brighton, Cardiff, Glasgow, Edinburgh; Dublin in Ireland.</p>
+  <h3>Europe</h3>
+  <p>Paris, Amsterdam, Frankfurt, Cologne, Luxembourg, Rome, Florence, Barcelona, Las Palmas.</p>
+  <h3>Africa</h3>
+  <p>Marrakech, Fez and Rabat in Morocco; Nouakchott in Mauritania.</p>
+  <h2>Elsewhere on this site</h2>
+  <nav aria-label="Site sections">
+    <ul>
+      <li><a href="/about.html">About Faris Suhail</a></li>
+      <li><a href="/notes/">Notes</a></li>
+      <li><a href="/reflections.html">Qur'an reflections</a></li>
+      <li><a href="/nazm.html">Na&#7827;m and ring structure</a></li>
+      <li><a href="/kalam.html">Kalam, the Qur'an in data</a></li>
+      <li><a href="/inspiration.html">Inspiration</a></li>
+      <li><a href="/book-reviews.html">Book summaries</a></li>
+      <li><a href="/learn-ai.html">Learn AI</a></li>
+      <li><a href="/apps.html">Apps and experiments</a></li>
+      <li><a href="/transformation.html">Transformation Experts consultancy</a></li>
+    </ul>
+  </nav>
+</section>
 
 <script>
 (function () {
   'use strict';
-  document.getElementById('gyear').textContent = new Date().getFullYear();
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ===== hero video: seamless crossfade loop =====
-  (function () {
-    var vid = document.getElementById('gheroVideo');
-    if (!vid) return;
-    var fading = false;
-    function animateOpacity(el, from, to, dur) {
-      var start = null;
-      function step(ts) {
-        if (start === null) start = ts;
-        var p = Math.min(1, (ts - start) / dur);
-        el.style.opacity = String(from + (to - from) * p);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    if (reduce) { vid.style.opacity = '1'; return; }
-    vid.addEventListener('canplay', function () {
-      var p = vid.play(); if (p && p.catch) p.catch(function () {});
-      animateOpacity(vid, 0, 1, 500);
-    });
-    vid.addEventListener('timeupdate', function () {
-      if (!vid.duration || fading) return;
-      var remaining = vid.duration - vid.currentTime;
-      if (remaining <= 0.55) { fading = true; animateOpacity(vid, parseFloat(vid.style.opacity || '1'), 0, 500); }
-    });
-    vid.addEventListener('ended', function () {
-      vid.style.opacity = '0';
-      setTimeout(function () {
-        vid.currentTime = 0;
-        var p = vid.play(); if (p && p.catch) p.catch(function () {});
-        animateOpacity(vid, 0, 1, 500);
-        fading = false;
-      }, 100);
-    });
-    document.addEventListener('visibilitychange', function () {
-      if (!document.hidden) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
-    });
-  })();
+  var REGIONS = [
+    { id: 'my', label: 'Malaysia', color: '#4fd8ff', continent: 'Asia' },
+    { id: 'sea', label: 'SE Asia', color: '#6ee7a8', continent: 'Asia' },
+    { id: 'gulf', label: 'Gulf & Arabia', color: '#ffc46b', continent: 'Asia' },
+    { id: 'tr', label: 'Türkiye & Caucasus', color: '#ff9f6b', continent: 'Asia' },
+    { id: 'uk', label: 'UK & Ireland', color: '#ff6fae', continent: 'Europe' },
+    { id: 'eu', label: 'Europe', color: '#b48cff', continent: 'Europe' },
+    { id: 'af', label: 'Africa', color: '#f2e07a', continent: 'Africa' }
+  ];
 
-  // ===== cinematic instrumental (original composition) — opt-in sound toggle =====
-  (function () {
-    var bgm = document.getElementById('bgm'), btn = document.getElementById('soundBtn');
-    var fadeTimer = null, TARGET = 0.55;
-    function fade(to, done) {
-      clearInterval(fadeTimer);
-      var from = bgm.volume, i = 0, steps = 22;
-      fadeTimer = setInterval(function () {
-        i++;
-        bgm.volume = Math.max(0, Math.min(1, from + (to - from) * (i / steps)));
-        if (i >= steps) { clearInterval(fadeTimer); if (done) done(); }
-      }, 55);
-    }
-    function setUI(on) { btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
-    function soundOn() {
-      bgm.volume = 0;
-      var p = bgm.play();
-      if (p && p.then) {
-        p.then(function () { setUI(true); fade(TARGET); try { localStorage.setItem('fs-sound', '1'); } catch (e) {} })
-         .catch(function () { setUI(false); }); // autoplay blocked — wait for a real tap
-      }
-    }
-    function soundOff() { fade(0, function () { bgm.pause(); }); setUI(false); try { localStorage.setItem('fs-sound', '0'); } catch (e) {} }
-    btn.addEventListener('click', function () { (bgm.paused) ? soundOn() : soundOff(); });
-    // returning visitor who had sound on: resume at their first interaction anywhere
-    try {
-      if (localStorage.getItem('fs-sound') === '1') {
-        var unlock = function (e) {
-          document.removeEventListener('pointerdown', unlock);
-          document.removeEventListener('keydown', unlock);
-          if (btn.contains(e.target)) return; // let the button's own handler decide
-          if (bgm.paused) soundOn();
-        };
-        document.addEventListener('pointerdown', unlock);
-        document.addEventListener('keydown', unlock);
-      }
-    } catch (e) {}
-  })();
+  var CITIES = [
+    { id: 'yan', name: 'Yan', country: 'Malaysia', region: 'my', lat: 5.798, lon: 100.383, tier: 1, home: true },
+    { id: 'aor', name: 'Alor Setar', country: 'Malaysia', region: 'my', lat: 6.121, lon: 100.368, tier: 2 },
+    { id: 'kgr', name: 'Kangar', country: 'Malaysia', region: 'my', lat: 6.441, lon: 100.198, tier: 3 },
+    { id: 'png', name: 'Penang', country: 'Malaysia', region: 'my', lat: 5.414, lon: 100.329, tier: 1 },
+    { id: 'ipo', name: 'Ipoh', country: 'Malaysia', region: 'my', lat: 4.597, lon: 101.090, tier: 2 },
+    { id: 'kul', name: 'Kuala Lumpur', country: 'Malaysia', region: 'my', lat: 3.139, lon: 101.687, tier: 1 },
+    { id: 'mlk', name: 'Melaka', country: 'Malaysia', region: 'my', lat: 2.196, lon: 102.241, tier: 3 },
+    { id: 'jhb', name: 'Johor Bahru', country: 'Malaysia', region: 'my', lat: 1.493, lon: 103.741, tier: 2 },
+    { id: 'kua', name: 'Kuantan', country: 'Malaysia', region: 'my', lat: 3.808, lon: 103.326, tier: 3 },
+    { id: 'kbr', name: 'Kota Bharu', country: 'Malaysia', region: 'my', lat: 6.125, lon: 102.238, tier: 3 },
+    { id: 'kch', name: 'Kuching', country: 'Malaysia', region: 'my', lat: 1.553, lon: 110.359, tier: 2 },
+    { id: 'mir', name: 'Miri', country: 'Malaysia', region: 'my', lat: 4.399, lon: 113.991, tier: 3 },
+    { id: 'bki', name: 'Kota Kinabalu', country: 'Malaysia', region: 'my', lat: 5.978, lon: 116.073, tier: 2 },
+    { id: 'lbu', name: 'Labuan', country: 'Malaysia', region: 'my', lat: 5.281, lon: 115.241, tier: 3 },
+    { id: 'sin', name: 'Singapore', country: 'Singapore', region: 'sea', lat: 1.352, lon: 103.820, tier: 1 },
+    { id: 'dnk', name: 'Danok', country: 'Thailand', region: 'sea', lat: 6.533, lon: 100.422, tier: 3 },
+    { id: 'bkk', name: 'Bangkok', country: 'Thailand', region: 'sea', lat: 13.756, lon: 100.501, tier: 1 },
+    { id: 'hhq', name: 'Hua Hin', country: 'Thailand', region: 'sea', lat: 12.570, lon: 99.958, tier: 3 },
+    { id: 'cgk', name: 'Jakarta', country: 'Indonesia', region: 'sea', lat: -6.208, lon: 106.845, tier: 2 },
+    { id: 'dxb', name: 'Dubai', country: 'UAE', region: 'gulf', lat: 25.205, lon: 55.271, tier: 1 },
+    { id: 'auh', name: 'Abu Dhabi', country: 'UAE', region: 'gulf', lat: 24.453, lon: 54.377, tier: 3 },
+    { id: 'doh', name: 'Doha', country: 'Qatar', region: 'gulf', lat: 25.285, lon: 51.531, tier: 2 },
+    { id: 'jed', name: 'Jeddah', country: 'Saudi Arabia', region: 'gulf', lat: 21.485, lon: 39.192, tier: 2 },
+    { id: 'mkk', name: 'Mecca', country: 'Saudi Arabia', region: 'gulf', lat: 21.389, lon: 39.857, tier: 1 },
+    { id: 'med', name: 'Madinah', country: 'Saudi Arabia', region: 'gulf', lat: 24.470, lon: 39.611, tier: 2 },
+    { id: 'ist', name: 'Istanbul', country: 'Türkiye', region: 'tr', lat: 41.008, lon: 28.978, tier: 1 },
+    { id: 'cap', name: 'Cappadocia', country: 'Türkiye', region: 'tr', lat: 38.643, lon: 34.830, tier: 3 },
+    { id: 'gyd', name: 'Baku', country: 'Azerbaijan', region: 'tr', lat: 40.409, lon: 49.867, tier: 2 },
+    { id: 'lon', name: 'London', country: 'United Kingdom', region: 'uk', lat: 51.507, lon: -0.128, tier: 1 },
+    { id: 'bhx', name: 'Birmingham', country: 'United Kingdom', region: 'uk', lat: 52.487, lon: -1.890, tier: 3 },
+    { id: 'lds', name: 'Leeds', country: 'United Kingdom', region: 'uk', lat: 53.801, lon: -1.549, tier: 3 },
+    { id: 'ncl', name: 'Newcastle', country: 'United Kingdom', region: 'uk', lat: 54.978, lon: -1.618, tier: 3 },
+    { id: 'man', name: 'Manchester', country: 'United Kingdom', region: 'uk', lat: 53.483, lon: -2.244, tier: 2 },
+    { id: 'lpl', name: 'Liverpool', country: 'United Kingdom', region: 'uk', lat: 53.408, lon: -2.992, tier: 3 },
+    { id: 'btn', name: 'Brighton', country: 'United Kingdom', region: 'uk', lat: 50.822, lon: -0.137, tier: 3 },
+    { id: 'cwl', name: 'Cardiff', country: 'United Kingdom', area: 'Wales', region: 'uk', lat: 51.481, lon: -3.179, tier: 3 },
+    { id: 'gla', name: 'Glasgow', country: 'United Kingdom', area: 'Scotland', region: 'uk', lat: 55.864, lon: -4.252, tier: 3 },
+    { id: 'edi', name: 'Edinburgh', country: 'United Kingdom', area: 'Scotland', region: 'uk', lat: 55.953, lon: -3.188, tier: 2 },
+    { id: 'dub', name: 'Dublin', country: 'Ireland', region: 'uk', lat: 53.350, lon: -6.260, tier: 2 },
+    { id: 'par', name: 'Paris', country: 'France', region: 'eu', lat: 48.857, lon: 2.352, tier: 1 },
+    { id: 'ams', name: 'Amsterdam', country: 'Netherlands', region: 'eu', lat: 52.370, lon: 4.895, tier: 2 },
+    { id: 'fra', name: 'Frankfurt', country: 'Germany', region: 'eu', lat: 50.110, lon: 8.682, tier: 2 },
+    { id: 'cgn', name: 'Cologne', country: 'Germany', region: 'eu', lat: 50.937, lon: 6.960, tier: 3 },
+    { id: 'lux', name: 'Luxembourg', country: 'Luxembourg', region: 'eu', lat: 49.611, lon: 6.131, tier: 3 },
+    { id: 'rom', name: 'Rome', country: 'Italy', region: 'eu', lat: 41.903, lon: 12.496, tier: 2 },
+    { id: 'flr', name: 'Florence', country: 'Italy', region: 'eu', lat: 43.770, lon: 11.256, tier: 3 },
+    { id: 'bcn', name: 'Barcelona', country: 'Spain', region: 'eu', lat: 41.385, lon: 2.173, tier: 2 },
+    { id: 'lpa', name: 'Las Palmas', country: 'Spain', region: 'eu', lat: 28.124, lon: -15.436, tier: 3 },
+    { id: 'khi', name: 'Karachi', country: 'Pakistan', region: 'gulf', lat: 24.861, lon: 67.010, tier: 2 },
+    { id: 'isb', name: 'Islamabad', country: 'Pakistan', region: 'gulf', lat: 33.684, lon: 73.048, tier: 2 },
+    { id: 'rak', name: 'Marrakech', country: 'Morocco', region: 'af', lat: 31.630, lon: -7.981, tier: 2 },
+    { id: 'fez', name: 'Fez', country: 'Morocco', region: 'af', lat: 34.034, lon: -5.000, tier: 3 },
+    { id: 'rba', name: 'Rabat', country: 'Morocco', region: 'af', lat: 34.021, lon: -6.836, tier: 3 },
+    { id: 'nkc', name: 'Nouakchott', country: 'Mauritania', region: 'af', lat: 18.079, lon: -15.978, tier: 2 }
+  ];
 
-  // ===== newsletter subscribe (Web3Forms, same key as site's feedback widget) =====
-  (function () {
-    var WEB3FORMS_KEY = '58222a5c-c88b-40f2-b190-b8a11f26fc40';
-    var form = document.getElementById('gsubscribe');
-    var input = document.getElementById('gemailInput');
-    var status = document.getElementById('gemailStatus');
-    function bm() { return document.documentElement.getAttribute('data-lang') === 'bm'; }
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = (input.value || '').trim();
-      if (!email) return;
-      status.textContent = bm() ? 'Menghantar…' : 'Sending…';
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: '[Reflect] Newsletter signup',
-          from_name: email,
-          email: 'tech@farissuhail.com',
-          message: 'New newsletter subscriber: ' + email,
-          page: location.href
-        })
-      }).then(function () {
-        status.textContent = bm() ? 'Terima kasih — anda dilanggan.' : 'Thank you — you\'re subscribed.';
-        input.value = '';
-      }).catch(function () {
-        status.textContent = bm() ? 'Gagal. Cuba lagi nanti.' : 'Something went wrong. Try again later.';
-      });
-    });
-  })();
+  var BANDS = 6;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var props = { spinSpeed: reduced ? 0 : 0.35, arcLift: 0.28, landDots: true };
 
-  // ===== language toggle removed — this page follows the site's stored language, no separate control =====
-  (function () {
-    var html = document.documentElement;
-    function apply(lang) {
-      html.setAttribute('data-lang', lang);
-      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.textContent = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
-      document.querySelectorAll('[data-en-html]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bmHtml : el.dataset.enHtml; });
-      document.querySelectorAll('[data-en-ph]').forEach(function (el) { el.placeholder = lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh; });
-    }
-    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
-  })();
+  /* ---------- derived data ---------- */
 
-  // ===== mobile menu =====
-  var mb = document.getElementById('gmenuBtn'), mm = document.getElementById('gmobile-menu');
-  function setMenu(open) { mm.classList.toggle('open', open); mb.setAttribute('aria-expanded', open ? 'true' : 'false'); mm.setAttribute('aria-hidden', open ? 'false' : 'true'); }
-  mb.addEventListener('click', function () { setMenu(!mm.classList.contains('open')); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
-  document.addEventListener('click', function (e) { if (mm.classList.contains('open') && !mm.contains(e.target) && !mb.contains(e.target)) setMenu(false); });
-  mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  var byId = {};
+  CITIES.forEach(function (c) { byId[c.id] = c; });
 
-  // ===== reveal-on-scroll =====
-  var targets = [].slice.call(document.querySelectorAll('[data-reveal]'));
-  if (reduce) { targets.forEach(function (t) { t.classList.add('in'); }); }
-  else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.2, rootMargin: '-80px 0px' });
-    targets.forEach(function (t) { io.observe(t); });
+  function haversine(a, b) {
+    var d = Math.PI / 180, R = 6371;
+    var dp = (b.lat - a.lat) * d, dl = (b.lon - a.lon) * d;
+    var h = Math.pow(Math.sin(dp / 2), 2) + Math.cos(a.lat * d) * Math.cos(b.lat * d) * Math.pow(Math.sin(dl / 2), 2);
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
   }
+
+  CITIES.forEach(function (c) {
+    c.km = Math.round(haversine(byId.yan, c) / 10) * 10;
+    c.kmAor = Math.round(haversine(byId.aor, c) / 10) * 10;
+  });
+  var maxKm = Math.max.apply(null, CITIES.map(function (c) { return c.km; }));
+  CITIES.forEach(function (c) { c.band = Math.max(1, Math.ceil((c.km / maxKm) * BANDS)); });
+  var bandKm = [];
+  for (var b = 1; b <= BANDS; b++) bandKm[b] = Math.round((maxKm * b) / BANDS);
+
+  var edges = [{ from: 'yan', to: 'aor', hop: 1 }];
+  CITIES.forEach(function (c) {
+    if (c.id === 'yan' || c.id === 'aor') return;
+    ['yan', 'aor'].forEach(function (base) { edges.push({ from: base, to: c.id, hop: c.band }); });
+  });
+
+  /* ---------- state ---------- */
+
+  var state = {
+    hop: reduced ? BANDS : 1,
+    playing: !reduced,
+    region: 'all',
+    selected: null,
+    hover: null
+  };
+
+  /* ---------- helpers ---------- */
+
+  function fmt(n) { return n.toLocaleString('en-US'); }
+  function rgba(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+  function mix(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    var r = (n >> 16) & 255, g = (n >> 8) & 255, bl = n & 255;
+    return 'rgb(' + Math.round(r + (255 - r) * 0.5) + ',' + Math.round(g + (255 - g) * 0.5) + ',' + Math.round(bl + (255 - bl) * 0.5) + ')';
+  }
+  function regionColor(id) {
+    for (var i = 0; i < REGIONS.length; i++) if (REGIONS[i].id === id) return REGIONS[i].color;
+    return '#4fd8ff';
+  }
+  function visibleEdges() {
+    return edges.filter(function (e) {
+      return e.hop <= state.hop &&
+        (state.region === 'all' || byId[e.from].region === state.region || byId[e.to].region === state.region);
+    });
+  }
+
+  /* ---------- canvas globe ---------- */
+
+  var canvas = document.getElementById('globe');
+  var ctx = canvas.getContext('2d');
+  var cam = { lon: 60, lat: 22, zoom: 1 };
+  var drag = null, spinPaused = false, rings = null, pts = [];
+  var w = 0, h = 0, cx = 0, cy = 0, R = 0;
+  var t0 = performance.now();
+
+  function resize() {
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function project(lat, lon, alt) {
+    var d = Math.PI / 180;
+    var p0 = cam.lat * d, l0 = cam.lon * d, p = lat * d, l = lon * d;
+    var cp = Math.cos(p), sp = Math.sin(p), dl = l - l0;
+    var x = cp * Math.sin(dl);
+    var y = Math.cos(p0) * sp - Math.sin(p0) * cp * Math.cos(dl);
+    var z = Math.sin(p0) * sp + Math.cos(p0) * cp * Math.cos(dl);
+    var k = R * (alt || 1);
+    return { x: cx + x * k, y: cy - y * k, z: z };
+  }
+
+  function vec(lat, lon) {
+    var d = Math.PI / 180, p = lat * d, l = lon * d;
+    return [Math.cos(p) * Math.cos(l), Math.cos(p) * Math.sin(l), Math.sin(p)];
+  }
+
+  function slerpLL(a, b, t) {
+    var va = vec(a.lat, a.lon), vb = vec(b.lat, b.lon);
+    var dot = va[0] * vb[0] + va[1] * vb[1] + va[2] * vb[2];
+    dot = Math.max(-1, Math.min(1, dot));
+    var om = Math.acos(dot), v;
+    if (om < 1e-6) v = va;
+    else {
+      var s1 = Math.sin((1 - t) * om) / Math.sin(om), s2 = Math.sin(t * om) / Math.sin(om);
+      v = [va[0] * s1 + vb[0] * s2, va[1] * s1 + vb[1] * s2, va[2] * s1 + vb[2] * s2];
+    }
+    return {
+      lat: Math.asin(Math.max(-1, Math.min(1, v[2]))) * 180 / Math.PI,
+      lon: Math.atan2(v[1], v[0]) * 180 / Math.PI
+    };
+  }
+
+  function strokePath(fn, n) {
+    ctx.beginPath();
+    var started = false;
+    for (var i = 0; i <= n; i++) {
+      var p = fn(i, n);
+      if (p.z <= 0) { started = false; continue; }
+      if (!started) { ctx.moveTo(p.x, p.y); started = true; } else ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+  }
+
+  function loadLand() {
+    fetch('/land-110m.json')
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function () {
+        return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
+          .then(function (r) { return r.json(); });
+      })
+      .then(function (t) {
+        var sx = t.transform.scale[0], sy = t.transform.scale[1];
+        var tx = t.transform.translate[0], ty = t.transform.translate[1];
+        var arcs = t.arcs.map(function (a) {
+          var x = 0, y = 0;
+          return a.map(function (d) { x += d[0]; y += d[1]; return [x * sx + tx, y * sy + ty]; });
+        });
+        var out = [];
+        function ring(idxs) {
+          var p = [];
+          idxs.forEach(function (i) {
+            var a = i < 0 ? arcs[~i].slice().reverse() : arcs[i];
+            p = p.concat(p.length ? a.slice(1) : a);
+          });
+          if (p.length > 3) out.push(p);
+        }
+        function walk(g) {
+          if (!g) return;
+          if (g.geometries) return g.geometries.forEach(walk);
+          if (g.type === 'MultiPolygon') g.arcs.forEach(function (poly) { poly.forEach(ring); });
+          else if (g.type === 'Polygon') g.arcs.forEach(ring);
+        }
+        walk(t.objects.land);
+        rings = out;
+      })
+      .catch(function (e) { console.warn('land load failed', e); rings = []; });
+  }
+
+  function loop() {
+    requestAnimationFrame(loop);
+    if (canvas.clientWidth !== w || canvas.clientHeight !== h) resize();
+    var time = (performance.now() - t0) / 1000;
+    if (!spinPaused && !state.selected) cam.lon += props.spinSpeed * 0.09;
+
+    var W = w, H = h;
+    var mob = W < 880;
+    cx = mob ? W * 0.5 : W * 0.6;
+    cy = mob ? H * 0.3 : H * 0.54;
+    R = (mob ? Math.min(W * 0.42, H * 0.26) : Math.min(W * 0.34, H * 0.42)) * cam.zoom;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#05070d'; ctx.fillRect(0, 0, W, H);
+
+    var g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.05, cx, cy, R * 1.9);
+    g.addColorStop(0, 'rgba(24,44,74,0.5)'); g.addColorStop(1, 'rgba(5,7,13,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    g = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
+    g.addColorStop(0, '#0f1b30'); g.addColorStop(0.7, '#080e1a'); g.addColorStop(1, '#060a12');
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, R + 1.5, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(79,216,255,0.3)'; ctx.lineWidth = 1.2;
+    ctx.shadowColor = 'rgba(79,216,255,0.55)'; ctx.shadowBlur = 26; ctx.stroke();
+    ctx.restore();
+
+    ctx.lineWidth = 0.7; ctx.strokeStyle = 'rgba(130,175,215,0.12)';
+    for (var lon = -180; lon < 180; lon += 15) {
+      (function (ln) { strokePath(function (i, n) { return project(-90 + 180 * i / n, ln); }, 60); })(lon);
+    }
+    for (var lat = -75; lat <= 75; lat += 15) {
+      (function (lt) { strokePath(function (i, n) { return project(lt, -180 + 360 * i / n); }, 120); })(lat);
+    }
+
+    if (rings && rings.length && props.landDots) {
+      ctx.fillStyle = 'rgba(158,200,230,0.5)';
+      ctx.strokeStyle = 'rgba(120,175,215,0.2)';
+      ctx.lineWidth = 0.7;
+      var step = 4;
+      for (var ri = 0; ri < rings.length; ri++) {
+        var ringPts = rings[ri];
+        var prev = null, started = false;
+        ctx.beginPath();
+        for (var i = 0; i < ringPts.length; i++) {
+          var p = project(ringPts[i][1], ringPts[i][0]);
+          if (p.z <= 0.015) { prev = null; started = false; continue; }
+          if (!started) { ctx.moveTo(p.x, p.y); started = true; } else ctx.lineTo(p.x, p.y);
+          if (prev) {
+            var dx = p.x - prev.x, dy = p.y - prev.y, len = Math.hypot(dx, dy);
+            var n = Math.min(120, Math.floor(len / step));
+            for (var k = 0; k <= n; k++) {
+              var s = 1 + p.z * 0.7;
+              ctx.fillRect(prev.x + dx * (k / (n || 1)) - s / 2, prev.y + dy * (k / (n || 1)) - s / 2, s, s);
+            }
+          }
+          prev = p;
+        }
+        ctx.stroke();
+      }
+    }
+
+    var focusId = state.selected || state.hover;
+    var lift = props.arcLift;
+    var vEdges = visibleEdges();
+
+    vEdges.forEach(function (e, idx) {
+      var a = byId[e.from], bb = byId[e.to];
+      var color = regionColor(bb.region === 'my' ? a.region : bb.region);
+      var dim = focusId && e.from !== focusId && e.to !== focusId;
+      var n = 44, arcPts = [];
+      var long = haversine(a, bb) > 1200;
+      for (var i = 0; i <= n; i++) {
+        var t = i / n;
+        var ll = slerpLL(a, bb, t);
+        arcPts.push(project(ll.lat, ll.lon, 1 + lift * Math.sin(Math.PI * t) * (long ? 1 : 0.28)));
+      }
+      var fresh = e.hop === state.hop ? 1 : 0;
+      ctx.lineWidth = (dim ? 0.5 : 0.8 + (long ? 0.35 : 0)) * (1 + fresh * 0.6);
+      ctx.strokeStyle = rgba(color, dim ? 0.07 : 0.34 + fresh * 0.45);
+      ctx.save();
+      if (!dim) { ctx.shadowColor = rgba(color, 0.8); ctx.shadowBlur = 7 + fresh * 13; }
+      ctx.beginPath();
+      var started2 = false;
+      arcPts.forEach(function (p) {
+        if (p.z <= -0.15) { started2 = false; return; }
+        if (!started2) { ctx.moveTo(p.x, p.y); started2 = true; } else ctx.lineTo(p.x, p.y);
+      });
+      ctx.stroke();
+      ctx.restore();
+
+      if (!dim && fresh && !reduced) {
+        var ph = (time * 0.26 + idx * 0.31) % 1;
+        var dp = arcPts[Math.round(ph * n)];
+        if (dp && dp.z > 0) {
+          ctx.save();
+          ctx.shadowColor = rgba(color, 1); ctx.shadowBlur = 14;
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath(); ctx.arc(dp.x, dp.y, 2, 0, Math.PI * 2); ctx.fill();
+          ctx.restore();
+        }
+      }
+    });
+
+    var active = {};
+    vEdges.forEach(function (e) { active[e.from] = true; active[e.to] = true; });
+    pts = [];
+
+    var vis = [];
+    CITIES.forEach(function (ct) {
+      var p = project(ct.lat, ct.lon);
+      if (p.z > 0.02) vis.push({ ct: ct, p: p });
+    });
+    vis.sort(function (a, b) { return (a.ct.tier - b.ct.tier) || (b.p.z - a.p.z); });
+
+    var boxes = [];
+    ctx.font = "500 11px 'JetBrains Mono', monospace";
+    vis.forEach(function (item) {
+      var ct = item.ct, p = item.p;
+      pts.push({ id: ct.id, x: p.x, y: p.y });
+      var on = !!active[ct.id];
+      var isFocus = focusId === ct.id;
+      var dim = focusId && !isFocus && !vEdges.some(function (e) {
+        return (e.from === focusId && e.to === ct.id) || (e.to === focusId && e.from === ct.id);
+      });
+      var pulse = on && !reduced ? 0.5 + 0.5 * Math.sin(time * 2 + ct.lat) : 0;
+      var r = ct.home ? 5 : (ct.tier === 1 ? 3.4 : ct.tier === 2 ? 2.6 : 2) + (isFocus ? 1.6 : 0);
+      var col = ct.home ? '#ffffff' : regionColor(ct.region);
+
+      ctx.save();
+      ctx.globalAlpha = dim ? 0.25 : 1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, r + 5 + pulse * 4, 0, Math.PI * 2);
+      ctx.fillStyle = rgba(col, on ? 0.1 + pulse * 0.1 : 0.05); ctx.fill();
+      ctx.shadowColor = rgba(col, 0.95); ctx.shadowBlur = on ? 16 : 6;
+      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = on ? (ct.home ? '#ffffff' : mix(col)) : 'rgba(180,205,225,0.55)'; ctx.fill();
+      ctx.restore();
+
+      if (ct.home) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(p.x, p.y, r + 7 + pulse * 5, 0, Math.PI * 2); ctx.stroke();
+        ctx.restore();
+      }
+
+      var showLabel = ct.home || isFocus || (ct.tier <= 2 && p.z > 0.3 && !dim);
+      if (!showLabel) return;
+      var tw = ctx.measureText(ct.name).width;
+      var bx = p.x + r + 7, by = p.y - 6;
+      var box = { x0: bx - 2, y0: by, x1: bx + tw + 2, y1: by + 13 };
+      var clash = boxes.some(function (bo) {
+        return !(box.x1 < bo.x0 || box.x0 > bo.x1 || box.y1 < bo.y0 || box.y0 > bo.y1);
+      });
+      if (clash && !isFocus && !ct.home) return;
+      boxes.push(box);
+      ctx.globalAlpha = dim ? 0.3 : 1;
+      ctx.fillStyle = isFocus || ct.home ? '#ffffff' : 'rgba(219,233,245,0.82)';
+      ctx.fillText(ct.name, bx, p.y + 4);
+      ctx.globalAlpha = 1;
+    });
+  }
+
+  /* ---------- pointer interaction ---------- */
+
+  function hitTest(clientX, clientY) {
+    var rect = canvas.getBoundingClientRect();
+    var mx = clientX - rect.left, my = clientY - rect.top;
+    var hit = null, best = 16;
+    pts.forEach(function (p) {
+      var d = Math.hypot(p.x - mx, p.y - my);
+      if (d < best) { best = d; hit = p.id; }
+    });
+    return hit;
+  }
+
+  canvas.addEventListener('pointerdown', function (e) {
+    drag = { x: e.clientX, y: e.clientY, lon: cam.lon, lat: cam.lat, moved: false };
+    spinPaused = true;
+    canvas.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('pointermove', function (e) {
+    if (drag) {
+      if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 3) drag.moved = true;
+      cam.lon = drag.lon - (e.clientX - drag.x) * 0.35;
+      cam.lat = Math.max(-75, Math.min(75, drag.lat + (e.clientY - drag.y) * 0.3));
+      return;
+    }
+    var hit = e.target === canvas ? hitTest(e.clientX, e.clientY) : null;
+    canvas.style.cursor = hit ? 'pointer' : 'grab';
+    if (hit !== state.hover) { state.hover = hit; updateFocus(); }
+    spinPaused = !!hit;
+  });
+
+  window.addEventListener('pointerup', function (e) {
+    if (drag && !drag.moved) {
+      var hit = hitTest(e.clientX, e.clientY);
+      if (hit) { state.selected = state.selected === hit ? null : hit; updateUI(); }
+    }
+    drag = null;
+    spinPaused = !!state.hover;
+    canvas.style.cursor = state.hover ? 'pointer' : 'grab';
+  });
+
+  canvas.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    cam.zoom = Math.max(0.72, Math.min(3.2, cam.zoom * (e.deltaY > 0 ? 0.94 : 1.06)));
+  }, { passive: false });
+
+  window.addEventListener('resize', resize);
+
+  /* ---------- UI panels ---------- */
+
+  var pillBtns = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var playBtn = document.getElementById('playBtn');
+  var hopRange = document.getElementById('hopRange');
+  var reachLabel = document.getElementById('reachLabel');
+  var activeLabel = document.getElementById('activeLabel');
+  var hopsEl = document.getElementById('hops');
+  var fTitle = document.getElementById('fTitle'), fKind = document.getElementById('fKind');
+  var fStatA = document.getElementById('fStatA'), fLabelA = document.getElementById('fLabelA');
+  var fStatB = document.getElementById('fStatB'), fLabelB = document.getElementById('fLabelB');
+  var fNote = document.getElementById('fNote');
+
+  var countries = {};
+  var continents = {};
+  CITIES.forEach(function (c) {
+    countries[c.country] = true;
+    REGIONS.forEach(function (r) { if (r.id === c.region) continents[r.continent] = true; });
+  });
+  document.getElementById('statCities').textContent = String(CITIES.length);
+  document.getElementById('statCountries').textContent = String(Object.keys(countries).length);
+  document.getElementById('statContinents').textContent = String(Object.keys(continents).length);
+
+  pillBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.region = btn.getAttribute('data-region');
+      updateUI();
+    });
+  });
+
+  playBtn.addEventListener('click', function () {
+    state.playing = !state.playing;
+    updateUI();
+  });
+
+  hopRange.addEventListener('input', function () {
+    state.hop = +hopRange.value;
+    state.playing = false;
+    updateUI();
+  });
+
+  setInterval(function () {
+    if (state.playing) {
+      state.hop = state.hop >= BANDS ? 1 : state.hop + 1;
+      updateUI();
+    }
+  }, 1500);
+
+  function updatePills() {
+    pillBtns.forEach(function (btn) {
+      var id = btn.getAttribute('data-region');
+      var color = btn.getAttribute('data-color');
+      var on = state.region === id;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) {
+        btn.style.background = rgba(color, 0.16);
+        btn.style.borderColor = rgba(color, 0.55);
+        btn.style.color = '#ffffff';
+      } else {
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }
+    });
+  }
+
+  function updateFocus() {
+    var focusId = state.selected || state.hover;
+    var vEdges = visibleEdges();
+    if (focusId && byId[focusId]) {
+      var c = byId[focusId];
+      fTitle.textContent = c.name;
+      fKind.textContent = state.selected ? 'Pinned' : (c.area || c.country);
+      if (c.home) {
+        fStatA.textContent = '0';
+        fLabelA.textContent = 'Home base';
+        fStatB.textContent = String(edges.filter(function (e) { return e.from === c.id || e.to === c.id; }).length);
+        fLabelB.textContent = 'Routes';
+        fNote.textContent = 'One of the two starting points. Every line on this globe leaves from Yan and Alor Setar, and every distance is measured against them.';
+      } else {
+        fStatA.textContent = fmt(c.km);
+        fLabelA.textContent = 'km from Yan';
+        fStatB.textContent = fmt(c.kmAor);
+        fLabelB.textContent = 'km from Alor Setar';
+        fNote.textContent = (c.area ? c.area + ', ' : '') + c.country + '. Reach band ' + c.band + ' of ' + BANDS + ', flown direct from both home bases.';
+      }
+    } else {
+      fTitle.textContent = 'Everywhere so far';
+      fKind.textContent = 'Overview';
+      fStatA.textContent = String(vEdges.length);
+      fLabelA.textContent = 'Routes drawn';
+      fStatB.textContent = fmt(maxKm);
+      fLabelB.textContent = 'Furthest km';
+      fNote.textContent = 'Every line runs from Yan and Alor Setar in Kedah out to somewhere I have stood: the Canaries, Nouakchott, Cappadocia. Pull the slider to grow the radius.';
+    }
+  }
+
+  function updateLongest() {
+    var pool = CITIES.filter(function (c) {
+      return !c.home && c.id !== 'aor' && (state.region === 'all' || c.region === state.region);
+    });
+    var max = Math.max.apply(null, [1].concat(pool.map(function (c) { return c.km; })));
+    var top = pool.slice().sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
+    hopsEl.textContent = '';
+    top.forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'hop';
+      var topLine = document.createElement('div');
+      topLine.className = 'hop-top';
+      var name = document.createElement('span');
+      name.className = 'name';
+      name.textContent = 'Yan → ' + c.name;
+      var km = document.createElement('span');
+      km.className = 'km';
+      km.textContent = fmt(c.km) + ' km';
+      topLine.appendChild(name); topLine.appendChild(km);
+      var track = document.createElement('div');
+      track.className = 'hop-track';
+      var fill = document.createElement('div');
+      fill.className = 'hop-fill';
+      fill.style.width = Math.round((c.km / max) * 100) + '%';
+      fill.style.background = regionColor(c.region);
+      fill.style.boxShadow = '0 0 10px ' + regionColor(c.region);
+      track.appendChild(fill);
+      row.appendChild(topLine); row.appendChild(track);
+      row.addEventListener('click', function () {
+        state.selected = state.selected === c.id ? null : c.id;
+        updateUI();
+      });
+      hopsEl.appendChild(row);
+    });
+  }
+
+  function updateBar() {
+    playBtn.innerHTML = state.playing ? '&#x2759;&#x2759;' : '&#x25B6;';
+    playBtn.setAttribute('aria-pressed', state.playing ? 'true' : 'false');
+    hopRange.value = String(state.hop);
+    reachLabel.innerHTML = '&le; ' + fmt(bandKm[state.hop] || 0) + ' km';
+    var vEdges = visibleEdges();
+    var cityIds = {};
+    vEdges.forEach(function (e) { cityIds[e.from] = true; cityIds[e.to] = true; });
+    activeLabel.textContent = vEdges.length + ' routes · ' + Object.keys(cityIds).length + ' cities';
+  }
+
+  function updateUI() {
+    updatePills();
+    updateFocus();
+    updateLongest();
+    updateBar();
+  }
+
+  /* ---------- boot ---------- */
+
+  resize();
+  updateUI();
+  loadLand();
+  loop();
 })();
 </script>
-<script src="/feedback.js"></script>
 </body>
 </html>
