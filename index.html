@@ -88,46 +88,13 @@
   }
   .wp-glimpse::before { content:''; position:absolute; top:0; left:0; right:0; height:15px; background:rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.07); }
   .wp-glimpse::after { content:''; position:absolute; top:5.5px; left:9px; width:4px; height:4px; border-radius:50%; background:var(--wc); box-shadow:7px 0 0 rgba(255,255,255,.28), 14px 0 0 rgba(255,255,255,.28); }
-  @keyframes g-spin { to{ transform:rotate(360deg); } }
-
-  .g-notes { position:absolute; inset:26px 20px 18px; display:flex; flex-direction:column; gap:7px; justify-content:center; }
-  .g-notes span { height:5px; border-radius:3px; background:linear-gradient(90deg,var(--wc),rgba(255,255,255,.08)); transform-origin:left; animation:g-line 2.6s ease-in-out infinite; }
-  .g-notes span:nth-child(1){width:72%} .g-notes span:nth-child(2){width:94%;animation-delay:.25s} .g-notes span:nth-child(3){width:58%;animation-delay:.5s} .g-notes span:nth-child(4){width:82%;animation-delay:.75s}
-  @keyframes g-line { 0%,100%{opacity:.45;transform:scaleX(.9)} 50%{opacity:1;transform:scaleX(1)} }
-
-  .g-ref { position:absolute; inset:15px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; }
-  .g-ref > span { display:block; height:6px; border-radius:3px; background:var(--wc); box-shadow:0 0 10px var(--wc); animation:g-glow 2.2s ease-in-out infinite; }
-  .g-ref > span:nth-child(1){width:52%} .g-ref > span:nth-child(2){width:36%;animation-delay:.4s}
-  .g-ref .chips { display:flex; gap:6px; margin-top:3px; }
-  .g-ref .chips em { font:600 8px/1 'Helvetica Neue',sans-serif; letter-spacing:.14em; color:var(--wc); padding:3px 8px; border:1px solid var(--wc); border-radius:20px; font-style:normal; }
-  @keyframes g-glow { 0%,100%{opacity:.5} 50%{opacity:1} }
-
-  .g-nazm { position:absolute; inset:15px 0 0; display:grid; place-items:center; }
-  .g-nazm i { position:absolute; border:1.5px solid var(--wc); border-radius:50%; box-shadow:0 0 8px -1px var(--wc); }
-  .g-nazm i:nth-child(1){ width:26px;height:26px; }
-  .g-nazm i:nth-child(2){ width:52px;height:52px; opacity:.7; border-style:dashed; animation:g-spin 9s linear infinite; }
-  .g-nazm i:nth-child(3){ width:80px;height:80px; opacity:.45; border-style:dotted; animation:g-spin 14s linear infinite reverse; }
-
-  .g-kalam { position:absolute; inset:26px 22px 18px; display:flex; align-items:flex-end; gap:5px; }
-  .g-kalam i { flex:1; border-radius:2px 2px 0 0; background:linear-gradient(180deg,var(--wc),rgba(255,255,255,.06)); animation:g-bar 1.7s ease-in-out infinite; }
-  .g-kalam i:nth-child(2){animation-delay:.15s} .g-kalam i:nth-child(3){animation-delay:.3s} .g-kalam i:nth-child(4){animation-delay:.45s} .g-kalam i:nth-child(5){animation-delay:.6s} .g-kalam i:nth-child(6){animation-delay:.75s} .g-kalam i:nth-child(7){animation-delay:.9s}
-  @keyframes g-bar { 0%,100%{height:28%} 50%{height:88%} }
-
-  .g-insp { position:absolute; inset:15px 0 0; display:grid; place-items:center; }
-  .g-insp b { width:14px;height:14px;border-radius:50%; background:radial-gradient(circle at 38% 34%,#fff,var(--wc)); box-shadow:0 0 16px var(--wc); }
-  .g-insp i { position:absolute; width:72px;height:72px; animation:g-spin 3.2s linear infinite; }
-  .g-insp i::after { content:''; position:absolute; top:-3px; left:50%; margin-left:-3px; width:6px;height:6px;border-radius:50%; background:var(--wc); box-shadow:0 0 10px var(--wc); }
-
-  .g-books { position:absolute; inset:26px 0 18px; display:flex; align-items:flex-end; justify-content:center; gap:6px; }
-  .g-books i { width:13px; border-radius:2px; background:linear-gradient(180deg,var(--wc),rgba(0,0,0,.25)); box-shadow:0 0 8px -3px var(--wc); animation:g-book 3s ease-in-out infinite; }
-  .g-books i:nth-child(1){height:56%} .g-books i:nth-child(2){height:74%;animation-delay:.3s} .g-books i:nth-child(3){height:48%;animation-delay:.6s} .g-books i:nth-child(4){height:68%;animation-delay:.9s} .g-books i:nth-child(5){height:60%;animation-delay:1.2s}
-  @keyframes g-book { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
-
-  .g-ai { position:absolute; inset:15px 0 0; width:100%; height:calc(100% - 15px); }
-  .g-ai line { stroke:var(--wc); stroke-width:.8; opacity:.5; }
-  .g-ai circle { fill:var(--wc); filter:drop-shadow(0 0 3px var(--wc)); animation:g-node 2.4s ease-in-out infinite; }
-  .g-ai circle:nth-of-type(2){animation-delay:.3s} .g-ai circle:nth-of-type(3){animation-delay:.6s} .g-ai circle:nth-of-type(4){animation-delay:.2s} .g-ai circle:nth-of-type(5){animation-delay:.5s} .g-ai circle:nth-of-type(6){animation-delay:.8s}
-  @keyframes g-node { 0%,100%{opacity:.45} 50%{opacity:1} }
+  .wp-shot {
+    position:absolute; inset:15px 0 0; width:100%; height:calc(100% - 15px);
+    object-fit:cover; object-position:top center; display:block;
+    animation:shot-zoom 10s ease-in-out infinite alternate;
+  }
+  @keyframes shot-zoom { from{ transform:scale(1); } to{ transform:scale(1.09); } }
+  @media (prefers-reduced-motion: reduce) { .wp-shot { animation:none; } }
   #enter { opacity:0; }
   #enter p {
     margin:0 0 30px; font-weight:300; font-size:clamp(12px,1.3vw,15px);
@@ -205,31 +172,31 @@
 
 <div id="waypoints">
   <div class="overlay wp" data-c="0.24" style="--wc:#4fd8ff">
-    <div class="wp-glimpse"><div class="g-notes"><span></span><span></span><span></span><span></span></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/notes.jpg" alt=""></div>
     <h2>Notes</h2><p>Working essays where the engineering lens meets the tradition</p>
   </div>
   <div class="overlay wp" data-c="0.32" style="--wc:#6ee7a8">
-    <div class="wp-glimpse"><div class="g-ref"><span></span><span></span><span class="chips"><em>EN</em><em>BM</em></span></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/reflections.jpg" alt=""></div>
     <h2>Reflections</h2><p>One surah at a time, EN &amp; BM</p>
   </div>
   <div class="overlay wp" data-c="0.40" style="--wc:#b48cff">
-    <div class="wp-glimpse"><div class="g-nazm"><i></i><i></i><i></i></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/nazm.jpg" alt=""></div>
     <h2>Na&#7827;m &middot; Ring Structure</h2><p>How s&#363;rahs fold around their centres</p>
   </div>
   <div class="overlay wp" data-c="0.49" style="--wc:#ffc46b">
-    <div class="wp-glimpse"><div class="g-kalam"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/kalam.jpg" alt=""></div>
     <h2>Kalam</h2><p>The Qur'an in data, computed from the text</p>
   </div>
   <div class="overlay wp" data-c="0.57" style="--wc:#ff6fae">
-    <div class="wp-glimpse"><div class="g-insp"><b></b><i></i></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/inspiration.jpg" alt=""></div>
     <h2>Inspiration</h2><p>Everyday moments read through revelation</p>
   </div>
   <div class="overlay wp" data-c="0.65" style="--wc:#ffcf6b">
-    <div class="wp-glimpse"><div class="g-books"><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/books.jpg" alt=""></div>
     <h2>Book Summaries</h2><p>What I read, distilled</p>
   </div>
   <div class="overlay wp" data-c="0.74" style="--wc:#6cc6ff">
-    <div class="wp-glimpse"><svg class="g-ai" viewBox="0 0 130 70" preserveAspectRatio="xMidYMid meet"><line x1="20" y1="22" x2="65" y2="15"></line><line x1="20" y1="22" x2="65" y2="35"></line><line x1="20" y1="48" x2="65" y2="35"></line><line x1="20" y1="48" x2="65" y2="55"></line><line x1="65" y1="15" x2="110" y2="35"></line><line x1="65" y1="35" x2="110" y2="35"></line><line x1="65" y1="55" x2="110" y2="35"></line><circle cx="20" cy="22" r="4"></circle><circle cx="20" cy="48" r="4"></circle><circle cx="65" cy="15" r="4"></circle><circle cx="65" cy="35" r="4"></circle><circle cx="65" cy="55" r="4"></circle><circle cx="110" cy="35" r="5"></circle></svg></div>
+    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/ai.jpg" alt=""></div>
     <h2>Learn AI &amp; more</h2><p>Plus the political read, apps and personal corners</p>
   </div>
 </div>
