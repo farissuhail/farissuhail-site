@@ -97,27 +97,37 @@
   @media (prefers-reduced-motion: reduce) { .wp-shot { animation:none; } }
   #enter { opacity:0; }
   /* center core floats above the screenshot rows on a soft dark halo */
-  .enter-core { position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; padding:44px 78px; }
+  .enter-core { position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:34px; padding:44px 78px; }
   .enter-core::before { content:''; position:absolute; inset:-40px -70px; z-index:-1;
-    background:radial-gradient(ellipse at center, rgba(4,6,16,0.97) 0%, rgba(4,6,16,0.85) 42%, rgba(4,6,16,0) 74%); }
+    background:radial-gradient(ellipse at center, rgba(4,10,8,0.97) 0%, rgba(5,10,9,0.85) 42%, rgba(4,10,8,0) 74%); }
   #enter p {
-    margin:0 0 26px; font-weight:300; font-size:clamp(11px,1.2vw,14px);
-    letter-spacing:.44em; text-transform:uppercase; color:rgba(200,232,255,.85);
-    text-shadow:0 0 16px rgba(43,240,255,.5);
+    margin:0; font-weight:300; font-size:clamp(11px,1.2vw,14px);
+    letter-spacing:.42em; text-transform:uppercase; color:#7fd8b8;
+    animation:label-glow 4s ease-in-out infinite;
   }
+  @keyframes label-glow { 0%,100%{ opacity:.55; } 50%{ opacity:.9; } }
   #enter a {
-    pointer-events:auto; display:inline-block; text-decoration:none; position:relative;
-    padding:19px 70px 19px 78px; border-radius:999px; color:#eafcff; font-weight:400;
-    font-size:16px; letter-spacing:.5em; text-transform:uppercase;
-    border:1px solid rgba(43,240,255,.6);
-    background:linear-gradient(180deg, rgba(43,240,255,.18), rgba(43,240,255,.04));
-    box-shadow:0 0 42px rgba(43,240,255,.35), 0 0 96px rgba(122,60,255,.22), inset 0 0 26px rgba(43,240,255,.12);
-    transition:background .35s ease, box-shadow .35s ease, transform .35s ease, letter-spacing .35s ease;
+    pointer-events:auto; position:relative; overflow:hidden; text-decoration:none;
+    display:inline-block; padding:18px 60px; border-radius:10px;
+    border:1px solid rgba(52,211,153,.5); background:rgba(6,26,20,.85);
+    color:#d6ffee; font-weight:400; font-size:16px; letter-spacing:.44em; text-transform:uppercase;
+    animation:ember-flicker 3.2s ease-in-out infinite;
+    transition:transform .35s ease;
   }
-  #enter a:hover {
-    background:linear-gradient(180deg, rgba(43,240,255,.34), rgba(43,240,255,.09));
-    box-shadow:0 0 66px rgba(43,240,255,.6), 0 0 140px rgba(122,60,255,.4), inset 0 0 32px rgba(43,240,255,.2);
-    transform:translateY(-2px) scale(1.02); letter-spacing:.56em;
+  #enter a:hover { transform:translateY(-2px); }
+  #enter a .enter-txt { position:relative; z-index:2; padding-left:.44em; }
+  #enter a .enter-scan {
+    position:absolute; left:0; width:100%; height:2px; z-index:1;
+    background:linear-gradient(90deg, transparent, rgba(52,211,153,.9), transparent);
+    animation:scan-move 2.8s linear infinite;
+  }
+  @keyframes scan-move { 0%{ top:-10%; opacity:0; } 12%,88%{ opacity:1; } 100%{ top:105%; opacity:0; } }
+  @keyframes ember-flicker {
+    0%,100%{ box-shadow:0 0 0 1px rgba(52,211,153,.4), 0 0 26px rgba(16,185,129,.28); }
+    50%{ box-shadow:0 0 0 1px rgba(52,211,153,.65), 0 0 46px rgba(16,185,129,.5); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #enter p, #enter a, #enter a .enter-scan { animation:none; }
   }
   #skip {
     position:fixed; top:18px; right:22px; z-index:5; pointer-events:auto; text-decoration:none;
@@ -240,7 +250,7 @@
   </div></div>
   <div class="enter-core">
     <p>farissuhail.com</p>
-    <a id="enterLink" href="/home.html">Enter</a>
+    <a id="enterLink" href="/home.html"><span class="enter-txt">Enter</span><span class="enter-scan"></span></a>
   </div>
   <div class="enter-row bot" aria-hidden="true"><div class="enter-track">
     <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
