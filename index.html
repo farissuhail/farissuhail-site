@@ -137,50 +137,68 @@
     }
     .card-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
 
-    /* ===== what lives here ===== */
-    .whatlives { gap: 12px; }
-    .wl-list { display: flex; flex-direction: column; gap: 14px; }
-    .wl-item { display: flex; align-items: flex-start; gap: 13px; font-size: 13px; line-height: 1.5; color: rgba(219,233,245,0.62); }
-    .wl-tx { flex: 1 1 auto; padding-top: 2px; }
-    .wl-item a { color: #dbe9f5; font-weight: 500; border-bottom: 1px solid rgba(79,216,255,0.35); transition: color 0.2s, border-color 0.2s; }
-    .wl-item a:hover { color: #9beeff; border-color: #9beeff; }
-    .wl-more { font-size: 12px; line-height: 1.55; color: rgba(219,233,245,0.5); padding-top: 4px; }
-    .wl-more a { color: rgba(219,233,245,0.85); border-bottom: 1px solid rgba(79,216,255,0.3); }
-    .wl-more a:hover { color: #9beeff; }
+    /* ===== what lives here (data dashboard) ===== */
+    .whatlives { display: flex; flex-direction: column; gap: 12px; }
+    .wlh-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 2px; }
+    .wlh-head .l { display: flex; align-items: center; gap: 9px; }
+    .wlh-blip { width: 7px; height: 7px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 12px 2px rgba(79,216,255,0.55); }
+    .wlh-head h2 { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(219,233,245,0.72); font-weight: 500; }
+    .wlh-head .r { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(148,163,184,0.5); }
+    @keyframes wlh-blip { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+    @media (prefers-reduced-motion: no-preference) { .wlh-blip { animation: wlh-blip 2.4s ease-in-out infinite; } }
 
-    /* 3D animated section icons (pure CSS, GPU transforms) */
-    .wl-ic { position: relative; width: 40px; height: 40px; flex: 0 0 auto; perspective: 220px; }
-    .wl-ic::before { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: radial-gradient(circle, var(--c), transparent 62%); opacity: 0.26; z-index: 0; }
-    .wl-ic .spin { position: relative; z-index: 1; width: 100%; height: 100%; transform-style: preserve-3d; animation: wlspin 11s linear infinite; }
-    @keyframes wlspin { from { transform: rotateX(-24deg) rotateY(0deg); } to { transform: rotateX(-24deg) rotateY(360deg); } }
-    @media (prefers-reduced-motion: reduce) { .wl-ic .spin { animation: none; transform: rotateX(-24deg) rotateY(-32deg); } }
+    .wlh-card { position: relative; border-radius: 16px; padding: 16px; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .wlh-card:hover { transform: translateY(-2px); box-shadow: 0 22px 44px -26px rgba(0,0,0,0.85); }
+    .wlh-idx { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; }
+    .wlh-rule { height: 1px; flex: 1; }
+    .wlh-title { margin: 9px 0 6px; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #f1f5f9; }
+    .wlh-title a { color: inherit; transition: color 0.2s; }
+    .wlh-desc { font-size: 12.5px; line-height: 1.55; color: rgba(203,213,225,0.82); text-wrap: pretty; }
+    .wlh-desc a { color: #bae6fd; border-bottom: 1px solid rgba(125,211,252,0.5); }
+    .wlh-num { font-variant-numeric: tabular-nums; font-weight: 700; line-height: 1; }
 
-    /* glass cube (Notes) + wireframe lattice (Kalam) share the 6-face frame */
-    .ic-cube .f, .ic-grid .f { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 1px solid var(--c); }
-    .ic-cube .f { background: rgba(255,255,255,0.05); box-shadow: inset 0 0 8px rgba(150,205,255,0.18); }
-    .ic-grid .f { background: rgba(255,255,255,0.015); }
-    .f.fz { transform: translateZ(11px); } .f.fzb { transform: translateZ(-11px); }
-    .f.fx { transform: rotateY(90deg) translateZ(11px); } .f.fxb { transform: rotateY(90deg) translateZ(-11px); }
-    .f.fy { transform: rotateX(90deg) translateZ(11px); } .f.fyb { transform: rotateX(90deg) translateZ(-11px); }
-    .ic-grid .core { position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
-    .ic-grid .spin { animation-duration: 14s; }
+    /* accent palette (matches the globe arc colors) */
+    .cy { background: linear-gradient(135deg, rgba(79,216,255,0.10), rgba(79,216,255,0.02)); border: 1px solid rgba(79,216,255,0.22); }
+    .gr { background: linear-gradient(135deg, rgba(110,231,168,0.10), rgba(110,231,168,0.02)); border: 1px solid rgba(110,231,168,0.22); }
+    .vi { background: linear-gradient(135deg, rgba(180,140,255,0.10), rgba(180,140,255,0.02)); border: 1px solid rgba(180,140,255,0.22); display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
+    .am { background: linear-gradient(135deg, rgba(255,196,107,0.10), rgba(255,196,107,0.02)); border: 1px solid rgba(255,196,107,0.22); }
+    .pk { background: linear-gradient(135deg, rgba(255,111,174,0.10), rgba(255,111,174,0.02)); border: 1px solid rgba(255,111,174,0.22); }
+    .cy .wlh-idx { color: #9bdcff; } .cy .wlh-title a:hover { color: #9bdcff; }
+    .gr .wlh-idx { color: #6ee7b7; } .vi .wlh-idx { color: #c4b5fd; } .am .wlh-idx { color: #fcd34d; } .pk .wlh-idx { color: #f9a8d4; }
 
-    /* gyroscope rings (Naẓm / Ring Structure) */
-    .ic-rings .rg { position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px; border: 1.5px solid var(--c); border-radius: 50%; box-shadow: 0 0 6px var(--c); }
-    .ic-rings .rg.r2 { transform: rotateY(62deg); }
-    .ic-rings .rg.r3 { transform: rotateX(66deg); width: 24px; height: 24px; margin: -12px; opacity: 0.82; }
-    .ic-rings .spin { animation-duration: 9s; }
+    /* Notes stat sub-box + sparkline */
+    .wlh-sub { margin-top: 12px; padding: 13px 14px; border-radius: 12px; background: rgba(2,6,23,0.4); border: 1px solid rgba(79,216,255,0.15); }
+    .wlh-spark { width: 100%; height: 48px; margin-top: 8px; overflow: visible; }
+    .wlh-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    @keyframes wlh-draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: no-preference) { .wlh-draw { animation: wlh-draw 1.4s ease 0.2s forwards; } }
+    @media (prefers-reduced-motion: reduce) { .wlh-draw { stroke-dashoffset: 0; } }
 
-    /* open book (Reflections) */
-    .ic-book .leaf { position: absolute; top: 50%; left: 50%; width: 16px; height: 22px; margin: -11px 0 0 0; transform-origin: left center; background: rgba(255,255,255,0.06); border: 1px solid var(--c); box-shadow: inset 0 0 6px rgba(255,255,255,0.05); }
-    .ic-book .leaf.lr { transform: rotateY(-28deg); }
-    .ic-book .leaf.ll { transform: rotateY(208deg); }
-    .ic-book .spin { animation-duration: 13s; }
+    /* Reflections progress + language chips */
+    .wlh-prog { height: 8px; border-radius: 99px; background: rgba(110,231,168,0.14); overflow: hidden; }
+    .wlh-prog > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #34d399, #6ee7b7); width: 0; transition: width 1.3s cubic-bezier(.22,1,.36,1) 0.2s; }
+    .wlh-chips { margin-top: 14px; display: flex; gap: 8px; }
+    .wlh-chip { flex: 1; text-align: center; padding: 7px 0; border-radius: 9px; background: rgba(110,231,168,0.12); border: 1px solid rgba(110,231,168,0.3); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6ee7b7; }
 
-    /* orbiting spark (Inspiration) */
-    .ic-orbit .core { position: absolute; top: 50%; left: 50%; width: 11px; height: 11px; margin: -5.5px; border-radius: 50%; background: radial-gradient(circle at 38% 32%, #fff, var(--c) 72%); box-shadow: 0 0 12px var(--c); z-index: 2; }
-    .ic-orbit .orb { position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px; border: 1.5px solid var(--c); border-radius: 50%; transform: rotateX(74deg); box-shadow: 0 0 8px var(--c); }
-    .ic-orbit .spin { animation-duration: 8s; }
+    /* Naẓm ring */
+    .wlh-ringwrap { position: relative; width: 92px; height: 92px; flex: 0 0 auto; }
+    .wlh-ring-svg { width: 92px; height: 92px; transform: rotate(-90deg); }
+    #wlhRing { transition: stroke-dashoffset 1.4s ease 0.2s; }
+    .wlh-ring-c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .wlh-ring-c b { font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 700; color: #ede9fe; line-height: 1; }
+    .wlh-ring-c span { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; color: rgba(196,181,253,0.7); margin-top: 4px; }
+
+    /* Kalam bars */
+    .wlh-bars { margin-top: 14px; display: flex; align-items: flex-end; gap: 5px; height: 46px; }
+    .wlh-bars > i { flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #ffc46b, rgba(255,196,107,0.25)); transform-origin: bottom; }
+    @keyframes wlh-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    @media (prefers-reduced-motion: no-preference) { .wlh-bars > i { animation: wlh-bar 0.9s cubic-bezier(.22,1,.36,1) both; } }
+
+    .wlh-more { margin: 6px 2px 0; font-size: 12.5px; line-height: 1.65; color: rgba(148,163,184,0.7); text-wrap: pretty; }
+    .wlh-more a { color: rgba(226,232,240,0.92); border-bottom: 1px solid rgba(79,216,255,0.4); }
+    .wlh-more a:hover { color: #9beeff; }
+
+    @media (prefers-reduced-motion: reduce) { #wlhRing, .wlh-prog > i { transition: none; } }
 
     /* ===== regions ===== */
     .regions-card { gap: 11px; }
@@ -333,7 +351,7 @@
       .stat { padding: 11px 12px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
       .stat b { font-size: 22px; }
       .stat span { font-size: 8.5px; letter-spacing: 0.14em; }
-      .whatlives { order: 4; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .whatlives { order: 4; }
       .regions-card { order: 5; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
       .pill { padding: 9px 12px; font-size: 10.5px; }
       .focus-card { order: 6; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
@@ -390,37 +408,87 @@
       <div class="stat"><b id="statContinents">5</b><span>Continents</span></div>
     </div>
 
-    <div class="card whatlives">
-      <div class="card-label">What lives here</div>
-      <div class="wl-list">
-        <div class="wl-item">
-          <span class="wl-ic ic-cube" style="--c:#4fd8ff" aria-hidden="true"><span class="spin"><i class="f fz"></i><i class="f fzb"></i><i class="f fx"></i><i class="f fxb"></i><i class="f fy"></i><i class="f fyb"></i></span></span>
-          <span class="wl-tx"><a href="/notes/">Notes</a>: working essays where the engineering
-            lens meets the tradition. Start with <a href="/notes/hadith-information-integrity.html">the
-            muhaddithun &amp; information integrity</a>.</span>
-        </div>
-        <div class="wl-item">
-          <span class="wl-ic ic-book" style="--c:#6ee7a8" aria-hidden="true"><span class="spin"><i class="leaf lr"></i><i class="leaf ll"></i></span></span>
-          <span class="wl-tx"><a href="/reflections.html">Reflections</a>: one surah at a time, EN &amp; BM.</span>
-        </div>
-        <div class="wl-item">
-          <span class="wl-ic ic-rings" style="--c:#b48cff" aria-hidden="true"><span class="spin"><i class="rg r1"></i><i class="rg r2"></i><i class="rg r3"></i></span></span>
-          <span class="wl-tx"><a href="/nazm.html">Na&#7827;m / Ring Structure</a>: how s&#363;rahs fold around their centres.</span>
-        </div>
-        <div class="wl-item">
-          <span class="wl-ic ic-grid" style="--c:#ffc46b" aria-hidden="true"><span class="spin"><i class="f fz"></i><i class="f fzb"></i><i class="f fx"></i><i class="f fxb"></i><i class="f fy"></i><i class="f fyb"></i><i class="core"></i></span></span>
-          <span class="wl-tx"><a href="/kalam.html">Kalam</a>: the Qur'an in data, computed from the text itself.</span>
-        </div>
-        <div class="wl-item">
-          <span class="wl-ic ic-orbit" style="--c:#ff6fae" aria-hidden="true"><i class="core"></i><span class="spin"><i class="orb"></i></span></span>
-          <span class="wl-tx"><a href="/inspiration.html">Inspiration</a>: everyday moments read through revelation.</span>
-        </div>
-        <div class="wl-more"><a href="/book-reviews.html">Book summaries</a>, <a href="/learn-ai.html">Learn
-          AI</a>, a <a href="/npam.html">non-partisan read on Malaysia's political conversation</a>, and a few
-          personal corners like the <a href="/sneakers.html">sneaker shelf</a>, because this is, in the end,
-          a personal site. And the tinkering side: <a href="/apps.html">practical apps &amp; tech experiments
-          for everyday businesses</a>.</div>
+    <div class="whatlives">
+      <div class="wlh-head">
+        <div class="l"><span class="wlh-blip"></span><h2>What Lives Here</h2></div>
+        <span class="r">LIVE &middot; 5 STRANDS</span>
       </div>
+
+      <article class="wlh-card cy">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="wlh-idx">01 &middot; ESSAYS</span>
+          <span class="wlh-rule" style="background:linear-gradient(90deg,rgba(79,216,255,0.4),transparent);"></span>
+        </div>
+        <h3 class="wlh-title"><a href="/notes/">Notes</a></h3>
+        <p class="wlh-desc">Working essays where the engineering lens meets the tradition. Start with
+          <a href="/notes/hadith-information-integrity.html">the muhaddithun &amp; information integrity</a>.</p>
+        <div class="wlh-sub">
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span class="wlh-num" id="wlhEssays" style="font-size:34px;color:#e0f2fe;">0</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#7dd3fc;">PUBLISHED</span>
+          </div>
+          <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="ngrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(79,216,255,0.45)"></stop><stop offset="1" stop-color="rgba(79,216,255,0)"></stop></linearGradient></defs>
+            <path id="wlhNotesArea" fill="url(#ngrad)" opacity="0.9"></path>
+            <path id="wlhNotesLine" class="wlh-draw" fill="none" stroke="#4fd8ff" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </article>
+
+      <article class="wlh-card gr">
+        <span class="wlh-idx">02 &middot; SURAH BY SURAH</span>
+        <h3 class="wlh-title"><a href="/reflections.html">Reflections</a></h3>
+        <div style="display:flex;align-items:baseline;gap:6px;margin:8px 0 12px;">
+          <span class="wlh-num" id="wlhSurahs" style="font-size:32px;color:#d1fae5;">0</span>
+          <span style="font-size:14px;color:rgba(148,163,184,0.7);">/ 114 surahs</span>
+        </div>
+        <div class="wlh-prog"><i id="wlhSurahBar"></i></div>
+        <div class="wlh-chips"><span class="wlh-chip">EN</span><span class="wlh-chip">BM</span></div>
+      </article>
+
+      <article class="wlh-card vi">
+        <div>
+          <span class="wlh-idx">03 &middot; STRUCTURE</span>
+          <h3 class="wlh-title" style="margin:11px 0 7px;font-size:18px;"><a href="/nazm.html">Na&#7827;m / Ring</a></h3>
+          <p class="wlh-desc" style="font-size:12px;">How s&#363;rahs fold around their centres.</p>
+        </div>
+        <div class="wlh-ringwrap">
+          <svg class="wlh-ring-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(180,140,255,0.15)" stroke-width="7"></circle>
+            <circle id="wlhRing" cx="50" cy="50" r="42" fill="none" stroke="#b48cff" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></circle>
+          </svg>
+          <div class="wlh-ring-c"><b id="wlhRingNum">0</b><span>SURAHS</span></div>
+        </div>
+      </article>
+
+      <article class="wlh-card am">
+        <span class="wlh-idx">04 &middot; COMPUTED</span>
+        <h3 class="wlh-title"><a href="/kalam.html">Kalam</a></h3>
+        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 4px;">
+          <span class="wlh-num" id="wlhWords" style="font-size:26px;color:#fef3c7;">0</span>
+          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">words parsed</span>
+        </div>
+        <div class="wlh-bars" id="wlhBars" aria-hidden="true"></div>
+      </article>
+
+      <article class="wlh-card pk">
+        <span class="wlh-idx">05 &middot; EVERYDAY</span>
+        <h3 class="wlh-title"><a href="/inspiration.html">Inspiration</a></h3>
+        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 8px;">
+          <span class="wlh-num" id="wlhMoments" style="font-size:26px;color:#fce7f3;">0</span>
+          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">moments logged</span>
+        </div>
+        <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="igrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(255,111,174,0.45)"></stop><stop offset="1" stop-color="rgba(255,111,174,0)"></stop></linearGradient></defs>
+          <path id="wlhInspArea" fill="url(#igrad)" opacity="0.9"></path>
+          <path id="wlhInspLine" class="wlh-draw" fill="none" stroke="#ff6fae" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </article>
+
+      <p class="wlh-more">Also here: <a href="/book-reviews.html">book summaries</a>,
+        <a href="/learn-ai.html">Learn AI</a>, a <a href="/npam.html">non-partisan read on Malaysia's
+        politics</a>, and personal corners like the <a href="/sneakers.html">sneaker shelf</a> and
+        <a href="/apps.html">apps &amp; experiments</a>.</p>
     </div>
 
     <div class="contact">
@@ -617,7 +685,7 @@
   var PRIMARY = 'aor';           // Alor Setar is the primary home base
   var PRIMARY_NAME = 'Alor Setar';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var props = { spinSpeed: reduced ? 0 : 0.35, arcLift: 0.28, landDots: true };
+  var props = { spinSpeed: reduced ? 0 : 0.7, arcLift: 0.28, landDots: true };
 
   /* ---------- derived data ---------- */
 
@@ -1259,6 +1327,76 @@
   updateUI();
   loadLand();
   loop();
+})();
+</script>
+<script>
+/* "What Lives Here" dashboard: real counts + animated sparklines/bars/ring */
+(function () {
+  'use strict';
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id) { return document.getElementById(id); }
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  function path(vals, w, h) {
+    var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals), rng = (max - min) || 1, out = '';
+    for (var i = 0; i < vals.length; i++) {
+      var x = i / (vals.length - 1) * w, y = h - ((vals[i] - min) / rng) * (h - 2) - 1;
+      out += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    }
+    return out.trim();
+  }
+
+  // real current counts (edit as the project grows)
+  var DATA = { essays: 1, surahs: 3, surahTotal: 114, ringNum: 6, words: 77429, moments: 5 };
+  var ringSweep = 0.28;  // decorative ring fill (Ring Structure motif)
+
+  // decorative sparkline / bar shapes
+  var notesData = [3, 5, 4, 7, 6, 9, 8, 12, 11, 14];
+  var inspData = [2, 4, 3, 6, 5, 8, 7, 10, 9, 13, 12, 16];
+  var bars = [42, 68, 34, 88, 55, 100, 40, 74, 50, 82];
+
+  var nLine = path(notesData, 100, 34), iLine = path(inspData, 100, 34);
+  if ($('wlhNotesLine')) { $('wlhNotesLine').setAttribute('d', nLine); $('wlhNotesArea').setAttribute('d', nLine + ' L100 34 L0 34 Z'); }
+  if ($('wlhInspLine')) { $('wlhInspLine').setAttribute('d', iLine); $('wlhInspArea').setAttribute('d', iLine + ' L100 34 L0 34 Z'); }
+
+  var bc = $('wlhBars');
+  if (bc) bars.forEach(function (b, i) {
+    var el = document.createElement('i');
+    el.style.height = b + '%';
+    el.style.animationDelay = (0.15 + i * 0.05) + 's';
+    bc.appendChild(el);
+  });
+
+  function setFinal() {
+    $('wlhEssays').textContent = fmt(DATA.essays);
+    $('wlhSurahs').textContent = String(DATA.surahs);
+    $('wlhRingNum').textContent = String(DATA.ringNum);
+    $('wlhWords').textContent = fmt(DATA.words);
+    $('wlhMoments').textContent = fmt(DATA.moments);
+    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
+    $('wlhRing').style.strokeDashoffset = String(ringSweep);
+  }
+
+  if (rm) { setFinal(); return; }
+
+  // trigger CSS transitions (ring fill + progress bar) on next frame
+  requestAnimationFrame(function () {
+    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
+    $('wlhRing').style.strokeDashoffset = String(ringSweep);
+  });
+
+  // count the numbers up (ease-out cubic, 1.5s)
+  var t0 = null, dur = 1500;
+  function tick(t) {
+    if (!t0) t0 = t;
+    var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3);
+    $('wlhEssays').textContent = fmt(DATA.essays * k);
+    $('wlhSurahs').textContent = String(Math.round(DATA.surahs * k));
+    $('wlhRingNum').textContent = String(Math.round(DATA.ringNum * k));
+    $('wlhWords').textContent = fmt(DATA.words * k);
+    $('wlhMoments').textContent = String(Math.round(DATA.moments * k));
+    if (k < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
