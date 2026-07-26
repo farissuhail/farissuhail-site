@@ -126,17 +126,17 @@
   .enter-row { position:absolute; left:0; width:100%; overflow:hidden;
     -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
     mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
-  .enter-row.top { top:9%; }
-  .enter-row.bot { bottom:9%; }
-  .enter-track { display:flex; gap:18px; width:max-content; will-change:transform; }
+  .enter-row.top { top:17%; }
+  .enter-row.bot { bottom:17%; }
+  .enter-track { display:flex; gap:22px; width:max-content; will-change:transform; }
   .enter-row.top .enter-track { animation:enter-marq-l 50s linear infinite; }
   .enter-row.bot .enter-track { animation:enter-marq-r 46s linear infinite; }
   @keyframes enter-marq-l { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @keyframes enter-marq-r { from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
-  .enter-shot { flex:0 0 auto; width:clamp(148px,15vw,210px); aspect-ratio:16/10; border-radius:10px; overflow:hidden;
-    border:1px solid rgba(43,240,255,.35); box-shadow:0 0 26px -10px rgba(43,240,255,.55); background:#0a1420; }
-  .enter-shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; opacity:.88; }
-  @media (max-width:640px) { .enter-shot { width:38vw; } .enter-row.top { top:5%; } .enter-row.bot { bottom:5%; } }
+  .enter-shot { flex:0 0 auto; width:clamp(230px,25vw,400px); aspect-ratio:16/10; border-radius:12px; overflow:hidden;
+    border:1px solid rgba(43,240,255,.35); box-shadow:0 0 30px -10px rgba(43,240,255,.55); background:#0a1420; }
+  .enter-shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; opacity:.9; }
+  @media (max-width:640px) { .enter-shot { width:62vw; } .enter-row.top { top:8%; } .enter-row.bot { bottom:8%; } }
 </style>
 <script type="importmap">
 {
