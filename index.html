@@ -69,6 +69,17 @@
     animation:bob 2.2s ease-in-out infinite;
   }
   @keyframes bob { 0%,100%{ transform:translateY(0); opacity:.5 } 50%{ transform:translateY(9px); opacity:1 } }
+  .wp { opacity:0; will-change:opacity, transform; }
+  .wp h2 {
+    margin:0; font-weight:700; font-size:clamp(22px, 3.6vw, 44px);
+    letter-spacing:.03em; text-transform:uppercase; color:#ffffff; text-align:center; max-width:86vw;
+    text-shadow:0 0 16px rgba(43,240,255,.9), 0 0 40px rgba(43,240,255,.55), 0 0 80px rgba(122,60,255,.45);
+  }
+  .wp p {
+    margin:14px 0 0; font-weight:600; font-size:clamp(9px,1vw,12px);
+    letter-spacing:.22em; text-transform:uppercase; color:rgba(200,232,255,.82); text-align:center; max-width:80vw;
+    text-shadow:0 0 12px rgba(43,240,255,.7);
+  }
   #enter { opacity:0; }
   #enter p {
     margin:0 0 30px; font-weight:300; font-size:clamp(12px,1.3vw,15px);
@@ -144,6 +155,16 @@
   <div class="chev">&#8595;</div>
 </div>
 
+<div id="waypoints">
+  <div class="overlay wp" data-c="0.24"><h2>Notes</h2><p>Working essays where the engineering lens meets the tradition</p></div>
+  <div class="overlay wp" data-c="0.32"><h2>Reflections</h2><p>One surah at a time, EN &amp; BM</p></div>
+  <div class="overlay wp" data-c="0.40"><h2>Na&#7827;m &middot; Ring Structure</h2><p>How s&#363;rahs fold around their centres</p></div>
+  <div class="overlay wp" data-c="0.49"><h2>Kalam</h2><p>The Qur'an in data, computed from the text</p></div>
+  <div class="overlay wp" data-c="0.57"><h2>Inspiration</h2><p>Everyday moments read through revelation</p></div>
+  <div class="overlay wp" data-c="0.65"><h2>Book Summaries</h2><p>What I read, distilled</p></div>
+  <div class="overlay wp" data-c="0.74"><h2>Learn AI &amp; more</h2><p>Plus the political read, apps and personal corners</p></div>
+</div>
+
 <div id="enter" class="overlay">
   <p>farissuhail.com</p>
   <a id="enterLink" href="/home.html">Enter</a>
@@ -211,6 +232,7 @@ const canvas = document.getElementById('scene')
 const heroEl = document.getElementById('hero')
 const enterEl = document.getElementById('enter')
 const hintEl = document.getElementById('scroll-hint')
+const wpEls = Array.from(document.querySelectorAll('#waypoints .wp'))
 const renderer = new THREE.WebGL1Renderer({ canvas, antialias: true })
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(innerWidth, innerHeight, false)
@@ -543,6 +565,12 @@ function render() {
   enterEl.style.opacity = enter
   enterEl.style.transform = `translateY(${(1 - enter) * 30}px)`
   hintEl.style.opacity = clamp(1 - scrollCurrent / 0.12, 0, 1) * (1 - enter)
+  // section titles fly in and out one by one across the middle of the scroll
+  for (const el of wpEls) {
+    const c = parseFloat(el.dataset.c)
+    el.style.opacity = clamp(1 - Math.abs(scrollCurrent - c) / 0.05, 0, 1)
+    el.style.transform = `translateY(${(c - scrollCurrent) * 300}px)`
+  }
   camera.layers.set(LAYERS.TORUS_SCENE);  torusComposer.render()
   camera.layers.set(LAYERS.BLOOM_SCENE);  bloomComposer.render()
   camera.layers.set(LAYERS.ENTIRE_SCENE); finalComposer.render()
