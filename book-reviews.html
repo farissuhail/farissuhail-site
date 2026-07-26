@@ -87,12 +87,17 @@
     <button class="ba-genre" data-g="investing" data-en="Investing" data-bm="Pelaburan">Investing</button>
     <button class="ba-genre" data-g="psychology" data-en="Psychology" data-bm="Psikologi">Psychology</button>
     <button class="ba-genre" data-g="selfhelp" data-en="Self-help" data-bm="Bantu diri">Self-help</button>
+    <button class="ba-genre" data-g="mindset" data-en="Mindset" data-bm="Minda">Mindset</button>
+    <button class="ba-genre" data-g="productivity" data-en="Productivity" data-bm="Produktiviti">Productivity</button>
+    <button class="ba-genre" data-g="power" data-en="Power" data-bm="Kuasa">Power</button>
+    <button class="ba-genre" data-g="spirituality" data-en="Spirituality" data-bm="Kerohanian">Spirituality</button>
+    <button class="ba-genre" data-g="business" data-en="Business" data-bm="Perniagaan">Business</button>
   </div>
 
   <!-- section head -->
   <div class="ba-h">
     <h3 data-en="All summaries" data-bm="Semua ringkasan">All summaries</h3>
-    <a href="#" id="baCount">7 books</a>
+    <a href="#" id="baCount">22 books</a>
   </div>
 
   <!-- grid -->
@@ -153,7 +158,22 @@
     { slug:'the-let-them-theory', title:'The Let Them Theory', author:'Mel Robbins', cover:'https://covers.openlibrary.org/b/isbn/9781401971373-L.jpg', rate:'4.7', genres:'selfhelp psychology', crown:false },
     { slug:'the-compound-effect', title:'The Compound Effect', author:'Darren Hardy', cover:7115046, rate:'4.6', genres:'selfhelp', crown:false },
     { slug:'margin-of-safety', title:'Margin of Safety', author:'Seth Klarman', cover:8042651, rate:'4.8', genres:'investing finance', crown:true },
-    { slug:'stop-acting-rich', title:'Stop Acting Rich', author:'Thomas J. Stanley', cover:6408908, rate:'4.5', genres:'finance', crown:false }
+    { slug:'stop-acting-rich', title:'Stop Acting Rich', author:'Thomas J. Stanley', cover:6408908, rate:'4.5', genres:'finance', crown:false },
+    { slug:'the-surrender-experiment', title:'The Surrender Experiment', author:'Michael A. Singer', cover:9178933, rate:'4.6', genres:'spirituality selfhelp', crown:false },
+    { slug:'mastery', title:'Mastery', author:'Robert Greene', cover:7561012, rate:'4.7', genres:'power selfhelp', crown:true },
+    { slug:'the-master-key-system', title:'The Master Key System', author:'Charles F. Haanel', cover:7308093, rate:'4.3', genres:'mindset spirituality', crown:false },
+    { slug:'hyperfocus', title:'Hyperfocus', author:'Chris Bailey', cover:10239359, rate:'4.4', genres:'productivity selfhelp', crown:false },
+    { slug:'the-power-of-your-subconscious-mind', title:'The Power of Your Subconscious Mind', author:'Joseph Murphy', cover:6553019, rate:'4.5', genres:'mindset spirituality', crown:false },
+    { slug:'becoming-supernatural', title:'Becoming Supernatural', author:'Dr. Joe Dispenza', cover:8596356, rate:'4.4', genres:'spirituality selfhelp', crown:false },
+    { slug:'the-48-laws-of-power', title:'The 48 Laws of Power', author:'Robert Greene', cover:6424160, rate:'4.6', genres:'power selfhelp', crown:true },
+    { slug:'deep-work', title:'Deep Work', author:'Cal Newport', cover:7988607, rate:'4.7', genres:'productivity selfhelp', crown:true },
+    { slug:'psycho-cybernetics', title:'Psycho-Cybernetics', author:'Maxwell Maltz', cover:14428293, rate:'4.5', genres:'mindset psychology', crown:false },
+    { slug:'meditations', title:'Meditations', author:'Marcus Aurelius', cover:211529, rate:'4.7', genres:'mindset selfhelp', crown:true },
+    { slug:'the-magic-of-thinking-big', title:'The Magic of Thinking Big', author:'David J. Schwartz', cover:480539, rate:'4.5', genres:'mindset selfhelp', crown:false },
+    { slug:'think-and-grow-rich', title:'Think and Grow Rich', author:'Napoleon Hill', cover:14542536, rate:'4.6', genres:'finance mindset', crown:true },
+    { slug:'digital-minimalism', title:'Digital Minimalism', author:'Cal Newport', cover:8507540, rate:'4.5', genres:'productivity selfhelp', crown:false },
+    { slug:'shoe-dog', title:'Shoe Dog', author:'Phil Knight', cover:8858487, rate:'4.8', genres:'business selfhelp', crown:true },
+    { slug:'the-millionaire-master-plan', title:'The Millionaire Master Plan', author:'Roger James Hamilton', cover:11680613, rate:'4.3', genres:'finance business', crown:false }
   ];
   var html = document.documentElement;
   function bm() { return html.getAttribute('data-lang') === 'bm'; }

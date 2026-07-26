@@ -89,6 +89,171 @@ body.book-summary.theme-crimson {
   --cover-sub: #c69a9a; --cover-note: #9c7777; --cover-blurb: #f88b8b;
   --glow: 239,77,77;
 }
+/* ---- THEME: teal (The Surrender Experiment) ---- */
+body.book-summary.theme-teal {
+  --accent: #2fb8ac; --accent-2: #7fe0d4;
+  --accent-grad: linear-gradient(135deg, #2fb8ac 0%, #7fe0d4 100%);
+  --gold: #2fb8ac; --gold-2: #7fe0d4;
+  --cover-bg: linear-gradient(165deg, #0e2e2c 0%, #081c1b 55%, #051211 100%);
+  --cover-frame: rgba(47,184,172,0.5);
+  --cover-rule: #2fb8ac; --cover-author: #a9ecE4; --cover-the: #bfdfda;
+  --cover-sub: #8fbdb6; --cover-note: #799c97; --cover-blurb: #7fe0d4;
+  --glow: 47,184,172;
+}
+/* ---- THEME: bronze (Mastery) ---- */
+body.book-summary.theme-bronze {
+  --accent: #c07a3e; --accent-2: #e0ab72;
+  --accent-grad: linear-gradient(135deg, #c07a3e 0%, #e0ab72 100%);
+  --gold: #c07a3e; --gold-2: #e0ab72;
+  --cover-bg: linear-gradient(165deg, #2c1c0e 0%, #1b1108 55%, #110a05 100%);
+  --cover-frame: rgba(192,122,62,0.5);
+  --cover-rule: #c07a3e; --cover-author: #e8c39c; --cover-the: #d9c4ae;
+  --cover-sub: #b39a80; --cover-note: #8f7a65; --cover-blurb: #e0ab72;
+  --glow: 192,122,62;
+}
+/* ---- THEME: violet (The Master Key System) ---- */
+body.book-summary.theme-violet {
+  --accent: #8659d1; --accent-2: #b79cec;
+  --accent-grad: linear-gradient(135deg, #8659d1 0%, #b79cec 100%);
+  --gold: #8659d1; --gold-2: #b79cec;
+  --cover-bg: linear-gradient(165deg, #241b3a 0%, #150f24 55%, #0c0916 100%);
+  --cover-frame: rgba(134,89,209,0.5);
+  --cover-rule: #8659d1; --cover-author: #d3c2f2; --cover-the: #cbc0dd;
+  --cover-sub: #a698c2; --cover-note: #85799c; --cover-blurb: #b79cec;
+  --glow: 134,89,209;
+}
+/* ---- THEME: cyan (Hyperfocus) ---- */
+body.book-summary.theme-cyan {
+  --accent: #33b8d6; --accent-2: #86def0;
+  --accent-grad: linear-gradient(135deg, #33b8d6 0%, #86def0 100%);
+  --gold: #33b8d6; --gold-2: #86def0;
+  --cover-bg: linear-gradient(165deg, #0e2833 0%, #081a20 55%, #051114 100%);
+  --cover-frame: rgba(51,184,214,0.5);
+  --cover-rule: #33b8d6; --cover-author: #b4ecf8; --cover-the: #b9dbe2;
+  --cover-sub: #8cb3bd; --cover-note: #77949c; --cover-blurb: #86def0;
+  --glow: 51,184,214;
+}
+/* ---- THEME: lavender (The Power of Your Subconscious Mind) ---- */
+body.book-summary.theme-lavender {
+  --accent: #9a7fd9; --accent-2: #c9b8f0;
+  --accent-grad: linear-gradient(135deg, #9a7fd9 0%, #c9b8f0 100%);
+  --gold: #c9a8e0; --gold-2: #e6d4f5;
+  --cover-bg: linear-gradient(165deg, #241f3d 0%, #161327 55%, #0d0b18 100%);
+  --cover-frame: rgba(154,127,217,0.5);
+  --cover-rule: #9a7fd9; --cover-author: #ddd0f2; --cover-the: #cec4de;
+  --cover-sub: #a89bc0; --cover-note: #867a9c; --cover-blurb: #c9b8f0;
+  --glow: 154,127,217;
+}
+/* ---- THEME: magenta (Becoming Supernatural) ---- */
+body.book-summary.theme-magenta {
+  --accent: #d1479e; --accent-2: #ef8ec4;
+  --accent-grad: linear-gradient(135deg, #d1479e 0%, #ef8ec4 100%);
+  --gold: #d1479e; --gold-2: #ef8ec4;
+  --cover-bg: linear-gradient(165deg, #33122a 0%, #200b1a 55%, #140710 100%);
+  --cover-frame: rgba(209,71,158,0.5);
+  --cover-rule: #d1479e; --cover-author: #f7bede; --cover-the: #e2bdd3;
+  --cover-sub: #bd94ac; --cover-note: #97788e; --cover-blurb: #ef8ec4;
+  --glow: 209,71,158;
+}
+/* ---- THEME: obsidian (The 48 Laws of Power) ---- */
+body.book-summary.theme-obsidian {
+  --accent: #c9333f; --accent-2: #e8a1a8;
+  --accent-grad: linear-gradient(135deg, #c9333f 0%, #e8a1a8 100%);
+  --gold: #b8a06a; --gold-2: #ddcda0;
+  --cover-bg: linear-gradient(165deg, #17171b 0%, #0d0d10 55%, #08080a 100%);
+  --cover-frame: rgba(201,51,63,0.5);
+  --cover-rule: #c9333f; --cover-author: #ddcda0; --cover-the: #cfcfd4;
+  --cover-sub: #a3a3ab; --cover-note: #83838b; --cover-blurb: #e8a1a8;
+  --glow: 201,51,63;
+}
+/* ---- THEME: slate (Deep Work) ---- */
+body.book-summary.theme-slate {
+  --accent: #5b7ba3; --accent-2: #9db6d4;
+  --accent-grad: linear-gradient(135deg, #5b7ba3 0%, #9db6d4 100%);
+  --gold: #cf9a4a; --gold-2: #ecc27f;
+  --cover-bg: linear-gradient(165deg, #1a232e 0%, #10161e 55%, #090d12 100%);
+  --cover-frame: rgba(91,123,163,0.5);
+  --cover-rule: #cf9a4a; --cover-author: #c8d6e6; --cover-the: #c1cbd8;
+  --cover-sub: #97a5b6; --cover-note: #7a8794; --cover-blurb: #9db6d4;
+  --glow: 91,123,163;
+}
+/* ---- THEME: steel (Psycho-Cybernetics) ---- */
+body.book-summary.theme-steel {
+  --accent: #6c8fa8; --accent-2: #aecbdc;
+  --accent-grad: linear-gradient(135deg, #6c8fa8 0%, #aecbdc 100%);
+  --gold: #6c8fa8; --gold-2: #aecbdc;
+  --cover-bg: linear-gradient(165deg, #1c262c 0%, #10171b 55%, #090d0f 100%);
+  --cover-frame: rgba(108,143,168,0.5);
+  --cover-rule: #6c8fa8; --cover-author: #cfe1ea; --cover-the: #c3ced4;
+  --cover-sub: #99a9b1; --cover-note: #7c8b93; --cover-blurb: #aecbdc;
+  --glow: 108,143,168;
+}
+/* ---- THEME: stone (Meditations) ---- */
+body.book-summary.theme-stone {
+  --accent: #a8987e; --accent-2: #d6c8ae;
+  --accent-grad: linear-gradient(135deg, #a8987e 0%, #d6c8ae 100%);
+  --gold: #a8987e; --gold-2: #d6c8ae;
+  --cover-bg: linear-gradient(165deg, #211f1c 0%, #141310 55%, #0c0b0a 100%);
+  --cover-frame: rgba(168,152,126,0.5);
+  --cover-rule: #a8987e; --cover-author: #e2d8c4; --cover-the: #d2ccc0;
+  --cover-sub: #aca496; --cover-note: #89827a; --cover-blurb: #d6c8ae;
+  --glow: 168,152,126;
+}
+/* ---- THEME: tangerine (The Magic of Thinking Big) ---- */
+body.book-summary.theme-tangerine {
+  --accent: #e0722f; --accent-2: #f2a877;
+  --accent-grad: linear-gradient(135deg, #e0722f 0%, #f2a877 100%);
+  --gold: #e0722f; --gold-2: #f2a877;
+  --cover-bg: linear-gradient(165deg, #331d0e 0%, #201207 55%, #140b04 100%);
+  --cover-frame: rgba(224,114,47,0.5);
+  --cover-rule: #e0722f; --cover-author: #f6c9a4; --cover-the: #e2c8b3;
+  --cover-sub: #c0a189; --cover-note: #9c8270; --cover-blurb: #f2a877;
+  --glow: 224,114,47;
+}
+/* ---- THEME: richgold (Think and Grow Rich) ---- */
+body.book-summary.theme-richgold {
+  --accent: #b5842e; --accent-2: #e8c877;
+  --accent-grad: linear-gradient(135deg, #b5842e 0%, #e8c877 100%);
+  --gold: #b5842e; --gold-2: #e8c877;
+  --cover-bg: linear-gradient(165deg, #2c220f 0%, #1b1408 55%, #100c05 100%);
+  --cover-frame: rgba(181,132,46,0.5);
+  --cover-rule: #b5842e; --cover-author: #f0dca3; --cover-the: #ddccab;
+  --cover-sub: #b6a688; --cover-note: #93876f; --cover-blurb: #e8c877;
+  --glow: 181,132,46;
+}
+/* ---- THEME: ash (Digital Minimalism) ---- */
+body.book-summary.theme-ash {
+  --accent: #8a8f98; --accent-2: #c4c9d1;
+  --accent-grad: linear-gradient(135deg, #8a8f98 0%, #c4c9d1 100%);
+  --gold: #8a8f98; --gold-2: #c4c9d1;
+  --cover-bg: linear-gradient(165deg, #1e2024 0%, #131417 55%, #0b0c0e 100%);
+  --cover-frame: rgba(138,143,152,0.5);
+  --cover-rule: #8a8f98; --cover-author: #d6d9de; --cover-the: #c9ccd1;
+  --cover-sub: #a3a6ac; --cover-note: #85888e; --cover-blurb: #c4c9d1;
+  --glow: 138,143,152;
+}
+/* ---- THEME: rust (Shoe Dog) ---- */
+body.book-summary.theme-rust {
+  --accent: #d1502a; --accent-2: #f0916a;
+  --accent-grad: linear-gradient(135deg, #d1502a 0%, #f0916a 100%);
+  --gold: #d1502a; --gold-2: #f0916a;
+  --cover-bg: linear-gradient(165deg, #341c10 0%, #201108 55%, #130a05 100%);
+  --cover-frame: rgba(209,80,42,0.5);
+  --cover-rule: #d1502a; --cover-author: #f7bda3; --cover-the: #e3c6b8;
+  --cover-sub: #c2a191; --cover-note: #9c8275; --cover-blurb: #f0916a;
+  --glow: 209,80,42;
+}
+/* ---- THEME: jade (The Millionaire Master Plan) ---- */
+body.book-summary.theme-jade {
+  --accent: #2e9e73; --accent-2: #7fd4ac;
+  --accent-grad: linear-gradient(135deg, #2e9e73 0%, #7fd4ac 100%);
+  --gold: #c9a84a; --gold-2: #e8cd82;
+  --cover-bg: linear-gradient(165deg, #0e2b21 0%, #081b15 55%, #05110d 100%);
+  --cover-frame: rgba(46,158,115,0.5);
+  --cover-rule: #c9a84a; --cover-author: #b4e8cf; --cover-the: #bcd9cb;
+  --cover-sub: #8fb5a3; --cover-note: #799c8d; --cover-blurb: #7fd4ac;
+  --glow: 46,158,115;
+}
 
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
