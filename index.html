@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Faris Suhail · Travel Footprint</title>
-  <meta name="description" content="Every place Faris Suhail has set foot, traced back to Yan and Alor Setar in Kedah: an interactive globe of 54 cities across 20 countries and 3 continents.">
+  <meta name="description" content="A personal site by Faris Suhail: Qur'an and hadith, book summaries, tech and AI experiments, and an interactive globe of every city travelled, traced back to Alor Setar in Kedah.">
   <link rel="canonical" href="https://farissuhail.com/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="theme-color" content="#05070d">
@@ -13,14 +13,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban">
   <meta property="og:title" content="Faris Suhail · Travel Footprint">
-  <meta property="og:description" content="Every place I have set foot, traced back to a small town on the Kedah coast: 54 cities, 20 countries, 3 continents on one globe.">
+  <meta property="og:description" content="A personal site: Qur'an and hadith, books, tech and AI, and a globe of every city I have set foot in, traced back to a small town on the Kedah coast.">
   <meta property="og:url" content="https://farissuhail.com/">
   <meta property="og:image" content="https://farissuhail.com/assets/og-home.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Faris Suhail · Travel Footprint">
-  <meta name="twitter:description" content="An interactive globe of every city travelled, traced back to Yan and Alor Setar in Kedah.">
+  <meta name="twitter:description" content="An interactive globe of every city travelled, traced back to Alor Setar in Kedah.">
   <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,17 +74,32 @@
     }
 
     .page { position: relative; min-height: 100vh; user-select: none; -webkit-user-select: none; pointer-events: none; }
-    .stats, .contact, .card, .bottombar, .pills,
+    .stats, .contact, .card, .bottombar, .pills, .whatlives, .telemetry,
     .page a, .page button, .page input { pointer-events: auto; }
     .hero-text, .wordmark, .hints, .mspacer { pointer-events: none; }
+    .wordmark a, .wordmark .viewchip { pointer-events: auto; }
 
-    .wordmark { display: flex; align-items: baseline; gap: 12px; }
+    /* ===== wordmark + live view chip ===== */
+    .wordmark { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
     .wordmark .brand { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #dbe9f5; }
     .wordmark .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(219,233,245,0.35); }
+    .viewchip {
+      display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.5);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 4px 10px;
+      background: rgba(255,255,255,0.02); opacity: 0; transition: opacity 0.5s;
+    }
+    .viewchip.show { opacity: 1; }
+    .viewchip b { color: #4fd8ff; font-weight: 500; letter-spacing: 0.06em; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 8px #4fd8ff; }
+    @media (prefers-reduced-motion: no-preference) { .live-dot { animation: pulse 2.4s ease-in-out infinite; } }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
     .hero-text { display: flex; flex-direction: column; gap: 12px; }
-    h1 { font-size: 46px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em; text-wrap: pretty; }
-    .intro { font-size: 16px; line-height: 1.55; color: rgba(219,233,245,0.66); text-wrap: pretty; }
+    h1 { font-size: 44px; line-height: 1.04; font-weight: 600; letter-spacing: -0.02em; text-wrap: pretty; }
+    h1 .eyebrow { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(79,216,255,0.75); margin-bottom: 12px; }
+    .intro { font-size: 15.5px; line-height: 1.6; color: rgba(219,233,245,0.66); text-wrap: pretty; }
+    .intro b { color: rgba(219,233,245,0.9); font-weight: 500; }
 
     .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .stat {
@@ -107,6 +122,17 @@
     }
     .card-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
 
+    /* ===== what lives here ===== */
+    .whatlives { gap: 12px; }
+    .wl-list { display: flex; flex-direction: column; gap: 9px; }
+    .wl-item { font-size: 13px; line-height: 1.5; color: rgba(219,233,245,0.62); }
+    .wl-item a { color: #dbe9f5; font-weight: 500; border-bottom: 1px solid rgba(79,216,255,0.35); transition: color 0.2s, border-color 0.2s; }
+    .wl-item a:hover { color: #9beeff; border-color: #9beeff; }
+    .wl-more { font-size: 12px; line-height: 1.55; color: rgba(219,233,245,0.5); padding-top: 2px; }
+    .wl-more a { color: rgba(219,233,245,0.85); border-bottom: 1px solid rgba(79,216,255,0.3); }
+    .wl-more a:hover { color: #9beeff; }
+
+    /* ===== regions ===== */
     .regions-card { gap: 11px; }
     .pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .pill {
@@ -114,11 +140,13 @@
       border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03);
       color: rgba(219,233,245,0.62); font-family: 'JetBrains Mono', monospace; font-size: 10px;
       letter-spacing: 0.05em; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
     }
     .pill:hover { border-color: rgba(255,255,255,0.35); }
     .pill .dot { width: 6px; height: 6px; border-radius: 50%; }
     .pill .n { color: rgba(219,233,245,0.35); }
 
+    /* ===== focus card ===== */
     .focus-card { gap: 12px; }
     .f-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
     .f-title { font-size: 19px; font-weight: 500; letter-spacing: -0.015em; }
@@ -130,6 +158,7 @@
     .f-stat span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
     .f-note { font-size: 12.5px; line-height: 1.55; color: rgba(219,233,245,0.6); text-wrap: pretty; }
 
+    /* ===== longest hops ===== */
     .longest-card { gap: 11px; }
     .hops { display: flex; flex-direction: column; gap: 10px; }
     .hop { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
@@ -139,32 +168,69 @@
     .hop-track { height: 3px; background: rgba(255,255,255,0.09); }
     .hop-fill { height: 3px; }
 
-    .bottombar {
-      flex-direction: row; align-items: center; gap: 18px; padding: 13px 17px;
-    }
+    /* ===== telemetry (traffic + origins) ===== */
+    .telemetry { gap: 12px; }
+    .tele-you { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; color: rgba(219,233,245,0.55); line-height: 1.5; }
+    .tele-you b { color: #dbe9f5; font-weight: 500; }
+    .tele-board { display: flex; flex-direction: column; gap: 8px; }
+    .tele-row { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 8px; }
+    .tele-row .flag { font-size: 13px; line-height: 1; }
+    .tele-row .co { font-size: 12px; color: rgba(219,233,245,0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tele-row .val { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(219,233,245,0.42); }
+    .tele-bar { grid-column: 1 / -1; height: 2px; background: rgba(255,255,255,0.08); margin-top: -3px; }
+    .tele-bar > i { display: block; height: 2px; background: #4fd8ff; box-shadow: 0 0 8px rgba(79,216,255,0.7); }
+    .tele-empty { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: rgba(219,233,245,0.35); }
+
+    /* ===== bottom band rail (mission-path radius selector) ===== */
+    .bottombar { flex-direction: row; align-items: center; gap: 20px; padding: 14px 20px; }
     .playbtn {
-      width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%;
+      width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.18); background: rgba(79,216,255,0.10);
       color: #dbe9f5; font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s; display: grid; place-items: center;
     }
     .playbtn:hover { background: rgba(79,216,255,0.22); }
-    .readout { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; width: 128px; }
-    .readout b { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 400; letter-spacing: 0.03em; }
-    .readout span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
-    .active-label { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
 
-    input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; flex: 1 1 auto; height: 14px; }
-    input[type="range"]::-webkit-slider-runnable-track { height: 2px; background: rgba(255,255,255,0.16); }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 13px; height: 13px; margin-top: -6px; border-radius: 50%;
-      background: #dbe9f5; box-shadow: 0 0 12px rgba(79,216,255,0.9);
+    .rail-origin {
+      position: relative; flex: 0 0 auto; width: 14px; height: 14px; border-radius: 50%;
+      background: #dbe9f5; box-shadow: 0 0 10px rgba(79,216,255,0.9), 0 0 22px rgba(79,216,255,0.5);
     }
-    input[type="range"]::-moz-range-track { height: 2px; background: rgba(255,255,255,0.16); }
-    input[type="range"]::-moz-range-thumb {
-      width: 13px; height: 13px; border: 0; border-radius: 50%;
-      background: #dbe9f5; box-shadow: 0 0 12px rgba(79,216,255,0.9);
+    .rail-origin::before {
+      content: ''; position: absolute; inset: -7px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,216,255,0.35), transparent 70%);
     }
+    .rail-origin-label {
+      position: absolute; top: 50%; left: 22px; transform: translateY(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(219,233,245,0.5); white-space: nowrap;
+    }
+
+    .rail { position: relative; flex: 1 1 auto; height: 40px; margin-left: 52px; }
+    .rail-base { position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: rgba(255,255,255,0.14); }
+    .rail-fill { position: absolute; top: 50%; left: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, rgba(79,216,255,0.5), #4fd8ff); box-shadow: 0 0 10px rgba(79,216,255,0.6); transition: width 0.5s cubic-bezier(.4,0,.2,1); }
+    .rail-node {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 26px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rail-node .knob {
+      width: 9px; height: 9px; border-radius: 50%; background: #0a1524;
+      border: 1.5px solid rgba(130,175,215,0.55); transition: all 0.3s;
+    }
+    .rail-node .tick {
+      position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.04em;
+      color: rgba(219,233,245,0.3); white-space: nowrap; transition: color 0.3s;
+    }
+    .rail-node:hover .knob { border-color: rgba(255,255,255,0.8); }
+    .rail-node.reached .knob { background: #4fd8ff; border-color: #4fd8ff; }
+    .rail-node.current .knob { width: 13px; height: 13px; background: #dbe9f5; border-color: #fff; box-shadow: 0 0 12px rgba(79,216,255,0.95); }
+    .rail-node.current .tick { color: #4fd8ff; }
+
+    .reach { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; width: 120px; text-align: right; }
+    .reach b { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 400; letter-spacing: 0.03em; }
+    .reach span { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
+    .active-label { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); width: 96px; }
 
     .hints {
       display: flex; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 9px;
@@ -181,55 +247,54 @@
       html, body { overflow: hidden; height: 100%; }
       .only-mobile { display: none; }
       .mspacer { display: none; }
-      .wordmark { position: absolute; top: 30px; left: 34px; }
+      .wordmark { position: absolute; top: 30px; left: 34px; right: 360px; }
       .hero {
-        position: absolute; top: 96px; left: 34px; width: 420px;
-        max-height: calc(100vh - 200px); display: flex; flex-direction: column; gap: 18px;
+        position: absolute; top: 92px; left: 34px; width: 420px;
+        max-height: calc(100vh - 150px); display: flex; flex-direction: column; gap: 18px;
+        overflow-y: auto; scrollbar-width: none;
       }
+      .hero::-webkit-scrollbar { display: none; }
       .rightcol {
-        position: absolute; top: 30px; right: 34px; bottom: 104px; width: 306px;
+        position: absolute; top: 30px; right: 34px; bottom: 108px; width: 306px;
         display: flex; flex-direction: column; gap: 12px;
         overflow-y: auto; scrollbar-width: none; pointer-events: auto;
       }
       .rightcol::-webkit-scrollbar { display: none; }
       .bottombar { position: absolute; left: 34px; right: 372px; bottom: 30px; display: flex; }
-      .hints { position: absolute; left: 34px; bottom: 92px; }
+      .hints { position: absolute; left: 34px; bottom: 96px; }
     }
 
     /* ===== Mobile (<880px): one scrolling column over the globe ===== */
     @media (max-width: 879.98px) {
       .only-desktop { display: none; }
-      .page { display: flex; flex-direction: column; gap: 20px; padding: 26px 20px 34px; }
-      .wordmark { order: 0; flex-wrap: wrap; gap: 10px; }
+      .page { display: flex; flex-direction: column; gap: 18px; padding: 24px 18px 34px; }
+      .wordmark { order: 0; gap: 8px 10px; }
       .wordmark .brand { font-size: 11px; letter-spacing: 0.22em; }
       .wordmark .tag { font-size: 9px; }
-      .mspacer { order: 1; height: 42vh; min-height: 240px; }
-      .hero, .rightcol, .regions-card { display: contents; }
+      .mspacer { order: 1; height: 40vh; min-height: 230px; }
+      .hero, .rightcol { display: contents; }
       .hero-text { order: 2; gap: 10px; }
-      h1 { font-size: 34px; line-height: 1.04; letter-spacing: -0.03em; }
+      h1 { font-size: 32px; }
       .intro { font-size: 14px; }
       .stats { order: 3; gap: 8px; }
       .stat { padding: 11px 12px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
       .stat b { font-size: 22px; }
       .stat span { font-size: 8.5px; letter-spacing: 0.14em; }
-      .focus-card { order: 4; padding: 14px; gap: 10px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .whatlives { order: 4; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .regions-card { order: 5; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .pill { padding: 9px 12px; font-size: 10.5px; }
+      .focus-card { order: 6; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
       .f-title { font-size: 18px; }
       .f-stat b { font-size: 20px; }
-      .f-stat span { font-size: 8.5px; }
-      .regions-card > .card-label { display: none; }
-      .pills { order: 5; }
-      .pill { padding: 9px 12px; font-size: 10.5px; }
-      .longest-card { display: none; }
-      .bottombar { order: 6; display: flex; gap: 14px; padding: 12px 14px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .longest-card { order: 7; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .bottombar { order: 8; flex-wrap: wrap; gap: 14px; padding: 14px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .rail { margin-left: 46px; min-width: 180px; }
+      .rail-node .tick { display: none; }
       .playbtn { width: 44px; height: 44px; }
-      .readout { width: auto; }
-      .readout b { font-size: 13px; }
-      .readout span { font-size: 8.5px; letter-spacing: 0.14em; }
-      .active-label { display: none; }
-      input[type="range"] { height: 24px; }
-      input[type="range"]::-webkit-slider-thumb { margin-top: -5.5px; }
-      .contact { order: 7; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 11px; letter-spacing: 0.08em; }
-      .contact .sep { display: none; }
+      .reach { width: auto; text-align: left; }
+      .active-label { width: auto; }
+      .telemetry { order: 9; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
+      .contact { order: 10; gap: 8px 14px; font-size: 11px; letter-spacing: 0.08em; }
       .hints { display: none; }
     }
   </style>
@@ -240,30 +305,53 @@
 
 <div class="page">
   <header class="wordmark">
-    <span class="brand">farissuhail.com</span>
+    <a href="/"><span class="brand">farissuhail.com</span></a>
     <span class="tag">Travel footprint</span>
+    <span class="viewchip" id="viewChip" title="Cumulative visits to this site"><span class="live-dot"></span><b id="viewCount">&mdash;</b>&nbsp;visits</span>
   </header>
 
   <div class="mspacer" aria-hidden="true"></div>
 
   <section class="hero">
     <div class="hero-text">
-      <h1>Faris Suhail</h1>
-      <p class="intro">Every place I have set foot, traced back to a small town on the Kedah
-        coast. <span class="only-desktop">Drag the globe, follow a line, or pick a region.</span><span
+      <h1><span class="eyebrow">Selamat datang</span>Faris Suhail</h1>
+      <p class="intro">Hi, I'm Faris. Every pin here is a place I've stood in, or one a project
+        dragged me to, all tracing back to a small town on the Kedah coast. This is my personal
+        corner of the internet, nothing corporate: mostly <b>Qur'an and hadith</b>, a shelf of
+        <b>book summaries</b>, and a not-very-secret hobby of <b>tinkering with tech and AI</b>.
+        I also hand out free, honest takes on the everyday stuff, politics and technology included.
+        <span class="only-desktop">Drag the globe, follow a line, or pick a region.</span><span
         class="only-mobile">Drag the globe or tap a city.</span></p>
     </div>
 
     <div class="stats" aria-label="Headline stats">
-      <div class="stat"><b id="statCities">54</b><span>Cities</span></div>
-      <div class="stat"><b id="statCountries">20</b><span>Countries</span></div>
-      <div class="stat"><b id="statContinents">3</b><span>Continents</span></div>
+      <div class="stat"><b id="statCities">65</b><span>Cities</span></div>
+      <div class="stat"><b id="statCountries">28</b><span>Countries</span></div>
+      <div class="stat"><b id="statContinents">5</b><span>Continents</span></div>
+    </div>
+
+    <div class="card whatlives">
+      <div class="card-label">What lives here</div>
+      <div class="wl-list">
+        <div class="wl-item"><a href="/notes/">Notes</a>: working essays where the engineering
+          lens meets the tradition. Start with <a href="/notes/hadith-information-integrity.html">the
+          muhaddithun &amp; information integrity</a>.</div>
+        <div class="wl-item"><a href="/reflections.html">Reflections</a>: one surah at a time, EN &amp; BM.</div>
+        <div class="wl-item"><a href="/nazm.html">Na&#7827;m / Ring Structure</a>: how s&#363;rahs fold around their centres.</div>
+        <div class="wl-item"><a href="/kalam.html">Kalam</a>: the Qur'an in data, computed from the text itself.</div>
+        <div class="wl-item"><a href="/inspiration.html">Inspiration</a>: everyday moments read through revelation.</div>
+        <div class="wl-more"><a href="/book-reviews.html">Book summaries</a>, <a href="/learn-ai.html">Learn
+          AI</a>, a <a href="/npam.html">non-partisan read on Malaysia's political conversation</a>, and a few
+          personal corners like the <a href="/sneakers.html">sneaker shelf</a>, because this is, in the end,
+          a personal site. And the tinkering side: <a href="/apps.html">practical apps &amp; tech experiments
+          for everyday businesses</a>.</div>
+      </div>
     </div>
 
     <div class="contact">
       <a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a>
       <span class="sep">/</span>
-      <span class="base">Home base &middot; Yan, Kedah</span>
+      <span class="base">Home base &middot; Alor Setar, Kedah</span>
       <span class="sep">/</span>
       <a href="/about.html">About</a>
     </div>
@@ -272,16 +360,7 @@
   <aside class="rightcol">
     <div class="card regions-card">
       <div class="card-label">Regions</div>
-      <div class="pills" id="pills" role="group" aria-label="Filter by region">
-        <button class="pill" data-region="all" data-color="#dbe9f5"><span class="dot" style="background:#dbe9f5"></span><span>Everywhere</span><span class="n">54</span></button>
-        <button class="pill" data-region="my" data-color="#4fd8ff"><span class="dot" style="background:#4fd8ff"></span><span>Malaysia</span><span class="n">14</span></button>
-        <button class="pill" data-region="sea" data-color="#6ee7a8"><span class="dot" style="background:#6ee7a8"></span><span>SE Asia</span><span class="n">5</span></button>
-        <button class="pill" data-region="gulf" data-color="#ffc46b"><span class="dot" style="background:#ffc46b"></span><span>Gulf &amp; Arabia</span><span class="n">8</span></button>
-        <button class="pill" data-region="tr" data-color="#ff9f6b"><span class="dot" style="background:#ff9f6b"></span><span>T&uuml;rkiye &amp; Caucasus</span><span class="n">3</span></button>
-        <button class="pill" data-region="uk" data-color="#ff6fae"><span class="dot" style="background:#ff6fae"></span><span>UK &amp; Ireland</span><span class="n">11</span></button>
-        <button class="pill" data-region="eu" data-color="#b48cff"><span class="dot" style="background:#b48cff"></span><span>Europe</span><span class="n">9</span></button>
-        <button class="pill" data-region="af" data-color="#f2e07a"><span class="dot" style="background:#f2e07a"></span><span>Africa</span><span class="n">4</span></button>
-      </div>
+      <div class="pills" id="pills" role="group" aria-label="Filter by region"></div>
     </div>
 
     <div class="card focus-card">
@@ -290,27 +369,36 @@
         <div class="f-kind" id="fKind">Overview</div>
       </div>
       <div class="f-stats">
-        <div class="f-stat"><b id="fStatA">105</b><span id="fLabelA">Routes drawn</span></div>
-        <div class="f-stat"><b id="fStatB">12,550</b><span id="fLabelB">Furthest km</span></div>
+        <div class="f-stat"><b id="fStatA">127</b><span id="fLabelA">Routes drawn</span></div>
+        <div class="f-stat"><b id="fStatB">15,000</b><span id="fLabelB">Furthest km</span></div>
       </div>
-      <div class="f-note" id="fNote">Every line runs from Yan and Alor Setar in Kedah out to
-        somewhere I have stood: the Canaries, Nouakchott, Cappadocia. Pull the slider to grow
-        the radius.</div>
+      <div class="f-note" id="fNote">Every line runs from Alor Setar and Yan in Kedah out to
+        somewhere I have stood: Houston, the Canaries, Sydney. Pull the radius to grow the network.</div>
     </div>
 
     <div class="card longest-card">
       <div class="card-label">Longest hops from home</div>
       <div class="hops" id="hops"></div>
     </div>
+
+    <div class="card telemetry">
+      <div class="card-label">Signals from</div>
+      <div class="tele-you" id="teleYou">Locating signal&hellip;</div>
+      <div class="tele-board" id="teleBoard"><div class="tele-empty">Reading the log&hellip;</div></div>
+    </div>
   </aside>
 
-  <div class="card bottombar">
+  <div class="card bottombar" role="group" aria-label="Distance radius from Kedah">
     <button class="playbtn" id="playBtn" aria-label="Play or pause the radius sweep" aria-pressed="true">&#x2759;&#x2759;</button>
-    <div class="readout">
-      <b id="reachLabel">&le; 2,100 km</b>
+    <div class="rail-origin" aria-hidden="true"><span class="rail-origin-label">Kedah</span></div>
+    <div class="rail" id="rail">
+      <div class="rail-base"></div>
+      <div class="rail-fill" id="railFill"></div>
+    </div>
+    <div class="reach">
+      <b id="reachLabel">&le; 2,500 km</b>
       <span>Radius from Kedah</span>
     </div>
-    <input type="range" id="hopRange" min="1" max="6" step="1" value="1" aria-label="Distance radius from Kedah, band 1 to 6">
     <div class="active-label" id="activeLabel"></div>
   </div>
 
@@ -324,21 +412,29 @@
 <!-- Crawlable, screen-reader-friendly version of everything the globe shows -->
 <section class="sr-only">
   <h2>All cities, grouped by region</h2>
-  <p>Home bases: Yan and Alor Setar, Kedah, Malaysia. Every route on the globe starts there.</p>
+  <p>Home bases: Alor Setar and Yan, Kedah, Malaysia. Every route on the globe starts there.</p>
   <h3>Malaysia</h3>
-  <p>Yan, Alor Setar, Kangar, Penang, Ipoh, Kuala Lumpur, Melaka, Johor Bahru, Kuantan, Kota Bharu, Kuching, Miri, Kota Kinabalu, Labuan.</p>
+  <p>Alor Setar, Yan, Kangar, Penang, Ipoh, Kuala Lumpur, Melaka, Johor Bahru, Kuantan, Kota Bharu, Kuching, Miri, Kota Kinabalu, Labuan.</p>
   <h3>Southeast Asia</h3>
   <p>Singapore; Danok, Bangkok and Hua Hin in Thailand; Jakarta in Indonesia.</p>
+  <h3>East Asia</h3>
+  <p>Shanghai in China.</p>
+  <h3>South Asia</h3>
+  <p>Karachi and Islamabad in Pakistan; Bangalore in India.</p>
   <h3>Gulf and Arabia</h3>
-  <p>Dubai and Abu Dhabi in the UAE; Doha in Qatar; Jeddah, Mecca and Madinah in Saudi Arabia; Karachi and Islamabad in Pakistan.</p>
+  <p>Dubai and Abu Dhabi in the UAE; Doha in Qatar; Jeddah, Mecca and Madinah in Saudi Arabia; Kuwait City in Kuwait.</p>
   <h3>T&uuml;rkiye and the Caucasus</h3>
-  <p>Istanbul and Cappadocia in T&uuml;rkiye; Baku in Azerbaijan.</p>
+  <p>Istanbul, Cappadocia and Ankara in T&uuml;rkiye; Baku in Azerbaijan.</p>
   <h3>UK and Ireland</h3>
   <p>London, Birmingham, Leeds, Newcastle, Manchester, Liverpool, Brighton, Cardiff, Glasgow, Edinburgh; Dublin in Ireland.</p>
   <h3>Europe</h3>
-  <p>Paris, Amsterdam, Frankfurt, Cologne, Luxembourg, Rome, Florence, Barcelona, Las Palmas.</p>
+  <p>Paris, Amsterdam, The Hague, Frankfurt, Cologne, Luxembourg, Rome, Florence, Barcelona, Las Palmas.</p>
   <h3>Africa</h3>
-  <p>Marrakech, Fez and Rabat in Morocco; Nouakchott in Mauritania.</p>
+  <p>Cairo in Egypt; Lagos in Nigeria; Marrakech, Fez and Rabat in Morocco; Nouakchott in Mauritania.</p>
+  <h3>North America</h3>
+  <p>Calgary in Canada; Houston in the United States.</p>
+  <h3>Oceania</h3>
+  <p>Sydney and Melbourne in Australia.</p>
   <h2>Elsewhere on this site</h2>
   <nav aria-label="Site sections">
     <ul>
@@ -351,7 +447,7 @@
       <li><a href="/book-reviews.html">Book summaries</a></li>
       <li><a href="/learn-ai.html">Learn AI</a></li>
       <li><a href="/apps.html">Apps and experiments</a></li>
-      <li><a href="/transformation.html">Transformation Experts consultancy</a></li>
+      <li><a href="/npam.html">Non-partisan political read</a></li>
     </ul>
   </nav>
 </section>
@@ -361,18 +457,22 @@
   'use strict';
 
   var REGIONS = [
-    { id: 'my', label: 'Malaysia', color: '#4fd8ff', continent: 'Asia' },
-    { id: 'sea', label: 'SE Asia', color: '#6ee7a8', continent: 'Asia' },
-    { id: 'gulf', label: 'Gulf & Arabia', color: '#ffc46b', continent: 'Asia' },
-    { id: 'tr', label: 'Türkiye & Caucasus', color: '#ff9f6b', continent: 'Asia' },
-    { id: 'uk', label: 'UK & Ireland', color: '#ff6fae', continent: 'Europe' },
-    { id: 'eu', label: 'Europe', color: '#b48cff', continent: 'Europe' },
-    { id: 'af', label: 'Africa', color: '#f2e07a', continent: 'Africa' }
+    { id: 'my',   label: 'Malaysia',           color: '#4fd8ff', continent: 'Asia' },
+    { id: 'sea',  label: 'SE Asia',            color: '#6ee7a8', continent: 'Asia' },
+    { id: 'ea',   label: 'East Asia',          color: '#ff5f7d', continent: 'Asia' },
+    { id: 'sa',   label: 'South Asia',         color: '#d1ff5f', continent: 'Asia' },
+    { id: 'gulf', label: 'Gulf & Arabia',      color: '#ffc46b', continent: 'Asia' },
+    { id: 'tr',   label: 'Türkiye & Caucasus', color: '#ff9f6b', continent: 'Asia' },
+    { id: 'uk',   label: 'UK & Ireland',       color: '#ff6fae', continent: 'Europe' },
+    { id: 'eu',   label: 'Europe',             color: '#b48cff', continent: 'Europe' },
+    { id: 'af',   label: 'Africa',             color: '#f2e07a', continent: 'Africa' },
+    { id: 'na',   label: 'North America',      color: '#5f9bff', continent: 'North America' },
+    { id: 'oce',  label: 'Oceania',            color: '#5fffe0', continent: 'Oceania' }
   ];
 
   var CITIES = [
+    { id: 'aor', name: 'Alor Setar', country: 'Malaysia', region: 'my', lat: 6.121, lon: 100.368, tier: 1, home: true },
     { id: 'yan', name: 'Yan', country: 'Malaysia', region: 'my', lat: 5.798, lon: 100.383, tier: 1, home: true },
-    { id: 'aor', name: 'Alor Setar', country: 'Malaysia', region: 'my', lat: 6.121, lon: 100.368, tier: 2 },
     { id: 'kgr', name: 'Kangar', country: 'Malaysia', region: 'my', lat: 6.441, lon: 100.198, tier: 3 },
     { id: 'png', name: 'Penang', country: 'Malaysia', region: 'my', lat: 5.414, lon: 100.329, tier: 1 },
     { id: 'ipo', name: 'Ipoh', country: 'Malaysia', region: 'my', lat: 4.597, lon: 101.090, tier: 2 },
@@ -390,14 +490,20 @@
     { id: 'bkk', name: 'Bangkok', country: 'Thailand', region: 'sea', lat: 13.756, lon: 100.501, tier: 1 },
     { id: 'hhq', name: 'Hua Hin', country: 'Thailand', region: 'sea', lat: 12.570, lon: 99.958, tier: 3 },
     { id: 'cgk', name: 'Jakarta', country: 'Indonesia', region: 'sea', lat: -6.208, lon: 106.845, tier: 2 },
+    { id: 'sha', name: 'Shanghai', country: 'China', region: 'ea', lat: 31.230, lon: 121.474, tier: 1 },
+    { id: 'khi', name: 'Karachi', country: 'Pakistan', region: 'sa', lat: 24.861, lon: 67.010, tier: 2 },
+    { id: 'isb', name: 'Islamabad', country: 'Pakistan', region: 'sa', lat: 33.684, lon: 73.048, tier: 2 },
+    { id: 'blr', name: 'Bangalore', country: 'India', region: 'sa', lat: 12.972, lon: 77.594, tier: 2 },
     { id: 'dxb', name: 'Dubai', country: 'UAE', region: 'gulf', lat: 25.205, lon: 55.271, tier: 1 },
     { id: 'auh', name: 'Abu Dhabi', country: 'UAE', region: 'gulf', lat: 24.453, lon: 54.377, tier: 3 },
     { id: 'doh', name: 'Doha', country: 'Qatar', region: 'gulf', lat: 25.285, lon: 51.531, tier: 2 },
     { id: 'jed', name: 'Jeddah', country: 'Saudi Arabia', region: 'gulf', lat: 21.485, lon: 39.192, tier: 2 },
     { id: 'mkk', name: 'Mecca', country: 'Saudi Arabia', region: 'gulf', lat: 21.389, lon: 39.857, tier: 1 },
     { id: 'med', name: 'Madinah', country: 'Saudi Arabia', region: 'gulf', lat: 24.470, lon: 39.611, tier: 2 },
+    { id: 'kwi', name: 'Kuwait City', country: 'Kuwait', region: 'gulf', lat: 29.375, lon: 47.977, tier: 2 },
     { id: 'ist', name: 'Istanbul', country: 'Türkiye', region: 'tr', lat: 41.008, lon: 28.978, tier: 1 },
     { id: 'cap', name: 'Cappadocia', country: 'Türkiye', region: 'tr', lat: 38.643, lon: 34.830, tier: 3 },
+    { id: 'ank', name: 'Ankara', country: 'Türkiye', region: 'tr', lat: 39.933, lon: 32.859, tier: 2 },
     { id: 'gyd', name: 'Baku', country: 'Azerbaijan', region: 'tr', lat: 40.409, lon: 49.867, tier: 2 },
     { id: 'lon', name: 'London', country: 'United Kingdom', region: 'uk', lat: 51.507, lon: -0.128, tier: 1 },
     { id: 'bhx', name: 'Birmingham', country: 'United Kingdom', region: 'uk', lat: 52.487, lon: -1.890, tier: 3 },
@@ -412,6 +518,7 @@
     { id: 'dub', name: 'Dublin', country: 'Ireland', region: 'uk', lat: 53.350, lon: -6.260, tier: 2 },
     { id: 'par', name: 'Paris', country: 'France', region: 'eu', lat: 48.857, lon: 2.352, tier: 1 },
     { id: 'ams', name: 'Amsterdam', country: 'Netherlands', region: 'eu', lat: 52.370, lon: 4.895, tier: 2 },
+    { id: 'hag', name: 'The Hague', country: 'Netherlands', region: 'eu', lat: 52.078, lon: 4.288, tier: 2 },
     { id: 'fra', name: 'Frankfurt', country: 'Germany', region: 'eu', lat: 50.110, lon: 8.682, tier: 2 },
     { id: 'cgn', name: 'Cologne', country: 'Germany', region: 'eu', lat: 50.937, lon: 6.960, tier: 3 },
     { id: 'lux', name: 'Luxembourg', country: 'Luxembourg', region: 'eu', lat: 49.611, lon: 6.131, tier: 3 },
@@ -419,15 +526,21 @@
     { id: 'flr', name: 'Florence', country: 'Italy', region: 'eu', lat: 43.770, lon: 11.256, tier: 3 },
     { id: 'bcn', name: 'Barcelona', country: 'Spain', region: 'eu', lat: 41.385, lon: 2.173, tier: 2 },
     { id: 'lpa', name: 'Las Palmas', country: 'Spain', region: 'eu', lat: 28.124, lon: -15.436, tier: 3 },
-    { id: 'khi', name: 'Karachi', country: 'Pakistan', region: 'gulf', lat: 24.861, lon: 67.010, tier: 2 },
-    { id: 'isb', name: 'Islamabad', country: 'Pakistan', region: 'gulf', lat: 33.684, lon: 73.048, tier: 2 },
+    { id: 'cai', name: 'Cairo', country: 'Egypt', region: 'af', lat: 30.044, lon: 31.236, tier: 1 },
+    { id: 'los', name: 'Lagos', country: 'Nigeria', region: 'af', lat: 6.524, lon: 3.379, tier: 2 },
     { id: 'rak', name: 'Marrakech', country: 'Morocco', region: 'af', lat: 31.630, lon: -7.981, tier: 2 },
     { id: 'fez', name: 'Fez', country: 'Morocco', region: 'af', lat: 34.034, lon: -5.000, tier: 3 },
     { id: 'rba', name: 'Rabat', country: 'Morocco', region: 'af', lat: 34.021, lon: -6.836, tier: 3 },
-    { id: 'nkc', name: 'Nouakchott', country: 'Mauritania', region: 'af', lat: 18.079, lon: -15.978, tier: 2 }
+    { id: 'nkc', name: 'Nouakchott', country: 'Mauritania', region: 'af', lat: 18.079, lon: -15.978, tier: 2 },
+    { id: 'yyc', name: 'Calgary', country: 'Canada', region: 'na', lat: 51.045, lon: -114.057, tier: 2 },
+    { id: 'hou', name: 'Houston', country: 'USA', region: 'na', lat: 29.760, lon: -95.369, tier: 2 },
+    { id: 'syd', name: 'Sydney', country: 'Australia', region: 'oce', lat: -33.869, lon: 151.209, tier: 1 },
+    { id: 'mel', name: 'Melbourne', country: 'Australia', region: 'oce', lat: -37.814, lon: 144.963, tier: 2 }
   ];
 
   var BANDS = 6;
+  var PRIMARY = 'aor';           // Alor Setar is the primary home base
+  var PRIMARY_NAME = 'Alor Setar';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var props = { spinSpeed: reduced ? 0 : 0.35, arcLift: 0.28, landDots: true };
 
@@ -435,6 +548,7 @@
 
   var byId = {};
   CITIES.forEach(function (c) { byId[c.id] = c; });
+  var bases = CITIES.filter(function (c) { return c.home; }).map(function (c) { return c.id; });
 
   function haversine(a, b) {
     var d = Math.PI / 180, R = 6371;
@@ -444,18 +558,19 @@
   }
 
   CITIES.forEach(function (c) {
-    c.km = Math.round(haversine(byId.yan, c) / 10) * 10;
-    c.kmAor = Math.round(haversine(byId.aor, c) / 10) * 10;
+    c.km = Math.round(haversine(byId[PRIMARY], c) / 10) * 10;   // from Alor Setar (primary)
+    c.kmYan = Math.round(haversine(byId.yan, c) / 10) * 10;     // from Yan (secondary)
   });
   var maxKm = Math.max.apply(null, CITIES.map(function (c) { return c.km; }));
   CITIES.forEach(function (c) { c.band = Math.max(1, Math.ceil((c.km / maxKm) * BANDS)); });
   var bandKm = [];
   for (var b = 1; b <= BANDS; b++) bandKm[b] = Math.round((maxKm * b) / BANDS);
 
-  var edges = [{ from: 'yan', to: 'aor', hop: 1 }];
+  var edges = [];
+  if (bases.length >= 2) edges.push({ from: bases[0], to: bases[1], hop: 1 });
   CITIES.forEach(function (c) {
-    if (c.id === 'yan' || c.id === 'aor') return;
-    ['yan', 'aor'].forEach(function (base) { edges.push({ from: base, to: c.id, hop: c.band }); });
+    if (c.home) return;
+    bases.forEach(function (base) { edges.push({ from: base, to: c.id, hop: c.band }); });
   });
 
   /* ---------- state ---------- */
@@ -593,8 +708,8 @@
 
     var W = w, H = h;
     var mob = W < 880;
-    cx = mob ? W * 0.5 : W * 0.6;
-    cy = mob ? H * 0.3 : H * 0.54;
+    cx = mob ? W * 0.5 : W * 0.55;
+    cy = mob ? H * 0.3 : H * 0.52;
     R = (mob ? Math.min(W * 0.42, H * 0.26) : Math.min(W * 0.34, H * 0.42)) * cam.zoom;
 
     ctx.clearRect(0, 0, W, H);
@@ -800,9 +915,10 @@
 
   /* ---------- UI panels ---------- */
 
-  var pillBtns = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var pillsEl = document.getElementById('pills');
   var playBtn = document.getElementById('playBtn');
-  var hopRange = document.getElementById('hopRange');
+  var railEl = document.getElementById('rail');
+  var railFill = document.getElementById('railFill');
   var reachLabel = document.getElementById('reachLabel');
   var activeLabel = document.getElementById('activeLabel');
   var hopsEl = document.getElementById('hops');
@@ -811,8 +927,8 @@
   var fStatB = document.getElementById('fStatB'), fLabelB = document.getElementById('fLabelB');
   var fNote = document.getElementById('fNote');
 
-  var countries = {};
-  var continents = {};
+  // headline stats (derived)
+  var countries = {}, continents = {};
   CITIES.forEach(function (c) {
     countries[c.country] = true;
     REGIONS.forEach(function (r) { if (r.id === c.region) continents[r.continent] = true; });
@@ -821,40 +937,59 @@
   document.getElementById('statCountries').textContent = String(Object.keys(countries).length);
   document.getElementById('statContinents').textContent = String(Object.keys(continents).length);
 
-  pillBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      state.region = btn.getAttribute('data-region');
-      updateUI();
-    });
+  // region pills (built from data, live counts)
+  var regionCounts = {};
+  CITIES.forEach(function (c) { regionCounts[c.region] = (regionCounts[c.region] || 0) + 1; });
+  var pillDefs = [{ id: 'all', label: 'Everywhere', color: '#dbe9f5', count: CITIES.length }]
+    .concat(REGIONS.map(function (r) { return { id: r.id, label: r.label, color: r.color, count: regionCounts[r.id] || 0 }; }));
+  var pillEls = {};
+  pillDefs.forEach(function (def) {
+    var btn = document.createElement('button');
+    btn.className = 'pill';
+    btn.setAttribute('aria-pressed', def.id === 'all' ? 'true' : 'false');
+    btn.setAttribute('aria-label', def.label + ', ' + def.count + ' cities');
+    btn.innerHTML = '<span class="dot" style="background:' + def.color + '"></span><span>' +
+      def.label + '</span><span class="n">' + def.count + '</span>';
+    btn.addEventListener('click', function () { state.region = def.id; updateUI(); });
+    btn._def = def;
+    pillsEl.appendChild(btn);
+    pillEls[def.id] = btn;
   });
 
-  playBtn.addEventListener('click', function () {
-    state.playing = !state.playing;
-    updateUI();
-  });
+  // band rail nodes
+  var railNodes = [];
+  for (var bi = 1; bi <= BANDS; bi++) {
+    (function (band) {
+      var node = document.createElement('button');
+      node.className = 'rail-node';
+      node.style.left = ((band - 1) / (BANDS - 1) * 100) + '%';
+      node.setAttribute('aria-label', 'Reach band ' + band + ' of ' + BANDS + ', up to ' + fmt(bandKm[band]) + ' km');
+      node.innerHTML = '<span class="knob"></span><span class="tick">' + kkm(bandKm[band]) + '</span>';
+      node.addEventListener('click', function () { state.hop = band; state.playing = false; updateUI(); });
+      railEl.appendChild(node);
+      railNodes.push(node);
+    })(bi);
+  }
 
-  hopRange.addEventListener('input', function () {
-    state.hop = +hopRange.value;
-    state.playing = false;
-    updateUI();
-  });
+  function kkm(n) {
+    if (n >= 1000) { var v = (n / 1000).toFixed(1).replace(/\.0$/, ''); return v + 'k'; }
+    return String(n);
+  }
+
+  playBtn.addEventListener('click', function () { state.playing = !state.playing; updateUI(); });
 
   setInterval(function () {
-    if (state.playing) {
-      state.hop = state.hop >= BANDS ? 1 : state.hop + 1;
-      updateUI();
-    }
+    if (state.playing) { state.hop = state.hop >= BANDS ? 1 : state.hop + 1; updateUI(); }
   }, 1500);
 
   function updatePills() {
-    pillBtns.forEach(function (btn) {
-      var id = btn.getAttribute('data-region');
-      var color = btn.getAttribute('data-color');
-      var on = state.region === id;
+    pillDefs.forEach(function (def) {
+      var btn = pillEls[def.id];
+      var on = state.region === def.id;
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       if (on) {
-        btn.style.background = rgba(color, 0.16);
-        btn.style.borderColor = rgba(color, 0.55);
+        btn.style.background = rgba(def.color, 0.16);
+        btn.style.borderColor = rgba(def.color, 0.55);
         btn.style.color = '#ffffff';
       } else {
         btn.style.background = '';
@@ -876,12 +1011,12 @@
         fLabelA.textContent = 'Home base';
         fStatB.textContent = String(edges.filter(function (e) { return e.from === c.id || e.to === c.id; }).length);
         fLabelB.textContent = 'Routes';
-        fNote.textContent = 'One of the two starting points. Every line on this globe leaves from Yan and Alor Setar, and every distance is measured against them.';
+        fNote.textContent = 'One of the two starting points. Every line on this globe leaves from Alor Setar and Yan, and every distance is measured against them.';
       } else {
         fStatA.textContent = fmt(c.km);
-        fLabelA.textContent = 'km from Yan';
-        fStatB.textContent = fmt(c.kmAor);
-        fLabelB.textContent = 'km from Alor Setar';
+        fLabelA.textContent = 'km from Alor Setar';
+        fStatB.textContent = fmt(c.kmYan);
+        fLabelB.textContent = 'km from Yan';
         fNote.textContent = (c.area ? c.area + ', ' : '') + c.country + '. Reach band ' + c.band + ' of ' + BANDS + ', flown direct from both home bases.';
       }
     } else {
@@ -891,13 +1026,13 @@
       fLabelA.textContent = 'Routes drawn';
       fStatB.textContent = fmt(maxKm);
       fLabelB.textContent = 'Furthest km';
-      fNote.textContent = 'Every line runs from Yan and Alor Setar in Kedah out to somewhere I have stood: the Canaries, Nouakchott, Cappadocia. Pull the slider to grow the radius.';
+      fNote.textContent = 'Every line runs from Alor Setar and Yan in Kedah out to somewhere I have stood: Houston, the Canaries, Sydney. Pull the radius to grow the network.';
     }
   }
 
   function updateLongest() {
     var pool = CITIES.filter(function (c) {
-      return !c.home && c.id !== 'aor' && (state.region === 'all' || c.region === state.region);
+      return !c.home && (state.region === 'all' || c.region === state.region);
     });
     var max = Math.max.apply(null, [1].concat(pool.map(function (c) { return c.km; })));
     var top = pool.slice().sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
@@ -909,7 +1044,7 @@
       topLine.className = 'hop-top';
       var name = document.createElement('span');
       name.className = 'name';
-      name.textContent = 'Yan → ' + c.name;
+      name.textContent = PRIMARY_NAME + ' → ' + c.name;
       var km = document.createElement('span');
       km.className = 'km';
       km.textContent = fmt(c.km) + ' km';
@@ -924,8 +1059,7 @@
       track.appendChild(fill);
       row.appendChild(topLine); row.appendChild(track);
       row.addEventListener('click', function () {
-        state.selected = state.selected === c.id ? null : c.id;
-        updateUI();
+        state.selected = state.selected === c.id ? null : c.id; updateUI();
       });
       hopsEl.appendChild(row);
     });
@@ -934,7 +1068,12 @@
   function updateBar() {
     playBtn.innerHTML = state.playing ? '&#x2759;&#x2759;' : '&#x25B6;';
     playBtn.setAttribute('aria-pressed', state.playing ? 'true' : 'false');
-    hopRange.value = String(state.hop);
+    railFill.style.width = ((state.hop - 1) / (BANDS - 1) * 100) + '%';
+    railNodes.forEach(function (node, i) {
+      var band = i + 1;
+      node.classList.toggle('reached', band <= state.hop);
+      node.classList.toggle('current', band === state.hop);
+    });
     reachLabel.innerHTML = '&le; ' + fmt(bandKm[state.hop] || 0) + ' km';
     var vEdges = visibleEdges();
     var cityIds = {};
@@ -942,12 +1081,102 @@
     activeLabel.textContent = vEdges.length + ' routes · ' + Object.keys(cityIds).length + ' cities';
   }
 
-  function updateUI() {
-    updatePills();
-    updateFocus();
-    updateLongest();
-    updateBar();
-  }
+  function updateUI() { updatePills(); updateFocus(); updateLongest(); updateBar(); }
+
+  /* ---------- visitor telemetry (cumulative visits + origins) ---------- */
+
+  (function telemetry() {
+    var NS = 'farissuhail-com';        // same namespace the site already counts with
+    var AB = 'https://abacus.jasoncameron.dev';
+    var viewChip = document.getElementById('viewChip');
+    var viewCount = document.getElementById('viewCount');
+    var teleYou = document.getElementById('teleYou');
+    var teleBoard = document.getElementById('teleBoard');
+
+    function flag(cc) {
+      if (!cc || cc.length !== 2) return '🌐';
+      return cc.toUpperCase().replace(/./g, function (ch) {
+        return String.fromCodePoint(0x1F1E6 + ch.charCodeAt(0) - 65);
+      });
+    }
+    var names = null;
+    try { names = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+    function countryName(cc) {
+      if (names) { try { return names.of(cc) || cc; } catch (e) {} }
+      return cc;
+    }
+    function jget(url) { return fetch(url).then(function (r) { return r.json(); }); }
+    function val(d) { return d && (d.value != null ? d.value : d.count); }
+
+    var counted = false;
+    try { counted = sessionStorage.getItem('fs-visited') === '1'; } catch (e) {}
+
+    // total cumulative visits (increment once per browser session, same as before)
+    jget(AB + '/' + (counted ? 'get' : 'hit') + '/' + NS + '/visits').then(function (d) {
+      var n = val(d);
+      if (typeof n !== 'number') return;
+      try { sessionStorage.setItem('fs-visited', '1'); } catch (e) {}
+      viewCount.textContent = n.toLocaleString('en-US');
+      viewChip.classList.add('show');
+    }).catch(function () {});
+
+    // where in the world: detect visitor country, tally per-country, render a live board
+    var BOARD = ['MY', 'US', 'GB', 'SG', 'ID', 'AU', 'SA', 'AE', 'IN', 'CA', 'NL', 'TR'];
+
+    function renderBoard(rows, youCC) {
+      rows = rows.filter(function (r) { return r.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 6);
+      if (!rows.length) { teleBoard.innerHTML = '<div class="tele-empty">No signals logged yet.</div>'; return; }
+      var max = rows[0].n;
+      teleBoard.innerHTML = '';
+      rows.forEach(function (r) {
+        var row = document.createElement('div');
+        row.className = 'tele-row';
+        row.innerHTML = '<span class="flag">' + flag(r.cc) + '</span>' +
+          '<span class="co">' + countryName(r.cc) + (r.cc === youCC ? ' · you' : '') + '</span>' +
+          '<span class="val">' + r.n.toLocaleString('en-US') + '</span>' +
+          '<span class="tele-bar"><i style="width:' + Math.max(6, Math.round(r.n / max * 100)) + '%"></i></span>';
+        teleBoard.appendChild(row);
+      });
+    }
+
+    function loadBoard(youCC) {
+      var codes = BOARD.slice();
+      if (youCC && codes.indexOf(youCC) === -1) codes.push(youCC);
+      Promise.all(codes.map(function (cc) {
+        return jget(AB + '/get/' + NS + '/geo_' + cc)
+          .then(function (d) { var n = val(d); return { cc: cc, n: typeof n === 'number' ? n : 0 }; })
+          .catch(function () { return { cc: cc, n: 0 }; });
+      })).then(function (rows) { renderBoard(rows, youCC); })
+        .catch(function () { teleBoard.innerHTML = '<div class="tele-empty">Origin log unavailable.</div>'; });
+    }
+
+    function geo() {
+      return jget('https://ipapi.co/json/').then(function (d) {
+        if (d && d.country) return { cc: d.country, city: d.city, name: d.country_name };
+        throw new Error('no geo');
+      }).catch(function () {
+        return jget('https://ipwho.is/').then(function (d) {
+          if (d && d.country_code) return { cc: d.country_code, city: d.city, name: d.country };
+          throw new Error('no geo');
+        });
+      });
+    }
+
+    geo().then(function (loc) {
+      var cc = (loc.cc || '').toUpperCase();
+      teleYou.innerHTML = 'You are tuning in from <b>' +
+        (loc.city ? loc.city + ', ' : '') + (loc.name || countryName(cc)) + '</b> ' + flag(cc);
+      // count this visitor's country once per session, then load the board
+      if (cc && !counted) {
+        jget(AB + '/hit/' + NS + '/geo_' + cc).then(function () { loadBoard(cc); }).catch(function () { loadBoard(cc); });
+      } else {
+        loadBoard(cc);
+      }
+    }).catch(function () {
+      teleYou.textContent = 'Signal origin hidden. Welcome anyway.';
+      loadBoard(null);
+    });
+  })();
 
   /* ---------- boot ---------- */
 
