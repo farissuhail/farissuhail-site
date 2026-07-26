@@ -198,6 +198,18 @@
     .wlh-more a { color: rgba(226,232,240,0.92); border-bottom: 1px solid rgba(79,216,255,0.4); }
     .wlh-more a:hover { color: #9beeff; }
 
+    /* section gallery: real page screenshots */
+    .wlh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .wlh-tile { display: block; text-decoration: none; }
+    .wlh-tile-shot { display: block; position: relative; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 6px 18px -10px rgba(0,0,0,0.8); background: #0a1420;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+    .wlh-tile-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.5s ease; }
+    .wlh-tile:hover .wlh-tile-shot { border-color: var(--wc); box-shadow: 0 8px 26px -8px var(--wc); }
+    .wlh-tile:hover .wlh-tile-shot img { transform: scale(1.07); }
+    .wlh-tile-name { display: block; margin-top: 7px; font-size: 12px; font-weight: 600; color: #dbe9f5; letter-spacing: 0.01em; line-height: 1.25; }
+    .wlh-tile:hover .wlh-tile-name { color: #9beeff; }
+
     @media (prefers-reduced-motion: reduce) { #wlhRing, .wlh-prog > i { transition: none; } }
 
     /* ===== regions ===== */
@@ -412,84 +424,23 @@
     <div class="whatlives">
       <div class="wlh-head">
         <div class="l"><span class="wlh-blip"></span><h2>What Lives Here</h2></div>
-        <span class="r">LIVE &middot; 5 STRANDS</span>
+        <span class="r">12 SECTIONS</span>
       </div>
 
-      <article class="wlh-card cy">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span class="wlh-idx">01 &middot; ESSAYS</span>
-          <span class="wlh-rule" style="background:linear-gradient(90deg,rgba(79,216,255,0.4),transparent);"></span>
-        </div>
-        <h3 class="wlh-title"><a href="/notes/">Notes</a></h3>
-        <p class="wlh-desc">Working essays where the engineering lens meets the tradition. Start with
-          <a href="/notes/hadith-information-integrity.html">the muhaddithun &amp; information integrity</a>.</p>
-        <div class="wlh-sub">
-          <div style="display:flex;align-items:baseline;gap:8px;">
-            <span class="wlh-num" id="wlhEssays" style="font-size:34px;color:#e0f2fe;">0</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#7dd3fc;">PUBLISHED</span>
-          </div>
-          <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="ngrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(79,216,255,0.45)"></stop><stop offset="1" stop-color="rgba(79,216,255,0)"></stop></linearGradient></defs>
-            <path id="wlhNotesArea" fill="url(#ngrad)" opacity="0.9"></path>
-            <path id="wlhNotesLine" class="wlh-draw" fill="none" stroke="#4fd8ff" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </article>
-
-      <article class="wlh-card gr">
-        <span class="wlh-idx">02 &middot; SURAH BY SURAH</span>
-        <h3 class="wlh-title"><a href="/reflections.html">Reflections</a></h3>
-        <div style="display:flex;align-items:baseline;gap:6px;margin:8px 0 12px;">
-          <span class="wlh-num" id="wlhSurahs" style="font-size:32px;color:#d1fae5;">0</span>
-          <span style="font-size:14px;color:rgba(148,163,184,0.7);">/ 114 surahs</span>
-        </div>
-        <div class="wlh-prog"><i id="wlhSurahBar"></i></div>
-        <div class="wlh-chips"><span class="wlh-chip">EN</span><span class="wlh-chip">BM</span></div>
-      </article>
-
-      <article class="wlh-card vi">
-        <div>
-          <span class="wlh-idx">03 &middot; STRUCTURE</span>
-          <h3 class="wlh-title" style="margin:11px 0 7px;font-size:18px;"><a href="/nazm.html">Na&#7827;m / Ring</a></h3>
-          <p class="wlh-desc" style="font-size:12px;">How s&#363;rahs fold around their centres.</p>
-        </div>
-        <div class="wlh-ringwrap">
-          <svg class="wlh-ring-svg" viewBox="0 0 100 100" aria-hidden="true">
-            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(180,140,255,0.15)" stroke-width="7"></circle>
-            <circle id="wlhRing" cx="50" cy="50" r="42" fill="none" stroke="#b48cff" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></circle>
-          </svg>
-          <div class="wlh-ring-c"><b id="wlhRingNum">0</b><span>SURAHS</span></div>
-        </div>
-      </article>
-
-      <article class="wlh-card am">
-        <span class="wlh-idx">04 &middot; COMPUTED</span>
-        <h3 class="wlh-title"><a href="/kalam.html">Kalam</a></h3>
-        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 4px;">
-          <span class="wlh-num" id="wlhWords" style="font-size:26px;color:#fef3c7;">0</span>
-          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">words parsed</span>
-        </div>
-        <div class="wlh-bars" id="wlhBars" aria-hidden="true"></div>
-      </article>
-
-      <article class="wlh-card pk">
-        <span class="wlh-idx">05 &middot; EVERYDAY</span>
-        <h3 class="wlh-title"><a href="/inspiration.html">Inspiration</a></h3>
-        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 8px;">
-          <span class="wlh-num" id="wlhMoments" style="font-size:26px;color:#fce7f3;">0</span>
-          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">moments logged</span>
-        </div>
-        <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="igrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(255,111,174,0.45)"></stop><stop offset="1" stop-color="rgba(255,111,174,0)"></stop></linearGradient></defs>
-          <path id="wlhInspArea" fill="url(#igrad)" opacity="0.9"></path>
-          <path id="wlhInspLine" class="wlh-draw" fill="none" stroke="#ff6fae" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </article>
-
-      <p class="wlh-more">Also here: <a href="/book-reviews.html">book summaries</a>,
-        <a href="/learn-ai.html">Learn AI</a>, a <a href="/npam.html">non-partisan read on Malaysia's
-        politics</a>, and personal corners like the <a href="/sneakers.html">sneaker shelf</a> and
-        <a href="/apps.html">apps &amp; experiments</a>.</p>
+      <div class="wlh-grid">
+        <a class="wlh-tile" href="/notes/" style="--wc:#4fd8ff"><span class="wlh-tile-shot"><img src="/assets/glimpse/notes.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Notes</span></a>
+        <a class="wlh-tile" href="/reflections.html" style="--wc:#6ee7a8"><span class="wlh-tile-shot"><img src="/assets/glimpse/reflections.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Reflections</span></a>
+        <a class="wlh-tile" href="/nazm.html" style="--wc:#b48cff"><span class="wlh-tile-shot"><img src="/assets/glimpse/nazm.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Na&#7827;m / Ring Structure</span></a>
+        <a class="wlh-tile" href="/kalam.html" style="--wc:#ffc46b"><span class="wlh-tile-shot"><img src="/assets/glimpse/kalam.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Kalam</span></a>
+        <a class="wlh-tile" href="/inspiration.html" style="--wc:#ff6fae"><span class="wlh-tile-shot"><img src="/assets/glimpse/inspiration.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Inspiration</span></a>
+        <a class="wlh-tile" href="/book-reviews.html" style="--wc:#ffcf6b"><span class="wlh-tile-shot"><img src="/assets/glimpse/books.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Book Summaries</span></a>
+        <a class="wlh-tile" href="/learn-ai.html" style="--wc:#6cc6ff"><span class="wlh-tile-shot"><img src="/assets/glimpse/ai.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Learn AI</span></a>
+        <a class="wlh-tile" href="/npam.html" style="--wc:#7ef0d0"><span class="wlh-tile-shot"><img src="/assets/glimpse/npam.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Political Read</span></a>
+        <a class="wlh-tile" href="/analitika-malaya.html" style="--wc:#5f9bff"><span class="wlh-tile-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Analitika Malaya</span></a>
+        <a class="wlh-tile" href="/sneakers.html" style="--wc:#ff5f7d"><span class="wlh-tile-shot"><img src="/assets/glimpse/sneakers.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Sneakerz</span></a>
+        <a class="wlh-tile" href="/apps.html" style="--wc:#ff9f6b"><span class="wlh-tile-shot"><img src="/assets/glimpse/apps.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Apps &amp; Experiments</span></a>
+        <a class="wlh-tile" href="/about.html" style="--wc:#dbe9f5"><span class="wlh-tile-shot"><img src="/assets/glimpse/about.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">About</span></a>
+      </div>
     </div>
 
     <div class="contact">
@@ -1328,76 +1279,6 @@
   updateUI();
   loadLand();
   loop();
-})();
-</script>
-<script>
-/* "What Lives Here" dashboard: real counts + animated sparklines/bars/ring */
-(function () {
-  'use strict';
-  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function $(id) { return document.getElementById(id); }
-  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
-  function path(vals, w, h) {
-    var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals), rng = (max - min) || 1, out = '';
-    for (var i = 0; i < vals.length; i++) {
-      var x = i / (vals.length - 1) * w, y = h - ((vals[i] - min) / rng) * (h - 2) - 1;
-      out += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
-    }
-    return out.trim();
-  }
-
-  // real current counts (edit as the project grows)
-  var DATA = { essays: 1, surahs: 3, surahTotal: 114, ringNum: 6, words: 77429, moments: 5 };
-  var ringSweep = 0.28;  // decorative ring fill (Ring Structure motif)
-
-  // decorative sparkline / bar shapes
-  var notesData = [3, 5, 4, 7, 6, 9, 8, 12, 11, 14];
-  var inspData = [2, 4, 3, 6, 5, 8, 7, 10, 9, 13, 12, 16];
-  var bars = [42, 68, 34, 88, 55, 100, 40, 74, 50, 82];
-
-  var nLine = path(notesData, 100, 34), iLine = path(inspData, 100, 34);
-  if ($('wlhNotesLine')) { $('wlhNotesLine').setAttribute('d', nLine); $('wlhNotesArea').setAttribute('d', nLine + ' L100 34 L0 34 Z'); }
-  if ($('wlhInspLine')) { $('wlhInspLine').setAttribute('d', iLine); $('wlhInspArea').setAttribute('d', iLine + ' L100 34 L0 34 Z'); }
-
-  var bc = $('wlhBars');
-  if (bc) bars.forEach(function (b, i) {
-    var el = document.createElement('i');
-    el.style.height = b + '%';
-    el.style.animationDelay = (0.15 + i * 0.05) + 's';
-    bc.appendChild(el);
-  });
-
-  function setFinal() {
-    $('wlhEssays').textContent = fmt(DATA.essays);
-    $('wlhSurahs').textContent = String(DATA.surahs);
-    $('wlhRingNum').textContent = String(DATA.ringNum);
-    $('wlhWords').textContent = fmt(DATA.words);
-    $('wlhMoments').textContent = fmt(DATA.moments);
-    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
-    $('wlhRing').style.strokeDashoffset = String(ringSweep);
-  }
-
-  if (rm) { setFinal(); return; }
-
-  // trigger CSS transitions (ring fill + progress bar) on next frame
-  requestAnimationFrame(function () {
-    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
-    $('wlhRing').style.strokeDashoffset = String(ringSweep);
-  });
-
-  // count the numbers up (ease-out cubic, 1.5s)
-  var t0 = null, dur = 1500;
-  function tick(t) {
-    if (!t0) t0 = t;
-    var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3);
-    $('wlhEssays').textContent = fmt(DATA.essays * k);
-    $('wlhSurahs').textContent = String(Math.round(DATA.surahs * k));
-    $('wlhRingNum').textContent = String(Math.round(DATA.ringNum * k));
-    $('wlhWords').textContent = fmt(DATA.words * k);
-    $('wlhMoments').textContent = String(Math.round(DATA.moments * k));
-    if (k < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 })();
 </script>
 </body>
