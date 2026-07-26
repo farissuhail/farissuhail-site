@@ -74,7 +74,7 @@
     }
 
     .page { position: relative; min-height: 100vh; user-select: none; -webkit-user-select: none; pointer-events: none; }
-    .stats, .contact, .card, .bottombar, .pills, .whatlives, .telemetry,
+    .stats, .contact, .card, .bottombar, .pills, .whatlives, .telemetry, .viewswitch,
     .page a, .page button, .page input { pointer-events: auto; }
     .hero-text, .wordmark, .hints, .mspacer { pointer-events: none; }
     .wordmark a, .wordmark .viewchip { pointer-events: auto; }
@@ -94,6 +94,21 @@
     .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 8px #4fd8ff; }
     @media (prefers-reduced-motion: no-preference) { .live-dot { animation: pulse 2.4s ease-in-out infinite; } }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    /* ===== view switcher (HUD) ===== */
+    .viewswitch {
+      display: inline-flex; align-items: center; gap: 3px; padding: 4px; border-radius: 999px;
+      background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .vs-label { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); padding: 0 7px 0 9px; }
+    .vs-opt {
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em;
+      padding: 6px 13px; border-radius: 999px; color: rgba(219,233,245,0.6);
+      transition: color 0.2s, background 0.2s; white-space: nowrap;
+    }
+    .vs-opt:hover { color: #fff; }
+    .vs-opt.on { color: #05070d; background: #dbe9f5; font-weight: 500; }
 
     .hero-text { display: flex; flex-direction: column; gap: 12px; }
     h1 { font-size: 44px; line-height: 1.04; font-weight: 600; letter-spacing: -0.02em; text-wrap: pretty; }
@@ -248,6 +263,7 @@
       .only-mobile { display: none; }
       .mspacer { display: none; }
       .wordmark { position: absolute; top: 30px; left: 34px; right: 360px; }
+      .viewswitch { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); z-index: 5; }
       .hero {
         position: absolute; top: 92px; left: 34px; width: 420px;
         max-height: calc(100vh - 210px); display: flex; flex-direction: column; gap: 18px;
@@ -271,6 +287,8 @@
       .wordmark { order: 0; gap: 8px 10px; }
       .wordmark .brand { font-size: 11px; letter-spacing: 0.22em; }
       .wordmark .tag { font-size: 9px; }
+      .viewswitch { order: 1; align-self: flex-start; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .viewswitch::-webkit-scrollbar { display: none; }
       .mspacer { order: 1; height: 40vh; min-height: 230px; }
       .hero, .rightcol { display: contents; }
       .hero-text { order: 2; gap: 10px; }
@@ -309,6 +327,15 @@
     <span class="tag">Travel footprint</span>
     <span class="viewchip" id="viewChip" title="Cumulative visits to this site"><span class="live-dot"></span><b id="viewCount">&mdash;</b>&nbsp;visits</span>
   </header>
+
+  <nav class="viewswitch" aria-label="Choose a homepage design">
+    <span class="vs-label">View</span>
+    <a href="/" class="vs-opt on" aria-current="page">Globe</a>
+    <a href="/home-glass.html" class="vs-opt">Glass</a>
+    <a href="/home-editorial.html" class="vs-opt">Editorial</a>
+    <a href="/home-cinematic.html" class="vs-opt">Cinematic</a>
+    <a href="/returning/" class="vs-opt">Classic</a>
+  </nav>
 
   <div class="mspacer" aria-hidden="true"></div>
 
