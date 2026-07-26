@@ -121,6 +121,22 @@
   }
   #skip:hover { color:#dff8ff; }
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  /* Enter screen: two slow marquee rows of section screenshots around the button */
+  .enter-row { position:absolute; left:0; width:100%; overflow:hidden;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  .enter-row.top { top:9%; }
+  .enter-row.bot { bottom:9%; }
+  .enter-track { display:flex; gap:18px; width:max-content; will-change:transform; }
+  .enter-row.top .enter-track { animation:enter-marq-l 50s linear infinite; }
+  .enter-row.bot .enter-track { animation:enter-marq-r 46s linear infinite; }
+  @keyframes enter-marq-l { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes enter-marq-r { from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
+  .enter-shot { flex:0 0 auto; width:clamp(148px,15vw,210px); aspect-ratio:16/10; border-radius:10px; overflow:hidden;
+    border:1px solid rgba(43,240,255,.35); box-shadow:0 0 26px -10px rgba(43,240,255,.55); background:#0a1420; }
+  .enter-shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; opacity:.88; }
+  @media (max-width:640px) { .enter-shot { width:38vw; } .enter-row.top { top:5%; } .enter-row.bot { bottom:5%; } }
 </style>
 <script type="importmap">
 {
@@ -202,8 +218,36 @@
 </div>
 
 <div id="enter" class="overlay">
+  <div class="enter-row top" aria-hidden="true"><div class="enter-track">
+    <span class="enter-shot"><img src="/assets/glimpse/notes.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/reflections.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/nazm.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/kalam.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/inspiration.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/books.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/notes.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/reflections.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/nazm.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/kalam.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/inspiration.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/books.jpg" alt=""></span>
+  </div></div>
   <p>farissuhail.com</p>
   <a id="enterLink" href="/home.html">Enter</a>
+  <div class="enter-row bot" aria-hidden="true"><div class="enter-track">
+    <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/npam.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/sneakers.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/apps.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/about.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/npam.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/sneakers.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/apps.jpg" alt=""></span>
+    <span class="enter-shot"><img src="/assets/glimpse/about.jpg" alt=""></span>
+  </div></div>
 </div>
 
 <div id="scroll-host"></div>
