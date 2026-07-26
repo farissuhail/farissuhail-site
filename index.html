@@ -1,1403 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Faris Suhail · Travel Footprint</title>
-  <meta name="description" content="A personal site by Faris Suhail: Qur'an and hadith, book summaries, tech and AI experiments, and an interactive globe of every city travelled, traced back to Alor Setar in Kedah.">
-  <link rel="canonical" href="https://farissuhail.com/">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="theme-color" content="#05070d">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban">
-  <meta property="og:title" content="Faris Suhail · Travel Footprint">
-  <meta property="og:description" content="A personal site: Qur'an and hadith, books, tech and AI, and a globe of every city I have set foot in, traced back to a small town on the Kedah coast.">
-  <meta property="og:url" content="https://farissuhail.com/">
-  <meta property="og:image" content="https://farissuhail.com/assets/og-home.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Faris Suhail · Travel Footprint">
-  <meta name="twitter:description" content="An interactive globe of every city travelled, traced back to Alor Setar in Kedah.">
-  <meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://farissuhail.com/#website",
-        "url": "https://farissuhail.com/",
-        "name": "Faris Suhail · The Mdrn Urban",
-        "description": "Qur'an reflections, stories, and data: everyday life read through the light of revelation.",
-        "inLanguage": ["en", "ms"],
-        "publisher": { "@id": "https://farissuhail.com/#person" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://farissuhail.com/#person",
-        "name": "Faris Suhail",
-        "url": "https://farissuhail.com/about.html",
-        "email": "mailto:tech@farissuhail.com",
-        "jobTitle": "Engineering Project Manager",
-        "address": { "@type": "PostalAddress", "addressLocality": "Kuala Lumpur", "addressCountry": "MY" },
-        "sameAs": ["https://github.com/farissuhail"]
-      }
-    ]
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Faris Suhail · The Mdrn Urban</title>
+<meta name="description" content="A personal site by Faris Suhail: Qur'an and hadith, book summaries, tech and AI experiments, and a travel-footprint globe. Scroll through the light and enter." />
+<link rel="canonical" href="https://farissuhail.com/" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="theme-color" content="#0a0524" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+<meta property="og:title" content="Faris Suhail · The Mdrn Urban" />
+<meta property="og:description" content="A personal corner of the internet: Qur'an and hadith, books, tech and AI, and a globe of everywhere I have travelled." />
+<meta property="og:url" content="https://farissuhail.com/" />
+<meta property="og:image" content="https://farissuhail.com/assets/og-home.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Faris Suhail · The Mdrn Urban" />
+<meta name="twitter:description" content="Scroll into the light and enter: Qur'an and hadith, books, tech and AI, and a travel globe." />
+<meta name="twitter:image" content="https://farissuhail.com/assets/og-home.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": "https://farissuhail.com/#website", "url": "https://farissuhail.com/",
+      "name": "Faris Suhail · The Mdrn Urban",
+      "description": "Qur'an reflections, stories, and data: everyday life read through the light of revelation.",
+      "inLanguage": ["en", "ms"], "publisher": { "@id": "https://farissuhail.com/#person" } },
+    { "@type": "Person", "@id": "https://farissuhail.com/#person", "name": "Faris Suhail",
+      "url": "https://farissuhail.com/about.html", "email": "mailto:tech@farissuhail.com",
+      "jobTitle": "Engineering Project Manager",
+      "address": { "@type": "PostalAddress", "addressLocality": "Kuala Lumpur", "addressCountry": "MY" },
+      "sameAs": ["https://github.com/farissuhail"] }
+  ]
+}
+</script>
+<style>
+  html, body { margin:0; padding:0; background:#000; }
+  body { height:100%; }
+  #scene { position:fixed; inset:0; width:100vw; height:100vh; display:block; }
+  #scroll-host { height:560vh; }
+  #scroll-hint {
+    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+    color:#ffffff; font:600 13px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing:.28em; text-transform:uppercase; pointer-events:none;
+    text-shadow:0 0 12px rgba(43,240,255,.9), 0 0 30px rgba(122,60,255,.5);
   }
-  </script>
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #05070d; }
-    body {
-      color: #dbe9f5;
-      font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: #4fd8ff; text-decoration: none; }
-    a:hover { color: #9beeff; }
-    button { font-family: inherit; }
-    .mono { font-family: 'JetBrains Mono', Consolas, monospace; }
-
-    #globe {
-      position: fixed; inset: 0;
-      width: 100vw; height: 100vh; height: 100dvh;
-      display: block; cursor: grab; touch-action: none;
-    }
-
-    .page { position: relative; min-height: 100vh; user-select: none; -webkit-user-select: none; pointer-events: none; }
-    .stats, .contact, .card, .bottombar, .pills, .whatlives, .telemetry, .viewswitch,
-    .page a, .page button, .page input { pointer-events: auto; }
-    .hero-text, .wordmark, .hints, .mspacer { pointer-events: none; }
-    .wordmark a, .wordmark .viewchip { pointer-events: auto; }
-
-    /* ===== wordmark + live view chip ===== */
-    .wordmark { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-    .wordmark .brand { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #dbe9f5; }
-    .wordmark .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(219,233,245,0.35); }
-    .viewchip {
-      display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.5);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 4px 10px;
-      background: rgba(255,255,255,0.02); opacity: 0; transition: opacity 0.5s;
-    }
-    .viewchip.show { opacity: 1; }
-    .viewchip b { color: #4fd8ff; font-weight: 500; letter-spacing: 0.06em; }
-    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 8px #4fd8ff; }
-    @media (prefers-reduced-motion: no-preference) { .live-dot { animation: pulse 2.4s ease-in-out infinite; } }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
-
-    /* ===== view switcher (HUD) ===== */
-    .viewswitch {
-      display: inline-flex; align-items: center; gap: 3px; padding: 4px; border-radius: 999px;
-      background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    }
-    .vs-label { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); padding: 0 7px 0 9px; }
-    .vs-opt {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em;
-      padding: 6px 13px; border-radius: 999px; color: rgba(219,233,245,0.6);
-      transition: color 0.2s, background 0.2s; white-space: nowrap;
-    }
-    .vs-opt:hover { color: #fff; }
-    .vs-opt.on { color: #05070d; background: #dbe9f5; font-weight: 500; }
-
-    .hero-text { display: flex; flex-direction: column; gap: 12px; }
-    h1 { font-size: 52px; line-height: 1.0; font-weight: 600; letter-spacing: -0.025em; text-wrap: pretty; }
-    h1 .eyebrow { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(79,216,255,0.8); margin-bottom: 10px; }
-    .intro { font-size: 15.5px; line-height: 1.6; color: rgba(219,233,245,0.66); text-wrap: pretty; }
-    .intro b { color: rgba(219,233,245,0.9); font-weight: 500; }
-
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .stat {
-      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      padding: 13px 14px; display: flex; flex-direction: column; gap: 4px;
-    }
-    .stat b { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 500; letter-spacing: -0.02em; color: #4fd8ff; }
-    .stat span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(219,233,245,0.42); }
-
-    .contact { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; }
-    .contact a, .contact .base { white-space: nowrap; }
-    .contact .sep { color: rgba(219,233,245,0.2); }
-    .contact .base { color: rgba(219,233,245,0.45); }
-
-    .card {
-      background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      padding: 15px; display: flex; flex-direction: column;
-    }
-    .card-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
-
-    /* ===== what lives here (data dashboard) ===== */
-    .whatlives { display: flex; flex-direction: column; gap: 12px; }
-    .wlh-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 2px; }
-    .wlh-head .l { display: flex; align-items: center; gap: 9px; }
-    .wlh-blip { width: 7px; height: 7px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 12px 2px rgba(79,216,255,0.55); }
-    .wlh-head h2 { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(219,233,245,0.72); font-weight: 500; }
-    .wlh-head .r { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(148,163,184,0.5); }
-    @keyframes wlh-blip { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-    @media (prefers-reduced-motion: no-preference) { .wlh-blip { animation: wlh-blip 2.4s ease-in-out infinite; } }
-
-    .wlh-card { position: relative; border-radius: 16px; padding: 16px; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); transition: transform 0.25s ease, box-shadow 0.25s ease; }
-    .wlh-card:hover { transform: translateY(-2px); box-shadow: 0 22px 44px -26px rgba(0,0,0,0.85); }
-    .wlh-idx { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; }
-    .wlh-rule { height: 1px; flex: 1; }
-    .wlh-title { margin: 9px 0 6px; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #f1f5f9; }
-    .wlh-title a { color: inherit; transition: color 0.2s; }
-    .wlh-desc { font-size: 12.5px; line-height: 1.55; color: rgba(203,213,225,0.82); text-wrap: pretty; }
-    .wlh-desc a { color: #bae6fd; border-bottom: 1px solid rgba(125,211,252,0.5); }
-    .wlh-num { font-variant-numeric: tabular-nums; font-weight: 700; line-height: 1; }
-
-    /* accent palette (matches the globe arc colors) */
-    .cy { background: linear-gradient(135deg, rgba(79,216,255,0.10), rgba(79,216,255,0.02)); border: 1px solid rgba(79,216,255,0.22); }
-    .gr { background: linear-gradient(135deg, rgba(110,231,168,0.10), rgba(110,231,168,0.02)); border: 1px solid rgba(110,231,168,0.22); }
-    .vi { background: linear-gradient(135deg, rgba(180,140,255,0.10), rgba(180,140,255,0.02)); border: 1px solid rgba(180,140,255,0.22); display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; }
-    .am { background: linear-gradient(135deg, rgba(255,196,107,0.10), rgba(255,196,107,0.02)); border: 1px solid rgba(255,196,107,0.22); }
-    .pk { background: linear-gradient(135deg, rgba(255,111,174,0.10), rgba(255,111,174,0.02)); border: 1px solid rgba(255,111,174,0.22); }
-    .cy .wlh-idx { color: #9bdcff; } .cy .wlh-title a:hover { color: #9bdcff; }
-    .gr .wlh-idx { color: #6ee7b7; } .vi .wlh-idx { color: #c4b5fd; } .am .wlh-idx { color: #fcd34d; } .pk .wlh-idx { color: #f9a8d4; }
-
-    /* Notes stat sub-box + sparkline */
-    .wlh-sub { margin-top: 12px; padding: 13px 14px; border-radius: 12px; background: rgba(2,6,23,0.4); border: 1px solid rgba(79,216,255,0.15); }
-    .wlh-spark { width: 100%; height: 48px; margin-top: 8px; overflow: visible; }
-    .wlh-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
-    @keyframes wlh-draw { to { stroke-dashoffset: 0; } }
-    @media (prefers-reduced-motion: no-preference) { .wlh-draw { animation: wlh-draw 1.4s ease 0.2s forwards; } }
-    @media (prefers-reduced-motion: reduce) { .wlh-draw { stroke-dashoffset: 0; } }
-
-    /* Reflections progress + language chips */
-    .wlh-prog { height: 8px; border-radius: 99px; background: rgba(110,231,168,0.14); overflow: hidden; }
-    .wlh-prog > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #34d399, #6ee7b7); width: 0; transition: width 1.3s cubic-bezier(.22,1,.36,1) 0.2s; }
-    .wlh-chips { margin-top: 14px; display: flex; gap: 8px; }
-    .wlh-chip { flex: 1; text-align: center; padding: 7px 0; border-radius: 9px; background: rgba(110,231,168,0.12); border: 1px solid rgba(110,231,168,0.3); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6ee7b7; }
-
-    /* Naẓm ring */
-    .wlh-ringwrap { position: relative; width: 92px; height: 92px; flex: 0 0 auto; }
-    .wlh-ring-svg { width: 92px; height: 92px; transform: rotate(-90deg); }
-    #wlhRing { transition: stroke-dashoffset 1.4s ease 0.2s; }
-    .wlh-ring-c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .wlh-ring-c b { font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 700; color: #ede9fe; line-height: 1; }
-    .wlh-ring-c span { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; color: rgba(196,181,253,0.7); margin-top: 4px; }
-
-    /* Kalam bars */
-    .wlh-bars { margin-top: 14px; display: flex; align-items: flex-end; gap: 5px; height: 46px; }
-    .wlh-bars > i { flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #ffc46b, rgba(255,196,107,0.25)); transform-origin: bottom; }
-    @keyframes wlh-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-    @media (prefers-reduced-motion: no-preference) { .wlh-bars > i { animation: wlh-bar 0.9s cubic-bezier(.22,1,.36,1) both; } }
-
-    .wlh-more { margin: 6px 2px 0; font-size: 12.5px; line-height: 1.65; color: rgba(148,163,184,0.7); text-wrap: pretty; }
-    .wlh-more a { color: rgba(226,232,240,0.92); border-bottom: 1px solid rgba(79,216,255,0.4); }
-    .wlh-more a:hover { color: #9beeff; }
-
-    @media (prefers-reduced-motion: reduce) { #wlhRing, .wlh-prog > i { transition: none; } }
-
-    /* ===== regions ===== */
-    .regions-card { gap: 11px; }
-    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill {
-      display: flex; align-items: center; gap: 7px; padding: 5px 9px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03);
-      color: rgba(219,233,245,0.62); font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      letter-spacing: 0.05em; cursor: pointer; white-space: nowrap; flex: 0 0 auto;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
-    .pill:hover { border-color: rgba(255,255,255,0.35); }
-    .pill .dot { width: 6px; height: 6px; border-radius: 50%; }
-    .pill .n { color: rgba(219,233,245,0.35); }
-
-    /* ===== focus card ===== */
-    .focus-card { gap: 12px; }
-    .f-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-    .f-title { font-size: 19px; font-weight: 500; letter-spacing: -0.015em; }
-    .f-kind { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.38); }
-    .f-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .f-stat { display: flex; flex-direction: column; gap: 3px; }
-    .f-stat b { font-family: 'JetBrains Mono', monospace; font-size: 21px; font-weight: 500; }
-    .f-stat:first-child b { color: #4fd8ff; }
-    .f-stat span { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
-    .f-note { font-size: 12.5px; line-height: 1.55; color: rgba(219,233,245,0.6); text-wrap: pretty; }
-
-    /* ===== longest hops ===== */
-    .longest-card { gap: 11px; }
-    .hops { display: flex; flex-direction: column; gap: 10px; }
-    .hop { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hop-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 12px; }
-    .hop-top .name { color: rgba(219,233,245,0.86); }
-    .hop-top .km { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(219,233,245,0.45); }
-    .hop-track { height: 3px; background: rgba(255,255,255,0.09); }
-    .hop-fill { height: 3px; }
-
-    /* ===== telemetry (traffic + origins) ===== */
-    .telemetry { gap: 12px; }
-    .tele-you { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; color: rgba(219,233,245,0.55); line-height: 1.5; }
-    .tele-you b { color: #dbe9f5; font-weight: 500; }
-    .tele-board { display: flex; flex-direction: column; gap: 8px; }
-    .tele-row { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 8px; }
-    .tele-row .flag { font-size: 13px; line-height: 1; }
-    .tele-row .co { font-size: 12px; color: rgba(219,233,245,0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .tele-row .val { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(219,233,245,0.42); }
-    .tele-bar { grid-column: 1 / -1; height: 2px; background: rgba(255,255,255,0.08); margin-top: -3px; }
-    .tele-bar > i { display: block; height: 2px; background: #4fd8ff; box-shadow: 0 0 8px rgba(79,216,255,0.7); }
-    .tele-empty { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: rgba(219,233,245,0.35); }
-
-    /* ===== bottom band rail (mission-path radius selector) ===== */
-    .bottombar { flex-direction: row; align-items: center; gap: 20px; padding: 14px 20px; }
-    .playbtn {
-      width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.18); background: rgba(79,216,255,0.10);
-      color: #dbe9f5; font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
-      transition: background 0.2s; display: grid; place-items: center;
-    }
-    .playbtn:hover { background: rgba(79,216,255,0.22); }
-
-    .rail-origin {
-      position: relative; flex: 0 0 auto; width: 14px; height: 14px; border-radius: 50%;
-      background: #dbe9f5; box-shadow: 0 0 10px rgba(79,216,255,0.9), 0 0 22px rgba(79,216,255,0.5);
-    }
-    .rail-origin::before {
-      content: ''; position: absolute; inset: -7px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(79,216,255,0.35), transparent 70%);
-    }
-    .rail-origin-label {
-      position: absolute; top: 50%; left: 22px; transform: translateY(-50%);
-      font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em;
-      text-transform: uppercase; color: rgba(219,233,245,0.5); white-space: nowrap;
-    }
-
-    .rail { position: relative; flex: 1 1 auto; height: 40px; margin-left: 52px; }
-    .rail-base { position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: rgba(255,255,255,0.14); }
-    .rail-fill { position: absolute; top: 50%; left: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, rgba(79,216,255,0.5), #4fd8ff); box-shadow: 0 0 10px rgba(79,216,255,0.6); transition: width 0.5s cubic-bezier(.4,0,.2,1); }
-    .rail-node {
-      position: absolute; top: 50%; transform: translate(-50%, -50%);
-      width: 26px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .rail-node .knob {
-      width: 9px; height: 9px; border-radius: 50%; background: #0a1524;
-      border: 1.5px solid rgba(130,175,215,0.55); transition: all 0.3s;
-    }
-    .rail-node .tick {
-      position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
-      font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.04em;
-      color: rgba(219,233,245,0.3); white-space: nowrap; transition: color 0.3s;
-    }
-    .rail-node:hover .knob { border-color: rgba(255,255,255,0.8); }
-    .rail-node.reached .knob { background: #4fd8ff; border-color: #4fd8ff; }
-    .rail-node.current .knob { width: 13px; height: 13px; background: #dbe9f5; border-color: #fff; box-shadow: 0 0 12px rgba(79,216,255,0.95); }
-    .rail-node.current .tick { color: #4fd8ff; }
-
-    .reach { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; width: 120px; text-align: right; }
-    .reach b { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 400; letter-spacing: 0.03em; }
-    .reach span { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(219,233,245,0.4); }
-    .active-label { flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.4); width: 96px; }
-
-    .hints {
-      display: flex; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 9px;
-      letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.3);
-    }
-
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-    }
-
-    /* ===== Desktop (>=880px): fixed panels over the globe ===== */
-    @media (min-width: 880px) {
-      html, body { overflow: hidden; height: 100%; }
-      .only-mobile { display: none; }
-      .mspacer { display: none; }
-      .wordmark { position: absolute; top: 30px; left: 34px; right: 360px; }
-      .viewswitch { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); z-index: 5; }
-      .hero {
-        position: absolute; top: 92px; left: 34px; width: 420px;
-        max-height: calc(100vh - 210px); display: flex; flex-direction: column; gap: 18px;
-        overflow-y: auto; scrollbar-width: none;
+  .overlay {
+    position:fixed; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    pointer-events:none; color:#eaf6ff; will-change:opacity, transform;
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  #hero h1 {
+    margin:0; font-weight:700; font-size:clamp(42px, 8.5vw, 116px);
+    letter-spacing:.02em; line-height:1.02; color:#ffffff;
+    text-shadow:0 0 18px rgba(43,240,255,.9), 0 0 44px rgba(43,240,255,.6), 0 0 90px rgba(122,60,255,.5);
+  }
+  #hero p {
+    margin:24px 0 0; font-weight:600; font-size:clamp(14px,1.5vw,19px);
+    letter-spacing:.34em; text-transform:uppercase; color:#ffffff;
+    text-shadow:0 0 14px rgba(43,240,255,.85), 0 0 34px rgba(122,60,255,.5);
+  }
+  #hero .chev {
+    margin-top:46px; font-size:22px; color:rgba(180,225,255,.7);
+    animation:bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{ transform:translateY(0); opacity:.5 } 50%{ transform:translateY(9px); opacity:1 } }
+  #enter { opacity:0; }
+  #enter p {
+    margin:0 0 30px; font-weight:300; font-size:clamp(12px,1.3vw,15px);
+    letter-spacing:.32em; text-transform:uppercase; color:rgba(180,225,255,.7);
+  }
+  #enter a {
+    pointer-events:auto; display:inline-block; text-decoration:none;
+    padding:17px 58px; border:1px solid rgba(43,240,255,.55);
+    border-radius:999px; color:#dff8ff; font-weight:400;
+    font-size:15px; letter-spacing:.42em; text-transform:uppercase;
+    background:rgba(43,240,255,.06);
+    box-shadow:0 0 34px rgba(43,240,255,.25), inset 0 0 22px rgba(43,240,255,.08);
+    transition:background .35s ease, box-shadow .35s ease, transform .35s ease;
+  }
+  #enter a:hover {
+    background:rgba(43,240,255,.16);
+    box-shadow:0 0 54px rgba(43,240,255,.5), inset 0 0 30px rgba(43,240,255,.14);
+    transform:translateY(-2px);
+  }
+  #skip {
+    position:fixed; top:18px; right:22px; z-index:5; pointer-events:auto; text-decoration:none;
+    color:rgba(180,225,255,.55); font:600 10px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing:.24em; text-transform:uppercase; transition:color .3s ease;
+  }
+  #skip:hover { color:#dff8ff; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.143.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.143.0/examples/jsm/"
+  }
+}
+</script>
+<script>
+/* Front-door guards: never strand a visitor on a broken/unsupported intro. */
+(function () {
+  // Already entered this session? Go straight to the landing page.
+  try { if (sessionStorage.getItem('fs-entered') === '1') { location.replace('/home.html'); return; } } catch (e) {}
+  // No WebGL? The tunnel can't render, so skip it.
+  function hasWebGL() {
+    try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); }
+    catch (e) { return false; }
+  }
+  if (!hasWebGL()) { location.replace('/home.html'); return; }
+  // If the 3D intro fails to boot (CDN down, module error), reveal Enter anyway.
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (!window.__tunnelReady) {
+        var en = document.getElementById('enter');
+        if (en) { en.style.opacity = '1'; en.style.transform = 'none'; }
+        var h = document.getElementById('scroll-hint'); if (h) h.style.display = 'none';
       }
-      .hero::-webkit-scrollbar { display: none; }
-      .rightcol {
-        position: absolute; top: 30px; right: 34px; bottom: 108px; width: 306px;
-        display: flex; flex-direction: column; gap: 12px;
-        overflow-y: auto; scrollbar-width: none; pointer-events: auto;
-      }
-      .rightcol::-webkit-scrollbar { display: none; }
-      .bottombar { position: absolute; left: 34px; right: 372px; bottom: 30px; display: flex; }
-      .hints { position: absolute; left: 34px; bottom: 96px; }
-    }
-
-    /* ===== Mobile (<880px): one scrolling column over the globe ===== */
-    @media (max-width: 879.98px) {
-      .only-desktop { display: none; }
-      .page { display: flex; flex-direction: column; gap: 18px; padding: 24px 18px 34px; }
-      .wordmark { order: 0; gap: 8px 10px; }
-      .wordmark .brand { font-size: 11px; letter-spacing: 0.22em; }
-      .wordmark .tag { font-size: 9px; }
-      .viewswitch { order: 1; align-self: flex-start; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
-      .viewswitch::-webkit-scrollbar { display: none; }
-      .mspacer { order: 1; height: 40vh; min-height: 230px; }
-      .hero, .rightcol { display: contents; }
-      .hero-text { order: 2; gap: 10px; }
-      h1 { font-size: 32px; }
-      .intro { font-size: 14px; }
-      .stats { order: 3; gap: 8px; }
-      .stat { padding: 11px 12px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .stat b { font-size: 22px; }
-      .stat span { font-size: 8.5px; letter-spacing: 0.14em; }
-      .whatlives { order: 4; }
-      .regions-card { order: 5; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .pill { padding: 9px 12px; font-size: 10.5px; }
-      .focus-card { order: 6; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .f-title { font-size: 18px; }
-      .f-stat b { font-size: 20px; }
-      .longest-card { order: 7; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .bottombar { order: 8; flex-wrap: wrap; gap: 14px; padding: 14px; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .rail { margin-left: 46px; min-width: 180px; }
-      .rail-node .tick { display: none; }
-      .playbtn { width: 44px; height: 44px; }
-      .reach { width: auto; text-align: left; }
-      .active-label { width: auto; }
-      .telemetry { order: 9; background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.09); }
-      .contact { order: 10; gap: 8px 14px; font-size: 11px; letter-spacing: 0.08em; }
-      .hints { display: none; }
-    }
-  </style>
+    }, 5000);
+  });
+  // Mark as entered when they click through, so the intro shows once per session.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('#enterLink, #skip');
+    if (a) { try { sessionStorage.setItem('fs-entered', '1'); } catch (err) {} }
+  });
+})();
+</script>
 </head>
 <body>
+<canvas id="scene"></canvas>
 
-<canvas id="globe" aria-hidden="true"></canvas>
+<a id="skip" href="/home.html">Skip intro &#8594;</a>
 
-<div class="page">
-  <header class="wordmark">
-    <a href="/"><span class="brand">farissuhail.com</span></a>
-    <span class="tag">Travel footprint</span>
-    <span class="viewchip" id="viewChip" title="Cumulative visits to this site"><span class="live-dot"></span><b id="viewCount">&mdash;</b>&nbsp;visits</span>
-  </header>
-
-  <nav class="viewswitch" aria-label="Choose a homepage design">
-    <span class="vs-label">View</span>
-    <a href="/" class="vs-opt on" aria-current="page">Globe</a>
-    <a href="/home-glass.html" class="vs-opt">Glass</a>
-    <a href="/returning/" class="vs-opt">Classic</a>
-  </nav>
-
-  <div class="mspacer" aria-hidden="true"></div>
-
-  <section class="hero">
-    <div class="hero-text">
-      <h1><span class="eyebrow">Faris Suhail</span>Selamat datang</h1>
-      <p class="intro">Hi, I'm Faris. Every pin here is a place I've stood in, or one a project
-        dragged me to, all tracing back to a small town on the Kedah coast. This is my personal
-        corner of the internet, nothing corporate: mostly <b>Qur'an and hadith</b>, a shelf of
-        <b>book summaries</b>, and a not-very-secret hobby of <b>tinkering with tech and AI</b>.
-        I also hand out free, honest takes on the everyday stuff, politics and technology included.
-        <span class="only-desktop">Drag the globe, follow a line, or pick a region.</span><span
-        class="only-mobile">Drag the globe or tap a city.</span></p>
-    </div>
-
-    <div class="stats" aria-label="Headline stats">
-      <div class="stat"><b id="statCities">65</b><span>Cities</span></div>
-      <div class="stat"><b id="statCountries">28</b><span>Countries</span></div>
-      <div class="stat"><b id="statContinents">5</b><span>Continents</span></div>
-    </div>
-
-    <div class="whatlives">
-      <div class="wlh-head">
-        <div class="l"><span class="wlh-blip"></span><h2>What Lives Here</h2></div>
-        <span class="r">LIVE &middot; 5 STRANDS</span>
-      </div>
-
-      <article class="wlh-card cy">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span class="wlh-idx">01 &middot; ESSAYS</span>
-          <span class="wlh-rule" style="background:linear-gradient(90deg,rgba(79,216,255,0.4),transparent);"></span>
-        </div>
-        <h3 class="wlh-title"><a href="/notes/">Notes</a></h3>
-        <p class="wlh-desc">Working essays where the engineering lens meets the tradition. Start with
-          <a href="/notes/hadith-information-integrity.html">the muhaddithun &amp; information integrity</a>.</p>
-        <div class="wlh-sub">
-          <div style="display:flex;align-items:baseline;gap:8px;">
-            <span class="wlh-num" id="wlhEssays" style="font-size:34px;color:#e0f2fe;">0</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#7dd3fc;">PUBLISHED</span>
-          </div>
-          <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="ngrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(79,216,255,0.45)"></stop><stop offset="1" stop-color="rgba(79,216,255,0)"></stop></linearGradient></defs>
-            <path id="wlhNotesArea" fill="url(#ngrad)" opacity="0.9"></path>
-            <path id="wlhNotesLine" class="wlh-draw" fill="none" stroke="#4fd8ff" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </article>
-
-      <article class="wlh-card gr">
-        <span class="wlh-idx">02 &middot; SURAH BY SURAH</span>
-        <h3 class="wlh-title"><a href="/reflections.html">Reflections</a></h3>
-        <div style="display:flex;align-items:baseline;gap:6px;margin:8px 0 12px;">
-          <span class="wlh-num" id="wlhSurahs" style="font-size:32px;color:#d1fae5;">0</span>
-          <span style="font-size:14px;color:rgba(148,163,184,0.7);">/ 114 surahs</span>
-        </div>
-        <div class="wlh-prog"><i id="wlhSurahBar"></i></div>
-        <div class="wlh-chips"><span class="wlh-chip">EN</span><span class="wlh-chip">BM</span></div>
-      </article>
-
-      <article class="wlh-card vi">
-        <div>
-          <span class="wlh-idx">03 &middot; STRUCTURE</span>
-          <h3 class="wlh-title" style="margin:11px 0 7px;font-size:18px;"><a href="/nazm.html">Na&#7827;m / Ring</a></h3>
-          <p class="wlh-desc" style="font-size:12px;">How s&#363;rahs fold around their centres.</p>
-        </div>
-        <div class="wlh-ringwrap">
-          <svg class="wlh-ring-svg" viewBox="0 0 100 100" aria-hidden="true">
-            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(180,140,255,0.15)" stroke-width="7"></circle>
-            <circle id="wlhRing" cx="50" cy="50" r="42" fill="none" stroke="#b48cff" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></circle>
-          </svg>
-          <div class="wlh-ring-c"><b id="wlhRingNum">0</b><span>SURAHS</span></div>
-        </div>
-      </article>
-
-      <article class="wlh-card am">
-        <span class="wlh-idx">04 &middot; COMPUTED</span>
-        <h3 class="wlh-title"><a href="/kalam.html">Kalam</a></h3>
-        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 4px;">
-          <span class="wlh-num" id="wlhWords" style="font-size:26px;color:#fef3c7;">0</span>
-          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">words parsed</span>
-        </div>
-        <div class="wlh-bars" id="wlhBars" aria-hidden="true"></div>
-      </article>
-
-      <article class="wlh-card pk">
-        <span class="wlh-idx">05 &middot; EVERYDAY</span>
-        <h3 class="wlh-title"><a href="/inspiration.html">Inspiration</a></h3>
-        <div style="display:flex;align-items:baseline;gap:7px;margin:6px 0 8px;">
-          <span class="wlh-num" id="wlhMoments" style="font-size:26px;color:#fce7f3;">0</span>
-          <span style="font-size:12.5px;color:rgba(148,163,184,0.7);">moments logged</span>
-        </div>
-        <svg class="wlh-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="igrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(255,111,174,0.45)"></stop><stop offset="1" stop-color="rgba(255,111,174,0)"></stop></linearGradient></defs>
-          <path id="wlhInspArea" fill="url(#igrad)" opacity="0.9"></path>
-          <path id="wlhInspLine" class="wlh-draw" fill="none" stroke="#ff6fae" stroke-width="1.8" pathLength="1" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </article>
-
-      <p class="wlh-more">Also here: <a href="/book-reviews.html">book summaries</a>,
-        <a href="/learn-ai.html">Learn AI</a>, a <a href="/npam.html">non-partisan read on Malaysia's
-        politics</a>, and personal corners like the <a href="/sneakers.html">sneaker shelf</a> and
-        <a href="/apps.html">apps &amp; experiments</a>.</p>
-    </div>
-
-    <div class="contact">
-      <a href="mailto:tech@farissuhail.com">tech@farissuhail.com</a>
-      <span class="sep">/</span>
-      <span class="base">Home base &middot; Alor Setar, Kedah</span>
-      <span class="sep">/</span>
-      <a href="/about.html">About</a>
-    </div>
-  </section>
-
-  <aside class="rightcol">
-    <div class="card regions-card">
-      <div class="card-label">Regions</div>
-      <div class="pills" id="pills" role="group" aria-label="Filter by region"></div>
-    </div>
-
-    <div class="card focus-card">
-      <div class="f-head">
-        <div class="f-title" id="fTitle">Everywhere so far</div>
-        <div class="f-kind" id="fKind">Overview</div>
-      </div>
-      <div class="f-stats">
-        <div class="f-stat"><b id="fStatA">127</b><span id="fLabelA">Routes drawn</span></div>
-        <div class="f-stat"><b id="fStatB">15,000</b><span id="fLabelB">Furthest km</span></div>
-      </div>
-      <div class="f-note" id="fNote">Every line runs from Alor Setar and Yan in Kedah out to
-        somewhere I have stood: Houston, the Canaries, Sydney. Pull the radius to grow the network.</div>
-    </div>
-
-    <div class="card longest-card">
-      <div class="card-label">Longest hops from home</div>
-      <div class="hops" id="hops"></div>
-    </div>
-
-    <div class="card telemetry">
-      <div class="card-label">Signals from</div>
-      <div class="tele-you" id="teleYou">Locating signal&hellip;</div>
-      <div class="tele-board" id="teleBoard"><div class="tele-empty">Reading the log&hellip;</div></div>
-    </div>
-  </aside>
-
-  <div class="card bottombar" role="group" aria-label="Distance radius from Kedah">
-    <button class="playbtn" id="playBtn" aria-label="Play or pause the radius sweep" aria-pressed="true">&#x2759;&#x2759;</button>
-    <div class="rail-origin" aria-hidden="true"><span class="rail-origin-label">Kedah</span></div>
-    <div class="rail" id="rail">
-      <div class="rail-base"></div>
-      <div class="rail-fill" id="railFill"></div>
-    </div>
-    <div class="reach">
-      <b id="reachLabel">&le; 2,500 km</b>
-      <span>Radius from Kedah</span>
-    </div>
-    <div class="active-label" id="activeLabel"></div>
-  </div>
-
-  <div class="hints">
-    <span>Drag to spin</span>
-    <span>Scroll to zoom</span>
-    <span>Click a city to isolate</span>
-  </div>
+<div id="hero" class="overlay">
+  <h1>FARISSUHAIL.COM</h1>
+  <p>Scroll into the light</p>
+  <div class="chev">&#8595;</div>
 </div>
 
-<!-- Crawlable, screen-reader-friendly version of everything the globe shows -->
+<div id="enter" class="overlay">
+  <p>Selamat datang to farissuhail.com</p>
+  <a id="enterLink" href="/home.html">Enter</a>
+</div>
+
+<div id="scroll-host"></div>
+<div id="scroll-hint">scroll to enter &#8595;</div>
+
+<noscript>
+  <meta http-equiv="refresh" content="0; url=/home.html" />
+  <p style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#dff8ff;font-family:sans-serif;">
+    <a href="/home.html" style="color:#2bf0ff;">Enter farissuhail.com &#8594;</a>
+  </p>
+</noscript>
+
 <section class="sr-only">
-  <h2>All cities, grouped by region</h2>
-  <p>Home bases: Alor Setar and Yan, Kedah, Malaysia. Every route on the globe starts there.</p>
-  <h3>Malaysia</h3>
-  <p>Alor Setar, Yan, Kangar, Penang, Ipoh, Kuala Lumpur, Melaka, Johor Bahru, Kuantan, Kota Bharu, Kuching, Miri, Kota Kinabalu, Labuan.</p>
-  <h3>Southeast Asia</h3>
-  <p>Singapore; Danok, Bangkok and Hua Hin in Thailand; Jakarta in Indonesia.</p>
-  <h3>East Asia</h3>
-  <p>Shanghai in China.</p>
-  <h3>South Asia</h3>
-  <p>Karachi and Islamabad in Pakistan; Bangalore in India.</p>
-  <h3>Gulf and Arabia</h3>
-  <p>Dubai and Abu Dhabi in the UAE; Doha in Qatar; Jeddah, Mecca and Madinah in Saudi Arabia; Kuwait City in Kuwait.</p>
-  <h3>T&uuml;rkiye and the Caucasus</h3>
-  <p>Istanbul, Cappadocia and Ankara in T&uuml;rkiye; Baku in Azerbaijan.</p>
-  <h3>UK and Ireland</h3>
-  <p>London, Birmingham, Leeds, Newcastle, Manchester, Liverpool, Brighton, Cardiff, Glasgow, Edinburgh; Dublin in Ireland.</p>
-  <h3>Europe</h3>
-  <p>Paris, Amsterdam, The Hague, Frankfurt, Cologne, Luxembourg, Rome, Florence, Barcelona, Las Palmas.</p>
-  <h3>Africa</h3>
-  <p>Cairo in Egypt; Lagos in Nigeria; Marrakech, Fez and Rabat in Morocco; Nouakchott in Mauritania.</p>
-  <h3>North America</h3>
-  <p>Calgary in Canada; Houston in the United States.</p>
-  <h3>Oceania</h3>
-  <p>Sydney and Melbourne in Australia.</p>
-  <h2>Elsewhere on this site</h2>
+  <h1>Faris Suhail · The Mdrn Urban</h1>
+  <p>A personal site: Qur'an and hadith, book summaries, tech and AI experiments, and a globe of everywhere I have travelled, traced back to Alor Setar in Kedah.</p>
+  <p><a href="/home.html">Enter the site</a></p>
   <nav aria-label="Site sections">
     <ul>
+      <li><a href="/home.html">Home: travel-footprint globe</a></li>
       <li><a href="/about.html">About Faris Suhail</a></li>
       <li><a href="/notes/">Notes</a></li>
       <li><a href="/reflections.html">Qur'an reflections</a></li>
-      <li><a href="/nazm.html">Na&#7827;m and ring structure</a></li>
+      <li><a href="/nazm.html">Naẓm and ring structure</a></li>
       <li><a href="/kalam.html">Kalam, the Qur'an in data</a></li>
       <li><a href="/inspiration.html">Inspiration</a></li>
       <li><a href="/book-reviews.html">Book summaries</a></li>
       <li><a href="/learn-ai.html">Learn AI</a></li>
       <li><a href="/apps.html">Apps and experiments</a></li>
-      <li><a href="/npam.html">Non-partisan political read</a></li>
     </ul>
   </nav>
 </section>
 
-<script>
-(function () {
-  'use strict';
+<script type="module">
+import * as THREE from 'three'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
+import { GammaCorrectionShader } from 'three/addons/shaders/GammaCorrectionShader.js'
+import { CopyShader } from 'three/addons/shaders/CopyShader.js'
 
-  var REGIONS = [
-    { id: 'my',   label: 'Malaysia',           color: '#4fd8ff', continent: 'Asia' },
-    { id: 'sea',  label: 'SE Asia',            color: '#6ee7a8', continent: 'Asia' },
-    { id: 'ea',   label: 'East Asia',          color: '#ff5f7d', continent: 'Asia' },
-    { id: 'sa',   label: 'South Asia',         color: '#d1ff5f', continent: 'Asia' },
-    { id: 'gulf', label: 'Gulf & Arabia',      color: '#ffc46b', continent: 'Asia' },
-    { id: 'tr',   label: 'Türkiye & Caucasus', color: '#ff9f6b', continent: 'Asia' },
-    { id: 'uk',   label: 'UK & Ireland',       color: '#ff6fae', continent: 'Europe' },
-    { id: 'eu',   label: 'Europe',             color: '#b48cff', continent: 'Europe' },
-    { id: 'af',   label: 'Africa',             color: '#f2e07a', continent: 'Africa' },
-    { id: 'na',   label: 'North America',      color: '#5f9bff', continent: 'North America' },
-    { id: 'oce',  label: 'Oceania',            color: '#5fffe0', continent: 'Oceania' }
-  ];
+// ---------- helpers ----------
+const Lerp = (a, b, t) => a + (b - a) * t
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
+function hexToVec3(hex) {
+  const n = parseInt(hex.slice(1), 16)
+  return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255)
+}
 
-  var CITIES = [
-    { id: 'aor', name: 'Alor Setar', country: 'Malaysia', region: 'my', lat: 6.121, lon: 100.368, tier: 1, home: true },
-    { id: 'yan', name: 'Yan', country: 'Malaysia', region: 'my', lat: 5.798, lon: 100.383, tier: 1, home: true },
-    { id: 'kgr', name: 'Kangar', country: 'Malaysia', region: 'my', lat: 6.441, lon: 100.198, tier: 3 },
-    { id: 'png', name: 'Penang', country: 'Malaysia', region: 'my', lat: 5.414, lon: 100.329, tier: 1 },
-    { id: 'ipo', name: 'Ipoh', country: 'Malaysia', region: 'my', lat: 4.597, lon: 101.090, tier: 2 },
-    { id: 'kul', name: 'Kuala Lumpur', country: 'Malaysia', region: 'my', lat: 3.139, lon: 101.687, tier: 1 },
-    { id: 'mlk', name: 'Melaka', country: 'Malaysia', region: 'my', lat: 2.196, lon: 102.241, tier: 3 },
-    { id: 'jhb', name: 'Johor Bahru', country: 'Malaysia', region: 'my', lat: 1.493, lon: 103.741, tier: 2 },
-    { id: 'kua', name: 'Kuantan', country: 'Malaysia', region: 'my', lat: 3.808, lon: 103.326, tier: 3 },
-    { id: 'kbr', name: 'Kota Bharu', country: 'Malaysia', region: 'my', lat: 6.125, lon: 102.238, tier: 3 },
-    { id: 'kch', name: 'Kuching', country: 'Malaysia', region: 'my', lat: 1.553, lon: 110.359, tier: 2 },
-    { id: 'mir', name: 'Miri', country: 'Malaysia', region: 'my', lat: 4.399, lon: 113.991, tier: 3 },
-    { id: 'bki', name: 'Kota Kinabalu', country: 'Malaysia', region: 'my', lat: 5.978, lon: 116.073, tier: 2 },
-    { id: 'lbu', name: 'Labuan', country: 'Malaysia', region: 'my', lat: 5.281, lon: 115.241, tier: 3 },
-    { id: 'sin', name: 'Singapore', country: 'Singapore', region: 'sea', lat: 1.352, lon: 103.820, tier: 1 },
-    { id: 'dnk', name: 'Danok', country: 'Thailand', region: 'sea', lat: 6.533, lon: 100.422, tier: 3 },
-    { id: 'bkk', name: 'Bangkok', country: 'Thailand', region: 'sea', lat: 13.756, lon: 100.501, tier: 1 },
-    { id: 'hhq', name: 'Hua Hin', country: 'Thailand', region: 'sea', lat: 12.570, lon: 99.958, tier: 3 },
-    { id: 'cgk', name: 'Jakarta', country: 'Indonesia', region: 'sea', lat: -6.208, lon: 106.845, tier: 2 },
-    { id: 'sha', name: 'Shanghai', country: 'China', region: 'ea', lat: 31.230, lon: 121.474, tier: 1 },
-    { id: 'khi', name: 'Karachi', country: 'Pakistan', region: 'sa', lat: 24.861, lon: 67.010, tier: 2 },
-    { id: 'isb', name: 'Islamabad', country: 'Pakistan', region: 'sa', lat: 33.684, lon: 73.048, tier: 2 },
-    { id: 'blr', name: 'Bangalore', country: 'India', region: 'sa', lat: 12.972, lon: 77.594, tier: 2 },
-    { id: 'dxb', name: 'Dubai', country: 'UAE', region: 'gulf', lat: 25.205, lon: 55.271, tier: 1 },
-    { id: 'auh', name: 'Abu Dhabi', country: 'UAE', region: 'gulf', lat: 24.453, lon: 54.377, tier: 3 },
-    { id: 'doh', name: 'Doha', country: 'Qatar', region: 'gulf', lat: 25.285, lon: 51.531, tier: 2 },
-    { id: 'jed', name: 'Jeddah', country: 'Saudi Arabia', region: 'gulf', lat: 21.485, lon: 39.192, tier: 2 },
-    { id: 'mkk', name: 'Mecca', country: 'Saudi Arabia', region: 'gulf', lat: 21.389, lon: 39.857, tier: 1 },
-    { id: 'med', name: 'Madinah', country: 'Saudi Arabia', region: 'gulf', lat: 24.470, lon: 39.611, tier: 2 },
-    { id: 'kwi', name: 'Kuwait City', country: 'Kuwait', region: 'gulf', lat: 29.375, lon: 47.977, tier: 2 },
-    { id: 'ist', name: 'Istanbul', country: 'Türkiye', region: 'tr', lat: 41.008, lon: 28.978, tier: 1 },
-    { id: 'cap', name: 'Cappadocia', country: 'Türkiye', region: 'tr', lat: 38.643, lon: 34.830, tier: 3 },
-    { id: 'ank', name: 'Ankara', country: 'Türkiye', region: 'tr', lat: 39.933, lon: 32.859, tier: 2 },
-    { id: 'gyd', name: 'Baku', country: 'Azerbaijan', region: 'tr', lat: 40.409, lon: 49.867, tier: 2 },
-    { id: 'lon', name: 'London', country: 'United Kingdom', region: 'uk', lat: 51.507, lon: -0.128, tier: 1 },
-    { id: 'bhx', name: 'Birmingham', country: 'United Kingdom', region: 'uk', lat: 52.487, lon: -1.890, tier: 3 },
-    { id: 'lds', name: 'Leeds', country: 'United Kingdom', region: 'uk', lat: 53.801, lon: -1.549, tier: 3 },
-    { id: 'ncl', name: 'Newcastle', country: 'United Kingdom', region: 'uk', lat: 54.978, lon: -1.618, tier: 3 },
-    { id: 'man', name: 'Manchester', country: 'United Kingdom', region: 'uk', lat: 53.483, lon: -2.244, tier: 2 },
-    { id: 'lpl', name: 'Liverpool', country: 'United Kingdom', region: 'uk', lat: 53.408, lon: -2.992, tier: 3 },
-    { id: 'btn', name: 'Brighton', country: 'United Kingdom', region: 'uk', lat: 50.822, lon: -0.137, tier: 3 },
-    { id: 'cwl', name: 'Cardiff', country: 'United Kingdom', area: 'Wales', region: 'uk', lat: 51.481, lon: -3.179, tier: 3 },
-    { id: 'gla', name: 'Glasgow', country: 'United Kingdom', area: 'Scotland', region: 'uk', lat: 55.864, lon: -4.252, tier: 3 },
-    { id: 'edi', name: 'Edinburgh', country: 'United Kingdom', area: 'Scotland', region: 'uk', lat: 55.953, lon: -3.188, tier: 2 },
-    { id: 'dub', name: 'Dublin', country: 'Ireland', region: 'uk', lat: 53.350, lon: -6.260, tier: 2 },
-    { id: 'par', name: 'Paris', country: 'France', region: 'eu', lat: 48.857, lon: 2.352, tier: 1 },
-    { id: 'ams', name: 'Amsterdam', country: 'Netherlands', region: 'eu', lat: 52.370, lon: 4.895, tier: 2 },
-    { id: 'hag', name: 'The Hague', country: 'Netherlands', region: 'eu', lat: 52.078, lon: 4.288, tier: 2 },
-    { id: 'fra', name: 'Frankfurt', country: 'Germany', region: 'eu', lat: 50.110, lon: 8.682, tier: 2 },
-    { id: 'cgn', name: 'Cologne', country: 'Germany', region: 'eu', lat: 50.937, lon: 6.960, tier: 3 },
-    { id: 'lux', name: 'Luxembourg', country: 'Luxembourg', region: 'eu', lat: 49.611, lon: 6.131, tier: 3 },
-    { id: 'rom', name: 'Rome', country: 'Italy', region: 'eu', lat: 41.903, lon: 12.496, tier: 2 },
-    { id: 'flr', name: 'Florence', country: 'Italy', region: 'eu', lat: 43.770, lon: 11.256, tier: 3 },
-    { id: 'bcn', name: 'Barcelona', country: 'Spain', region: 'eu', lat: 41.385, lon: 2.173, tier: 2 },
-    { id: 'lpa', name: 'Las Palmas', country: 'Spain', region: 'eu', lat: 28.124, lon: -15.436, tier: 3 },
-    { id: 'cai', name: 'Cairo', country: 'Egypt', region: 'af', lat: 30.044, lon: 31.236, tier: 1 },
-    { id: 'los', name: 'Lagos', country: 'Nigeria', region: 'af', lat: 6.524, lon: 3.379, tier: 2 },
-    { id: 'rak', name: 'Marrakech', country: 'Morocco', region: 'af', lat: 31.630, lon: -7.981, tier: 2 },
-    { id: 'fez', name: 'Fez', country: 'Morocco', region: 'af', lat: 34.034, lon: -5.000, tier: 3 },
-    { id: 'rba', name: 'Rabat', country: 'Morocco', region: 'af', lat: 34.021, lon: -6.836, tier: 3 },
-    { id: 'nkc', name: 'Nouakchott', country: 'Mauritania', region: 'af', lat: 18.079, lon: -15.978, tier: 2 },
-    { id: 'yyc', name: 'Calgary', country: 'Canada', region: 'na', lat: 51.045, lon: -114.057, tier: 2 },
-    { id: 'hou', name: 'Houston', country: 'USA', region: 'na', lat: 29.760, lon: -95.369, tier: 2 },
-    { id: 'syd', name: 'Sydney', country: 'Australia', region: 'oce', lat: -33.869, lon: 151.209, tier: 1 },
-    { id: 'mel', name: 'Melbourne', country: 'Australia', region: 'oce', lat: -37.814, lon: 144.963, tier: 2 }
-  ];
+// ---------- fixed parameters ----------
+const bgColor = '#0a0524'
+const flameColor = '#2bf0ff', flameColor2 = '#7a3cff', flameAmt = 0.2
+const atmoColor = '#8fe6ff', atmoCount = 300, atmoSize = 24, atmoSpeed = 1.0
+const colorLow = '#180a3a', colorHigh = '#2bf0ff'
+const opacity = 1.44, pointSize = 5, brightness = 0.4
+const swirl = 0.39, spin = 0.065, scale = 0.17
+const scrollFly = 34, scrollSwirl = 1.5, scrollRoll = 0.05
+const steer = 0.6, parallax = 0.12, pointerRadius = 2.4, pointerStrength = 0.8
 
-  var BANDS = 6;
-  var PRIMARY = 'aor';           // Alor Setar is the primary home base
-  var PRIMARY_NAME = 'Alor Setar';
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var props = { spinSpeed: reduced ? 0 : 0.7, arcLift: 0.28, landDots: true };
+// ---------- renderer / scene / camera ----------
+const canvas = document.getElementById('scene')
+const heroEl = document.getElementById('hero')
+const enterEl = document.getElementById('enter')
+const hintEl = document.getElementById('scroll-hint')
+const renderer = new THREE.WebGL1Renderer({ canvas, antialias: true })
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(innerWidth, innerHeight, false)
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.VSMShadowMap
 
-  /* ---------- derived data ---------- */
+const scene = new THREE.Scene()
+scene.background = new THREE.Color(0x000000)
+scene.fog = new THREE.Fog(0x000000, 0, 15)
 
-  var byId = {};
-  CITIES.forEach(function (c) { byId[c.id] = c; });
-  var bases = CITIES.filter(function (c) { return c.home; }).map(function (c) { return c.id; });
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 400)
+camera.position.set(0, 0, 20)
 
-  function haversine(a, b) {
-    var d = Math.PI / 180, R = 6371;
-    var dp = (b.lat - a.lat) * d, dl = (b.lon - a.lon) * d;
-    var h = Math.pow(Math.sin(dp / 2), 2) + Math.cos(a.lat * d) * Math.cos(b.lat * d) * Math.pow(Math.sin(dl / 2), 2);
-    return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+const LAYERS = { NONE: 0, TORUS_SCENE: 1, BLOOM_SCENE: 2, ENTIRE_SCENE: 3 }
+camera.layers.enable(1)
+camera.layers.enable(2)
+camera.layers.enable(3)
+scene.add(camera)
+
+// ---------- shared GLSL ----------
+const SNOISE = `
+vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+float snoise(vec3 v){
+  const vec2 C = vec2(1.0/6.0, 1.0/3.0); const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+  vec3 i = floor(v + dot(v, C.yyy)); vec3 x0 = v - i + dot(i, C.xxx);
+  vec3 g = step(x0.yzx, x0.xyz); vec3 l = 1.0 - g;
+  vec3 i1 = min(g.xyz, l.zxy); vec3 i2 = max(g.xyz, l.zxy);
+  vec3 x1 = x0 - i1 + 1.0 * C.xxx; vec3 x2 = x0 - i2 + 2.0 * C.xxx; vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;
+  i = mod(i, 289.0);
+  vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+  float n_ = 1.0/7.0; vec3 ns = n_ * D.wyz - D.xzx;
+  vec4 j = p - 49.0 * floor(p * ns.z *ns.z);
+  vec4 x_ = floor(j * ns.z); vec4 y_ = floor(j - 7.0 * x_);
+  vec4 x = x_ *ns.x + ns.yyyy; vec4 y = y_ *ns.x + ns.yyyy; vec4 h = 1.0 - abs(x) - abs(y);
+  vec4 b0 = vec4(x.xy, y.xy); vec4 b1 = vec4(x.zw, y.zw);
+  vec4 s0 = floor(b0)*2.0 + 1.0; vec4 s1 = floor(b1)*2.0 + 1.0; vec4 sh = -step(h, vec4(0.0));
+  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy; vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+  vec3 p0 = vec3(a0.xy,h.x); vec3 p1 = vec3(a0.zw,h.y); vec3 p2 = vec3(a1.xy,h.z); vec3 p3 = vec3(a1.zw,h.w);
+  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+  vec4 m = max(0.5 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0); m = m * m;
+  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+}`
+
+// ---------- tunnel points ----------
+const uniforms = {
+  uTime:       { value: 0 },
+  uAppear:     { value: 0 },
+  uColLow:     { value: hexToVec3(colorLow) },
+  uColHigh:    { value: hexToVec3(colorHigh) },
+  uOpacity:    { value: opacity },
+  uSize:       { value: pointSize },
+  uBrightness: { value: brightness },
+  uSwirl:      { value: swirl },
+  uScale:      { value: scale },
+  uCursor:        { value: new THREE.Vector3() },
+  uRepelRadius:   { value: pointerRadius },
+  uRepelStrength: { value: pointerStrength },
+  uActivity:      { value: 0 }
+}
+
+const tunnelVert = `
+uniform float uTime; uniform float uSize; uniform float uSwirl; uniform float uScale;
+uniform vec3 uColLow; uniform vec3 uColHigh;
+uniform vec3 uCursor; uniform float uRepelRadius; uniform float uRepelStrength; uniform float uActivity;
+varying float vFade; varying vec3 vColor;
+${SNOISE}
+void main() {
+  vec3 wp = vec3(position.x * 7.0, 0.0, position.z * 25.0);
+  wp.x += position.y * 6.0;
+  float wn = snoise(vec3(wp.x * 0.08, wp.z * 0.08, uTime * 0.15)) * 2.0;
+  wn += snoise(vec3(wp.x * 0.16, wp.z * 0.16, uTime * 0.3)) * 0.8;
+
+  float tunnelR = 12.0;
+  float currentSliceRadius = sqrt(max(0.0, 17.64 - position.z * position.z));
+  float maxSliceWidth = 9.2195 * currentSliceRadius;
+  float normalizedX = wp.x / (maxSliceWidth + 0.001);
+  float tunnelAngle = normalizedX * 3.14159265;
+
+  float jitterAngle = snoise(vec3(position.x * 15.0, position.y * 15.0, uTime * 0.1)) * 0.35;
+  float jitterZ = snoise(vec3(position.y * 15.0, position.z * 15.0, uTime * 0.1)) * 4.0;
+  float ambientSwirl = snoise(vec3(position.x * 5.0, position.y * 5.0, uTime * 0.2)) * 3.0;
+  tunnelAngle += jitterAngle + ambientSwirl * uSwirl;
+
+  float dynamicR = tunnelR - wn;
+  vec3 tunnelPos = vec3(dynamicR * sin(tunnelAngle), -dynamicR * cos(tunnelAngle), wp.z + jitterZ);
+
+  vec3 finalPos = tunnelPos * uScale;
+  vec4 modelPosition = modelMatrix * vec4(finalPos, 1.0);
+  vec3 toP = modelPosition.xyz - uCursor;
+  float cd = length(toP);
+  float fall = smoothstep(uRepelRadius, 0.0, cd);
+  modelPosition.xyz += normalize(toP + vec3(0.0001)) * fall * uRepelStrength * uActivity;
+  vec4 mvPosition = viewMatrix * modelPosition;
+
+  float colMix = smoothstep(-3.0, 3.0, position.y + position.x * 0.5);
+  vColor = mix(uColLow, uColHigh, clamp(colMix, 0.0, 1.0));
+  vFade = 1.0;
+
+  gl_PointSize = uSize * (10.0 / -mvPosition.z);
+  gl_PointSize = max(gl_PointSize, 1.5);
+  gl_Position = projectionMatrix * mvPosition;
+}`
+
+const tunnelFrag = `
+uniform float uOpacity; uniform float uBrightness; uniform float uAppear;
+varying float vFade; varying vec3 vColor;
+void main() {
+  vec2 xy = gl_PointCoord - 0.5;
+  float ll = length(xy);
+  if (ll > 0.5) discard;
+  float a = smoothstep(0.5, 0.1, ll);
+  gl_FragColor = vec4(vColor * uBrightness, vFade * a * uOpacity * uAppear);
+}`
+
+const tunnelGeo = new THREE.SphereGeometry(4.2, 200, 600)
+const tunnelMat = new THREE.ShaderMaterial({
+  uniforms,
+  vertexShader: tunnelVert,
+  fragmentShader: tunnelFrag,
+  transparent: true,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending
+})
+const points = new THREE.Points(tunnelGeo, tunnelMat)
+points.frustumCulled = false
+points.layers.enable(LAYERS.ENTIRE_SCENE)
+
+const group = new THREE.Group()
+group.add(points)
+scene.add(group)
+
+// ---------- atmosphere motes ----------
+const N = atmoCount
+const aPositions = new Float32Array(N * 3), aSizes = new Float32Array(N), aSeeds = new Float32Array(N)
+for (let i = 0; i < N; i++) {
+  aPositions[i*3] = 2*Math.random()-1; aPositions[i*3+1] = 2*Math.random()-1; aPositions[i*3+2] = 2*Math.random()-1
+  aSizes[i] = atmoSize * (0.4 + Math.random()); aSeeds[i] = Math.random()
+}
+const atmoGeo = new THREE.BufferGeometry()
+atmoGeo.setAttribute('position', new THREE.Float32BufferAttribute(aPositions, 3))
+atmoGeo.setAttribute('size', new THREE.Float32BufferAttribute(aSizes, 1))
+atmoGeo.setAttribute('seed', new THREE.Float32BufferAttribute(aSeeds, 1))
+
+const atmoMat = new THREE.ShaderMaterial({
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+  depthTest: false,
+  uniforms: {
+    uTime: { value: 0 },
+    uColor: { value: hexToVec3(atmoColor) },
+    uRes: { value: new THREE.Vector2(innerWidth * devicePixelRatio, innerHeight * devicePixelRatio) }
+  },
+  vertexShader: `
+    attribute float size; attribute float seed; uniform float uTime; uniform vec2 uRes;
+    varying float vA;
+    vec3 warp(vec3 p, float t){ float c=0.9,a=1.9,b=0.02,s=0.05; p*=2.;
+      p.x+=c*sin(s*t+a*p.y)+t*b; p.y+=c*cos(s*t+a*p.x); p.y+=c*sin(s*t+a*p.z)+t*b;
+      p.z+=c*cos(s*t+a*p.y); p.z+=c*sin(s*t+a*p.x)+t*b; p.x+=c*cos(s*t+a*p.z);
+      return cos(p+vec3(1,2,4)); }
+    void main(){
+      vec3 v = position*4.0 + warp(position, uTime)*1.2;
+      vec4 mv = modelViewMatrix * vec4(v, 1.0);
+      float r = length(v); float farF = 1.0 - smoothstep(5.0, 6.5, r); float nearF = smoothstep(0.0, 0.5, -mv.z);
+      vA = farF * nearF;
+      gl_PointSize = size * uRes.y / 900.0 / -mv.z; gl_PointSize = max(gl_PointSize, 1.0);
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `
+    uniform vec3 uColor; varying float vA;
+    void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) discard;
+      float tex = smoothstep(0.5, 0.0, l); gl_FragColor = vec4(uColor * tex, tex * vA * 0.6); }`
+})
+const atmo = new THREE.Points(atmoGeo, atmoMat)
+atmo.frustumCulled = false
+atmo.layers.enable(LAYERS.ENTIRE_SCENE)
+scene.add(atmo)
+
+// ---------- FinalPass ----------
+const FinalPass = {
+  uniforms: {
+    iTime: { value: 0 },
+    tDiffuse: { value: null }, torusTexture: { value: null }, bloomTexture: { value: null }, haloTexture: { value: null },
+    uBg: { value: hexToVec3(bgColor) },
+    uFlameA: { value: hexToVec3(flameColor) },
+    uFlameB: { value: hexToVec3(flameColor2) },
+    uFlameAmt: { value: flameAmt }
+  },
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }`,
+  fragmentShader: `
+    uniform float iTime; uniform sampler2D tDiffuse; uniform sampler2D bloomTexture; uniform sampler2D torusTexture; uniform sampler2D haloTexture;
+    uniform vec3 uBg; uniform vec3 uFlameA; uniform vec3 uFlameB; uniform float uFlameAmt;
+    varying vec2 vUv;
+    vec3 warp3d(vec3 pos, float t){ float curv=.8,a=1.9,b=0.7; pos*=2.;
+      pos.x+=curv*sin(t+a*pos.y)+t*b; pos.y+=curv*cos(t+a*pos.x);
+      pos.y+=curv*sin(t+a*pos.z)+t*b; pos.z+=curv*cos(t+a*pos.y);
+      pos.z+=curv*sin(t+a*pos.x)+t*b; pos.x+=curv*cos(t+a*pos.z);
+      return 0.5+0.5*cos(pos.xyz+vec3(1,2,4)); }
+    void main(){
+      vec2 uv = 2.*vUv - 1.;
+      vec3 w = pow(warp3d(vec3(uv.x, sin(uv.y), uv.y), iTime*1.5), vec3(1.5));
+      vec3 flame = 1.5*uFlameA*w.x; flame*=w.y; flame += uFlameB*w.z;
+      flame *= smoothstep(0.25, 1., abs(uv.y));
+      float md = smoothstep(-0.7, 1., -uv.y*uv.x); flame *= md*md;
+      vec3 bg = uBg * (1.0 - 0.4 * length(uv));
+      vec3 halo = texture2D(haloTexture, vUv).xyz;
+      gl_FragColor = vec4(bg + flame*uFlameAmt + texture2D(bloomTexture, vUv).xyz + texture2D(torusTexture, vUv).xyz + texture2D(tDiffuse, vUv).xyz + halo, 1.);
+    }`
+}
+
+// ---------- composers ----------
+const renderScene = new RenderPass(scene, camera)
+
+const torusComposer = new EffectComposer(renderer); torusComposer.renderToScreen = false
+torusComposer.addPass(renderScene)
+torusComposer.addPass(new ShaderPass(GammaCorrectionShader))
+torusComposer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.22, 0.2, 0))
+torusComposer.addPass(new ShaderPass(CopyShader))
+
+const bloomComposer = new EffectComposer(renderer); bloomComposer.renderToScreen = false
+bloomComposer.addPass(renderScene)
+bloomComposer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.6, 0))
+bloomComposer.addPass(new ShaderPass(GammaCorrectionShader))
+
+const finalPass = new ShaderPass(FinalPass)
+finalPass.uniforms.bloomTexture.value = bloomComposer.renderTarget1.texture
+finalPass.uniforms.torusTexture.value = torusComposer.renderTarget1.texture
+const finalComposer = new EffectComposer(renderer)
+finalComposer.addPass(renderScene); finalComposer.addPass(finalPass)
+
+// atmosphere drives iTime + follows camera
+atmo.onBeforeRender = () => {
+  const t = performance.now() / 1000
+  atmoMat.uniforms.uTime.value = t * atmoSpeed * 8.0
+  atmo.position.copy(camera.position)
+  finalPass.uniforms.iTime.value = t
+}
+
+// ---------- interaction state ----------
+let scrollTarget = 0, scrollSmooth = 0, scrollCurrent = 0
+const mouse = { x: 0, y: 0 }
+const mouseTarget = { x: 0, y: 0 }
+const POINTER = { active: false, lastMove: performance.now(), world: new THREE.Vector3(), activity: 0 }
+
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight
+  scrollTarget = clamp(scrollY / (max || 1), 0, 1)
+}
+window.addEventListener('scroll', onScroll)
+window.addEventListener('resize', onScroll)
+
+window.addEventListener('mousemove', (e) => {
+  mouseTarget.x = e.clientX / innerWidth * 2 - 1
+  mouseTarget.y = -(e.clientY / innerHeight * 2 - 1)
+  POINTER.active = true
+  POINTER.lastMove = performance.now()
+})
+window.addEventListener('mouseout', () => { POINTER.active = false })
+
+const _ndc = new THREE.Vector3(), _dir = new THREE.Vector3(), _tgt = new THREE.Vector3()
+function updatePointerWorld() {
+  _tgt.set(0, 0, 0)
+  if (POINTER.active) {
+    _ndc.set(mouse.x, mouse.y, 0.5).unproject(camera)
+    _dir.copy(_ndc).sub(camera.position).normalize()
+    const dn = _dir.z
+    if (Math.abs(dn) > 1e-4) { const tt = -camera.position.z / dn; if (tt > 0 && Number.isFinite(tt)) _tgt.copy(camera.position).addScaledVector(_dir, tt) }
   }
+  POINTER.world.lerp(_tgt, 0.12)
+  const idle = (performance.now() - POINTER.lastMove) / 1000
+  POINTER.activity += (((POINTER.active && idle < 3) ? 1 : 0) - POINTER.activity) * 0.06
+}
 
-  CITIES.forEach(function (c) {
-    c.km = Math.round(haversine(byId[PRIMARY], c) / 10) * 10;   // from Alor Setar (primary)
-    c.kmYan = Math.round(haversine(byId.yan, c) / 10) * 10;     // from Yan (secondary)
-  });
-  var maxKm = Math.max.apply(null, CITIES.map(function (c) { return c.km; }));
-  CITIES.forEach(function (c) { c.band = Math.max(1, Math.ceil((c.km / maxKm) * BANDS)); });
-  var bandKm = [];
-  for (var b = 1; b <= BANDS; b++) bandKm[b] = Math.round((maxKm * b) / BANDS);
+// ---------- scene object ----------
+const sceneObj = {
+  t0: performance.now() / 1000,
+  rollPhase: 0,
+  appearStart: performance.now(),
+  render(scroll, m) {
+    const t = performance.now() / 1000
+    const dt = Math.min(0.05, t - this.t0); this.t0 = t
+    uniforms.uTime.value = t
 
-  var edges = [];
-  if (bases.length >= 2) edges.push({ from: bases[0], to: bases[1], hop: 1 });
-  CITIES.forEach(function (c) {
-    if (c.home) return;
-    bases.forEach(function (base) { edges.push({ from: base, to: c.id, hop: c.band }); });
-  });
+    camera.position.set(m.x * parallax, m.y * parallax, 20 - scroll * scrollFly)
+    camera.lookAt(m.x * steer, m.y * steer, camera.position.z - 12)
+    updatePointerWorld()
 
-  /* ---------- state ---------- */
+    uniforms.uSwirl.value = swirl * (1 + scroll * scrollSwirl)
+    this.rollPhase += dt * (spin + scroll * scrollRoll)
+    group.rotation.z = this.rollPhase
 
-  var state = {
-    hop: reduced ? BANDS : 1,
-    playing: !reduced,
-    region: 'all',
-    selected: null,
-    hover: null
-  };
-
-  /* ---------- helpers ---------- */
-
-  function fmt(n) { return n.toLocaleString('en-US'); }
-  function rgba(hex, a) {
-    var n = parseInt(hex.slice(1), 16);
-    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+    uniforms.uCursor.value.copy(POINTER.world)
+    uniforms.uActivity.value = POINTER.activity
+    const elapsed = (performance.now() - this.appearStart) / 1000
+    uniforms.uAppear.value = Math.max(0, Math.min(1, (elapsed - 0.2) / 1.4))
   }
-  function mix(hex) {
-    var n = parseInt(hex.slice(1), 16);
-    var r = (n >> 16) & 255, g = (n >> 8) & 255, bl = n & 255;
-    return 'rgb(' + Math.round(r + (255 - r) * 0.5) + ',' + Math.round(g + (255 - g) * 0.5) + ',' + Math.round(bl + (255 - bl) * 0.5) + ')';
+}
+
+// ---------- resize ----------
+function onResize() {
+  const w = innerWidth, h = innerHeight, dpr = window.devicePixelRatio
+  renderer.setPixelRatio(dpr)
+  renderer.setSize(w, h, false)
+  camera.aspect = w / h
+  camera.updateProjectionMatrix()
+  for (const c of [torusComposer, bloomComposer, finalComposer]) {
+    c.setPixelRatio(dpr)
+    c.setSize(w, h)
   }
-  function regionColor(id) {
-    for (var i = 0; i < REGIONS.length; i++) if (REGIONS[i].id === id) return REGIONS[i].color;
-    return '#4fd8ff';
-  }
-  function visibleEdges() {
-    return edges.filter(function (e) {
-      return e.hop <= state.hop &&
-        (state.region === 'all' || byId[e.from].region === state.region || byId[e.to].region === state.region);
-    });
-  }
-
-  /* ---------- canvas globe ---------- */
-
-  var canvas = document.getElementById('globe');
-  var ctx = canvas.getContext('2d');
-  var cam = { lon: 60, lat: 22, zoom: 1 };
-  var drag = null, spinPaused = false, rings = null, pts = [];
-  var w = 0, h = 0, cx = 0, cy = 0, R = 0;
-  var t0 = performance.now();
-
-  function resize() {
-    var dpr = Math.min(2, window.devicePixelRatio || 1);
-    w = canvas.clientWidth; h = canvas.clientHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function project(lat, lon, alt) {
-    var d = Math.PI / 180;
-    var p0 = cam.lat * d, l0 = cam.lon * d, p = lat * d, l = lon * d;
-    var cp = Math.cos(p), sp = Math.sin(p), dl = l - l0;
-    var x = cp * Math.sin(dl);
-    var y = Math.cos(p0) * sp - Math.sin(p0) * cp * Math.cos(dl);
-    var z = Math.sin(p0) * sp + Math.cos(p0) * cp * Math.cos(dl);
-    var k = R * (alt || 1);
-    return { x: cx + x * k, y: cy - y * k, z: z };
-  }
-
-  function vec(lat, lon) {
-    var d = Math.PI / 180, p = lat * d, l = lon * d;
-    return [Math.cos(p) * Math.cos(l), Math.cos(p) * Math.sin(l), Math.sin(p)];
-  }
-
-  function slerpLL(a, b, t) {
-    var va = vec(a.lat, a.lon), vb = vec(b.lat, b.lon);
-    var dot = va[0] * vb[0] + va[1] * vb[1] + va[2] * vb[2];
-    dot = Math.max(-1, Math.min(1, dot));
-    var om = Math.acos(dot), v;
-    if (om < 1e-6) v = va;
-    else {
-      var s1 = Math.sin((1 - t) * om) / Math.sin(om), s2 = Math.sin(t * om) / Math.sin(om);
-      v = [va[0] * s1 + vb[0] * s2, va[1] * s1 + vb[1] * s2, va[2] * s1 + vb[2] * s2];
-    }
-    return {
-      lat: Math.asin(Math.max(-1, Math.min(1, v[2]))) * 180 / Math.PI,
-      lon: Math.atan2(v[1], v[0]) * 180 / Math.PI
-    };
-  }
-
-  function strokePath(fn, n) {
-    ctx.beginPath();
-    var started = false;
-    for (var i = 0; i <= n; i++) {
-      var p = fn(i, n);
-      if (p.z <= 0) { started = false; continue; }
-      if (!started) { ctx.moveTo(p.x, p.y); started = true; } else ctx.lineTo(p.x, p.y);
-    }
-    ctx.stroke();
-  }
-
-  function loadLand() {
-    fetch('/land-110m.json')
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .catch(function () {
-        return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
-          .then(function (r) { return r.json(); });
-      })
-      .then(function (t) {
-        var sx = t.transform.scale[0], sy = t.transform.scale[1];
-        var tx = t.transform.translate[0], ty = t.transform.translate[1];
-        var arcs = t.arcs.map(function (a) {
-          var x = 0, y = 0;
-          return a.map(function (d) { x += d[0]; y += d[1]; return [x * sx + tx, y * sy + ty]; });
-        });
-        var out = [];
-        function ring(idxs) {
-          var p = [];
-          idxs.forEach(function (i) {
-            var a = i < 0 ? arcs[~i].slice().reverse() : arcs[i];
-            p = p.concat(p.length ? a.slice(1) : a);
-          });
-          if (p.length > 3) out.push(p);
-        }
-        function walk(g) {
-          if (!g) return;
-          if (g.geometries) return g.geometries.forEach(walk);
-          if (g.type === 'MultiPolygon') g.arcs.forEach(function (poly) { poly.forEach(ring); });
-          else if (g.type === 'Polygon') g.arcs.forEach(ring);
-        }
-        walk(t.objects.land);
-        rings = out;
-      })
-      .catch(function (e) { console.warn('land load failed', e); rings = []; });
-  }
-
-  function loop() {
-    requestAnimationFrame(loop);
-    if (canvas.clientWidth !== w || canvas.clientHeight !== h) resize();
-    var time = (performance.now() - t0) / 1000;
-    if (!spinPaused && !state.selected) cam.lon += props.spinSpeed * 0.09;
-
-    var W = w, H = h;
-    var mob = W < 880;
-    cx = mob ? W * 0.5 : W * 0.55;
-    cy = mob ? H * 0.3 : H * 0.52;
-    R = (mob ? Math.min(W * 0.42, H * 0.26) : Math.min(W * 0.34, H * 0.42)) * cam.zoom;
-
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#05070d'; ctx.fillRect(0, 0, W, H);
-
-    var g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.05, cx, cy, R * 1.9);
-    g.addColorStop(0, 'rgba(24,44,74,0.5)'); g.addColorStop(1, 'rgba(5,7,13,0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-
-    g = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
-    g.addColorStop(0, '#0f1b30'); g.addColorStop(0.7, '#080e1a'); g.addColorStop(1, '#060a12');
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
-
-    ctx.save();
-    ctx.beginPath(); ctx.arc(cx, cy, R + 1.5, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(79,216,255,0.3)'; ctx.lineWidth = 1.2;
-    ctx.shadowColor = 'rgba(79,216,255,0.55)'; ctx.shadowBlur = 26; ctx.stroke();
-    ctx.restore();
-
-    ctx.lineWidth = 0.7; ctx.strokeStyle = 'rgba(130,175,215,0.12)';
-    for (var lon = -180; lon < 180; lon += 15) {
-      (function (ln) { strokePath(function (i, n) { return project(-90 + 180 * i / n, ln); }, 60); })(lon);
-    }
-    for (var lat = -75; lat <= 75; lat += 15) {
-      (function (lt) { strokePath(function (i, n) { return project(lt, -180 + 360 * i / n); }, 120); })(lat);
-    }
-
-    if (rings && rings.length && props.landDots) {
-      ctx.fillStyle = 'rgba(158,200,230,0.5)';
-      ctx.strokeStyle = 'rgba(120,175,215,0.2)';
-      ctx.lineWidth = 0.7;
-      var step = 4;
-      for (var ri = 0; ri < rings.length; ri++) {
-        var ringPts = rings[ri];
-        var prev = null, started = false;
-        ctx.beginPath();
-        for (var i = 0; i < ringPts.length; i++) {
-          var p = project(ringPts[i][1], ringPts[i][0]);
-          if (p.z <= 0.015) { prev = null; started = false; continue; }
-          if (!started) { ctx.moveTo(p.x, p.y); started = true; } else ctx.lineTo(p.x, p.y);
-          if (prev) {
-            var dx = p.x - prev.x, dy = p.y - prev.y, len = Math.hypot(dx, dy);
-            var n = Math.min(120, Math.floor(len / step));
-            for (var k = 0; k <= n; k++) {
-              var s = 1 + p.z * 0.7;
-              ctx.fillRect(prev.x + dx * (k / (n || 1)) - s / 2, prev.y + dy * (k / (n || 1)) - s / 2, s, s);
-            }
-          }
-          prev = p;
-        }
-        ctx.stroke();
-      }
-    }
-
-    var focusId = state.selected || state.hover;
-    var lift = props.arcLift;
-    var vEdges = visibleEdges();
-
-    vEdges.forEach(function (e, idx) {
-      var a = byId[e.from], bb = byId[e.to];
-      var color = regionColor(bb.region === 'my' ? a.region : bb.region);
-      var dim = focusId && e.from !== focusId && e.to !== focusId;
-      var n = 44, arcPts = [];
-      var long = haversine(a, bb) > 1200;
-      for (var i = 0; i <= n; i++) {
-        var t = i / n;
-        var ll = slerpLL(a, bb, t);
-        arcPts.push(project(ll.lat, ll.lon, 1 + lift * Math.sin(Math.PI * t) * (long ? 1 : 0.28)));
-      }
-      var fresh = e.hop === state.hop ? 1 : 0;
-      ctx.lineWidth = (dim ? 0.5 : 0.8 + (long ? 0.35 : 0)) * (1 + fresh * 0.6);
-      ctx.strokeStyle = rgba(color, dim ? 0.07 : 0.34 + fresh * 0.45);
-      ctx.save();
-      if (!dim) { ctx.shadowColor = rgba(color, 0.8); ctx.shadowBlur = 7 + fresh * 13; }
-      ctx.beginPath();
-      var started2 = false;
-      arcPts.forEach(function (p) {
-        if (p.z <= -0.15) { started2 = false; return; }
-        if (!started2) { ctx.moveTo(p.x, p.y); started2 = true; } else ctx.lineTo(p.x, p.y);
-      });
-      ctx.stroke();
-      ctx.restore();
-
-      if (!dim && fresh && !reduced) {
-        var ph = (time * 0.26 + idx * 0.31) % 1;
-        var dp = arcPts[Math.round(ph * n)];
-        if (dp && dp.z > 0) {
-          ctx.save();
-          ctx.shadowColor = rgba(color, 1); ctx.shadowBlur = 14;
-          ctx.fillStyle = '#ffffff';
-          ctx.beginPath(); ctx.arc(dp.x, dp.y, 2, 0, Math.PI * 2); ctx.fill();
-          ctx.restore();
-        }
-      }
-    });
-
-    var active = {};
-    vEdges.forEach(function (e) { active[e.from] = true; active[e.to] = true; });
-    pts = [];
-
-    var vis = [];
-    CITIES.forEach(function (ct) {
-      var p = project(ct.lat, ct.lon);
-      if (p.z > 0.02) vis.push({ ct: ct, p: p });
-    });
-    vis.sort(function (a, b) { return (a.ct.tier - b.ct.tier) || (b.p.z - a.p.z); });
-
-    var boxes = [];
-    ctx.font = "500 11px 'JetBrains Mono', monospace";
-    vis.forEach(function (item) {
-      var ct = item.ct, p = item.p;
-      pts.push({ id: ct.id, x: p.x, y: p.y });
-      var on = !!active[ct.id];
-      var isFocus = focusId === ct.id;
-      var dim = focusId && !isFocus && !vEdges.some(function (e) {
-        return (e.from === focusId && e.to === ct.id) || (e.to === focusId && e.from === ct.id);
-      });
-      var pulse = on && !reduced ? 0.5 + 0.5 * Math.sin(time * 2 + ct.lat) : 0;
-      var r = ct.home ? 5 : (ct.tier === 1 ? 3.4 : ct.tier === 2 ? 2.6 : 2) + (isFocus ? 1.6 : 0);
-      var col = ct.home ? '#ffffff' : regionColor(ct.region);
-
-      ctx.save();
-      ctx.globalAlpha = dim ? 0.25 : 1;
-      ctx.beginPath(); ctx.arc(p.x, p.y, r + 5 + pulse * 4, 0, Math.PI * 2);
-      ctx.fillStyle = rgba(col, on ? 0.1 + pulse * 0.1 : 0.05); ctx.fill();
-      ctx.shadowColor = rgba(col, 0.95); ctx.shadowBlur = on ? 16 : 6;
-      ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = on ? (ct.home ? '#ffffff' : mix(col)) : 'rgba(180,205,225,0.55)'; ctx.fill();
-      ctx.restore();
-
-      if (ct.home) {
-        ctx.save();
-        ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.arc(p.x, p.y, r + 7 + pulse * 5, 0, Math.PI * 2); ctx.stroke();
-        ctx.restore();
-      }
-
-      var showLabel = ct.home || isFocus || (ct.tier <= 2 && p.z > 0.3 && !dim);
-      if (!showLabel) return;
-      var tw = ctx.measureText(ct.name).width;
-      var bx = p.x + r + 7, by = p.y - 6;
-      var box = { x0: bx - 2, y0: by, x1: bx + tw + 2, y1: by + 13 };
-      var clash = boxes.some(function (bo) {
-        return !(box.x1 < bo.x0 || box.x0 > bo.x1 || box.y1 < bo.y0 || box.y0 > bo.y1);
-      });
-      if (clash && !isFocus && !ct.home) return;
-      boxes.push(box);
-      ctx.globalAlpha = dim ? 0.3 : 1;
-      ctx.fillStyle = isFocus || ct.home ? '#ffffff' : 'rgba(219,233,245,0.82)';
-      ctx.fillText(ct.name, bx, p.y + 4);
-      ctx.globalAlpha = 1;
-    });
-  }
-
-  /* ---------- pointer interaction ---------- */
-
-  function hitTest(clientX, clientY) {
-    var rect = canvas.getBoundingClientRect();
-    var mx = clientX - rect.left, my = clientY - rect.top;
-    var hit = null, best = 16;
-    pts.forEach(function (p) {
-      var d = Math.hypot(p.x - mx, p.y - my);
-      if (d < best) { best = d; hit = p.id; }
-    });
-    return hit;
-  }
-
-  canvas.addEventListener('pointerdown', function (e) {
-    drag = { x: e.clientX, y: e.clientY, lon: cam.lon, lat: cam.lat, moved: false };
-    spinPaused = true;
-    canvas.style.cursor = 'grabbing';
-  });
-
-  window.addEventListener('pointermove', function (e) {
-    if (drag) {
-      if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 3) drag.moved = true;
-      cam.lon = drag.lon - (e.clientX - drag.x) * 0.35;
-      cam.lat = Math.max(-75, Math.min(75, drag.lat + (e.clientY - drag.y) * 0.3));
-      return;
-    }
-    var hit = e.target === canvas ? hitTest(e.clientX, e.clientY) : null;
-    canvas.style.cursor = hit ? 'pointer' : 'grab';
-    if (hit !== state.hover) { state.hover = hit; updateFocus(); }
-    spinPaused = !!hit;
-  });
-
-  window.addEventListener('pointerup', function (e) {
-    if (drag && !drag.moved) {
-      var hit = hitTest(e.clientX, e.clientY);
-      if (hit) { state.selected = state.selected === hit ? null : hit; updateUI(); }
-    }
-    drag = null;
-    spinPaused = !!state.hover;
-    canvas.style.cursor = state.hover ? 'pointer' : 'grab';
-  });
-
-  canvas.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    cam.zoom = Math.max(0.72, Math.min(3.2, cam.zoom * (e.deltaY > 0 ? 0.94 : 1.06)));
-  }, { passive: false });
-
-  window.addEventListener('resize', resize);
-
-  /* ---------- UI panels ---------- */
-
-  var pillsEl = document.getElementById('pills');
-  var playBtn = document.getElementById('playBtn');
-  var railEl = document.getElementById('rail');
-  var railFill = document.getElementById('railFill');
-  var reachLabel = document.getElementById('reachLabel');
-  var activeLabel = document.getElementById('activeLabel');
-  var hopsEl = document.getElementById('hops');
-  var fTitle = document.getElementById('fTitle'), fKind = document.getElementById('fKind');
-  var fStatA = document.getElementById('fStatA'), fLabelA = document.getElementById('fLabelA');
-  var fStatB = document.getElementById('fStatB'), fLabelB = document.getElementById('fLabelB');
-  var fNote = document.getElementById('fNote');
-
-  // headline stats (derived)
-  var countries = {}, continents = {};
-  CITIES.forEach(function (c) {
-    countries[c.country] = true;
-    REGIONS.forEach(function (r) { if (r.id === c.region) continents[r.continent] = true; });
-  });
-  document.getElementById('statCities').textContent = String(CITIES.length);
-  document.getElementById('statCountries').textContent = String(Object.keys(countries).length);
-  document.getElementById('statContinents').textContent = String(Object.keys(continents).length);
-
-  // region pills (built from data, live counts)
-  var regionCounts = {};
-  CITIES.forEach(function (c) { regionCounts[c.region] = (regionCounts[c.region] || 0) + 1; });
-  var pillDefs = [{ id: 'all', label: 'Everywhere', color: '#dbe9f5', count: CITIES.length }]
-    .concat(REGIONS.map(function (r) { return { id: r.id, label: r.label, color: r.color, count: regionCounts[r.id] || 0 }; }));
-  var pillEls = {};
-  pillDefs.forEach(function (def) {
-    var btn = document.createElement('button');
-    btn.className = 'pill';
-    btn.setAttribute('aria-pressed', def.id === 'all' ? 'true' : 'false');
-    btn.setAttribute('aria-label', def.label + ', ' + def.count + ' cities');
-    btn.innerHTML = '<span class="dot" style="background:' + def.color + '"></span><span>' +
-      def.label + '</span><span class="n">' + def.count + '</span>';
-    btn.addEventListener('click', function () { state.region = def.id; updateUI(); });
-    btn._def = def;
-    pillsEl.appendChild(btn);
-    pillEls[def.id] = btn;
-  });
-
-  // band rail nodes
-  var railNodes = [];
-  for (var bi = 1; bi <= BANDS; bi++) {
-    (function (band) {
-      var node = document.createElement('button');
-      node.className = 'rail-node';
-      node.style.left = ((band - 1) / (BANDS - 1) * 100) + '%';
-      node.setAttribute('aria-label', 'Reach band ' + band + ' of ' + BANDS + ', up to ' + fmt(bandKm[band]) + ' km');
-      node.innerHTML = '<span class="knob"></span><span class="tick">' + kkm(bandKm[band]) + '</span>';
-      node.addEventListener('click', function () { state.hop = band; state.playing = false; updateUI(); });
-      railEl.appendChild(node);
-      railNodes.push(node);
-    })(bi);
-  }
-
-  function kkm(n) {
-    if (n >= 1000) { var v = (n / 1000).toFixed(1).replace(/\.0$/, ''); return v + 'k'; }
-    return String(n);
-  }
-
-  playBtn.addEventListener('click', function () { state.playing = !state.playing; updateUI(); });
-
-  setInterval(function () {
-    if (state.playing) { state.hop = state.hop >= BANDS ? 1 : state.hop + 1; updateUI(); }
-  }, 1500);
-
-  function updatePills() {
-    pillDefs.forEach(function (def) {
-      var btn = pillEls[def.id];
-      var on = state.region === def.id;
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (on) {
-        btn.style.background = rgba(def.color, 0.16);
-        btn.style.borderColor = rgba(def.color, 0.55);
-        btn.style.color = '#ffffff';
-      } else {
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-      }
-    });
-  }
-
-  function updateFocus() {
-    var focusId = state.selected || state.hover;
-    var vEdges = visibleEdges();
-    if (focusId && byId[focusId]) {
-      var c = byId[focusId];
-      fTitle.textContent = c.name;
-      fKind.textContent = state.selected ? 'Pinned' : (c.area || c.country);
-      if (c.home) {
-        fStatA.textContent = '0';
-        fLabelA.textContent = 'Home base';
-        fStatB.textContent = String(edges.filter(function (e) { return e.from === c.id || e.to === c.id; }).length);
-        fLabelB.textContent = 'Routes';
-        fNote.textContent = 'One of the two starting points. Every line on this globe leaves from Alor Setar and Yan, and every distance is measured against them.';
-      } else {
-        fStatA.textContent = fmt(c.km);
-        fLabelA.textContent = 'km from Alor Setar';
-        fStatB.textContent = fmt(c.kmYan);
-        fLabelB.textContent = 'km from Yan';
-        fNote.textContent = (c.area ? c.area + ', ' : '') + c.country + '. Reach band ' + c.band + ' of ' + BANDS + ', flown direct from both home bases.';
-      }
-    } else {
-      fTitle.textContent = 'Everywhere so far';
-      fKind.textContent = 'Overview';
-      fStatA.textContent = String(vEdges.length);
-      fLabelA.textContent = 'Routes drawn';
-      fStatB.textContent = fmt(maxKm);
-      fLabelB.textContent = 'Furthest km';
-      fNote.textContent = 'Every line runs from Alor Setar and Yan in Kedah out to somewhere I have stood: Houston, the Canaries, Sydney. Pull the radius to grow the network.';
-    }
-  }
-
-  function updateLongest() {
-    var pool = CITIES.filter(function (c) {
-      return !c.home && (state.region === 'all' || c.region === state.region);
-    });
-    var max = Math.max.apply(null, [1].concat(pool.map(function (c) { return c.km; })));
-    var top = pool.slice().sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
-    hopsEl.textContent = '';
-    top.forEach(function (c) {
-      var row = document.createElement('div');
-      row.className = 'hop';
-      var topLine = document.createElement('div');
-      topLine.className = 'hop-top';
-      var name = document.createElement('span');
-      name.className = 'name';
-      name.textContent = PRIMARY_NAME + ' → ' + c.name;
-      var km = document.createElement('span');
-      km.className = 'km';
-      km.textContent = fmt(c.km) + ' km';
-      topLine.appendChild(name); topLine.appendChild(km);
-      var track = document.createElement('div');
-      track.className = 'hop-track';
-      var fill = document.createElement('div');
-      fill.className = 'hop-fill';
-      fill.style.width = Math.round((c.km / max) * 100) + '%';
-      fill.style.background = regionColor(c.region);
-      fill.style.boxShadow = '0 0 10px ' + regionColor(c.region);
-      track.appendChild(fill);
-      row.appendChild(topLine); row.appendChild(track);
-      row.addEventListener('click', function () {
-        state.selected = state.selected === c.id ? null : c.id; updateUI();
-      });
-      hopsEl.appendChild(row);
-    });
-  }
-
-  function updateBar() {
-    playBtn.innerHTML = state.playing ? '&#x2759;&#x2759;' : '&#x25B6;';
-    playBtn.setAttribute('aria-pressed', state.playing ? 'true' : 'false');
-    railFill.style.width = ((state.hop - 1) / (BANDS - 1) * 100) + '%';
-    railNodes.forEach(function (node, i) {
-      var band = i + 1;
-      node.classList.toggle('reached', band <= state.hop);
-      node.classList.toggle('current', band === state.hop);
-    });
-    reachLabel.innerHTML = '&le; ' + fmt(bandKm[state.hop] || 0) + ' km';
-    var vEdges = visibleEdges();
-    var cityIds = {};
-    vEdges.forEach(function (e) { cityIds[e.from] = true; cityIds[e.to] = true; });
-    activeLabel.textContent = vEdges.length + ' routes · ' + Object.keys(cityIds).length + ' cities';
-  }
-
-  function updateUI() { updatePills(); updateFocus(); updateLongest(); updateBar(); }
-
-  /* ---------- visitor telemetry (cumulative visits + origins) ---------- */
-
-  (function telemetry() {
-    var NS = 'farissuhail-com';        // same namespace the site already counts with
-    var AB = 'https://abacus.jasoncameron.dev';
-    var viewChip = document.getElementById('viewChip');
-    var viewCount = document.getElementById('viewCount');
-    var teleYou = document.getElementById('teleYou');
-    var teleBoard = document.getElementById('teleBoard');
-
-    function flag(cc) {
-      if (!cc || cc.length !== 2) return '🌐';
-      return cc.toUpperCase().replace(/./g, function (ch) {
-        return String.fromCodePoint(0x1F1E6 + ch.charCodeAt(0) - 65);
-      });
-    }
-    var names = null;
-    try { names = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
-    function countryName(cc) {
-      if (names) { try { return names.of(cc) || cc; } catch (e) {} }
-      return cc;
-    }
-    function jget(url) { return fetch(url).then(function (r) { return r.json(); }); }
-    function val(d) { return d && (d.value != null ? d.value : d.count); }
-
-    var counted = false;
-    try { counted = sessionStorage.getItem('fs-visited') === '1'; } catch (e) {}
-
-    // total cumulative visits (increment once per browser session, same as before)
-    jget(AB + '/' + (counted ? 'get' : 'hit') + '/' + NS + '/visits').then(function (d) {
-      var n = val(d);
-      if (typeof n !== 'number') return;
-      try { sessionStorage.setItem('fs-visited', '1'); } catch (e) {}
-      viewCount.textContent = n.toLocaleString('en-US');
-      viewChip.classList.add('show');
-    }).catch(function () {});
-
-    // where in the world: detect visitor country, tally per-country, render a live board
-    var BOARD = ['MY', 'US', 'GB', 'SG', 'ID', 'AU', 'SA', 'AE', 'IN', 'CA', 'NL', 'TR'];
-
-    function renderBoard(rows, youCC) {
-      rows = rows.filter(function (r) { return r.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 6);
-      if (!rows.length) { teleBoard.innerHTML = '<div class="tele-empty">No signals logged yet.</div>'; return; }
-      var max = rows[0].n;
-      teleBoard.innerHTML = '';
-      rows.forEach(function (r) {
-        var row = document.createElement('div');
-        row.className = 'tele-row';
-        row.innerHTML = '<span class="flag">' + flag(r.cc) + '</span>' +
-          '<span class="co">' + countryName(r.cc) + (r.cc === youCC ? ' · you' : '') + '</span>' +
-          '<span class="val">' + r.n.toLocaleString('en-US') + '</span>' +
-          '<span class="tele-bar"><i style="width:' + Math.max(6, Math.round(r.n / max * 100)) + '%"></i></span>';
-        teleBoard.appendChild(row);
-      });
-    }
-
-    function loadBoard(youCC) {
-      var codes = BOARD.slice();
-      if (youCC && codes.indexOf(youCC) === -1) codes.push(youCC);
-      Promise.all(codes.map(function (cc) {
-        return jget(AB + '/get/' + NS + '/geo_' + cc)
-          .then(function (d) { var n = val(d); return { cc: cc, n: typeof n === 'number' ? n : 0 }; })
-          .catch(function () { return { cc: cc, n: 0 }; });
-      })).then(function (rows) { renderBoard(rows, youCC); })
-        .catch(function () { teleBoard.innerHTML = '<div class="tele-empty">Origin log unavailable.</div>'; });
-    }
-
-    function geo() {
-      return jget('https://ipapi.co/json/').then(function (d) {
-        if (d && d.country) return { cc: d.country, city: d.city, name: d.country_name };
-        throw new Error('no geo');
-      }).catch(function () {
-        return jget('https://ipwho.is/').then(function (d) {
-          if (d && d.country_code) return { cc: d.country_code, city: d.city, name: d.country };
-          throw new Error('no geo');
-        });
-      });
-    }
-
-    geo().then(function (loc) {
-      var cc = (loc.cc || '').toUpperCase();
-      teleYou.innerHTML = 'You are tuning in from <b>' +
-        (loc.city ? loc.city + ', ' : '') + (loc.name || countryName(cc)) + '</b> ' + flag(cc);
-      // count this visitor's country once per session, then load the board
-      if (cc && !counted) {
-        jget(AB + '/hit/' + NS + '/geo_' + cc).then(function () { loadBoard(cc); }).catch(function () { loadBoard(cc); });
-      } else {
-        loadBoard(cc);
-      }
-    }).catch(function () {
-      teleYou.textContent = 'Signal origin hidden. Welcome anyway.';
-      loadBoard(null);
-    });
-  })();
-
-  /* ---------- boot ---------- */
-
-  resize();
-  updateUI();
-  loadLand();
-  loop();
-})();
-</script>
-<script>
-/* "What Lives Here" dashboard: real counts + animated sparklines/bars/ring */
-(function () {
-  'use strict';
-  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function $(id) { return document.getElementById(id); }
-  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
-  function path(vals, w, h) {
-    var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals), rng = (max - min) || 1, out = '';
-    for (var i = 0; i < vals.length; i++) {
-      var x = i / (vals.length - 1) * w, y = h - ((vals[i] - min) / rng) * (h - 2) - 1;
-      out += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
-    }
-    return out.trim();
-  }
-
-  // real current counts (edit as the project grows)
-  var DATA = { essays: 1, surahs: 3, surahTotal: 114, ringNum: 6, words: 77429, moments: 5 };
-  var ringSweep = 0.28;  // decorative ring fill (Ring Structure motif)
-
-  // decorative sparkline / bar shapes
-  var notesData = [3, 5, 4, 7, 6, 9, 8, 12, 11, 14];
-  var inspData = [2, 4, 3, 6, 5, 8, 7, 10, 9, 13, 12, 16];
-  var bars = [42, 68, 34, 88, 55, 100, 40, 74, 50, 82];
-
-  var nLine = path(notesData, 100, 34), iLine = path(inspData, 100, 34);
-  if ($('wlhNotesLine')) { $('wlhNotesLine').setAttribute('d', nLine); $('wlhNotesArea').setAttribute('d', nLine + ' L100 34 L0 34 Z'); }
-  if ($('wlhInspLine')) { $('wlhInspLine').setAttribute('d', iLine); $('wlhInspArea').setAttribute('d', iLine + ' L100 34 L0 34 Z'); }
-
-  var bc = $('wlhBars');
-  if (bc) bars.forEach(function (b, i) {
-    var el = document.createElement('i');
-    el.style.height = b + '%';
-    el.style.animationDelay = (0.15 + i * 0.05) + 's';
-    bc.appendChild(el);
-  });
-
-  function setFinal() {
-    $('wlhEssays').textContent = fmt(DATA.essays);
-    $('wlhSurahs').textContent = String(DATA.surahs);
-    $('wlhRingNum').textContent = String(DATA.ringNum);
-    $('wlhWords').textContent = fmt(DATA.words);
-    $('wlhMoments').textContent = fmt(DATA.moments);
-    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
-    $('wlhRing').style.strokeDashoffset = String(ringSweep);
-  }
-
-  if (rm) { setFinal(); return; }
-
-  // trigger CSS transitions (ring fill + progress bar) on next frame
-  requestAnimationFrame(function () {
-    $('wlhSurahBar').style.width = (DATA.surahs / DATA.surahTotal * 100).toFixed(1) + '%';
-    $('wlhRing').style.strokeDashoffset = String(ringSweep);
-  });
-
-  // count the numbers up (ease-out cubic, 1.5s)
-  var t0 = null, dur = 1500;
-  function tick(t) {
-    if (!t0) t0 = t;
-    var k = Math.min(1, (t - t0) / dur); k = 1 - Math.pow(1 - k, 3);
-    $('wlhEssays').textContent = fmt(DATA.essays * k);
-    $('wlhSurahs').textContent = String(Math.round(DATA.surahs * k));
-    $('wlhRingNum').textContent = String(Math.round(DATA.ringNum * k));
-    $('wlhWords').textContent = fmt(DATA.words * k);
-    $('wlhMoments').textContent = String(Math.round(DATA.moments * k));
-    if (k < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
+  atmoMat.uniforms.uRes.value.set(w * dpr, h * dpr)
+}
+window.addEventListener('resize', onResize)
+onResize()
+onScroll()
+
+// ---------- render loop ----------
+function render() {
+  requestAnimationFrame(render)
+  scrollSmooth = Lerp(scrollSmooth, scrollTarget, 0.10)
+  scrollCurrent = Lerp(scrollCurrent, scrollSmooth, 0.06)
+  mouse.x = Lerp(mouse.x, mouseTarget.x, 0.06)
+  mouse.y = Lerp(mouse.y, mouseTarget.y, 0.06)
+  sceneObj.render(scrollCurrent, mouse)
+  const hero = clamp(1 - scrollCurrent / 0.18, 0, 1)
+  heroEl.style.opacity = hero
+  heroEl.style.transform = `translateY(${-scrollCurrent * 60}px)`
+  const enter = clamp((scrollCurrent - 0.82) / 0.16, 0, 1)
+  enterEl.style.opacity = enter
+  enterEl.style.transform = `translateY(${(1 - enter) * 30}px)`
+  hintEl.style.opacity = clamp(1 - scrollCurrent / 0.12, 0, 1) * (1 - enter)
+  camera.layers.set(LAYERS.TORUS_SCENE);  torusComposer.render()
+  camera.layers.set(LAYERS.BLOOM_SCENE);  bloomComposer.render()
+  camera.layers.set(LAYERS.ENTIRE_SCENE); finalComposer.render()
+}
+window.__tunnelReady = true
+render()
 </script>
 </body>
 </html>
