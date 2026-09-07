@@ -260,3 +260,47 @@ input[type=range]::-moz-range-thumb { width: 15px; height: 15px; border-radius: 
   .notes { padding: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .loading-gear { animation: none; } }
+
+/* ---- BMW variant ------------------------------------------------------- */
+body.technica[data-car="bmw"] {
+  --tc-mint: #83bfff;
+}
+body.technica[data-car="bmw"] .viewer {
+  background: radial-gradient(ellipse at 50% 43%, #263c49 0%, #14232e 55%, #101920 85%);
+}
+body.technica[data-car="bmw"] .part.selected { background: #1a354b; border-color: #375a7e; color: #c0dfff; }
+body.technica[data-car="bmw"] .eyebrow { color: #8db9d9; }
+body.technica[data-car="bmw"] .drive-buttons button.on,
+body.technica[data-car="bmw"] .gear-buttons button.on { background: #83bfff; border-color: #a4d0ff; color: #102a46; }
+body.technica[data-car="bmw"] .power-path li.lit::before { background: #83bfff; }
+body.technica[data-car="bmw"] .gear-readout strong { color: #83bfff; }
+body.technica[data-car="bmw"] .play-button { background: #1c3650; border-color: #375b7e; color: #c1dfff; }
+body.technica[data-car="bmw"] .playback-speed button.on { background: #1d354a; border-color: #365674; color: #c1dfff; }
+body.technica[data-car="bmw"] .notes-content a { color: #91c9ff; }
+body.technica[data-car="bmw"] .ratio-detail strong { color: #b8dfff; }
+body.technica[data-car="bmw"] .gear-buttons { gap: 4px; flex-wrap: wrap; }
+body.technica[data-car="bmw"] .gear-buttons button { min-width: 29px; width: 29px; }
+.blue { background: #83bfff; }
+
+/* shift-element matrix */
+.element-section { margin-top: 25px; }
+.element-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
+.element {
+  padding: 10px 2px 8px; border-radius: 4px; background: #15202a; border: 1px solid #334652;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; color: #829aaa;
+}
+.element b { font: 20px var(--tc-mono); font-weight: 400; }
+.element span, .element small { font-size: 12px; }
+.element.applied { background: #203f58; border-color: #527fa2; color: #b7dfff; }
+.element.applied:nth-child(-n+2) { background: #443828; border-color: #987342; color: #ffd998; }
+.element-caption { font-size: 12px; color: #8ea8b7; margin: 12px 0 0; }
+@media (max-width: 640px) { .element-grid { gap: 8px; } .element { min-height: 85px; } }
+
+@media (max-width: 1320px) { .car-nav a { padding: 10px 14px; } }
+@media (max-width: 1180px) { .car-nav a { padding: 9px 10px; font-size: 13px; } .car-nav a span { margin-left: 6px; } }
+@media (max-width: 760px) { .car-nav a span { display: none; } }
+@media (max-width: 640px) {
+  .car-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; }
+  .car-nav a { padding: 10px 5px; }
+  .car-nav a span { display: block; margin: 4px 0 0; font-size: 11px; }
+}

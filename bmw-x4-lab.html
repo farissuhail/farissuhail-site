@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive 3D cutaway of the 2012 VW Sharan 7N gearbox: a six-speed wet dual-clutch DSG driving the front wheels. Rotate it, explode it, select parts, and watch the power flow. EN / BM." />
-  <title>Sharan 7N · DSG Transmission Lab · Petrolhead Technica</title>
+  <meta name="description" content="Interactive 3D cutaway of the 2016 BMW X4 F26 xDrive20i gearbox: the ZF 8HP eight-speed Steptronic automatic, its torque converter, four planetary sets and A-E shift elements. EN / BM." />
+  <title>BMW X4 F26 · ZF 8HP Transmission Lab · Petrolhead Technica</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0b1216" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Faris Suhail · Petrolhead Technica" />
-  <meta property="og:title" content="Sharan 7N · DSG Transmission Lab" />
-  <meta property="og:description" content="An interactive 3D cutaway of the Sharan 7N's twin-clutch DSG, front-wheel drive." />
-  <meta property="og:url" content="https://farissuhail.com/sharan-dsg-lab.html" />
+  <meta property="og:title" content="BMW X4 F26 · ZF 8HP Transmission Lab" />
+  <meta property="og:description" content="An interactive 3D cutaway of the X4's ZF 8HP eight-speed automatic, from torque converter to xDrive transfer case." />
+  <meta property="og:url" content="https://farissuhail.com/bmw-x4-lab.html" />
   <meta property="og:image" content="https://farissuhail.com/assets/glimpse/technica.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="technica.css?v=4" />
-  <link rel="canonical" href="https://farissuhail.com/sharan-dsg-lab.html" />
+  <link rel="canonical" href="https://farissuhail.com/bmw-x4-lab.html" />
 
   <script type="importmap">
   {
@@ -31,19 +31,19 @@
   }
   </script>
 </head>
-<body class="technica" data-car="sharan">
+<body class="technica" data-car="bmw">
 
 <main class="lab">
 
   <header class="topbar">
     <a class="brand" href="petrolhead-technica.html">
-      <span class="brand-symbol" id="carBadge">7N</span>
+      <span class="brand-symbol" id="carBadge">X4</span>
       <span>PETROLHEAD<span class="brand-sub">TRANSMISSION LAB</span></span>
     </a>
     <nav class="car-nav" aria-label="Choose vehicle">
       <a href="r32-dsg-lab.html">Golf R32 <span>2006</span></a>
-      <a class="active" href="sharan-dsg-lab.html">Sharan 7N <span>2012</span></a>
-      <a href="bmw-x4-lab.html">BMW X4 <span>2016</span></a>
+      <a href="sharan-dsg-lab.html">Sharan 7N <span>2012</span></a>
+      <a class="active" href="bmw-x4-lab.html">BMW X4 <span>2016</span></a>
     </nav>
     <div class="top-right">
       <span class="live-tag"><i></i> INTERACTIVE 3D</span>
@@ -53,14 +53,14 @@
   </header>
 
   <div class="contextbar">
-    <span><span data-en="YOUR GARAGE" data-bm="GARAJ ANDA">YOUR GARAGE</span> › <span id="crumbCar">SHARAN 7N</span> › <span data-en="TRANSMISSION" data-bm="TRANSMISI">TRANSMISSION</span></span>
-    <span class="architecture" id="archCode">02E / DQ250 <span id="archSub">6-SPEED WET DSG</span></span>
+    <span><span data-en="YOUR GARAGE" data-bm="GARAJ ANDA">YOUR GARAGE</span> › <span id="crumbCar">BMW X4 F26</span> › <span data-en="TRANSMISSION" data-bm="TRANSMISI">TRANSMISSION</span></span>
+    <span class="architecture" id="archCode">ZF 8HP <span id="archSub">8-SPEED STEPTRONIC</span></span>
   </div>
 
   <div class="workspace">
 
     <aside class="components panel">
-      <div class="panel-heading"><span data-en="Components" data-bm="Komponen">Components</span><span class="count" id="partCount">11</span></div>
+      <div class="panel-heading"><span data-en="Components" data-bm="Komponen">Components</span><span class="count" id="partCount">18</span></div>
       <p class="side-hint" data-en="Select a part to explore." data-bm="Pilih satu bahagian untuk diterokai.">Select a part to explore.</p>
       <div class="part-list" id="partList"></div>
       <div class="side-bottom">
@@ -74,11 +74,11 @@
     <section class="viewer" aria-label="Transmission explorer">
       <div class="viewer-heading">
         <div>
-          <span class="eyebrow" id="viewerEyebrow">02 / SHARAN 7N · 2012</span>
+          <span class="eyebrow" id="viewerEyebrow">03 / BMW X4 F26 · 2016</span>
           <h1 data-en="Power in motion." data-bm="Kuasa dalam gerakan.">Power in motion.</h1>
-          <p id="viewerLine">Sharan 7N · Front-wheel drive <span>/</span> Six-speed wet-clutch DSG</p>
+          <p id="viewerLine">xDrive20i · 2.0 petrol · All-wheel drive <span>/</span> Eight-speed Steptronic</p>
         </div>
-        <span class="model-tag">02E <i></i> CUTAWAY</span>
+        <span class="model-tag">8HP <i></i> CUTAWAY</span>
       </div>
 
       <div class="canvas-host" id="canvasHost"></div>
@@ -96,16 +96,16 @@
         <button id="zoomHome" aria-label="Reset camera">⟲</button>
       </div>
 
-      <div class="legend"><span><i class="mint"></i> K1 · <span data-en="odd + R" data-bm="ganjil + R">odd + R</span></span><span><i class="amber"></i> K2 · <span data-en="even" data-bm="genap">even</span></span></div>
+      <div class="legend"><span><i class="blue"></i> <span data-en="Rotating drive" data-bm="Pacuan berputar">Rotating drive</span></span><span><i class="amber"></i> <span data-en="Applied brakes" data-bm="Brek dikenakan">Applied brakes</span></span></div>
 
       <div class="scene-caption">
         <span data-en="Drag to orbit · Scroll to zoom · Click a part" data-bm="Seret untuk pusing · Skrol untuk zum · Klik satu bahagian">Drag to orbit · Scroll to zoom · Click a part</span>
-        <small data-en="Educational geometry · not to scale" data-bm="Geometri pendidikan · bukan mengikut skala">Educational geometry · not to scale</small>
+        <small data-en="Planetary anatomy motion · not actual member speeds" data-bm="Gerakan anatomi planet · bukan kelajuan anggota sebenar">Planetary anatomy motion · not actual member speeds</small>
       </div>
     </section>
 
     <aside class="inspector panel">
-      <div class="panel-heading"><span data-en="Inside the DSG" data-bm="Dalam DSG">Inside the DSG</span></div>
+      <div class="panel-heading"><span data-en="Inside the 8HP" data-bm="Dalam 8HP">Inside the 8HP</span></div>
       <div class="inspector-main">
         <span class="eyebrow" id="inspEyebrow">THE SYSTEM</span>
         <h2 id="inspTitle">—</h2>
@@ -117,6 +117,11 @@
         <h3 id="pathTitle">—</h3>
         <ol class="power-path" id="powerPath"></ol>
         <div class="fact-note" id="factNote">—</div>
+        <div class="element-section" id="elementSection" style="display:none">
+          <span class="eyebrow" data-en="GEAR-SELECTION ELEMENTS" data-bm="ELEMEN PEMILIHAN GEAR">GEAR-SELECTION ELEMENTS</span>
+          <div class="element-grid" id="elementGrid"></div>
+          <p class="element-caption" id="elementCaption"></p>
+        </div>
         <div class="ratio-detail" id="ratioDetail"></div>
       </div>
       <div class="inspector-bottom">
@@ -135,8 +140,8 @@
 
     <div class="rpm-control">
       <div class="control-label"><label for="rpmRange" data-en="ENGINE SPEED" data-bm="KELAJUAN ENJIN">ENGINE SPEED</label><output id="rpmOut">1,800 <small>rpm</small></output></div>
-      <input id="rpmRange" type="range" min="800" max="6200" step="100" value="1800" />
-      <div class="range-ticks" id="rpmTicks"><span>750</span><span>6,200</span></div>
+      <input id="rpmRange" type="range" min="800" max="6500" step="100" value="1800" />
+      <div class="range-ticks" id="rpmTicks"><span>700</span><span>6,500</span></div>
     </div>
 
     <div class="gear-control">
@@ -150,7 +155,7 @@
     <div class="gear-readout">
       <span class="eyebrow" data-en="ENGAGED" data-bm="BERGABUNG">ENGAGED</span>
       <strong id="gearBig">1</strong>
-      <small id="gearTag">K1 CLUTCH</small>
+      <small id="gearTag">A + B + C</small>
       <small id="speedOut" style="margin-top:6px;color:#9fc2bb">0 <small>km/h</small></small>
     </div>
 
@@ -170,18 +175,20 @@
       <input id="explodeRange" type="range" min="0" max="100" step="1" value="0" />
       <output id="explodeOut">0%</output>
     </div>
-    <span class="simulation-note" data-en="Illustrative motion · slowed for visibility · ratios are real, road speed is calculated" data-bm="Gerakan ilustrasi · diperlahankan untuk kejelasan · nisbah adalah sebenar, kelajuan jalan dikira">Illustrative motion · slowed for visibility · ratios are real, road speed is calculated</span>
+    <span class="simulation-note" data-en="Illustrative motion · slowed for visibility · published ratios · axle ratio not modelled" data-bm="Gerakan ilustrasi · diperlahankan untuk kejelasan · nisbah diterbitkan · nisbah gandar tidak dimodelkan">Illustrative motion · slowed for visibility · published ratios · axle ratio not modelled</span>
   </section>
 
   <footer class="notes">
     <details>
       <summary data-en="Model notes &amp; references ↗" data-bm="Nota model &amp; rujukan ↗">Model notes &amp; references ↗</summary>
       <div class="notes-content">
-        <p data-en="These are educational twin-clutch cutaways, not factory CAD, service instructions or a diagnosis. Gear shapes, spacing, housing and animation speeds are illustrative; tooth counts are not reproduced. This car&#39;s exact engine and gearbox code have not been confirmed, so the model is shown in the six-speed wet-clutch DQ250 configuration and the ratios in the inspector are a published DQ250 transverse set, used for scale rather than as your gearbox. Road speed is calculated from them with a 215/60 R16 rolling circumference."
-           data-bm="Ini ialah rajah keratan kopling berkembar untuk pembelajaran, bukan CAD kilang, arahan servis atau diagnosis. Bentuk gear, jarak, kebuk dan kelajuan animasi bersifat ilustrasi; bilangan gigi tidak ditiru. Kod enjin dan gearbox sebenar kereta ini belum disahkan, jadi model ditunjukkan dalam konfigurasi DQ250 kopling basah enam kelajuan dan nisbah dalam panel pemeriksa ialah set DQ250 melintang yang diterbitkan, sebagai gambaran dan bukan gearbox anda. Kelajuan jalan dikira daripadanya dengan lilitan gelek 215/60 R16.">
+        <p data-en="Your vehicle: BMW X4 F26 xDrive20i, 2016, which uses the first-generation ZF 8HP architecture. The exact installed gearbox code and build revision have not been verified against a VIN or gearbox plate. Four planetary sets, brakes A/B and clutches C/D/E follow ZF&#39;s architecture, and the application display follows ZF&#39;s published engagement matrix. Ratios come from BMW&#39;s original F26 petrol specifications, valid July 2014. The 3D geometry and internal member motion illustrate component principles rather than solving every shaft connection; the axle ratio is not modelled, so no road speed is shown. Lock-up timing and xDrive torque split are not predicted."
+           data-bm="Kenderaan anda: BMW X4 F26 xDrive20i, 2016, yang menggunakan seni bina ZF 8HP generasi pertama. Kod gearbox sebenar dan semakan binaannya belum disahkan dengan VIN atau plat gearbox. Empat set gear planet, brek A/B dan kopling C/D/E mengikut seni bina ZF, dan paparan gabungan mengikut matriks ZF yang diterbitkan. Nisbah diambil daripada spesifikasi asal BMW F26 petrol, sah Julai 2014. Geometri 3D dan gerakan anggota dalaman menggambarkan prinsip komponen, bukan menyelesaikan setiap sambungan aci; nisbah gandar tidak dimodelkan, jadi kelajuan jalan tidak ditunjukkan. Masa kunci penukar tork dan pembahagian tork xDrive tidak diramalkan.">
         </p>
-        <a href="https://www.volkspage.net/technik/ssp/ssp/SSP_308.pdf" target="_blank" rel="noreferrer">VW Self-study Programme 308 · 02E gearbox (manufacturer document, hosted copy)</a>
-        <a href="https://esperformance.net/ssp/vw/SSP_445_DE.pdf" target="_blank" rel="noreferrer">VW Self-study Programme 445 · Sharan 2011 (manufacturer document, hosted copy)</a>
+        <a href="https://www.press.bmwgroup.com/global/article/attachment/T0169768EN/252711" target="_blank" rel="noreferrer">BMW · Original X4 F26 petrol technical specifications (July 2014)</a>
+        <a href="https://www.zf.com/public/org/zf_pkw_getriebebroschuere2017_de_web_72250.pdf" target="_blank" rel="noreferrer">ZF · 8HP architecture and shift-element matrix (2017)</a>
+        <a href="https://bimmerprofs.com/wp-content/uploads/2020/03/ZF_Workbook-transmission-6-8HP-1.pdf" target="_blank" rel="noreferrer">ZF · 6HP / 8HP training workbook (manufacturer-authored, hosted copy)</a>
+        <a href="https://www.press.bmwgroup.com/italy/article/attachment/T0239182IT/333391" target="_blank" rel="noreferrer">BMW · xDrive transfer-case operating principle (2015)</a>
       </div>
     </details>
     <span>FARISSUHAIL / PETROLHEAD TECHNICA</span>
