@@ -166,13 +166,13 @@
 /* Front-door guards: never strand a visitor on a broken/unsupported intro. */
 (function () {
   // Already entered this session? Go straight to the landing page.
-  try { if (sessionStorage.getItem('fs-entered') === '1') { location.replace('/home.html'); return; } } catch (e) {}
+  try { if (sessionStorage.getItem('fs-entered') === '1') { location.replace('/thought-space.html'); return; } } catch (e) {}
   // No WebGL? The tunnel can't render, so skip it.
   function hasWebGL() {
     try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); }
     catch (e) { return false; }
   }
-  if (!hasWebGL()) { location.replace('/home.html'); return; }
+  if (!hasWebGL()) { location.replace('/thought-space.html'); return; }
   // If the 3D intro fails to boot (CDN down, module error), reveal Enter anyway.
   window.addEventListener('load', function () {
     setTimeout(function () {
@@ -194,7 +194,7 @@
 <body>
 <canvas id="scene"></canvas>
 
-<a id="skip" href="/home.html">Skip intro &#8594;</a>
+<a id="skip" href="/thought-space.html">Skip intro &#8594;</a>
 
 <div id="hero" class="overlay">
   <h1>SELAMAT DATANG</h1>
@@ -250,7 +250,7 @@
   </div></div>
   <div class="enter-core">
     <p>farissuhail.com</p>
-    <a id="enterLink" href="/home.html"><span class="enter-txt">Enter</span><span class="enter-scan"></span></a>
+    <a id="enterLink" href="/thought-space.html"><span class="enter-txt">Enter</span><span class="enter-scan"></span></a>
   </div>
   <div class="enter-row bot" aria-hidden="true"><div class="enter-track">
     <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
@@ -272,18 +272,19 @@
 <div id="scroll-hint">scroll to enter &#8595;</div>
 
 <noscript>
-  <meta http-equiv="refresh" content="0; url=/home.html" />
+  <meta http-equiv="refresh" content="0; url=/thought-space.html" />
   <p style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#dff8ff;font-family:sans-serif;">
-    <a href="/home.html" style="color:#2bf0ff;">Enter farissuhail.com &#8594;</a>
+    <a href="/thought-space.html" style="color:#2bf0ff;">Enter farissuhail.com &#8594;</a>
   </p>
 </noscript>
 
 <section class="sr-only">
   <h1>Faris Suhail · The Mdrn Urban</h1>
   <p>A personal site: Qur'an and hadith, book summaries, tech and AI experiments, and a globe of everywhere I have travelled, traced back to Alor Setar in Kedah.</p>
-  <p><a href="/home.html">Enter the site</a></p>
+  <p><a href="/thought-space.html">Enter the site</a></p>
   <nav aria-label="Site sections">
     <ul>
+      <li><a href="/thought-space.html">Thought Space: an interactive map of every section</a></li>
       <li><a href="/home.html">Home: travel-footprint globe</a></li>
       <li><a href="/about.html">About Faris Suhail</a></li>
       <li><a href="/notes/">Notes</a></li>
