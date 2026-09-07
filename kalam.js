@@ -194,7 +194,7 @@
     });
     var svg = nb.length
       ? buildRadial({ ar: c.ar, sub: (lang() === 'bm' ? c.ms : c.en), size: 38 }, items, { prefix: '×' })
-      : '<p style="color:var(--text-mute);text-align:center;padding:40px">' + L('Named alone — no same-ayah links.', 'Disebut bersendirian — tiada kaitan seayat.') + '</p>';
+      : '<p style="color:var(--text-mute);text-align:center;padding:40px">' + L('Named alone: no same-ayah links.', 'Disebut bersendirian: tiada kaitan seayat.') + '</p>';
     var stats = '<div class="k-radial-stats">' +
       '<div class="k-mini"><div style="font-family:Amiri,serif;font-size:30px;color:#fff">' + c.ar + '</div>' +
         '<div class="lbl">' + (lang() === 'bm' ? c.ms : c.en) + '</div></div>' +

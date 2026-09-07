@@ -255,6 +255,18 @@ body.book-summary.theme-jade {
   --glow: 46,158,115;
 }
 
+/* ---- THEME: indigo (Why Nations Fail) ---- */
+body.book-summary.theme-indigo {
+  --accent: #4a5fc1; --accent-2: #8b9ceb;
+  --accent-grad: linear-gradient(135deg, #4a5fc1 0%, #8b9ceb 100%);
+  --gold: #c9a24a; --gold-2: #e8cd8c;
+  --cover-bg: linear-gradient(165deg, #171c3a 0%, #0d1024 55%, #07081a 100%);
+  --cover-frame: rgba(74,95,193,0.5);
+  --cover-rule: #c9a24a; --cover-author: #c3cbf2; --cover-the: #c0c6e0;
+  --cover-sub: #9aa0c2; --cover-note: #7d84a6; --cover-blurb: #8b9ceb;
+  --glow: 74,95,193;
+}
+
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
 

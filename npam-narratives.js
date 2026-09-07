@@ -15,51 +15,56 @@
 
   var NPAM_NARRATIVE = {
 
-    updated: { en: '19 Jul 2026 · 09:00 MYT', bm: '19 Jul 2026 · 09:00 MYT' },
+    updated: { en: '6 Sep 2026 · 16:00 MYT', bm: '6 Sep 2026 · 16:00 MYT' },
 
     /* ---------- the main political event everything orbits ---------- */
     mainEvent: {
       kicker: { en: 'Main event', bm: 'Acara utama' },
-      title: { en: 'PRN Negeri Sembilan — 16th state election', bm: 'PRN Negeri Sembilan ke-16' },
+      title: { en: 'PRN Melaka — the next state election', bm: 'PRN Melaka — pilihan raya negeri seterusnya' },
       deck: {
-        en: 'Nomination closed 18 July. 103 candidates for 36 seats, with multi-cornered fights across the state — the single event shaping Malaysia’s political conversation between now and 1 August.',
-        bm: 'Penamaan calon ditutup 18 Julai. 103 calon bagi 36 kerusi, dengan pertandingan pelbagai penjuru di seluruh negeri — peristiwa tunggal yang membentuk perbualan politik Malaysia sehingga 1 Ogos.'
+        en: 'No polling date has been called. The Melaka assembly can be dissolved at any time — the menteri besar is holding the date back — its five-year term runs out in December, and polling must happen by 25 February 2027 at the latest. Every coalition move this month is being read through it.',
+        bm: 'Tiada tarikh mengundi diumumkan. DUN Melaka boleh dibubarkan bila-bila masa — menteri besar masih menyimpan tarikhnya — penggal lima tahunnya tamat pada Disember, dan pengundian mesti diadakan selewat-lewatnya 25 Februari 2027. Setiap langkah gabungan bulan ini dibaca menerusinya.'
       },
-      pollDate: '2026-08-01',
+      /* NOTE: this is the CONSTITUTIONAL DEADLINE, not an announced polling date.
+         The countdown label below is worded accordingly. Replace with the real
+         polling date — and restore the "days to polling" wording — once SPR calls it. */
+      pollDate: '2027-02-25',
       milestones: [
-        { date: '2026-07-18', label: { en: 'Nomination', bm: 'Penamaan calon' } },
-        { date: '2026-07-28', label: { en: 'Early voting', bm: 'Mengundi awal' } },
-        { date: '2026-08-01', label: { en: 'Polling day', bm: 'Hari mengundi' } }
+        { date: '2026-07-14', label: { en: 'DAP exits state govt', bm: 'DAP keluar kerajaan negeri' } },
+        { date: '2026-08-27', label: { en: 'BN: defending all 21', bm: 'BN: pertahan semua 21' } },
+        { date: '2026-09-05', label: { en: 'BN–PN talks unconcluded', bm: 'Rundingan BN–PN belum muktamad' } },
+        { date: '2027-02-25', label: { en: 'Constitutional deadline', bm: 'Had perlembagaan' } }
       ],
       facts: [
-        { k: { en: 'Seats', bm: 'Kerusi' }, v: '36' },
-        { k: { en: 'Candidates', bm: 'Calon' }, v: '103' },
-        { k: { en: 'Voters', bm: 'Pengundi' }, v: '~889,400' },
-        { k: { en: 'Incumbent', bm: 'Penyandang' }, v: 'PH' }
+        { k: { en: 'Elected seats', bm: 'Kerusi dipilih' }, v: '28' },
+        { k: { en: 'Simple majority', bm: 'Majoriti mudah' }, v: '15' },
+        { k: { en: 'Polling date', bm: 'Tarikh mengundi' }, v: '—' },
+        { k: { en: 'Incumbent', bm: 'Penyandang' }, v: 'BN' }
       ],
-      /* seat counts contested per bloc — nomination-day fact, not a forecast */
+      /* seats HELD in the outgoing assembly — a matter of record, not a forecast
+         and not a seat-allocation claim. Totals 28. */
       contest: [
-        { bloc: 'PH', seats: 36, note: { en: 'solo, all 36', bm: 'solo, semua 36' } },
-        { bloc: 'BN', seats: 25, note: { en: 'pact with PN', bm: 'pakatan dengan PN' } },
-        { bloc: 'Bersatu', seats: 24, note: { en: 'own logo, still in PN', bm: 'logo sendiri, kekal dalam PN' } },
-        { bloc: 'PN', seats: 11, note: { en: 'pact with BN', bm: 'pakatan dengan BN' } }
+        { bloc: 'BN', seats: 20, note: { en: 'UMNO 17 · MCA 2 · MIC 1', bm: 'UMNO 17 · MCA 2 · MIC 1' } },
+        { bloc: 'PH', seats: 5, note: { en: 'left the govt 14 Jul', bm: 'keluar kerajaan 14 Jul' } },
+        { bloc: 'PN', seats: 2, note: { en: 'opposition bench', bm: 'barisan pembangkang' } },
+        { bloc: 'BEBAS', seats: 1, note: { en: 'independent', bm: 'bebas' } }
       ],
       battlelines: [
         {
-          a: { en: 'Momentum is national — Johor proved the swing.', bm: 'Momentum bersifat nasional — Johor membuktikan gelombang.' },
-          b: { en: 'N9 is a local election, judged on a local record.', bm: 'N9 ialah pilihan raya tempatan, dinilai atas rekod tempatan.' }
+          a: { en: 'A BN–PN pact is the only way to keep the Malay-Muslim vote whole.', bm: 'Pakatan BN–PN satu-satunya cara mengekalkan undi Melayu-Muslim tidak berpecah.' },
+          b: { en: 'A pact blurs the choice and flattens each side’s own base.', bm: 'Pakatan mengaburkan pilihan dan melembapkan akar umbi kedua-dua pihak.' }
         },
         {
-          a: { en: 'The BN–PN pact is a disciplined, mature alliance.', bm: 'Pakatan BN–PN ialah gabungan matang dan berdisiplin.' },
-          b: { en: 'A pact contradicted by Bersatu’s own-logo revolt.', bm: 'Pakatan yang disangkal oleh pemberontakan logo sendiri Bersatu.' }
+          a: { en: 'Appointed assemblymen add representation the ballot leaves out.', bm: 'ADUN dilantik menambah perwakilan yang tertinggal daripada undi.' },
+          b: { en: 'Unelected seats dilute the votes people actually cast.', bm: 'Kerusi tidak dipilih mencairkan undi yang rakyat benar-benar buang.' }
         },
         {
-          a: { en: 'Cost of living decides this seat by seat.', bm: 'Kos sara hidup menentukannya kerusi demi kerusi.' },
-          b: { en: 'Development and administration record decide it.', bm: 'Rekod pembangunan dan pentadbiran yang menentukannya.' }
+          a: { en: 'Melaka’s investment and jobs record earns another term.', bm: 'Rekod pelaburan dan pekerjaan Melaka melayakkan satu penggal lagi.' },
+          b: { en: 'Cost of living and governance outrank the investment tally.', bm: 'Kos sara hidup dan tadbir urus mengatasi jumlah pelaburan.' }
         },
         {
-          a: { en: 'Young voters are the swing bloc on 1 August.', bm: 'Pengundi muda ialah blok penentu pada 1 Ogos.' },
-          b: { en: 'Youth turnout stays low and changes little.', bm: 'Keluar mengundi belia kekal rendah dan sedikit mengubah.' }
+          a: { en: 'Federal delivery under the unity government should carry PH here.', bm: 'Penyampaian persekutuan bawah kerajaan perpaduan sepatutnya membawa PH di sini.' },
+          b: { en: 'State polls are settled on state ground, not Putrajaya’s scorecard.', bm: 'PRN diputuskan atas isu negeri, bukan kad skor Putrajaya.' }
         }
       ]
     },
@@ -67,147 +72,147 @@
     /* ---------- today's dominant narratives ---------- */
     daily: [
       {
-        title: { en: 'The map is set — 103 candidates, 36 seats', bm: 'Peta pertandingan terbentuk — 103 calon, 36 kerusi' },
-        sub: { en: 'nomination closed 18 Jul · multi-cornered fights confirmed', bm: 'penamaan ditutup 18 Jul · pertandingan pelbagai penjuru disahkan' },
-        mom: { en: 'PEAKED 18 JUL · dominant', bm: 'MEMUNCAK 18 JUL · dominan' }, momClass: 'pk',
-        cat: { en: 'Election', bm: 'Pilihan raya' }, catClass: 'c-elec',
-        why: {
-          en: 'The shape of the contest is now fixed. Every projection resets around where three-way splits actually fall.',
-          bm: 'Bentuk pertandingan kini tetap. Setiap unjuran ditetapkan semula mengikut di mana pecahan tiga penjuru benar-benar berlaku.'
-        },
-        frames: {
-          a: { en: 'A clean two-bloc fight with a disciplined pact.', bm: 'Pertarungan dua blok yang kemas dengan pakatan berdisiplin.' },
-          b: { en: 'A fractured field where splits decide seats.', bm: 'Medan berpecah di mana pecahan undi menentukan kerusi.' }
-        }
-      },
-      {
-        title: { en: 'Bersatu contests 24 seats under its own logo', bm: 'Bersatu bertanding 24 kerusi bawah logo sendiri' },
-        sub: { en: 'announced 15 Jul · remains inside PN', bm: 'diumum 15 Jul · kekal dalam PN' },
+        title: { en: 'Melaka’s alignment question is still open', bm: 'Persoalan penjajaran Melaka masih terbuka' },
+        sub: { en: 'BN defending all 21 · BN–PN talks begun, not concluded', bm: 'BN pertahan semua 21 · rundingan BN–PN bermula, belum muktamad' },
         mom: { en: '▲ RISING', bm: '▲ MENINGKAT' }, momClass: 'up',
         cat: { en: 'Coalition', bm: 'Gabungan' }, catClass: 'c-coal',
         why: {
-          en: 'Turns a bloc contest into multi-cornered fights — the single biggest variable in the seat maths.',
-          bm: 'Menukar pertandingan blok kepada pelbagai penjuru — pemboleh ubah terbesar dalam kiraan kerusi.'
+          en: 'Nobody has said who stands where. Until seats are divided, every other Melaka story is read as a signal about the pact.',
+          bm: 'Belum ada siapa menyatakan siapa bertanding di mana. Selagi kerusi belum dibahagi, setiap cerita Melaka lain dibaca sebagai isyarat tentang pakatan itu.'
         },
         frames: {
-          a: { en: 'A grassroots strength test Bersatu is entitled to run.', bm: 'Ujian kekuatan akar umbi yang berhak dijalankan Bersatu.' },
-          b: { en: 'A vote-splitting revolt that helps the incumbent.', bm: 'Pemberontakan pecah undi yang membantu penyandang.' }
+          a: { en: 'Slow talks show seriousness — a pact worth doing is worth negotiating.', bm: 'Rundingan perlahan menunjukkan keseriusan — pakatan yang berbaloi memang perlu dirundingkan.' },
+          b: { en: 'Slow talks show the pact has no agreed basis to begin with.', bm: 'Rundingan perlahan menunjukkan pakatan itu memang tiada asas yang dipersetujui.' }
         }
       },
       {
-        title: { en: 'EC tells candidates to keep adat out of the campaign', bm: 'SPR: isu adat jangan dibawa ke kempen' },
-        sub: { en: 'instruction issued to all candidates', bm: 'arahan dikeluarkan kepada semua calon' },
-        mom: { en: '⚡ NEW TODAY', bm: '⚡ BARU HARI INI' }, momClass: 'bk',
+        title: { en: 'PAS closes its 72nd muktamar in Kota Bharu', bm: 'PAS tamatkan muktamar ke-72 di Kota Bharu' },
+        sub: { en: '4–5 Sep at PUTIK · four resolutions · Melaka and GE16 posture', bm: '4–5 Sep di PUTIK · empat usul · pendirian Melaka dan PRU16' },
+        mom: { en: 'PEAKED 5 SEP', bm: 'MEMUNCAK 5 SEP' }, momClass: 'pk',
+        cat: { en: 'Coalition', bm: 'Gabungan' }, catClass: 'c-coal',
+        why: {
+          en: 'The party set its own terms in public — defend what it holds, aim at Pahang, Perak and Selangor — while BN–PN seat talks are unfinished.',
+          bm: 'Parti menetapkan syaratnya sendiri secara terbuka — pertahan yang dipegang, sasar Pahang, Perak dan Selangor — sementara rundingan kerusi BN–PN belum selesai.'
+        },
+        frames: {
+          a: { en: 'A confident partner setting out its stall before negotiating.', bm: 'Rakan yang yakin menyatakan pendiriannya sebelum berunding.' },
+          b: { en: 'A partner pre-committing publicly to squeeze the negotiation.', bm: 'Rakan yang mengikat diri secara terbuka untuk menyempitkan rundingan.' }
+        }
+      },
+      {
+        title: { en: 'Tabung Haji: a remand, and a plan to change who watches the money', bm: 'Tabung Haji: satu reman, dan rancangan menukar siapa memantau wangnya' },
+        sub: { en: 'ex-minister remanded 5 days over Saudi hotel leases · PM backs SC/BNM oversight', bm: 'bekas menteri direman 5 hari isu pajakan hotel Arab Saudi · PM sokong penyeliaan SC/BNM' },
+        mom: { en: '⚡ NEW', bm: '⚡ BARU' }, momClass: 'bk',
         cat: { en: 'Governance', bm: 'Tadbir urus' }, catClass: 'c-gov',
         why: {
-          en: 'Draws the line between protected custom and legitimate state debate — and both sides contest where that line sits.',
-          bm: 'Menarik garis antara adat yang dilindungi dan perbahasan negeri yang sah — kedua-dua pihak mempertikaikan di mana garis itu.'
+          en: 'A pilgrimage fund is savings before it is politics. An enforcement step and a structural reform landed in the same week.',
+          bm: 'Tabung haji ialah simpanan sebelum ia politik. Satu langkah penguatkuasaan dan satu pembaharuan struktur berlaku dalam minggu yang sama.'
         },
         frames: {
-          a: { en: 'Protecting adat institutions and communal harmony.', bm: 'Melindungi institusi adat dan keharmonian masyarakat.' },
-          b: { en: 'Fencing a legitimate state issue off from scrutiny.', bm: 'Memagari isu negeri yang sah daripada penelitian.' }
+          a: { en: 'Accountability finally reaching a decade-old file.', bm: 'Kebertanggungjawaban akhirnya sampai kepada fail berusia sedekad.' },
+          b: { en: 'Enforcement timing that lands conveniently before a state poll.', bm: 'Masa penguatkuasaan yang kebetulan menjelang satu PRN.' }
         }
       },
       {
-        title: { en: 'PH’s state record against the post-Johor wave', bm: 'Rekod pentadbiran PH lawan gelombang pasca-Johor' },
-        sub: { en: 'incumbency test · PH holds the state', bm: 'ujian penyandang · PH memegang negeri' },
+        title: { en: 'Six cost-of-living measures took effect 1 September', bm: 'Enam langkah kos sara hidup berkuat kuasa 1 September' },
+        sub: { en: 'BUDI95 quota back to 300 litres · school maintenance up to RM1.5b', bm: 'kuota BUDI95 kembali 300 liter · penyelenggaraan sekolah naik RM1.5b' },
         mom: { en: '◆ SUSTAINED', bm: '◆ BERTERUSAN' }, momClass: 'fl',
-        cat: { en: 'Election', bm: 'Pilihan raya' }, catClass: 'c-elec',
-        why: {
-          en: 'Whether a state record can outrun a national swing is the core question of 1 August.',
-          bm: 'Sama ada rekod negeri boleh mengatasi gelombang nasional ialah persoalan teras 1 Ogos.'
-        },
-        frames: {
-          a: { en: 'Voters reward delivery they can see locally.', bm: 'Pengundi membalas penyampaian yang mereka lihat di peringkat tempatan.' },
-          b: { en: 'National mood overrides any state scorecard.', bm: 'Suasana nasional mengatasi mana-mana kad skor negeri.' }
-        }
-      },
-      {
-        title: { en: 'Cost of living — the substrate under every campaign', bm: 'Kos sara hidup — substrat setiap kempen' },
-        sub: { en: 'BUDI95 held at RM1.99 · weekly price windows', bm: 'BUDI95 kekal RM1.99 · tetingkap harga mingguan' },
-        mom: { en: '◆ RECURRING', bm: '◆ BERULANG' }, momClass: 'fl',
         cat: { en: 'Economy', bm: 'Ekonomi' }, catClass: 'c-eco',
         why: {
-          en: 'The permanent substrate of Malaysian political talk. Every bloc must answer it; none owns it.',
-          bm: 'Substrat kekal perbualan politik Malaysia. Setiap blok mesti menjawabnya; tiada siapa memilikinya.'
+          en: 'Announced on National Day eve, live since 1 Sep, and the first of three announcements running into the 9 October budget.',
+          bm: 'Diumumkan malam Hari Kebangsaan, berkuat kuasa sejak 1 Sep, dan yang pertama daripada tiga pengumuman menjelang belanjawan 9 Oktober.'
         },
         frames: {
-          a: { en: 'Targeted subsidy is working and protecting the majority.', bm: 'Subsidi bersasar berkesan dan melindungi majoriti.' },
-          b: { en: 'Households still feel squeezed despite the targeting.', bm: 'Isi rumah masih rasa terhimpit walaupun disasarkan.' }
+          a: { en: 'Relief delivered where households actually feel it.', bm: 'Bantuan disalurkan di tempat isi rumah benar-benar merasainya.' },
+          b: { en: 'A restoration of what was tightened earlier, timed to the calendar.', bm: 'Pemulihan apa yang diketatkan sebelum ini, mengikut masa kalendar.' }
+        }
+      },
+      {
+        title: { en: 'Sarawak declares a haze emergency in Serian', bm: 'Sarawak isytihar darurat jerebu di Serian' },
+        sub: { en: '647 schools shut · ASEAN haze alert at its highest level', bm: '647 sekolah ditutup · amaran jerebu ASEAN pada tahap tertinggi' },
+        mom: { en: '▲ RISING', bm: '▲ MENINGKAT' }, momClass: 'up',
+        cat: { en: 'Governance', bm: 'Tadbir urus' }, catClass: 'c-gov',
+        why: {
+          en: 'The first emergency declaration of this haze season. It moves the issue from an air-quality reading to a question of who is answerable.',
+          bm: 'Pengisytiharan darurat pertama musim jerebu ini. Ia mengalihkan isu daripada bacaan kualiti udara kepada persoalan siapa yang bertanggungjawab.'
+        },
+        frames: {
+          a: { en: 'An imported crisis — the fires are across a border we cannot police.', bm: 'Krisis import — kebakaran berlaku di seberang sempadan yang kita tidak boleh kawal.' },
+          b: { en: 'A preparedness question — the alerts came weeks before the closures.', bm: 'Persoalan kesiapsiagaan — amaran datang berminggu sebelum penutupan.' }
         }
       }
     ],
 
     /* ---------- the seven-day arc ---------- */
-    weekRange: { en: '13 – 19 Jul 2026', bm: '13 – 19 Jul 2026' },
+    weekRange: { en: '31 Aug – 6 Sep 2026', bm: '31 Ogos – 6 Sep 2026' },
     weekly: [
       {
-        title: { en: 'Johor after-shock → the projection war', bm: 'Gegaran Johor → perang unjuran' },
+        title: { en: 'The Melaka pact, negotiated in public', bm: 'Pakatan Melaka, dirundingkan secara terbuka' },
         trend: { en: 'BUILDING', bm: 'MEMBINA' }, trendClass: 'up',
         arc: {
-          en: 'BN’s 48-of-56 win on 11 Jul reset every N9 forecast. Current public indicators put BN–PN around 23–26 seats, PH 10–13, Bersatu 0–1.',
-          bm: 'Kemenangan BN 48 daripada 56 pada 11 Jul menetapkan semula setiap unjuran N9. Penunjuk awam semasa meletakkan BN–PN sekitar 23–26 kerusi, PH 10–13, Bersatu 0–1.'
+          en: 'On 27 Aug the menteri besar said BN would defend all 21 seats with no compromise. On 5 Sep, from the PAS muktamar, Hadi Awang said BN–PN talks had begun but were not concluded — and Takiyuddin Hassan said Zahid Hamidi’s absence from the muktamar did not signal the alliance’s end.',
+          bm: 'Pada 27 Ogos menteri besar berkata BN akan mempertahankan kesemua 21 kerusi tanpa kompromi. Pada 5 Sep, dari muktamar PAS, Hadi Awang berkata rundingan BN–PN sudah bermula tetapi belum muktamad — dan Takiyuddin Hassan berkata ketidakhadiran Zahid Hamidi di muktamar itu bukan tanda berakhirnya perikatan.'
         },
         bearing: {
-          en: 'Sets the expectation bar — under-performing a projection can read as defeat even inside a win.',
-          bm: 'Menetapkan aras jangkaan — prestasi bawah unjuran boleh dibaca sebagai kekalahan walau dalam kemenangan.'
+          en: 'Two claims on the same 21 seats. Whoever concedes first sets the shape of the ballot.',
+          bm: 'Dua tuntutan atas 21 kerusi yang sama. Siapa mengalah dahulu menentukan bentuk kertas undi.'
         }
       },
       {
-        title: { en: 'Coalition stability — DAP exits the Melaka government', bm: 'Kestabilan gabungan — DAP keluar kerajaan Melaka' },
+        title: { en: 'The Perlis temple row widens into arrests', bm: 'Isu kuil Perlis merebak kepada tangkapan' },
+        trend: { en: 'ESCALATING', bm: 'MERUNCING' }, trendClass: 'up',
+        arc: {
+          en: 'The Sri Veeramakaliamman temple in Kangar was demolished on 20 Aug, a day after its committee filed a civil suit; the state says it sat on state land without permit, the committee says it was assured until 31 December. On 4 Sep an activist was arrested over a TikTok video about the site, and on 6 Sep the remand was extended as the probe widened to criminal trespass.',
+          bm: 'Kuil Sri Veeramakaliamman di Kangar dirobohkan pada 20 Ogos, sehari selepas jawatankuasanya memfailkan saman sivil; kerajaan negeri berkata ia di atas tanah kerajaan tanpa permit, jawatankuasa berkata mereka dijamin sehingga 31 Disember. Pada 4 Sep seorang aktivis ditahan berhubung video TikTok mengenai tapak itu, dan pada 6 Sep reman dilanjutkan apabila siasatan diperluas kepada pencerobohan jenayah.'
+        },
+        bearing: {
+          en: 'The most 3R-sensitive thread going into a state campaign — and the one most likely to be quoted out of context.',
+          bm: 'Tema paling sensitif 3R menjelang satu kempen negeri — dan paling mudah dipetik di luar konteks.'
+        }
+      },
+      {
+        title: { en: 'Tabung Haji — enforcement and a structural fix, same week', bm: 'Tabung Haji — penguatkuasaan dan pembetulan struktur, minggu yang sama' },
         trend: { en: 'PEAKED', bm: 'MEMUNCAK' }, trendClass: 'pk',
         arc: {
-          en: 'On 14 Jul DAP quit the BN-led Melaka government after the assembly passed appointed-assemblyman amendments; PH became the opposition there.',
-          bm: 'Pada 14 Jul DAP keluar daripada kerajaan Melaka pimpinan BN selepas DUN meluluskan pindaan ADUN dilantik; PH menjadi pembangkang di sana.'
+          en: 'Following the royal commission’s scrutiny of 2015–2017 hotel leases in Makkah and Madinah, MACC detained a former minister in charge of Islamic affairs on 1 Sep; he was remanded five days. On 4 Sep the prime minister backed placing TH’s investment arm under Securities Commission or Bank Negara oversight, with amendments to the Tabung Haji Act 1995 proposed.',
+          bm: 'Susulan penelitian RCI terhadap pajakan hotel 2015–2017 di Makkah dan Madinah, SPRM menahan seorang bekas menteri hal ehwal Islam pada 1 Sep; beliau direman lima hari. Pada 4 Sep perdana menteri menyokong meletakkan lengan pelaburan TH di bawah penyeliaan Suruhanjaya Sekuriti atau Bank Negara, dengan pindaan Akta Tabung Haji 1995 dicadangkan.'
         },
         bearing: {
-          en: 'Feeds the "can this coalition hold?" frame that both blocs now deploy in Negeri Sembilan.',
-          bm: 'Menyuburkan bingkai "mampukah gabungan ini bertahan?" yang kini digunakan kedua-dua blok di Negeri Sembilan.'
+          en: 'Puts institutional trust on the table just as the blocs argue over who guards public money.',
+          bm: 'Meletakkan kepercayaan institusi di atas meja ketika blok-blok berbahas siapa menjaga wang awam.'
         }
       },
       {
-        title: { en: 'PN’s internal fracture — Bersatu breaks ranks', bm: 'Retak dalaman PN — Bersatu keluar barisan' },
+        title: { en: 'Haze crosses from air-quality reading to emergency', bm: 'Jerebu bertukar daripada bacaan udara kepada darurat' },
         trend: { en: 'BUILDING', bm: 'MEMBINA' }, trendClass: 'up',
         arc: {
-          en: 'BN and PN confirmed a 25/11 seat pact; on 15 Jul Bersatu declared 24 own-logo candidates while staying inside PN.',
-          bm: 'BN dan PN mengesahkan pakatan kerusi 25/11; pada 15 Jul Bersatu mengumumkan 24 calon logo sendiri sambil kekal dalam PN.'
+          en: 'ASEAN’s meteorological centre raised its transboundary haze alert to Level 3 on 27 Aug. Merdeka outdoor events in Sarawak were cancelled, and on 5 Sep an emergency was declared in Serian Division with 647 schools shut. Standing policy closes schools once API passes 200.',
+          bm: 'Pusat meteorologi ASEAN menaikkan amaran jerebu rentas sempadan ke Tahap 3 pada 27 Ogos. Acara Merdeka luar di Sarawak dibatalkan, dan pada 5 Sep darurat diisytihar di Bahagian Serian dengan 647 sekolah ditutup. Dasar sedia ada menutup sekolah apabila IPU melepasi 200.'
         },
         bearing: {
-          en: 'The week’s most consequential development for actual seat outcomes on 1 August.',
-          bm: 'Perkembangan paling berkesan minggu ini terhadap keputusan kerusi sebenar pada 1 Ogos.'
+          en: 'A Borneo-centred crisis in a cycle otherwise focused on the peninsula — and a test of federal–state response.',
+          bm: 'Krisis berpusat di Borneo dalam kitaran yang selebihnya tertumpu di semenanjung — dan ujian tindak balas persekutuan–negeri.'
         }
       },
       {
-        title: { en: 'Judiciary & accountability — Syed Saddiq fully acquitted', bm: 'Kehakiman & kebertanggungjawaban — Syed Saddiq bebas sepenuhnya' },
-        trend: { en: 'FADING', bm: 'SURUT' }, trendClass: 'dn',
-        arc: {
-          en: 'On 13 Jul the Federal Court dismissed the prosecution’s final appeal 2–1, ending a six-year saga.',
-          bm: 'Pada 13 Jul Mahkamah Persekutuan menolak rayuan akhir pendakwaan 2–1, menamatkan saga enam tahun.'
-        },
-        bearing: {
-          en: 'Keeps judicial-independence and youth-politics threads warm without driving N9 directly.',
-          bm: 'Mengekalkan tema kebebasan kehakiman dan politik belia tanpa memacu N9 secara langsung.'
-        }
-      },
-      {
-        title: { en: 'Cost of living — the constant', bm: 'Kos sara hidup — pemalar' },
+        title: { en: 'The runway to Budget 2027', bm: 'Landasan menuju Belanjawan 2027' },
         trend: { en: 'RECURRING', bm: 'BERULANG' }, trendClass: 'fl',
         arc: {
-          en: 'BUDI95 held at RM1.99 through the week’s price window, with unsubsidised rates steady as global prices moderate.',
-          bm: 'BUDI95 kekal RM1.99 sepanjang tetingkap harga minggu ini, dengan kadar tanpa subsidi stabil ketika harga global sederhana.'
+          en: 'The pre-budget statement on 18 Aug set ten consultation focus areas. Six cost-of-living measures announced 30 Aug took effect 1 Sep. A second announcement is set for Malaysia Day in Kuching on 16 Sep, with the budget tabled 9 Oct — against Q2 GDP growth of 6.0% and a 19% US tariff drag.',
+          bm: 'Kenyataan pra-belanjawan pada 18 Ogos menetapkan sepuluh bidang tumpuan perundingan. Enam langkah kos sara hidup yang diumum 30 Ogos berkuat kuasa 1 Sep. Pengumuman kedua dijadualkan pada Hari Malaysia di Kuching, 16 Sep, dengan belanjawan dibentang 9 Okt — berlatarkan pertumbuhan KDNK suku kedua 6.0% dan bebanan tarif AS 19%.'
         },
         bearing: {
-          en: 'The one issue every candidate must address, and the one no bloc can claim to own.',
-          bm: 'Satu-satunya isu yang setiap calon mesti tangani, dan yang tiada blok boleh dakwa miliknya.'
+          en: 'Sets what any state campaign can credibly promise, and what it can only ask Putrajaya for.',
+          bm: 'Menentukan apa yang boleh dijanjikan secara munasabah oleh mana-mana kempen negeri, dan apa yang hanya boleh dipohon daripada Putrajaya.'
         }
       }
     ],
 
     bubbling: [
-      { en: 'FAM naturalisation scandal — EAIC findings', bm: 'Skandal kerakyatan FAM — dapatan EAIC' },
-      { en: 'Freedom of Information Bill → select committee', bm: 'RUU Kebebasan Maklumat → jawatankuasa pilihan' },
-      { en: 'Public Prosecutor–AG decoupling', bm: 'Pengasingan Pendakwa Raya–Peguam Negara' },
-      { en: 'Adat institution polemic in Negeri Sembilan', bm: 'Polemik institusi adat di Negeri Sembilan' }
+      { en: 'US embassy rejects Hadi’s 2014 foreign-interference claim', bm: 'Kedutaan AS tolak dakwaan campur tangan asing Hadi 2014' },
+      { en: 'Scam losses — RM2.77b reported lost in 2025, mule-account arrests continue', bm: 'Kerugian penipuan — RM2.77b dilapor hilang pada 2025, tangkapan akaun keldai berterusan' },
+      { en: 'Melaka’s appointed-assemblymen amendment, still unused', bm: 'Pindaan ADUN dilantik Melaka, masih belum digunakan' },
+      { en: 'Malaysia Day, 16 Sep — second of three pre-budget announcements', bm: 'Hari Malaysia, 16 Sep — kedua daripada tiga pengumuman pra-belanjawan' }
     ]
   };
   /* ===== end AM:DATA ===== */
@@ -236,7 +241,9 @@
     if (!host) return;
     var e = NPAM_NARRATIVE.mainEvent, bm = isBm(), d = daysUntil(e.pollDate);
 
-    var countdown = d > 1 ? (bm ? d + ' hari lagi mengundi' : d + ' days to polling')
+    // pollDate currently holds the constitutional deadline, not a called polling
+    // date — the label says so. Restore 'days to polling' when SPR names the date.
+    var countdown = d > 1 ? (bm ? d + ' hari ke had perlembagaan' : d + ' days to the deadline')
       : d === 1 ? (bm ? 'Mengundi esok' : 'Polling tomorrow')
         : d === 0 ? (bm ? 'Hari mengundi' : 'Polling day')
           : (bm ? 'Mengundi selesai' : 'Polling closed');
@@ -281,7 +288,7 @@
         '<p class="np-event-deck">' + esc(t(e.deck)) + '</p>' +
         '<ul class="np-ms">' + milestones + '</ul>' +
         '<div class="np-facts">' + facts + '</div>' +
-        '<div class="np-sub-h">' + (bm ? 'Kerusi ditandingi setiap blok' : 'Seats contested per bloc') + '</div>' +
+        '<div class="np-sub-h">' + (bm ? 'Kerusi dipegang dalam DUN sedia ada' : 'Seats held in the outgoing assembly') + '</div>' +
         '<div class="np-bars">' + contest + '</div>' +
         '<div class="np-sub-h">' + (bm ? 'Garis pertempuran naratif' : 'Narrative battle lines') + '</div>' +
         '<ul class="np-lines">' + lines + '</ul>' +
@@ -325,7 +332,7 @@
           '<span class="np-mom ' + w.trendClass + '">' + esc(t(w.trend)) + '</span>' +
         '</div>' +
         '<p class="np-week-arc">' + esc(t(w.arc)) + '</p>' +
-        '<div class="np-week-bear"><span>' + (bm ? 'Kesan pada 1 Ogos' : 'Bearing on 1 Aug') + '</span>' + esc(t(w.bearing)) + '</div>' +
+        '<div class="np-week-bear"><span>' + (bm ? 'Kesan pada PRN Melaka' : 'Bearing on the Melaka polls') + '</span>' + esc(t(w.bearing)) + '</div>' +
       '</article>';
     }).join('');
 
