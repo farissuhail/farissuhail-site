@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive four-stroke engine labs for the VW Golf Mk5 R32 3.2 VR6, Sharan 7N 2.0 TSI and BMW X4 F26 2.0 N20. Watch pistons, valves and combustion move through one 720° cycle in 3D. EN / BM." />
+  <title>Four-Stroke Engine Lab · Petrolhead Technica</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#edf0f2" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · Petrolhead Technica" />
+  <meta property="og:title" content="Four-Stroke Engine Lab · Petrolhead Technica" />
+  <meta property="og:description" content="Three engines from my own garage, cut away in 3D: pistons, rods, valves and combustion moving through one 720° cycle." />
+  <meta property="og:url" content="https://farissuhail.com/engine-lab.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/glimpse/technica.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="engine-lab.css?v=1" />
+  <link rel="canonical" href="https://farissuhail.com/engine-lab.html" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<main class="engine-lab">
+
+  <header class="engine-header">
+    <a class="back-to-transmission" id="backLink" href="petrolhead-technica.html">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span data-en="Transmission lab" data-bm="Makmal transmisi">Transmission lab</span>
+    </a>
+    <div class="engine-brand"><i></i> <span data-en="THE ENGINE LAB" data-bm="MAKMAL ENJIN">THE ENGINE LAB</span> <span data-en="/ PERSONAL GARAGE" data-bm="/ GARAJ PERIBADI">/ PERSONAL GARAGE</span></div>
+    <nav class="engine-vehicles" aria-label="Choose engine">
+      <button data-car="r32" aria-pressed="true" class="active">R32 <span>2006</span></button>
+      <button data-car="sharan" aria-pressed="false">SHARAN 7N <span>2012</span></button>
+      <button data-car="bmw" aria-pressed="false">BMW X4 <span>2016</span></button>
+      <button id="langToggle" class="engine-lang" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span></button>
+    </nav>
+  </header>
+
+  <div class="engine-workspace">
+
+    <aside class="engine-left">
+      <div class="engine-identity">
+        <span class="micro-label" id="idMaker">VOLKSWAGEN / GOLF MK5 R32</span>
+        <h1><span id="idFamily">3.2 VR6</span><br><span data-en="Four-Stroke." data-bm="Empat Lejang.">Four-Stroke.</span></h1>
+        <p id="idSubtitle">3.2 L · 15° VR6 · 24 valves</p>
+        <div class="rpm-value"><output id="rpmValue">700</output><span>RPM</span></div>
+        <input class="eng-slider" id="rpmSlider" type="range" min="500" max="6500" step="100" value="700" aria-label="Engine RPM" />
+        <div class="engine-range-labels"><span>500</span><span>6,500</span></div>
+        <p class="slowed-caption" data-en="Motion slowed for study" data-bm="Gerakan diperlahankan untuk kajian">Motion slowed for study</p>
+      </div>
+
+      <section class="engine-card linkage-card">
+        <div class="card-title"><span data-en="PISTON MOTION" data-bm="GERAKAN OMBOH">PISTON MOTION</span> <span><span data-en="CYL" data-bm="SIL">CYL</span> <span id="linkageCyl">1</span></span></div>
+        <div id="linkageChart"></div>
+        <div class="chart-foot"><span data-en="Crank → rod → piston" data-bm="Engkol → rod → omboh">Crank → rod → piston</span><b id="linkageAngle">0°</b></div>
+      </section>
+
+      <section class="engine-card layout-card">
+        <div class="card-title"><span data-en="CYLINDER LAYOUT" data-bm="SUSUNAN SILINDER">CYLINDER LAYOUT</span> <span id="layoutKind">15° VR6</span></div>
+        <div id="layoutChart"></div>
+        <div class="chart-foot"><span data-en="Firing order" data-bm="Urutan pencucuhan">Firing order</span><b id="firingOrder">1–5–3–6–2–4</b></div>
+      </section>
+
+      <section class="engine-card playback-card">
+        <div class="engine-play-row">
+          <button class="engine-play" id="playBtn">
+            <svg id="playIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+            <span id="playLabel" data-en="PAUSE" data-bm="JEDA">PAUSE</span>
+          </button>
+          <button id="stepBtn" aria-label="Advance crank by 30 degrees">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8z"/><path d="M19 5v14"/></svg>
+            <span data-en="STEP" data-bm="LANGKAH">STEP</span>
+          </button>
+          <button id="resetCycleBtn" aria-label="Reset cycle">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+        </div>
+        <label class="slider-label" id="study-speed"><span data-en="PLAYBACK" data-bm="MAIN SEMULA">PLAYBACK</span> <span><span id="speedValue">2.5</span>% <span data-en="SPEED" data-bm="KELAJUAN">SPEED</span></span></label>
+        <input class="eng-slider" id="speedSlider" type="range" min="5" max="150" step="5" value="25" aria-labelledby="study-speed" />
+        <label class="slider-label" id="engine-explode"><span data-en="EXPLODE" data-bm="URAI">EXPLODE</span> <span id="explodeValue">0%</span></label>
+        <input class="eng-slider" id="explodeSlider" type="range" min="0" max="100" step="1" value="0" aria-labelledby="engine-explode" />
+      </section>
+    </aside>
+
+    <section class="engine-model" aria-label="Interactive engine">
+      <div class="engine-stroke-legend" id="strokeLegend"></div>
+      <div class="engine-canvas" id="engineCanvas"></div>
+      <div class="engine-loading" id="engineLoading" data-en="Building the cutaway…" data-bm="Membina keratan…">Building the cutaway…</div>
+      <div role="alert" class="engine-error" id="engineError" hidden></div>
+      <div class="engine-camera">
+        <button id="zoomIn" aria-label="Zoom in"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button id="zoomOut" aria-label="Zoom out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+        <button id="resetCam" aria-label="Reset camera"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+      </div>
+      <div class="model-caption">
+        <span id="viewCaption">CUTAWAY / COMPLETE ROTATING ASSEMBLY</span>
+        <small data-en="Geometry &amp; valve events are illustrative" data-bm="Geometri &amp; peristiwa injap adalah ilustrasi">Geometry &amp; valve events are illustrative</small>
+      </div>
+      <div class="firing-strip">
+        <span class="micro-label" data-en="FIRING SEQUENCE / SELECT A CYLINDER" data-bm="URUTAN PENCUCUHAN / PILIH SATU SILINDER">FIRING SEQUENCE / SELECT A CYLINDER</span>
+        <div id="firingButtons"></div>
+        <p>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v9l6 3"/></svg>
+          <span data-en="Drag / arrow keys to orbit · Scroll to zoom" data-bm="Seret / kekunci anak panah untuk memutar · Skrol untuk zum">Drag / arrow keys to orbit · Scroll to zoom</span>
+        </p>
+      </div>
+    </section>
+
+    <aside class="engine-right">
+      <section class="engine-card phase-card">
+        <div class="card-title"><span><span data-en="CYLINDER" data-bm="SILINDER">CYLINDER</span> <span id="phaseCyl">1</span></span> <span><span id="phaseDeg">0</span>° / 720°</span></div>
+        <h2 id="strokeName">Intake</h2>
+        <div class="stroke-bars" id="strokeBars"></div>
+        <p id="strokeDesc"></p>
+        <div class="valve-status">
+          <span><i id="intakeDot"></i> <span data-en="INTAKE" data-bm="MASUK">INTAKE</span> <span id="intakeState">OPEN</span></span>
+          <span><i id="exhaustDot"></i> <span data-en="EXHAUST" data-bm="EKZOS">EXHAUST</span> <span id="exhaustState">CLOSED</span></span>
+        </div>
+        <div class="relative-pressure">
+          <strong><span id="pressureValue">7</span><small>%</small></strong>
+          <span><span data-en="RELATIVE PRESSURE" data-bm="TEKANAN RELATIF">RELATIVE PRESSURE</span><br><em data-en="Illustrative, not measured" data-bm="Ilustrasi, bukan ukuran">Illustrative, not measured</em></span>
+        </div>
+      </section>
+
+      <section class="engine-card">
+        <div class="card-title"><span data-en="VALVE TIMING" data-bm="PEMASAAN INJAP">VALVE TIMING</span> <span data-en="IDEAL CYCLE" data-bm="KITARAN IDEAL">IDEAL CYCLE</span></div>
+        <div id="valveChart"></div>
+        <div class="chart-foot"><span data-en="Intake / exhaust / piston" data-bm="Masuk / ekzos / omboh">Intake / exhaust / piston</span><span data-en="No overlap" data-bm="Tiada tindih">No overlap</span></div>
+      </section>
+
+      <section class="engine-card">
+        <div class="card-title"><span data-en="PRESSURE / VOLUME" data-bm="TEKANAN / ISI PADU">PRESSURE / VOLUME</span> <span data-en="RELATIVE" data-bm="RELATIF">RELATIVE</span></div>
+        <div id="pressureChart"></div>
+      </section>
+
+      <section class="engine-card engine-view-card">
+        <div class="card-title" data-en="EXPLORE THE ENGINE" data-bm="TEROKAI ENJIN">EXPLORE THE ENGINE</div>
+        <div class="engine-view-tabs" role="tablist">
+          <button role="tab" data-view="cutaway" aria-selected="true" data-en="Cutaway" data-bm="Keratan">Cutaway</button>
+          <button role="tab" data-view="exploded" aria-selected="false" data-en="Exploded" data-bm="Terurai">Exploded</button>
+          <button role="tab" data-view="cylinder" aria-selected="false" data-en="Cylinder" data-bm="Silinder">Cylinder</button>
+          <button role="tab" data-view="crankshaft" aria-selected="false" data-en="Crank" data-bm="Engkol">Crank</button>
+        </div>
+        <div class="engine-toggles">
+          <label><span data-en="Block" data-bm="Blok">Block</span> <span class="eng-switch"><input type="checkbox" data-toggle="block" checked /><i></i></span></label>
+          <label><span data-en="Valves" data-bm="Injap">Valves</span> <span class="eng-switch"><input type="checkbox" data-toggle="valves" checked /><i></i></span></label>
+          <label><span data-en="Combustion" data-bm="Pembakaran">Combustion</span> <span class="eng-switch"><input type="checkbox" data-toggle="combustion" checked /><i></i></span></label>
+          <label><span data-en="Labels" data-bm="Label">Labels</span> <span class="eng-switch"><input type="checkbox" data-toggle="labels" /><i></i></span></label>
+          <label><span data-en="Auto rotate" data-bm="Putar auto">Auto rotate</span> <span class="eng-switch"><input type="checkbox" data-toggle="autoRotate" /><i></i></span></label>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="engine-timeline">
+    <span><span data-en="CRANK ANGLE" data-bm="SUDUT ENGKOL">CRANK ANGLE</span> <b id="crankAngle">0°</b></span>
+    <input class="eng-slider" id="timelineSlider" type="range" min="0" max="719" step="1" value="0" aria-label="Scrub crank angle across two revolutions" />
+    <span data-en="TWO REVOLUTIONS / ONE CYCLE" data-bm="DUA PUSINGAN / SATU KITARAN">TWO REVOLUTIONS / ONE CYCLE</span>
+    <button id="notesBtn">
+      <span data-en="Engine notes &amp; sources" data-bm="Nota enjin &amp; sumber">Engine notes &amp; sources</span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </button>
+  </section>
+
+  <section class="engine-notes" id="engineNotes" hidden>
+    <button class="close-notes" id="closeNotes" aria-label="Close engine notes">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <h2 id="notesTitle"></h2>
+    <p id="notesDescription"></p>
+    <dl>
+      <div><dt data-en="Bore × stroke" data-bm="Garis pusat × lejang">Bore × stroke</dt><dd id="notesBore"></dd></div>
+      <div><dt data-en="Cylinder head" data-bm="Kepala silinder">Cylinder head</dt><dd id="notesHead"></dd></div>
+      <div><dt data-en="Induction" data-bm="Pengudaraan">Induction</dt><dd id="notesInduction"></dd></div>
+    </dl>
+    <p data-en="All cylinder motion, valve opening, spark and diagrams share one 720° crank cycle. The camshafts turn at half crank speed. Valve events use a simple four-stroke illustration with no overlap; the display does not reproduce variable valve timing, Valvetronic operation, actual ignition timing or measured pressures. Rod proportions, clearances, chain routing, part shapes and the exploded positions are illustrative. Turbocharging and fuel-system hardware are described rather than modelled. Exact installed engine codes have not been checked against the vehicles."
+       data-bm="Semua gerakan silinder, bukaan injap, percikan dan rajah berkongsi satu kitaran engkol 720°. Aci sesondol berputar pada separuh kelajuan engkol. Peristiwa injap menggunakan ilustrasi empat lejang mudah tanpa tindih; paparan ini tidak menghasilkan semula pemasaan injap boleh ubah, operasi Valvetronic, pemasaan pencucuhan sebenar atau tekanan yang diukur. Nisbah rod, kelegaan, laluan rantai, bentuk bahagian dan kedudukan terurai adalah ilustrasi. Turbo dan perkakasan sistem bahan api diterangkan, bukan dimodelkan. Kod enjin sebenar yang dipasang belum disemak pada kenderaan.">
+      All cylinder motion, valve opening, spark and diagrams share one 720° crank cycle. The camshafts turn at half crank speed. Valve events use a simple four-stroke illustration with no overlap; the display does not reproduce variable valve timing, Valvetronic operation, actual ignition timing or measured pressures. Rod proportions, clearances, chain routing, part shapes and the exploded positions are illustrative. Turbocharging and fuel-system hardware are described rather than modelled. Exact installed engine codes have not been checked against the vehicles.
+    </p>
+    <p data-en="The reference video shows a V8. This recreation uses the corresponding VR6 or inline-four architecture for each of my cars."
+       data-bm="Video rujukan menunjukkan V8. Penciptaan semula ini menggunakan seni bina VR6 atau empat sebaris yang sepadan untuk setiap kereta saya.">
+      The reference video shows a V8. This recreation uses the corresponding VR6 or inline-four architecture for each of my cars.
+    </p>
+    <div id="notesLinks"></div>
+  </section>
+
+</main>
+
+<script type="module" src="engine-lab.js?v=1"></script>
+<script src="feedback.js"></script>
+</body>
+</html>

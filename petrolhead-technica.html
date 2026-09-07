@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Petrolhead Technica: interactive engineering labs for the cars I actually run. Cutaway transmissions you can drive with a slider, component by component, in English and Bahasa Melayu." />
+  <meta name="description" content="Petrolhead Technica: interactive engineering labs for the cars I actually run. Cutaway engines and transmissions you can drive with a slider, component by component, in English and Bahasa Melayu." />
   <title>Petrolhead Technica · Faris Suhail</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#06090b" />
@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
   <meta property="og:title" content="Petrolhead Technica" />
-  <meta property="og:description" content="Interactive cutaway transmission labs — VW Mk5 R32 DQ250 and Sharan 7N DQ200 — that you drive with a slider." />
+  <meta property="og:description" content="Interactive cutaway engine and transmission labs — VW Mk5 R32, Sharan 7N and BMW X4 F26 — that you drive with a slider." />
   <meta property="og:url" content="https://farissuhail.com/petrolhead-technica.html" />
   <meta property="og:image" content="https://farissuhail.com/assets/og-book-reviews.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -98,6 +98,9 @@
     }
     .card-blue { --card-accent: #7cc4ff; --card-glow: rgba(124,196,255,.13); }
     .card-royal { --card-accent: #83bfff; --card-glow: rgba(131,191,255,.16); }
+    .card-crimson { --card-accent: #ff6f86; --card-glow: rgba(255,111,134,.14); }
+    .card-ember { --card-accent: #ffa06b; --card-glow: rgba(255,160,107,.14); }
+    .card-sand { --card-accent: #ffd08a; --card-glow: rgba(255,208,138,.14); }
 
     .hub-note {
       margin-top: 46px; border-left: 2px solid var(--tc-line-2); padding: 4px 0 4px 16px;
@@ -126,20 +129,80 @@
 
   <header class="hub-hero">
     <span class="tc-lbl" data-en="Petrolhead Technica · farissuhail.com" data-bm="Petrolhead Technica · farissuhail.com">Petrolhead Technica · farissuhail.com</span>
-    <h1 data-en="Take the gearbox apart <em>without taking the car apart.</em>" data-bm="Buka kotak gear <em>tanpa membuka kereta.</em>">Take the gearbox apart <em>without taking the car apart.</em></h1>
-    <p data-en="Interactive 3D cutaways of the transmissions in the cars I actually run. Orbit the gearbox, explode it, click any part and read what it does. Then drive it: pick a gear, set the revs, and watch the torque path light up while the ratios and road speed recalculate."
-       data-bm="Rajah keratan 3D interaktif bagi transmisi kereta yang saya pandu sendiri. Pusingkan kotak gear, uraikannya, klik mana-mana bahagian dan baca fungsinya. Kemudian pandu ia: pilih gear, tetapkan rpm, dan lihat laluan tork menyala sambil nisbah dan kelajuan jalan dikira semula.">
-      Interactive 3D cutaways of the transmissions in the cars I actually run. Orbit the gearbox, explode it, click any part and read what it does. Then drive it: pick a gear, set the revs, and watch the torque path light up while the ratios and road speed recalculate.
+    <h1 data-en="Take the engine and gearbox apart <em>without taking the car apart.</em>" data-bm="Buka enjin dan kotak gear <em>tanpa membuka kereta.</em>">Take the engine and gearbox apart <em>without taking the car apart.</em></h1>
+    <p data-en="Interactive 3D cutaways of the engines and transmissions in the cars I actually run. Orbit them, explode them, click any part and read what it does. Watch six pistons breathe through one 720° cycle, or pick a gear and follow the torque path while the ratios and road speed recalculate."
+       data-bm="Rajah keratan 3D interaktif bagi enjin dan transmisi kereta yang saya pandu sendiri. Pusingkannya, uraikannya, klik mana-mana bahagian dan baca fungsinya. Lihat enam omboh bernafas melalui satu kitaran 720°, atau pilih gear dan ikut laluan tork sambil nisbah dan kelajuan jalan dikira semula.">
+      Interactive 3D cutaways of the engines and transmissions in the cars I actually run. Orbit them, explode them, click any part and read what it does. Watch six pistons breathe through one 720° cycle, or pick a gear and follow the torque path while the ratios and road speed recalculate.
     </p>
     <div class="hub-stats">
-      <span><b>3</b><span data-en="Labs live" data-bm="Makmal aktif">Labs live</span></span>
-      <span><b>41</b><span data-en="Components mapped" data-bm="Komponen dipetakan">Components mapped</span></span>
+      <span><b>6</b><span data-en="Labs live" data-bm="Makmal aktif">Labs live</span></span>
+      <span><b>3 + 3</b><span data-en="Engines &amp; gearboxes" data-bm="Enjin &amp; kotak gear">Engines &amp; gearboxes</span></span>
       <span><b>WebGL</b><span data-en="Real 3D, no video" data-bm="3D sebenar, bukan video">Real 3D, no video</span></span>
       <span><b>EN / BM</b><span data-en="Both languages" data-bm="Dua bahasa">Both languages</span></span>
     </div>
   </header>
 
   <div class="hub-h">
+    <h2 data-en="Engine labs" data-bm="Makmal enjin">Engine labs</h2>
+    <span class="tc-lbl" data-en="One 720° cycle, four strokes" data-bm="Satu kitaran 720°, empat lejang">One 720° cycle, four strokes</span>
+  </div>
+
+  <div class="hub-grid">
+
+    <a class="lab-card card-crimson" href="engine-lab.html?car=r32">
+      <div class="code">3.2 VR6 · 15° · 24 VALVES · 3D</div>
+      <h3>Golf Mk5 R32</h3>
+      <div class="yr">2006 · six cylinders · naturally aspirated</div>
+      <p data-en="Six cylinders in two closely staggered rows under one cylinder head — the layout that makes a VR6 a VR6. Watch all six pistons, rods and valves move through the same 720° cycle, and isolate any one of them."
+         data-bm="Enam silinder dalam dua baris berselang-seli rapat di bawah satu kepala silinder — susunan yang menjadikan VR6 itu VR6. Lihat semua enam omboh, rod dan injap bergerak melalui kitaran 720° yang sama, dan asingkan mana-mana satu daripadanya.">
+        Six cylinders in two closely staggered rows under one cylinder head — the layout that makes a VR6 a VR6. Watch all six pistons, rods and valves move through the same 720° cycle, and isolate any one of them.
+      </p>
+      <div class="lab-spec">
+        <div><span data-en="Firing order" data-bm="Urutan pencucuhan">Firing order</span><b>1–5–3–6–2–4</b></div>
+        <div><span data-en="Bore × stroke" data-bm="Garis pusat × lejang">Bore × stroke</span><b>84.0 × 95.9 mm</b></div>
+        <div><span data-en="Bank angle" data-bm="Sudut bank">Bank angle</span><b>15°</b></div>
+        <div><span data-en="Valvetrain" data-bm="Rangkaian injap">Valvetrain</span><b>DOHC · 24v</b></div>
+      </div>
+      <span class="lab-cta" data-en="Open the lab →" data-bm="Buka makmal →">Open the lab →</span>
+    </a>
+
+    <a class="lab-card card-ember" href="engine-lab.html?car=sharan">
+      <div class="code">2.0 TSI · INLINE-4 · 16 VALVES · 3D</div>
+      <h3>Sharan 7N</h3>
+      <div class="yr">2012 · turbocharged · direct injection</div>
+      <p data-en="A turbocharged, direct-injection four sharing one straight cylinder row and a common crankshaft. The simplest way to read the intake, compression, power and exhaust strokes as they happen."
+         data-bm="Enjin empat silinder berturbo dengan suntikan terus yang berkongsi satu baris silinder lurus dan satu aci engkol. Cara paling mudah untuk membaca lejang sedutan, mampatan, kuasa dan ekzos ketika ia berlaku.">
+        A turbocharged, direct-injection four sharing one straight cylinder row and a common crankshaft. The simplest way to read the intake, compression, power and exhaust strokes as they happen.
+      </p>
+      <div class="lab-spec">
+        <div><span data-en="Firing order" data-bm="Urutan pencucuhan">Firing order</span><b>1–3–4–2</b></div>
+        <div><span data-en="Bore × stroke" data-bm="Garis pusat × lejang">Bore × stroke</span><b>82.5 × 92.8 mm</b></div>
+        <div><span data-en="Induction" data-bm="Pengudaraan">Induction</span><b>Turbo · TSI</b></div>
+        <div><span data-en="Valvetrain" data-bm="Rangkaian injap">Valvetrain</span><b>DOHC · 16v</b></div>
+      </div>
+      <span class="lab-cta" data-en="Open the lab →" data-bm="Buka makmal →">Open the lab →</span>
+    </a>
+
+    <a class="lab-card card-sand" href="engine-lab.html?car=bmw">
+      <div class="code">2.0 N20 · INLINE-4 · 16 VALVES · 3D</div>
+      <h3>BMW X4 F26</h3>
+      <div class="yr">2016 · xDrive20i · twin-scroll turbo</div>
+      <p data-en="The N20 combines a twin-scroll turbo, variable cam timing and variable intake-valve lift. The lab shows the underlying four-stroke cycle, with the Valvetronic eccentric shaft drawn in as a reference."
+         data-bm="N20 menggabungkan turbo dwi-skrol, pemasaan sesondol boleh ubah dan angkatan injap masuk boleh ubah. Makmal ini menunjukkan kitaran empat lejang asasnya, dengan aci sipi Valvetronic dilukis sebagai rujukan.">
+        The N20 combines a twin-scroll turbo, variable cam timing and variable intake-valve lift. The lab shows the underlying four-stroke cycle, with the Valvetronic eccentric shaft drawn in as a reference.
+      </p>
+      <div class="lab-spec">
+        <div><span data-en="Firing order" data-bm="Urutan pencucuhan">Firing order</span><b>1–3–4–2</b></div>
+        <div><span data-en="Bore × stroke" data-bm="Garis pusat × lejang">Bore × stroke</span><b>84.0 × 90.1 mm</b></div>
+        <div><span data-en="Induction" data-bm="Pengudaraan">Induction</span><b>Twin-scroll turbo</b></div>
+        <div><span data-en="Valvetrain" data-bm="Rangkaian injap">Valvetrain</span><b>Double VANOS</b></div>
+      </div>
+      <span class="lab-cta" data-en="Open the lab →" data-bm="Buka makmal →">Open the lab →</span>
+    </a>
+
+  </div>
+
+  <div class="hub-h" style="margin-top:52px">
     <h2 data-en="Transmission labs" data-bm="Makmal transmisi">Transmission labs</h2>
     <span class="tc-lbl" data-en="Open one and drive it" data-bm="Buka satu dan pandulah">Open one and drive it</span>
   </div>
@@ -200,9 +263,9 @@
   </div>
 
   <p class="hub-note"
-     data-en="The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not."
-     data-bm="Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak.">
-    The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not.
+     data-en="The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not."
+     data-bm="Makmal enjin berkongsi satu kitaran 720° merentas model dan setiap rajah, dengan aci sesondol pada separuh kelajuan engkol. Peristiwa injap dilukis sebagai empat lejang ideal tanpa tindih, jadi pemasaan injap boleh ubah, Valvetronic dan peta pencucuhan sebenar diterangkan dan bukan disimulasikan, manakala lengkung tekanan adalah relatif untuk pembelajaran, bukan ukuran. Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak.">
+    The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not.
   </p>
 
   <div class="hub-foot">
