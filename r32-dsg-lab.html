@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive transmission lab for the 2006 VW Golf Mk5 R32: the 02E / DQ250 six-speed wet dual-clutch DSG and 4Motion Haldex driveline, component by component, with live gear ratios. EN / BM." />
+  <title>R32 Transmission Lab · Petrolhead Technica</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#06090b" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · Petrolhead Technica" />
+  <meta property="og:title" content="R32 Transmission Lab — 02E / DQ250 six-speed DSG" />
+  <meta property="og:description" content="An interactive cutaway of the Mk5 R32's wet dual-clutch DSG and 4Motion driveline: 18 components, live ratios, exploded and x-ray views." />
+  <meta property="og:url" content="https://farissuhail.com/r32-dsg-lab.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-book-reviews.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="technica.css?v=1" />
+  <link rel="canonical" href="https://farissuhail.com/r32-dsg-lab.html" />
+  <style>
+    .lang-toggle { background: none; border: 1px solid var(--tc-line-2); border-radius: 6px; padding: 6px 9px; cursor: pointer; font-family: var(--tc-mono); font-size: 10px; letter-spacing: .1em; color: var(--tc-dim); }
+    .lang-toggle .active { color: var(--tc-accent); }
+    .lang-sep { opacity: .4; margin: 0 3px; }
+  </style>
+</head>
+<body class="technica">
+
+<div class="tc-app">
+
+  <!-- TOP -->
+  <header class="tc-top">
+    <div class="tc-brand">
+      <span class="tc-mark">R32</span>
+      <span style="min-width:0">
+        <span class="tc-brand-name">R32 TRANSMISSION LAB</span><br />
+        <span class="tc-brand-sub" data-en="Petrolhead Technica · farissuhail.com" data-bm="Petrolhead Technica · farissuhail.com">Petrolhead Technica · farissuhail.com</span>
+      </span>
+    </div>
+    <div class="tc-top-mid" data-en="Golf Mk5 R32 (2006) · 02E DQ250 six-speed wet DSG + 4Motion" data-bm="Golf Mk5 R32 (2006) · 02E DQ250 DSG basah enam kelajuan + 4Motion">Golf Mk5 R32 (2006) · 02E DQ250 six-speed wet DSG + 4Motion</div>
+    <div class="tc-top-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span></button>
+      <a class="tc-btn" href="petrolhead-technica.html" data-en="← Technica" data-bm="← Technica">← Technica</a>
+    </div>
+  </header>
+
+  <!-- CRUMB -->
+  <div class="tc-crumb">
+    <span><span class="dot">●</span> <span data-en="INTERACTIVE MODEL" data-bm="MODEL INTERAKTIF">INTERACTIVE MODEL</span> &nbsp;/&nbsp; <b data-en="Dual-clutch driveline" data-bm="Pemacu kopling berkembar">Dual-clutch driveline</b></span>
+    <span data-en="02E · <b>DQ250</b> · 350 Nm · wet clutch" data-bm="02E · <b>DQ250</b> · 350 Nm · kopling basah">02E · <b>DQ250</b> · 350 Nm · wet clutch</span>
+  </div>
+
+  <!-- BODY -->
+  <div class="tc-body">
+
+    <!-- LEFT -->
+    <aside class="tc-rail">
+      <div class="tc-rail-head">
+        <h2 data-en="Components" data-bm="Komponen">Components</h2>
+        <span id="partCount">18</span>
+      </div>
+      <p class="tc-rail-note" data-en="Click a part to inspect it. The eye hides it from the cutaway." data-bm="Klik satu bahagian untuk memeriksanya. Ikon mata menyembunyikannya dari rajah.">Click a part to inspect it. The eye hides it from the cutaway.</p>
+      <div class="tc-search"><input id="partSearch" type="search" placeholder="Search components…" /></div>
+      <div class="tc-list" id="partList"></div>
+    </aside>
+
+    <!-- STAGE -->
+    <section class="tc-stage">
+      <div class="tc-stage-head">
+        <span class="tc-lbl" data-en="01 / Driveline anatomy" data-bm="01 / Anatomi pemacu">01 / Driveline anatomy</span>
+        <h1 id="labTitle">Power in motion.</h1>
+        <p id="labDeck">Move the sliders and watch the box work.</p>
+      </div>
+      <div class="tc-scene" id="scene">
+        <div class="tc-mode-pill" id="modePill"></div>
+        <div class="tc-zoom">
+          <button id="zoomIn" aria-label="Zoom in">+</button>
+          <button id="zoomFit" aria-label="Fit">◦</button>
+          <button id="zoomOut" aria-label="Zoom out">−</button>
+        </div>
+        <div class="tc-scene-foot">
+          <span><i>——</i> <span data-en="Shaft 1 · odd gears" data-bm="Aci 1 · gear ganjil">Shaft 1 · odd gears</span></span>
+          <span><i>——</i> <span data-en="Shaft 2 · even gears" data-bm="Aci 2 · gear genap">Shaft 2 · even gears</span></span>
+          <span data-en="Schematic cutaway — proportions simplified for teaching" data-bm="Rajah keratan — nisbah dipermudah untuk pembelajaran">Schematic cutaway — proportions simplified for teaching</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT -->
+    <aside class="tc-info">
+      <h3 id="infoName">—</h3>
+      <div class="sub" id="infoTag">—</div>
+      <div class="tc-fact">
+        <span class="tc-lbl" data-en="Function" data-bm="Fungsi">Function</span>
+        <p id="infoFn">—</p>
+      </div>
+      <div class="tc-fact">
+        <span class="tc-lbl" data-en="Connected to" data-bm="Bersambung dengan">Connected to</span>
+        <p id="infoLink">—</p>
+      </div>
+      <div class="tc-fail">
+        <span class="tc-lbl" data-en="What happens if it fails" data-bm="Apa jadi jika rosak">What happens if it fails</span>
+        <p id="infoFail">—</p>
+      </div>
+      <button class="tc-focus" id="btnFocus" data-en="▸ Isolate this subsystem" data-bm="▸ Asingkan subsistem ini">▸ Isolate this subsystem</button>
+      <hr />
+      <div class="tc-learn">
+        <span class="tc-lbl" data-en="Learning mode" data-bm="Mod pembelajaran">Learning mode</span>
+        <h4 data-en="From engine to wheels." data-bm="Dari enjin ke roda.">From engine to wheels.</h4>
+        <p data-en="Six steps through the torque path of a wet dual-clutch box." data-bm="Enam langkah menyusuri laluan tork kotak kopling berkembar basah.">Six steps through the torque path of a wet dual-clutch box.</p>
+        <div id="learnSteps"></div>
+        <button class="tc-focus" id="btnLearn" style="margin-top:12px" data-en="▸ Next step" data-bm="▸ Langkah seterusnya">▸ Next step</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CONSOLE -->
+  <div class="tc-console">
+    <div class="tc-flow" id="flow"></div>
+    <div class="tc-controls">
+      <div class="tc-ctrl">
+        <span class="tc-lbl" data-en="Selector" data-bm="Pemilih">Selector</span>
+        <div class="tc-modes" id="modes">
+          <button data-m="P">P</button><button data-m="R">R</button><button data-m="N">N</button><button data-m="D" class="on">D</button><button data-m="M">M</button>
+        </div>
+        <div class="tc-modes" id="gearRow" style="display:none;margin-top:6px"></div>
+        <div class="tc-hint" data-en="M = pick your own gear" data-bm="M = pilih gear sendiri">M = pick your own gear</div>
+      </div>
+
+      <div class="tc-ctrl tc-slider">
+        <span class="tc-lbl" data-en="Engine rpm" data-bm="RPM enjin">Engine rpm</span>
+        <div class="row"><span class="val" id="rpmVal">0<small>rpm</small></span></div>
+        <input id="rpmRange" type="range" min="700" max="6800" step="50" value="2200" />
+        <div class="ends" id="rpmEnds"></div>
+      </div>
+
+      <div class="tc-ctrl tc-slider">
+        <span class="tc-lbl" data-en="Vehicle speed" data-bm="Kelajuan kenderaan">Vehicle speed</span>
+        <div class="row"><span class="val" id="spdVal">0<small>km/h</small></span></div>
+        <input id="spdRange" type="range" min="0" max="250" step="1" value="0" />
+        <div class="ends" id="spdEnds"></div>
+      </div>
+
+      <div class="tc-ctrl tc-ratio">
+        <span class="tc-lbl" data-en="Overall ratio" data-bm="Nisbah keseluruhan">Overall ratio</span>
+        <div class="big" id="ratioBig">—</div>
+        <div class="meta" id="ratioMeta"></div>
+      </div>
+
+      <div class="tc-actions">
+        <button class="tc-btn wide" id="btnPause">Pause</button>
+        <div class="pair">
+          <button class="tc-btn" id="btnExp" data-en="Exploded" data-bm="Terurai">Exploded</button>
+          <button class="tc-btn" id="btnXray" data-en="X-ray" data-bm="X-ray">X-ray</button>
+          <button class="tc-btn" id="btnReset" data-en="Reset" data-bm="Set semula">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.LAB = {
+  id: 'r32',
+  tyre: 1.93,            /* 225/40 R18 rolling circumference, metres */
+  idle: 700, redline: 6800, maxSpeed: 250,
+  box: { code: '02E · DQ250' },
+  title: { en: 'Power in motion.', bm: 'Kuasa dalam gerakan.' },
+  deck: {
+    en: 'Two clutches, two input shafts, one gearbox that is always holding the next gear ready.',
+    bm: 'Dua kopling, dua aci masuk, satu kotak gear yang sentiasa menyiapkan gear seterusnya.'
+  },
+  flowLabel: { en: 'Power flow', bm: 'Aliran kuasa' },
+  flow: [
+    { en: 'VR6 3.2', bm: 'VR6 3.2' },
+    { en: 'Dual clutch', bm: 'Kopling berkembar' },
+    { en: 'Gear set', bm: 'Set gear' },
+    { en: 'Final drive', bm: 'Pemacu akhir' },
+    { en: 'Front diff', bm: 'Diff depan' },
+    { en: 'Haldex', bm: 'Haldex' },
+    { en: 'Wheels', bm: 'Roda' }
+  ],
+  ui: {
+    search: { en: 'Search components…', bm: 'Cari komponen…' },
+    gear: { en: 'Gear', bm: 'Gear' },
+    inBox: { en: 'in box', bm: 'dalam kotak' },
+    finalDrive: { en: 'Final', bm: 'Akhir' },
+    clutch: { en: 'Clutch', bm: 'Kopling' },
+    engaged: { en: 'engaged', bm: 'bergabung' },
+    preselect: { en: 'pre-selected', bm: 'pra-pilih' },
+    noDrive: { en: 'no drive to the wheels', bm: 'tiada pacuan ke roda' },
+    pause: { en: 'Pause', bm: 'Jeda' },
+    play: { en: 'Play', bm: 'Main' }
+  },
+
+  /* 02E four-wheel-drive DSG, 3.2 V6 (codes GYC / HUW / HXZ) */
+  gears: [
+    { n: '1', ratio: 2.933, final: 4.800, shaft: 1 },
+    { n: '2', ratio: 1.792, final: 4.800, shaft: 2 },
+    { n: '3', ratio: 1.267, final: 4.800, shaft: 1 },
+    { n: '4', ratio: 0.975, final: 4.800, shaft: 2 },
+    { n: '5', ratio: 1.030, final: 3.600, shaft: 1 },
+    { n: '6', ratio: 0.825, final: 3.600, shaft: 2 }
+  ],
+  reverse: { n: 'R', ratio: 3.352, final: 3.600, shaft: 2 },
+
+  groups: [
+    { id: 'case',  label: { en: 'Housing', bm: 'Kebuk' } },
+    { id: 'input', label: { en: 'Input & clutch', bm: 'Masukan & kopling' } },
+    { id: 'gears', label: { en: 'Gear sets', bm: 'Set gear' } },
+    { id: 'ctrl',  label: { en: 'Control & fluid', bm: 'Kawalan & bendalir' } },
+    { id: 'out',   label: { en: 'Final drive', bm: 'Pemacu akhir' } },
+    { id: 'awd',   label: { en: '4Motion driveline', bm: 'Pemacu 4Motion' } }
+  ],
+
+  parts: [
+    { id: 'case', group: 'case', tag: '02E', flow: 0,
+      name: { en: 'Gearbox housing & bell housing', bm: 'Kebuk gearbox & kebuk loceng' },
+      fn: { en: 'One aluminium case carries the clutch, both shaft sets, the differential and 7.2 litres of ATF. It also bolts straight to the VR6 block, so it is a structural member of the drivetrain, not just a cover.', bm: 'Satu kebuk aluminium menampung kopling, kedua-dua set aci, pembeza dan 7.2 liter ATF. Ia juga diikat terus pada blok VR6, jadi ia anggota struktur pemacu, bukan sekadar penutup.' },
+      link: { en: 'Engine block · gearbox mounts · subframe', bm: 'Blok enjin · dudukan gearbox · subrangka' },
+      fail: { en: 'A weeping case seal or cracked housing drops the ATF level. Low fluid starves the clutches and the mechatronic first, long before anything sounds broken.', bm: 'Pengedap bocor atau kebuk retak menurunkan paras ATF. Bendalir rendah mengorbankan kopling dan mekatronik dahulu, lama sebelum bunyi rosak kedengaran.' },
+      ex: { dx: 0, dy: -18 },
+      geo: [
+        { t: 'rect', x: 95, y: 70, w: 650, h: 330, rx: 30, fo: 0.05, sw: 1.3 },
+        { t: 'rect', x: 108, y: 84, w: 624, h: 302, rx: 24, fo: 0.02, sw: 0.7 }
+      ] },
+
+    { id: 'dmf', group: 'input', tag: 'DMF', shaft: 0, flow: 1,
+      name: { en: 'Dual-mass flywheel', bm: 'Roda tenaga dwi-jisim' },
+      fn: { en: 'Two plates joined by arc springs, so the VR6 firing pulses are damped before they reach the gearset. Without it the box would rattle every time the engine fired.', bm: 'Dua plat disambung oleh spring arka, supaya denyut pembakaran VR6 diredam sebelum sampai ke set gear. Tanpanya kotak gear akan berdetar setiap kali enjin membakar.' },
+      link: { en: 'Crankshaft · clutch carrier', bm: 'Aci engkol · pembawa kopling' },
+      fail: { en: 'Worn springs give a rattle at idle and a shudder on pull-away. It is a gearbox-out job, so it is normally done together with the clutch pack.', bm: 'Spring haus memberi bunyi berdetar pada pusingan melahu dan gegaran ketika mula bergerak. Ia kerja tanggal gearbox, jadi lazimnya dibuat serentak dengan pek kopling.' },
+      ex: { dx: -60, dy: -30 },
+      geo: [ { t: 'circle', cx: 140, cy: 200, r: 46, spin: 'in', fo: 0.18 }, { t: 'circle', cx: 140, cy: 200, r: 16, fo: 0.3 } ] },
+
+    { id: 'clutch', group: 'input', tag: 'K1 / K2', shaft: 0, flow: 1,
+      name: { en: 'Wet dual-clutch pack (K1 / K2)', bm: 'Pek kopling berkembar basah (K1 / K2)' },
+      fn: { en: 'Two multi-plate clutches sitting in oil. K1 drives the solid shaft (1-3-5), K2 the hollow shaft (2-4-6-R). A shift is one clutch releasing exactly as the other takes up, which is why there is no torque gap.', bm: 'Dua kopling berbilang plat yang berendam dalam minyak. K1 memacu aci pejal (1-3-5), K2 aci berongga (2-4-6-R). Pertukaran gear ialah satu kopling melepas tepat ketika satu lagi menerima, sebab itu tiada jurang tork.' },
+      link: { en: 'Flywheel · both input shafts · mechatronic', bm: 'Roda tenaga · kedua-dua aci masuk · mekatronik' },
+      fail: { en: 'Glazed or worn plates slip: revs flare without speed, and the box gets hot. Wet packs live longer than dry ones but hate old, overheated ATF.', bm: 'Plat licin atau haus akan tergelincir: rpm melonjak tanpa kelajuan, dan kotak gear menjadi panas. Pek basah lebih tahan daripada pek kering tetapi tidak tahan ATF lama yang terlalu panas.' },
+      ex: { dx: -30, dy: -55 },
+      geo: [
+        { t: 'circle', cx: 214, cy: 200, r: 56, spin: 'in', fo: 0.14 },
+        { t: 'circle', cx: 214, cy: 200, r: 36, spin: 'in', fo: 0.22 },
+        { t: 'circle', cx: 214, cy: 200, r: 13, fo: 0.34 }
+      ] },
+
+    { id: 'in1', group: 'input', tag: '1·3·5', shaft: 1, flow: 2,
+      name: { en: 'Input shaft 1 — solid (odd gears)', bm: 'Aci masuk 1 — pejal (gear ganjil)' },
+      fn: { en: 'The inner shaft runs through the hollow one and carries first, third and fifth. It only turns under load when K1 is closed.', bm: 'Aci dalam menembusi aci berongga dan membawa gear pertama, ketiga dan kelima. Ia hanya berputar berbeban apabila K1 tertutup.' },
+      link: { en: 'K1 clutch · odd gear set', bm: 'Kopling K1 · set gear ganjil' },
+      fail: { en: 'Bearing wear on this shaft shows up as a whine that changes with the gear you are in, not with road speed.', bm: 'Galas haus pada aci ini muncul sebagai bunyi berdengung yang berubah mengikut gear, bukan mengikut kelajuan jalan.' },
+      ex: { dx: 0, dy: -70 },
+      geo: [ { t: 'line', x1: 214, y1: 168, x2: 700, y2: 168, w: 9, stroke: 'var(--tc-metal)' } ] },
+
+    { id: 'in2', group: 'input', tag: '2·4·6·R', shaft: 2, flow: 2,
+      name: { en: 'Input shaft 2 — hollow (even gears)', bm: 'Aci masuk 2 — berongga (gear genap)' },
+      fn: { en: 'A sleeve around shaft 1 carrying second, fourth, sixth and reverse. Two concentric shafts is the whole trick that lets one gearbox hold two gears at once.', bm: 'Sarung di sekeliling aci 1 yang membawa gear kedua, keempat, keenam dan undur. Dua aci sepusat inilah helah yang membolehkan satu kotak gear memegang dua gear serentak.' },
+      link: { en: 'K2 clutch · even gear set · reverse idler', bm: 'Kopling K2 · set gear genap · gear undur' },
+      fail: { en: 'Damage here usually takes every even gear with it, so the car limps home on 1-3-5 only.', bm: 'Kerosakan di sini biasanya membawa semua gear genap sekali, jadi kereta pulang tempang dengan 1-3-5 sahaja.' },
+      ex: { dx: 0, dy: 70 },
+      geo: [ { t: 'line', x1: 232, y1: 234, x2: 585, y2: 234, w: 17, fo: 0.1, stroke: 'var(--tc-metal-2)' } ] },
+
+    { id: 'oddset', group: 'gears', tag: '1·3·5', shaft: 1, flow: 2,
+      name: { en: 'Odd gear set (1, 3, 5)', bm: 'Set gear ganjil (1, 3, 5)' },
+      fn: { en: 'Three constant-mesh pairs on shaft 1. In this box first is 2.933, third 1.267 and fifth 1.030 — fifth looks tall only because it sits on the shorter final drive.', bm: 'Tiga pasang gear bersentuh tetap pada aci 1. Dalam kotak ini gear pertama 2.933, ketiga 1.267 dan kelima 1.030 — gear kelima nampak tinggi hanya kerana ia berada pada pemacu akhir yang lebih pendek.' },
+      link: { en: 'Input shaft 1 · output shaft 1 & 2', bm: 'Aci masuk 1 · aci keluar 1 & 2' },
+      fail: { en: 'A chipped tooth is heard as a knock at one specific gear and nowhere else. Metal in the ATF filter is the giveaway.', bm: 'Gigi gear sumbing kedengaran sebagai ketukan pada satu gear tertentu sahaja. Serpihan logam dalam penapis ATF ialah petandanya.' },
+      ex: { dx: 20, dy: -110 },
+      geo: [
+        { t: 'gear', cx: 305, cy: 168, r: 36, teeth: 16, spin: 'in' },
+        { t: 'gear', cx: 405, cy: 168, r: 29, teeth: 14, spin: 'in' },
+        { t: 'gear', cx: 495, cy: 168, r: 23, teeth: 12, spin: 'in' }
+      ] },
+
+    { id: 'evenset', group: 'gears', tag: '2·4·6', shaft: 2, flow: 2,
+      name: { en: 'Even gear set (2, 4, 6)', bm: 'Set gear genap (2, 4, 6)' },
+      fn: { en: 'Second 1.792, fourth 0.975 and sixth 0.825, all on the hollow shaft. While you drive in third, this set has already engaged fourth and is simply waiting.', bm: 'Gear kedua 1.792, keempat 0.975 dan keenam 0.825, semuanya pada aci berongga. Ketika anda memandu pada gear ketiga, set ini sudah pun memasang gear keempat dan hanya menunggu.' },
+      link: { en: 'Input shaft 2 · output shaft 1 & 2', bm: 'Aci masuk 2 · aci keluar 1 & 2' },
+      fail: { en: 'Worn synchro teeth here cause a clunk into second when cold, usually the first complaint an ageing DQ250 makes.', bm: 'Gigi segerak haus di sini menyebabkan bunyi ketukan masuk gear kedua ketika sejuk, biasanya aduan pertama DQ250 yang menua.' },
+      ex: { dx: 20, dy: 110 },
+      geo: [
+        { t: 'gear', cx: 350, cy: 234, r: 33, teeth: 15, spin: 'in', dir: -1 },
+        { t: 'gear', cx: 445, cy: 234, r: 26, teeth: 13, spin: 'in', dir: -1 },
+        { t: 'gear', cx: 530, cy: 234, r: 21, teeth: 12, spin: 'in', dir: -1 }
+      ] },
+
+    { id: 'rev', group: 'gears', tag: 'R 3.352', shaft: 2,
+      name: { en: 'Reverse idler gear', bm: 'Gear pelahu undur' },
+      fn: { en: 'An extra wheel dropped between input and output to flip the direction of rotation. Reverse runs off the even shaft at 3.352 on the 3.600 final.', bm: 'Satu roda tambahan diselitkan antara masukan dan keluaran untuk membalikkan arah putaran. Gear undur berjalan dari aci genap pada 3.352 dengan pemacu akhir 3.600.' },
+      link: { en: 'Input shaft 2 · output shaft 2', bm: 'Aci masuk 2 · aci keluar 2' },
+      fail: { en: 'If reverse alone refuses to engage while every forward gear is fine, suspect this gear or its selector fork.', bm: 'Jika hanya gear undur enggan masuk sedangkan semua gear hadapan elok, syaki gear ini atau garpu pemilihnya.' },
+      ex: { dx: 70, dy: 80 },
+      geo: [ { t: 'gear', cx: 600, cy: 258, r: 19, teeth: 11, spin: 'in', dir: -1 } ] },
+
+    { id: 'synchro', group: 'gears', tag: 'SYNCHRO',
+      name: { en: 'Synchronisers & shift forks', bm: 'Penyegerak & garpu gear' },
+      fn: { en: 'Cone clutches that match shaft speeds before a dog ring locks the chosen gear to its shaft. Hydraulic forks move them; there is no cable and no driver muscle involved.', bm: 'Kopling kon yang menyamakan kelajuan aci sebelum gelang kunci mengunci gear terpilih pada acinya. Garpu hidraulik menggerakkannya; tiada kabel dan tiada tenaga pemandu terlibat.' },
+      link: { en: 'Gear sets · mechatronic hydraulics', bm: 'Set gear · hidraulik mekatronik' },
+      fail: { en: 'Worn cones make the box hesitate or jerk into a gear; a bent fork can lock you out of a gear entirely.', bm: 'Kon haus membuat kotak gear teragak atau menyentak masuk gear; garpu bengkok boleh menghalang satu gear terus.' },
+      ex: { dx: 40, dy: -40 },
+      geo: [
+        { t: 'rect', x: 348, y: 158, w: 20, h: 20, rx: 3, fo: 0.3 },
+        { t: 'rect', x: 448, y: 158, w: 18, h: 20, rx: 3, fo: 0.3 },
+        { t: 'rect', x: 392, y: 224, w: 20, h: 20, rx: 3, fo: 0.3 },
+        { t: 'rect', x: 486, y: 224, w: 18, h: 20, rx: 3, fo: 0.3 }
+      ] },
+
+    { id: 'mecha', group: 'ctrl', tag: 'MECHATRONIC',
+      name: { en: 'Mechatronic unit', bm: 'Unit mekatronik' },
+      fn: { en: 'Valve body and control unit in one, sitting inside the box in the ATF. It reads speed, load and temperature, then decides which gear to pre-select and how fast to hand over between clutches.', bm: 'Badan injap dan unit kawalan dalam satu, berada di dalam kotak gear berendam ATF. Ia membaca kelajuan, beban dan suhu, kemudian memutuskan gear mana untuk dipra-pilih dan sepantas mana penyerahan antara kopling.' },
+      link: { en: 'Clutch pack · shift forks · CAN bus', bm: 'Pek kopling · garpu gear · bas CAN' },
+      fail: { en: 'The classic DQ250 fault: rough or refused shifts, limp mode into second, or no drive at all. Solenoids and pressure sensors fail long before the gears do.', bm: 'Kerosakan klasik DQ250: pertukaran kasar atau gagal, mod tempang ke gear dua, atau langsung tiada pacuan. Solenoid dan penderia tekanan rosak jauh lebih awal daripada gear.' },
+      ex: { dx: -40, dy: 90 },
+      geo: [
+        { t: 'rect', x: 360, y: 300, w: 190, h: 62, rx: 8, fo: 0.12 },
+        { t: 'circle', cx: 392, cy: 331, r: 9, fo: 0.3 },
+        { t: 'circle', cx: 424, cy: 331, r: 9, fo: 0.3 },
+        { t: 'circle', cx: 456, cy: 331, r: 9, fo: 0.3 },
+        { t: 'circle', cx: 488, cy: 331, r: 9, fo: 0.3 }
+      ] },
+
+    { id: 'oil', group: 'ctrl', tag: '7.2 L ATF',
+      name: { en: 'Oil pump, filter & cooler', bm: 'Pam minyak, penapis & penyejuk' },
+      fn: { en: 'The pump makes the pressure that closes the clutches and moves the forks, while the cooler keeps 7.2 litres of ATF in range. In a wet DSG the oil is a working part, not a lubricant.', bm: 'Pam menghasilkan tekanan yang menutup kopling dan menggerakkan garpu, manakala penyejuk mengekalkan suhu 7.2 liter ATF. Dalam DSG basah, minyak ialah bahagian yang bekerja, bukan sekadar pelincir.' },
+      link: { en: 'Mechatronic · clutch pack · radiator', bm: 'Mekatronik · pek kopling · radiator' },
+      fail: { en: 'A blocked filter or tired pump drops pressure, so the clutches slip and the box overheats. This is why the 60,000 km service is not optional.', bm: 'Penapis tersumbat atau pam lemah menurunkan tekanan, jadi kopling tergelincir dan kotak gear terlampau panas. Sebab itu servis 60,000 km bukan pilihan.' },
+      ex: { dx: 60, dy: 95 },
+      geo: [
+        { t: 'rect', x: 578, y: 300, w: 120, h: 62, rx: 8, fo: 0.1 },
+        { t: 'path', d: 'M596 316 h84 M596 331 h84 M596 346 h84', stroke: 'var(--tc-metal-2)', fo: 0 }
+      ] },
+
+    { id: 'out1', group: 'out', tag: 'FINAL I 4.800', shaft: 1, flow: 3,
+      name: { en: 'Output shaft 1 — final drive I', bm: 'Aci keluar 1 — pemacu akhir I' },
+      fn: { en: 'Takes gears one to four and steps them down through a 4.800 final drive. Short gearing for the launch half of the box.', bm: 'Menerima gear pertama hingga keempat dan menurunkannya melalui pemacu akhir 4.800. Gear pendek untuk separuh pecutan kotak ini.' },
+      link: { en: 'Gear sets · differential crown wheel', bm: 'Set gear · roda mahkota pembeza' },
+      fail: { en: 'Bearing failure here gives a speed-related whine that stays whichever of gears one to four you use.', bm: 'Kegagalan galas di sini memberi dengung mengikut kelajuan yang kekal pada mana-mana gear satu hingga empat.' },
+      ex: { dx: 0, dy: 60 },
+      geo: [
+        { t: 'line', x1: 250, y1: 300, x2: 620, y2: 300, w: 9 },
+        { t: 'gear', cx: 305, cy: 300, r: 30, teeth: 14, spin: 'out', dir: -1 },
+        { t: 'gear', cx: 405, cy: 300, r: 33, teeth: 15, spin: 'out', dir: -1 }
+      ] },
+
+    { id: 'out2', group: 'out', tag: 'FINAL II 3.600', shaft: 2, flow: 3,
+      name: { en: 'Output shaft 2 — final drive II', bm: 'Aci keluar 2 — pemacu akhir II' },
+      fn: { en: 'Carries fifth, sixth and reverse on a taller 3.600 final. Two final drives in one box is how the R32 gets both a short first and a relaxed sixth.', bm: 'Membawa gear kelima, keenam dan undur pada pemacu akhir 3.600 yang lebih tinggi. Dua pemacu akhir dalam satu kotak inilah cara R32 mendapat gear pertama yang pendek dan gear keenam yang santai.' },
+      link: { en: 'Gear sets · differential crown wheel', bm: 'Set gear · roda mahkota pembeza' },
+      fail: { en: 'Noise that appears only above about 100 km/h in fifth and sixth points here rather than at the wheels.', bm: 'Bunyi yang hanya muncul melebihi kira-kira 100 km/j pada gear lima dan enam menunjuk ke sini, bukan ke roda.' },
+      ex: { dx: 0, dy: 110 },
+      geo: [
+        { t: 'line', x1: 300, y1: 352, x2: 600, y2: 352, w: 9, fo: 0.1 },
+        { t: 'gear', cx: 495, cy: 352, r: 28, teeth: 13, spin: 'out' },
+        { t: 'gear', cx: 560, cy: 352, r: 24, teeth: 12, spin: 'out' }
+      ] },
+
+    { id: 'diff', group: 'out', tag: 'OPEN DIFF', flow: 4,
+      name: { en: 'Front differential', bm: 'Pembeza hadapan' },
+      fn: { en: 'The crown wheel collects torque from both output shafts and splits it between the front wheels while letting them turn at different speeds through a corner.', bm: 'Roda mahkota mengumpul tork daripada kedua-dua aci keluar dan membahagikannya antara roda hadapan sambil membenarkannya berputar pada kelajuan berbeza ketika membelok.' },
+      link: { en: 'Both final drives · front driveshafts · PTO', bm: 'Kedua-dua pemacu akhir · aci pemacu hadapan · PTO' },
+      fail: { en: 'A worn open diff howls on a steady throttle and lets the inside wheel spin away the traction the VR6 is making.', bm: 'Pembeza terbuka yang haus melolong pada pendikit sekata dan membiarkan roda dalam berpusing sia-sia, membuang cengkaman VR6.' },
+      ex: { dx: -90, dy: 40 },
+      geo: [
+        { t: 'circle', cx: 190, cy: 322, r: 46, spin: 'wheel', fo: 0.16 },
+        { t: 'circle', cx: 190, cy: 322, r: 20, fo: 0.28 }
+      ] },
+
+    { id: 'fshafts', group: 'out', tag: 'CV JOINTS', flow: 6,
+      name: { en: 'Front driveshafts & wheels', bm: 'Aci pemacu hadapan & roda' },
+      fn: { en: 'Unequal-length shafts with CV joints send the torque out to 225/40 R18 tyres, which is where the ratio finally turns into road speed.', bm: 'Aci berlainan panjang dengan sambungan CV menghantar tork ke tayar 225/40 R18, di situlah nisbah akhirnya bertukar menjadi kelajuan jalan.' },
+      link: { en: 'Differential · hubs · tyres', bm: 'Pembeza · hab · tayar' },
+      fail: { en: 'A torn CV boot throws grease, the joint dries out, and you get a clicking sound on full lock long before it lets go.', bm: 'Kulit CV koyak memercikkan gris, sambungan menjadi kering, dan bunyi berdetik pada stereng penuh muncul jauh sebelum ia patah.' },
+      ex: { dx: -30, dy: 70 },
+      geo: [
+        { t: 'line', x1: 152, y1: 344, x2: 78, y2: 424, w: 7 },
+        { t: 'line', x1: 228, y1: 344, x2: 302, y2: 424, w: 7 },
+        { t: 'circle', cx: 66, cy: 440, r: 34, spin: 'wheel', fo: 0.14 },
+        { t: 'circle', cx: 314, cy: 440, r: 34, spin: 'wheel', fo: 0.14 }
+      ] },
+
+    { id: 'pto', group: 'awd', tag: 'PTO', flow: 5,
+      name: { en: 'Power take-off & propshaft', bm: 'Ambilan kuasa & aci pemacu' },
+      fn: { en: 'A bevel gear taps the front differential and sends drive down a two-piece propshaft to the rear axle. The R32 is a front-drive car until this shaft matters.', bm: 'Gear serong mencangkuk pembeza hadapan dan menghantar pacuan melalui aci pemacu dua bahagian ke gandar belakang. R32 ialah kereta pacuan depan sehinggalah aci ini berperanan.' },
+      link: { en: 'Front differential · Haldex coupling', bm: 'Pembeza hadapan · gandingan Haldex' },
+      fail: { en: 'A failed centre bearing or worn UJ gives a vibration that rises with speed and is felt through the floor, not the steering.', bm: 'Galas tengah rosak atau UJ haus memberi getaran yang meningkat dengan kelajuan dan terasa melalui lantai, bukan stereng.' },
+      ex: { dx: 40, dy: 0 },
+      geo: [
+        { t: 'gear', cx: 690, cy: 322, r: 22, teeth: 12, spin: 'out' },
+        { t: 'line', x1: 712, y1: 322, x2: 812, y2: 322, w: 8 }
+      ] },
+
+    { id: 'haldex', group: 'awd', tag: 'GEN 4', flow: 5,
+      name: { en: 'Haldex coupling (Gen 4)', bm: 'Gandingan Haldex (Gen 4)' },
+      fn: { en: 'An electronically controlled wet clutch on the rear axle. Gen 4 uses an electric pump so it can pre-charge and send torque rearward before any slip is measured, rather than waiting for the front to spin.', bm: 'Kopling basah terkawal elektronik pada gandar belakang. Gen 4 menggunakan pam elektrik supaya ia boleh pra-cas dan menghantar tork ke belakang sebelum sebarang gelinciran diukur, bukan menunggu roda depan berpusing.' },
+      link: { en: 'Propshaft · rear differential · ABS sensors', bm: 'Aci pemacu · pembeza belakang · penderia ABS' },
+      fail: { en: 'Skipped oil and filter changes clog the pump and the car quietly becomes front-wheel drive. Most owners never notice until it snows or rains hard.', bm: 'Tukar minyak dan penapis yang diabaikan menyumbat pam dan kereta senyap-senyap menjadi pacuan depan. Kebanyakan pemilik tidak perasan sehingga hujan lebat.' },
+      ex: { dx: 70, dy: -40 },
+      geo: [
+        { t: 'rect', x: 812, y: 292, w: 66, h: 60, rx: 9, fo: 0.14 },
+        { t: 'circle', cx: 845, cy: 322, r: 17, spin: 'out', fo: 0.26 }
+      ] },
+
+    { id: 'rear', group: 'awd', tag: 'REAR AXLE', flow: 6,
+      name: { en: 'Rear differential & driveshafts', bm: 'Pembeza belakang & aci pemacu' },
+      fn: { en: 'Splits whatever the Haldex sends between the two rear wheels. On a dry road that can be almost nothing; under hard acceleration it is a meaningful share of the 250 hp.', bm: 'Membahagikan apa sahaja yang dihantar Haldex antara dua roda belakang. Di jalan kering ia boleh hampir tiada; ketika pecutan kuat ia bahagian bermakna daripada 250 hp.' },
+      link: { en: 'Haldex coupling · rear hubs', bm: 'Gandingan Haldex · hab belakang' },
+      fail: { en: 'Low or old rear diff oil produces a whine on trailing throttle and, left long enough, ruins the crown wheel and pinion.', bm: 'Minyak pembeza belakang yang kurang atau lama menghasilkan dengung ketika pendikit dilepas dan, jika dibiarkan, merosakkan roda mahkota dan pinion.' },
+      ex: { dx: 100, dy: 40 },
+      geo: [
+        { t: 'circle', cx: 912, cy: 322, r: 30, spin: 'wheel', fo: 0.16 },
+        { t: 'line', x1: 884, y1: 336, x2: 848, y2: 412, w: 6 },
+        { t: 'line', x1: 940, y1: 336, x2: 972, y2: 412, w: 6 },
+        { t: 'circle', cx: 840, cy: 434, r: 30, spin: 'wheel', fo: 0.12 },
+        { t: 'circle', cx: 980, cy: 434, r: 30, spin: 'wheel', fo: 0.12 }
+      ] }
+  ],
+
+  learn: [
+    { part: 'dmf', t: { en: 'The VR6 fires', bm: 'VR6 membakar' }, d: { en: 'Torque leaves the crank through the dual-mass flywheel, which smooths the pulses first.', bm: 'Tork meninggalkan aci engkol melalui roda tenaga dwi-jisim, yang meratakan denyutan dahulu.' } },
+    { part: 'clutch', t: { en: 'One clutch takes it', bm: 'Satu kopling mengambilnya' }, d: { en: 'K1 for an odd gear, K2 for an even one. The other clutch is open but its gear is already engaged.', bm: 'K1 untuk gear ganjil, K2 untuk gear genap. Kopling satu lagi terbuka tetapi gearnya sudah pun dipasang.' } },
+    { part: 'oddset', t: { en: 'Through the gearset', bm: 'Melalui set gear' }, d: { en: 'The engaged pair multiplies torque and divides speed by its ratio, 2.933 in first.', bm: 'Pasangan yang bergabung menggandakan tork dan membahagikan kelajuan mengikut nisbahnya, 2.933 pada gear pertama.' } },
+    { part: 'out1', t: { en: 'Down the final drive', bm: 'Turun pemacu akhir' }, d: { en: 'Gears 1-4 use the 4.800 final, 5-6 and reverse the 3.600. Multiply the two and you have the overall ratio.', bm: 'Gear 1-4 menggunakan pemacu akhir 4.800, gear 5-6 dan undur 3.600. Darabkan kedua-duanya untuk mendapat nisbah keseluruhan.' } },
+    { part: 'diff', t: { en: 'Across the differential', bm: 'Merentasi pembeza' }, d: { en: 'The crown wheel splits torque between the front wheels and lets them differ in speed.', bm: 'Roda mahkota membahagikan tork antara roda hadapan dan membenarkan kelajuan berbeza.' } },
+    { part: 'haldex', t: { en: 'And rearward when needed', bm: 'Dan ke belakang bila perlu' }, d: { en: 'The Haldex takes its cut off the front diff and feeds the rear axle before the fronts can spin.', bm: 'Haldex mengambil bahagiannya dari pembeza hadapan dan menyalurkannya ke gandar belakang sebelum roda depan sempat berpusing.' } }
+  ]
+};
+</script>
+<script src="technica.js?v=1"></script>
+</body>
+</html>
