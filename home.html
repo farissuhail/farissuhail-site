@@ -147,15 +147,42 @@
     .navguide-list li::before { content: '›'; position: absolute; left: 0; top: 0; color: #4fd8ff; font-weight: 700; }
     .navguide-list b { color: #f1f5f9; font-weight: 600; }
     .navguide-more {
-      margin-top: 18px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      margin-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding: 16px 18px; border-radius: 14px;
+      border: 1px solid rgba(79,216,255,0.32);
+      background: linear-gradient(135deg, rgba(79,216,255,0.11), rgba(79,216,255,0.025));
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
-    .navguide-more-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-    .navguide-more-txt b { font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: #f1f5f9; transition: color 0.2s; }
-    .navguide-more-txt span { font-size: 11.5px; line-height: 1.45; color: rgba(219,233,245,0.5); }
-    .navguide-more-arrow { flex: 0 0 auto; font-size: 15px; color: #4fd8ff; transition: transform 0.2s; }
-    .navguide-more:hover .navguide-more-txt b, .navguide-more:focus-visible .navguide-more-txt b { color: #9beeff; }
-    .navguide-more:hover .navguide-more-arrow { transform: translate(2px, -2px); }
+    .navguide-more:hover, .navguide-more:focus-visible {
+      transform: translateY(-2px); border-color: rgba(79,216,255,0.7);
+      background: linear-gradient(135deg, rgba(79,216,255,0.18), rgba(79,216,255,0.05));
+    }
+    .navguide-more-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .navguide-more-txt b {
+      font-size: 21px; font-weight: 700; letter-spacing: -0.02em; color: #e4f8ff; line-height: 1.1;
+      text-shadow: 0 0 14px rgba(79,216,255,0.7), 0 0 36px rgba(79,216,255,0.35);
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+    .navguide-more:hover .navguide-more-txt b, .navguide-more:focus-visible .navguide-more-txt b {
+      color: #fff; text-shadow: 0 0 18px rgba(155,238,255,0.95), 0 0 46px rgba(79,216,255,0.6);
+    }
+    .navguide-more-txt span { font-size: 12px; line-height: 1.45; color: rgba(219,233,245,0.6); }
+    .navguide-more-arrow {
+      flex: 0 0 auto; font-size: 19px; color: #4fd8ff; text-shadow: 0 0 12px rgba(79,216,255,0.85);
+      transition: transform 0.25s ease;
+    }
+    .navguide-more:hover .navguide-more-arrow { transform: translate(3px, -3px); }
+    @media (prefers-reduced-motion: no-preference) {
+      .navguide-more { animation: ts-breathe 3.4s ease-in-out infinite; }
+      .navguide-more:hover { animation: none; box-shadow: 0 12px 38px -10px rgba(79,216,255,0.6), inset 0 0 30px -12px rgba(79,216,255,0.9); }
+    }
+    @keyframes ts-breathe {
+      0%, 100% { box-shadow: 0 0 18px -8px rgba(79,216,255,0.45), inset 0 0 22px -16px rgba(79,216,255,0.7); }
+      50% { box-shadow: 0 0 34px -6px rgba(79,216,255,0.75), inset 0 0 26px -12px rgba(79,216,255,0.95); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .navguide-more { box-shadow: 0 0 22px -8px rgba(79,216,255,0.5); }
+    }
 
     .hero-text { display: flex; flex-direction: column; gap: 12px; }
     h1 { font-size: 52px; line-height: 1.0; font-weight: 600; letter-spacing: -0.025em; text-wrap: pretty; }
