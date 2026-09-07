@@ -110,6 +110,43 @@
     .vs-opt:hover { color: #fff; }
     .vs-opt.on { color: #05070d; background: #dbe9f5; font-weight: 500; }
 
+    /* ===== nav cluster: help pill stacked directly above the view switcher ===== */
+    .navcluster { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .navhelp {
+      display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(219,233,245,0.62);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 14px 6px 11px;
+      background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease; white-space: nowrap;
+    }
+    .navhelp:hover, .navhelp:focus-visible { color: #fff; border-color: rgba(79,216,255,0.45); background: rgba(79,216,255,0.08); }
+    .navhelp .navhelp-dot { width: 5px; height: 5px; border-radius: 50%; background: #4fd8ff; box-shadow: 0 0 8px #4fd8ff; flex: 0 0 auto; }
+    @media (prefers-reduced-motion: no-preference) { .navhelp .navhelp-dot { animation: pulse 2.4s ease-in-out infinite; } }
+
+    /* ===== nav guide modal ===== */
+    .navguide { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .navguide[hidden] { display: none; }
+    .navguide-backdrop { position: absolute; inset: 0; background: rgba(2,6,15,0.72); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+    .navguide-panel {
+      position: relative; width: 100%; max-width: 430px; border-radius: 16px;
+      background: rgba(9,13,22,0.94); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.75); padding: 22px 22px 20px;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .navguide-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 6px; }
+    .navguide-head h2 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: #f1f5f9; }
+    .navguide-head p { margin-top: 5px; font-size: 12px; line-height: 1.5; color: rgba(219,233,245,0.5); }
+    .navguide-close {
+      flex: 0 0 auto; width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04); color: rgba(219,233,245,0.7); font-size: 15px; line-height: 1;
+      display: flex; align-items: center; justify-content: center; transition: color 0.2s, border-color 0.2s;
+    }
+    .navguide-close:hover, .navguide-close:focus-visible { color: #fff; border-color: rgba(255,255,255,0.32); }
+    .navguide-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .navguide-list li { position: relative; padding-left: 19px; font-size: 13px; line-height: 1.55; color: rgba(219,233,245,0.78); }
+    .navguide-list li::before { content: '›'; position: absolute; left: 0; top: 0; color: #4fd8ff; font-weight: 700; }
+    .navguide-list b { color: #f1f5f9; font-weight: 600; }
+
     .hero-text { display: flex; flex-direction: column; gap: 12px; }
     h1 { font-size: 52px; line-height: 1.0; font-weight: 600; letter-spacing: -0.025em; text-wrap: pretty; }
     h1 .eyebrow { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(79,216,255,0.8); margin-bottom: 10px; }
@@ -328,7 +365,7 @@
       .only-mobile { display: none; }
       .mspacer { display: none; }
       .wordmark { position: absolute; top: 30px; left: 34px; right: 360px; }
-      .viewswitch { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); z-index: 5; }
+      .navcluster { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); z-index: 5; }
       .hero {
         position: absolute; top: 92px; left: 34px; width: 420px;
         max-height: calc(100vh - 210px); display: flex; flex-direction: column; gap: 18px;
@@ -352,7 +389,9 @@
       .wordmark { order: 0; gap: 8px 10px; }
       .wordmark .brand { font-size: 11px; letter-spacing: 0.22em; }
       .wordmark .tag { font-size: 9px; }
-      .viewswitch { order: 1; align-self: flex-start; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+      .navcluster { order: 1; align-self: center; width: 100%; }
+      .navhelp { align-self: center; }
+      .viewswitch { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
       .viewswitch::-webkit-scrollbar { display: none; }
       .mspacer { order: 1; height: 40vh; min-height: 230px; }
       .hero, .rightcol { display: contents; }
@@ -394,12 +433,17 @@
     <span class="viewchip" id="viewChip" title="Cumulative visits to this site"><span class="live-dot"></span><b id="viewCount">&mdash;</b>&nbsp;visits</span>
   </header>
 
-  <nav class="viewswitch" aria-label="Choose a homepage design">
-    <span class="vs-label">View</span>
-    <a href="/home.html" class="vs-opt on" aria-current="page">Globe</a>
-    <a href="/home-glass.html" class="vs-opt">Glass</a>
-    <a href="/returning/" class="vs-opt">Classic</a>
-  </nav>
+  <div class="navcluster">
+    <button type="button" class="navhelp" id="navHelpBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="navGuide">
+      <span class="navhelp-dot" aria-hidden="true"></span> How to navigate this site
+    </button>
+    <nav class="viewswitch" aria-label="Choose a homepage design">
+      <span class="vs-label">View</span>
+      <a href="/home.html" class="vs-opt on" aria-current="page">Globe</a>
+      <a href="/home-glass.html" class="vs-opt">Glass</a>
+      <a href="/returning/" class="vs-opt">Classic</a>
+    </nav>
+  </div>
 
   <div class="mspacer" aria-hidden="true"></div>
 
@@ -424,7 +468,7 @@
     <div class="whatlives">
       <div class="wlh-head">
         <div class="l"><span class="wlh-blip"></span><h2>What Lives Here</h2></div>
-        <span class="r">13 SECTIONS</span>
+        <span class="r">12 SECTIONS</span>
       </div>
 
       <div class="wlh-grid">
@@ -439,7 +483,6 @@
         <a class="wlh-tile" href="/analitika-malaya.html" style="--wc:#5f9bff"><span class="wlh-tile-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Analitika Malaya</span></a>
         <a class="wlh-tile" href="/sneakers.html" style="--wc:#ff5f7d"><span class="wlh-tile-shot"><img src="/assets/glimpse/sneakers.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Sneakerz</span></a>
         <a class="wlh-tile" href="/petrolhead-technica.html" style="--wc:#5eead4"><span class="wlh-tile-shot"><img src="/assets/glimpse/technica.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Petrolhead Technica</span></a>
-        <a class="wlh-tile" href="/thought-space.html" style="--wc:#74dfc0"><span class="wlh-tile-shot"><img src="/assets/glimpse/thought-space.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Thought Space</span></a>
         <a class="wlh-tile" href="/apps.html" style="--wc:#ff9f6b"><span class="wlh-tile-shot"><img src="/assets/glimpse/apps.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">Apps &amp; Experiments</span></a>
         <a class="wlh-tile" href="/about.html" style="--wc:#dbe9f5"><span class="wlh-tile-shot"><img src="/assets/glimpse/about.jpg" alt="" decoding="async"></span><span class="wlh-tile-name">About</span></a>
       </div>
@@ -506,6 +549,26 @@
   </div>
 </div>
 
+<div class="navguide" id="navGuide" hidden>
+  <div class="navguide-backdrop" data-navclose></div>
+  <div class="navguide-panel" role="dialog" aria-modal="true" aria-labelledby="navGuideTitle" tabindex="-1">
+    <div class="navguide-head">
+      <div>
+        <h2 id="navGuideTitle">How to navigate this site</h2>
+        <p>Quick tour of every way to move around farissuhail.com.</p>
+      </div>
+      <button type="button" class="navguide-close" aria-label="Close" data-navclose>&times;</button>
+    </div>
+    <ul class="navguide-list">
+      <li><b>Drag</b> the globe to spin it, <b>scroll</b> to zoom in and out.</li>
+      <li><b>Click a city</b>, or a region pill on the right, to isolate a place and see its routes.</li>
+      <li>Switch the whole layout up top: <b>Globe</b>, <b>Glass</b>, or <b>Classic</b>.</li>
+      <li>Scroll down to <b>What Lives Here</b>, every section of the site as a tile you can open.</li>
+      <li>Drag the <b>radius slider</b> at the bottom to grow or shrink the travel network.</li>
+    </ul>
+  </div>
+</div>
+
 <!-- Crawlable, screen-reader-friendly version of everything the globe shows -->
 <section class="sr-only">
   <h2>All cities, grouped by region</h2>
@@ -546,7 +609,6 @@
       <li><a href="/apps.html">Apps and experiments</a></li>
       <li><a href="/npam.html">Non-partisan political read</a></li>
       <li><a href="/petrolhead-technica.html">Petrolhead Technica: interactive transmission labs</a></li>
-      <li><a href="/thought-space.html">Thought Space: an interactive map of the site</a></li>
     </ul>
   </nav>
 </section>
@@ -1283,6 +1345,33 @@
   updateUI();
   loadLand();
   loop();
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById('navHelpBtn');
+  var guide = document.getElementById('navGuide');
+  if (!btn || !guide) return;
+  var lastFocus = null;
+  function open() {
+    lastFocus = document.activeElement;
+    guide.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    var panel = guide.querySelector('.navguide-panel');
+    if (panel) panel.focus({ preventScroll: true });
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    guide.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+  btn.addEventListener('click', function () { guide.hidden ? open() : close(); });
+  guide.querySelectorAll('[data-navclose]').forEach(function (el) {
+    el.addEventListener('click', close);
+  });
 })();
 </script>
 </body>
