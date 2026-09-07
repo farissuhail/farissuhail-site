@@ -146,6 +146,16 @@
     .navguide-list li { position: relative; padding-left: 19px; font-size: 13px; line-height: 1.55; color: rgba(219,233,245,0.78); }
     .navguide-list li::before { content: '›'; position: absolute; left: 0; top: 0; color: #4fd8ff; font-weight: 700; }
     .navguide-list b { color: #f1f5f9; font-weight: 600; }
+    .navguide-more {
+      margin-top: 18px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .navguide-more-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .navguide-more-txt b { font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: #f1f5f9; transition: color 0.2s; }
+    .navguide-more-txt span { font-size: 11.5px; line-height: 1.45; color: rgba(219,233,245,0.5); }
+    .navguide-more-arrow { flex: 0 0 auto; font-size: 15px; color: #4fd8ff; transition: transform 0.2s; }
+    .navguide-more:hover .navguide-more-txt b, .navguide-more:focus-visible .navguide-more-txt b { color: #9beeff; }
+    .navguide-more:hover .navguide-more-arrow { transform: translate(2px, -2px); }
 
     .hero-text { display: flex; flex-direction: column; gap: 12px; }
     h1 { font-size: 52px; line-height: 1.0; font-weight: 600; letter-spacing: -0.025em; text-wrap: pretty; }
@@ -566,6 +576,13 @@
       <li>Scroll down to <b>What Lives Here</b>, every section of the site as a tile you can open.</li>
       <li>Drag the <b>radius slider</b> at the bottom to grow or shrink the travel network.</li>
     </ul>
+    <a class="navguide-more" href="/thought-space.html">
+      <span class="navguide-more-txt">
+        <b>Thought Space</b>
+        <span>How this site is structured, as a map of ideas you can spin.</span>
+      </span>
+      <span class="navguide-more-arrow" aria-hidden="true">&#8599;</span>
+    </a>
   </div>
 </div>
 
