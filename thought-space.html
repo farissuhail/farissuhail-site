@@ -32,7 +32,7 @@
 #faris-thought-space *{box-sizing:border-box}#faris-thought-space button,#faris-thought-space a{font:inherit;color:inherit}#faris-thought-space button{cursor:pointer}#faris-thought-space a{text-decoration:none}#faris-thought-space button:focus-visible,#faris-thought-space a:focus-visible{outline:2px solid var(--ts-accent);outline-offset:4px}
 #faris-thought-space .ts-mono{font-family:'IBM Plex Mono',monospace}#faris-thought-space .ts-header{min-height:65px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid var(--ts-line)}
 #faris-thought-space .ts-brand{font-size:14px;font-weight:500;letter-spacing:.8px;display:flex;align-items:center;gap:12px}#faris-thought-space .ts-brand span{font-family:'IBM Plex Mono',monospace;color:var(--ts-accent);font-size:13px}#faris-thought-space .ts-header nav{display:flex;gap:28px;align-items:center;font-size:11px}#faris-thought-space .ts-header nav>span{font-family:'IBM Plex Mono',monospace;color:var(--ts-muted);font-size:9px;letter-spacing:1.3px}
-#faris-thought-space .ts-body{display:grid;grid-template-columns:minmax(0,1fr) 275px}#faris-thought-space .ts-stage{height:575px;position:relative;overflow:hidden;border-right:1px solid var(--ts-line);background:radial-gradient(ellipse at 47% 42%,#13201b70,transparent 66%)}
+#faris-thought-space .ts-body{display:grid;grid-template-columns:minmax(0,1fr) 275px}#faris-thought-space .ts-stage{height:575px;position:relative;overflow:hidden;border-right:1px solid var(--ts-line);background:radial-gradient(ellipse at 47% 42%,#13201b70,transparent 66%)}#faris-thought-space .ts-stage-bg{position:absolute;inset:0;pointer-events:none;opacity:0;background-image:var(--stage-shot);background-size:cover;background-position:center;filter:grayscale(.3) brightness(.55) blur(3px);transform:scale(1.06);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 22%,rgba(0,0,0,.45) 60%,transparent 86%);mask-image:radial-gradient(ellipse at 50% 45%,#000 22%,rgba(0,0,0,.45) 60%,transparent 86%);transition:opacity .55s ease}#faris-thought-space .ts-stage-bg.on{opacity:.32}#faris-thought-space .ts-stage-bg.peek{opacity:.44}@media(prefers-reduced-motion:reduce){#faris-thought-space .ts-stage-bg{transition:none}}
 #faris-thought-space canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}#faris-thought-space canvas:active{cursor:grabbing}
 #faris-thought-space .ts-stage-top{position:absolute;top:24px;left:26px;right:26px;display:flex;justify-content:space-between;pointer-events:none;font:9px 'IBM Plex Mono',monospace;letter-spacing:1.6px;color:var(--ts-muted)}
 #faris-thought-space .ts-stage-top span:first-child{color:var(--ts-accent)}#faris-thought-space .ts-mode-label{position:absolute;top:48px;left:26px;font:11px 'IBM Plex Mono',monospace;color:var(--ts-muted);pointer-events:none}
@@ -66,6 +66,7 @@ html,body{margin:0;min-height:100%;background:#080b0b}
 <header class="ts-header"><a class="ts-brand" href="home.html"><span>[FS]</span> FARIS SUHAIL</a><nav><span>THE MDRN URBAN</span><a href="about.html">About ↗</a></nav></header>
 <div class="ts-body">
 <div class="ts-stage" aria-label="Interactive thought map">
+<div class="ts-stage-bg" aria-hidden="true"></div>
 <canvas role="img" aria-label="A three-dimensional map of Faris's writing and interests. Drag to rotate, pinch to zoom, or select any of the six topic buttons below.">Topics connect across a three-dimensional field.</canvas>
 <div class="ts-stage-top"><span>THOUGHT SPACE / FARIS SUHAIL</span><span>EXPLORE THE CONNECTIONS</span></div><div class="ts-mode-label">mode: connected</div>
 <div class="ts-bracket a"></div><div class="ts-bracket b"></div><div class="ts-bracket c"></div><div class="ts-bracket d"></div>
@@ -114,7 +115,16 @@ for(let group=0;group<GROUPS;group++)for(let j=0;j<PER;j++){
  if(j===0)anchors.push(index);
 }
 for(let i=0;i<nodes.length;i++){const distances=nodes.map((n,j)=>({j,d:n.connected.reduce((s,v,k)=>s+(v-nodes[i].connected[k])**2,0)})).filter(x=>x.j!==i).sort((a,b)=>a.d-b.d);for(let k=0;k<4;k++)if(distances[k].j>i)edges.push([i,distances[k].j]);if(nodes[i].j>0)edges.push([i,nodes[i].group*PER]);}
-function sync(){root.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.mode===mode)));root.querySelectorAll('[data-topic]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.topic===selected)));root.querySelector('.ts-mode-label').textContent='mode: '+['decentralized / scattered ideas','connected / a field of relationships','focused / follow a single thread'][mode];play.firstElementChild.textContent=playing?'Pause motion':'Play motion';play.lastElementChild.textContent=playing?'Ⅱ':'▷';play.setAttribute('aria-pressed',String(!playing));request();}
+const stageBg=root.querySelector('.ts-stage-bg');
+function shotFor(i){const b=root.querySelector('[data-topic="'+i+'"]');return b?b.style.getPropertyValue('--shot'):''}
+function paintStage(i,peek){const v=shotFor(i);if(!v)return;stageBg.style.setProperty('--stage-shot',v);stageBg.classList.add('on');stageBg.classList.toggle('peek',!!peek);}
+root.querySelectorAll('[data-topic]').forEach(b=>{const i=+b.dataset.topic;
+ b.addEventListener('mouseenter',()=>paintStage(i,true));
+ b.addEventListener('focus',()=>paintStage(i,true));
+ b.addEventListener('mouseleave',()=>paintStage(selected,false));
+ b.addEventListener('blur',()=>paintStage(selected,false));
+});
+function sync(){paintStage(selected,false);root.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.mode===mode)));root.querySelectorAll('[data-topic]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.topic===selected)));root.querySelector('.ts-mode-label').textContent='mode: '+['decentralized / scattered ideas','connected / a field of relationships','focused / follow a single thread'][mode];play.firstElementChild.textContent=playing?'Pause motion':'Play motion';play.lastElementChild.textContent=playing?'Ⅱ':'▷';play.setAttribute('aria-pressed',String(!playing));request();}
 function choose(index){selected=index;mode=2;targetYaw=-.12;targetPitch=.03;targetZoom=1.27;const topic=topics[index];root.querySelector('.ts-selection-label').textContent='FOLLOW A THREAD / '+String(index+1).padStart(2,'0');root.querySelector('.ts-selection h2').textContent=topic.title;root.querySelector('.ts-selection p').textContent=topic.description;const link=root.querySelector('.ts-open');link.href=topic.url;link.firstElementChild.textContent=topic.link;sync();}
 root.querySelectorAll('[data-topic]').forEach(b=>b.addEventListener('click',()=>choose(+b.dataset.topic)));
 root.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=+b.dataset.mode;targetZoom=mode===2?1.27:1;targetYaw=.2;targetPitch=-.08;sync();}));
