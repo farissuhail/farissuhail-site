@@ -279,6 +279,18 @@ body.book-summary.theme-signal {
   --glow: 159,211,86;
 }
 
+/* ---- THEME: wine (The Iliad) ---- */
+body.book-summary.theme-wine {
+  --accent: #b0424f; --accent-2: #dc8f99;
+  --accent-grad: linear-gradient(135deg, #b0424f 0%, #dc8f99 100%);
+  --gold: #cfa15e; --gold-2: #ebcc98;
+  --cover-bg: linear-gradient(165deg, #2a1219 0%, #190b10 55%, #0f0608 100%);
+  --cover-frame: rgba(207,161,94,0.45);
+  --cover-rule: #cfa15e; --cover-author: #ebcc98; --cover-the: #dcc3c6;
+  --cover-sub: #b09499; --cover-note: #8d7478; --cover-blurb: #dc8f99;
+  --glow: 176,66,79;
+}
+
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
 
