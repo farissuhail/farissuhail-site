@@ -267,6 +267,18 @@ body.book-summary.theme-indigo {
   --glow: 74,95,193;
 }
 
+/* ---- THEME: signal (From Worm to Human) ---- */
+body.book-summary.theme-signal {
+  --accent: #9fd356; --accent-2: #cbe9a0;
+  --accent-grad: linear-gradient(135deg, #9fd356 0%, #cbe9a0 100%);
+  --gold: #6fd0e0; --gold-2: #a8e6f0;
+  --cover-bg: linear-gradient(165deg, #17200f 0%, #0e1409 55%, #080b06 100%);
+  --cover-frame: rgba(159,211,86,0.45);
+  --cover-rule: #6fd0e0; --cover-author: #d9f0b6; --cover-the: #c8d5b8;
+  --cover-sub: #9aab88; --cover-note: #7c8a6d; --cover-blurb: #cbe9a0;
+  --glow: 159,211,86;
+}
+
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
 

@@ -94,12 +94,13 @@
     <button class="ba-genre" data-g="business" data-en="Business" data-bm="Perniagaan">Business</button>
     <button class="ba-genre" data-g="economics" data-en="Economics" data-bm="Ekonomi">Economics</button>
     <button class="ba-genre" data-g="history" data-en="History" data-bm="Sejarah">History</button>
+    <button class="ba-genre" data-g="science" data-en="Science" data-bm="Sains">Science</button>
   </div>
 
   <!-- section head -->
   <div class="ba-h">
     <h3 data-en="All summaries" data-bm="Semua ringkasan">All summaries</h3>
-    <a href="#" id="baCount">23 books</a>
+    <a href="#" id="baCount">25 books</a>
   </div>
 
   <!-- grid -->
@@ -177,7 +178,8 @@
     { slug:'shoe-dog', title:'Shoe Dog', author:'Phil Knight', cover:8858487, rate:'4.8', genres:'business selfhelp', crown:true },
     { slug:'the-millionaire-master-plan', title:'The Millionaire Master Plan', author:'Roger James Hamilton', cover:11680613, rate:'4.3', genres:'finance business', crown:false },
     { slug:'why-nations-fail', title:'Why Nations Fail', author:'Daron Acemoglu & James A. Robinson', cover:'https://covers.openlibrary.org/b/isbn/9780307719218-L.jpg', rate:'4.6', genres:'economics power', crown:true },
-    { slug:'chinese-secret-societies-in-malaya', title:'The Impact of Chinese Secret Societies in Malaya', author:'Wilfred Blythe', cover:'https://covers.openlibrary.org/b/isbn/9780192149749-L.jpg?default=false', rate:'4.7', genres:'history power', crown:true }
+    { slug:'chinese-secret-societies-in-malaya', title:'The Impact of Chinese Secret Societies in Malaya', author:'Wilfred Blythe', cover:'https://covers.openlibrary.org/b/isbn/9780192149749-L.jpg?default=false', rate:'4.7', genres:'history power', crown:true },
+    { slug:'scaling-brain-emulation', title:'From Worm to Human', author:'Isaak Freeman · MIT thesis', cover:'assets/covers/scaling-brain-emulation.jpg', rate:'4.7', genres:'science', crown:true }
   ];
   var html = document.documentElement;
   function bm() { return html.getAttribute('data-lang') === 'bm'; }
