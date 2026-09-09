@@ -1,0 +1,39 @@
+/* ==========================================================================
+   SHARED VIEW SWITCHER
+   The same five ways to browse the site, reachable from any one of them.
+   Scoped to .fsv so it never collides with a view's own styles.
+   ========================================================================== */
+
+.fsv {
+  position: fixed; top: 22px; left: 50%; transform: translateX(-50%); z-index: 60;
+  display: inline-flex; align-items: center; gap: 3px; padding: 4px;
+  border-radius: 999px;
+  background: rgba(10, 14, 18, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  max-width: calc(100vw - 24px); overflow-x: auto; scrollbar-width: none;
+}
+.fsv::-webkit-scrollbar { display: none; }
+
+.fsv-label {
+  font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(219, 233, 245, 0.42); padding: 0 7px 0 9px; white-space: nowrap;
+}
+
+.fsv a {
+  font-size: 10.5px; letter-spacing: 0.06em; padding: 6px 13px;
+  border-radius: 999px; color: rgba(219, 233, 245, 0.62);
+  text-decoration: none; white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+.fsv a:hover { color: #fff; }
+.fsv a.on { color: #05070d; background: #dbe9f5; font-weight: 500; }
+.fsv a:focus-visible { outline: 2px solid #9fd0ff; outline-offset: 2px; }
+
+@media (max-width: 640px) {
+  .fsv { top: 14px; padding: 3px; }
+  .fsv-label { display: none; }
+  .fsv a { font-size: 10px; padding: 6px 10px; }
+}
+@media print { .fsv { display: none; } }
