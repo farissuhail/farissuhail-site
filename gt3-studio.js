@@ -37,7 +37,8 @@ const ENVIRONMENTS = [
   { id: 'studio', name: 'Studio' }, { id: 'cloudy', name: 'Cloudy sky' },
   { id: 'night', name: 'Night street' }, { id: 'hangar', name: 'Hangar' },
 ];
-const ENVIRONMENT_FILES = { studio: 'studio-6500k.hdr', cloudy: 'sky.hdr', night: 'night-street.hdr', hangar: 'hangar.hdr' };
+// HDRIs: Poly Haven, CC0 (https://polyhaven.com/license)
+const ENVIRONMENT_FILES = { studio: 'studio_small_09.hdr', cloudy: 'kloofendal_overcast.hdr', night: 'cobblestone_street_night.hdr', hangar: 'aircraft_workshop_01.hdr' };
 const ASSET_ROOT = 'assets/gt3/';
 
 /* ───────────────────────── model tools ───────────────────────── */
@@ -590,7 +591,7 @@ function mountStudio(rootEl) {
     <div class="gt3-loading" role="status">${ICONS.loader}<span>Loading Porsche 911 GT3 RS</span><strong>Preparing studio…</strong></div>
     <div class="gt3-error" role="alert" hidden><p></p><button type="button" data-action="reload">Reload model</button><button type="button" data-action="dismiss" hidden>Dismiss</button></div>
     <footer class="gt3-footer"><span><i></i><b class="gt3-status">LOADING MODEL</b></span><p>Drag to rotate · Scroll or pinch to zoom · Select a part</p><small>Visual disassembly · Not a repair guide</small></footer>
-    <a class="gt3-credit" href="https://porsche-911-gt3-rs.cgboy.chatgpt.site/" target="_blank" rel="noreferrer">${ICONS.box} Reference: CGboy_3D</a>
+    <span class="gt3-credit">${ICONS.box} <a href="https://porsche-911-gt3-rs.cgboy.chatgpt.site/" target="_blank" rel="noreferrer">Model reference: CGboy_3D</a> · <a href="https://polyhaven.com/hdris" target="_blank" rel="noreferrer">HDRIs: Poly Haven (CC0)</a></span>
     <a class="gt3-exit" href="petrolhead-technica.html" aria-label="Back to Petrolhead Technica">← TECHNICA</a>
   `;
 
