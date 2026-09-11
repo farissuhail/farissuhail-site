@@ -190,13 +190,18 @@
   function bm() { return html.getAttribute('data-lang') === 'bm'; }
 
   var grid = document.getElementById('baGrid');
-  BOOKS.forEach(function (b) {
+  // The first row of covers is in the viewport on load and one of them is the
+  // page's LCP element, so those must not be lazy: left lazy the browser does
+  // not discover the image until the grid has been built and laid out, which
+  // put LCP at ~8s. Everything below the fold stays lazy.
+  var EAGER_CARDS = 4;
+  BOOKS.forEach(function (b, i) {
     var a = document.createElement('a');
     a.className = 'ba-card'; a.href = b.slug + '.html';
     a.dataset.genres = b.genres; a.dataset.text = (b.title + ' ' + b.author).toLowerCase();
     a.innerHTML =
       '<div class="ba-cover">' +
-        '<img src="' + (typeof b.cover === 'number' ? 'https://covers.openlibrary.org/b/id/' + b.cover + '-L.jpg' : b.cover) + '" alt="' + b.title + '" loading="lazy" ' +
+        '<img src="' + (typeof b.cover === 'number' ? 'https://covers.openlibrary.org/b/id/' + b.cover + '-L.jpg' : b.cover) + '" alt="' + b.title + '" ' + (i < EAGER_CARDS ? 'fetchpriority="high" decoding="async" ' : 'loading="lazy" ') +
           'onerror="this.parentElement.classList.add(\'noimg\');this.remove()" />' +
         '<span class="ba-fallback">' + b.title + '</span>' +
         '<span class="ba-readnow">READ NOW</span>' +
