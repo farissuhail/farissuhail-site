@@ -167,8 +167,11 @@
   // ---------- live cumulative visitor counter ----------
   (function () {
     var NS = 'farissuhail-com', KEY = 'visits';
-    var pill = document.createElement('a');
-    pill.className = 'fb-count'; pill.href = 'javascript:void(0)';
+    // A span, not an anchor: the pill only reports a number, it navigates
+    // nowhere. As an <a href="javascript:void(0)"> it announced itself as a
+    // link to assistive tech and read as an uncrawlable one to search engines.
+    var pill = document.createElement('span');
+    pill.className = 'fb-count';
     pill.title = T('Total visits to this site', 'Jumlah kunjungan ke laman ini');
     document.body.appendChild(pill);
     var counted = false;

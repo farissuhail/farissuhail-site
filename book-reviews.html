@@ -47,7 +47,7 @@
     <a href="npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
   </nav>
   <div class="nav-cta">
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+    <button id="langToggle" class="lang-toggle" aria-label="EN/BM, switch language">
       <span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span>
     </button>
   </div>
@@ -74,9 +74,12 @@
       <p class="auth">Morgan Housel · 2020</p>
       <span class="ba-hero-cta"><span data-en="Read summary" data-bm="Baca ringkasan">Read summary</span> →</span>
     </div>
+    <!-- Eager, and the first one prioritised: these sit above the fold and the
+         left cover is the page's LCP element. Left lazy, the browser did not
+         even discover it until 4.4s in, which put LCP at 8s. -->
     <div class="ba-hero-covers">
-      <img src="https://covers.openlibrary.org/b/id/36434-L.jpg" alt="The Intelligent Investor" loading="lazy" />
-      <img src="https://covers.openlibrary.org/b/id/10389354-L.jpg" alt="The Psychology of Money" loading="lazy" />
+      <img src="https://covers.openlibrary.org/b/id/36434-L.jpg" alt="The Intelligent Investor" fetchpriority="high" decoding="async" />
+      <img src="https://covers.openlibrary.org/b/id/10389354-L.jpg" alt="The Psychology of Money" decoding="async" />
     </div>
   </a>
 
