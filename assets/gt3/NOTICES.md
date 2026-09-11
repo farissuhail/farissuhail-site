@@ -2,7 +2,7 @@
 
 ## Lighting environments — Poly Haven, CC0 (resolved 2026-09-12)
 
-All four HDRIs in `environments/` are from https://polyhaven.com and are released under CC0 1.0
+All four HDRIs in `assets/studio/environments/` (shared by every car studio) are from https://polyhaven.com and are released under CC0 1.0
 (https://polyhaven.com/license). No attribution is required; credited on the page anyway.
 
 | File | Poly Haven asset |
