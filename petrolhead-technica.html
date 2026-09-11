@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
   <meta property="og:title" content="Petrolhead Technica" />
-  <meta property="og:description" content="Interactive cutaway engine and transmission labs — VW Mk5 R32, Sharan 7N and BMW X4 F26 — that you drive with a slider." />
+  <meta property="og:description" content="Interactive cutaway engine and transmission labs — VW Mk5 R32, Sharan 7N and BMW X4 F26 — plus a full Porsche 992 GT3 RS 3D studio." />
   <meta property="og:url" content="https://farissuhail.com/petrolhead-technica.html" />
   <meta property="og:image" content="https://farissuhail.com/assets/og-book-reviews.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -101,6 +101,7 @@
     .card-crimson { --card-accent: #ff6f86; --card-glow: rgba(255,111,134,.14); }
     .card-ember { --card-accent: #ffa06b; --card-glow: rgba(255,160,107,.14); }
     .card-sand { --card-accent: #ffd08a; --card-glow: rgba(255,208,138,.14); }
+    .card-porsche { --card-accent: #b6d7ff; --card-glow: rgba(182,215,255,.15); }
 
     .hub-note {
       margin-top: 46px; border-left: 2px solid var(--tc-line-2); padding: 4px 0 4px 16px;
@@ -135,8 +136,8 @@
       Interactive 3D cutaways of the engines and transmissions in the cars I actually run. Orbit them, explode them, click any part and read what it does. Watch six pistons breathe through one 720° cycle, or pick a gear and follow the torque path while the ratios and road speed recalculate.
     </p>
     <div class="hub-stats">
-      <span><b>6</b><span data-en="Labs live" data-bm="Makmal aktif">Labs live</span></span>
-      <span><b>3 + 3</b><span data-en="Engines &amp; gearboxes" data-bm="Enjin &amp; kotak gear">Engines &amp; gearboxes</span></span>
+      <span><b>7</b><span data-en="Labs live" data-bm="Makmal aktif">Labs live</span></span>
+      <span><b>3 + 3 + 1</b><span data-en="Engines, gearboxes &amp; studio" data-bm="Enjin, kotak gear &amp; studio">Engines, gearboxes &amp; studio</span></span>
       <span><b>WebGL</b><span data-en="Real 3D, no video" data-bm="3D sebenar, bukan video">Real 3D, no video</span></span>
       <span><b>EN / BM</b><span data-en="Both languages" data-bm="Dua bahasa">Both languages</span></span>
     </div>
@@ -262,10 +263,36 @@
 
   </div>
 
+  <div class="hub-h" style="margin-top:52px">
+    <h2 data-en="Vehicle studio" data-bm="Studio kenderaan">Vehicle studio</h2>
+    <span class="tc-lbl" data-en="Whole car, part by part" data-bm="Seluruh kereta, bahagian demi bahagian">Whole car, part by part</span>
+  </div>
+
+  <div class="hub-grid">
+
+    <a class="lab-card card-porsche" href="gt3-rs-studio.html">
+      <div class="code">992 · GT3 RS · INTERACTIVE 3D STUDIO</div>
+      <h3>Porsche 911 GT3 RS</h3>
+      <div class="yr">992 · 4.0 flat-six · 7-speed PDK</div>
+      <p data-en="Not one of mine, but the one I keep coming back to. A detailed full-car model you can orbit, isolate by body, glass, wheels, cabin or trim, explode into its parts, fade to X-ray, repaint in six schemes and relight under four HDR environments."
+         data-bm="Bukan milik saya, tetapi kereta yang saya sentiasa kembali kepadanya. Model kereta penuh yang terperinci: pusingkannya, asingkan badan, kaca, roda, kabin atau trim, uraikan bahagiannya, pudarkan ke X-ray, cat semula dalam enam skema dan terangi semula dengan empat persekitaran HDR.">
+        Not one of mine, but the one I keep coming back to. A detailed full-car model you can orbit, isolate by body, glass, wheels, cabin or trim, explode into its parts, fade to X-ray, repaint in six schemes and relight under four HDR environments.
+      </p>
+      <div class="lab-spec">
+        <div><span data-en="Part groups" data-bm="Kumpulan bahagian">Part groups</span><b>5</b></div>
+        <div><span data-en="Paint schemes" data-bm="Skema cat">Paint schemes</span><b>6</b></div>
+        <div><span data-en="HDR environments" data-bm="Persekitaran HDR">HDR environments</span><b>4</b></div>
+        <div><span data-en="Model" data-bm="Model">Model</span><b>18 MB GLB</b></div>
+      </div>
+      <span class="lab-cta" data-en="Open the studio →" data-bm="Buka studio →">Open the studio →</span>
+    </a>
+
+  </div>
+
   <p class="hub-note"
-     data-en="The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not."
-     data-bm="Makmal enjin berkongsi satu kitaran 720° merentas model dan setiap rajah, dengan aci sesondol pada separuh kelajuan engkol. Peristiwa injap dilukis sebagai empat lejang ideal tanpa tindih, jadi pemasaan injap boleh ubah, Valvetronic dan peta pencucuhan sebenar diterangkan dan bukan disimulasikan, manakala lengkung tekanan adalah relatif untuk pembelajaran, bukan ukuran. Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak.">
-    The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not.
+     data-en="The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide."
+     data-bm="Makmal enjin berkongsi satu kitaran 720° merentas model dan setiap rajah, dengan aci sesondol pada separuh kelajuan engkol. Peristiwa injap dilukis sebagai empat lejang ideal tanpa tindih, jadi pemasaan injap boleh ubah, Valvetronic dan peta pencucuhan sebenar diterangkan dan bukan disimulasikan, manakala lengkung tekanan adalah relatif untuk pembelajaran, bukan ukuran. Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak. Studio GT3 RS ialah pembongkaran visual model rujukan pihak ketiga, bukan panduan pembaikan.">
+    The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide.
   </p>
 
   <div class="hub-foot">
