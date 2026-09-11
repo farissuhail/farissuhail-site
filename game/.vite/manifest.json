@@ -1,21 +1,21 @@
 {
   "_framework-D_rUT4EX.js": {
-    "file": "/game/_next/static/chunks/framework-D_rUT4EX.js",
+    "file": "game/_next/static/chunks/framework-D_rUT4EX.js",
     "name": "framework",
     "imports": [
       "_rolldown-runtime-C60lm6uB.js"
     ]
   },
   "_kit-dimensions-BPt6Hovn.js": {
-    "file": "/game/_next/static/chunks/kit-dimensions-BPt6Hovn.js",
+    "file": "game/_next/static/chunks/kit-dimensions-BPt6Hovn.js",
     "name": "kit-dimensions"
   },
   "_rolldown-runtime-C60lm6uB.js": {
-    "file": "/game/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+    "file": "game/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
     "name": "rolldown-runtime"
   },
   "app/page.tsx": {
-    "file": "/game/_next/static/chunks/page-C1AObEog.js",
+    "file": "game/_next/static/chunks/page-DJBm47wy.js",
     "name": "page",
     "src": "app/page.tsx",
     "isDynamicEntry": true,
@@ -30,7 +30,7 @@
     ]
   },
   "lib/engine.ts": {
-    "file": "/game/_next/static/chunks/engine-dTwUowKr.js",
+    "file": "game/_next/static/chunks/engine-dTwUowKr.js",
     "name": "engine",
     "src": "lib/engine.ts",
     "isDynamicEntry": true,
@@ -39,7 +39,7 @@
     ]
   },
   "node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
-    "file": "/game/_next/static/chunks/app-route-prefetch-policy-C43BYJBz.js",
+    "file": "game/_next/static/chunks/app-route-prefetch-policy-CK_ynJKp.js",
     "name": "app-route-prefetch-policy",
     "src": "node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
     "isDynamicEntry": true,
@@ -48,7 +48,7 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "/game/_next/static/chunks/layout-segment-context-BtK3mzJD.js",
+    "file": "game/_next/static/chunks/layout-segment-context-BzB2uYeq.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
@@ -59,7 +59,7 @@
     ]
   },
   "node_modules/vinext/dist/shims/streamed-icons.js": {
-    "file": "/game/_next/static/chunks/streamed-icons-Cs-m6aYg.js",
+    "file": "game/_next/static/chunks/streamed-icons-Cs-m6aYg.js",
     "name": "streamed-icons",
     "src": "node_modules/vinext/dist/shims/streamed-icons.js",
     "isDynamicEntry": true,
@@ -69,7 +69,7 @@
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "/game/_next/static/chunks/index-BzxdZrQa.js",
+    "file": "game/_next/static/chunks/index-BOlTDvC7.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
