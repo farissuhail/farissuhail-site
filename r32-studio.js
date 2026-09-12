@@ -1,16 +1,15 @@
 // Volkswagen Golf Mk5 R32 (2006) · dataset for car-studio.js
-// Model: original procedural study geometry built for farissuhail.com (no third-party mesh).
+// Model: stunner2211's Golf V R32 print shell (Thingiverse thing:2973517, CC BY-NC-SA 3.0),
+// segmented into paint / glass / grille / lamps / wheels and materialised by build-r32.mjs.
 import * as THREE from 'three';
 import { bootStudio } from './car-studio.js';
 
 const GROUPS = [
-  { id: 'all', name: 'Complete vehicle', subtitle: 'VOLKSWAGEN GOLF MK5 · R32 · 2006', description: 'Explore the complete five-door Mk5 R32.' },
-  { id: 'body', name: 'Body & panels', subtitle: 'SHELL, BONNET, DOORS & TAILGATE', description: 'The painted shell with its bumpers and lights, plus the four doors, the bonnet and the tailgate that hinge off it.' },
-  { id: 'roof', name: 'Roof & glazing', subtitle: 'ROOF SKIN, PILLARS & GLASS', description: 'The roof panel, A/B/C pillars, windscreen, side glazing and rear screen as one lifted assembly.' },
-  { id: 'wheels', name: 'Wheels & suspension', subtitle: '18-INCH ZOLDER WHEELS & STRUTS', description: 'Four multi-spoke wheels with their tyres and brakes, and the MacPherson front and multi-link rear suspension behind them.' },
-  { id: 'cabin', name: 'Passenger cabin', subtitle: 'SEATS, DASHBOARD & CONSOLE', description: 'Front and rear seats, the dashboard, steering wheel and centre console.' },
-  { id: 'drivetrain', name: 'Engine & drivetrain', subtitle: 'VR6, DSG, 4MOTION & EXHAUST', description: 'The transverse 3.2 VR6, the 02E DSG gearbox, the Haldex driveline to the rear axle and the twin centre-exit exhaust.' },
-  { id: 'chassis', name: 'Floor & chassis', subtitle: 'FLOORPAN & STRUCTURE', description: 'The floorpan, sills and structural rails everything else bolts to.' },
+  { id: 'all', name: 'Complete vehicle', subtitle: 'VOLKSWAGEN GOLF MK5 · R32 · 2006', description: 'Explore the complete Mk5 R32.' },
+  { id: 'body', name: 'Body & lamps', subtitle: 'SHELL, GRILLE, INTAKE & LAMPS', description: 'The painted shell with its R32 grille, lower intake, headlamps and tail lamps.' },
+  { id: 'glass', name: 'Glazing', subtitle: 'WINDSCREEN, SIDE GLASS & REAR SCREEN', description: 'The tinted greenhouse as one lifted piece: windscreen, door and quarter glass, and the rear screen.' },
+  { id: 'wheels', name: 'Wheels & tyres', subtitle: '18-INCH ZOLDER WHEELS', description: 'Four multi-spoke Zolder wheels with their tyres, pulled out on their axles.' },
+  { id: 'trim', name: 'Underbody', subtitle: 'FLOOR, DIFFUSER & ARCH LINERS', description: 'The floor pan, rear diffuser and wheel-arch liners that sit below and inside the shell.' },
 ];
 // Mk5 R32 factory colours. Index 0 keeps the model's own Deep Blue Pearl.
 const PAINTS = [
@@ -21,33 +20,31 @@ const PAINTS = [
   { name: 'United Grey', body: '#5b6166', wheel: '#aab3b4' },
   { name: 'Candy White', body: '#eeefec', wheel: '#2a2d30', checkColor: '#17232f', wheelMetalness: .55 },
 ];
-const PART_GROUP = {
-  body: 'body', bonnet: 'body', tailgate: 'body', doors: 'body',
-  roof: 'roof', wheels: 'wheels', suspension: 'wheels', interior: 'cabin',
-  engine: 'drivetrain', transmission: 'drivetrain', driveline: 'drivetrain', exhaust: 'drivetrain', floor: 'chassis',
-};
-// The GLB stores a per-assembly explodeOffset in metres; scale it so the car opens up like the GT3.
-const EXPLODE_SCALE = 1.0;
 
 bootStudio({
   brand: 'VOLKSWAGEN', title: 'GOLF R32', badge: 'MK5', subtitle: '2006 · 3.2 VR6 · 4MOTION · 3D Studio', loadingLabel: 'Golf Mk5 R32',
-  modelUrl: 'assets/r32/golf-r32-mk5-2006.glb', environmentRoot: 'assets/studio/environments/',
-  groups: GROUPS, paints: PAINTS, partMode: 'assembly', glassGroups: ['roof'],
-  footnote: 'Illustrative study model · Not manufacturer CAD',
-  credit: 'Original study model · <a href="https://polyhaven.com/hdris" target="_blank" rel="noreferrer">HDRIs: Poly Haven (CC0)</a>',
-  camera: { position: [-7.2, 3.6, 8.0], target: [0, .7, 0] },
-  isPart: object => object.userData.semanticAssembly === true && typeof object.userData.part === 'string',
-  groupOf: object => PART_GROUP[object.userData.part] ?? 'chassis',
+  modelUrl: 'assets/r32/golf-r32-mk5-2006-shell.glb', environmentRoot: 'assets/studio/environments/',
+  groups: GROUPS, paints: PAINTS, partMode: 'assembly', glassGroups: ['glass'],
+  footnote: 'Three-door shell · Segmented print model, not manufacturer CAD',
+  credit: '<a href="https://www.thingiverse.com/thing:2973517" target="_blank" rel="noreferrer">Model: stunner2211 (CC BY-NC-SA 3.0)</a> · <a href="https://polyhaven.com/hdris" target="_blank" rel="noreferrer">HDRIs: Poly Haven (CC0)</a>',
+  camera: { position: [7.0, 3.4, 7.8], target: [0, .7, 0] },   // nose is at +x
+  // parts: the body-class meshes and each Wheel_* group (its rim + tyre move together)
+  isPart: object => (object.isMesh && object.userData.part && object.userData.part !== 'wheels') || object.userData.piece === 'wheel',
+  groupOf: object => object.userData.part ?? 'trim',
   partOffset(group, center, object) {
-    const [x, y, z] = object.userData.explodeOffset ?? [0, 0, 0];
-    const v = new THREE.Vector3(x, y, z).multiplyScalar(EXPLODE_SCALE);
-    if (object.userData.part === 'wheels') v.y += .08;
-    if (object.userData.part === 'floor') v.y -= .35;
-    return v;
+    const piece = object.userData.piece;
+    if (group === 'wheels') return new THREE.Vector3(0, .08, Math.sign(center.z || object.userData.side || 1) * 1.05);
+    if (group === 'glass') return new THREE.Vector3(0, 1.15, 0);
+    if (piece === 'lampFront') return new THREE.Vector3(.75, .2, 0);
+    if (piece === 'lampRear') return new THREE.Vector3(-.75, .2, 0);
+    if (piece === 'grille') return new THREE.Vector3(.9, .1, 0);
+    if (piece === 'intake') return new THREE.Vector3(.65, -.05, 0);
+    if (group === 'trim') return new THREE.Vector3(0, -.55, 0);
+    return new THREE.Vector3(0, .45, 0);   // shell
   },
-  materialRole(mesh, material, group) {
-    if (material.name?.startsWith('Paint_')) return 'body';
-    if (group === 'wheels' && mesh.userData.part === 'wheels' && material.name === 'Material_002_aab3b4') return 'rim';
+  materialRole(mesh, material) {
+    if (material.name === 'Paint_Body') return 'body';
+    if (material.name === 'Rim_Zolder') return 'rim';
     return null;
   },
 });
