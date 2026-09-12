@@ -389,6 +389,9 @@ export function createStudio(host, config, callbacks) {
   }
   function update(next) {
     const environmentChanged = next.environment !== state.environment;
+    // Optional: ease the camera back as the car comes apart, so exploded parts stay in frame.
+    const k = config.explosionZoom ?? 0;
+    if (k && next.explosion !== state.explosion) zoom((1 + next.explosion * k) / (1 + state.explosion * k));
     state = { ...next }; applyState(); if (environmentChanged) applyEnvironment(state.environment);
   }
   function zoom(factor) {

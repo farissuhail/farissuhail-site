@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "file": "x4-f26-2016.glb",
+  "bytes": 23474200,
+  "sha256": "49e29c9ffe9a430c800978381d434e1aafa86192872f0d35ef72a35e1fb71f2b",
+  "structuralChecks": "GLB container, all buffer/accessor/index bounds, finite coordinates, unit normals, all 15 embedded PNG CRC/data checks passed.",
+  "dimensions": {
+    "length": 4.671,
+    "bodyWidth": 1.881,
+    "mirrorWidth": 2.089,
+    "height": 1.624,
+    "wheelbase": 2.81,
+    "frontOverhang": 0.861,
+    "rearOverhang": 1
+  },
+  "meshes": 108,
+  "triangles": 620093,
+  "cabinDeduplication": {
+    "removedTriangles": 51056,
+    "exactlyPresentInRetainedAssembly": 51056,
+    "missingSourceTriangles": 0
+  },
+  "wheelGeometry": "Each original wheel transformed by one uniform .8880598353 scale and translation, preserving original shape. Tire vertical radius .3515m; all four grounded.",
+  "plateAudit": "Per-face texture sampling produces broad black triangles in offline images; original plate has eight faces with correct UVs and no duplicate coplanar plate primitive.",
+  "remainingLimitations": [
+    "Source M Sport bumper and wheel design retained; exact factory xDrive20i trim not claimed.",
+    "Oval chrome exhaust and connector are approximate original geometry.",
+    "Game reflection and missing shared lamp texture converted to PBR materials."
+  ]
+}

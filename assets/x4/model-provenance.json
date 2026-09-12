@@ -1,0 +1,76 @@
+{
+  "target": "2016 BMW X4 F26 xDrive20i, from the saved vehicle profile",
+  "status": "Local preview only; detailed visual reference, not manufacturer CAD or a scan of the owner’s individual car.",
+  "source": {
+    "title": "BMW X4 F26 for GTA San Andreas",
+    "url": "https://www.gtaall.com/gta-san-andreas/cars/232956-bmw-x4-f26.html",
+    "author_credit": "Santa Claus | MTA CAR",
+    "archive_sha256": "d350f3b2cbaa7cb96eb249f34a64c3d266205cd7e27e7d6a035ce92a07b83eed",
+    "source_variant": "F26 with M Sport-style bodywork and xDrive35d door badge"
+  },
+  "model": {
+    "file": "x4-f26-2016.glb",
+    "sha256": "49e29c9ffe9a430c800978381d434e1aafa86192872f0d35ef72a35e1fb71f2b",
+    "bytes": 23474200,
+    "meshes": 108,
+    "triangles": 620093,
+    "coordinates": "+Y up, +Z vehicle front, +X vehicle left; dimensions in metres",
+    "dimensions_metres": {
+      "length": 4.671,
+      "bodyWidth": 1.881,
+      "mirrorWidth": 2.089,
+      "height": 1.624,
+      "wheelbase": 2.81,
+      "frontOverhang": 0.861,
+      "rearOverhang": 1
+    },
+    "front_axle_z": 1.4745,
+    "rear_axle_z": -1.3355,
+    "nominal_tire_radius": 0.3515,
+    "body_paint_material": "X4 Body Paint"
+  },
+  "adaptations": [
+    "Original detailed cabin, BMW badge and dashboard texture atlases retained. Source duplicate interior assembly removed; complete second assembly retained.",
+    "Vehicle uses source M Sport styling and source wheel design; exact stock xDrive20i bumper and wheel configuration not claimed.",
+    "Dimensions corrected using body shell width separately from mirrors; axles aligned to 2.810 m. Tires/rims uniformly scaled locally to preserve roundness.",
+    "Missing game vehiclelights128 replaced by neutral white headlight/red tail-lamp PBR colors; source lamp geometry retained, modeled reflectors exposed.",
+    "Chrome kidney outlines selected from existing connected geometry; black vertical slats retained. No replacement badge logos generated.",
+    "35d portion of front-door badge removed by isolated letter region; xDrive retained. Single approximate open oval chrome outlet placed vehicle-left, connected by a dark pipe to existing underbody.",
+    "Axle positions follow official BMW drawing: 861mm front and1000mm rear overhang. Both mirror assemblies moved inboard24.36mm; body width unchanged. Nominal19-inch622M tire outer radius~351.5mm.",
+    "Original author plate retained as visible source attribution. Reflection/game materials adapted to PBR; appearance is a reconstruction, not CAD."
+  ],
+  "remaining_differences": [
+    "The owner’s exact bumper package, wheels, upholstery, steering side and optional equipment have not been established. Source M Sport bodywork, wheel design and original cabin remain reference choices.",
+    "The xDrive35d engine letters were removed; the xDrive text remains. The single vehicle-left oval chrome exhaust and connector are reconstructed approximations of the documented xDrive20i layout.",
+    "Game materials were adapted to physically based web rendering. Missing shared lamp texture was replaced with material colours while preserving the original lamp geometry. Paint swatches are screen approximations.",
+    "The original contributor plate is retained. Visual part explosion separates model meshes and is not a mechanical service procedure."
+  ],
+  "manufacturer_references": [
+    {
+      "title": "BMW X4 F26 technical specifications, July 2014",
+      "url": "https://www.press.bmwgroup.com/global/article/attachment/T0169768EN/252711"
+    },
+    {
+      "title": "BMW X4 official dimension drawing, March 2014, page 22",
+      "url": "https://www.press.bmwgroup.com/bulgaria/article/attachment/T0170826BG/254185"
+    },
+    {
+      "title": "BMW X4 July 2016 equipment: xDrive20i single oval left exhaust and available packages",
+      "url": "https://www.press.bmwgroup.com/south-africa/article/attachment/T0261812EN/363046"
+    },
+    {
+      "title": "BMW first-generation X4 production photographs",
+      "url": "https://www.press.bmwgroup.com/global/photo/compilation/T0169706EN/the-new-bmw-x4"
+    }
+  ],
+  "rights": "Public community game-mod download. No clear standalone commercial or redistribution licence supplied. Contributor credit does not establish underlying rights. Keep private; establish rights before public redistribution or commercial publication.",
+  "validation": {
+    "structural": "GLB container, all buffer/accessor/index bounds, finite coordinates, unit normals, all 15 embedded PNG CRC/data checks passed.",
+    "cabin_deduplication": {
+      "removedTriangles": 51056,
+      "exactlyPresentInRetainedAssembly": 51056,
+      "missingSourceTriangles": 0
+    },
+    "visual_review": "Offline model renders and official BMW photographs; no browser interaction tests were run."
+  }
+}
