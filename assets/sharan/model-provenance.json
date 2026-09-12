@@ -1,0 +1,50 @@
+{
+  "vehicle": "Volkswagen Sharan 7N",
+  "targetYear": 2012,
+  "previewOnly": true,
+  "exterior": {
+    "source": "https://www.gta5-mods.com/vehicles/vw-sharan-2016-replace-unlocked",
+    "sourceYear": 2016,
+    "credits": "Vehicle mod and conversion: Victor; original vehicle model credited by author to SQUIR. Underlying model rights not independently verified.",
+    "sourceArchiveSHA256": "d4f43d2f52e4bd55eccebd2796e40cac0287b8b5bab096b3a04fb960204f6cc8",
+    "adaptations": [
+      "Modest piecewise length correction. Both wheel arch regions translate rigidly; wheels translate without scaling.",
+      "Both rear wheels lowered 4.06mm to the same ground plane as the front wheels.",
+      "Existing rear red lens surfaces, outlines and tailgate split retained. Source 2016 LED loop insert nodes excluded.",
+      "Added four original approximate rounded red reflector bowls and optical bulb centres, behind the source curved lens.",
+      "Existing lower reverse/indicator strips compressed to 14mm, with restrained clear finish. Lens detail colored within original surface.",
+      "Rim topology unchanged, finished in neutral bright silver; exact original 2012 factory rim design not claimed.",
+      "Front xenon/LED option retained. Detailed cabin remains external to this file.",
+      "Source VW letters/rings, narrow grille bars, window moldings and roof rails restored to silver chrome. Original black backing and grille openings retained."
+    ],
+    "dimensionsMetres": {
+      "length": 4.854,
+      "mirrorWidthUnchanged": 2.077557,
+      "heightUnchanged": 1.7669849,
+      "wheelbase": 2.919
+    },
+    "lampAccuracy": "2012 rear lamp internals are reference-based original visual approximations, not engineering geometry or exact replacement parts."
+  },
+  "cabin": {
+    "originalWork": true,
+    "description": "Approximate seven-seat reference cabin",
+    "seating": "2+3+2",
+    "steering": "LHD reference",
+    "referenceYear": 2011,
+    "exactFactoryGeometry": false,
+    "notes": "Original softened seat and trim geometry; period-inspired dashboard and round steering wheel. Inferred proportions; not a scan of the owner vehicle."
+  },
+  "references": [
+    "https://www.volkswagen-newsroom.com/en/images/albums/sharan-archive-2133",
+    "https://autocatalogarchive.com/wp-content/uploads/2019/06/VW-Sharan-2011-UK-1-1.pdf"
+  ],
+  "limitations": [
+    "Wheels retain the later source topology with a silver finish; exact 2012 factory wheel design is not claimed.",
+    "Rear lamp internals and cabin are visual approximations.",
+    "Small trim and screen colours may differ from a specific car.",
+    "Explosion separates visual mesh components and is not a repair sequence.",
+    "Underlying exterior model and HDR redistribution rights are not independently verified."
+  ],
+  "modelSHA256": "13498c45bd175ade20d5f88cc5be7dbafb10b8142a75a594f693165346e8b4b2",
+  "axisConvention": "Metres, Y up, +Z front, +X vehicle left; grounded and centred."
+}

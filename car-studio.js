@@ -123,11 +123,11 @@ class VehicleFadePass extends Pass {
 }
 
 /** A floor-only soft contact shadow, rendered from underneath the actual mesh. */
-function createContactShadow(scene, renderer, glassGroups) {
+function createContactShadow(scene, renderer, glassGroups, reach = 3.2) {
   const resolution = 768;
   const target = new THREE.WebGLRenderTarget(resolution, resolution);
   const temporary = target.clone();
-  const camera = new THREE.OrthographicCamera(-3.2, 3.2, 3.2, -3.2, .01, 3);
+  const camera = new THREE.OrthographicCamera(-reach, reach, reach, -reach, .01, 3);
   camera.position.set(0, -.04, 0); camera.up.set(0, 0, -1); camera.lookAt(0, 1, 0);
   const depth = new THREE.ShaderMaterial({
     side: THREE.DoubleSide,
@@ -135,7 +135,7 @@ function createContactShadow(scene, renderer, glassGroups) {
     fragmentShader: 'varying float height;void main(){gl_FragColor=vec4(0.,0.,0.,.78*exp(-max(height,0.)*3.));}',
   });
   const material = new THREE.MeshBasicMaterial({ map: target.texture, transparent: true, depthWrite: false, toneMapped: false });
-  const plane = new THREE.Mesh(new THREE.PlaneGeometry(6.4, 6.4), material);
+  const plane = new THREE.Mesh(new THREE.PlaneGeometry(reach * 2, reach * 2), material);
   plane.rotation.x = -Math.PI / 2; plane.position.y = .003; plane.renderOrder = 1; scene.add(plane);
   const blur = new THREE.ShaderMaterial({
     depthTest: false, depthWrite: false,
@@ -214,10 +214,11 @@ export function createStudio(host, config, callbacks) {
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.1); keyLight.position.set(3, 7, 4); scene.add(keyLight);
   const fillLight = new THREE.DirectionalLight(0xffffff, .35); fillLight.position.set(-5, 3, -4); scene.add(fillLight);
   const platformMaterial = new THREE.MeshStandardMaterial({ color: 0x253443, roughness: .37, metalness: .65 });
-  const platform = new THREE.Mesh(new THREE.CylinderGeometry(3.25, 3.3, .12, 128), platformMaterial);
+  const stage = config.platformRadius ?? 3.25;
+  const platform = new THREE.Mesh(new THREE.CylinderGeometry(stage, stage + .05, .12, 128), platformMaterial);
   platform.scale.set(.9, 1, .9); platform.position.y = -.06; scene.add(platform);
   const ringMaterial = new THREE.MeshBasicMaterial({ color: 0x91b8de });
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(3.2, .009, 8, 160), ringMaterial);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(stage - .05, .009, 8, 160), ringMaterial);
   ring.scale.set(.9, .9, 1); ring.rotation.x = Math.PI / 2; ring.position.y = .006; scene.add(ring);
   const grid = new THREE.GridHelper(80, 120, 0x708295, 0x596b80); grid.position.y = -.125; scene.add(grid);
   const gridMaterials = Array.isArray(grid.material) ? grid.material : [grid.material];
@@ -230,7 +231,7 @@ export function createStudio(host, config, callbacks) {
     for (const material of materials) { material.transparent = true; material.opacity = .22; }
     walls.add(wall);
   }
-  const shadow = createContactShadow(scene, renderer, glassGroups);
+  const shadow = createContactShadow(scene, renderer, glassGroups, config.platformRadius ?? 3.2);
   const target = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 });
   const composer = new EffectComposer(renderer, target);
   composer.addPass(new RenderPass(scene, camera));
