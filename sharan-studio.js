@@ -21,6 +21,7 @@ const PAINTS = [
   { name: 'Night Blue Metallic', body: '#1d304a' },
   { name: 'Candy White', body: '#f0eee8', checkColor: '#17232f' },
   { name: 'Salsa Red', body: '#ae1723' },
+  { name: 'Toffee Brown Metallic', body: '#6b4a33' },
 ];
 
 bootStudio({
