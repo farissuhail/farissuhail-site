@@ -1,0 +1,42 @@
+{
+  "original": "C:\\Users\\Surface Laptop 5\\Documents\\ChatGPT\\Project ABC\\outputs\\r32-converter\\r32-mk5.glb",
+  "output": "C:\\Users\\Surface Laptop 5\\Documents\\ChatGPT\\Project ABC\\outputs\\r32-converter\\r32-mk5-stock-details.glb",
+  "originalMeshCount": 75,
+  "retainedOriginalMeshCount": 75,
+  "supplementalMeshCount": 8,
+  "wheelSourceY": -0.370612,
+  "wheelbaseMetres": 2.578,
+  "axleOffsetPerEndMetres": 0.007729760121369055,
+  "lengthMetres": 4.246,
+  "discDiametersMetres": {
+    "front": 0.345,
+    "rear": 0.31
+  },
+  "discAxialOffsetMetres": 0.028,
+  "discThicknessMetres": 0.022,
+  "caliperApproximation": "Smooth rounded rectangular blue volumes, approximate visual detail, not measured OEM castings.",
+  "caliperAxialRangeMetres": [
+    0.014,
+    0.048
+  ],
+  "measuredRimSpokeRearSurfaceMetres": 0.053234,
+  "minimumCaliperToSpokeAxialClearanceMetres": 0.005234,
+  "brakeMounting": "Brake meshes share each wheel assembly parent, located behind the outer rim faces; wheelRole=brake identifies non-rotating hardware.",
+  "reference": "https://www.volkswagen.es/comunicacion/dossier/dossier-golf-r32/",
+  "assemblyIdsAdded": {
+    "Body shell": "shell",
+    "Hood": "hood",
+    "Front bumper": "bumper-front",
+    "Rear bumper": "bumper-rear",
+    "Exhaust": "exhaust",
+    "Tailgate": "tailgate",
+    "Left door": "door-left",
+    "Right door": "door-right",
+    "Front seats": "seats-front",
+    "Steering wheel": "steering-wheel",
+    "Front left wheel": "wheel-front-left",
+    "Front right wheel": "wheel-front-right",
+    "Rear right wheel": "wheel-rear-right",
+    "Rear left wheel": "wheel-rear-left"
+  }
+}
