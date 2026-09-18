@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.min.js';
 
 /**
  * Original, generic hydraulic workover spread. Nominal metre units, Y up.

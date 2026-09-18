@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import * as THREE from './vendor/three.module.min.js';
+import {OrbitControls} from './vendor/OrbitControls.js';
 import {buildJackup} from './assets/jackup-model.js';
 import {buildLandRig} from './assets/land-model.js';
 import {buildHWU} from './assets/hwu-model.js';
