@@ -159,6 +159,12 @@
       border-radius: 50%; background: radial-gradient(circle, var(--glow, rgba(92, 224, 190, .12)), transparent 66%);
       pointer-events: none;
     }
+    .card-shot {
+      display: block; margin: -24px -24px 18px; border-bottom: 1px solid var(--line);
+      background: #0a2024; aspect-ratio: 16 / 10; overflow: hidden;
+    }
+    .card-shot img { width: 100%; height: 100%; object-fit: cover; }
+
     .card .code {
       font-family: var(--mono); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase;
       color: var(--accent, var(--mint)); margin-bottom: 14px;
@@ -243,7 +249,7 @@
   <figure class="shot">
     <img src="assets/mtr-drilltech-hero.jpg" width="1280" height="800"
          alt="The MTR DRILLTECH explorer: an equipment navigator on the left, an offshore jack-up rig rendered in 3D in the centre, and an inspector panel on the right." />
-    <figcaption data-en="The offshore jack-up, opened at the rig overview" data-bm="Jack-up luar pesisir, dibuka pada gambaran keseluruhan pelantar">The offshore jack-up, opened at the rig overview</figcaption>
+    <figcaption data-en="The three-pane explorer, showing the offshore jack-up" data-bm="Penjelajah tiga panel, memaparkan jack-up luar pesisir">The three-pane explorer, showing the offshore jack-up</figcaption>
   </figure>
 
   <div class="h">
@@ -254,6 +260,8 @@
   <div class="grid">
 
     <a class="card card-teal" href="mtr-drilltech/">
+      <span class="card-shot"><img src="assets/mtr-drilltech-jackup.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The offshore jack-up model: a hull on three lattice legs above the water, with the derrick, cranes and helideck on deck." data-alt-en="The offshore jack-up model: a hull on three lattice legs above the water, with the derrick, cranes and helideck on deck." data-alt-bm="Model jack-up luar pesisir: badan di atas tiga kaki kekisi di atas air, dengan derik, kren dan helideck di dek." /></span>
       <div class="code">OFFSHORE · INDEPENDENT-LEG JACK-UP</div>
       <h3 data-en="Jack-up rig" data-bm="Pelantar jack-up">Jack-up rig</h3>
       <div class="sub" data-en="22 assemblies · 9 systems" data-bm="22 pemasangan · 9 sistem">22 assemblies · 9 systems</div>
@@ -271,6 +279,8 @@
     </a>
 
     <a class="card card-sand" href="mtr-drilltech/">
+      <span class="card-shot"><img src="assets/mtr-drilltech-land.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The land drilling rig model: a derrick on a steel substructure with mud tanks, pumps and a pipe ramp on the pad." data-alt-en="The land drilling rig model: a derrick on a steel substructure with mud tanks, pumps and a pipe ramp on the pad." data-alt-bm="Model pelantar gerudi darat: derik di atas struktur bawah keluli dengan tangki lumpur, pam dan tanjakan paip di tapak." /></span>
       <div class="code">ONSHORE · STEEL SUBSTRUCTURE</div>
       <h3 data-en="Land drilling rig" data-bm="Pelantar gerudi darat">Land drilling rig</h3>
       <div class="sub" data-en="14 assemblies · 7 systems" data-bm="14 pemasangan · 7 sistem">14 assemblies · 7 systems</div>
@@ -288,6 +298,8 @@
     </a>
 
     <a class="card card-blue" href="mtr-drilltech/">
+      <span class="card-shot"><img src="assets/mtr-drilltech-hwu.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The hydraulic workover unit model: a hydraulic jack frame, workbasket and well-control stack on a platform deck." data-alt-en="The hydraulic workover unit model: a hydraulic jack frame, workbasket and well-control stack on a platform deck." data-alt-bm="Model unit kerja semula hidraulik: rangka jack hidraulik, bakul kerja dan susunan kawalan telaga di atas dek pelantar." /></span>
       <div class="code">WELL INTERVENTION · HWU</div>
       <h3 data-en="Hydraulic workover unit" data-bm="Unit kerja semula hidraulik">Hydraulic workover unit</h3>
       <div class="sub" data-en="14 assemblies · not a drilling rig" data-bm="14 pemasangan · bukan pelantar gerudi">14 assemblies · not a drilling rig</div>
@@ -380,6 +392,7 @@
     function apply(lang) {
       html.setAttribute('data-lang', lang);
       document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      document.querySelectorAll('img[data-alt-en][data-alt-bm]').forEach(function (el) { el.alt = lang === 'bm' ? el.dataset.altBm : el.dataset.altEn; });
       lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
       lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
       try { localStorage.setItem('fs-lang', lang); } catch (e) {}
