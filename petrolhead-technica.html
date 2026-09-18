@@ -22,7 +22,8 @@
   <link rel="stylesheet" href="technica.css?v=1" />
   <link rel="canonical" href="https://farissuhail.com/petrolhead-technica.html" />
   <style>
-    body.hub { overflow: auto; }
+    /* The hero glow bleeds 200px each side; clip it so narrow screens do not scroll sideways. */
+    body.hub { overflow: auto; overflow-x: hidden; }
     .hub-wrap { max-width: 1040px; margin: 0 auto; padding: 0 26px 90px; }
 
     .hub-nav {
@@ -36,7 +37,7 @@
     .lang-toggle .active { color: var(--tc-accent); }
     .lang-sep { opacity: .4; margin: 0 3px; }
 
-    .hub-hero { padding: 78px 0 54px; position: relative; }
+    .hub-hero { padding: 78px 0 54px; position: relative; overflow: hidden; }
     .hub-hero::before {
       content: ''; position: absolute; inset: -40px -200px auto; height: 460px; pointer-events: none;
       background: radial-gradient(760px 340px at 30% 20%, rgba(94,234,212,.10), transparent 62%);
@@ -78,6 +79,12 @@
       pointer-events: none;
     }
     .lab-card:hover { border-color: var(--tc-line-2); transform: translateY(-2px); }
+    .lab-shot {
+      display: block; margin: -24px -24px 18px; border-bottom: 1px solid var(--tc-line);
+      background: #0d161a; aspect-ratio: 16 / 10; overflow: hidden;
+    }
+    .lab-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
     .lab-card .code {
       font-family: var(--tc-mono); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase;
       color: var(--card-accent, var(--tc-accent)); margin-bottom: 14px;
@@ -151,6 +158,8 @@
   <div class="hub-grid">
 
     <a class="lab-card card-crimson" href="engine-lab.html?car=r32">
+      <span class="lab-shot"><img src="assets/technica/r32-engine.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Golf Mk5 R32 engine lab: a 3.2 VR6 cutaway with its pistons, rods and valvetrain exposed." data-alt-en="The Golf Mk5 R32 engine lab: a 3.2 VR6 cutaway with its pistons, rods and valvetrain exposed." data-alt-bm="Makmal enjin Golf Mk5 R32: keratan VR6 3.2 dengan omboh, rod dan rangkaian injapnya terdedah." /></span>
       <div class="code">3.2 VR6 · 15° · 24 VALVES · 3D</div>
       <h3>Golf Mk5 R32</h3>
       <div class="yr">2006 · six cylinders · naturally aspirated</div>
@@ -168,6 +177,8 @@
     </a>
 
     <a class="lab-card card-ember" href="engine-lab.html?car=sharan">
+      <span class="lab-shot"><img src="assets/technica/sharan-engine.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Sharan 7N engine lab: a 2.0 TSI four-cylinder cutaway on its crankshaft." data-alt-en="The Sharan 7N engine lab: a 2.0 TSI four-cylinder cutaway on its crankshaft." data-alt-bm="Makmal enjin Sharan 7N: keratan empat silinder 2.0 TSI di atas aci engkolnya." /></span>
       <div class="code">2.0 TSI · INLINE-4 · 16 VALVES · 3D</div>
       <h3>Sharan 7N</h3>
       <div class="yr">2012 · turbocharged · direct injection</div>
@@ -185,6 +196,8 @@
     </a>
 
     <a class="lab-card card-sand" href="engine-lab.html?car=bmw">
+      <span class="lab-shot"><img src="assets/technica/bmw-engine.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The BMW X4 F26 engine lab: an N20 four-cylinder cutaway with its timing drive." data-alt-en="The BMW X4 F26 engine lab: an N20 four-cylinder cutaway with its timing drive." data-alt-bm="Makmal enjin BMW X4 F26: keratan empat silinder N20 dengan pemacu pemasaannya." /></span>
       <div class="code">2.0 N20 · INLINE-4 · 16 VALVES · 3D</div>
       <h3>BMW X4 F26</h3>
       <div class="yr">2016 · xDrive20i · twin-scroll turbo</div>
@@ -211,6 +224,8 @@
   <div class="hub-grid">
 
     <a class="lab-card" href="r32-dsg-lab.html">
+      <span class="lab-shot"><img src="assets/technica/r32-dsg.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Golf Mk5 R32 transmission lab: the 02E six-speed DSG gear train laid out on its shafts." data-alt-en="The Golf Mk5 R32 transmission lab: the 02E six-speed DSG gear train laid out on its shafts." data-alt-bm="Makmal transmisi Golf Mk5 R32: rangkaian gear DSG enam kelajuan 02E di atas acinya." /></span>
       <div class="code">02E · DQ250 · 6-SPEED WET DSG · 3D</div>
       <h3>Golf Mk5 R32</h3>
       <div class="yr">2006 · 3.2 VR6 · 4Motion</div>
@@ -228,6 +243,8 @@
     </a>
 
     <a class="lab-card card-blue" href="sharan-dsg-lab.html">
+      <span class="lab-shot"><img src="assets/technica/sharan-dsg.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Sharan 7N transmission lab: a transverse six-speed wet-clutch DSG gear set." data-alt-en="The Sharan 7N transmission lab: a transverse six-speed wet-clutch DSG gear set." data-alt-bm="Makmal transmisi Sharan 7N: set gear DSG enam kelajuan klac basah melintang." /></span>
       <div class="code">DQ250 · 6-SPEED WET DSG · 3D</div>
       <h3>Sharan 7N</h3>
       <div class="yr">2012 · front-wheel drive</div>
@@ -245,6 +262,8 @@
     </a>
 
     <a class="lab-card card-royal" href="bmw-x4-lab.html">
+      <span class="lab-shot"><img src="assets/technica/bmw-dsg.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The BMW X4 F26 transmission lab: the eight-speed automatic with its planetary gear sets." data-alt-en="The BMW X4 F26 transmission lab: the eight-speed automatic with its planetary gear sets." data-alt-bm="Makmal transmisi BMW X4 F26: automatik lapan kelajuan dengan set gear planetarinya." /></span>
       <div class="code">ZF 8HP · 8-SPEED STEPTRONIC · 3D</div>
       <h3>BMW X4 F26</h3>
       <div class="yr">2016 · xDrive20i · 2.0 petrol</div>
@@ -271,6 +290,8 @@
   <div class="hub-grid">
 
     <a class="lab-card card-crimson" href="r32-studio.html">
+      <span class="lab-shot"><img src="assets/technica/r32-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Golf Mk5 R32 studio: the full car on a turntable, ready to be exploded into its parts." data-alt-en="The Golf Mk5 R32 studio: the full car on a turntable, ready to be exploded into its parts." data-alt-bm="Studio Golf Mk5 R32: kereta penuh di atas pusingan, sedia diuraikan kepada bahagiannya." /></span>
       <div class="code">MK5 · R32 · INTERACTIVE 3D STUDIO</div>
       <h3>Golf Mk5 R32</h3>
       <div class="yr">2006 · 3.2 VR6 · 4Motion · three-door reference</div>
@@ -288,6 +309,8 @@
     </a>
 
     <a class="lab-card card-royal" href="x4-studio.html">
+      <span class="lab-shot"><img src="assets/technica/x4-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The BMW X4 F26 studio: the full car on a turntable under studio lighting." data-alt-en="The BMW X4 F26 studio: the full car on a turntable under studio lighting." data-alt-bm="Studio BMW X4 F26: kereta penuh di atas pusingan dengan pencahayaan studio." /></span>
       <div class="code">F26 · X4 · INTERACTIVE 3D STUDIO</div>
       <h3>BMW X4</h3>
       <div class="yr">2016 · F26 · xDrive20i · 2.0 petrol</div>
@@ -305,6 +328,8 @@
     </a>
 
     <a class="lab-card card-ember" href="sharan-studio.html">
+      <span class="lab-shot"><img src="assets/technica/sharan-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Volkswagen Sharan studio: the full seven-seat car on a turntable." data-alt-en="The Volkswagen Sharan studio: the full seven-seat car on a turntable." data-alt-bm="Studio Volkswagen Sharan: kereta tujuh tempat duduk penuh di atas pusingan." /></span>
       <div class="code">7N · SHARAN · INTERACTIVE 3D STUDIO</div>
       <h3>Volkswagen Sharan</h3>
       <div class="yr">2012 · 7N · seven seats · 2.0 TSI</div>
@@ -322,6 +347,8 @@
     </a>
 
     <a class="lab-card card-porsche" href="gt3-rs-studio.html">
+      <span class="lab-shot"><img src="assets/technica/gt3-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
+            alt="The Porsche 911 GT3 RS studio: the full car on a turntable with its rear wing raised." data-alt-en="The Porsche 911 GT3 RS studio: the full car on a turntable with its rear wing raised." data-alt-bm="Studio Porsche 911 GT3 RS: kereta penuh di atas pusingan dengan sayap belakangnya terangkat." /></span>
       <div class="code">992 · GT3 RS · INTERACTIVE 3D STUDIO</div>
       <h3>Porsche 911 GT3 RS</h3>
       <div class="yr">992 · 4.0 flat-six · 7-speed PDK</div>
@@ -361,6 +388,7 @@
     function apply(lang) {
       html.setAttribute('data-lang', lang);
       document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      document.querySelectorAll('img[data-alt-en][data-alt-bm]').forEach(function (el) { el.alt = lang === 'bm' ? el.dataset.altBm : el.dataset.altEn; });
       lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
       lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
       try { localStorage.setItem('fs-lang', lang); } catch (e) {}
