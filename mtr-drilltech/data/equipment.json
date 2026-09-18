@@ -1,0 +1,542 @@
+{
+  "classification": "Illustrative generic equipment",
+  "sourceNote": "Original generic illustrative engineering notes for an educational jack-up explorer, awaiting rig-specific drawings, equipment manuals and verified documentation. Component positions and connections are conceptual. This content is not an engineering design, operating procedure or certification of any rig.",
+  "components": [
+    {
+      "id": "hull",
+      "name": "Hull & Main Deck",
+      "system": "MR",
+      "code": "MR-01",
+      "summary": "The hull provides the floating body and main working platform of the jack-up.",
+      "engineering": "The hull combines buoyancy spaces, structural framing and deck areas for drilling equipment and accommodation. When elevated, its weight passes through the jacking system into the legs. Equipment arrangement influences deck loading, access and weight distribution, so the illustrated layout does not represent an approved loading plan.",
+      "location": "Main platform surrounding the leg openings",
+      "hazards": [
+        "Open deck edges",
+        "Deck loading limits",
+        "Water ingress"
+      ],
+      "connections": [
+        "legs",
+        "jacking",
+        "cantilever",
+        "accommodation",
+        "generators"
+      ],
+      "aliases": [
+        "main deck",
+        "platform hull",
+        "pontoon"
+      ]
+    },
+    {
+      "id": "legs",
+      "name": "Legs & Seabed Support",
+      "system": "JU",
+      "code": "JU-01",
+      "summary": "The legs transfer the elevated platform's loads toward the seabed.",
+      "engineering": "Jack-up legs are structural columns that move relative to the hull. Their lower foundations spread load into the seabed, while their upper portions interact with guides and jacking machinery. Actual leg geometry, soil response and environmental loading are rig-specific inputs that cannot be determined from this conceptual model.",
+      "location": "Vertical supports passing through the hull",
+      "hazards": [
+        "Moving leg structures",
+        "Seabed instability",
+        "Structural loading"
+      ],
+      "connections": [
+        "hull",
+        "jacking"
+      ],
+      "aliases": [
+        "jack-up legs",
+        "leg chords",
+        "spudcans"
+      ]
+    },
+    {
+      "id": "jacking",
+      "name": "Jacking System",
+      "system": "JU",
+      "code": "JU-02",
+      "summary": "Jacking machinery changes the hull's position relative to the legs.",
+      "engineering": "The jacking system provides controlled relative movement between hull and legs and carries substantial structural loads. A common arrangement uses powered pinions engaging racks on the legs, with supporting guides and load-holding features. The drive type, redundancy and load-transfer arrangement depend on the individual unit.",
+      "location": "Around each leg opening in the hull",
+      "hazards": [
+        "Crush and pinch points",
+        "Stored mechanical energy",
+        "High structural loads"
+      ],
+      "connections": [
+        "legs",
+        "hull",
+        "generators"
+      ],
+      "aliases": [
+        "elevating system",
+        "rack and pinion",
+        "jacking units"
+      ]
+    },
+    {
+      "id": "cantilever",
+      "name": "Cantilever & Skid Structure",
+      "system": "JU",
+      "code": "JU-03",
+      "summary": "The cantilever positions the drilling package beyond the hull edge.",
+      "engineering": "The cantilever is a projecting structural assembly that supports the drilling package and transfers its loads back to the hull. Skidding arrangements can adjust the package position over a well location. Reach, support reactions and permissible combined loads depend on the rig's verified structural design.",
+      "location": "Projecting from the drilling end of the hull",
+      "hazards": [
+        "Moving structures",
+        "Suspended and eccentric loads",
+        "Exposed edges"
+      ],
+      "connections": [
+        "hull",
+        "derrick",
+        "drill-floor"
+      ],
+      "aliases": [
+        "cantilever beams",
+        "skid beams",
+        "drilling cantilever"
+      ]
+    },
+    {
+      "id": "derrick",
+      "name": "Derrick",
+      "system": "SS",
+      "code": "SS-01",
+      "summary": "The derrick provides the tall supporting structure for the drilling hoisting system.",
+      "engineering": "The derrick supports the crown assembly and provides the vertical space needed for handling the drill string. Its framing carries hoisting reactions and other defined equipment loads into the supporting structure. Platforms and pipe-handling features vary, and the model simplifies bracing, access routes and connection details.",
+      "location": "Tall tower above the drill floor",
+      "hazards": [
+        "Work at height",
+        "Dropped objects",
+        "Structural loading"
+      ],
+      "connections": [
+        "crown",
+        "travelling",
+        "top-drive",
+        "drill-floor",
+        "cantilever"
+      ],
+      "aliases": [
+        "drilling tower",
+        "drilling derrick",
+        "mast"
+      ]
+    },
+    {
+      "id": "crown",
+      "name": "Crown Block",
+      "system": "HS",
+      "code": "HS-01",
+      "summary": "The crown block redirects the drilling line at the top of the derrick.",
+      "engineering": "The crown block is a fixed group of sheaves at the derrick top. Together with the travelling block, it forms a reeved hoisting arrangement that shares load among sections of drilling line. Hoisting forces pass through the crown supports into the derrick structure.",
+      "location": "At the top of the derrick",
+      "hazards": [
+        "Rotating sheaves",
+        "Tensioned wire rope",
+        "Dropped objects"
+      ],
+      "connections": [
+        "derrick",
+        "travelling",
+        "drawworks"
+      ],
+      "aliases": [
+        "crown assembly",
+        "crown sheaves",
+        "fixed block"
+      ]
+    },
+    {
+      "id": "travelling",
+      "name": "Travelling Block & Hook",
+      "system": "HS",
+      "code": "HS-02",
+      "summary": "The travelling assembly moves vertically to support the suspended drilling equipment.",
+      "engineering": "The travelling block contains moving sheaves reeved with the crown block by the drilling line. Its suspended connection supports equipment such as a hook and top drive, depending on the arrangement. Vertical movement comes from the drawworks winding or releasing line under controlled loading.",
+      "location": "Within the derrick above the drill floor",
+      "hazards": [
+        "Suspended loads",
+        "Vertical moving equipment",
+        "Pinch points"
+      ],
+      "connections": [
+        "crown",
+        "drawworks",
+        "top-drive",
+        "derrick"
+      ],
+      "aliases": [
+        "traveling block",
+        "hook block",
+        "moving block"
+      ]
+    },
+    {
+      "id": "top-drive",
+      "name": "Top Drive",
+      "system": "RS",
+      "code": "RS-01",
+      "summary": "The top drive rotates the drill string and provides a path for drilling fluid.",
+      "engineering": "A top drive combines a powered rotary drive with a fluid passage into the drill string. It travels vertically with the hoisting assembly while torque reactions are restrained by a guide arrangement. Its interfaces connect mechanical rotation, suspended load and the high-pressure drilling-fluid supply.",
+      "location": "Suspended inside the derrick above well centre",
+      "hazards": [
+        "Rotating equipment",
+        "Pressurised fluid",
+        "Suspended machinery"
+      ],
+      "connections": [
+        "travelling",
+        "drill-string",
+        "mud-pumps",
+        "derrick"
+      ],
+      "aliases": [
+        "topdrive",
+        "rotary drive",
+        "power swivel"
+      ]
+    },
+    {
+      "id": "drawworks",
+      "name": "Drawworks",
+      "system": "HS",
+      "code": "HS-03",
+      "summary": "The drawworks raises and lowers the travelling assembly through the drilling line.",
+      "engineering": "The drawworks uses a powered drum and braking system to manage the drilling line. Its motion changes the position of the travelling block, while the reeving arrangement distributes the suspended load. Drive power, braking energy and line tension are linked parts of the hoisting system.",
+      "location": "Near the base of the derrick and drill floor",
+      "hazards": [
+        "Rotating drum",
+        "Tensioned line",
+        "Brake heat and stored energy"
+      ],
+      "connections": [
+        "crown",
+        "travelling",
+        "generators",
+        "drill-floor"
+      ],
+      "aliases": [
+        "draw works",
+        "hoisting winch",
+        "drilling-line drum"
+      ]
+    },
+    {
+      "id": "drill-string",
+      "name": "Drill String",
+      "system": "DS",
+      "code": "DS-01",
+      "summary": "The drill string connects surface drilling equipment to the tools in the well.",
+      "engineering": "The drill string is an assembled tubular path that transmits rotation and axial load toward the drilling tools. Its internal bore carries drilling fluid downward, with returns typically travelling upward around it in the well. Individual tubulars and bottom-hole components are selected for the specific well programme.",
+      "location": "Along well centre through the drill floor and into the well",
+      "hazards": [
+        "Rotating tubulars",
+        "Suspended pipe",
+        "Trapped pressure"
+      ],
+      "connections": [
+        "top-drive",
+        "drill-floor",
+        "bop",
+        "pipe-rack"
+      ],
+      "aliases": [
+        "drill pipe",
+        "drillstring",
+        "drilling tubulars"
+      ]
+    },
+    {
+      "id": "bop",
+      "name": "Blowout Preventer",
+      "system": "WC",
+      "code": "WC-01",
+      "summary": "The BOP provides pressure-containment functions at the wellhead.",
+      "engineering": "A blowout preventer assembly contains specialised closing elements intended to control flow through the wellhead under defined conditions. Annular and ram devices have different sealing functions and limitations. The stack works with dedicated controls, pressure-rated connections and associated flow equipment as part of a documented well-control system.",
+      "location": "At the wellhead below the drill floor",
+      "hazards": [
+        "Well pressure",
+        "Hydraulic stored energy",
+        "Heavy pressure-containing equipment"
+      ],
+      "connections": [
+        "drill-string",
+        "choke",
+        "drill-floor"
+      ],
+      "aliases": [
+        "BOP stack",
+        "blowout preventer stack",
+        "wellhead pressure control"
+      ]
+    },
+    {
+      "id": "choke",
+      "name": "Choke Manifold",
+      "system": "WC",
+      "code": "WC-02",
+      "summary": "The choke manifold provides pressure-rated paths for managing well returns.",
+      "engineering": "The choke manifold combines valves, piping and adjustable flow restrictions connected to the well-control system. It supports the management of pressure and routed returns within a defined equipment arrangement. Its downstream separation and treatment equipment are not fully represented in this simplified explorer.",
+      "location": "Dedicated well-control area near the drilling package",
+      "hazards": [
+        "High-pressure flow",
+        "Potential gas release",
+        "Erosion and vibration"
+      ],
+      "connections": [
+        "bop",
+        "mud-tanks"
+      ],
+      "aliases": [
+        "well-control manifold",
+        "choke system",
+        "choke and kill manifold"
+      ]
+    },
+    {
+      "id": "mud-pumps",
+      "name": "Mud Pumps",
+      "system": "CS",
+      "code": "CS-01",
+      "summary": "Mud pumps supply the pressure and flow needed to circulate drilling fluid.",
+      "engineering": "Mud pumps draw drilling fluid from the active tank system and deliver it into the high-pressure circulation path. Reciprocating pump elements convert drive power into fluid flow, with pulsation and pressure loads carried by connected equipment. The illustrated route groups several real piping and protection components together.",
+      "location": "Machinery area beside the mud system",
+      "hazards": [
+        "High-pressure fluid",
+        "Moving pump components",
+        "Noise and vibration"
+      ],
+      "connections": [
+        "mud-tanks",
+        "top-drive",
+        "generators"
+      ],
+      "aliases": [
+        "drilling-fluid pumps",
+        "triplex pumps",
+        "circulation pumps"
+      ]
+    },
+    {
+      "id": "mud-tanks",
+      "name": "Mud Tanks & Mixing",
+      "system": "CS",
+      "code": "CS-02",
+      "summary": "The mud tanks store and condition drilling fluid for the circulation system.",
+      "engineering": "The mud tank system provides working fluid volume and space for mixing, agitation and treatment. Returned fluid passes through appropriate processing equipment before rejoining the active supply. Fluid properties, tank levels and segregation requirements depend on the drilling programme and the actual installed system.",
+      "location": "Mud processing area on or within the main deck",
+      "hazards": [
+        "Chemical exposure",
+        "Open tanks and confined spaces",
+        "Moving agitators"
+      ],
+      "connections": [
+        "mud-pumps",
+        "shakers",
+        "choke"
+      ],
+      "aliases": [
+        "mud pits",
+        "active tanks",
+        "drilling-fluid tanks"
+      ]
+    },
+    {
+      "id": "shakers",
+      "name": "Shale Shakers",
+      "system": "CS",
+      "code": "CS-03",
+      "summary": "Shale shakers separate larger drilled solids from returning drilling fluid.",
+      "engineering": "Shale shakers use vibrating screens to separate a portion of the drilled solids from fluid returning from the well. Fluid passing through the screens continues toward further treatment and storage. Separation performance depends on the screen arrangement, fluid properties and return stream characteristics.",
+      "location": "At the start of the surface return-fluid processing area",
+      "hazards": [
+        "Vibration and moving parts",
+        "Fluid splash",
+        "Potential gas at returns"
+      ],
+      "connections": [
+        "drill-string",
+        "mud-tanks"
+      ],
+      "aliases": [
+        "shaker screens",
+        "solids-control shakers",
+        "vibrating screens"
+      ]
+    },
+    {
+      "id": "generators",
+      "name": "Power Generation",
+      "system": "PS",
+      "code": "PS-01",
+      "summary": "The generation plant supplies electrical power to drilling and platform services.",
+      "engineering": "Generator sets convert engine power into electricity for distribution across the rig. Switchboards, protection and drive equipment allocate power to major machinery and service loads. The actual generation capacity, distribution architecture and emergency arrangements require rig-specific documentation and are not implied by the illustration.",
+      "location": "Main machinery and electrical spaces in the hull",
+      "hazards": [
+        "Electrical energy",
+        "Hot surfaces and exhaust",
+        "Fuel and machinery hazards"
+      ],
+      "connections": [
+        "drawworks",
+        "mud-pumps",
+        "jacking",
+        "accommodation"
+      ],
+      "aliases": [
+        "generator sets",
+        "gensets",
+        "power plant"
+      ]
+    },
+    {
+      "id": "crane",
+      "name": "Deck Crane",
+      "system": "MR",
+      "code": "MR-02",
+      "summary": "The deck crane handles supplies and equipment around the platform.",
+      "engineering": "The deck crane transfers lifted loads through its boom, slewing assembly and pedestal into the hull structure. Its usable lifting envelope depends on the crane configuration and operating conditions. The simplified model shows a handling relationship with deck areas without defining lifting capacity or an approved lift path.",
+      "location": "Hull perimeter with reach over supply and storage areas",
+      "hazards": [
+        "Suspended loads",
+        "Slewing and crush zones",
+        "Load movement in wind"
+      ],
+      "connections": [
+        "hull",
+        "pipe-rack"
+      ],
+      "aliases": [
+        "pedestal crane",
+        "offshore crane",
+        "materials crane"
+      ]
+    },
+    {
+      "id": "accommodation",
+      "name": "Accommodation & Control",
+      "system": "MR",
+      "code": "MR-03",
+      "summary": "The accommodation block houses living spaces and selected support functions.",
+      "engineering": "Accommodation spaces provide living, welfare and supporting work areas for personnel. Their arrangement interfaces with utilities, ventilation, access and emergency escape provisions. Control rooms may occupy separate protected spaces depending on the rig, so their exact location cannot be established from this generic block model.",
+      "location": "Enclosed superstructure away from the main drilling package",
+      "hazards": [
+        "Smoke and fire spread",
+        "Restricted escape routes",
+        "Utility interruptions"
+      ],
+      "connections": [
+        "hull",
+        "generators",
+        "helideck",
+        "lifeboats"
+      ],
+      "aliases": [
+        "living quarters",
+        "quarters block",
+        "accommodation module"
+      ]
+    },
+    {
+      "id": "helideck",
+      "name": "Helideck",
+      "system": "MR",
+      "code": "MR-04",
+      "summary": "The helideck provides a designated interface for helicopter transport.",
+      "engineering": "The helideck is a structural landing area integrated with access, visual aids and associated emergency provisions. Its relationship to surrounding obstructions, exhaust sources and deck motion matters to aviation suitability. The conceptual pad does not establish aircraft compatibility, approved markings or operational status.",
+      "location": "Elevated platform adjacent to the accommodation block",
+      "hazards": [
+        "Rotor movement and downwash",
+        "Loose objects",
+        "Exposed deck edges"
+      ],
+      "connections": [
+        "accommodation",
+        "hull"
+      ],
+      "aliases": [
+        "helicopter deck",
+        "landing deck",
+        "helicopter landing area"
+      ]
+    },
+    {
+      "id": "lifeboats",
+      "name": "Lifeboats & Evacuation",
+      "system": "MR",
+      "code": "MR-05",
+      "summary": "Survival craft form part of the rig's emergency evacuation arrangements.",
+      "engineering": "Lifeboats and their launching equipment provide a means of evacuation within a wider emergency response arrangement. Their installation connects muster access, embarkation areas and supporting hull structure. Craft type, capacity, launch geometry and inspection requirements depend on the rig's approved safety documentation.",
+      "location": "Designated embarkation areas along the hull perimeter",
+      "hazards": [
+        "Launching machinery",
+        "Exposed embarkation areas",
+        "Crowded access during emergencies"
+      ],
+      "connections": [
+        "accommodation",
+        "hull"
+      ],
+      "aliases": [
+        "survival craft",
+        "evacuation craft",
+        "lifeboat stations"
+      ]
+    },
+    {
+      "id": "pipe-rack",
+      "name": "Pipe Rack",
+      "system": "SS",
+      "code": "SS-02",
+      "summary": "The pipe rack stores tubulars before transfer to the drilling area.",
+      "engineering": "The pipe rack supports tubular storage and provides an interface with deck lifting and pipe-handling equipment. Stored pipe creates concentrated deck loads and can move if inadequately restrained. The route from storage to the drill floor varies with the rig's handling equipment and layout.",
+      "location": "Open deck storage area beside the drilling package",
+      "hazards": [
+        "Rolling tubulars",
+        "Pinch points",
+        "Concentrated deck loads"
+      ],
+      "connections": [
+        "crane",
+        "drill-floor",
+        "drill-string",
+        "hull"
+      ],
+      "aliases": [
+        "pipe deck",
+        "tubular rack",
+        "tubular storage"
+      ]
+    },
+    {
+      "id": "drill-floor",
+      "name": "Drill Floor",
+      "system": "SS",
+      "code": "SS-03",
+      "summary": "The drill floor is the main interface for tubular handling at well centre.",
+      "engineering": "The drill floor brings hoisting, rotation and tubular handling together above the well. Its supporting structure carries equipment and defined working loads while allowing access around well centre. Pipe-support and handling devices differ between rigs and are represented only conceptually in this model.",
+      "location": "Raised working platform beneath the derrick",
+      "hazards": [
+        "Moving tubulars and machinery",
+        "Floor openings",
+        "Dropped or suspended objects"
+      ],
+      "connections": [
+        "derrick",
+        "cantilever",
+        "drill-string",
+        "bop",
+        "pipe-rack",
+        "drawworks"
+      ],
+      "aliases": [
+        "rig floor",
+        "drilling floor",
+        "well centre"
+      ]
+    }
+  ]
+}

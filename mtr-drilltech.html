@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MTR DRILLTECH: an interactive 3D rig explorer built for Master Team Resources Sdn Bhd. Orbit an offshore jack-up, a land drilling rig and a hydraulic workover unit, click any assembly and read what it does." />
+  <title>MTR DRILLTECH · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#071a1d" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="MTR DRILLTECH" />
+  <meta property="og:description" content="An interactive 3D rig explorer for Master Team Resources Sdn Bhd — offshore jack-up, land rig and hydraulic workover unit, 50 equipment assemblies you can click." />
+  <meta property="og:url" content="https://farissuhail.com/mtr-drilltech.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/mtr-drilltech-hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://farissuhail.com/mtr-drilltech.html" />
+
+  <style>
+    /* MTR's own green and teal, on the dark surfaces this site uses elsewhere. */
+    :root {
+      --bg: #071a1d;
+      --panel: #0d2529;
+      --panel-2: #123036;
+      --line: #23474d;
+      --line-2: #2f5a61;
+      --text: #d7e5e7;
+      --muted: #9db4b9;
+      --dim: #7d979d;
+      --bright: #f4fbfb;
+      --green: #00b489;
+      --mint: #5ce0be;
+      --teal: #2a97a8;
+      --amber: #f4a03a;
+      --mono: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      /* The hero glow is a wide bleed; keep it from creating a sideways scroll. */
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; border-radius: 4px; }
+
+    .lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* ---- nav ---- */
+    .hub-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px; border-bottom: 1px solid var(--line);
+      max-width: 1080px; margin: 0 auto; padding: 0 26px;
+    }
+    .hub-nav .brand { font-weight: 800; letter-spacing: .07em; font-size: 13px; color: var(--bright); }
+    .hub-nav .right { display: flex; align-items: center; gap: 9px; }
+    .lang-toggle {
+      background: none; border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 9px;
+      cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--dim);
+    }
+    .lang-toggle .active { color: var(--mint); }
+    .lang-sep { opacity: .4; margin: 0 3px; }
+    .ghost-btn {
+      border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 11px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    }
+    .ghost-btn:hover { color: var(--mint); border-color: var(--mint); }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 26px 90px; }
+
+    /* ---- hero ---- */
+    .hero { padding: 72px 0 40px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; inset: -40px -200px auto; height: 460px; pointer-events: none;
+      background: radial-gradient(760px 340px at 28% 18%, rgba(0, 180, 137, .13), transparent 62%);
+    }
+    .hero .lbl { display: block; margin-bottom: 18px; position: relative; }
+    .hero h1 {
+      margin: 0 0 20px; position: relative;
+      font-size: clamp(36px, 6.6vw, 70px); line-height: 1.0; letter-spacing: -0.035em;
+      font-weight: 800; color: var(--bright);
+    }
+    .hero h1 em { font-style: normal; color: var(--mint); }
+    .hero p.lede {
+      margin: 0; max-width: 660px; position: relative;
+      font-size: clamp(15px, 1.6vw, 17.5px); line-height: 1.65; color: var(--text);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; position: relative; }
+    .primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--green); color: #032a22; font-weight: 700;
+      border: 1px solid var(--green); border-radius: 8px; padding: 11px 18px;
+      font-size: 13px; letter-spacing: .01em;
+    }
+    .primary:hover { background: var(--mint); border-color: var(--mint); }
+    .secondary {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid var(--line-2); border-radius: 8px; padding: 11px 18px;
+      font-size: 13px; color: var(--muted);
+    }
+    .secondary:hover { color: var(--bright); border-color: var(--mint); }
+
+    .stats {
+      display: flex; flex-wrap: wrap; gap: 34px; margin-top: 34px; position: relative;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--dim);
+    }
+    .stats b { display: block; font-size: 21px; letter-spacing: -0.01em; color: var(--bright); margin-bottom: 5px; font-family: Inter, sans-serif; font-weight: 700; }
+
+    .shot {
+      margin: 40px 0 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: var(--panel); position: relative;
+    }
+    .shot img { width: 100%; height: auto; }
+    .shot figcaption {
+      border-top: 1px solid var(--line); padding: 10px 16px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
+    }
+
+    /* ---- sections ---- */
+    .h {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      border-top: 1px solid var(--line); padding-top: 16px; margin: 56px 0 22px;
+    }
+    .h h2 { margin: 0; font-size: 15px; color: var(--bright); letter-spacing: -0.01em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+
+    .card {
+      border: 1px solid var(--line); border-radius: 16px;
+      background: linear-gradient(160deg, var(--panel-2), var(--panel));
+      padding: 24px 24px 22px; position: relative; overflow: hidden;
+      transition: border-color .22s, transform .22s;
+    }
+    a.card:hover { border-color: var(--line-2); transform: translateY(-2px); }
+    .card::after {
+      content: ''; position: absolute; inset: auto -60px -90px auto; width: 250px; height: 250px;
+      border-radius: 50%; background: radial-gradient(circle, var(--glow, rgba(92, 224, 190, .12)), transparent 66%);
+      pointer-events: none;
+    }
+    .card .code {
+      font-family: var(--mono); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--accent, var(--mint)); margin-bottom: 14px;
+    }
+    .card h3 { margin: 0 0 4px; font-size: 22px; letter-spacing: -0.02em; color: var(--bright); }
+    .card .sub { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-bottom: 14px; }
+    .card p { margin: 0 0 18px; font-size: 13px; line-height: 1.62; color: var(--text); }
+    .spec {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-bottom: 18px;
+      border-top: 1px solid var(--line); padding-top: 14px;
+    }
+    .spec div { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--dim); }
+    .spec b { display: block; color: var(--text); font-size: 12px; letter-spacing: 0; font-weight: 500; margin-top: 3px; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent, var(--mint));
+    }
+    .card-teal { --accent: #5ce0be; --glow: rgba(92, 224, 190, .14); }
+    .card-sand { --accent: #f4c97a; --glow: rgba(244, 201, 122, .13); }
+    .card-blue { --accent: #7cc4ff; --glow: rgba(124, 196, 255, .13); }
+
+    ul.plain { margin: 0; padding-left: 18px; }
+    ul.plain li { margin-bottom: 7px; font-size: 13.5px; color: var(--text); }
+    ul.plain li b { color: var(--bright); font-weight: 600; }
+
+    .note {
+      margin-top: 44px; border-left: 2px solid var(--line-2); padding: 4px 0 4px 16px;
+      font-size: 12.5px; line-height: 1.75; color: var(--dim); max-width: 720px;
+    }
+    .note strong { color: var(--muted); font-weight: 600; }
+
+    .foot {
+      margin-top: 56px; border-top: 1px solid var(--line); padding-top: 18px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--dim);
+      display: flex; gap: 18px; flex-wrap: wrap;
+    }
+    .foot a:hover { color: var(--mint); }
+
+    @media (max-width: 620px) {
+      .hero { padding-top: 48px; }
+      .spec { grid-template-columns: 1fr; }
+      .stats { gap: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="hub-nav">
+  <a href="index.html" class="brand">FARISSUHAIL</a>
+  <div class="right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="lang-sep">/</span><span class="lang-bm">BM</span></button>
+    <a class="ghost-btn" href="apps.html" data-en="Apps" data-bm="Aplikasi">Apps</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="lbl" data-en="MTR DRILLTECH · Master Team Resources Sdn Bhd" data-bm="MTR DRILLTECH · Master Team Resources Sdn Bhd">MTR DRILLTECH · Master Team Resources Sdn Bhd</span>
+    <h1 data-en="Walk a drilling rig <em>without leaving the jetty.</em>" data-bm="Menyusuri pelantar gerudi <em>tanpa meninggalkan jeti.</em>">Walk a drilling rig <em>without leaving the jetty.</em></h1>
+    <p class="lede"
+       data-en="An interactive 3D rig explorer built for Master Team Resources, a Kuala Lumpur crewing and safety-training company working the oil, gas and energy sector. Three rigs, fifty equipment assemblies. Orbit the rig, click a drawworks or a blowout preventer, and read what it does, what it touches and what can hurt you around it."
+       data-bm="Penjelajah pelantar gerudi 3D interaktif yang dibina untuk Master Team Resources, sebuah syarikat pembekalan kru dan latihan keselamatan di Kuala Lumpur bagi sektor minyak, gas dan tenaga. Tiga pelantar, lima puluh pemasangan peralatan. Pusingkan pelantar, klik drawworks atau blowout preventer, dan baca fungsinya, apa yang bersambung dengannya dan bahaya di sekelilingnya.">
+      An interactive 3D rig explorer built for Master Team Resources, a Kuala Lumpur crewing and safety-training company working the oil, gas and energy sector. Three rigs, fifty equipment assemblies. Orbit the rig, click a drawworks or a blowout preventer, and read what it does, what it touches and what can hurt you around it.
+    </p>
+
+    <div class="hero-actions">
+      <a class="primary" href="mtr-drilltech/" data-en="Open the explorer →" data-bm="Buka penjelajah →">Open the explorer →</a>
+      <a class="secondary" href="#how" data-en="How it is built" data-bm="Bagaimana ia dibina">How it is built</a>
+    </div>
+
+    <div class="stats">
+      <span><b>3</b><span data-en="Rig models" data-bm="Model pelantar">Rig models</span></span>
+      <span><b>50</b><span data-en="Equipment assemblies" data-bm="Pemasangan peralatan">Equipment assemblies</span></span>
+      <span><b>6</b><span data-en="Inspector tabs" data-bm="Tab pemeriksa">Inspector tabs</span></span>
+      <span><b>WebGL</b><span data-en="Real 3D, no video" data-bm="3D sebenar, bukan video">Real 3D, no video</span></span>
+    </div>
+  </header>
+
+  <figure class="shot">
+    <img src="assets/mtr-drilltech-hero.jpg" width="1280" height="800"
+         alt="The MTR DRILLTECH explorer: an equipment navigator on the left, an offshore jack-up rig rendered in 3D in the centre, and an inspector panel on the right." />
+    <figcaption data-en="The offshore jack-up, opened at the rig overview" data-bm="Jack-up luar pesisir, dibuka pada gambaran keseluruhan pelantar">The offshore jack-up, opened at the rig overview</figcaption>
+  </figure>
+
+  <div class="h">
+    <h2 data-en="Three rigs" data-bm="Tiga pelantar">Three rigs</h2>
+    <span class="lbl" data-en="Switch models without leaving the page" data-bm="Tukar model tanpa meninggalkan halaman">Switch models without leaving the page</span>
+  </div>
+
+  <div class="grid">
+
+    <a class="card card-teal" href="mtr-drilltech/">
+      <div class="code">OFFSHORE · INDEPENDENT-LEG JACK-UP</div>
+      <h3 data-en="Jack-up rig" data-bm="Pelantar jack-up">Jack-up rig</h3>
+      <div class="sub" data-en="22 assemblies · 9 systems" data-bm="22 pemasangan · 9 sistem">22 assemblies · 9 systems</div>
+      <p data-en="A self-elevating platform with a cantilevered drilling package: three lattice legs and spudcans, the jacking house, hull and main deck, derrick, drill floor, mud pumps and tanks, the BOP stack, cranes, helideck and lifeboats."
+         data-bm="Pelantar angkat sendiri dengan pakej gerudi kantilever: tiga kaki kekisi dan spudcan, rumah jack, badan dan dek utama, derik, lantai gerudi, pam dan tangki lumpur, susunan BOP, kren, helideck dan bot penyelamat.">
+        A self-elevating platform with a cantilevered drilling package: three lattice legs and spudcans, the jacking house, hull and main deck, derrick, drill floor, mud pumps and tanks, the BOP stack, cranes, helideck and lifeboats.
+      </p>
+      <div class="spec">
+        <div><span data-en="Environment" data-bm="Persekitaran">Environment</span><b data-en="Shallow water" data-bm="Air cetek">Shallow water</b></div>
+        <div><span data-en="Legs" data-bm="Kaki">Legs</span><b data-en="3 · independent" data-bm="3 · bebas">3 · independent</b></div>
+        <div><span data-en="Drill floor" data-bm="Lantai gerudi">Drill floor</span><b data-en="Cantilevered" data-bm="Kantilever">Cantilevered</b></div>
+        <div><span data-en="Default view" data-bm="Paparan asal">Default view</span><b>ISO</b></div>
+      </div>
+      <span class="cta" data-en="Open the rig →" data-bm="Buka pelantar →">Open the rig →</span>
+    </a>
+
+    <a class="card card-sand" href="mtr-drilltech/">
+      <div class="code">ONSHORE · STEEL SUBSTRUCTURE</div>
+      <h3 data-en="Land drilling rig" data-bm="Pelantar gerudi darat">Land drilling rig</h3>
+      <div class="sub" data-en="14 assemblies · 7 systems" data-bm="14 pemasangan · 7 sistem">14 assemblies · 7 systems</div>
+      <p data-en="The same drilling package on the ground: a steel substructure over the cellar, skid-mounted mud pumps and tanks, generator sets, the pipe rack and the ramp that feeds pipe up to the drill floor."
+         data-bm="Pakej gerudi yang sama di atas tanah: struktur bawah keluli di atas selar, pam dan tangki lumpur atas skid, set penjana, rak paip dan tanjakan yang menghantar paip ke lantai gerudi.">
+        The same drilling package on the ground: a steel substructure over the cellar, skid-mounted mud pumps and tanks, generator sets, the pipe rack and the ramp that feeds pipe up to the drill floor.
+      </p>
+      <div class="spec">
+        <div><span data-en="Environment" data-bm="Persekitaran">Environment</span><b data-en="Onshore pad" data-bm="Tapak darat">Onshore pad</b></div>
+        <div><span data-en="Support" data-bm="Sokongan">Support</span><b data-en="Steel substructure" data-bm="Struktur bawah keluli">Steel substructure</b></div>
+        <div><span data-en="Handling" data-bm="Pengendalian">Handling</span><b data-en="Pipe ramp" data-bm="Tanjakan paip">Pipe ramp</b></div>
+        <div><span data-en="Shared parts" data-bm="Bahagian dikongsi">Shared parts</span><b data-en="Hoisting, rotating, mud" data-bm="Angkat, putar, lumpur">Hoisting, rotating, mud</b></div>
+      </div>
+      <span class="cta" data-en="Open the rig →" data-bm="Buka pelantar →">Open the rig →</span>
+    </a>
+
+    <a class="card card-blue" href="mtr-drilltech/">
+      <div class="code">WELL INTERVENTION · HWU</div>
+      <h3 data-en="Hydraulic workover unit" data-bm="Unit kerja semula hidraulik">Hydraulic workover unit</h3>
+      <div class="sub" data-en="14 assemblies · not a drilling rig" data-bm="14 pemasangan · bukan pelantar gerudi">14 assemblies · not a drilling rig</div>
+      <p data-en="A different machine altogether. Instead of a mast and drawworks, hydraulic jack cylinders and two sets of slips walk jointed pipe in and out of a live well, with a workbasket, pressure-control stack and power pack around them."
+         data-bm="Mesin yang berbeza sama sekali. Bukan tiang dan drawworks, sebaliknya silinder jack hidraulik dan dua set slip menggerakkan paip bersambung masuk dan keluar dari telaga aktif, dengan bakul kerja, susunan kawalan tekanan dan pek kuasa di sekelilingnya.">
+        A different machine altogether. Instead of a mast and drawworks, hydraulic jack cylinders and two sets of slips walk jointed pipe in and out of a live well, with a workbasket, pressure-control stack and power pack around them.
+      </p>
+      <div class="spec">
+        <div><span data-en="Motion" data-bm="Gerakan">Motion</span><b data-en="Jack cylinders" data-bm="Silinder jack">Jack cylinders</b></div>
+        <div><span data-en="Grip" data-bm="Cengkaman">Grip</span><b data-en="Travelling + stationary slips" data-bm="Slip bergerak + pegun">Travelling + stationary slips</b></div>
+        <div><span data-en="Well state" data-bm="Keadaan telaga">Well state</span><b data-en="Under pressure" data-bm="Bertekanan">Under pressure</b></div>
+        <div><span data-en="Internals" data-bm="Bahagian dalam">Internals</span><b data-en="5 authored groups" data-bm="5 kumpulan dikarang">5 authored groups</b></div>
+      </div>
+      <span class="cta" data-en="Open the unit →" data-bm="Buka unit →">Open the unit →</span>
+    </a>
+
+  </div>
+
+  <div class="h" id="how">
+    <h2 data-en="What you can actually do" data-bm="Apa yang boleh anda lakukan">What you can actually do</h2>
+    <span class="lbl" data-en="Every control is live" data-bm="Setiap kawalan berfungsi">Every control is live</span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="code">SCENE</div>
+      <h3 data-en="Handle the rig" data-bm="Kendalikan pelantar">Handle the rig</h3>
+      <ul class="plain">
+        <li data-en="<b>Orbit, pan and zoom</b> the whole rig, or double back to the ISO, TOP and DECK camera presets." data-bm="<b>Pusing, alih dan zum</b> seluruh pelantar, atau kembali ke pratetap kamera ISO, TOP dan DECK."><b>Orbit, pan and zoom</b> the whole rig, or double back to the ISO, TOP and DECK camera presets.</li>
+        <li data-en="<b>Click any assembly</b> in the scene or the navigator; both stay in step, and the breadcrumb follows." data-bm="<b>Klik mana-mana pemasangan</b> dalam adegan atau navigator; kedua-duanya kekal sejajar, dan breadcrumb mengikutinya."><b>Click any assembly</b> in the scene or the navigator; both stay in step, and the breadcrumb follows.</li>
+        <li data-en="<b>Focus, isolate, fade or hide</b> what you selected, then reset the rig and camera in one keystroke." data-bm="<b>Fokus, asingkan, kaburkan atau sembunyikan</b> pilihan anda, kemudian set semula pelantar dan kamera dengan satu kekunci."><b>Focus, isolate, fade or hide</b> what you selected, then reset the rig and camera in one keystroke.</li>
+        <li data-en="<b>Open the internals</b> where they are authored, or drop the waterline to see legs, spudcans and seabed." data-bm="<b>Buka bahagian dalam</b> di mana ia dikarang, atau turunkan paras air untuk melihat kaki, spudcan dan dasar laut."><b>Open the internals</b> where they are authored, or drop the waterline to see legs, spudcans and seabed.</li>
+        <li data-en="<b>Search by name or ID</b>, and toggle whole systems on and off from the chips beside the scene." data-bm="<b>Cari mengikut nama atau ID</b>, dan hidup-matikan keseluruhan sistem dari cip di sebelah adegan."><b>Search by name or ID</b>, and toggle whole systems on and off from the chips beside the scene.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="code">INSPECTOR · SIX TABS</div>
+      <h3 data-en="Read the equipment" data-bm="Baca peralatan">Read the equipment</h3>
+      <ul class="plain">
+        <li data-en="<b>Overview</b> — what the assembly does and where on the rig to find it." data-bm="<b>Overview</b> — apa yang dilakukan pemasangan itu dan di mana untuk mencarinya."><b>Overview</b> — what the assembly does and where on the rig to find it.</li>
+        <li data-en="<b>Engineering</b> — how it works, and whether internal parts were modelled for it." data-bm="<b>Engineering</b> — bagaimana ia berfungsi, dan sama ada bahagian dalamnya dimodelkan."><b>Engineering</b> — how it works, and whether internal parts were modelled for it.</li>
+        <li data-en="<b>Connections</b> — the equipment it works against, navigable, and drawable in 3D." data-bm="<b>Connections</b> — peralatan yang berkait dengannya, boleh dilayari dan boleh dilukis dalam 3D."><b>Connections</b> — the equipment it works against, navigable, and drawable in 3D.</li>
+        <li data-en="<b>Safety</b> — hazard awareness topics only: no procedure, no certification, no readiness claim." data-bm="<b>Safety</b> — topik kesedaran bahaya sahaja: tiada prosedur, tiada pensijilan, tiada dakwaan kesiapsiagaan."><b>Safety</b> — hazard awareness topics only: no procedure, no certification, no readiness claim.</li>
+        <li data-en="<b>Specs</b> — record details, with manufacturer and rated capacity left honestly unfilled." data-bm="<b>Specs</b> — butiran rekod, dengan pengeluar dan kapasiti terkadar dibiarkan kosong secara jujur."><b>Specs</b> — record details, with manufacturer and rated capacity left honestly unfilled.</li>
+        <li data-en="<b>Evidence</b> — what the model is based on, and what is still an open question." data-bm="<b>Evidence</b> — asas model ini, dan apa yang masih menjadi persoalan terbuka."><b>Evidence</b> — what the model is based on, and what is still an open question.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="h">
+    <h2 data-en="Built with" data-bm="Dibina dengan">Built with</h2>
+    <span class="lbl" data-en="No framework, no build step" data-bm="Tiada rangka kerja, tiada langkah binaan">No framework, no build step</span>
+  </div>
+
+  <div class="card">
+    <div class="spec" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border-top: none; padding-top: 0;">
+      <div><span data-en="Rendering" data-bm="Pemaparan">Rendering</span><b>Three.js · WebGL</b></div>
+      <div><span data-en="Application" data-bm="Aplikasi">Application</span><b data-en="Plain ES modules" data-bm="Modul ES biasa">Plain ES modules</b></div>
+      <div><span data-en="Geometry" data-bm="Geometri">Geometry</span><b data-en="Authored, not scanned" data-bm="Dikarang, bukan diimbas">Authored, not scanned</b></div>
+      <div><span data-en="Mesh groups" data-bm="Kumpulan mesh">Mesh groups</span><b>276 + 169</b></div>
+      <div><span data-en="Model elements" data-bm="Elemen model">Model elements</span><b>4,736</b></div>
+      <div><span data-en="Typography" data-bm="Tipografi">Typography</span><b>Poppins · DM Sans</b></div>
+    </div>
+    <p data-en="The explorer is hand-written HTML, CSS and ES modules with Three.js and OrbitControls bundled locally. There is no framework, no bundler and no build step: the files you load are the files that were authored. Every rig is modelled from primitives in code rather than imported from a scan or a marketplace asset, so the whole thing is original work."
+       data-bm="Penjelajah ini ditulis tangan dalam HTML, CSS dan modul ES dengan Three.js dan OrbitControls dibundel secara tempatan. Tiada rangka kerja, tiada bundler dan tiada langkah binaan: fail yang anda muatkan ialah fail yang dikarang. Setiap pelantar dimodelkan daripada primitif dalam kod dan bukan diimport daripada imbasan atau aset pasaran, jadi keseluruhannya ialah kerja asli.">
+      The explorer is hand-written HTML, CSS and ES modules with Three.js and OrbitControls bundled locally. There is no framework, no bundler and no build step: the files you load are the files that were authored. Every rig is modelled from primitives in code rather than imported from a scan or a marketplace asset, so the whole thing is original work.
+    </p>
+  </div>
+
+  <p class="note"
+     data-en="<strong>What this is and is not.</strong> All three rigs are original illustrative training assemblies, not surveyed digital twins of any particular vessel or unit. Layouts, proportions and connections are conceptual; manufacturer names, rated capacities and dimensions are deliberately left unfilled rather than guessed. The safety notes are hazard-awareness topics for orientation, never an operating sequence, a risk assessment, a certification or a well-control plan. Master Team Resources Sdn Bhd (1041387-W) supplies crews, training and safety consulting; nothing here implies that MTR owns or operates the rigs represented. The public edition on this site carries the 3D models only — the June 2026 planning records that the internal build reads are not published here."
+     data-bm="<strong>Apa ini dan apa ia bukan.</strong> Ketiga-tiga pelantar ialah pemasangan latihan ilustratif yang asli, bukan kembar digital tersurvei bagi mana-mana kapal atau unit tertentu. Susun atur, perkadaran dan sambungan adalah konseptual; nama pengeluar, kapasiti terkadar dan dimensi sengaja dibiarkan kosong dan bukan diteka. Nota keselamatan ialah topik kesedaran bahaya untuk orientasi, bukan urutan operasi, penilaian risiko, pensijilan atau pelan kawalan telaga. Master Team Resources Sdn Bhd (1041387-W) membekalkan kru, latihan dan perundingan keselamatan; tiada apa-apa di sini membayangkan MTR memiliki atau mengendalikan pelantar yang digambarkan. Edisi awam di laman ini membawa model 3D sahaja — rekod perancangan Jun 2026 yang dibaca oleh binaan dalaman tidak diterbitkan di sini.">
+    <strong>What this is and is not.</strong> All three rigs are original illustrative training assemblies, not surveyed digital twins of any particular vessel or unit. Layouts, proportions and connections are conceptual; manufacturer names, rated capacities and dimensions are deliberately left unfilled rather than guessed. The safety notes are hazard-awareness topics for orientation, never an operating sequence, a risk assessment, a certification or a well-control plan. Master Team Resources Sdn Bhd (1041387-W) supplies crews, training and safety consulting; nothing here implies that MTR owns or operates the rigs represented. The public edition on this site carries the 3D models only — the June 2026 planning records that the internal build reads are not published here.
+  </p>
+
+  <div class="foot">
+    <a href="index.html">FARISSUHAIL</a>
+    <a href="apps.html" data-en="Apps &amp; experiments" data-bm="Aplikasi &amp; eksperimen">Apps &amp; experiments</a>
+    <a href="petrolhead-technica.html">Petrolhead Technica</a>
+    <a href="mtr-drilltech/" data-en="Open the explorer" data-bm="Buka penjelajah">Open the explorer</a>
+    <span>© <span id="year"></span></span>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>

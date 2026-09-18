@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b2027" />
+  <title>MTR DRILLTECH · Interactive Rig Explorer</title>
+  <meta name="description" content="MTR DRILLTECH interactive jack-up, land rig and hydraulic workover unit explorer. Public edition: illustrative 3D models only, without planning records." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23009473'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='26' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}</script>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="webmcp.js"></script>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="MTR Drilltech home"><img src="assets/mtr-logo-white.png" alt="Master Team Resources"/><span class="brand-divider"></span><span>DRILLTECH<small>RIG EXPLORER</small></span></a>
+    <nav class="main-nav" aria-label="Main views"><button class="nav-tab active" data-view="explorer"><span data-icon="box"></span>3D Explorer</button><button class="nav-tab" data-view="fleet" hidden><span data-icon="grid"></span>Malaysia Fleet<span class="count">11</span></button></nav>
+    <div class="header-right"><a class="icon-btn" href="/mtr-drilltech.html" title="Back to the MTR DRILLTECH section on farissuhail.com" aria-label="Back to the MTR DRILLTECH section">&#8592;</a><span class="source-edition">PUBLIC <b>EDITION</b></span><button class="icon-btn" id="help" aria-label="Controls and keyboard shortcuts" title="Controls and shortcuts"><span data-icon="help"></span></button></div>
+  </header>
+  <main class="workspace" id="workspace">
+    <aside class="navigator" id="navigator" aria-label="Rig navigator">
+      <div class="panel-heading"><span>EQUIPMENT NAVIGATOR</span><button class="icon-btn" id="collapse-left" aria-label="Collapse navigator"><span data-icon="chevron-left"></span></button></div>
+      <div class="search-wrap"><span data-icon="search"></span><input id="search" type="search" placeholder="Find equipment or ID…" aria-label="Search equipment"/><kbd>/</kbd></div>
+      <div class="model-switch" aria-label="Rig model"><button class="active" data-model="jackup">Jack-up</button><button data-model="land">Land rig</button><button data-model="hwu">HWU</button></div>
+      <div class="system-heading"><span>SYSTEMS</span><button class="text-btn" id="expand-all">Expand all</button></div>
+      <div id="equipment-tree" class="equipment-tree"></div>
+      <div class="navigator-footer"><div class="rig-summary"><span data-icon="rig"></span><div><b>Offshore jack-up</b><small id="component-count">Loading equipment…</small></div></div><button id="integrity" class="integrity-btn"><span data-icon="shield"></span>Model integrity<span class="integrity-count" id="integrity-count">—</span></button></div>
+    </aside>
+    <section class="stage" aria-label="3D rig explorer">
+      <div id="viewport" tabindex="0" aria-label="Interactive 3D jack-up rig. Drag to orbit, scroll to zoom. Equipment is also available in the navigator."></div>
+      <div class="scene-top"><div class="scene-title"><span class="eyebrow">OFFSHORE ENGINEERING</span><h1 id="scene-title">Jack-up rig</h1><div class="model-tag"><span data-icon="box"></span>Illustrative 3D model</div></div><div class="scene-actions"><button id="toggle-left" class="icon-btn surface-btn" aria-label="Show navigator" hidden><span data-icon="menu"></span></button><button id="show-fleet" class="rig-selector" hidden><span data-icon="rig"></span><span id="rig-selector-label">Select a Malaysia rig</span><span data-icon="chevron-down"></span></button><button id="toggle-right" class="icon-btn surface-btn" aria-label="Show inspector" hidden><span data-icon="panel"></span></button></div></div>
+      <div id="system-chips" class="system-chips" aria-label="System visibility"></div>
+      <div class="camera-presets" aria-label="Camera views"><button class="preset active" data-camera="iso">ISO</button><button class="preset" data-camera="top">TOP</button><button class="preset" data-camera="deck">DECK</button></div>
+      <div class="scene-compass" aria-hidden="true"><span>N</span><div class="compass-pointer"></div><small>VIEW</small></div>
+      <div id="hover-label" class="hover-label" hidden></div>
+      <div class="canvas-loading" id="canvas-loading"><span class="loader"></span><b>Assembling your rig</b><small>Structure · equipment · offshore environment</small></div>
+      <div class="toolbar" aria-label="Scene controls">
+        <button data-action="focus" title="Focus selected (F)"><span data-icon="focus"></span><span>Focus</span><kbd>F</kbd></button>
+        <button data-action="isolate" title="Isolate selected (I)"><span data-icon="box"></span><span>Isolate</span><kbd>I</kbd></button>
+        <button data-action="fade" title="Fade other equipment (D)"><span data-icon="layers"></span><span>Fade</span><kbd>D</kbd></button>
+        <button data-action="hide" title="Hide selected (H)"><span data-icon="eye-off"></span><span>Hide</span><kbd>H</kbd></button>
+        <i></i>
+        <button data-action="internals" title="View authored internals (X)"><span data-icon="cut"></span><span>Internals</span><kbd>X</kbd></button>
+        <button data-action="subsurface" title="Reveal seabed (G)"><span data-icon="waves"></span><span>Subsea</span><kbd>G</kbd></button>
+        <button data-action="reset" title="Restore rig and camera (R)"><span data-icon="reset"></span><span>Reset</span><kbd>R</kbd></button>
+      </div>
+      <div class="stage-footer"><div id="breadcrumbs"><span data-icon="home"></span><span>MTR DRILLTECH</span><span class="crumb-sep">/</span><b>Jack-up overview</b></div><button id="fullscreen" title="Expand viewport"><span data-icon="expand"></span></button></div>
+      <div class="navigation-hint" id="navigation-hint">Drag to orbit <span>·</span> Scroll to zoom <span>·</span> Click equipment to explore</div>
+    </section>
+    <aside class="inspector" id="inspector" aria-label="Component inspector"><div class="panel-heading"><span>INSPECTOR</span><button class="icon-btn" id="collapse-right" aria-label="Collapse inspector"><span data-icon="chevron-right"></span></button></div><div id="inspector-content"></div></aside>
+  </main>
+  <section class="fleet-view" id="fleet-view" hidden></section>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="dialog"><div class="dialog-top"><h2 id="dialog-title"></h2><button id="dialog-close" class="icon-btn" aria-label="Close dialog"><span data-icon="close"></span></button></div><div id="dialog-body"></div></dialog>
+</div>
+</body></html>

@@ -1,0 +1,16 @@
+import {explorer} from './app.js';
+const context=document.modelContext;
+if(context?.registerTool){
+  const lifecycle=new AbortController();
+  const tools=[
+    {name:'read_planning_records',title:'Read LTDS records',description:'Read neutral jack-up or HWU records, keeping assigned unit records separate from unassigned planning slots.',inputSchema:{type:'object',properties:{assetType:{type:'string',enum:['jackup','hwu']}},required:['assetType'],additionalProperties:false},annotations:{readOnlyHint:true},execute:input=>explorer.getPlanningRecords(input?.assetType)},
+    {name:'open_planning_record',title:'Explore an LTDS unit',description:'Open an assigned neutral LTDS unit record with its generic 3D model. Unassigned planning placeholders cannot be opened as physical units.',inputSchema:{type:'object',properties:{recordId:{type:'string'}},required:['recordId'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>explorer.openPlanningRecord(input?.recordId)},
+    {name:'switch_rig_model',title:'Switch rig model',description:'Switch the full explorer between the offshore jack-up, onshore land rig and hydraulic workover unit.',inputSchema:{type:'object',properties:{model:{type:'string',enum:['jackup','land','hwu']}},required:['model'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>explorer.setModel(input?.model)},
+    {name:'read_rig_explorer',title:'Read rig explorer',description:'Read current selected equipment, rig mode and available equipment IDs.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({...explorer.getState(),components:explorer.getComponents()})},
+    {name:'select_rig_component',title:'Select equipment',description:'Select an equipment assembly in the rig navigator and 3D scene, open its inspector and frame it.',inputSchema:{type:'object',properties:{componentId:{type:'string'}},required:['componentId'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>{if(!input||typeof input.componentId!=='string')throw Error('componentId is required');return explorer.selectComponent(input.componentId);}},
+    {name:'set_rig_view',title:'Set rig view',description:'Set the rig camera to an isometric, top or deck view.',inputSchema:{type:'object',properties:{camera:{type:'string',enum:['iso','top','deck']}},required:['camera'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>explorer.setCamera(input?.camera)},
+    {name:'change_rig_visibility',title:'Change rig visibility',description:'Apply an explorer scene action. Isolate, fade, internals and subsurface toggle their corresponding view. Reset restores the full rig.',inputSchema:{type:'object',properties:{action:{type:'string',enum:['focus','isolate','fade','internals','subsurface','reset','unhide']}},required:['action'],additionalProperties:false},annotations:{readOnlyHint:false},execute:input=>explorer.sceneAction(input?.action)}
+  ];
+  for(const tool of tools){try{Promise.resolve(context.registerTool(tool,{signal:lifecycle.signal})).catch(error=>console.warn('Optional explorer tool unavailable:',tool.name,error.message));}catch(error){console.warn('Optional explorer tools unavailable:',error.message);}}
+  addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
+}

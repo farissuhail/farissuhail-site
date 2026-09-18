@@ -1,0 +1,248 @@
+{
+  "classification": "Illustrative generic hydraulic workover equipment",
+  "sourceNote": "Original educational descriptions informed by public manufacturer and service-provider references. A hydraulic workover unit moves jointed pipe using hydraulic cylinders and gripping slips; a conventional workover rig typically uses a mast and drawworks hoisting arrangement. Snubbing describes handling pipe against a net upward well-pressure force. Hydraulic workover equipment can support snubbing when suitably configured, but the terms do not establish identical equipment or capability. This conceptual assembly is not a surveyed model of any LTDS unit. Geometry, positions and connections are illustrative; published product ratings have not been transferred to it. Hazard labels are general awareness topics, not operating instructions, a complete risk assessment, certification or a well-control plan.",
+  "sources": [
+    {
+      "id": "snubco-glossary",
+      "title": "Customer Resources — hydraulic workover and snubbing glossary",
+      "publisher": "Snubco",
+      "url": "https://www.snubco.com/snubbing-customer-resources/",
+      "supports": "Terminology, hydraulic cylinders versus drawworks, pipe guides and power packs.",
+      "componentIds": ["hwu-jack", "hwu-guide", "hwu-hpu"]
+    },
+    {
+      "id": "joeny-hwo",
+      "title": "Hydraulic Workover",
+      "publisher": "Joeny Holdings",
+      "url": "https://www.joenyholdings.com/hydraulic-workover/services/",
+      "supports": "Generic substructure, equipment groups, workbasket and control consoles.",
+      "componentIds": ["hwu-base", "hwu-workbasket", "hwu-controls"]
+    },
+    {
+      "id": "nov-snubbing",
+      "title": "Snubbing Unit",
+      "publisher": "NOV",
+      "url": "https://www.nov.com/products/snubbing-unit",
+      "supports": "Hydraulic workover/snubbing equipment and configuration-dependent auxiliary equipment.",
+      "componentIds": ["hwu-jack", "hwu-handling"]
+    },
+    {
+      "id": "nov-snubbing-sheet",
+      "title": "Short Stroke Snubbing Unit — data sheet",
+      "publisher": "NOV",
+      "url": "https://www.nov.com/-/media/nov/files/products/caps/intervention-and-stimulation-equipment/snubbing-unit/hydra-rig-short-stroke-snubbing-unit-data-sheet.pdf",
+      "supports": "Jack structure, gin pole, pipe-handling equipment and slip interlock examples.",
+      "componentIds": ["hwu-jack", "hwu-handling", "hwu-controls"]
+    },
+    {
+      "id": "halliburton-slip-system",
+      "title": "SafeGrip pipe conveyance system for well interventions",
+      "publisher": "Halliburton",
+      "url": "https://www.halliburton.com/en/products/halliburton-safegrip-pipe-conveyance-system",
+      "supports": "Travelling and stationary slip groups and direction-dependent pipe restraint. Proprietary control behavior is not represented by this generic model.",
+      "componentIds": ["hwu-travelling-slips", "hwu-stationary-slips"]
+    },
+    {
+      "id": "nov-snubbing-bop",
+      "title": "Snubbing BOP",
+      "publisher": "NOV",
+      "url": "https://www.nov.com/products/snubbing-bop",
+      "supports": "Pressure-control equipment for snubbing and workover applications; configuration varies.",
+      "componentIds": ["hwu-bop"]
+    },
+    {
+      "id": "halliburton-hwo",
+      "title": "Hydraulic workover and snubbing for well maintenance",
+      "publisher": "Halliburton",
+      "url": "https://www.halliburton.com/en/completions/well-intervention-and-diagnostics/hydraulic-workover",
+      "supports": "Workstrings and supporting surface-fluid, pumping and flowback equipment.",
+      "componentIds": ["hwu-pipe", "hwu-tank", "hwu-manifold"]
+    },
+    {
+      "id": "nov-intervention-flow",
+      "title": "Intervention and Stimulation Equipment — brochure",
+      "publisher": "NOV",
+      "url": "https://www.nov.com/-/media/nov/files/products/caps/intervention-and-stimulation-equipment/intervention-and-stimulation-equipment-brochure.pdf",
+      "supports": "Flow-control manifolds, temporary flowlines and associated surface-fluid equipment.",
+      "componentIds": ["hwu-manifold", "hwu-tank"]
+    },
+    {
+      "id": "wellgear-equipment",
+      "title": "Equipment",
+      "publisher": "WellGear",
+      "url": "https://www.wellgeargroup.com/how-we-do-it/equipment",
+      "supports": "Modular hydraulic workover equipment, work areas, access stairs and pipe-buckling context.",
+      "componentIds": ["hwu-base", "hwu-workbasket", "hwu-guide", "hwu-access"]
+    }
+  ],
+  "components": [
+    {
+      "id": "hwu-base",
+      "name": "Base & Support Substructure",
+      "system": "SS",
+      "code": "HWU-SS-01",
+      "summary": "The base supports the intervention assembly and provides a structural load path around the well centre.",
+      "engineering": "A substructure can distribute equipment weight and jack reactions into suitable supports. Actual wellhead interfaces, foundations and load sharing require engineered verification; the conceptual frame does not establish that a wellhead or platform can carry these loads.",
+      "location": "Lower structural frame around the well centre",
+      "hazards": ["Structural loading", "Pinch points", "Uneven supporting surfaces"],
+      "connections": ["hwu-jack", "hwu-stationary-slips", "hwu-bop", "hwu-access"],
+      "aliases": ["substructure", "support frame", "base skid"]
+    },
+    {
+      "id": "hwu-jack",
+      "name": "Hydraulic Jack Assembly",
+      "system": "HY",
+      "code": "HWU-HY-01",
+      "summary": "Hydraulic cylinders provide the axial force that moves the pipe-handling assembly.",
+      "engineering": "The jack moves a travelling head relative to a stationary structure. Hydraulic force supports lifting or pushing duties, depending on configuration. Cylinder count, stroke and force capacity are intentionally unspecified; this is the defining hydraulic mechanism rather than a conventional drawworks hoist.",
+      "location": "Vertical lifting assembly above the well-control equipment",
+      "hazards": ["Moving structures", "Crush points", "Stored hydraulic energy"],
+      "connections": ["hwu-base", "hwu-travelling-slips", "hwu-stationary-slips", "hwu-guide", "hwu-hpu", "hwu-controls"],
+      "aliases": ["lifting cylinders", "hydraulic lifting assembly", "snubbing jack"]
+    },
+    {
+      "id": "hwu-travelling-slips",
+      "name": "Travelling Slip Assembly",
+      "system": "HY",
+      "code": "HWU-HY-02",
+      "summary": "The travelling slip assembly grips the pipe at the moving jack head.",
+      "engineering": "Slip elements transfer axial pipe loads into the travelling head. Designs may include different grip arrangements for upward or downward loading. This model shows their location and purpose without depicting an operating sequence or certifying a particular restraint system.",
+      "location": "On the moving head of the hydraulic jack",
+      "hazards": ["Uncontrolled pipe movement", "Pinch points", "Axial pipe loads"],
+      "connections": ["hwu-jack", "hwu-stationary-slips", "hwu-pipe", "hwu-controls"],
+      "aliases": ["traveling slips", "travelling slip bowl", "moving pipe grip"]
+    },
+    {
+      "id": "hwu-stationary-slips",
+      "name": "Stationary Slip Assembly",
+      "system": "HY",
+      "code": "HWU-HY-03",
+      "summary": "The stationary slip assembly provides pipe restraint at the fixed part of the unit.",
+      "engineering": "These grips remain fixed relative to the support structure and provide a pipe-load interface separate from the travelling head. Their number, orientation and control interlocks depend on the engineered package and are not inferred from the simplified geometry.",
+      "location": "Fixed pipe-gripping assembly near the jack base",
+      "hazards": ["Loss of pipe restraint", "Pinch points", "Stored mechanical energy"],
+      "connections": ["hwu-base", "hwu-jack", "hwu-travelling-slips", "hwu-pipe", "hwu-controls"],
+      "aliases": ["fixed slips", "stationary slip bowl", "fixed pipe grip"]
+    },
+    {
+      "id": "hwu-workbasket",
+      "name": "Workbasket & Elevated Platform",
+      "system": "SS",
+      "code": "HWU-SS-02",
+      "summary": "The workbasket provides an elevated working area beside the pipe-handling assembly.",
+      "engineering": "The platform accommodates personnel, controls and handling interfaces around the upper unit. Deck openings, guardrails and equipment positions vary by design. The illustrated arrangement does not establish platform load limits, approved access or an escape layout.",
+      "location": "Elevated platform around the upper intervention assembly",
+      "hazards": ["Falls from height", "Dropped objects", "Moving tubulars"],
+      "connections": ["hwu-controls", "hwu-handling", "hwu-access", "hwu-jack"],
+      "aliases": ["work basket", "snubbing basket", "operator platform"]
+    },
+    {
+      "id": "hwu-guide",
+      "name": "Pipe Guide Assembly",
+      "system": "HY",
+      "code": "HWU-HY-04",
+      "summary": "The guide supports alignment of the exposed pipe section within the jack assembly.",
+      "engineering": "Guide arrangements help limit lateral pipe deflection under compression. They may be fixed or telescopic. The illustrated guide is conceptual and does not establish an allowable unsupported pipe length, buckling resistance or snubbing load.",
+      "location": "Around the pipe between fixed and travelling structures",
+      "hazards": ["Pipe buckling", "Moving guide sections", "Trapped fingers"],
+      "connections": ["hwu-jack", "hwu-pipe", "hwu-travelling-slips", "hwu-stationary-slips"],
+      "aliases": ["guide tube", "tubular guide", "snubbing guide"]
+    },
+    {
+      "id": "hwu-bop",
+      "name": "Well-Control Stack",
+      "system": "WC",
+      "code": "HWU-WC-01",
+      "summary": "Pressure-control equipment forms a dedicated barrier assembly at the well interface.",
+      "engineering": "A workover or snubbing package uses pressure-control equipment selected for the well and intervention. The simplified stack represents this function only. Preventer types, arrangement, pressure rating and barrier suitability require verified equipment and well documentation.",
+      "location": "At the well centre beneath the hydraulic lifting assembly",
+      "hazards": ["Pressurised well fluids", "Stored pressure", "Heavy equipment"],
+      "connections": ["hwu-base", "hwu-pipe", "hwu-controls", "hwu-manifold"],
+      "aliases": ["BOP", "blowout preventer", "pressure-control stack"]
+    },
+    {
+      "id": "hwu-hpu",
+      "name": "Hydraulic Power Pack",
+      "system": "PS",
+      "code": "HWU-PS-01",
+      "summary": "The power pack supplies hydraulic energy for the unit's powered mechanisms.",
+      "engineering": "A prime mover drives hydraulic pumps, with fluid storage and associated conditioning equipment. Power may originate from an engine or electric motor. The visual hoses show functional relationships only; separate circuits and any well-control energy reserves are not fully represented.",
+      "location": "Auxiliary skid beside the main intervention structure",
+      "hazards": ["Pressurised hydraulic fluid", "Hot surfaces", "Rotating machinery"],
+      "connections": ["hwu-jack", "hwu-controls", "hwu-handling"],
+      "aliases": ["HPU", "hydraulic power unit", "power pack"]
+    },
+    {
+      "id": "hwu-controls",
+      "name": "Operator & Well-Control Consoles",
+      "system": "PS",
+      "code": "HWU-PS-02",
+      "summary": "The consoles provide command and indication interfaces for the unit's distinct equipment functions.",
+      "engineering": "Controls interface with lifting, slips, handling and pressure-control systems. Actual console locations, interlocks and separation of well-control functions vary. The model does not simulate a safe operating sequence or show a complete control and emergency system.",
+      "location": "Illustrative operator station beside the workbasket",
+      "hazards": ["Unexpected equipment movement", "Incorrect indications", "Stored system energy"],
+      "connections": ["hwu-hpu", "hwu-jack", "hwu-travelling-slips", "hwu-stationary-slips", "hwu-bop", "hwu-workbasket"],
+      "aliases": ["control console", "operator panel", "BOP controls"]
+    },
+    {
+      "id": "hwu-pipe",
+      "name": "Tubing Workstring",
+      "system": "DS",
+      "code": "HWU-DS-01",
+      "summary": "Jointed tubulars connect the surface handling equipment with the intervention tools in the well.",
+      "engineering": "A workstring transfers mechanical loads and may provide a fluid path. Its dimensions, connections and material must suit the intervention. The visible pipe is a generic teaching element and does not specify an actual completion or downhole tool assembly.",
+      "location": "Central tubular passing through the grips and well-control stack",
+      "hazards": ["Axial and torsional loads", "Dropped tubulars", "Pressurised contents"],
+      "connections": ["hwu-travelling-slips", "hwu-stationary-slips", "hwu-guide", "hwu-bop", "hwu-handling"],
+      "aliases": ["jointed pipe", "tubing string", "work string"]
+    },
+    {
+      "id": "hwu-handling",
+      "name": "Pipe Handling & Storage",
+      "system": "DS",
+      "code": "HWU-DS-02",
+      "summary": "Handling equipment links stored tubulars with the elevated work area.",
+      "engineering": "A package may include racks, lifting aids, a gin pole, winches or dedicated pipe-handling machinery. The model groups these supporting functions into one selectable assembly. It does not establish a lifting plan, rated lifting path or approved tubular-handling method.",
+      "location": "Beside the main structure and adjacent pipe-storage area",
+      "hazards": ["Suspended loads", "Rolling tubulars", "Crush points"],
+      "connections": ["hwu-pipe", "hwu-workbasket", "hwu-hpu"],
+      "aliases": ["pipe rack", "gin pole", "tubular handling", "handling winch"]
+    },
+    {
+      "id": "hwu-manifold",
+      "name": "Surface Flow-Control Manifold",
+      "system": "WC",
+      "code": "HWU-WC-02",
+      "summary": "The manifold represents the surface valves and flowline interfaces associated with intervention fluid handling.",
+      "engineering": "Manifolds group flow-control connections between well interfaces and supporting surface equipment. The conceptual links are not a piping diagram or valve lineup. Actual routing, pressure containment, fluid compatibility and downstream treatment equipment remain unverified.",
+      "location": "Auxiliary flowline skid beside the intervention assembly",
+      "hazards": ["Pressurised fluid release", "Flowline movement", "Trapped pressure"],
+      "connections": ["hwu-bop", "hwu-tank"],
+      "aliases": ["flow manifold", "surface manifold", "flow-control skid"]
+    },
+    {
+      "id": "hwu-tank",
+      "name": "Surface Fluid Tank",
+      "system": "WC",
+      "code": "HWU-WC-03",
+      "summary": "The tank represents supporting surface storage for intervention fluids.",
+      "engineering": "Fluid storage may form part of a larger mixing, pumping or returns-handling package. This tank is separate from the hydraulic power pack's reservoir. Its volume, contents, pressure classification and connection to treatment equipment are not specified by the model.",
+      "location": "Peripheral surface-fluid area away from the central pipe path",
+      "hazards": ["Fluid exposure", "Spills and slippery surfaces", "Tank openings"],
+      "connections": ["hwu-manifold"],
+      "aliases": ["fluid tank", "surface storage tank", "intervention fluid storage"]
+    },
+    {
+      "id": "hwu-access",
+      "name": "Access Stairs & Guardrails",
+      "system": "SS",
+      "code": "HWU-SS-03",
+      "summary": "Access structures connect the lower level with the elevated workbasket.",
+      "engineering": "Stairs, landings and edge protection form part of the unit's personnel-access arrangement. Designs may use other access systems. The visual path is illustrative and does not certify egress capacity, clearances, emergency escape arrangements or compliance with any standard.",
+      "location": "Alongside the support structure between ground and workbasket",
+      "hazards": ["Falls from height", "Slips and trips", "Restricted access"],
+      "connections": ["hwu-base", "hwu-workbasket"],
+      "aliases": ["access stairs", "platform access", "handrails", "guardrails"]
+    }
+  ]
+}
