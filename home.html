@@ -914,7 +914,6 @@
 
   function loop() {
     requestAnimationFrame(loop);
-    if (canvas.clientWidth !== w || canvas.clientHeight !== h) resize();
     var time = (performance.now() - t0) / 1000;
     if (!spinPaused && !state.selected) cam.lon += props.spinSpeed * 0.09;
 
@@ -1124,6 +1123,9 @@
   }, { passive: false });
 
   window.addEventListener('resize', resize);
+  if (window.ResizeObserver) {
+    new ResizeObserver(resize).observe(canvas);
+  }
 
   /* ---------- UI panels ---------- */
 
