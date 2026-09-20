@@ -162,55 +162,22 @@
     #fixed-cards { position: fixed; bottom: 0; left: 0; right: 0; z-index: 4; padding: 34px 40px; opacity: 0; pointer-events: none; }
     #fixed-cards .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px;
       letter-spacing: 0.2em; text-transform: uppercase; color: #9ca3af; margin-bottom: 24px; }
-    #fixed-cards .grid { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .rcard { display: flex; flex-direction: column; padding: 26px 26px 22px; border-radius: 18px;
+    #fixed-cards .grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .rcard { display: flex; flex-direction: column; padding: 22px 22px 20px; border-radius: 18px;
       background: rgba(8,10,9,0.55); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(14px);
       transition: transform 0.3s ease, border-color 0.3s ease; }
     .rcard:hover { transform: translateY(-5px); border-color: rgba(0,255,133,0.45); }
     .rcard .meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
       font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--accent); }
     .rcard .meta .ref { color: var(--mute); }
-    .rcard h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 9px; }
+    .rcard h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 9px; }
     .rcard h3 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent-2); }
-    .rcard p { color: #c3c3cf; font-size: 13.5px; line-height: 1.62; margin-bottom: auto; }
+    .rcard p { color: #c3c3cf; font-size: 13px; line-height: 1.58; margin-bottom: auto; }
     .rcard .go { margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent);
       display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
     .rcard:hover .go { gap: 12px; }
-
-    /* ===== cross-link: inspiration story ===== */
-    #crosslink { position: relative; z-index: 6; padding: 0 40px 40px; display: flex; justify-content: center; }
-    #crosslink .xwrap { max-width: 1150px; width: 100%; opacity: 0; transform: translateY(26px); filter: blur(6px);
-      transition: opacity 0.9s ease-out, transform 0.9s ease-out, filter 0.9s ease-out; }
-    #crosslink .xwrap.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
-    #crosslink .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
-    .xcard { display: grid; grid-template-columns: 300px 1fr; gap: 0; border-radius: 20px; overflow: hidden;
-      border: 1px solid var(--border); background: rgba(12,12,16,0.72); backdrop-filter: blur(14px);
-      transition: transform 0.25s, border-color 0.25s; }
-    .xcard:hover { transform: translateY(-5px); border-color: rgba(0,255,133,0.45); }
-    .xcover { display: flex; flex-direction: column; justify-content: center; padding: 34px 28px;
-      background: linear-gradient(150deg, rgba(0,255,133,0.10), rgba(0,0,0,0.5) 62%); border-right: 1px solid var(--border); }
-    .xcover .s { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 10px; }
-    .xcover .t { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; color: var(--dim); line-height: 1; }
-    .xcover .w { font-size: clamp(38px, 5vw, 54px); font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 1; margin-top: -2px; }
-    .xcover .a { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--mute); margin-top: 12px; }
-    .xbody { padding: 30px 32px 28px; display: flex; flex-direction: column; }
-    .xbody .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .xbody .badges span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--mute); border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px; }
-    .xbody .badges span.hot { color: #04120a; background: var(--accent); border-color: transparent; font-weight: 700; }
-    .xbody h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 10px; }
-    .xbody h3 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent-2); }
-    .xbody p { color: #c3c3cf; font-size: 14px; line-height: 1.62; margin-bottom: auto; }
-    .xbody .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent);
-      display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
-    .xcard:hover .xbody .go { gap: 12px; }
-    @media (max-width: 768px) {
-      #crosslink { padding: 0 16px 24px; }
-      .xcard { grid-template-columns: 1fr; }
-      .xcover { border-right: 0; border-bottom: 1px solid var(--border); padding: 26px 22px; }
-      .xbody { padding: 24px 22px; }
-    }
+    .rcard.guest { background: linear-gradient(160deg, rgba(0,255,133,0.10), rgba(12,12,16,0.72) 58%); border-color: rgba(0,255,133,0.28); }
+    .rcard.guest .meta span:first-child { color: var(--accent); }
 
     /* ===== closing (coming next) ===== */
     #section-three { position: relative; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; padding: 0 40px 110px; }
@@ -244,13 +211,13 @@
     #content { position: relative; z-index: 2; }
 
     /* ===== responsive ===== */
-    @media (max-width: 1080px) { #fixed-cards .grid { grid-template-columns: repeat(2, 1fr); } .rcard:nth-child(3) { display: none; } }
+    @media (max-width: 1240px) { #fixed-cards .grid { grid-template-columns: repeat(2, 1fr); max-width: 780px; } .rcard:nth-child(n+3) { display: none; } }
     @media (max-width: 768px) {
       #hero .content { padding-bottom: 72px; }
       #hero .ctas { flex-direction: column; }
       #fixed-cards { padding: 18px 16px 64px; }
       #fixed-cards .grid { grid-template-columns: 1fr; gap: 12px; }
-      .rcard:nth-child(3) { display: flex; }
+      .rcard:nth-child(n+3) { display: none; }
       #section-three { padding: 0 22px 90px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -271,8 +238,17 @@
 
 <!-- ===== Fixed Cards: the three reflections ===== -->
 <div id="fixed-cards">
-  <div class="heading" data-en="The reflections so far: pick a surah" data-bm="Refleksi setakat ini: pilih surah">The reflections so far: pick a surah</div>
+  <div class="heading" data-en="The work so far: reflections &amp; a story" data-bm="Setakat ini: refleksi &amp; satu kisah">The work so far: reflections &amp; a story</div>
   <div class="grid">
+    <a class="rcard guest" href="berat-bukan-banyak.html">
+      <div class="meta"><span data-en="INSPIRATION &middot; NEW" data-bm="INSPIRASI &middot; BAHARU">INSPIRATION &middot; NEW</span><span class="ref">101 &amp; 102</span></div>
+      <h3 data-en="Berat bukan banyak: <em>what actually has weight</em>" data-bm="Berat bukan banyak: <em>apa yang benar-benar berat</em>">Berat bukan banyak: <em>what actually has weight</em></h3>
+      <p data-en="Al-Qari'ah weighs; At-Takathur catches us counting. Four surahs swing between the Hereafter and the life we are living, until the mountains lose their mass."
+         data-bm="Al-Qari'ah menimbang; At-Takathur menangkap kita sedang mengira. Empat surah berayun antara Akhirat dan kehidupan yang sedang kita jalani, sehingga gunung kehilangan beratnya.">
+        Al-Qari'ah weighs; At-Takathur catches us counting. Four surahs swing between the Hereafter and the life we are living, until the mountains lose their mass.
+      </p>
+      <span class="go" data-en="Read the story &rarr;" data-bm="Baca kisah &rarr;">Read the story &rarr;</span>
+    </a>
     <a class="rcard" href="al-infitar.html">
       <div class="meta"><span>NO. 03 · SURAH 82</span><span class="ref">82:10–12</span></div>
       <h3 data-en="Al-Infitar: <em>you are never alone</em>" data-bm="Al-Infitar: <em>kamu tak pernah bersendirian</em>">Al-Infitar: <em>you are never alone</em></h3>
@@ -364,35 +340,6 @@
 
   <!-- Spacer -->
   <div style="height:60vh;"></div>
-
-  <!-- Cross-link: the inspiration story on Al-Qari'ah & At-Takathur -->
-  <section id="crosslink">
-    <div class="xwrap" id="crosslink-inner">
-      <div class="heading" data-en="Also worth your time · from the inspiration series" data-bm="Berbaloi dibaca · daripada siri inspirasi">Also worth your time · from the inspiration series</div>
-      <a class="xcard" href="berat-bukan-banyak.html">
-        <div class="xcover">
-          <div class="s">SURAH 101 &middot; 102</div>
-          <div class="t">berat bukan</div>
-          <div class="w">BANYAK</div>
-          <div class="a">AL-QARI'AH &middot; AT-TAKATHUR</div>
-        </div>
-        <div class="xbody">
-          <div class="badges">
-            <span class="hot" data-en="New" data-bm="Baharu">New</span>
-            <span data-en="The scale" data-bm="Mizan">Mizan</span>
-            <span data-en="10 min read" data-bm="Baca 10 minit">10 min read</span>
-          </div>
-          <h3 data-en="Berat bukan banyak: <em>the only scale that survives the day</em>"
-              data-bm="Berat bukan banyak: <em>timbangan yang tinggal pada hari itu</em>">Berat bukan banyak: <em>the only scale that survives the day</em></h3>
-          <p data-en="Al-Qari'ah asks what actually has weight. At-Takathur catches us counting instead. Four surahs in a row swing the camera between the Hereafter and the life we are living now, until the mountains lose their mass and only the mizan is left standing."
-             data-bm="Al-Qari'ah bertanya apa yang benar-benar berat. At-Takathur pula menangkap kita sedang mengira. Empat surah berturutan mengayunkan kamera antara Akhirat dan kehidupan yang sedang kita jalani, sehingga gunung kehilangan beratnya dan hanya mizan yang tinggal berdiri.">
-            Al-Qari'ah asks what actually has weight. At-Takathur catches us counting instead. Four surahs in a row swing the camera between the Hereafter and the life we are living now, until the mountains lose their mass and only the mizan is left standing.
-          </p>
-          <span class="go" data-en="Read the story &rarr;" data-bm="Baca kisah &rarr;">Read the story &rarr;</span>
-        </div>
-      </a>
-    </div>
-  </section>
 
   <!-- Section 3: coming next -->
   <section id="section-three">
@@ -505,14 +452,6 @@
     requestAnimationFrame(tickCards);
   }
   requestAnimationFrame(tickCards);
-
-  // ===== cross-link reveal =====
-  var xin = document.getElementById('crosslink-inner');
-  var xobs = new IntersectionObserver(function (e) {
-    if (e[0].isIntersecting) { xin.classList.add('visible'); xobs.unobserve(xin); }
-  }, { threshold: 0.15 });
-  xobs.observe(xin);
-  setTimeout(function () { xin.classList.add('visible'); }, 6000); // throttled-tab fallback
 
   // ===== closing reveal =====
   var inner = document.getElementById('section-three-inner');
