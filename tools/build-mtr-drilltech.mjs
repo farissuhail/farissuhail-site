@@ -66,8 +66,6 @@ let html = await readFile(path.join(TARGET, 'index.html'), 'utf8');
 
 for (const [from, to] of [
   ['href="/style.css"', 'href="style.css"'],
-  ['"three":"/vendor/three.module.min.js"', '"three":"./vendor/three.module.min.js"'],
-  ['"three/addons/controls/OrbitControls.js":"/vendor/OrbitControls.js"', '"three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"'],
   ['src="/app.js"', 'src="app.js"'],
   ['src="/webmcp.js"', 'src="webmcp.js"'],
   ['src="/assets/mtr-logo-white.png"', 'src="assets/mtr-logo-white.png"'],

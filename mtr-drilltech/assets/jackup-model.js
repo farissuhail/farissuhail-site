@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.min.js';
 
 /** Original educational jack-up assembly. Dimensions are illustrative, not a vessel survey. */
 export function buildJackup() {

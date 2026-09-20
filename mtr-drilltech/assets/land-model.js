@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.min.js';
 import { buildJackup } from './jackup-model.js';
 
 /** Original illustrative land drilling rig, reusing the common drilling machinery. */
