@@ -1,0 +1,98 @@
+/* Petrolhead Technica · anatomy poster button + viewer — layers on top of car-studio.css.
+   Kept in its own file so the studio stylesheet and its cache key stay untouched. */
+
+/* The exit pill and the poster button share one stack so neither has to be hand-positioned. */
+.gt3-studio .gt3-utility {
+  position: absolute; right: 43px; top: 96px; z-index: 3;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 9px;
+}
+.gt3-studio .gt3-utility .gt3-exit { position: static; right: auto; top: auto; }
+.gt3-studio .ap-open {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 11px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  font-family: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--foreground);
+}
+.gt3-studio .ap-open:hover { border-color: var(--ring); color: var(--primary); }
+.gt3-studio .ap-open svg { width: 14px; height: 14px; }
+
+/* ── viewer ───────────────────────────────────────────────────────────── */
+.ap-viewer { position: fixed; inset: 0; z-index: 400; display: none; color-scheme: dark; }
+.ap-viewer.is-open { display: block; }
+.ap-viewer .ap-scrim { position: absolute; inset: 0; background: #030508; }
+.ap-viewer .ap-inner { position: absolute; inset: 0; display: flex; flex-direction: column; }
+
+.ap-viewer .ap-bar {
+  position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 12px 14px; background: #070d14e8; border-bottom: 1px solid #8394a63d;
+}
+.ap-viewer .ap-title {
+  font-family: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  font-size: 11px; letter-spacing: .1em; color: #eaf1f8; margin-right: auto;
+}
+.ap-viewer .ap-bar a,
+.ap-viewer .ap-bar button {
+  font-family: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #9db0c2;
+  border: 1px solid #8394a63d; background: #ffffff08; border-radius: 999px;
+  padding: 8px 13px; cursor: pointer; text-decoration: none; transition: color .2s, border-color .2s, background .2s;
+}
+.ap-viewer .ap-bar a:hover,
+.ap-viewer .ap-bar button:hover:not(:disabled) { color: #fff; border-color: #ffffff4d; background: #ffffff10; }
+.ap-viewer .ap-bar button:disabled { opacity: .38; cursor: default; }
+.ap-viewer .ap-bar a:focus-visible,
+.ap-viewer .ap-bar button:focus-visible { outline: 2px solid #9dccff; outline-offset: 2px; }
+.ap-viewer .ap-close { color: #fff; border-color: #ffffff4d; }
+
+/* zoom cluster: −  120%  +  ·  Fit */
+.ap-viewer .ap-zoom { display: inline-flex; align-items: center; gap: 6px; }
+.ap-viewer .ap-zoom button.ap-step { padding: 8px 11px; line-height: 1; }
+.ap-viewer .ap-zoom svg { width: 13px; height: 13px; display: block; }
+.ap-viewer .ap-level {
+  min-width: 52px; text-align: center;
+  font-family: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: .06em; color: #cfdae6;
+}
+
+.ap-viewer .ap-stage {
+  position: relative; z-index: 1; flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
+  padding: 14px; display: grid; place-items: start center;
+  touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: contain;
+}
+.ap-viewer .ap-stage img {
+  display: block; background: #fff; border-radius: 10px;
+  max-width: 100%; height: auto; cursor: zoom-in;
+  /* smooth resampling keeps the fine callout labels legible past 100% */
+  image-rendering: auto;
+}
+/* zoomed: the image is sized in px by the script and the stage scrolls around it */
+.ap-viewer .ap-stage.is-zoomed { place-items: start start; }
+.ap-viewer .ap-stage.is-zoomed img { max-width: none; cursor: zoom-out; }
+
+.ap-viewer .ap-caption {
+  position: relative; z-index: 2; padding: 9px 16px 12px; text-align: center;
+  font-family: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #7e8fa0;
+  border-top: 1px solid #8394a626; background: #070d14b3;
+}
+
+@media (max-width: 800px) {
+  /* the studio puts its exit pill at right:16/top:72 on small screens; sit beside it,
+     icon-only, so the pair never reaches back across the R32/X4/Sharan wordmark */
+  .gt3-studio .gt3-utility { right: 16px; top: 72px; flex-direction: row-reverse; align-items: center; gap: 6px; }
+  .gt3-studio .ap-open { padding: 6px 8px; font-size: 10px; letter-spacing: .1em; }
+  .gt3-studio .ap-open .ap-open-text { display: none; }
+  .gt3-studio .ap-open svg { width: 13px; height: 13px; }
+  .ap-viewer .ap-bar { padding: 10px 11px; gap: 6px; }
+  .ap-viewer .ap-title { width: 100%; margin: 0 0 3px; }
+  .ap-viewer .ap-stage { padding: 10px; }
+  .ap-viewer .ap-caption { letter-spacing: .1em; }
+}
+@media (max-width: 470px) {
+  /* phone: drop below the model badge, still clear of the parts rail at top:128 */
+  .gt3-studio .gt3-utility { top: 88px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ap-viewer .ap-bar a, .ap-viewer .ap-bar button { transition: none; }
+}

@@ -103,6 +103,20 @@
       font-family: var(--tc-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
       color: var(--card-accent, var(--tc-accent));
     }
+    /* a studio card plus its poster link; the card stays one <a>, the link is a sibling */
+    .studio-card { display: flex; flex-direction: column; gap: 9px; }
+    .studio-card > .lab-card { flex: 1; }
+    /* body.technica a { color: inherit } is more specific than a bare class, so match its weight */
+    body.technica .poster-link {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--tc-line); border-radius: 999px; padding: 8px 14px;
+      font-family: var(--tc-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--tc-dim); transition: color .22s, border-color .22s, background .22s;
+    }
+    body.technica .poster-link:hover { color: var(--card-accent, var(--tc-accent)); border-color: var(--tc-line-2); background: rgba(255,255,255,.03); }
+    body.technica .poster-link:focus-visible { outline: 2px solid var(--card-accent, var(--tc-accent)); outline-offset: 3px; }
+    body.technica .poster-link svg { width: 13px; height: 13px; flex: none; }
+
     .card-blue { --card-accent: #7cc4ff; --card-glow: rgba(124,196,255,.13); }
     .card-royal { --card-accent: #83bfff; --card-glow: rgba(131,191,255,.16); }
     .card-crimson { --card-accent: #ff6f86; --card-glow: rgba(255,111,134,.14); }
@@ -289,7 +303,8 @@
 
   <div class="hub-grid">
 
-    <a class="lab-card card-crimson" href="r32-studio.html">
+    <div class="studio-card card-crimson">
+      <a class="lab-card" href="r32-studio.html">
       <span class="lab-shot"><img src="assets/technica/r32-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
             alt="The Golf Mk5 R32 studio: the full car on a turntable, ready to be exploded into its parts." data-alt-en="The Golf Mk5 R32 studio: the full car on a turntable, ready to be exploded into its parts." data-alt-bm="Studio Golf Mk5 R32: kereta penuh di atas pusingan, sedia diuraikan kepada bahagiannya." /></span>
       <div class="code">MK5 · R32 · INTERACTIVE 3D STUDIO</div>
@@ -307,8 +322,11 @@
       </div>
       <span class="lab-cta" data-en="Open the studio →" data-bm="Buka studio →">Open the studio →</span>
     </a>
+      <a class="poster-link" href="r32-studio.html#anatomy-poster" aria-label="View the Golf Mk5 R32 anatomy poster" data-aria-en="View the Golf Mk5 R32 anatomy poster" data-aria-bm="Lihat poster anatomi Golf Mk5 R32"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><span data-en="View anatomy poster" data-bm="Lihat poster anatomi">View anatomy poster</span></a>
+    </div>
 
-    <a class="lab-card card-royal" href="x4-studio.html">
+    <div class="studio-card card-royal">
+      <a class="lab-card" href="x4-studio.html">
       <span class="lab-shot"><img src="assets/technica/x4-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
             alt="The BMW X4 F26 studio: the full car on a turntable under studio lighting." data-alt-en="The BMW X4 F26 studio: the full car on a turntable under studio lighting." data-alt-bm="Studio BMW X4 F26: kereta penuh di atas pusingan dengan pencahayaan studio." /></span>
       <div class="code">F26 · X4 · INTERACTIVE 3D STUDIO</div>
@@ -326,8 +344,11 @@
       </div>
       <span class="lab-cta" data-en="Open the studio &rarr;" data-bm="Buka studio &rarr;">Open the studio &rarr;</span>
     </a>
+      <a class="poster-link" href="x4-studio.html#anatomy-poster" aria-label="View the BMW X4 F26 anatomy poster" data-aria-en="View the BMW X4 F26 anatomy poster" data-aria-bm="Lihat poster anatomi BMW X4 F26"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><span data-en="View anatomy poster" data-bm="Lihat poster anatomi">View anatomy poster</span></a>
+    </div>
 
-    <a class="lab-card card-ember" href="sharan-studio.html">
+    <div class="studio-card card-ember">
+      <a class="lab-card" href="sharan-studio.html">
       <span class="lab-shot"><img src="assets/technica/sharan-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
             alt="The Volkswagen Sharan studio: the full seven-seat car on a turntable." data-alt-en="The Volkswagen Sharan studio: the full seven-seat car on a turntable." data-alt-bm="Studio Volkswagen Sharan: kereta tujuh tempat duduk penuh di atas pusingan." /></span>
       <div class="code">7N · SHARAN · INTERACTIVE 3D STUDIO</div>
@@ -345,8 +366,11 @@
       </div>
       <span class="lab-cta" data-en="Open the studio &rarr;" data-bm="Buka studio &rarr;">Open the studio &rarr;</span>
     </a>
+      <a class="poster-link" href="sharan-studio.html#anatomy-poster" aria-label="View the Volkswagen Sharan 7N anatomy poster" data-aria-en="View the Volkswagen Sharan 7N anatomy poster" data-aria-bm="Lihat poster anatomi Volkswagen Sharan 7N"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><span data-en="View anatomy poster" data-bm="Lihat poster anatomi">View anatomy poster</span></a>
+    </div>
 
-    <a class="lab-card card-porsche" href="gt3-rs-studio.html">
+    <div class="studio-card card-porsche">
+      <a class="lab-card" href="gt3-rs-studio.html">
       <span class="lab-shot"><img src="assets/technica/gt3-studio.jpg" width="720" height="450" loading="lazy" decoding="async"
             alt="The Porsche 911 GT3 RS studio: the full car on a turntable with its rear wing raised." data-alt-en="The Porsche 911 GT3 RS studio: the full car on a turntable with its rear wing raised." data-alt-bm="Studio Porsche 911 GT3 RS: kereta penuh di atas pusingan dengan sayap belakangnya terangkat." /></span>
       <div class="code">992 · GT3 RS · INTERACTIVE 3D STUDIO</div>
@@ -364,13 +388,15 @@
       </div>
       <span class="lab-cta" data-en="Open the studio →" data-bm="Buka studio →">Open the studio →</span>
     </a>
+      <a class="poster-link" href="gt3-rs-studio.html#anatomy-poster" aria-label="View the Porsche 911 GT3 RS anatomy poster" data-aria-en="View the Porsche 911 GT3 RS anatomy poster" data-aria-bm="Lihat poster anatomi Porsche 911 GT3 RS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><span data-en="View anatomy poster" data-bm="Lihat poster anatomi">View anatomy poster</span></a>
+    </div>
 
   </div>
 
   <p class="hub-note"
-     data-en="The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The R32 studio uses a converted three-door reference mesh, not manufacturer CAD and not the five-door body. The Sharan studio is a converted 2016-model mod corrected toward the 2012 car, with an original seven-seat cabin built from period photographs. The X4 studio is a converted game mod corrected to BMW&#39;s published F26 drawings, carrying M Sport bodywork rather than a confirmed xDrive20i trim; see the notices beside each model for provenance. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide."
-     data-bm="Makmal enjin berkongsi satu kitaran 720° merentas model dan setiap rajah, dengan aci sesondol pada separuh kelajuan engkol. Peristiwa injap dilukis sebagai empat lejang ideal tanpa tindih, jadi pemasaan injap boleh ubah, Valvetronic dan peta pencucuhan sebenar diterangkan dan bukan disimulasikan, manakala lengkung tekanan adalah relatif untuk pembelajaran, bukan ukuran. Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak. Studio R32 menggunakan mesh rujukan tiga pintu yang ditukar format, bukan CAD pengeluar dan bukan badan lima pintu. Studio Sharan ialah mod model 2016 yang ditukar dan diperbetulkan ke arah kereta 2012, dengan kabin tujuh tempat duduk asli daripada gambar era itu. Studio X4 ialah mod permainan yang ditukar dan diperbetulkan mengikut lukisan rasmi F26 BMW, dengan badan M Sport dan bukan trim xDrive20i yang disahkan; lihat notis di sebelah setiap model. Studio GT3 RS ialah pembongkaran visual model rujukan pihak ketiga, bukan panduan pembaikan.">
-    The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The R32 studio uses a converted three-door reference mesh, not manufacturer CAD and not the five-door body. The Sharan studio is a converted 2016-model mod corrected toward the 2012 car, with an original seven-seat cabin built from period photographs. The X4 studio is a converted game mod corrected to BMW&#39;s published F26 drawings, carrying M Sport bodywork rather than a confirmed xDrive20i trim; see the notices beside each model for provenance. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide.
+     data-en="The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The R32 studio uses a converted three-door reference mesh, not manufacturer CAD and not the five-door body. The Sharan studio is a converted 2016-model mod corrected toward the 2012 car, with an original seven-seat cabin built from period photographs. The X4 studio is a converted game mod corrected to BMW&#39;s published F26 drawings, carrying M Sport bodywork rather than a confirmed xDrive20i trim; see the notices beside each model for provenance. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide. The anatomy poster behind each studio card is an illustrative cutaway drawn for this site, not factory CAD."
+     data-bm="Makmal enjin berkongsi satu kitaran 720° merentas model dan setiap rajah, dengan aci sesondol pada separuh kelajuan engkol. Peristiwa injap dilukis sebagai empat lejang ideal tanpa tindih, jadi pemasaan injap boleh ubah, Valvetronic dan peta pencucuhan sebenar diterangkan dan bukan disimulasikan, manakala lengkung tekanan adalah relatif untuk pembelajaran, bukan ukuran. Nisbah R32 diambil daripada jadual bengkel VW/Audi yang diterbitkan untuk DSG 02E pacuan empat roda di belakang 3.2 V6. Sharan ditunjukkan dengan set DQ250 melintang yang diterbitkan kerana kod gearboxnya sendiri belum disahkan — semak pelekat pada kotak gear sebelum memesan apa-apa. X4 menggunakan nisbah asal BMW F26 petrol (Julai 2014) dengan matriks elemen pertukaran ZF yang diterbitkan; nisbah gandarnya tidak dimodelkan, jadi makmal itu menunjukkan nisbah kotak gear sahaja. Model 3D ini anggaran untuk pembelajaran: susunan berfungsi adalah betul, bilangan gigi dan geometri tepat tidak. Studio R32 menggunakan mesh rujukan tiga pintu yang ditukar format, bukan CAD pengeluar dan bukan badan lima pintu. Studio Sharan ialah mod model 2016 yang ditukar dan diperbetulkan ke arah kereta 2012, dengan kabin tujuh tempat duduk asli daripada gambar era itu. Studio X4 ialah mod permainan yang ditukar dan diperbetulkan mengikut lukisan rasmi F26 BMW, dengan badan M Sport dan bukan trim xDrive20i yang disahkan; lihat notis di sebelah setiap model. Studio GT3 RS ialah pembongkaran visual model rujukan pihak ketiga, bukan panduan pembaikan. Poster anatomi di sebalik setiap kad studio ialah keratan rentas ilustrasi yang dilukis untuk laman ini, bukan CAD kilang.">
+    The engine labs share one 720° cycle across the model and every diagram, with camshafts at half crank speed. Valve events are drawn as an ideal four-stroke with no overlap, so variable valve timing, Valvetronic and real ignition maps are described rather than simulated, and the pressure curve is relative and educational, not measured. The R32 ratios come from the published VW/Audi workshop table for the 02E four-wheel-drive DSG behind the 3.2 V6. The Sharan is shown with a published DQ250 transverse set because its own gearbox code has not been confirmed yet — check the sticker on the box before ordering anything. The X4 uses BMW&#39;s original F26 petrol ratios (July 2014) with ZF&#39;s published shift-element matrix; its axle ratio is not modelled, so that lab shows gearbox ratio only. The 3D models are educational approximations: functional layout is right, tooth counts and exact geometry are not. The R32 studio uses a converted three-door reference mesh, not manufacturer CAD and not the five-door body. The Sharan studio is a converted 2016-model mod corrected toward the 2012 car, with an original seven-seat cabin built from period photographs. The X4 studio is a converted game mod corrected to BMW&#39;s published F26 drawings, carrying M Sport bodywork rather than a confirmed xDrive20i trim; see the notices beside each model for provenance. The GT3 RS studio is a visual disassembly of a third-party reference model, not a repair guide. The anatomy poster behind each studio card is an illustrative cutaway drawn for this site, not factory CAD.
   </p>
 
   <div class="hub-foot">
@@ -389,6 +415,7 @@
       html.setAttribute('data-lang', lang);
       document.querySelectorAll('[data-en][data-bm]').forEach(function (el) { el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en; });
       document.querySelectorAll('img[data-alt-en][data-alt-bm]').forEach(function (el) { el.alt = lang === 'bm' ? el.dataset.altBm : el.dataset.altEn; });
+      document.querySelectorAll('[data-aria-en][data-aria-bm]').forEach(function (el) { el.setAttribute('aria-label', lang === 'bm' ? el.dataset.ariaBm : el.dataset.ariaEn); });
       lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
       lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
       try { localStorage.setItem('fs-lang', lang); } catch (e) {}
