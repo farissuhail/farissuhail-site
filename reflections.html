@@ -177,6 +177,41 @@
       display: inline-flex; align-items: center; gap: 7px; transition: gap 0.2s; }
     .rcard:hover .go { gap: 12px; }
 
+    /* ===== cross-link: inspiration story ===== */
+    #crosslink { position: relative; z-index: 6; padding: 0 40px 40px; display: flex; justify-content: center; }
+    #crosslink .xwrap { max-width: 1150px; width: 100%; opacity: 0; transform: translateY(26px); filter: blur(6px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out, filter 0.9s ease-out; }
+    #crosslink .xwrap.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    #crosslink .heading { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); margin-bottom: 18px; }
+    .xcard { display: grid; grid-template-columns: 300px 1fr; gap: 0; border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border); background: rgba(12,12,16,0.72); backdrop-filter: blur(14px);
+      transition: transform 0.25s, border-color 0.25s; }
+    .xcard:hover { transform: translateY(-5px); border-color: rgba(0,255,133,0.45); }
+    .xcover { display: flex; flex-direction: column; justify-content: center; padding: 34px 28px;
+      background: linear-gradient(150deg, rgba(0,255,133,0.10), rgba(0,0,0,0.5) 62%); border-right: 1px solid var(--border); }
+    .xcover .s { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 10px; }
+    .xcover .t { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; color: var(--dim); line-height: 1; }
+    .xcover .w { font-size: clamp(38px, 5vw, 54px); font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 1; margin-top: -2px; }
+    .xcover .a { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--mute); margin-top: 12px; }
+    .xbody { padding: 30px 32px 28px; display: flex; flex-direction: column; }
+    .xbody .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .xbody .badges span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--mute); border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px; }
+    .xbody .badges span.hot { color: #04120a; background: var(--accent); border-color: transparent; font-weight: 700; }
+    .xbody h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 10px; }
+    .xbody h3 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: var(--accent-2); }
+    .xbody p { color: #c3c3cf; font-size: 14px; line-height: 1.62; margin-bottom: auto; }
+    .xbody .go { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+    .xcard:hover .xbody .go { gap: 12px; }
+    @media (max-width: 768px) {
+      #crosslink { padding: 0 16px 24px; }
+      .xcard { grid-template-columns: 1fr; }
+      .xcover { border-right: 0; border-bottom: 1px solid var(--border); padding: 26px 22px; }
+      .xbody { padding: 24px 22px; }
+    }
+
     /* ===== closing (coming next) ===== */
     #section-three { position: relative; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; padding: 0 40px 110px; }
     #section-three .inner { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -330,6 +365,35 @@
   <!-- Spacer -->
   <div style="height:60vh;"></div>
 
+  <!-- Cross-link: the inspiration story on Al-Qari'ah & At-Takathur -->
+  <section id="crosslink">
+    <div class="xwrap" id="crosslink-inner">
+      <div class="heading" data-en="Also worth your time · from the inspiration series" data-bm="Berbaloi dibaca · daripada siri inspirasi">Also worth your time · from the inspiration series</div>
+      <a class="xcard" href="berat-bukan-banyak.html">
+        <div class="xcover">
+          <div class="s">SURAH 101 &middot; 102</div>
+          <div class="t">berat bukan</div>
+          <div class="w">BANYAK</div>
+          <div class="a">AL-QARI'AH &middot; AT-TAKATHUR</div>
+        </div>
+        <div class="xbody">
+          <div class="badges">
+            <span class="hot" data-en="New" data-bm="Baharu">New</span>
+            <span data-en="The scale" data-bm="Mizan">Mizan</span>
+            <span data-en="10 min read" data-bm="Baca 10 minit">10 min read</span>
+          </div>
+          <h3 data-en="Berat bukan banyak: <em>the only scale that survives the day</em>"
+              data-bm="Berat bukan banyak: <em>timbangan yang tinggal pada hari itu</em>">Berat bukan banyak: <em>the only scale that survives the day</em></h3>
+          <p data-en="Al-Qari'ah asks what actually has weight. At-Takathur catches us counting instead. Four surahs in a row swing the camera between the Hereafter and the life we are living now, until the mountains lose their mass and only the mizan is left standing."
+             data-bm="Al-Qari'ah bertanya apa yang benar-benar berat. At-Takathur pula menangkap kita sedang mengira. Empat surah berturutan mengayunkan kamera antara Akhirat dan kehidupan yang sedang kita jalani, sehingga gunung kehilangan beratnya dan hanya mizan yang tinggal berdiri.">
+            Al-Qari'ah asks what actually has weight. At-Takathur catches us counting instead. Four surahs in a row swing the camera between the Hereafter and the life we are living now, until the mountains lose their mass and only the mizan is left standing.
+          </p>
+          <span class="go" data-en="Read the story &rarr;" data-bm="Baca kisah &rarr;">Read the story &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- Section 3: coming next -->
   <section id="section-three">
     <div class="inner" id="section-three-inner">
@@ -363,6 +427,7 @@
       <a href="al-mutaffifin.html">Al-Mutaffifin ✦</a>
       <a href="al-baqarah.html">Al-Baqarah ✦</a>
       <a href="ring-structure.html" data-en="Ring Structure ✦" data-bm="Struktur Ring ✦">Ring Structure ✦</a>
+      <a href="berat-bukan-banyak.html">Berat Bukan Banyak ✦</a>
       <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
       <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
       <a href="npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
@@ -440,6 +505,14 @@
     requestAnimationFrame(tickCards);
   }
   requestAnimationFrame(tickCards);
+
+  // ===== cross-link reveal =====
+  var xin = document.getElementById('crosslink-inner');
+  var xobs = new IntersectionObserver(function (e) {
+    if (e[0].isIntersecting) { xin.classList.add('visible'); xobs.unobserve(xin); }
+  }, { threshold: 0.15 });
+  xobs.observe(xin);
+  setTimeout(function () { xin.classList.add('visible'); }, 6000); // throttled-tab fallback
 
   // ===== closing reveal =====
   var inner = document.getElementById('section-three-inner');
