@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Anatomy Collection: all 26 pairs of the Sneakerz catalogue drawn as annotated anatomy posters. Filter by brand, search a model, open any poster full screen or download the original PNG." />
+  <title>The Anatomy Collection · Sneakerz · Faris Suhail</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#010101" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="The Anatomy Collection · 26 annotated sneaker posters" />
+  <meta property="og:description" content="Every pair in the Sneakerz catalogue, illustrated and annotated: mesh uppers, Air units, midsoles and motorsport detailing, labelled part by part." />
+  <meta property="og:url" content="https://farissuhail.com/sneakers-anatomy.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Anatomy Collection · Sneakerz" />
+  <meta name="twitter:description" content="26 annotated anatomy posters, one per pair in the Sneakerz catalogue." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; }
+    :root {
+      --accent: #00ff85; --accent-2: #5bff9d;
+      --gold: #ffc24d; --cyan: #22d3ee; --blue: #5eaaff; --violet: #a78bfa; --ember: #ff7a59; --red: #ff4d6d; --grey: #9aa4b2;
+      --text: #f1f1f5; --dim: rgba(255,255,255,0.72); --mute: #6e7280; --border: rgba(255,255,255,0.1);
+      --bg: #050506;
+    }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    ::selection { background: rgba(0,255,133,0.28); color: #fff; }
+
+    /* brand accents (same mapping as the catalogue) */
+    [data-brand="Nike"]        { --c: var(--ember); }
+    [data-brand="Puma"]        { --c: var(--gold); }
+    [data-brand="Jordan"]      { --c: var(--red); }
+    [data-brand="Adidas"]      { --c: var(--blue); }
+    [data-brand="New Balance"] { --c: var(--grey); }
+
+    /* ===== nav (shared shell) ===== */
+    .shell { position: relative; }
+    nav.top { position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 26px 20px 0; }
+    nav.top .brand { color: #fff; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 300; font-size: 15px; }
+    nav.top .links { display: flex; align-items: center; gap: 28px; }
+    nav.top .links a { font-size: 11.5px; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 400; transition: color .3s; }
+    nav.top .links a:hover { color: #fff; }
+    nav.top .links a.here { color: var(--accent); }
+    .lang-toggle { position: absolute; top: 24px; right: 28px; z-index: 25; font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+      display: inline-flex; align-items: center; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+    .lang-toggle::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 7px; }
+    .lang-toggle .active { color: #fff; } .lang-toggle .sep { opacity: .5; margin: 0 3px; }
+    .menu-btn { display: none; position: absolute; top: 22px; left: 18px; z-index: 25; background: none; border: 0; color: #fff; cursor: pointer; padding: 6px; }
+    .menu-btn svg { width: 22px; height: 22px; display: block; } .menu-btn .ic-x { display: none; }
+    .menu-btn.open .ic-menu { display: none; } .menu-btn.open .ic-x { display: block; }
+    #mobile-menu { position: fixed; top: 70px; left: 16px; right: 16px; z-index: 60; border-radius: 16px; padding: 28px 0;
+      display: flex; flex-direction: column; align-items: center; gap: 20px; background: rgba(10,10,12,0.96); border: 1px solid var(--border);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); opacity: 0; transform: translateY(-10px); pointer-events: none; transition: all .3s; }
+    #mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #mobile-menu a { color: rgba(255,255,255,0.9); letter-spacing: 0.25em; text-transform: uppercase; font-weight: 300; font-size: 13px; }
+    #mobile-menu a.here { color: var(--accent); }
+    @media (max-width: 860px) { nav.top .links { display: none; } .menu-btn { display: block; } nav.top .brand { font-size: 13.5px; letter-spacing: .25em; } }
+    @media (min-width: 861px) { #mobile-menu { display: none; } }
+
+    /* ===== hero ===== */
+    #head { position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: radial-gradient(120% 90% at 50% -20%, rgba(0,255,133,0.1), transparent 58%), linear-gradient(180deg, #060608, #030304); }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 30px; }
+    .head-inner { padding: 58px 0 52px; text-align: center; }
+    .kicker { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+    #head h1 { font-size: clamp(38px, 7.4vw, 86px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.95; margin: 20px 0 0; }
+    #head h1 .grad { background: linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 38%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #head p.sub { margin: 20px auto 0; max-width: 40rem; font-size: 15.5px; line-height: 1.7; color: var(--dim); }
+    .head-acts { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+    .head-acts a { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.02); border-radius: 999px; padding: 12px 20px; transition: all .25s; }
+    .head-acts a:hover { color: #fff; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+    .head-acts a.primary { color: #04120a; background: var(--accent); border-color: var(--accent); font-weight: 700; }
+    .head-acts a.primary:hover { background: var(--accent-2); border-color: var(--accent-2); color: #04120a; }
+    .head-acts a:focus-visible, .chip:focus-visible, #search:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* ===== toolbar ===== */
+    #gallery { padding: 44px 0 70px; }
+    .tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .chip { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.02); border-radius: 999px; padding: 10px 16px; cursor: pointer; transition: all .25s; }
+    .chip:hover { color: #fff; border-color: rgba(255,255,255,0.28); }
+    .chip.on { color: #fff; border-color: color-mix(in srgb, var(--c, var(--accent)) 60%, transparent); background: color-mix(in srgb, var(--c, var(--accent)) 14%, transparent); }
+    #search { margin-left: auto; font-family: 'Inter', sans-serif; font-size: 13.5px; color: #fff; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border); border-radius: 999px; padding: 11px 18px; min-width: 230px; }
+    #search::placeholder { color: var(--mute); }
+    #search:focus { outline: none; border-color: color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: 0 0 0 3px rgba(0,255,133,0.1); }
+    .count { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin: 18px 0 22px; }
+    .count b { color: var(--accent); font-weight: 700; }
+    @media (max-width: 640px) { #search { margin-left: 0; width: 100%; } .wrap { padding: 0 18px; } }
+
+    /* ===== poster grid ===== */
+    .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    @media (max-width: 1000px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .pgrid { grid-template-columns: 1fr; } }
+    .pcard { position: relative; border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.01)); transition: border-color .35s, box-shadow .35s, transform .35s; }
+    .pcard.hide { display: none; }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--c); opacity: 0.7; z-index: 2; }
+    .pcard:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--c) 50%, transparent);
+      box-shadow: 0 30px 60px -34px color-mix(in srgb, var(--c) 75%, transparent); }
+    .pshot { display: block; width: 100%; padding: 0; border: 0; border-bottom: 1px solid var(--border); background: #fff; cursor: zoom-in; position: relative; }
+    .pshot img { display: block; width: 100%; height: auto; background: #fff; }
+    .pshot .cue { position: absolute; right: 10px; bottom: 10px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #fff; background: rgba(8,8,11,0.78); border-radius: 999px; padding: 6px 11px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+    .pcard:hover .pshot .cue, .pshot:focus-visible .cue { opacity: 1; }
+    .pshot:focus-visible { outline: 2px solid var(--c); outline-offset: -3px; }
+    .pbody { padding: 18px 20px 20px; }
+    .pbody .ptop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .pbody .pidx { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--c); }
+    .pbody .pbrand { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+      border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; }
+    .pbody h2 { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; margin: 11px 0 0; min-height: 41px; }
+    .pacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .pacts > * { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.02); border-radius: 999px; padding: 9px 13px; cursor: pointer; transition: all .25s; }
+    .pacts > *:hover { color: #fff; border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); }
+    .pacts > *:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+    .empty { font-size: 14.5px; color: var(--dim); padding: 40px 0; }
+
+    /* ===== footer ===== */
+    footer { position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.06); padding: 34px 30px 40px; background: #010101; }
+    footer .row { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .brand { font-weight: 800; letter-spacing: -0.02em; color: #f1f1f5; }
+    footer .flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer .flinks a { font-size: 13px; color: #a4a4b5; transition: color .2s; }
+    footer .flinks a:hover { color: #fff; }
+    footer .copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); }
+
+    /* ===== anatomy lightbox (same viewer as the catalogue) ===== */
+    #lightbox { position: fixed; inset: 0; z-index: 400; display: none; }
+    #lightbox.open { display: block; }
+    #lightbox .lb-scrim { position: absolute; inset: 0; background: #030305; }
+    #lightbox .lb-inner { position: absolute; inset: 0; display: flex; flex-direction: column; }
+    #lightbox .lb-bar { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 12px 14px;
+      background: rgba(8,8,11,0.9); border-bottom: 1px solid var(--border); }
+    #lightbox .lb-t { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; margin-right: auto; }
+    #lightbox .lb-bar a, #lightbox .lb-bar button { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+      border: 1px solid var(--border); background: rgba(255,255,255,0.03); border-radius: 999px; padding: 8px 13px; cursor: pointer; transition: all .25s; }
+    #lightbox .lb-bar a:hover, #lightbox .lb-bar button:hover { color: #fff; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
+    #lightbox .lb-bar .lb-x { color: #fff; border-color: rgba(255,255,255,0.3); }
+    #lightbox .lb-bar a:focus-visible, #lightbox .lb-bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #lightbox .lb-stage { position: relative; z-index: 1; flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 14px; display: grid; place-items: start center;
+      touch-action: pan-x pan-y pinch-zoom; }
+    #lightbox .lb-stage img { display: block; background: #fff; border-radius: 10px; max-width: 100%; height: auto; cursor: zoom-in; }
+    #lightbox .lb-stage.zoom { place-items: start start; }
+    #lightbox .lb-stage.zoom img { max-width: none; width: auto; cursor: zoom-out; }
+    @media (max-width: 640px) { #lightbox .lb-t { width: 100%; margin-bottom: 2px; } }
+    /* the shared floating widgets must not sit on top of a full-screen poster */
+    body.lb-on .fb-btn, body.lb-on .fb-panel, body.lb-on .fb-count { display: none !important; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ============ HEAD ============ -->
+<section id="head" class="shell">
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <nav class="top">
+    <a href="index.html" class="brand">Farissuhail</a>
+    <div class="links">
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+      <a href="npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
+      <a href="sneakers.html" class="here" data-en="Sneakerz" data-bm="Sneakerz">Sneakerz</a>
+    </div>
+  </nav>
+  <button id="langToggle" class="lang-toggle" aria-label="Toggle language"><span class="lang-en active">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+
+  <div id="mobile-menu" aria-hidden="true">
+    <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+    <a href="inspiration.html" data-en="Inspiration" data-bm="Inspirasi">Inspiration</a>
+    <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+    <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+    <a href="npam.html" data-en="Political View" data-bm="Pandangan Politik">Political View</a>
+    <a href="sneakers.html" class="here" data-en="Sneakerz" data-bm="Sneakerz">Sneakerz</a>
+    <a href="index.html" data-en="Home" data-bm="Laman">Home</a>
+  </div>
+
+  <div class="wrap head-inner">
+    <span class="kicker" data-en="26 posters · annotated part by part" data-bm="26 poster · dilabel bahagian demi bahagian">26 posters · annotated part by part</span>
+    <h1>THE ANATOMY<br /><span class="grad">COLLECTION</span></h1>
+    <p class="sub"
+       data-en="Every pair in the Sneakerz catalogue, drawn and labelled: mesh uppers, Air units, midsoles, outsoles and the motorsport detailing. Filter by brand, search a model, then open any poster full screen."
+       data-bm="Setiap pasang dalam katalog Sneakerz, dilukis dan dilabel: bahagian atas mesh, unit Air, midsole, tapak dan detail motorsport. Tapis ikut jenama, cari model, kemudian buka mana-mana poster skrin penuh.">
+      Every pair in the Sneakerz catalogue, drawn and labelled: mesh uppers, Air units, midsoles, outsoles and the motorsport detailing. Filter by brand, search a model, then open any poster full screen.
+    </p>
+    <div class="head-acts">
+      <a class="primary" href="sneakers.html" data-en="← Back to the catalogue" data-bm="← Kembali ke katalog">← Back to the catalogue</a>
+      <a href="sneakers.html#grid" data-en="The 26 pairs" data-bm="26 pasang itu">The 26 pairs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="tools">
+      <div id="chips" role="group" aria-label="Filter by brand">
+        <button type="button" class="chip on" data-filter="all"><span data-en="All" data-bm="Semua">All</span></button>
+        <button type="button" class="chip" data-filter="Nike" data-brand="Nike">Nike</button>
+        <button type="button" class="chip" data-filter="Puma" data-brand="Puma">Puma</button>
+        <button type="button" class="chip" data-filter="Jordan" data-brand="Jordan">Jordan</button>
+        <button type="button" class="chip" data-filter="Adidas" data-brand="Adidas">Adidas</button>
+        <button type="button" class="chip" data-filter="New Balance" data-brand="New Balance">New Balance</button>
+      </div>
+      <input id="search" type="search" placeholder="Find a model…" aria-label="Find a model" />
+    </div>
+    <p class="count" aria-live="polite"><b id="shownCount">26</b> <span data-en="posters shown" data-bm="poster dipaparkan">posters shown</span></p>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="empty" id="empty" hidden data-en="No poster matches that search." data-bm="Tiada poster sepadan dengan carian itu.">No poster matches that search.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="row">
+    <span class="brand">FARISSUHAIL</span>
+    <div class="flinks">
+      <a href="index.html" data-en="Home" data-bm="Laman">Home</a>
+      <a href="reflections.html" data-en="Reflections" data-bm="Refleksi">Reflections</a>
+      <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
+      <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
+      <a href="sneakers.html" data-en="Sneakerz" data-bm="Sneakerz">Sneakerz</a>
+      <a href="mailto:tech@farissuhail.com">Contact</a>
+    </div>
+    <span class="copy">© <span id="year"></span> · Sneakerz · KL, MY</span>
+  </div>
+</footer>
+
+<!-- ============ ANATOMY LIGHTBOX ============ -->
+<div id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb-scrim" id="lbScrim"></div>
+  <div class="lb-inner">
+    <div class="lb-bar">
+      <span class="lb-t" id="lbTitle"></span>
+      <a id="lbOpen" href="#" target="_blank" rel="noopener"><span data-en="Open original" data-bm="Buka imej asal">Open original</span></a>
+      <a id="lbDl" href="#" download><span data-en="Download PNG" data-bm="Muat turun PNG">Download PNG</span></a>
+      <button type="button" class="lb-x" id="lbX"><span data-en="Close" data-bm="Tutup">Close</span></button>
+    </div>
+    <div class="lb-stage" id="lbStage"><img id="lbImg" alt="" /></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ================= POSTERS =================
+     Generated from the poster manifest (manifest.json): the ids match the catalogue
+     ids used by sneakers.html, so #01 and #08 stay two separate Air Max 720 pairs.
+     .f = original PNG, .w = web-optimised WebP (same pixel size), .x/.y = intrinsic size. */
+  var DIR = 'assets/sneakers/anatomy/';
+  var P = [
+    { i: 1, b: 'Nike', n: "Nike Air Max 720", f: '01-nike-air-max-720.png', w: '01-nike-air-max-720.webp', x: 1024, y: 1536 },
+    { i: 2, b: 'Puma', n: "Puma RS-X3 Rubik's Cube", f: '02-puma-rs-x3-rubiks-cube.png', w: '02-puma-rs-x3-rubiks-cube.webp', x: 1024, y: 1536 },
+    { i: 3, b: 'Puma', n: "Puma RS-X3 Mercedes AMG Petronas", f: '03-puma-rs-x3-mercedes-amg-petronas.png', w: '03-puma-rs-x3-mercedes-amg-petronas.webp', x: 1024, y: 1536 },
+    { i: 4, b: 'Nike', n: "Nike Air Force 1 LV8", f: '04-nike-air-force-1-lv8.png', w: '04-nike-air-force-1-lv8.webp', x: 1024, y: 1536 },
+    { i: 5, b: 'Nike', n: "Nike Air Force 1 '07", f: '05-nike-air-force-1-07.png', w: '05-nike-air-force-1-07.webp', x: 1024, y: 1536 },
+    { i: 6, b: 'Puma', n: "Puma x STAPLE Suede", f: '06-puma-staple-suede.png', w: '06-puma-staple-suede.webp', x: 1024, y: 1536 },
+    { i: 7, b: 'Jordan', n: "Jordan Air 1 Mid", f: '07-jordan-air-1-mid.png', w: '07-jordan-air-1-mid.webp', x: 1024, y: 1536 },
+    { i: 8, b: 'Nike', n: "Nike Air Max 720 (2nd pair)", f: '08-nike-air-max-720-second-pair.png', w: '08-nike-air-max-720-second-pair.webp', x: 1122, y: 1402 },
+    { i: 9, b: 'Adidas', n: "Adidas Stan Smith × Marvel 'Thor & Hulk'", f: '09-adidas-stan-smith-marvel-thor-hulk.png', w: '09-adidas-stan-smith-marvel-thor-hulk.webp', x: 1122, y: 1402 },
+    { i: 10, b: 'Puma', n: "Puma Suede Classic", f: '10-puma-suede-classic.png', w: '10-puma-suede-classic.webp', x: 1122, y: 1402 },
+    { i: 11, b: 'Puma', n: "Puma RS-X Batman", f: '11-puma-rs-x-batman.png', w: '11-puma-rs-x-batman.webp', x: 1122, y: 1402 },
+    { i: 12, b: 'Nike', n: "Nike Tuned 1 / Air Max Plus TN", f: '12-nike-air-max-plus-tn.png', w: '12-nike-air-max-plus-tn.webp', x: 1122, y: 1402 },
+    { i: 13, b: 'Jordan', n: "Jordan XXXV PF (Air Jordan 35)", f: '13-jordan-xxxv-pf.png', w: '13-jordan-xxxv-pf.webp', x: 1122, y: 1402 },
+    { i: 14, b: 'Nike', n: "Nike Air VaporMax Evo", f: '14-nike-air-vapormax-evo.png', w: '14-nike-air-vapormax-evo.webp', x: 1122, y: 1402 },
+    { i: 15, b: 'Puma', n: "Puma RS-Fast Porsche", f: '15-puma-rs-fast-porsche.png', w: '15-puma-rs-fast-porsche.webp', x: 1122, y: 1402 },
+    { i: 16, b: 'New Balance', n: "New Balance BB550", f: '16-new-balance-bb550.png', w: '16-new-balance-bb550.webp', x: 1122, y: 1402 },
+    { i: 17, b: 'Jordan', n: "Jordan MA2", f: '17-jordan-ma2.png', w: '17-jordan-ma2.webp', x: 1122, y: 1402 },
+    { i: 18, b: 'Puma', n: "Puma MB.03 Porsche Legacy (LaMelo Ball)", f: '18-puma-mb-03-porsche-legacy.png', w: '18-puma-mb-03-porsche-legacy.webp', x: 1122, y: 1402 },
+    { i: 19, b: 'Puma', n: "Puma BMW M Motorsport X-Ray Speed", f: '19-puma-bmw-x-ray-speed.png', w: '19-puma-bmw-x-ray-speed.webp', x: 1122, y: 1402 },
+    { i: 20, b: 'Puma', n: "Puma Mercedes X-Ray Trainers", f: '20-puma-mercedes-x-ray.png', w: '20-puma-mercedes-x-ray.webp', x: 1122, y: 1402 },
+    { i: 21, b: 'Puma', n: "Puma BMW M Motorsport LGND Renegade", f: '21-puma-bmw-lgnd-renegade.png', w: '21-puma-bmw-lgnd-renegade.webp', x: 1122, y: 1402 },
+    { i: 22, b: 'Nike', n: "Nike Air Force 1 React LV8", f: '22-nike-air-force-1-react-lv8.png', w: '22-nike-air-force-1-react-lv8.webp', x: 1122, y: 1402 },
+    { i: 23, b: 'Nike', n: "Nike SB Ishod Wair Premium", f: '23-nike-sb-ishod-wair-premium.png', w: '23-nike-sb-ishod-wair-premium.webp', x: 1122, y: 1402 },
+    { i: 24, b: 'Nike', n: "Nike Zoom Metcon Turbo 2", f: '24-nike-zoom-metcon-turbo-2.png', w: '24-nike-zoom-metcon-turbo-2.webp', x: 1122, y: 1402 },
+    { i: 25, b: 'Nike', n: "Nike SB Dunk Low Pro 'Navy Gum'", f: '25-nike-sb-dunk-low-pro-navy-gum.png', w: '25-nike-sb-dunk-low-pro-navy-gum.webp', x: 1122, y: 1402 },
+    { i: 26, b: 'Nike', n: "Nike Air Force 1 '07 (Carbon Fiber Swoosh)", f: '26-nike-air-force-1-07-carbon-fiber-swoosh.png', w: '26-nike-air-force-1-07-carbon-fiber-swoosh.webp', x: 1122, y: 1402 }
+  ];
+  var T = {
+    big:   { en: 'Enlarge', bm: 'Besarkan' },
+    open:  { en: 'Open original', bm: 'Buka imej asal' },
+    dl:    { en: 'Download PNG', bm: 'Muat turun PNG' }
+  };
+  function lang() { return document.documentElement.getAttribute('data-lang') === 'bm' ? 'bm' : 'en'; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function png(p) { return DIR + p.f; }
+  function webp(p) { return DIR + 'web/' + p.w; }
+  function alt(p) { return (lang() === 'bm' ? 'Poster anatomi beranotasi: ' : 'Annotated anatomy poster of the ') + p.n; }
+  function fallback(img, p) {
+    img.addEventListener('error', function onerr() { img.removeEventListener('error', onerr); img.src = png(p); });
+  }
+
+  /* ================= grid ================= */
+  var gridEl = document.getElementById('pgrid');
+  function cardHTML(p) {
+    var L = lang(), nm = esc(p.n), two = (p.i < 10 ? '0' : '') + p.i;
+    return '' +
+      '<article class="pcard" data-brand="' + p.b + '" data-i="' + p.i + '">' +
+        '<button type="button" class="pshot" data-big="' + p.i + '">' +
+          '<img src="' + webp(p) + '" alt="' + esc(alt(p)) + '" width="' + p.x + '" height="' + p.y + '" loading="lazy" decoding="async" />' +
+          '<span class="cue" data-en="' + T.big.en + '" data-bm="' + T.big.bm + '">' + T.big[L] + '</span>' +
+          '<span class="sr-only">' + nm + '</span>' +
+        '</button>' +
+        '<div class="pbody">' +
+          '<div class="ptop"><span class="pidx">#' + two + '</span><span class="pbrand">' + p.b + '</span></div>' +
+          '<h2>' + nm + '</h2>' +
+          '<div class="pacts">' +
+            '<a href="' + png(p) + '" target="_blank" rel="noopener"><span data-en="' + T.open.en + '" data-bm="' + T.open.bm + '">' + T.open[L] + '</span><span class="sr-only"> ' + nm + '</span></a>' +
+            '<a href="' + png(p) + '" download="' + p.f + '"><span data-en="' + T.dl.en + '" data-bm="' + T.dl.bm + '">' + T.dl[L] + '</span><span class="sr-only"> ' + nm + '</span></a>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+  }
+  gridEl.innerHTML = P.map(cardHTML).join('');
+  [].slice.call(gridEl.querySelectorAll('img')).forEach(function (img, k) { fallback(img, P[k]); });
+
+  /* ================= filter + search ================= */
+  var curFilter = 'all', q = '';
+  var countEl = document.getElementById('shownCount'), emptyEl = document.getElementById('empty');
+  function apply() {
+    var shown = 0;
+    [].slice.call(gridEl.children).forEach(function (el) {
+      var p = P[+el.getAttribute('data-i') - 1];
+      var ok = (curFilter === 'all' || p.b === curFilter) && (!q || p.n.toLowerCase().indexOf(q) > -1 || p.b.toLowerCase().indexOf(q) > -1);
+      el.classList.toggle('hide', !ok);
+      if (ok) shown++;
+    });
+    countEl.textContent = shown;
+    emptyEl.hidden = shown > 0;
+  }
+  var chips = [].slice.call(document.querySelectorAll('#chips .chip'));
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.remove('on'); });
+      c.classList.add('on');
+      curFilter = c.getAttribute('data-filter');
+      apply();
+    });
+  });
+  var searchEl = document.getElementById('search');
+  searchEl.addEventListener('input', function () { q = searchEl.value.trim().toLowerCase(); apply(); });
+
+  /* ================= full-screen viewer ================= */
+  (function () {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lbImg'), lbTitle = document.getElementById('lbTitle'),
+        lbOpenA = document.getElementById('lbOpen'), lbDl = document.getElementById('lbDl'),
+        lbX = document.getElementById('lbX'), lbScrim = document.getElementById('lbScrim'),
+        stage = document.getElementById('lbStage');
+    var isOpen = false, returnFocus = null;
+
+    function open(p) {
+      returnFocus = document.activeElement;
+      lbTitle.textContent = '#' + (p.i < 10 ? '0' : '') + p.i + '  ' + p.n;
+      lbImg.alt = alt(p);
+      lbImg.width = p.x; lbImg.height = p.y;
+      fallback(lbImg, p);
+      lbImg.src = webp(p);
+      lbOpenA.href = png(p);
+      lbDl.href = png(p); lbDl.setAttribute('download', p.f);
+      stage.classList.remove('zoom'); stage.scrollTop = 0; stage.scrollLeft = 0;
+      lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lb-on');
+      document.body.style.overflow = 'hidden';
+      isOpen = true;
+      try { lbX.focus({ preventScroll: true }); } catch (e) { lbX.focus(); }
+    }
+    function close() {
+      if (!isOpen) return;
+      lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lb-on');
+      document.body.style.overflow = '';
+      isOpen = false;
+      if (returnFocus && document.contains(returnFocus)) {
+        try { returnFocus.focus({ preventScroll: true }); } catch (e) { returnFocus.focus(); }
+      }
+      returnFocus = null;
+    }
+
+    /* one handler for the grid: .pshot is a real <button>, so Enter/Space already
+       fire a click here - no extra keydown handling, and no duplicate activation. */
+    gridEl.addEventListener('click', function (e) {
+      var b = e.target.closest('.pshot'); if (!b) return;
+      open(P[+b.getAttribute('data-big') - 1]);
+    });
+    lbX.addEventListener('click', close);
+    lbScrim.addEventListener('click', close);
+    lbImg.addEventListener('click', function () { stage.classList.toggle('zoom'); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen) return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+      if (e.key === 'Tab') {
+        var f = [lbOpenA, lbDl, lbX], pos = f.indexOf(document.activeElement);
+        var nx = e.shiftKey ? (pos <= 0 ? f.length - 1 : pos - 1) : (pos < 0 || pos === f.length - 1 ? 0 : pos + 1);
+        e.preventDefault(); f[nx].focus();
+        return;
+      }
+      var d = { ArrowDown: [0, 60], ArrowUp: [0, -60], ArrowRight: [60, 0], ArrowLeft: [-60, 0], PageDown: [0, 420], PageUp: [0, -420] }[e.key];
+      if (d) { e.preventDefault(); stage.scrollBy(d[0], d[1]); }
+    }, true);
+  })();
+
+  /* ================= language + mobile menu ================= */
+  function applyLangTo(root, L) {
+    L = L || lang();
+    [].slice.call(root.querySelectorAll('[data-en][data-bm]')).forEach(function (el) {
+      el.innerHTML = L === 'bm' ? el.dataset.bm : el.dataset.en;
+    });
+  }
+  (function () {
+    var html = document.documentElement, lbtn = document.getElementById('langToggle');
+    function set(L) {
+      html.setAttribute('data-lang', L);
+      html.setAttribute('lang', L === 'bm' ? 'ms' : 'en');
+      applyLangTo(document, L);
+      [].slice.call(gridEl.querySelectorAll('.pshot img')).forEach(function (img, k) { img.alt = alt(P[k]); });
+      lbtn.querySelector('.lang-en').classList.toggle('active', L === 'en');
+      lbtn.querySelector('.lang-bm').classList.toggle('active', L === 'bm');
+      searchEl.placeholder = L === 'bm' ? 'Cari model…' : 'Find a model…';
+      try { localStorage.setItem('fs-lang', L); } catch (e) {}
+    }
+    lbtn.addEventListener('click', function () { set(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') set(s); } catch (e) {}
+  })();
+  (function () {
+    var mb = document.getElementById('menuBtn'), mm = document.getElementById('mobile-menu');
+    function setMenu(open) {
+      mm.classList.toggle('open', open); mb.classList.toggle('open', open);
+      mb.setAttribute('aria-expanded', open ? 'true' : 'false'); mm.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    mb.addEventListener('click', function () { setMenu(!mm.classList.contains('open')); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    [].slice.call(mm.querySelectorAll('a')).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  })();
+})();
+</script>
+<script src="feedback.js"></script>
+</body>
+</html>

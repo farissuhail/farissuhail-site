@@ -295,6 +295,12 @@
     .m-nav button:hover { color: #fff; border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); }
 
     /* ===== anatomy posters ===== */
+    .anat-link { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--border); background: rgba(255,255,255,0.02);
+      border-radius: 999px; padding: 11px 18px; transition: all .25s; }
+    .anat-link:hover { color: #fff; border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: rgba(0,255,133,0.08); }
+    .anat-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .anat-link svg { width: 14px; height: 14px; flex: none; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
     .card h3 .c-open { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; text-align: left; width: 100%; display: block; cursor: pointer; }
     .card h3 .c-open:focus-visible, .anat-btn:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; border-radius: 8px; }
@@ -592,6 +598,10 @@
       <span class="eyebrow" data-en="02 · The shelf" data-bm="02 · Rak">02 · The shelf</span>
       <h2 data-en="Every pair, with its story" data-bm="Setiap pasang, dengan kisahnya">Every pair, with its story</h2>
       <p class="lead" data-en="Filter by brand, sort by what matters, and tap any pair for the full story: what makes it unique, and a space to add your own memory." data-bm="Tapis mengikut jenama, susun ikut keutamaan, dan ketik mana-mana pasang untuk kisah penuh: apa yang istimewa, dan ruang untuk memori anda sendiri.">Filter by brand, sort by what matters, and tap any pair for the full story: what makes it unique, and a space to add your own memory.</p>
+      <a class="anat-link" href="sneakers-anatomy.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8v6M8 11h6"/></svg>
+        <span data-en="Browse all 26 anatomy posters" data-bm="Lihat semua 26 poster anatomi">Browse all 26 anatomy posters</span>
+      </a>
     </div>
 
     <div class="controls reveal">
@@ -724,6 +734,7 @@
       <a href="kalam.html" data-en="Kalam" data-bm="Kalam">Kalam</a>
       <a href="book-reviews.html" data-en="Book summaries" data-bm="Ringkasan buku">Book summaries</a>
       <a href="sneakers.html" data-en="Sneakerz" data-bm="Sneakerz">Sneakerz</a>
+      <a href="sneakers-anatomy.html" data-en="Anatomy posters" data-bm="Poster anatomi">Anatomy posters</a>
       <a href="mailto:tech@farissuhail.com">Contact</a>
     </div>
     <span class="copy">© <span id="year"></span> · Sneakerz · KL, MY</span>
