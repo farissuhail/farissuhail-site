@@ -28,6 +28,7 @@ bootStudio({
   brand: 'VOLKSWAGEN', title: 'SHARAN', badge: '7N', subtitle: '2012 · Seven seats · 3D Studio', loadingLabel: 'Volkswagen Sharan 7N',
   modelUrl: 'assets/sharan/sharan-7n.glb', environmentRoot: 'assets/studio/environments/',
   groups: GROUPS, paints: PAINTS, partMode: 'mesh', alignTyres: 'Tire rubber', glassGroups: ['glass'],
+  initialState: { paint: 6 },   // open in Toffee Brown Metallic, matching the anatomy poster
   footnote: '7N reference · Visual disassembly',
   credit: 'Model: converted GTA mod (Victor / SQUIR) + original cabin, see <a href="assets/sharan/NOTICES.md" target="_blank" rel="noreferrer">notices</a> · <a href="https://polyhaven.com/hdris" target="_blank" rel="noreferrer">HDRIs: Poly Haven (CC0)</a>',
   camera: { position: [6.3, 3.5, 7.4], target: [0, .85, 0] },

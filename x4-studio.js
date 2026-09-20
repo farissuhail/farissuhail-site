@@ -28,6 +28,7 @@ bootStudio({
   brand: 'BMW', title: 'X4', badge: 'F26', subtitle: '2016 · xDrive20i · 3D Studio', loadingLabel: 'BMW X4 F26',
   modelUrl: 'assets/x4/x4-f26-2016.glb', environmentRoot: 'assets/studio/environments/',
   groups: GROUPS, paints: PAINTS, partMode: 'mesh', alignTyres: 'X4 Textured Tire', glassGroups: ['glass'],
+  initialState: { paint: 1 },   // open in Alpine White, matching the anatomy poster
   footnote: 'F26 reference · Visual disassembly',
   credit: 'Model: converted GTA mod (Santa Claus | MTA CAR), see <a href="assets/x4/NOTICES.md" target="_blank" rel="noreferrer">notices</a> · <a href="https://polyhaven.com/hdris" target="_blank" rel="noreferrer">HDRIs: Poly Haven (CC0)</a>',
   camera: { position: [6.1, 3.4, 7.1], target: [0, .82, 0] },
