@@ -98,13 +98,14 @@
     <button class="ba-genre" data-g="economics" data-en="Economics" data-bm="Ekonomi">Economics</button>
     <button class="ba-genre" data-g="history" data-en="History" data-bm="Sejarah">History</button>
     <button class="ba-genre" data-g="science" data-en="Science" data-bm="Sains">Science</button>
+    <button class="ba-genre" data-g="technology" data-en="Technology" data-bm="Teknologi">Technology</button>
     <button class="ba-genre" data-g="classics" data-en="Classics" data-bm="Klasik">Classics</button>
   </div>
 
   <!-- section head -->
   <div class="ba-h">
     <h3 data-en="All summaries" data-bm="Semua ringkasan">All summaries</h3>
-    <a href="#" id="baCount">26 books</a>
+    <a href="#" id="baCount">38 books</a>
   </div>
 
   <!-- grid -->
@@ -182,9 +183,21 @@
     { slug:'shoe-dog', title:'Shoe Dog', author:'Phil Knight', cover:8858487, rate:'4.8', genres:'business selfhelp', crown:true },
     { slug:'the-millionaire-master-plan', title:'The Millionaire Master Plan', author:'Roger James Hamilton', cover:11680613, rate:'4.3', genres:'finance business', crown:false },
     { slug:'why-nations-fail', title:'Why Nations Fail', author:'Daron Acemoglu & James A. Robinson', cover:'https://covers.openlibrary.org/b/isbn/9780307719218-L.jpg', rate:'4.6', genres:'economics power', crown:true },
-    { slug:'chinese-secret-societies-in-malaya', title:'The Impact of Chinese Secret Societies in Malaya', author:'Wilfred Blythe', cover:'https://covers.openlibrary.org/b/isbn/9780192149749-L.jpg?default=false', rate:'4.7', genres:'history power', crown:true },
+    { slug:'chinese-secret-societies-in-malaya', title:'The Impact of Chinese Secret Societies in Malaya', author:'Wilfred Blythe', cover:'assets/covers/chinese-secret-societies-in-malaya.svg', rate:'4.7', genres:'history power', crown:true },
     { slug:'scaling-brain-emulation', title:'From Worm to Human', author:'Isaak Freeman · MIT thesis', cover:'assets/covers/scaling-brain-emulation.jpg', rate:'4.7', genres:'science', crown:true },
-    { slug:'the-iliad', title:'The Iliad', author:'Homer · trans. A. S. Kline', cover:'assets/covers/the-iliad.jpg', rate:'4.9', genres:'classics power', crown:true }
+    { slug:'the-iliad', title:'The Iliad', author:'Homer · trans. A. S. Kline', cover:'assets/covers/the-iliad.jpg', rate:'4.9', genres:'classics power', crown:true },
+    { slug:'taxtopia', title:'Taxtopia', author:'The Rebel Accountant', cover:'https://covers.openlibrary.org/b/isbn/9781800960893-L.jpg?default=false', rate:'4.5', genres:'economics finance power', crown:false },
+    { slug:'offshore', title:'Offshore', author:'Brooke Harrington', cover:'https://covers.openlibrary.org/b/isbn/9781324064947-L.jpg?default=false', rate:'4.7', genres:'economics power', crown:true },
+    { slug:'winners-take-all', title:'Winners Take All', author:'Anand Giridharadas', cover:'assets/covers/winners-take-all.jpg', rate:'4.6', genres:'economics power business', crown:true },
+    { slug:'the-100-trillion-dollar-wealth-transfer', title:'The 100 Trillion Dollar Wealth Transfer', author:'Ken Costa', cover:'assets/covers/the-100-trillion-dollar-wealth-transfer.jpg', rate:'4.2', genres:'finance business economics', crown:false },
+    { slug:'empire-of-ai', title:'Empire of AI', author:'Karen Hao', cover:'https://covers.openlibrary.org/b/isbn/9780593657508-L.jpg?default=false', rate:'4.8', genres:'technology business power', crown:true },
+    { slug:'the-rise-and-fall-of-the-artificial-state', title:'The Rise and Fall of the Artificial State', author:'Jill Lepore', cover:'assets/covers/the-rise-and-fall-of-the-artificial-state.jpg', rate:'4.7', genres:'technology history power', crown:true },
+    { slug:'intelligent-safety', title:'Intelligent Safety', author:'Hari Ravichandran', cover:'assets/covers/intelligent-safety.jpg', rate:'4.1', genres:'technology selfhelp', crown:false },
+    { slug:'the-secrets-of-our-dna', title:'The Secrets of Our DNA', author:'Professor Turi King', cover:'assets/covers/the-secrets-of-our-dna.jpg', rate:'4.6', genres:'science history', crown:false },
+    { slug:'civilization-and-its-discontents', title:'Civilization and Its Discontents', author:'Sigmund Freud', cover:'https://covers.openlibrary.org/b/isbn/9780141182360-L.jpg?default=false', rate:'4.8', genres:'psychology classics', crown:true },
+    { slug:'introducing-psychoanalysis', title:'Introducing Psychoanalysis', author:'Ivan Ward & Oscar Zarate', cover:'https://covers.openlibrary.org/b/isbn/9781848312104-L.jpg?default=false', rate:'4.4', genres:'psychology', crown:false },
+    { slug:'the-gift-of-rumi', title:'The Gift of Rumi', author:'Emily Jane O’Dell', cover:'assets/covers/the-gift-of-rumi.jpg', rate:'4.6', genres:'spirituality classics', crown:false },
+    { slug:'the-rumi-collection', title:'The Rumi Collection', author:'Kabir Helminski (ed.)', cover:'assets/covers/the-rumi-collection.jpg', rate:'4.5', genres:'spirituality classics', crown:false }
   ];
   var html = document.documentElement;
   function bm() { return html.getAttribute('data-lang') === 'bm'; }

@@ -291,6 +291,139 @@ body.book-summary.theme-wine {
   --glow: 176,66,79;
 }
 
+/* ---- THEME: scarlet (Taxtopia) ---- */
+body.book-summary.theme-scarlet {
+  --accent: #e8344a; --accent-2: #ff8593;
+  --accent-grad: linear-gradient(135deg, #e8344a 0%, #ff8593 100%);
+  --gold: #e8344a; --gold-2: #ff8593;
+  --cover-bg: linear-gradient(165deg, #2a0d14 0%, #17070c 55%, #0c0306 100%);
+  --cover-frame: rgba(232,52,74,0.5);
+  --cover-rule: #e8344a; --cover-author: #ffb3bc; --cover-the: #e3c7cb;
+  --cover-sub: #bd9299; --cover-note: #96747a; --cover-blurb: #ff8593;
+  --glow: 232,52,74;
+}
+/* ---- THEME: coral (Offshore) ---- */
+body.book-summary.theme-coral {
+  --accent: #f0574b; --accent-2: #ff9a91;
+  --accent-grad: linear-gradient(135deg, #f0574b 0%, #ff9a91 100%);
+  --gold: #e8d6c0; --gold-2: #f7ece0;
+  --cover-bg: linear-gradient(165deg, #2c1110 0%, #180809 55%, #0d0405 100%);
+  --cover-frame: rgba(240,87,75,0.48);
+  --cover-rule: #f0574b; --cover-author: #ffc2ba; --cover-the: #e4cdc8;
+  --cover-sub: #bf9a94; --cover-note: #977a75; --cover-blurb: #ff9a91;
+  --glow: 240,87,75;
+}
+/* ---- THEME: brass (Winners Take All) ---- */
+body.book-summary.theme-brass {
+  --accent: #d79a35; --accent-2: #f2c878;
+  --accent-grad: linear-gradient(135deg, #d79a35 0%, #f2c878 100%);
+  --gold: #d79a35; --gold-2: #f2c878;
+  --cover-bg: linear-gradient(165deg, #1f232b 0%, #14171d 55%, #0b0d11 100%);
+  --cover-frame: rgba(215,154,53,0.45);
+  --cover-rule: #d79a35; --cover-author: #f2c878; --cover-the: #cdd2da;
+  --cover-sub: #9aa3b0; --cover-note: #7b8490; --cover-blurb: #f2c878;
+  --glow: 215,154,53;
+}
+/* ---- THEME: ivory (The 100 Trillion Dollar Wealth Transfer) ---- */
+body.book-summary.theme-ivory {
+  --accent: #d9c18b; --accent-2: #f2e6c9;
+  --accent-grad: linear-gradient(135deg, #d9c18b 0%, #f2e6c9 100%);
+  --gold: #c9a961; --gold-2: #ecd9a8;
+  --cover-bg: linear-gradient(165deg, #232019 0%, #15130f 55%, #0b0a07 100%);
+  --cover-frame: rgba(217,193,139,0.45);
+  --cover-rule: #c9a961; --cover-author: #f2e6c9; --cover-the: #ded4c0;
+  --cover-sub: #b0a58e; --cover-note: #8b8170; --cover-blurb: #f2e6c9;
+  --glow: 217,193,139;
+}
+/* ---- THEME: ember (Empire of AI) ---- */
+body.book-summary.theme-ember {
+  --accent: #ff7a2f; --accent-2: #ffb37a;
+  --accent-grad: linear-gradient(135deg, #ff7a2f 0%, #ffb37a 100%);
+  --gold: #ff7a2f; --gold-2: #ffb37a;
+  --cover-bg: linear-gradient(165deg, #151d3d 0%, #0d1328 55%, #070a17 100%);
+  --cover-frame: rgba(255,122,47,0.45);
+  --cover-rule: #ff7a2f; --cover-author: #ffc9a3; --cover-the: #c6cfe6;
+  --cover-sub: #97a2bd; --cover-note: #79839c; --cover-blurb: #ffb37a;
+  --glow: 255,122,47;
+}
+/* ---- THEME: pewter (The Rise and Fall of the Artificial State) ---- */
+body.book-summary.theme-pewter {
+  --accent: #8fa8b6; --accent-2: #c4d6de;
+  --accent-grad: linear-gradient(135deg, #8fa8b6 0%, #c4d6de 100%);
+  --gold: #d2453c; --gold-2: #ef8078;
+  --cover-bg: linear-gradient(165deg, #1e242a 0%, #13181c 55%, #090c0e 100%);
+  --cover-frame: rgba(143,168,182,0.4);
+  --cover-rule: #d2453c; --cover-author: #d3e0e6; --cover-the: #bcc9d0;
+  --cover-sub: #94a3ab; --cover-note: #76838a; --cover-blurb: #c4d6de;
+  --glow: 143,168,182;
+}
+/* ---- THEME: mint (Intelligent Safety) ---- */
+body.book-summary.theme-mint {
+  --accent: #35c48c; --accent-2: #85e8bf;
+  --accent-grad: linear-gradient(135deg, #35c48c 0%, #85e8bf 100%);
+  --gold: #35c48c; --gold-2: #85e8bf;
+  --cover-bg: linear-gradient(165deg, #0f2e23 0%, #081c15 55%, #04110c 100%);
+  --cover-frame: rgba(53,196,140,0.45);
+  --cover-rule: #35c48c; --cover-author: #aaf0d1; --cover-the: #bfdccf;
+  --cover-sub: #8fb8a5; --cover-note: #739584; --cover-blurb: #85e8bf;
+  --glow: 53,196,140;
+}
+/* ---- THEME: spectrum (The Secrets of Our DNA) ---- */
+body.book-summary.theme-spectrum {
+  --accent: #6d7cf7; --accent-2: #c07cf5;
+  --accent-grad: linear-gradient(135deg, #6d7cf7 0%, #c07cf5 100%);
+  --gold: #f5648f; --gold-2: #ffa3bd;
+  --cover-bg: linear-gradient(165deg, #171b3f 0%, #0e1129 55%, #070818 100%);
+  --cover-frame: rgba(109,124,247,0.45);
+  --cover-rule: #f5648f; --cover-author: #cfd4ff; --cover-the: #c2c7e6;
+  --cover-sub: #959bc4; --cover-note: #767ba1; --cover-blurb: #c07cf5;
+  --glow: 109,124,247;
+}
+/* ---- THEME: sage (Civilization and Its Discontents) ---- */
+body.book-summary.theme-sage {
+  --accent: #8fbf9f; --accent-2: #c6e2d0;
+  --accent-grad: linear-gradient(135deg, #8fbf9f 0%, #c6e2d0 100%);
+  --gold: #c2ad74; --gold-2: #e0d1a6;
+  --cover-bg: linear-gradient(165deg, #1a2720 0%, #101812 55%, #080d0a 100%);
+  --cover-frame: rgba(143,191,159,0.4);
+  --cover-rule: #c2ad74; --cover-author: #d5e6da; --cover-the: #c3d2c7;
+  --cover-sub: #9bae9f; --cover-note: #7c8c80; --cover-blurb: #c6e2d0;
+  --glow: 143,191,159;
+}
+/* ---- THEME: inkred (Introducing Psychoanalysis) ---- */
+body.book-summary.theme-inkred {
+  --accent: #ff4438; --accent-2: #ffa094;
+  --accent-grad: linear-gradient(135deg, #ff4438 0%, #ffa094 100%);
+  --gold: #f0e4d0; --gold-2: #fff6e6;
+  --cover-bg: linear-gradient(165deg, #33100c 0%, #1d0807 55%, #100403 100%);
+  --cover-frame: rgba(255,68,56,0.5);
+  --cover-rule: #ff4438; --cover-author: #f7e7d8; --cover-the: #e8cdc4;
+  --cover-sub: #c29b90; --cover-note: #9a7a71; --cover-blurb: #ffa094;
+  --glow: 255,68,56;
+}
+/* ---- THEME: rose (The Gift of Rumi) ---- */
+body.book-summary.theme-rose {
+  --accent: #c96f82; --accent-2: #eaa8b6;
+  --accent-grad: linear-gradient(135deg, #c96f82 0%, #eaa8b6 100%);
+  --gold: #b8546a; --gold-2: #e8bcc6;
+  --cover-bg: linear-gradient(165deg, #2c1519 0%, #1a0c0f 55%, #0f0608 100%);
+  --cover-frame: rgba(201,111,130,0.45);
+  --cover-rule: #b8546a; --cover-author: #f2d6dc; --cover-the: #ddc4c8;
+  --cover-sub: #b4959b; --cover-note: #8f757a; --cover-blurb: #eaa8b6;
+  --glow: 201,111,130;
+}
+/* ---- THEME: sapphire (The Rumi Collection) ---- */
+body.book-summary.theme-sapphire {
+  --accent: #5288e8; --accent-2: #97b9f7;
+  --accent-grad: linear-gradient(135deg, #5288e8 0%, #97b9f7 100%);
+  --gold: #d9b25a; --gold-2: #f0d699;
+  --cover-bg: linear-gradient(165deg, #10204a 0%, #0a142f 55%, #050a1a 100%);
+  --cover-frame: rgba(82,136,232,0.45);
+  --cover-rule: #d9b25a; --cover-author: #f0d699; --cover-the: #c3d2ee;
+  --cover-sub: #94a6c9; --cover-note: #7684a4; --cover-blurb: #97b9f7;
+  --glow: 82,136,232;
+}
+
 body.book-summary .btn-primary { box-shadow: 0 8px 24px -8px rgba(var(--glow),0.5); }
 body.book-summary .btn-primary:hover { box-shadow: 0 12px 32px -8px rgba(var(--glow),0.7); }
 
