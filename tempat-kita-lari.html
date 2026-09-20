@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tempat kita lari: bila distraction menjadi tempat melarikan diri. Alhakum, lahw, dan Surah At-Takathur untuk zaman scroll tanpa henti. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Tempat Kita Lari · At-Takathur &amp; alhakum · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Tempat kita lari: when distraction becomes the hiding place" />
+  <meta property="og:description" content="Alhakum comes before takathur. Surah At-Takathur on the thing we reach for when there is something we would rather not feel." />
+  <meta property="og:url" content="https://farissuhail.com/tempat-kita-lari.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Tempat Kita Lari: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tempat kita lari: At-Takathur &amp; alhakum" />
+  <meta name="twitter:description" content="Bila distraction menjadi tempat melarikan diri, dan apa yang menanti di hujung pelarian itu." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 150px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+    }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/tempat-kita-lari.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tempat kita lari: when distraction becomes the hiding place (Surah At-Takathur)",
+    "alternativeHeadline": "Tempat kita lari: bila distraction menjadi tempat melarikan diri",
+    "url": "https://farissuhail.com/tempat-kita-lari.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Surah At-Takathur"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH 102</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">tempat kita</span>
+        <span class="rf-cow">LARI</span>
+      </h1>
+      <div class="rf-arabic">AT-TAKATHUR 102:1</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">New</span>
+        <span class="story-badge" data-en="Attention" data-bm="Perhatian">Perhatian</span>
+        <span class="story-badge" data-en="8 min read" data-bm="Baca 8 minit">8 min read</span>
+      </div>
+      <h2 data-en="Some of what we call busy is really <em>running away.</em>"
+          data-bm="Sebahagian daripada apa yang kita panggil sibuk sebenarnya <em>pelarian.</em>">
+        Sebahagian daripada apa yang kita panggil sibuk sebenarnya <em>pelarian.</em>
+      </h2>
+      <p data-en="Surah At-Takathur is known for the race to accumulate. But the very first word is about something else: being so occupied that what matters most slips by. Follow that word and it leads somewhere uncomfortably familiar."
+         data-bm="Surah At-Takathur terkenal dengan perlumbaan mengumpul. Tetapi perkataan pertamanya tentang sesuatu yang lain: terlalu sibuk sehingga perkara paling penting berlalu begitu sahaja. Ikut perkataan itu, dan ia membawa ke tempat yang terlalu kita kenali.">
+        Surah At-Takathur terkenal dengan perlumbaan mengumpul. Tetapi perkataan pertamanya tentang sesuatu yang lain: terlalu sibuk sehingga perkara paling penting berlalu begitu sahaja. Ikut perkataan itu, dan ia membawa ke tempat yang terlalu kita kenali.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The first word" data-bm="Perkataan pertama">Perkataan pertama</span></div>
+    <p class="rf-word" lang="ar" dir="rtl">أَلْهَىٰكُمُ</p>
+    <p class="rf-body"
+       data-en="We remember this surah for takathur, the piling up. But Allah does not open with the piling up. He opens with what it did to us. Alhakum, from lahw: to be held by one thing while something greater goes past unseen."
+       data-bm="Kita mengingati surah ini kerana takathur, iaitu hal menimbun. Tetapi Allah tidak membukanya dengan timbunan itu. Dia membukanya dengan apa yang timbunan itu lakukan kepada kita. Alhakum, daripada lahw: dipegang oleh satu perkara sementara sesuatu yang lebih besar berlalu tanpa dilihat.">
+      Kita mengingati surah ini kerana takathur, iaitu hal menimbun. Tetapi Allah tidak membukanya dengan timbunan itu. Dia membukanya dengan apa yang timbunan itu lakukan kepada kita. Alhakum, daripada lahw: dipegang oleh satu perkara sementara sesuatu yang lebih besar berlalu tanpa dilihat.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Accumulation has diverted you.&rdquo;"
+       data-bm="&ldquo;Bermegah dengan mengumpul telah melalaikan kamu.&rdquo;">
+      &ldquo;Bermegah dengan mengumpul telah melalaikan kamu.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">At-Takathur 102:1</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The diagnosis lands on our attention before it lands on our wealth. Which means a person who owns very little can be just as diverted as a person who owns a great deal. The verse is not counting what is in our hands. It is asking where our eyes have been."
+       data-bm="Diagnosis itu mengenai perhatian kita sebelum mengenai harta kita. Ertinya, seseorang yang memiliki sedikit boleh sama lalainya dengan seseorang yang memiliki banyak. Ayat ini tidak mengira apa yang ada di tangan kita. Ia bertanya ke mana selama ini mata kita menghala.">
+      Diagnosis itu mengenai perhatian kita sebelum mengenai harta kita. Ertinya, seseorang yang memiliki sedikit boleh sama lalainya dengan seseorang yang memiliki banyak. Ayat ini tidak mengira apa yang ada di tangan kita. Ia bertanya ke mana selama ini mata kita menghala.
+    </p>
+    <p class="rf-tagline"
+       data-en="Lahw is not named as a sin of the hands. It is named as a <em>thief of attention.</em>"
+       data-bm="Lahw tidak dinamakan sebagai dosa tangan. Ia dinamakan sebagai <em>pencuri perhatian.</em>">
+      Lahw tidak dinamakan sebagai dosa tangan. Ia dinamakan sebagai <em>pencuri perhatian.</em>
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="What we are running from" data-bm="Apa yang kita lari daripadanya">Apa yang kita lari daripadanya</span></div>
+    <h2 class="rf-big"
+        data-en="Nobody reaches for a screen at 2am because the screen is <em>that interesting.</em>"
+        data-bm="Tiada siapa mencapai skrin pada pukul 2 pagi kerana skrin itu <em>semenarik itu.</em>">
+      Tiada siapa mencapai skrin pada pukul 2 pagi kerana skrin itu <em>semenarik itu.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="There is a layer to lahw that reads less like a warning and more like a description of us. A person does not always seek distraction because something out there is fascinating. Often it is because something in here is waiting, and he would rather not meet it."
+       data-bm="Ada satu lapisan pada lahw yang berbunyi kurang seperti amaran, dan lebih seperti gambaran tentang kita. Manusia tidak sentiasa mencari kelalaian kerana ada sesuatu di luar sana yang memukau. Selalunya kerana ada sesuatu di dalam sini yang sedang menunggu, dan dia tidak sanggup menemuinya.">
+      Ada satu lapisan pada lahw yang berbunyi kurang seperti amaran, dan lebih seperti gambaran tentang kita. Manusia tidak sentiasa mencari kelalaian kerana ada sesuatu di luar sana yang memukau. Selalunya kerana ada sesuatu di dalam sini yang sedang menunggu, dan dia tidak sanggup menemuinya.
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">01</span><div>
+        <h3 data-en="A problem with no solution yet" data-bm="Masalah yang belum ada jalannya">Masalah yang belum ada jalannya</h3>
+        <p data-en="It has been sitting there for weeks, and every honest look at it costs something." data-bm="Ia sudah berminggu di situ, dan setiap pandangan jujur ke arahnya ada harganya.">Ia sudah berminggu di situ, dan setiap pandangan jujur ke arahnya ada harganya.</p>
+      </div></li>
+      <li><span class="n">02</span><div>
+        <h3 data-en="A conflict too sore to open" data-bm="Konflik yang terlalu pedih untuk dibuka">Konflik yang terlalu pedih untuk dibuka</h3>
+        <p data-en="A name we scroll past. A conversation we have rehearsed a hundred times and never had." data-bm="Satu nama yang kita scroll lalu. Satu perbualan yang kita latih seratus kali dan tidak pernah berlaku.">Satu nama yang kita scroll lalu. Satu perbualan yang kita latih seratus kali dan tidak pernah berlaku.</p>
+      </div></li>
+      <li><span class="n">03</span><div>
+        <h3 data-en="An emptiness with no name" data-bm="Kekosongan yang tiada namanya">Kekosongan yang tiada namanya</h3>
+        <p data-en="Nothing is wrong on paper, and still something is missing, and we were never taught how to sit with that." data-bm="Di atas kertas tiada apa yang rosak, namun ada sesuatu yang hilang, dan kita tidak pernah diajar cara duduk bersamanya.">Di atas kertas tiada apa yang rosak, namun ada sesuatu yang hilang, dan kita tidak pernah diajar cara duduk bersamanya.</p>
+      </div></li>
+      <li><span class="n">04</span><div>
+        <h3 data-en="A decision we are afraid to make" data-bm="Keputusan yang kita takut buat">Keputusan yang kita takut buat</h3>
+        <p data-en="We already know the answer. Staying busy is how we avoid having to act on it." data-bm="Kita sudah tahu jawapannya. Terus sibuk ialah cara kita mengelak daripada terpaksa melaksanakannya.">Kita sudah tahu jawapannya. Terus sibuk ialah cara kita mengelak daripada terpaksa melaksanakannya.</p>
+      </div></li>
+      <li><span class="n">05</span><div>
+        <h3 data-en="Something true about ourselves" data-bm="Sesuatu yang benar tentang diri kita">Sesuatu yang benar tentang diri kita</h3>
+        <p data-en="The one thing we are not ready to say out loud, not even alone, not even to Allah." data-bm="Satu perkara yang kita belum bersedia sebut dengan kuat, walaupun bersendirian, walaupun kepada Allah.">Satu perkara yang kita belum bersedia sebut dengan kuat, walaupun bersendirian, walaupun kepada Allah.</p>
+      </div></li>
+    </ul>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="What we run to" data-bm="Ke mana kita lari">Ke mana kita lari</span></div>
+    <p class="rf-body"
+       data-en="So we look for something to fill the head with. A feed. A game. One more episode, then another. A cart at checkout. Work that never closes. Conversation that never lands. The content hardly matters; what matters is that it keeps arriving, so that no gap ever opens wide enough for the thought to come back."
+       data-bm="Maka kita mencari sesuatu untuk memenuhi kepala. Satu feed. Satu permainan. Satu lagi episod, kemudian satu lagi. Troli di kaunter bayaran. Kerja yang tidak pernah ditutup. Perbualan yang tidak pernah mendarat. Isinya hampir tidak penting; yang penting ia terus tiba, supaya tiada ruang yang cukup luas terbuka untuk fikiran itu kembali.">
+      Maka kita mencari sesuatu untuk memenuhi kepala. Satu feed. Satu permainan. Satu lagi episod, kemudian satu lagi. Troli di kaunter bayaran. Kerja yang tidak pernah ditutup. Perbualan yang tidak pernah mendarat. Isinya hampir tidak penting; yang penting ia terus tiba, supaya tiada ruang yang cukup luas terbuka untuk fikiran itu kembali.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="Distraction works like an anaesthetic, not a cure. It does not remove the thing. It only makes sure you cannot <em>feel</em> it for a few hours."
+         data-bm="Kelalaian bekerja seperti ubat bius, bukan ubat penyembuh. Ia tidak mengangkat perkara itu. Ia cuma memastikan kau tidak <em>merasainya</em> untuk beberapa jam.">
+        Kelalaian bekerja seperti ubat bius, bukan ubat penyembuh. Ia tidak mengangkat perkara itu. Ia cuma memastikan kau tidak <em>merasainya</em> untuk beberapa jam.
+      </p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="The problem is still there when the screen dims. The wound is still there. The emptiness is still there, and it has learned to wait. Nothing was healed; the bill was simply pushed to tomorrow, with interest."
+       data-bm="Masalah itu masih ada apabila skrin malap. Luka itu masih ada. Kekosongan itu masih ada, dan ia sudah pandai menunggu. Tiada apa yang sembuh; bilnya cuma ditolak ke esok hari, dengan faedahnya sekali.">
+      Masalah itu masih ada apabila skrin malap. Luka itu masih ada. Kekosongan itu masih ada, dan ia sudah pandai menunggu. Tiada apa yang sembuh; bilnya cuma ditolak ke esok hari, dengan faedahnya sekali.
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="One honest question" data-bm="Satu soalan yang jujur">Satu soalan yang jujur</span></div>
+    <h2 class="rf-big"
+        data-en="&ldquo;I need to keep myself busy.&rdquo; Sometimes true. Sometimes <em>a door with an exit sign on it.</em>"
+        data-bm="&ldquo;Aku kena sibukkan diri.&rdquo; Kadangkala benar. Kadangkala <em>sebuah pintu dengan tanda keluar padanya.</em>">
+      &ldquo;Aku kena sibukkan diri.&rdquo; Kadangkala benar. Kadangkala <em>sebuah pintu dengan tanda keluar padanya.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="There are seasons when work genuinely carries a person forward: after a loss, after a failure, when standing still would sink them. Effort is not the enemy here, and Islam never asked us to be idle."
+       data-bm="Ada musim apabila kerja benar-benar membawa seseorang bergerak ke hadapan: selepas kehilangan, selepas kegagalan, ketika berdiam diri akan menenggelamkannya. Usaha bukan musuh di sini, dan Islam tidak pernah meminta kita duduk menganggur.">
+      Ada musim apabila kerja benar-benar membawa seseorang bergerak ke hadapan: selepas kehilangan, selepas kegagalan, ketika berdiam diri akan menenggelamkannya. Usaha bukan musuh di sini, dan Islam tidak pernah meminta kita duduk menganggur.
+    </p>
+    <p class="rf-body"
+       data-en="But the two look identical from the outside. Same long hours, same full calendar, same tired person at midnight. Only one question separates them, and only the person himself can answer it:"
+       data-bm="Tetapi kedua-duanya kelihatan serupa dari luar. Jam kerja yang sama panjang, kalendar yang sama penuh, orang yang sama penatnya pada tengah malam. Hanya satu soalan memisahkan keduanya, dan hanya orang itu sendiri yang mampu menjawabnya:">
+      Tetapi kedua-duanya kelihatan serupa dari luar. Jam kerja yang sama panjang, kalendar yang sama penuh, orang yang sama penatnya pada tengah malam. Hanya satu soalan memisahkan keduanya, dan hanya orang itu sendiri yang mampu menjawabnya:
+    </p>
+    <p class="rf-tagline"
+       data-en="Am I moving forward, or am I <em>running away?</em>"
+       data-bm="Aku sedang bergerak ke hadapan, atau aku sedang <em>melarikan diri?</em>">
+      Aku sedang bergerak ke hadapan, atau aku sedang <em>melarikan diri?</em>
+    </p>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="Years, not evenings" data-bm="Bertahun, bukan berpetang">Bertahun, bukan berpetang</span></div>
+    <p class="rf-body"
+       data-en="What makes lahw so quietly dangerous is that it does not need a dramatic sin to work. A person can live this way for years and never once do anything anyone would call wrong."
+       data-bm="Apa yang menjadikan lahw begitu senyap bahayanya ialah ia tidak memerlukan dosa yang dramatik untuk berfungsi. Seseorang boleh hidup begini bertahun-tahun tanpa sekali pun melakukan sesuatu yang orang akan panggil salah.">
+      Apa yang menjadikan lahw begitu senyap bahayanya ialah ia tidak memerlukan dosa yang dramatik untuk berfungsi. Seseorang boleh hidup begini bertahun-tahun tanpa sekali pun melakukan sesuatu yang orang akan panggil salah.
+    </p>
+    <p class="rf-body"
+       data-en="There is always something to be done. Always something to watch. Always something to buy, to fix, to answer, to chase. The days are full, the years are fast, and somewhere in the middle of all that motion the one question stops getting asked:"
+       data-bm="Sentiasa ada sesuatu untuk dibuat. Sentiasa ada sesuatu untuk ditonton. Sentiasa ada sesuatu untuk dibeli, dibaiki, dijawab, dikejar. Hari-harinya penuh, tahun-tahunnya laju, dan di tengah-tengah segala pergerakan itu satu soalan berhenti ditanya:">
+      Sentiasa ada sesuatu untuk dibuat. Sentiasa ada sesuatu untuk ditonton. Sentiasa ada sesuatu untuk dibeli, dibaiki, dijawab, dikejar. Hari-harinya penuh, tahun-tahunnya laju, dan di tengah-tengah segala pergerakan itu satu soalan berhenti ditanya:
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="What is actually happening to my soul while all of this is going on?"
+         data-bm="Apa sebenarnya yang sedang berlaku kepada jiwaku sementara semua ini berlangsung?">
+        Apa sebenarnya yang sedang berlaku kepada jiwaku sementara semua ini berlangsung?
+      </p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="It is worth noticing that we have built an entire world that makes sure this question never has room to surface. One video ends and the next has already started. One post ends and the thumb keeps going. One parcel arrives and a better version launches. One target is reached and the next appears on the same screen. We are almost never made to stop."
+       data-bm="Wajar kita sedar bahawa kita telah membina sebuah dunia yang memastikan soalan ini tidak pernah mendapat ruang untuk timbul. Satu video habis dan satu lagi sudah bermula. Satu posting habis dan ibu jari terus berjalan. Satu bungkusan tiba dan versi yang lebih baik dilancarkan. Satu sasaran dicapai dan sasaran seterusnya muncul pada skrin yang sama. Kita hampir tidak pernah dipaksa berhenti.">
+      Wajar kita sedar bahawa kita telah membina sebuah dunia yang memastikan soalan ini tidak pernah mendapat ruang untuk timbul. Satu video habis dan satu lagi sudah bermula. Satu posting habis dan ibu jari terus berjalan. Satu bungkusan tiba dan versi yang lebih baik dilancarkan. Satu sasaran dicapai dan sasaran seterusnya muncul pada skrin yang sama. Kita hampir tidak pernah dipaksa berhenti.
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="Where the running ends" data-bm="Di mana pelarian itu tamat">Di mana pelarian itu tamat</span></div>
+    <p class="rf-body"
+       data-en="And then, in the second verse, Allah names the place where every distraction finally runs out. He does not describe it as a punishment. He describes it as an arrival."
+       data-bm="Kemudian, pada ayat kedua, Allah menamakan tempat setiap kelalaian akhirnya kehabisan. Dia tidak menggambarkannya sebagai hukuman. Dia menggambarkannya sebagai satu ketibaan.">
+      Kemudian, pada ayat kedua, Allah menamakan tempat setiap kelalaian akhirnya kehabisan. Dia tidak menggambarkannya sebagai hukuman. Dia menggambarkannya sebagai satu ketibaan.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Until you visited the graves.&rdquo;"
+       data-bm="&ldquo;Sehingga kamu menziarahi kubur.&rdquo;">
+      &ldquo;Sehingga kamu menziarahi kubur.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">At-Takathur 102:2</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Everything we were holding is set down at that door. The phone. The job. The house. The followers. The targets. The whole race, left behind mid-lap, with nobody keeping score any more."
+       data-bm="Segala yang kita pegang diletakkan di muka pintu itu. Telefon. Pekerjaan. Rumah. Pengikut. Sasaran. Seluruh perlumbaan, ditinggalkan di tengah pusingan, dan tiada lagi sesiapa yang menyimpan markah.">
+      Segala yang kita pegang diletakkan di muka pintu itu. Telefon. Pekerjaan. Rumah. Pengikut. Sasaran. Seluruh perlumbaan, ditinggalkan di tengah pusingan, dan tiada lagi sesiapa yang menyimpan markah.
+    </p>
+    <p class="rf-body"
+       data-en="Then the surah says what comes into view. And notice the verb it chooses: not you will be told, not you will be judged. You will see."
+       data-bm="Kemudian surah ini menyebut apa yang akan terpampang. Dan perhatikan kata kerja yang dipilihnya: bukan kamu akan diberitahu, bukan kamu akan dihakimi. Kamu akan melihat.">
+      Kemudian surah ini menyebut apa yang akan terpampang. Dan perhatikan kata kerja yang dipilihnya: bukan kamu akan diberitahu, bukan kamu akan dihakimi. Kamu akan melihat.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">لَتَرَوُنَّ ٱلْجَحِيمَ ۝ ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;You will surely see the blaze. Then you will surely see it with the eye of certainty.&rdquo;"
+       data-bm="&ldquo;Kamu pasti akan melihat neraka Jahim. Kemudian kamu pasti akan melihatnya dengan mata keyakinan.&rdquo;">
+      &ldquo;Kamu pasti akan melihat neraka Jahim. Kemudian kamu pasti akan melihatnya dengan mata keyakinan.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">At-Takathur 102:6&ndash;7</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="When something frightening appears in front of a person, the body does one thing first: it turns the face away. We look at the floor. We change the subject. We open another tab. Turning away is the most human reflex there is, and in this world it is always available to us."
+       data-bm="Apabila sesuatu yang menakutkan terpampang di hadapan seseorang, tubuh melakukan satu perkara dahulu: ia memalingkan wajah. Kita memandang lantai. Kita menukar topik. Kita membuka satu lagi tab. Berpaling ialah refleks paling manusiawi yang ada, dan di dunia ini ia sentiasa terbuka untuk kita.">
+      Apabila sesuatu yang menakutkan terpampang di hadapan seseorang, tubuh melakukan satu perkara dahulu: ia memalingkan wajah. Kita memandang lantai. Kita menukar topik. Kita membuka satu lagi tab. Berpaling ialah refleks paling manusiawi yang ada, dan di dunia ini ia sentiasa terbuka untuk kita.
+    </p>
+    <p class="rf-tagline"
+       data-en="There, the reflex has nowhere to go. No feed, no errand, no noise. <em>No alhakum left.</em> The reality is simply in front of you, and your eyes stay on it."
+       data-bm="Di sana, refleks itu tiada tempat untuk pergi. Tiada feed, tiada urusan, tiada bunyi. <em>Tiada lagi alhakum.</em> Realiti itu terpampang di hadapan, dan matamu kekal padanya.">
+      Di sana, refleks itu tiada tempat untuk pergi. Tiada feed, tiada urusan, tiada bunyi. <em>Tiada lagi alhakum.</em> Realiti itu terpampang di hadapan, dan matamu kekal padanya.
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="The room we stopped giving ourselves" data-bm="Ruang yang kita berhenti berikan">Ruang yang kita berhenti berikan</span></div>
+    <h2 class="rf-big"
+        data-en="A soul needs somewhere to <em>stop.</em>"
+        data-bm="Jiwa perlukan tempat untuk <em>berhenti.</em>">
+      Jiwa perlukan tempat untuk <em>berhenti.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Not a holiday. Not a change of scenery, which is often distraction in better clothing. A real pause, where nothing is arriving and nothing is being consumed, and the things we have been outrunning are allowed to catch up."
+       data-bm="Bukan percutian. Bukan pertukaran suasana, yang selalunya kelalaian dalam pakaian yang lebih kemas. Satu perhentian yang benar, ketika tiada apa yang tiba dan tiada apa yang ditelan, dan perkara yang selama ini kita pecut lari daripadanya dibenarkan sampai.">
+      Bukan percutian. Bukan pertukaran suasana, yang selalunya kelalaian dalam pakaian yang lebih kemas. Satu perhentian yang benar, ketika tiada apa yang tiba dan tiada apa yang ditelan, dan perkara yang selama ini kita pecut lari daripadanya dibenarkan sampai.
+    </p>
+    <p class="rf-body"
+       data-en="It is in that space that a person can finally take stock of himself. Make du'a in his own words instead of borrowed ones. Open the Qur'an slowly enough to be spoken to. Look straight at the wound he has been numbing. Say the sentence he has been avoiding:"
+       data-bm="Di dalam ruang itulah seseorang akhirnya mampu memuhasabah dirinya. Berdoa dengan kata-katanya sendiri, bukan kata-kata pinjaman. Membuka Al-Quran cukup perlahan untuk diajak bicara. Memandang tepat pada luka yang selama ini dikebaskannya. Menyebut ayat yang selama ini dielakkannya:">
+      Di dalam ruang itulah seseorang akhirnya mampu memuhasabah dirinya. Berdoa dengan kata-katanya sendiri, bukan kata-kata pinjaman. Membuka Al-Quran cukup perlahan untuk diajak bicara. Memandang tepat pada luka yang selama ini dikebaskannya. Menyebut ayat yang selama ini dielakkannya:
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;Ya Allah, the truth is I am tired. And I am not sure where my life is heading.&rdquo;"
+         data-bm="&ldquo;Ya Allah, sebenarnya aku penat. Dan aku tidak pasti ke mana hidupku sedang menuju.&rdquo;">
+        &ldquo;Ya Allah, sebenarnya aku penat. Dan aku tidak pasti ke mana hidupku sedang menuju.&rdquo;
+      </p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="That sentence is not weakness. It is the first honest thing a distracted heart has said in a long time, and it is said to the only One who can do something about it."
+       data-bm="Ayat itu bukan kelemahan. Ia perkara jujur pertama yang diucapkan oleh hati yang lalai sejak sekian lama, dan ia diucapkan kepada satu-satunya Dia yang mampu berbuat sesuatu tentangnya.">
+      Ayat itu bukan kelemahan. Ia perkara jujur pertama yang diucapkan oleh hati yang lalai sejak sekian lama, dan ia diucapkan kepada satu-satunya Dia yang mampu berbuat sesuatu tentangnya.
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Attention is not free time. It is <em>lifespan, being spent.</em>"
+        data-bm="Perhatian bukan masa lapang. Ia <em>umur, yang sedang dibelanjakan.</em>">
+      Perhatian bukan masa lapang. Ia <em>umur, yang sedang dibelanjakan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Every hour our attention is held somewhere, a portion of the life we were given goes with it. Whatever we keep looking at is quietly eating the years. That is the real weight of the word alhakum, and it is why this short surah reads like it was sent for exactly this century."
+       data-bm="Setiap jam perhatian kita dipegang di suatu tempat, sebahagian daripada umur yang dikurniakan kepada kita pergi bersamanya. Apa sahaja yang kita terus pandang sedang senyap-senyap memakan tahun-tahun itu. Itulah berat sebenar perkataan alhakum, dan itulah sebabnya surah pendek ini berbunyi seolah-olah ia diturunkan tepat untuk abad ini.">
+      Setiap jam perhatian kita dipegang di suatu tempat, sebahagian daripada umur yang dikurniakan kepada kita pergi bersamanya. Apa sahaja yang kita terus pandang sedang senyap-senyap memakan tahun-tahun itu. Itulah berat sebenar perkataan alhakum, dan itulah sebabnya surah pendek ini berbunyi seolah-olah ia diturunkan tepat untuk abad ini.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:34px">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</p>
+    <p class="rf-ayah-ref">At-Takathur 102:1</p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON DISTRACTION" data-bm="TENTANG KELALAIAN">TENTANG KELALAIAN</div>
+    <h2 class="rf-big">Tempat Kita Lari</h2>
+    <p class="rf-body"
+       data-en="May Allah return our attention to what deserves it, give us the courage to sit still with what we have been avoiding, and let us meet Him awake rather than diverted. <em>Aameen.</em>"
+       data-bm="Semoga Allah mengembalikan perhatian kita kepada apa yang layak menerimanya, memberi kita keberanian untuk duduk diam bersama apa yang selama ini kita elakkan, dan mempertemukan kita dengan-Nya dalam keadaan sedar, bukan lalai. <em>Aameen.</em>">
+      Semoga Allah mengembalikan perhatian kita kepada apa yang layak menerimanya, memberi kita keberanian untuk duduk diam bersama apa yang selama ini kita elakkan, dan mempertemukan kita dengan-Nya dalam keadaan sedar, bukan lalai. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="A companion piece to Berat Bukan Banyak, written after sitting with the tafsir of Surah At-Takathur taught by Ustaz Nouman Ali Khan (Bayyinah). The linguistic observations belong to that teaching; the wording, the framing and any mistakes here are mine."
+       data-bm="Sebuah kisah pasangan kepada Berat Bukan Banyak, ditulis selepas duduk bersama kupasan tafsir Surah At-Takathur oleh Ustaz Nouman Ali Khan (Bayyinah). Pemerhatian bahasa adalah daripada kuliah tersebut; olahan ayat, susunan dan sebarang kesilapan di sini adalah milik saya.">
+      Sebuah kisah pasangan kepada Berat Bukan Banyak, ditulis selepas duduk bersama kupasan tafsir Surah At-Takathur oleh Ustaz Nouman Ali Khan (Bayyinah). Pemerhatian bahasa adalah daripada kuliah tersebut; olahan ayat, susunan dan sebarang kesilapan di sini adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="berat-bukan-banyak.html" class="btn btn-ghost btn-lg" data-en="&larr; Berat bukan banyak" data-bm="&larr; Berat bukan banyak">&larr; Berat bukan banyak</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
