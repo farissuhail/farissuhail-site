@@ -27,6 +27,7 @@
     caption: { en: 'Illustrative cutaway · not factory CAD', bm: 'Keratan rentas ilustrasi · bukan CAD kilang' }
   };
   var ICON_POSTER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.4"/></svg>';
+  var ICON_ENGINE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h3l2-3h4l2 3h3v5H5z"/><path d="M8 9V7h5"/><path d="M19 11h2v4h-2"/><path d="M7 17v2M17 17v2"/></svg>';
   var ICON_PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>';
   var ICON_MINUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>';
 
@@ -74,6 +75,21 @@
     openBtn.setAttribute('aria-haspopup', 'dialog');
     openBtn.setAttribute('aria-label', cfg.title[lang()]);   /* the title already says "anatomy poster" */
     stack.appendChild(openBtn);
+
+    /* The studio's sibling experience: the same car's engine, taken apart.
+       Driven by data-engine-href so a studio without an explorer shows nothing. */
+    const engineHref = root.dataset.engineHref;
+    if (engineHref) {
+      const link = el('a', 'ap-open');
+      link.href = engineHref;
+      link.innerHTML = ICON_ENGINE + '<span class="ap-open-text"></span>';
+      const t = { en: 'Engine explorer', bm: 'Penjelajah enjin' };
+      const span = link.querySelector('.ap-open-text');
+      span.setAttribute('data-en', t.en); span.setAttribute('data-bm', t.bm);
+      span.textContent = t[lang()];
+      link.setAttribute('aria-label', t[lang()]);
+      stack.appendChild(link);
+    }
 
     /* ── the viewer ─────────────────────────────────────────────────────── */
     var view = el('div', 'ap-viewer');

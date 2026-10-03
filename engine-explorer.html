@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Take an engine apart on screen: orbit a detailed assembly, explode it from assembled to fully apart, step through it component by component and read what each one does. Golf Mk5 R32 VR6, BMW X4 N20, Sharan 2.0 TSI and the Porsche 992 GT3 RS flat-six, in English and Bahasa Melayu." />
+  <title>Engine Explorer · Petrolhead Technica</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Engine Explorer · Petrolhead Technica" />
+  <meta property="og:description" content="Orbit, explode and inspect the engines in the cars I run — component by component, in English and Bahasa Melayu." />
+  <meta property="og:url" content="https://farissuhail.com/engine-explorer.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-book-reviews.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="engine-explorer.css?v=1" />
+  <link rel="canonical" href="https://farissuhail.com/engine-explorer.html" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.185.1/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.185.1/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="engine-explorer">
+
+<nav class="ex-nav">
+  <a class="ex-brand" href="index.html">
+    <b>FARISSUHAIL</b><span data-en="Petrolhead Technica" data-bm="Petrolhead Technica">Petrolhead Technica</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="ex-nav-actions">
+    <button type="button" class="ex-btn ex-btn-primary" id="cineBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+      <span class="label" data-en="Cinematic view" data-bm="Paparan sinematik">Cinematic view</span>
+    </button>
+    <a class="ex-btn" href="petrolhead-technica.html">
+      <span class="label" data-en="All labs" data-bm="Semua makmal">All labs</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <button id="langToggle" class="ex-lang" aria-label="Switch language / Tukar bahasa"><span class="lang-en on">EN</span><span class="sep">/</span><span class="lang-bm">BM</span></button>
+  </div>
+</nav>
+
+<main class="ex-wrap">
+
+  <div class="ex-select-row">
+    <span class="rule" aria-hidden="true"></span>
+    <label class="ex-lbl" for="carPick" data-en="Model" data-bm="Model">Model</label>
+    <select class="ex-select" id="carPick"></select>
+  </div>
+
+  <header class="ex-id">
+    <div class="sub-code" id="idCode"></div>
+    <h1 id="idTitle"></h1>
+    <p class="tagline" id="idTagline"></p>
+    <div class="ex-facts" id="idFacts"></div>
+  </header>
+
+  <div class="ex-stage-row">
+    <div class="ex-stage" id="stage">
+      <div class="ex-overlay" id="loading" role="status">
+        <div>
+          <p data-en="Building the engine" data-bm="Membina enjin">Building the engine</p>
+          <small id="loadingSub" data-en="Preparing geometry…" data-bm="Menyediakan geometri…">Preparing geometry…</small>
+          <div class="ex-bar"><i id="loadBar"></i></div>
+        </div>
+      </div>
+      <div class="ex-overlay" id="errorBox" role="alert" hidden>
+        <div>
+          <p id="errMsg"></p>
+          <small id="errSub"></small>
+          <div style="margin-top:14px"><button type="button" class="ex-btn" id="retryBtn" data-en="Try again" data-bm="Cuba lagi">Try again</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="ex-rail" role="toolbar" aria-label="View controls">
+      <button type="button" class="ex-tool" id="focusTool" title="Focus the selected component" aria-label="Focus the selected component">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/></svg>
+      </button>
+      <button type="button" class="ex-tool" id="resetTool" title="Reset the view" aria-label="Reset the view">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <button type="button" class="ex-tool" id="labelTool" title="Show component labels" aria-label="Show component labels" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.1"/></svg>
+      </button>
+      <button type="button" class="ex-tool" id="rotateTool" title="Auto-rotate" aria-label="Auto-rotate" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.341 6.484A10 10 0 0 1 10.266 21.85"/><path d="M3.659 17.516A10 10 0 0 1 13.74 2.152"/><circle cx="12" cy="12" r="2.5"/></svg>
+      </button>
+      <button type="button" class="ex-tool" id="fullTool" title="Full screen" aria-label="Full screen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="ex-stage-foot">
+    <button type="button" class="ex-btn" id="focusBtn" data-en="Engine focus" data-bm="Fokus enjin">Engine focus</button>
+    <span class="ex-hint" data-en="<b>Drag</b> to rotate · <b>Scroll</b> to zoom · <b>Click</b> to inspect"
+          data-bm="<b>Seret</b> untuk putar · <b>Tatal</b> untuk zum · <b>Klik</b> untuk periksa">
+      <b>Drag</b> to rotate · <b>Scroll</b> to zoom · <b>Click</b> to inspect
+    </span>
+  </div>
+
+  <div class="ex-cols">
+
+    <section class="ex-card" aria-labelledby="explodeH">
+      <header>
+        <div>
+          <span class="ex-lbl" data-en="Take it apart" data-bm="Buka bahagiannya">Take it apart</span>
+          <h2 id="explodeH" data-en="Exploded view" data-bm="Pandangan terurai">Exploded view</h2>
+        </div>
+        <div class="ex-pct" id="pctOut" aria-live="polite">0<small>%</small></div>
+      </header>
+
+      <div class="ex-tabs" role="tablist" aria-label="Disassembly mode">
+        <button type="button" class="ex-tab" id="tabExplode" role="tab" aria-selected="true" data-en="Explode" data-bm="Urai">Explode</button>
+        <button type="button" class="ex-tab" id="tabSteps" role="tab" aria-selected="false" data-en="Step by step" data-bm="Langkah demi langkah">Step by step</button>
+      </div>
+
+      <div id="paneExplode">
+        <p class="ex-help" data-en="Move every component together." data-bm="Gerakkan semua komponen serentak.">Move every component together.</p>
+        <input type="range" class="ex-range" id="explodeRange" min="0" max="100" step="1" value="0"
+               aria-label="Explosion amount" />
+        <div class="ex-ends">
+          <span class="ex-lbl" data-en="Assembled" data-bm="Tercantum">Assembled</span>
+          <span class="ex-lbl" data-en="Fully exploded" data-bm="Terurai penuh">Fully exploded</span>
+        </div>
+        <div class="ex-presets">
+          <button type="button" class="ex-preset" data-preset="0" aria-pressed="true"><span data-en="Assembled" data-bm="Tercantum">Assembled</span><i>0%</i></button>
+          <button type="button" class="ex-preset" data-preset="45" aria-pressed="false"><span data-en="Explore" data-bm="Terokai">Explore</span><i>45%</i></button>
+          <button type="button" class="ex-preset" data-preset="100" aria-pressed="false"><span data-en="Exploded" data-bm="Terurai">Exploded</span><i>100%</i></button>
+        </div>
+      </div>
+
+      <div id="paneSteps" class="ex-steps">
+        <p class="ex-help" id="stepHelp"></p>
+        <div class="ex-step-track" id="stepTrack" aria-hidden="true"></div>
+        <div class="ex-step-nav">
+          <button type="button" class="ex-btn" id="stepPrev" data-en="Previous" data-bm="Sebelum">Previous</button>
+          <button type="button" class="ex-btn" id="stepNext" data-en="Next" data-bm="Seterus">Next</button>
+          <span class="ex-step-count" id="stepCount" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-card" aria-labelledby="focusH">
+      <div class="ex-pick">
+        <label class="ex-lbl" for="partPick" data-en="Inspect component" data-bm="Periksa komponen">Inspect component</label>
+        <select class="ex-select" id="partPick"></select>
+      </div>
+      <span class="ex-lbl" id="focusH" data-en="Component in focus" data-bm="Komponen dalam fokus">Component in focus</span>
+      <div class="ex-focus" id="focusPanel" aria-live="polite"></div>
+    </section>
+
+  </div>
+
+  <p class="ex-notes" id="carNote"></p>
+  <div class="ex-links" id="carLinks"></div>
+
+  <footer class="ex-foot">
+    <a href="petrolhead-technica.html">PETROLHEAD TECHNICA</a>
+    <a href="index.html">FARISSUHAIL.COM</a>
+    <span>© <span id="year"></span></span>
+  </footer>
+</main>
+
+<!-- cinematic ------------------------------------------------------------- -->
+<div class="ex-cine" id="cine" role="dialog" aria-modal="true" aria-label="Cinematic engine view" aria-hidden="true">
+  <div class="ex-cine-stage" id="cineStage"></div>
+  <div class="ex-cine-top">
+    <div class="ex-cine-brand"><b>FARISSUHAIL</b><span>Petrolhead Technica</span></div>
+    <button type="button" class="ex-btn" id="cineExit" data-en="Exit cinematic" data-bm="Keluar sinematik">Exit cinematic</button>
+  </div>
+  <div class="ex-cine-caption">
+    <span class="ex-lbl" data-en="The engine, in motion" data-bm="Enjin, dalam gerakan">The engine, in motion</span>
+    <p><b id="cineCar"></b> · <span class="pct" id="cinePct"></span></p>
+  </div>
+  <div class="ex-cine-play">
+    <button type="button" class="ex-tool" id="cinePause" aria-label="Pause"></button>
+    <input type="range" class="ex-range" id="cineScrub" min="0" max="1000" step="1" value="0" aria-label="Cinematic position" />
+  </div>
+  <p class="ex-cine-hint" data-en="Press Esc to return to the explorer" data-bm="Tekan Esc untuk kembali ke penjelajah">Press Esc to return to the explorer</p>
+</div>
+
+<script type="module" src="engine-explorer.js?v=1"></script>
+</body>
+</html>
