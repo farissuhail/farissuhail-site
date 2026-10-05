@@ -254,3 +254,28 @@ When making changes, please:
 - Don't break the data-netlify form attributes
 - Preserve the green accent on `al-baqarah.html` (it's intentional brand separation)
 - Hard-refresh after every deploy (Ctrl+F5) to see changes — Netlify edge cache can be aggressive
+
+
+---
+
+## Engine Explorer (Petrolhead Technica)
+
+`engine-explorer.html?car=<r32|bmw|sharan|gt3>` - orbit, explode, step through and inspect each car's engine, plus a cinematic view. English and Bahasa Melayu.
+
+| File | Role |
+|---|---|
+| `engine-explorer.html/.css/.js` | The page and its controller: selectors, explosion card, step mode, numbered callouts + dashed separation guides, component panel, cinematic UI, language toggle |
+| `engine-viewer.js` | Three.js scene, studio lighting, optional GTAO ambient occlusion (desktop), deterministic explosion, picking, camera fit, cinematic playback, verification helpers |
+| `engine-catalog.js` + `engine-manifest-<car>.js` | Per-car manifest: verified facts, sources, asset provenance, component ids/numbers, authored explosion paths, camera preset, EN/BM copy |
+| `engine-geometry.js` | Lazy loader (only the active car's geometry module is downloaded) and disposal |
+| `engine-kit.js` | Procedural materials (fine-grain PBR maps) and geometry helpers shared by every engine |
+| `engine-vr6.js`, `engine-inline4.js`, `engine-flat6.js` | Authored engine geometry per architecture |
+| `engine-optimize.js` | Merges each component's static meshes per material (draw calls drop ~6x) while keeping ports/hoses separate |
+
+**Explosion model.** One number, `progress` in 0-1. Each component maps it through its own authored `window` and metric `offset`: `local = base + toLocal(offset) * ease(window(progress))`. Nothing is accumulated, so any number of explode/reassemble cycles returns every part - including nested ones such as the R32 sealing cover inside the cylinder head - to its captured transform.
+
+**Numbers.** A component's number is its 1-based position in the manifest's `components`. It is a viewer identifier that keeps the selector, callouts and guides in step - not an OEM part number.
+
+**Provenance.** All engine geometry is authored procedurally for this site. It is not manufacturer CAD and not a scan. Each manifest records `asset.fidelity` (currently `incomplete`) and per-component `status` (`photo`, `verified`, `illustrative`).
+
+**Debug / verification URL flags.** `?p=45` (explosion %), `?sel=<componentId>`, `?labels=1`, `?ao=0` (no ambient occlusion), `?shadows=0`, `?merge=0`. In the console: `engineExplorer.verifyPorts()`, `.componentPoses()`, `.perf()`, `.info()`, `.framedMargin()`.

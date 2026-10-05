@@ -95,7 +95,7 @@ select.ex-select {
   position: relative; flex: 1; min-width: 0;
   background: var(--ex-stage); border: 1px solid var(--ex-line);
   border-radius: 14px; overflow: hidden;
-  height: clamp(340px, 52vh, 560px);
+  height: clamp(380px, 64vh, 680px);
 }
 .ex-stage canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
 .ex-rail { display: flex; flex-direction: column; gap: 8px; }
@@ -202,26 +202,61 @@ input[type="range"].ex-range::-moz-range-thumb {
 .ex-foot { margin-top: 40px; border-top: 1px solid var(--ex-line); padding-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--ex-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ex-faint); }
 .ex-foot a:hover { color: var(--ex-accent); }
 
+/* fullscreen: the stage row fills the screen */
+.ex-stage-row:fullscreen, .ex-stage-row:-webkit-full-screen { background: var(--ex-bg); padding: 12px; gap: 12px; }
+.ex-stage-row:fullscreen .ex-stage, .ex-stage-row:-webkit-full-screen .ex-stage { height: calc(100vh - 24px); }
+
 /* ── cinematic ──────────────────────────────────────────────── */
-.ex-cine { position: fixed; inset: 0; z-index: 300; background: #fbfbfc; display: none; }
+/* The stage itself becomes the full-viewport scene (no re-parenting), so the
+   renderer, aspect and framing follow the real size. This layer only carries
+   the quiet controls above it. */
+.ex-cine { position: fixed; inset: 0; z-index: 300; display: none; pointer-events: none; }
 .ex-cine.on { display: block; }
+.ex-cine button, .ex-cine input { pointer-events: auto; }
 body.cine-on { overflow: hidden; }
+body.cine-on .ex-stage {
+  position: fixed; inset: 0; z-index: 290; height: auto; border: 0; border-radius: 0;
+  background: #fcfcfd;
+}
+body.cine-on .ex-callouts { display: none; }
 .ex-cine-top { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: flex-start; justify-content: space-between; padding: max(18px, env(safe-area-inset-top)) 20px 0; z-index: 2; }
 .ex-cine-brand { display: flex; flex-direction: column; line-height: 1.15; }
 .ex-cine-brand b { font-size: 13px; font-weight: 800; letter-spacing: .04em; color: var(--ex-ink); }
 .ex-cine-brand span { font-family: var(--ex-mono); font-size: 8px; letter-spacing: .18em; color: var(--ex-faint); text-transform: uppercase; }
 .ex-cine-caption {
-  position: absolute; left: 20px; bottom: max(24px, env(safe-area-inset-bottom)); z-index: 2; max-width: min(78vw, 520px);
+  position: absolute; left: 20px; bottom: max(40px, env(safe-area-inset-bottom)); z-index: 2; max-width: min(78vw, 520px);
 }
 .ex-cine-caption .ex-lbl { display: block; margin-bottom: 7px; }
 .ex-cine-caption p { margin: 0; font-size: clamp(15px, 2.2vw, 19px); letter-spacing: -0.01em; }
 .ex-cine-caption b { font-weight: 600; }
 .ex-cine-caption .pct { color: var(--ex-accent); font-weight: 600; }
-.ex-cine-play { position: absolute; right: 20px; bottom: max(24px, env(safe-area-inset-bottom)); z-index: 2; display: flex; align-items: center; gap: 10px; }
+.ex-cine-play { position: absolute; right: 20px; bottom: max(40px, env(safe-area-inset-bottom)); z-index: 2; display: flex; align-items: center; gap: 10px; }
 .ex-cine-play input[type="range"] { width: clamp(90px, 20vw, 180px); }
-.ex-cine-hint { position: absolute; left: 0; right: 0; bottom: max(6px, env(safe-area-inset-bottom)); text-align: center; font-size: 10.5px; color: var(--ex-faint); z-index: 1; }
-.ex-cine-stage { position: absolute; inset: 0; }
-.ex-cine-stage canvas { width: 100%; height: 100%; display: block; }
+.ex-cine-hint { position: absolute; left: 0; right: 0; bottom: max(10px, env(safe-area-inset-bottom)); text-align: center; font-size: 10.5px; color: var(--ex-faint); z-index: 1; margin: 0; }
+
+/* ── callouts and separation guides ─────────────────────────── */
+.ex-callouts { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; overflow: hidden; pointer-events: none; }
+.ex-guide { stroke: #6f87ad; stroke-width: 1; stroke-dasharray: 3 4; opacity: .55; }
+.ex-lead { stroke: #8a95a6; stroke-width: .8; opacity: .7; }
+.ex-marker { pointer-events: auto; cursor: pointer; }
+.ex-marker circle { fill: #fff; stroke: var(--ex-accent); stroke-width: 1.2; }
+.ex-marker text { font: 600 10px/1 var(--ex-sans); fill: var(--ex-accent); pointer-events: none; }
+.ex-marker.on circle { fill: var(--ex-accent); }
+.ex-marker.on text { fill: #fff; }
+.ex-marker:focus-visible circle { stroke-width: 2.4; }
+.ex-guide-note { margin: 0 0 22px; font-size: 11.5px; color: var(--ex-faint); max-width: 640px; }
+.ex-guide-note[hidden] { display: none; }
+
+/* evidence + provenance */
+.ex-evidence { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--ex-line); font-size: 11.5px; color: var(--ex-faint); line-height: 1.6; }
+.ex-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; vertical-align: 1px; background: var(--ex-line-2); }
+.ex-dot-photo { background: #2d5fa8; }
+.ex-dot-verified { background: #2f8f5b; }
+.ex-dot-illustrative { background: #b5bcc6; }
+.ex-prov { display: block; margin-top: 6px; color: var(--ex-faint); }
+.ex-prov b { color: var(--ex-mute); font-weight: 600; }
+.ex-count { color: var(--ex-faint); }
+.ex-nogl { opacity: .98; }
 
 /* ── responsive ─────────────────────────────────────────────── */
 @media (max-width: 980px) {
@@ -241,8 +276,8 @@ body.cine-on { overflow: hidden; }
   .ex-facts { gap: 14px; }
   .ex-presets { grid-template-columns: 1fr; }
   .ex-cine-play input[type="range"] { width: 86px; }
-  .ex-cine-caption { bottom: max(56px, env(safe-area-inset-bottom)); }
-  .ex-cine-play { bottom: max(14px, env(safe-area-inset-bottom)); }
+  .ex-cine-caption { bottom: max(64px, env(safe-area-inset-bottom)); }
+  .ex-cine-play { bottom: max(26px, env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ex-btn, .ex-tool, .ex-preset, .ex-bar i { transition: none; }
