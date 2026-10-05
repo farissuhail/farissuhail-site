@@ -28,8 +28,8 @@ export const engines = {
       'Enam silinder dalam dua baris berselang-seli rapat di bawah satu kepala silinder. Susunan sempit 15° itulah ciri utama VR6.',
     links: [
       {
-        href: 'https://www.volkspage.net/technik/ssp/ssp/SSP_380.pdf',
-        text: 'Audi / Volkswagen SSP 380 · 3.2 VR6 MPI (BUB), page 24',
+        href: 'https://australiancar.reviews/review-volkswagen-mk-5-golf-r32-2006-10/',
+        text: 'australiancar.reviews · Mk5 Golf R32: BUB 3.2 VR6, 15° V angle, 84.0 × 95.9 mm (secondary source)',
       },
       {
         href: 'https://www.australiancar.reviews/_pdfs/Volkswagen_Golf-R32_Mk5_Specifications_200607.pdf',
