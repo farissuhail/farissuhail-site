@@ -25,7 +25,8 @@ const r32 = {
   capabilities: { explode: true, steps: true, cinematic: true, fourStroke: true, gearbox: true, nestedExplosion: true, coolingPorts: true },
   sources: [
     { href: 'https://www.volkswagen-newsroom.com/de/bilder/detail/volkswagen-golf-r32-19899', text: 'Volkswagen · Golf R32 3.2 V6, 184 kW / 250 PS (DB2005AU01564)' },
-    { href: 'https://australiancar.reviews/review-volkswagen-mk-5-golf-r32-2006-10/', text: 'australiancar.reviews · Mk5 Golf R32: BUB 3.2 VR6, 84.0 × 95.9 mm, 3,189 cc, 15° V (secondary source)' },
+    { href: 'https://vwcampersite.wordpress.com/wp-content/uploads/2015/01/ssp_924603_3-2l-3-6l_fsi_engine.pdf', text: 'Audi SSP 924603 · 3.2 manifold-injection VR6: 15° V angle, 12.5 mm offset (PDF page 10, hosted copy)' },
+      { href: 'https://australiancar.reviews/review-volkswagen-mk-5-golf-r32-2006-10/', text: 'australiancar.reviews · Mk5 Golf R32: BUB 3.2 VR6, 84.0 × 95.9 mm, 3,189 cc (secondary source)' },
   ],
   components: [
     { id: 'cosmetic-trim', cat: 'trim', status: 'photo', offset: [0.34, 0.20, 0], window: [0, 0.28],

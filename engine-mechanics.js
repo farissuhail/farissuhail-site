@@ -28,8 +28,16 @@ export const engines = {
       'Enam silinder dalam dua baris berselang-seli rapat di bawah satu kepala silinder. Susunan sempit 15° itulah ciri utama VR6.',
     links: [
       {
+        href: 'https://vwcampersite.wordpress.com/wp-content/uploads/2015/01/ssp_924603_3-2l-3-6l_fsi_engine.pdf',
+        text: 'Audi SSP 924603 · 3.2 manifold-injection VR6: 15° V angle, 12.5 mm offset (PDF page 10, hosted copy)',
+      },
+      {
+        href: 'https://the-corrado.net/wiki/vr6_engine_technical_info.html',
+        text: 'VW VR6 Self-Study Program 402 · firing order 1-5-3-6-2-4 (stated for the 2.8 VR6; the 3.2 shares the VR6 layout)',
+      },
+      {
         href: 'https://australiancar.reviews/review-volkswagen-mk-5-golf-r32-2006-10/',
-        text: 'australiancar.reviews · Mk5 Golf R32: BUB 3.2 VR6, 15° V angle, 84.0 × 95.9 mm (secondary source)',
+        text: 'australiancar.reviews · Mk5 Golf R32: BUB 3.2 VR6, 84.0 × 95.9 mm, 3,189 cc (secondary source)',
       },
       {
         href: 'https://www.australiancar.reviews/_pdfs/Volkswagen_Golf-R32_Mk5_Specifications_200607.pdf',
