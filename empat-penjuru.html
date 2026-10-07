@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Empat penjuru: sumpah Iblis dalam Surah Al-A'raf 7:16-17. Empat arah yang disebutnya, dua arah yang ditinggalkannya, dan mengapa doa serta sujud meruntuhkan seluruh strategi itu. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Empat Penjuru · sumpah Iblis · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Empat penjuru: the two directions Iblis never claimed" />
+  <meta property="og:description" content="He swore to come from the front, the back, the right and the left. He said nothing about above and below. That silence is the whole escape route." />
+  <meta property="og:url" content="https://farissuhail.com/empat-penjuru.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Empat Penjuru: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Empat penjuru: dua arah yang tidak pernah dituntut Iblis" />
+  <meta name="twitter:description" content="Depan, belakang, kanan, kiri. Dan dua arah yang dibiarkannya kosong: atas dan bawah." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 150px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+    }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/empat-penjuru.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Empat penjuru: the two directions Iblis never claimed (Al-A'raf 7:16-17)",
+    "alternativeHeadline": "Empat penjuru: dua arah yang tidak pernah dituntut Iblis",
+    "url": "https://farissuhail.com/empat-penjuru.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Surah Al-A'raf",
+      "Shaytan"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH 7 &middot; AL-A'RAF</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">empat</span>
+        <span class="rf-cow">PENJURU</span>
+      </h1>
+      <div class="rf-arabic">AL-A'RAF 7:16&ndash;17</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">New</span>
+        <span class="story-badge" data-en="The oath of Iblis" data-bm="Sumpah Iblis">Sumpah Iblis</span>
+        <span class="story-badge" data-en="9 min read" data-bm="Baca 9 minit">9 min read</span>
+      </div>
+      <h2 data-en="He named four directions. Listen to the <em>two he left out.</em>"
+          data-bm="Dia menyebut empat arah. Dengar pula <em>dua yang ditinggalkannya.</em>">
+        Dia menyebut empat arah. Dengar pula <em>dua yang ditinggalkannya.</em>
+      </h2>
+      <p data-en="In his oath, Iblis promises to come at us from the front, from behind, from the right and from the left. Four directions, and every one of them lies flat on the same plane. Above and below are never mentioned. Read the omission carefully and it turns into an escape route."
+         data-bm="Dalam sumpahnya, Iblis berjanji mendatangi kita dari hadapan, dari belakang, dari kanan dan dari kiri. Empat arah, dan setiap satunya terbentang pada satah yang sama. Atas dan bawah tidak pernah disebut. Baca kekosongan itu dengan teliti, dan ia bertukar menjadi jalan keluar.">
+        Dalam sumpahnya, Iblis berjanji mendatangi kita dari hadapan, dari belakang, dari kanan dan dari kiri. Empat arah, dan setiap satunya terbentang pada satah yang sama. Atas dan bawah tidak pernah disebut. Baca kekosongan itu dengan teliti, dan ia bertukar menjadi jalan keluar.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The oath" data-bm="Sumpah itu">Sumpah itu</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">ثُمَّ لَءَاتِيَنَّهُم مِّنۢ بَيْنِ أَيْدِيهِمْ وَمِنْ خَلْفِهِمْ وَعَنْ أَيْمَـٰنِهِمْ وَعَن شَمَآئِلِهِمْ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Then I will surely come to them from before them and from behind them, and from their right and from their left.&rdquo;"
+       data-bm="&ldquo;Kemudian aku pasti akan mendatangi mereka dari hadapan mereka dan dari belakang mereka, dan dari kanan mereka dan dari kiri mereka.&rdquo;">
+      &ldquo;Kemudian aku pasti akan mendatangi mereka dari hadapan mereka dan dari belakang mereka, dan dari kanan mereka dan dari kiri mereka.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-A'raf 7:17</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="It sounds total. Four directions, every side covered, nowhere to stand. That is exactly the impression the sentence is built to give, and it is the impression a cornered heart already believes about its own life."
+       data-bm="Bunyinya menyeluruh. Empat arah, setiap sisi ditutup, tiada tempat untuk berdiri. Itulah tanggapan yang sengaja dibina oleh ayat ini, dan itulah juga tanggapan yang sudah dipercayai oleh hati yang terdesak tentang hidupnya sendiri.">
+      Bunyinya menyeluruh. Empat arah, setiap sisi ditutup, tiada tempat untuk berdiri. Itulah tanggapan yang sengaja dibina oleh ayat ini, dan itulah juga tanggapan yang sudah dipercayai oleh hati yang terdesak tentang hidupnya sendiri.
+    </p>
+    <p class="rf-body"
+       data-en="But count them again. Front, back, right, left. Every direction he claims runs along the ground. Not one of them goes up, and not one of them goes down. The classical commentators noticed the gap centuries ago and paused on it: the enemy who swore to surround us never once claimed the vertical."
+       data-bm="Tetapi kira sekali lagi. Hadapan, belakang, kanan, kiri. Setiap arah yang dituntutnya berjalan di atas tanah. Tiada satu pun yang naik ke atas, dan tiada satu pun yang turun ke bawah. Para mufassir klasik menyedari kekosongan ini berkurun lamanya dan berhenti padanya: musuh yang bersumpah mengepung kita tidak sekali pun menuntut arah menegak.">
+      Tetapi kira sekali lagi. Hadapan, belakang, kanan, kiri. Setiap arah yang dituntutnya berjalan di atas tanah. Tiada satu pun yang naik ke atas, dan tiada satu pun yang turun ke bawah. Para mufassir klasik menyedari kekosongan ini berkurun lamanya dan berhenti padanya: musuh yang bersumpah mengepung kita tidak sekali pun menuntut arah menegak.
+    </p>
+    <p class="rf-tagline"
+       data-en="The siege is real. It is also, in its own words, <em>completely flat.</em>"
+       data-bm="Kepungan itu nyata. Ia juga, dalam kata-katanya sendiri, <em>sepenuhnya mendatar.</em>">
+      Kepungan itu nyata. Ia juga, dalam kata-katanya sendiri, <em>sepenuhnya mendatar.</em>
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="From the front" data-bm="Dari hadapan">Dari hadapan</span></div>
+    <h2 class="rf-big"
+        data-en="In front of you is the future, and fear of it can eat the <em>day you are actually in.</em>"
+        data-bm="Di hadapanmu ialah masa depan, dan takut kepadanya boleh memakan <em>hari yang sedang kau diami.</em>">
+      Di hadapanmu ialah masa depan, dan takut kepadanya boleh memakan <em>hari yang sedang kau diami.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The attack from the front is the one that makes a person live inside things that have not happened. What if I fail. What if the money runs out. What if the marriage does not hold. What if something happens to my children. What if my rizq never comes."
+       data-bm="Serangan dari hadapan ialah serangan yang membuat seseorang hidup di dalam perkara yang belum berlaku. Bagaimana kalau aku gagal. Bagaimana kalau duit habis. Bagaimana kalau rumah tangga ini tidak bertahan. Bagaimana kalau sesuatu menimpa anak-anakku. Bagaimana kalau rezekiku tidak pernah tiba.">
+      Serangan dari hadapan ialah serangan yang membuat seseorang hidup di dalam perkara yang belum berlaku. Bagaimana kalau aku gagal. Bagaimana kalau duit habis. Bagaimana kalau rumah tangga ini tidak bertahan. Bagaimana kalau sesuatu menimpa anak-anakku. Bagaimana kalau rezekiku tidak pernah tiba.
+    </p>
+    <p class="rf-body"
+       data-en="None of it has arrived. All of it is being paid for in advance, in sleep, in patience, in the attention our families were supposed to receive today."
+       data-bm="Tiada satu pun daripadanya telah tiba. Semuanya sedang dibayar lebih awal, dengan tidur, dengan kesabaran, dengan perhatian yang sepatutnya diterima keluarga kita hari ini.">
+      Tiada satu pun daripadanya telah tiba. Semuanya sedang dibayar lebih awal, dengan tidur, dengan kesabaran, dengan perhatian yang sepatutnya diterima keluarga kita hari ini.
+    </p>
+    <div class="rf-quotecard">
+      <p lang="ar" dir="rtl" style="font-family:'Amiri',serif;font-style:normal">وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥ</p>
+      <p data-en="&ldquo;And whoever relies upon Allah, then He is sufficient for him.&rdquo;" data-bm="&ldquo;Dan sesiapa yang bertawakal kepada Allah, maka Dia mencukupkannya.&rdquo;">&ldquo;Dan sesiapa yang bertawakal kepada Allah, maka Dia mencukupkannya.&rdquo;</p>
+      <p class="rf-ayah-ref">At-Talaq 65:3</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Hasbuh. Enough for him. Not enough to get by on, not barely enough: sufficient, full stop. Tawakkul is not a prediction that nothing hard will come. It is a decision about who is holding the thing that might."
+       data-bm="Hasbuh. Mencukupkannya. Bukan cukup sekadar melepasi, bukan cukup-cukup makan: memadai, titik. Tawakal bukan ramalan bahawa tiada perkara susah akan datang. Ia satu keputusan tentang siapa yang sedang memegang perkara yang mungkin datang itu.">
+      Hasbuh. Mencukupkannya. Bukan cukup sekadar melepasi, bukan cukup-cukup makan: memadai, titik. Tawakal bukan ramalan bahawa tiada perkara susah akan datang. Ia satu keputusan tentang siapa yang sedang memegang perkara yang mungkin datang itu.
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="From behind" data-bm="Dari belakang">Dari belakang</span></div>
+    <p class="rf-body"
+       data-en="Behind you is everything already done, and that is where the second attack comes from: a chain fastened to yesterday. The old mistake replayed at full volume. The opportunity you let go. The wound you still have not told anyone about."
+       data-bm="Di belakangmu ialah segala yang sudah terjadi, dan di situlah datangnya serangan kedua: satu rantai yang diikat pada semalam. Kesilapan lama yang diulang tayang dengan bunyi paling kuat. Peluang yang kau lepaskan. Luka yang sampai hari ini tidak pernah kau ceritakan kepada sesiapa.">
+      Di belakangmu ialah segala yang sudah terjadi, dan di situlah datangnya serangan kedua: satu rantai yang diikat pada semalam. Kesilapan lama yang diulang tayang dengan bunyi paling kuat. Peluang yang kau lepaskan. Luka yang sampai hari ini tidak pernah kau ceritakan kepada sesiapa.
+    </p>
+    <p class="rf-body"
+       data-en="Notice the move carefully, because it is subtle. Remorse itself is a gift; it is the engine of tawbah, the thing that turns a person around. The attack does not remove the remorse. It redirects it, from a door that leads back to Allah into a wall that says it is too late for someone like you."
+       data-bm="Perhatikan gerak langkahnya dengan teliti, kerana ia halus. Rasa menyesal itu sendiri satu kurniaan; ia enjin kepada taubat, perkara yang memusingkan seseorang kembali. Serangan ini tidak membuang rasa menyesal itu. Ia mengalihkannya, daripada sebuah pintu yang membawa pulang kepada Allah menjadi sebuah dinding yang berkata sudah terlambat untuk orang seperti kau.">
+      Perhatikan gerak langkahnya dengan teliti, kerana ia halus. Rasa menyesal itu sendiri satu kurniaan; ia enjin kepada taubat, perkara yang memusingkan seseorang kembali. Serangan ini tidak membuang rasa menyesal itu. Ia mengalihkannya, daripada sebuah pintu yang membawa pulang kepada Allah menjadi sebuah dinding yang berkata sudah terlambat untuk orang seperti kau.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Do not despair of the mercy of Allah.&rdquo;"
+       data-bm="&ldquo;Janganlah kamu berputus asa daripada rahmat Allah.&rdquo;">
+      &ldquo;Janganlah kamu berputus asa daripada rahmat Allah.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Az-Zumar 39:53</p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Regret that walks you to the prayer mat is <em>mercy.</em> Regret that keeps you away from it has been <em>turned against you.</em>"
+       data-bm="Sesal yang memapah kau ke atas sejadah ialah <em>rahmat.</em> Sesal yang menjauhkan kau daripadanya sudah <em>dipusingkan untuk melawanmu.</em>">
+      Sesal yang memapah kau ke atas sejadah ialah <em>rahmat.</em> Sesal yang menjauhkan kau daripadanya sudah <em>dipusingkan untuk melawanmu.</em>
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="From the right" data-bm="Dari kanan">Dari kanan</span></div>
+    <h2 class="rf-big"
+        data-en="The most dangerous direction arrives <em>wearing the uniform of goodness.</em>"
+        data-bm="Arah paling berbahaya tiba <em>dengan memakai uniform kebaikan.</em>">
+      Arah paling berbahaya tiba <em>dengan memakai uniform kebaikan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The right side carries the language of virtue: the right hand, the companions of the right, the record given in the right hand. So how does anything hostile arrive from there? Precisely because we are not watching that door."
+       data-bm="Sebelah kanan membawa bahasa kebaikan: tangan kanan, golongan kanan, catatan yang diberikan di tangan kanan. Jadi bagaimana sesuatu yang memusuhi boleh tiba dari situ? Justeru kerana kita tidak sedang mengawasi pintu itu.">
+      Sebelah kanan membawa bahasa kebaikan: tangan kanan, golongan kanan, catatan yang diberikan di tangan kanan. Jadi bagaimana sesuatu yang memusuhi boleh tiba dari situ? Justeru kerana kita tidak sedang mengawasi pintu itu.
+    </p>
+    <p class="rf-body"
+       data-en="He does not stop you from praying. He lets you pray, and then leans in afterwards with a thought about the people who did not. He lets you give, then helps you remember how much. He lets you learn, then suggests how far ahead of the room you now are. The deed stays intact; the heart quietly changes owner, and worship becomes currency for the ego."
+       data-bm="Dia tidak menghalang kau daripada solat. Dia membiarkan kau solat, kemudian menghampiri selepas itu dengan satu lintasan tentang orang yang tidak solat. Dia membiarkan kau bersedekah, kemudian menolong kau mengingati jumlahnya. Dia membiarkan kau belajar, kemudian membisikkan betapa jauh kau sudah ke hadapan berbanding orang lain. Amalan itu kekal utuh; hati pula senyap-senyap bertukar tuan, dan ibadah menjadi mata wang untuk ego.">
+      Dia tidak menghalang kau daripada solat. Dia membiarkan kau solat, kemudian menghampiri selepas itu dengan satu lintasan tentang orang yang tidak solat. Dia membiarkan kau bersedekah, kemudian menolong kau mengingati jumlahnya. Dia membiarkan kau belajar, kemudian membisikkan betapa jauh kau sudah ke hadapan berbanding orang lain. Amalan itu kekal utuh; hati pula senyap-senyap bertukar tuan, dan ibadah menjadi mata wang untuk ego.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="A sin that leaves you ashamed may be safer for the heart than an act of worship that leaves you <em>looking down on people.</em>"
+         data-bm="Satu dosa yang meninggalkan kau malu mungkin lebih selamat bagi hati berbanding satu ibadah yang meninggalkan kau <em>memandang rendah pada manusia.</em>">
+        Satu dosa yang meninggalkan kau malu mungkin lebih selamat bagi hati berbanding satu ibadah yang meninggalkan kau <em>memandang rendah pada manusia.</em>
+      </p>
+      <p class="rf-ayah-ref" data-en="A principle the scholars of the heart return to often" data-bm="Satu prinsip yang sering diulang oleh ulama hati">Satu prinsip yang sering diulang oleh ulama hati</p>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="From the left" data-bm="Dari kiri">Dari kiri</span></div>
+    <p class="rf-body"
+       data-en="The left is the crude one, and the one we are all trained to recognise: appetite, impulse, the thing you want right now. It does not argue with your beliefs. It simply wraps something harmful in a few minutes of comfort and waits."
+       data-bm="Kiri ialah yang kasar, dan yang kita semua terlatih mengenalinya: nafsu, dorongan, perkara yang kau mahu sekarang juga. Ia tidak berdebat dengan kepercayaanmu. Ia cuma membalut sesuatu yang memudaratkan dengan beberapa minit keselesaan, lalu menunggu.">
+      Kiri ialah yang kasar, dan yang kita semua terlatih mengenalinya: nafsu, dorongan, perkara yang kau mahu sekarang juga. Ia tidak berdebat dengan kepercayaanmu. Ia cuma membalut sesuatu yang memudaratkan dengan beberapa minit keselesaan, lalu menunggu.
+    </p>
+    <p class="rf-body"
+       data-en="Cheap pleasure, taken often enough, does something worse than break a rule. It dulls the instrument. A heart fed on constant stimulation stops registering the small signals: the discomfort before a wrong word, the pull towards prayer, the ache that used to come after a bad night."
+       data-bm="Keseronokan murah, diambil cukup kerap, melakukan sesuatu yang lebih buruk daripada melanggar satu peraturan. Ia menumpulkan alat itu sendiri. Hati yang disuap rangsangan tanpa henti berhenti menangkap isyarat-isyarat kecil: rasa tidak sedap sebelum satu kata yang salah, tarikan ke arah solat, pedih yang dahulu datang selepas satu malam yang buruk.">
+      Keseronokan murah, diambil cukup kerap, melakukan sesuatu yang lebih buruk daripada melanggar satu peraturan. Ia menumpulkan alat itu sendiri. Hati yang disuap rangsangan tanpa henti berhenti menangkap isyarat-isyarat kecil: rasa tidak sedap sebelum satu kata yang salah, tarikan ke arah solat, pedih yang dahulu datang selepas satu malam yang buruk.
+    </p>
+    <p class="rf-tagline"
+       data-en="If the attack from the right <em>corrupts the mind,</em> the attack from the left <em>numbs the heart.</em> One makes you proud. The other makes you not feel much at all."
+       data-bm="Jika serangan dari kanan <em>merosakkan akal,</em> serangan dari kiri <em>mengebaskan hati.</em> Satu menjadikan kau bangga. Satu lagi menjadikan kau tidak merasa apa-apa lagi.">
+      Jika serangan dari kanan <em>merosakkan akal,</em> serangan dari kiri <em>mengebaskan hati.</em> Satu menjadikan kau bangga. Satu lagi menjadikan kau tidak merasa apa-apa lagi.
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="The two he never claimed" data-bm="Dua yang tidak pernah dituntutnya">Dua yang tidak pernah dituntutnya</span></div>
+    <p class="rf-word" lang="ar" dir="rtl">فَوْق &middot; تَحْت</p>
+    <p class="rf-body"
+       data-en="Four doors are named. Two are left standing open, and he says nothing about either. Above, and below. Scholars have offered more than one reason for the silence, and the one that stays with me is the simplest: mercy descends from above, and the servant is nearest to his Lord at the ground."
+       data-bm="Empat pintu disebut. Dua dibiarkan terbuka, dan dia tidak berkata apa-apa tentang kedua-duanya. Atas, dan bawah. Para ulama memberikan lebih daripada satu sebab bagi kekosongan itu, dan yang paling melekat pada saya ialah yang paling ringkas: rahmat turun dari atas, dan seorang hamba paling hampir dengan Tuhannya ketika berada di tanah.">
+      Empat pintu disebut. Dua dibiarkan terbuka, dan dia tidak berkata apa-apa tentang kedua-duanya. Atas, dan bawah. Para ulama memberikan lebih daripada satu sebab bagi kekosongan itu, dan yang paling melekat pada saya ialah yang paling ringkas: rahmat turun dari atas, dan seorang hamba paling hampir dengan Tuhannya ketika berada di tanah.
+    </p>
+    <div class="rf-subeyebrow" data-en="From above: du'a" data-bm="Dari atas: doa">Dari atas: doa</div>
+    <p class="rf-body"
+       data-en="Du'a is the direction nobody can block. There is no appointment, no intermediary, no queue, and no condition except that you ask. The One being asked describes Himself as near in the same breath as the question:"
+       data-bm="Doa ialah arah yang tiada sesiapa mampu menyekatnya. Tiada temu janji, tiada orang tengah, tiada giliran, dan tiada syarat selain kau meminta. Dia yang diminta itu menggambarkan diri-Nya sebagai dekat dalam nafas yang sama dengan soalan itu:">
+      Doa ialah arah yang tiada sesiapa mampu menyekatnya. Tiada temu janji, tiada orang tengah, tiada giliran, dan tiada syarat selain kau meminta. Dia yang diminta itu menggambarkan diri-Nya sebagai dekat dalam nafas yang sama dengan soalan itu:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَإِذَا سَأَلَكَ عِبَادِى عَنِّى فَإِنِّى قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ ٱلدَّاعِ إِذَا دَعَانِ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;And when My servants ask you about Me: indeed I am near. I answer the call of the caller when he calls upon Me.&rdquo;"
+       data-bm="&ldquo;Dan apabila hamba-hamba-Ku bertanya kepadamu tentang Aku: sesungguhnya Aku dekat. Aku menyahut permohonan orang yang berdoa apabila dia berdoa kepada-Ku.&rdquo;">
+      &ldquo;Dan apabila hamba-hamba-Ku bertanya kepadamu tentang Aku: sesungguhnya Aku dekat. Aku menyahut permohonan orang yang berdoa apabila dia berdoa kepada-Ku.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Baqarah 2:186</p>
+    <div class="rf-subeyebrow" data-en="From below: sujud" data-bm="Dari bawah: sujud">Dari bawah: sujud</div>
+    <p class="rf-body"
+       data-en="And the other open direction is downward, which is the strange one. We spend our lives trying not to be brought low. Then the Qur'an gives the instruction, and the Prophet &#65018; tells us what that position actually is:"
+       data-bm="Dan arah terbuka yang satu lagi ialah ke bawah, dan inilah yang pelik. Kita menghabiskan hidup cuba memastikan diri tidak direndahkan. Kemudian Al-Quran memberikan arahannya, dan Nabi &#65018; memberitahu kita apa sebenarnya kedudukan itu:">
+      Dan arah terbuka yang satu lagi ialah ke bawah, dan inilah yang pelik. Kita menghabiskan hidup cuba memastikan diri tidak direndahkan. Kemudian Al-Quran memberikan arahannya, dan Nabi &#65018; memberitahu kita apa sebenarnya kedudukan itu:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَٱسْجُدْ وَٱقْتَرِب</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;And prostrate, and draw near.&rdquo;"
+       data-bm="&ldquo;Dan sujudlah, dan dekatkanlah dirimu.&rdquo;">
+      &ldquo;Dan sujudlah, dan dekatkanlah dirimu.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-'Alaq 96:19</p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;The closest a servant is to his Lord is while he is in prostration.&rdquo;"
+         data-bm="&ldquo;Keadaan paling hampir seorang hamba dengan Tuhannya ialah ketika dia sedang sujud.&rdquo;">
+        &ldquo;Keadaan paling hampir seorang hamba dengan Tuhannya ialah ketika dia sedang sujud.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; MUSLIM</p>
+    </div>
+    <p class="rf-tagline" style="margin-top:30px"
+       data-en="The lowest position the body can take is the highest ground the soul can hold. <em>Nothing can knock over someone who is already on the floor before his Creator.</em>"
+       data-bm="Kedudukan paling rendah yang mampu diambil tubuh ialah tanah paling tinggi yang mampu dipegang jiwa. <em>Tiada apa yang mampu menumbangkan orang yang sudah pun melekap di lantai di hadapan Penciptanya.</em>">
+      Kedudukan paling rendah yang mampu diambil tubuh ialah tanah paling tinggi yang mampu dipegang jiwa. <em>Tiada apa yang mampu menumbangkan orang yang sudah pun melekap di lantai di hadapan Penciptanya.</em>
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="Reading your own mind" data-bm="Membaca fikiran sendiri">Membaca fikiran sendiri</span></div>
+    <h2 class="rf-big"
+        data-en="Once you know the four directions, your own thoughts start <em>announcing where they came from.</em>"
+        data-bm="Sebaik kau mengenali empat arah itu, fikiranmu sendiri mula <em>mengumumkan dari mana ia datang.</em>">
+      Sebaik kau mengenali empat arah itu, fikiranmu sendiri mula <em>mengumumkan dari mana ia datang.</em>
+    </h2>
+    <ul class="rf-steps">
+      <li><span class="n">&rarr;</span><div>
+        <h3 data-en="Anxiety" data-bm="Resah">Resah</h3>
+        <p data-en="Churning about what has not happened yet. That one came from the front." data-bm="Berpusing-pusing tentang apa yang belum berlaku. Yang itu datang dari hadapan.">Berpusing-pusing tentang apa yang belum berlaku. Yang itu datang dari hadapan.</p>
+      </div></li>
+      <li><span class="n">&larr;</span><div>
+        <h3 data-en="Suffocating guilt" data-bm="Rasa bersalah yang menyesakkan">Rasa bersalah yang menyesakkan</h3>
+        <p data-en="Shame that argues you are beyond returning. That one came from behind." data-bm="Malu yang berhujah bahawa kau sudah tidak layak pulang. Yang itu datang dari belakang.">Malu yang berhujah bahawa kau sudah tidak layak pulang. Yang itu datang dari belakang.</p>
+      </div></li>
+      <li><span class="n">&#8599;</span><div>
+        <h3 data-en="Quiet superiority" data-bm="Rasa lebih yang senyap">Rasa lebih yang senyap</h3>
+        <p data-en="The warm feeling of being better than someone, especially after an act of worship. That one came from the right." data-bm="Rasa hangat kerana merasa lebih baik daripada seseorang, terutamanya selepas satu ibadah. Yang itu datang dari kanan.">Rasa hangat kerana merasa lebih baik daripada seseorang, terutamanya selepas satu ibadah. Yang itu datang dari kanan.</p>
+      </div></li>
+      <li><span class="n">&#8600;</span><div>
+        <h3 data-en="Impulse" data-bm="Dorongan">Dorongan</h3>
+        <p data-en="The pull that wants it now and will explain itself later. That one came from the left." data-bm="Tarikan yang mahukannya sekarang dan akan memberi alasan kemudian. Yang itu datang dari kiri.">Tarikan yang mahukannya sekarang dan akan memberi alasan kemudian. Yang itu datang dari kiri.</p>
+      </div></li>
+    </ul>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Naming the direction is already half the defence, because a whisper only works while it is mistaken for your own voice. And every one of these four asks the same thing of you: keep moving sideways. Argue with the thought. Out-plan the fear. Out-perform the guilt. Stay on the flat ground where the whole strategy was built."
+       data-bm="Menamakan arahnya sudah pun separuh daripada pertahanan, kerana satu bisikan hanya berkesan selagi ia disangka suaramu sendiri. Dan setiap satu daripada empat ini meminta perkara yang sama daripadamu: teruslah bergerak ke tepi. Berdebat dengan fikiran itu. Merancang untuk mengatasi ketakutan. Bekerja lebih kuat untuk menutup rasa bersalah. Kekal di atas tanah rata tempat seluruh strategi itu dibina.">
+      Menamakan arahnya sudah pun separuh daripada pertahanan, kerana satu bisikan hanya berkesan selagi ia disangka suaramu sendiri. Dan setiap satu daripada empat ini meminta perkara yang sama daripadamu: teruslah bergerak ke tepi. Berdebat dengan fikiran itu. Merancang untuk mengatasi ketakutan. Bekerja lebih kuat untuk menutup rasa bersalah. Kekal di atas tanah rata tempat seluruh strategi itu dibina.
+    </p>
+    <p class="rf-tagline"
+       data-en="So stop running sideways. <em>Move vertically.</em> Raise your hands, or put your forehead on the floor, and the four-cornered plan has nothing left to stand on."
+       data-bm="Maka berhentilah berlari ke tepi. <em>Bergeraklah menegak.</em> Angkat tanganmu, atau letakkan dahimu di lantai, dan rancangan empat penjuru itu tiada lagi tempat berpijak.">
+      Maka berhentilah berlari ke tepi. <em>Bergeraklah menegak.</em> Angkat tanganmu, atau letakkan dahimu di lantai, dan rancangan empat penjuru itu tiada lagi tempat berpijak.
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="He surrounded four sides and called it a siege. Allah calls the whole thing <em>weak.</em>"
+        data-bm="Dia mengepung empat sisi lalu menamakannya kepungan. Allah menamakan keseluruhannya <em>lemah.</em>">
+      Dia mengepung empat sisi lalu menamakannya kepungan. Allah menamakan keseluruhannya <em>lemah.</em>
+    </h2>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">إِنَّ كَيْدَ ٱلشَّيْطَـٰنِ كَانَ ضَعِيفًا</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Indeed, the plot of Shaytan has ever been weak.&rdquo;"
+       data-bm="&ldquo;Sesungguhnya tipu daya syaitan itu adalah lemah.&rdquo;">
+      &ldquo;Sesungguhnya tipu daya syaitan itu adalah lemah.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">An-Nisa' 4:76</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Not weak because the whispers are quiet; they are not. Weak because the plan has a hole in it that its own author admitted to, out loud, in front of Allah, at the very beginning."
+       data-bm="Lemah bukan kerana bisikannya perlahan; ia tidak perlahan. Lemah kerana rancangan itu mempunyai satu lubang yang diakui sendiri oleh penciptanya, dengan suara yang lantang, di hadapan Allah, sejak di permulaan lagi.">
+      Lemah bukan kerana bisikannya perlahan; ia tidak perlahan. Lemah kerana rancangan itu mempunyai satu lubang yang diakui sendiri oleh penciptanya, dengan suara yang lantang, di hadapan Allah, sejak di permulaan lagi.
+    </p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON THE FOUR DIRECTIONS" data-bm="TENTANG EMPAT PENJURU">TENTANG EMPAT PENJURU</div>
+    <h2 class="rf-big">Empat Penjuru</h2>
+    <p class="rf-body"
+       data-en="May Allah protect the four sides we cannot watch, keep the two directions open in our hearts, and make sujud the first place we go rather than the last. <em>Aameen.</em>"
+       data-bm="Semoga Allah memelihara empat sisi yang tidak mampu kita awasi, mengekalkan dua arah itu terbuka dalam hati kita, dan menjadikan sujud tempat pertama yang kita tuju, bukan yang terakhir. <em>Aameen.</em>">
+      Semoga Allah memelihara empat sisi yang tidak mampu kita awasi, mengekalkan dua arah itu terbuka dalam hati kita, dan menjadikan sujud tempat pertama yang kita tuju, bukan yang terakhir. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="Written after a thread by @aiishadahir brought this reading of Al-A'raf 7:16&ndash;17 back to mind. The omission of above and below is an observation found in the classical tafsir tradition; reading those two directions as du'a and sujud is a devotional application rather than a claim about the verse's wording. The words here, and any mistakes in them, are mine."
+       data-bm="Ditulis selepas satu rangkaian tulisan oleh @aiishadahir mengembalikan bacaan Al-A'raf 7:16&ndash;17 ini ke dalam ingatan. Ketiadaan sebutan atas dan bawah ialah pemerhatian yang terdapat dalam tradisi tafsir klasik; membaca dua arah itu sebagai doa dan sujud pula ialah penerapan amali, bukan dakwaan tentang lafaz ayat. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.">
+      Ditulis selepas satu rangkaian tulisan oleh @aiishadahir mengembalikan bacaan Al-A'raf 7:16&ndash;17 ini ke dalam ingatan. Ketiadaan sebutan atas dan bawah ialah pemerhatian yang terdapat dalam tradisi tafsir klasik; membaca dua arah itu sebagai doa dan sujud pula ialah penerapan amali, bukan dakwaan tentang lafaz ayat. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="tempat-kita-lari.html" class="btn btn-ghost btn-lg" data-en="&larr; Tempat kita lari" data-bm="&larr; Tempat kita lari">&larr; Tempat kita lari</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
