@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bukan kerja kau: tujuh beban yang Rasulullah SAW ajar kita letakkan. Usaha milik kita, hasil milik Allah. Kalaulah, rezeki esok, pandangan manusia, pintu yang tertutup, takut tersilap, dan highlight orang lain. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Bukan Kerja Kau · tujuh beban yang boleh diletakkan · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="Bukan kerja kau: seven things you were never asked to carry" />
+  <meta property="og:description" content="You are not tired because you have too many problems. You are tired because you are trying to run outcomes that were never assigned to you." />
+  <meta property="og:url" content="https://farissuhail.com/bukan-kerja-kau.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bukan Kerja Kau: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bukan kerja kau: tujuh beban yang boleh diletakkan" />
+  <meta name="twitter:description" content="Usaha, doa, keputusan, tindakan: itu kerja kita. Hasil? Tidak pernah pun ditulis atas nama kita." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(84px, 14vw, 150px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+    }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/bukan-kerja-kau.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Bukan kerja kau: seven things you were never asked to carry",
+    "alternativeHeadline": "Bukan kerja kau: tujuh beban yang boleh diletakkan",
+    "url": "https://farissuhail.com/bukan-kerja-kau.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Hadith",
+      "Qadar",
+      "Tawakkul"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah" data-en="HADITH &middot; ON WORRY" data-bm="HADIS &middot; TENTANG RISAU">HADIS &middot; TENTANG RISAU</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">bukan kerja</span>
+        <span class="rf-cow">KAU</span>
+      </h1>
+      <div class="rf-arabic" data-en="SEVEN LOADS YOU CAN SET DOWN" data-bm="TUJUH BEBAN YANG BOLEH DILETAKKAN">TUJUH BEBAN YANG BOLEH DILETAKKAN</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">New</span>
+        <span class="story-badge" data-en="Qadar &amp; tawakkul" data-bm="Qadar &amp; tawakal">Qadar &amp; tawakal</span>
+        <span class="story-badge" data-en="9 min read" data-bm="Baca 9 minit">9 min read</span>
+      </div>
+      <h2 data-en="You are not tired from too many problems. You are tired from <em>running outcomes.</em>"
+          data-bm="Kau bukan penat kerana terlalu banyak masalah. Kau penat kerana <em>cuba menguruskan hasil.</em>">
+        Kau bukan penat kerana terlalu banyak masalah. Kau penat kerana <em>cuba menguruskan hasil.</em>
+      </h2>
+      <p data-en="Effort, du'a, decisions, action: all of that is on your desk. The result was never filed under your name. Seven loads the Prophet &#65018; taught us to put down, and the hadith behind each one."
+         data-bm="Usaha, doa, keputusan, tindakan: semua itu di atas meja kau. Hasilnya tidak pernah pun difailkan atas namamu. Tujuh beban yang Rasulullah &#65018; ajar kita letakkan, dan hadis di sebalik setiapnya.">
+        Usaha, doa, keputusan, tindakan: semua itu di atas meja kau. Hasilnya tidak pernah pun difailkan atas namamu. Tujuh beban yang Rasulullah &#65018; ajar kita letakkan, dan hadis di sebalik setiapnya.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The load nobody assigned you" data-bm="Beban yang tiada siapa berikan">Beban yang tiada siapa berikan</span></div>
+    <h2 class="rf-big"
+        data-en="You are a servant, <em>not the manager of the universe.</em>"
+        data-bm="Kau seorang hamba, <em>bukan pengurus alam semesta.</em>">
+      Kau seorang hamba, <em>bukan pengurus alam semesta.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Count what is actually yours. The effort. The du'a. The decision. The action you take today. That is the full list, and it is enough work for one lifetime."
+       data-bm="Kira apa yang sebenarnya milikmu. Usaha itu. Doa itu. Keputusan itu. Tindakan yang kau ambil hari ini. Itu sahaja senarainya, dan ia sudah cukup menjadi kerja untuk satu seumur hidup.">
+      Kira apa yang sebenarnya milikmu. Usaha itu. Doa itu. Keputusan itu. Tindakan yang kau ambil hari ini. Itu sahaja senarainya, dan ia sudah cukup menjadi kerja untuk satu seumur hidup.
+    </p>
+    <p class="rf-body"
+       data-en="Now count what you have been carrying on top of it: whether it works. Whether they change. Whether the money comes. Whether the diagnosis is clean. Whether the years turn out the way you pictured them at twenty. None of that was ever handed to you, and yet most of our exhaustion comes from trying to hold it."
+       data-bm="Sekarang kira pula apa yang kau pikul di atasnya: sama ada ia berjaya. Sama ada mereka berubah. Sama ada duit itu masuk. Sama ada keputusan ujian itu bersih. Sama ada tahun-tahun ini menjadi seperti yang kau bayangkan ketika berumur dua puluh. Tiada satu pun daripadanya pernah diserahkan kepadamu, namun kebanyakan keletihan kita datang daripada cuba memegangnya.">
+      Sekarang kira pula apa yang kau pikul di atasnya: sama ada ia berjaya. Sama ada mereka berubah. Sama ada duit itu masuk. Sama ada keputusan ujian itu bersih. Sama ada tahun-tahun ini menjadi seperti yang kau bayangkan ketika berumur dua puluh. Tiada satu pun daripadanya pernah diserahkan kepadamu, namun kebanyakan keletihan kita datang daripada cuba memegangnya.
+    </p>
+    <p class="rf-tagline"
+       data-en="This is not a lesson in being careless. It is permission to stop carrying <em>what was never put on your shoulders.</em>"
+       data-bm="Ini bukan pelajaran untuk menjadi cuai. Ia keizinan untuk berhenti memikul <em>apa yang tidak pernah diletakkan di atas bahumu.</em>">
+      Ini bukan pelajaran untuk menjadi cuai. Ia keizinan untuk berhenti memikul <em>apa yang tidak pernah diletakkan di atas bahumu.</em>
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="One word that can hold you for years" data-bm="Satu perkataan yang boleh memegangmu bertahun">Satu perkataan yang boleh memegangmu bertahun</span></div>
+    <p class="rf-word" lang="ar" dir="rtl">لَوْ</p>
+    <p class="rf-body"
+       data-en="If only I had chosen differently. If only I had gone. If only I had stayed. If only I had seen it coming. The word costs nothing to say and it can quietly take a decade."
+       data-bm="Kalaulah aku pilih yang lain. Kalaulah aku pergi. Kalaulah aku tinggal. Kalaulah aku nampak dari awal. Perkataan itu tidak berharga untuk disebut, dan ia boleh senyap-senyap mengambil sepuluh tahun.">
+      Kalaulah aku pilih yang lain. Kalaulah aku pergi. Kalaulah aku tinggal. Kalaulah aku nampak dari awal. Perkataan itu tidak berharga untuk disebut, dan ia boleh senyap-senyap mengambil sepuluh tahun.
+    </p>
+    <p class="rf-body"
+       data-en="The Prophet &#65018; addressed this directly, and notice that he does not tell us to pretend the loss did not hurt. He replaces the sentence:"
+       data-bm="Rasulullah &#65018; menyentuhnya secara terus, dan perhatikan baginda tidak menyuruh kita berpura-pura kehilangan itu tidak menyakitkan. Baginda menggantikan ayatnya:">
+      Rasulullah &#65018; menyentuhnya secara terus, dan perhatikan baginda tidak menyuruh kita berpura-pura kehilangan itu tidak menyakitkan. Baginda menggantikan ayatnya:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَإِنْ أَصَابَكَ شَىْءٌ فَلَا تَقُلْ لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا وَلَكِنْ قُلْ قَدَرُ اللَّهِ وَمَا شَاءَ فَعَلَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;If something befalls you, do not say: if only I had done such and such. Say instead: Allah decreed, and what He willed, He did.&rdquo;"
+       data-bm="&ldquo;Jika sesuatu menimpamu, jangan kata: kalaulah aku buat begini, tentu jadi begitu. Sebaliknya katakanlah: Allah telah menetapkan, dan apa yang Dia kehendaki, Dia lakukan.&rdquo;">
+      &ldquo;Jika sesuatu menimpamu, jangan kata: kalaulah aku buat begini, tentu jadi begitu. Sebaliknya katakanlah: Allah telah menetapkan, dan apa yang Dia kehendaki, Dia lakukan.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">HADITH &middot; SAHIH MUSLIM 2664</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="It is a swap, not a silencing. One sentence keeps running a simulation of a life that does not exist. The other puts the matter back with the One who actually decided it, and lets you carry on living in the life that does."
+       data-bm="Ia satu pertukaran, bukan satu larangan bersuara. Satu ayat terus menjalankan simulasi sebuah kehidupan yang tidak wujud. Satu lagi mengembalikan perkara itu kepada Dia yang sebenarnya menentukannya, dan membenarkan kau meneruskan hidup di dalam kehidupan yang benar-benar wujud.">
+      Ia satu pertukaran, bukan satu larangan bersuara. Satu ayat terus menjalankan simulasi sebuah kehidupan yang tidak wujud. Satu lagi mengembalikan perkara itu kepada Dia yang sebenarnya menentukannya, dan membenarkan kau meneruskan hidup di dalam kehidupan yang benar-benar wujud.
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="Tomorrow's provision" data-bm="Rezeki esok hari">Rezeki esok hari</span></div>
+    <p class="rf-body"
+       data-en="What if it is not enough. What if the plan collapses. What if the future I am working towards never arrives. We worry about tomorrow's rizq as though we had been given access to the calendar and did not like what we saw on it."
+       data-bm="Macam mana kalau tak cukup. Macam mana kalau rancangan ini runtuh. Macam mana kalau masa depan yang aku usahakan ini tidak pernah tiba. Kita merisaukan rezeki esok seolah-olah kita telah diberi akses kepada kalendar itu dan tidak menyukai apa yang terpampang di atasnya.">
+      Macam mana kalau tak cukup. Macam mana kalau rancangan ini runtuh. Macam mana kalau masa depan yang aku usahakan ini tidak pernah tiba. Kita merisaukan rezeki esok seolah-olah kita telah diberi akses kepada kalendar itu dan tidak menyukai apa yang terpampang di atasnya.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">قُل لَّن يُصِيبَنَآ إِلَّا مَا كَتَبَ ٱللَّهُ لَنَا</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Say: nothing will befall us except what Allah has written for us.&rdquo;"
+       data-bm="&ldquo;Katakanlah: tidak akan menimpa kami melainkan apa yang telah Allah tetapkan untuk kami.&rdquo;">
+      &ldquo;Katakanlah: tidak akan menimpa kami melainkan apa yang telah Allah tetapkan untuk kami.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">At-Tawbah 9:51</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="So plan. Work. Ask. All three are commanded, and none of them is in tension with trust. What is being asked of you is smaller than you think: live today without demanding to be shown the next episode before you are willing to keep reading the story."
+       data-bm="Maka rancanglah. Bekerjalah. Mintalah. Ketiga-tiganya diperintahkan, dan tiada satu pun daripadanya bertentangan dengan tawakal. Apa yang diminta daripadamu lebih kecil daripada sangkaanmu: hiduplah hari ini tanpa menuntut untuk ditunjukkan episod seterusnya sebelum kau sudi meneruskan bacaan cerita ini.">
+      Maka rancanglah. Bekerjalah. Mintalah. Ketiga-tiganya diperintahkan, dan tiada satu pun daripadanya bertentangan dengan tawakal. Apa yang diminta daripadamu lebih kecil daripada sangkaanmu: hiduplah hari ini tanpa menuntut untuk ditunjukkan episod seterusnya sebelum kau sudi meneruskan bacaan cerita ini.
+    </p>
+    <div class="rf-subeyebrow" data-en="And the quieter version of the same thing" data-bm="Dan versi yang lebih senyap bagi perkara yang sama">Dan versi yang lebih senyap bagi perkara yang sama</div>
+    <p class="rf-body"
+       data-en="We make du'a, and then attach a deadline to it in our own heads. Ya Allah, I want this. And then, under the breath: but it has to be this month. Ask with certainty; that is the Sunnah. Just do not hand Allah your timeline and call it faith. He knows the part of the schedule you cannot see."
+       data-bm="Kita berdoa, kemudian melekatkan tarikh akhir padanya di dalam kepala sendiri. Ya Allah, aku mahukan perkara ini. Kemudian, dengan suara yang perlahan: tetapi mesti bulan ini. Berdoalah dengan yakin; itu sunnah. Cuma jangan serahkan jadualmu kepada Allah lalu menamakannya iman. Dia mengetahui bahagian jadual yang tidak mampu kau lihat.">
+      Kita berdoa, kemudian melekatkan tarikh akhir padanya di dalam kepala sendiri. Ya Allah, aku mahukan perkara ini. Kemudian, dengan suara yang perlahan: tetapi mesti bulan ini. Berdoalah dengan yakin; itu sunnah. Cuma jangan serahkan jadualmu kepada Allah lalu menamakannya iman. Dia mengetahui bahagian jadual yang tidak mampu kau lihat.
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="Everyone's approval" data-bm="Restu semua orang">Restu semua orang</span></div>
+    <h2 class="rf-big"
+        data-en="The boss, the friends, the family, the comment section. <em>You cannot win that room.</em>"
+        data-bm="Bos, kawan-kawan, keluarga, ruangan komen. <em>Kau takkan menang di dalam bilik itu.</em>">
+      Bos, kawan-kawan, keluarga, ruangan komen. <em>Kau takkan menang di dalam bilik itu.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Not because you are unlikeable, but because the room has no agreed standard. Please one side and you have disappointed the other. Satisfy everyone this year and the list resets next year with new names on it. It is a race with no finish line, run on a surface that moves."
+       data-bm="Bukan kerana kau tidak disukai, tetapi kerana bilik itu tiada piawaian yang disepakati. Puaskan satu pihak, kau sudah mengecewakan pihak yang lain. Puaskan semua orang tahun ini, dan senarainya akan ditetapkan semula tahun depan dengan nama-nama yang baharu. Ia perlumbaan tanpa garisan penamat, dilari di atas permukaan yang sentiasa bergerak.">
+      Bukan kerana kau tidak disukai, tetapi kerana bilik itu tiada piawaian yang disepakati. Puaskan satu pihak, kau sudah mengecewakan pihak yang lain. Puaskan semua orang tahun ini, dan senarainya akan ditetapkan semula tahun depan dengan nama-nama yang baharu. Ia perlumbaan tanpa garisan penamat, dilari di atas permukaan yang sentiasa bergerak.
+    </p>
+    <p class="rf-body"
+       data-en="Which also means not every misunderstanding needs chasing down, and not every accusation needs answering. Some of them are better left to time. Character explains itself eventually, and it explains itself to people who were never going to be convinced by a paragraph."
+       data-bm="Ia juga bermakna bukan setiap salah faham perlu dikejar, dan bukan setiap tuduhan perlu dijawab. Sebahagiannya lebih baik diserahkan kepada masa. Akhlak akan menjelaskan dirinya sendiri pada akhirnya, dan ia menjelaskan kepada orang yang memang tidak akan diyakinkan oleh satu perenggan.">
+      Ia juga bermakna bukan setiap salah faham perlu dikejar, dan bukan setiap tuduhan perlu dijawab. Sebahagiannya lebih baik diserahkan kepada masa. Akhlak akan menjelaskan dirinya sendiri pada akhirnya, dan ia menjelaskan kepada orang yang memang tidak akan diyakinkan oleh satu perenggan.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="People's opinion of you will change twice before the year is out. <em>Allah already knows who you actually are.</em>"
+         data-bm="Pandangan manusia terhadapmu akan berubah dua kali sebelum tahun ini tamat. <em>Allah sudah pun mengetahui siapa kau yang sebenarnya.</em>">
+        Pandangan manusia terhadapmu akan berubah dua kali sebelum tahun ini tamat. <em>Allah sudah pun mengetahui siapa kau yang sebenarnya.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="The door that closed" data-bm="Pintu yang tertutup">Pintu yang tertutup</span></div>
+    <p class="rf-body"
+       data-en="A door shut. An opportunity went to someone else. A person left. A plan you had built your year around did not hold. And then the strangest part: we keep knocking at a door Allah has already closed, and call the knocking patience."
+       data-bm="Satu pintu tertutup. Satu peluang pergi kepada orang lain. Seseorang beredar. Satu rancangan yang kau bina seluruh tahunmu di atasnya tidak bertahan. Kemudian bahagian yang paling pelik: kita terus mengetuk pintu yang Allah sudah pun tutup, dan menamakan ketukan itu kesabaran.">
+      Satu pintu tertutup. Satu peluang pergi kepada orang lain. Seseorang beredar. Satu rancangan yang kau bina seluruh tahunmu di atasnya tidak bertahan. Kemudian bahagian yang paling pelik: kita terus mengetuk pintu yang Allah sudah pun tutup, dan menamakan ketukan itu kesabaran.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَٱعْلَمْ أَنَّ مَا أَخْطَأَكَ لَمْ يَكُنْ لِيُصِيبَكَ وَمَا أَصَابَكَ لَمْ يَكُنْ لِيُخْطِئَكَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;And know that what passed you by was never going to reach you, and what reached you was never going to pass you by.&rdquo;"
+       data-bm="&ldquo;Dan ketahuilah bahawa apa yang terlepas daripadamu memang tidak akan menimpamu, dan apa yang menimpamu memang tidak akan terlepas daripadamu.&rdquo;">
+      &ldquo;Dan ketahuilah bahawa apa yang terlepas daripadamu memang tidak akan menimpamu, dan apa yang menimpamu memang tidak akan terlepas daripadamu.&rdquo;
+    </p>
+    <p class="rf-ayah-ref" data-en="HADITH &middot; IBN ABBAS &middot; THIS WORDING IN NAWAWI'S FORTY, NO. 19" data-bm="HADIS &middot; IBN ABBAS &middot; LAFAZ INI DALAM HADIS 40 NAWAWI, NO. 19">HADIS &middot; IBN ABBAS &middot; LAFAZ INI DALAM HADIS 40 NAWAWI, NO. 19</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Read it slowly, because it is doing something gentler than it first sounds. It is not telling you the loss was small. It is telling you the thing was never on your ledger to begin with, so what you are grieving is not a thing taken from you, but a thing that belonged to a version of your life that was never written."
+       data-bm="Bacalah perlahan-lahan, kerana ia sedang melakukan sesuatu yang lebih lembut daripada bunyinya pada kali pertama. Ia tidak memberitahumu kehilangan itu kecil. Ia memberitahumu perkara itu memang tidak pernah berada dalam lejarmu sejak awal, maka apa yang kau tangisi bukan sesuatu yang dirampas daripadamu, tetapi sesuatu yang milik satu versi kehidupanmu yang tidak pernah ditulis.">
+      Bacalah perlahan-lahan, kerana ia sedang melakukan sesuatu yang lebih lembut daripada bunyinya pada kali pertama. Ia tidak memberitahumu kehilangan itu kecil. Ia memberitahumu perkara itu memang tidak pernah berada dalam lejarmu sejak awal, maka apa yang kau tangisi bukan sesuatu yang dirampas daripadamu, tetapi sesuatu yang milik satu versi kehidupanmu yang tidak pernah ditulis.
+    </p>
+    <p class="rf-tagline"
+       data-en="Receive it. Learn from it. Then move. <em>Three steps, in that order.</em>"
+       data-bm="Terimalah. Belajar daripadanya. Kemudian bergerak. <em>Tiga langkah, dalam susunan itu.</em>">
+      Terimalah. Belajar daripadanya. Kemudian bergerak. <em>Tiga langkah, dalam susunan itu.</em>
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="Waiting to be certain" data-bm="Menunggu sampai yakin">Menunggu sampai yakin</span></div>
+    <h2 class="rf-big"
+        data-en="If you are waiting until you can be sure you will not get it wrong, <em>you will wait your whole life.</em>"
+        data-bm="Jika kau menunggu sehingga kau pasti tidak akan tersilap, <em>kau akan menunggu seumur hidup.</em>">
+      Jika kau menunggu sehingga kau pasti tidak akan tersilap, <em>kau akan menunggu seumur hidup.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Much of what looks like indecision is not a shortage of information. The research is done, the advice has been taken, the options are understood. What is missing is a guarantee, and a guarantee is not one of the things we are issued."
+       data-bm="Kebanyakan perkara yang kelihatan seperti teragak-agak sebenarnya bukan kekurangan maklumat. Kajian sudah dibuat, nasihat sudah diambil, pilihan sudah difahami. Apa yang tiada ialah jaminan, dan jaminan bukan antara perkara yang dikeluarkan kepada kita.">
+      Kebanyakan perkara yang kelihatan seperti teragak-agak sebenarnya bukan kekurangan maklumat. Kajian sudah dibuat, nasihat sudah diambil, pilihan sudah difahami. Apa yang tiada ialah jaminan, dan jaminan bukan antara perkara yang dikeluarkan kepada kita.
+    </p>
+    <p class="rf-body"
+       data-en="So the order is simple, and it ends with a verb. Look into it. Ask someone with sense. Pray istikharah. Then choose. The last step is yours, and it is supposed to be taken without seeing the end."
+       data-bm="Maka susunannya mudah, dan ia berakhir dengan satu kata kerja. Buat kajian. Tanya orang yang berakal. Solat istikharah. Kemudian pilih. Langkah terakhir itu milikmu, dan ia memang sepatutnya diambil tanpa melihat penghujungnya.">
+      Maka susunannya mudah, dan ia berakhir dengan satu kata kerja. Buat kajian. Tanya orang yang berakal. Solat istikharah. Kemudian pilih. Langkah terakhir itu milikmu, dan ia memang sepatutnya diambil tanpa melihat penghujungnya.
+    </p>
+    <p class="rf-body"
+       data-en="And you will get some of them wrong. That is not a flaw in your faith; it is the standard specification of a human being:"
+       data-bm="Dan sebahagiannya memang akan tersilap. Itu bukan kecacatan pada imanmu; itu spesifikasi asas seorang manusia:">
+      Dan sebahagiannya memang akan tersilap. Itu bukan kecacatan pada imanmu; itu spesifikasi asas seorang manusia:
+    </p>
+    <div class="rf-quotecard">
+      <p lang="ar" dir="rtl" style="font-family:'Amiri',serif;font-style:normal">كُلُّ بَنِي آدَمَ خَطَّاءٌ وَخَيْرُ الْخَطَّائِينَ التَّوَّابُونَ</p>
+      <p data-en="&ldquo;Every son of Adam errs, and the best of those who err are the ones who turn back in repentance.&rdquo;"
+         data-bm="&ldquo;Setiap anak Adam melakukan kesalahan, dan sebaik-baik orang yang melakukan kesalahan ialah mereka yang bertaubat.&rdquo;">
+        &ldquo;Setiap anak Adam melakukan kesalahan, dan sebaik-baik orang yang melakukan kesalahan ialah mereka yang bertaubat.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; SUNAN AT-TIRMIDHI 2499</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Notice that the best are not the ones who never slipped. The category of people who never slip does not appear in the hadith at all."
+       data-bm="Perhatikan bahawa yang terbaik bukanlah orang yang tidak pernah tergelincir. Kategori manusia yang tidak pernah tergelincir langsung tidak muncul dalam hadis itu.">
+      Perhatikan bahawa yang terbaik bukanlah orang yang tidak pernah tergelincir. Kategori manusia yang tidak pernah tergelincir langsung tidak muncul dalam hadis itu.
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="Other people's highlights" data-bm="Highlight orang lain">Highlight orang lain</span></div>
+    <p class="rf-body"
+       data-en="She is married. He is earning well. Their business is climbing. Their following is growing. Their house is done. And you, holding a phone at midnight: why does my life look like this?"
+       data-bm="Dia sudah berkahwin. Dia berpendapatan baik. Bisnes mereka sedang menaik. Pengikut mereka semakin ramai. Rumah mereka sudah siap. Dan kau, memegang telefon pada tengah malam: kenapa hidup aku macam ini?">
+      Dia sudah berkahwin. Dia berpendapatan baik. Bisnes mereka sedang menaik. Pengikut mereka semakin ramai. Rumah mereka sudah siap. Dan kau, memegang telefon pada tengah malam: kenapa hidup aku macam ini?
+    </p>
+    <p class="rf-body"
+       data-en="But look at what is actually being compared. You are holding your own unedited footage, every retake and every dull afternoon of it, against a reel somebody assembled from their best twelve seconds. It is not that your life is worse. It is that you are watching the wrong cut of it."
+       data-bm="Tetapi lihat apa yang sebenarnya sedang dibandingkan. Kau sedang memegang rakaman mentahmu sendiri, setiap pengambilan semula dan setiap petang yang hambar di dalamnya, lalu diadu dengan satu reel yang disusun seseorang daripada dua belas saat terbaiknya. Bukan hidupmu yang lebih teruk. Kau cuma sedang menonton potongan yang salah.">
+      Tetapi lihat apa yang sebenarnya sedang dibandingkan. Kau sedang memegang rakaman mentahmu sendiri, setiap pengambilan semula dan setiap petang yang hambar di dalamnya, lalu diadu dengan satu reel yang disusun seseorang daripada dua belas saat terbaiknya. Bukan hidupmu yang lebih teruk. Kau cuma sedang menonton potongan yang salah.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl">ٱنْظُرُوا إِلَى مَنْ هُوَ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Look at those below you and do not look at those above you&rdquo; &mdash; in worldly matters."
+       data-bm="&ldquo;Pandanglah kepada orang yang di bawah kamu, dan jangan memandang kepada orang yang di atas kamu&rdquo; &mdash; dalam urusan dunia.">
+      &ldquo;Pandanglah kepada orang yang di bawah kamu, dan jangan memandang kepada orang yang di atas kamu&rdquo; &mdash; dalam urusan dunia.
+    </p>
+    <p class="rf-ayah-ref">HADITH &middot; AL-BUKHARI 6490 &middot; MUSLIM 2963</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="It is a direction for the eyes, given for a reason: gratitude is a matter of where you are looking. Turn it the other way, in matters of the next life, and the same glance becomes ambition."
+       data-bm="Ia satu arahan untuk mata, diberikan atas satu sebab: syukur itu persoalan ke mana kau sedang memandang. Pusingkan ia ke arah sebaliknya, dalam urusan akhirat, dan pandangan yang sama bertukar menjadi cita-cita.">
+      Ia satu arahan untuk mata, diberikan atas satu sebab: syukur itu persoalan ke mana kau sedang memandang. Pusingkan ia ke arah sebaliknya, dalam urusan akhirat, dan pandangan yang sama bertukar menjadi cita-cita.
+    </p>
+    <p class="rf-tagline"
+       data-en="And the restlessness has a simple cause: you are using someone else's timeline as <em>the clock for your own life.</em> Allah never promised you theirs."
+       data-bm="Dan kegelisahan itu ada sebab yang mudah: kau sedang menggunakan garis masa orang lain sebagai <em>jam bagi kehidupanmu sendiri.</em> Allah tidak pernah menjanjikan kau garis masa mereka.">
+      Dan kegelisahan itu ada sebab yang mudah: kau sedang menggunakan garis masa orang lain sebagai <em>jam bagi kehidupanmu sendiri.</em> Allah tidak pernah menjanjikan kau garis masa mereka.
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Do the work. Then <em>let go of the part that was never yours.</em>"
+        data-bm="Buat kerjanya. Kemudian <em>lepaskan bahagian yang tidak pernah menjadi milikmu.</em>">
+      Buat kerjanya. Kemudian <em>lepaskan bahagian yang tidak pernah menjadi milikmu.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Strive. Obey. Ask. Take the lawful means, properly and without shortcuts. That is the whole job description, and it is demanding enough. The outcome is decided somewhere above your pay grade, by One who sees the parts of the picture you were never shown."
+       data-bm="Berusaha. Taat. Berdoa. Ambil sebab-sebab yang halal, dengan betul dan tanpa jalan pintas. Itulah keseluruhan senarai tugasmu, dan ia sudah cukup berat. Hasilnya ditentukan di tempat yang lebih tinggi daripada kedudukanmu, oleh Dia yang melihat bahagian gambar yang tidak pernah diperlihatkan kepadamu.">
+      Berusaha. Taat. Berdoa. Ambil sebab-sebab yang halal, dengan betul dan tanpa jalan pintas. Itulah keseluruhan senarai tugasmu, dan ia sudah cukup berat. Hasilnya ditentukan di tempat yang lebih tinggi daripada kedudukanmu, oleh Dia yang melihat bahagian gambar yang tidak pernah diperlihatkan kepadamu.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">وَعَسَىٰٓ أَن تَكْرَهُوا۟ شَيْـًٔا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَٱللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Perhaps you dislike a thing and it is good for you. And Allah knows, while you do not know.&rdquo;"
+       data-bm="&ldquo;Boleh jadi kamu membenci sesuatu, sedangkan ia baik bagi kamu. Dan Allah mengetahui, sedang kamu tidak mengetahui.&rdquo;">
+      &ldquo;Boleh jadi kamu membenci sesuatu, sedangkan ia baik bagi kamu. Dan Allah mengetahui, sedang kamu tidak mengetahui.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Baqarah 2:216</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="You do not need to understand everything in order to trust Him. That, in the end, is the difference between a heart that is striving and a heart that is merely exhausted."
+       data-bm="Kau tidak perlu memahami segala-galanya untuk mempercayai-Nya. Itulah, pada akhirnya, perbezaan antara hati yang sedang berusaha dan hati yang sekadar kehabisan tenaga.">
+      Kau tidak perlu memahami segala-galanya untuk mempercayai-Nya. Itulah, pada akhirnya, perbezaan antara hati yang sedang berusaha dan hati yang sekadar kehabisan tenaga.
+    </p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON WHAT IS YOURS TO CARRY" data-bm="TENTANG APA YANG PERLU KITA PIKUL">TENTANG APA YANG PERLU KITA PIKUL</div>
+    <h2 class="rf-big">Bukan Kerja Kau</h2>
+    <p class="rf-body"
+       data-en="May Allah lighten what we were never meant to carry, keep our hands working and our hearts resting, and give us better than the outcomes we keep asking Him for. <em>Aameen.</em>"
+       data-bm="Semoga Allah meringankan apa yang memang bukan untuk kita pikul, mengekalkan tangan kita bekerja dan hati kita berehat, dan memberikan kita sesuatu yang lebih baik daripada hasil yang kita asyik pinta daripada-Nya. <em>Aameen.</em>">
+      Semoga Allah meringankan apa yang memang bukan untuk kita pikul, mengekalkan tangan kita bekerja dan hati kita berehat, dan memberikan kita sesuatu yang lebih baik daripada hasil yang kita asyik pinta daripada-Nya. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="Written after a thread by @nurversemy01 on worry and qadar, regrouped here into seven and rewritten in full. Hadith references were checked rather than carried over: Muslim 2664, at-Tirmidhi 2499, al-Bukhari 6490 and Muslim 2963. The wording about what passes us by belongs to the hadith of Ibn Abbas; at-Tirmidhi 2516 carries the shorter version, and this fuller wording is the one preserved in Imam an-Nawawi's Forty Hadith, no. 19. Any mistakes here are mine."
+       data-bm="Ditulis selepas satu rangkaian tulisan oleh @nurversemy01 tentang risau dan qadar, disusun semula di sini kepada tujuh dan ditulis semula sepenuhnya. Rujukan hadis disemak dan bukan sekadar disalin: Muslim 2664, at-Tirmidhi 2499, al-Bukhari 6490 dan Muslim 2963. Lafaz tentang apa yang terlepas daripada kita ialah sebahagian daripada hadis Ibn Abbas; at-Tirmidhi 2516 membawa versi yang lebih ringkas, dan lafaz yang lebih penuh ini terpelihara dalam Hadis 40 Imam an-Nawawi, no. 19. Sebarang kesilapan di sini adalah milik saya.">
+      Ditulis selepas satu rangkaian tulisan oleh @nurversemy01 tentang risau dan qadar, disusun semula di sini kepada tujuh dan ditulis semula sepenuhnya. Rujukan hadis disemak dan bukan sekadar disalin: Muslim 2664, at-Tirmidhi 2499, al-Bukhari 6490 dan Muslim 2963. Lafaz tentang apa yang terlepas daripada kita ialah sebahagian daripada hadis Ibn Abbas; at-Tirmidhi 2516 membawa versi yang lebih ringkas, dan lafaz yang lebih penuh ini terpelihara dalam Hadis 40 Imam an-Nawawi, no. 19. Sebarang kesilapan di sini adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="suara-yang-didengar.html" class="btn btn-ghost btn-lg" data-en="&larr; Suara yang didengar" data-bm="&larr; Suara yang didengar">&larr; Suara yang didengar</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
