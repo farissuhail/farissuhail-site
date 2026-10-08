@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sehari atau sebahagian hari: Al-Mu'minun 23:112-114 dan eksperimen gua Michel Siffre. Mengapa manusia di Padang Mahsyar akan menyangka hidup di dunia hanya sehari, dan apa yang sains masa tentang minda ajarkan. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Sehari Atau Separuh · masa &amp; akhirat · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="A day or part of a day: what a cave experiment reveals about Al-Mu'minun 23:113" />
+  <meta property="og:description" content="A scientist spent two months in a cave without a clock and lost almost a month. The Qur'an says we will look back on a whole life and call it a day." />
+  <meta property="og:url" content="https://farissuhail.com/sehari-atau-separuh-hari.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sehari Atau Separuh: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sehari atau sebahagian hari: berapa lama kita tinggal di bumi?" />
+  <meta name="twitter:description" content="Siffre hilang sebulan dalam gua. Kita akan menyebut seluruh hidup sebagai sehari." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(64px, 9.4vw, 116px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .story-titleblock .rf-cow { font-size: clamp(56px, 18vw, 84px); }
+      .story-titleblock .rf-the { font-size: clamp(30px, 9vw, 44px); }
+    }
+    .story-intro > * { min-width: 0; }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/sehari-atau-separuh-hari.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "A day or part of a day: time, the cave and the Day of Rising (Al-Mu'minun 23:112-114)",
+    "alternativeHeadline": "Sehari atau sebahagian hari: masa, gua dan Hari Kebangkitan",
+    "url": "https://farissuhail.com/sehari-atau-separuh-hari.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Surah Al-Mu'minun",
+      "Day of Resurrection",
+      "Chronobiology"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH 23 &middot; AL-MU'MINUN</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">sehari atau</span>
+        <span class="rf-cow">SEPARUH</span>
+      </h1>
+      <div class="rf-arabic">AL-MU'MINUN 23:112&ndash;114</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">Baharu</span>
+        <span class="story-badge" data-en="Time &amp; the Hereafter" data-bm="Masa &amp; akhirat">Masa &amp; akhirat</span>
+        <span class="story-badge" data-en="10 min read" data-bm="Baca 10 minit">Baca 10 minit</span>
+      </div>
+      <h2 data-en="A man lived two months in a cave and lost track of almost one. We will live a lifetime and call it <em>a day.</em>"
+          data-bm="Seorang lelaki tinggal dua bulan dalam gua dan kehilangan hampir sebulan. Kita akan hidup seumur hidup dan menyebutnya <em>sehari.</em>">
+        Seorang lelaki tinggal dua bulan dalam gua dan kehilangan hampir sebulan. Kita akan hidup seumur hidup dan menyebutnya <em>sehari.</em>
+      </h2>
+      <p data-en="In 1972 a French scientist sealed himself underground with no clock and no sun, and discovered that the mind does not read time; it builds it. Fourteen centuries earlier, the Qur'an recorded what people will answer when asked how long they lived on earth. The answer is the same every time: a day, or part of a day."
+         data-bm="Pada tahun 1972, seorang saintis Perancis mengurung dirinya di bawah tanah tanpa jam dan tanpa matahari, lalu mendapati bahawa minda tidak membaca masa; ia membinanya. Empat belas abad lebih awal, Al-Quran merakamkan jawapan manusia apabila ditanya berapa lama mereka tinggal di bumi. Jawapannya sama setiap kali: sehari, atau sebahagian hari.">
+        Pada tahun 1972, seorang saintis Perancis mengurung dirinya di bawah tanah tanpa jam dan tanpa matahari, lalu mendapati bahawa minda tidak membaca masa; ia membinanya. Empat belas abad lebih awal, Al-Quran merakamkan jawapan manusia apabila ditanya berapa lama mereka tinggal di bumi. Jawapannya sama setiap kali: sehari, atau sebahagian hari.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The question" data-bm="Soalan itu">Soalan itu</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">قَـٰلَ كَمْ لَبِثْتُمْ فِى ٱلْأَرْضِ عَدَدَ سِنِينَ<br>قَالُوا۟ لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ فَسْـَٔلِ ٱلْعَآدِّينَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;He will say: How many years did you remain on earth? They will say: We remained a day, or part of a day. Ask those who keep count.&rdquo;"
+       data-bm="&ldquo;Allah bertanya: Berapa tahun kamu tinggal di bumi? Mereka menjawab: Kami tinggal sehari atau sebahagian hari. Tanyalah kepada mereka yang menghitung.&rdquo;">
+      &ldquo;Allah bertanya: Berapa tahun kamu tinggal di bumi? Mereka menjawab: Kami tinggal sehari atau sebahagian hari. Tanyalah kepada mereka yang menghitung.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Mu'minun 23:112&ndash;113</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Read the question slowly. It asks in years, <em>&lsquo;adada sinin,</em> the number of years. The answer comes back in a unit far too small for it. Not sixty years, not forty, not even one. A day. And then, as if unsure even of that, part of a day."
+       data-bm="Baca soalan itu perlahan-lahan. Ia bertanya dalam ukuran tahun, <em>&lsquo;adada sinin,</em> bilangan tahun. Jawapannya pula datang dalam ukuran yang terlalu kecil untuknya. Bukan enam puluh tahun, bukan empat puluh, bukan juga setahun. Sehari. Kemudian, seolah-olah tidak yakin dengan itu pun, sebahagian hari.">
+      Baca soalan itu perlahan-lahan. Ia bertanya dalam ukuran tahun, <em>&lsquo;adada sinin,</em> bilangan tahun. Jawapannya pula datang dalam ukuran yang terlalu kecil untuknya. Bukan enam puluh tahun, bukan empat puluh, bukan juga setahun. Sehari. Kemudian, seolah-olah tidak yakin dengan itu pun, sebahagian hari.
+    </p>
+    <p class="rf-body"
+       data-en="And notice what they ask for: <em>fas'al al-&lsquo;addin,</em> ask those who kept count. They no longer trust their own sense of how long it was. A whole life, and the person who lived it cannot say how long it lasted."
+       data-bm="Dan perhatikan apa yang mereka minta: <em>fas'al al-&lsquo;addin,</em> tanyalah mereka yang menghitung. Mereka sudah tidak percaya lagi pada rasa sendiri tentang berapa lama ia berlangsung. Seluruh hidup, dan orang yang menjalaninya tidak mampu menyebut berapa panjangnya.">
+      Dan perhatikan apa yang mereka minta: <em>fas'al al-&lsquo;addin,</em> tanyalah mereka yang menghitung. Mereka sudah tidak percaya lagi pada rasa sendiri tentang berapa lama ia berlangsung. Seluruh hidup, dan orang yang menjalaninya tidak mampu menyebut berapa panjangnya.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">قَـٰلَ إِن لَّبِثْتُمْ إِلَّا قَلِيلًا ۖ لَّوْ أَنَّكُمْ كُنتُمْ تَعْلَمُونَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;He will say: You remained but a little, if only you had known.&rdquo;"
+       data-bm="&ldquo;Allah berfirman: Kamu tidak tinggal melainkan sebentar sahaja, kalaulah kamu dahulu mengetahui.&rdquo;">
+      &ldquo;Allah berfirman: Kamu tidak tinggal melainkan sebentar sahaja, kalaulah kamu dahulu mengetahui.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Mu'minun 23:114</p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="The tragedy is not in the answer. It is in the last four words: <em>if only you had known.</em>"
+       data-bm="Tragedinya bukan pada jawapan itu. Ia pada hujung ayat: <em>kalaulah kamu dahulu mengetahui.</em>">
+      Tragedinya bukan pada jawapan itu. Ia pada hujung ayat: <em>kalaulah kamu dahulu mengetahui.</em>
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="The man in the cave" data-bm="Lelaki di dalam gua">Lelaki di dalam gua</span></div>
+    <h2 class="rf-big"
+        data-en="No clock. No calendar. No sunlight. <em>Just a mind, alone with time.</em>"
+        data-bm="Tiada jam. Tiada kalendar. Tiada cahaya matahari. <em>Hanya minda, bersendirian dengan masa.</em>">
+      Tiada jam. Tiada kalendar. Tiada cahaya matahari. <em>Hanya minda, bersendirian dengan masa.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="In 1962, a 23-year-old French geologist named Michel Siffre went down into a glacier cave in the Alps and stayed there for two months with no way of knowing the hour or the date. Each time he woke, ate or slept, he phoned his team on the surface. They wrote everything down and told him nothing."
+       data-bm="Pada tahun 1962, seorang ahli geologi Perancis berusia 23 tahun bernama Michel Siffre turun ke dalam sebuah gua glasier di Pergunungan Alps dan tinggal di situ selama dua bulan tanpa sebarang cara untuk mengetahui jam atau tarikh. Setiap kali dia bangun, makan atau tidur, dia menelefon pasukannya di permukaan. Mereka mencatat semuanya, dan tidak memberitahunya apa-apa.">
+      Pada tahun 1962, seorang ahli geologi Perancis berusia 23 tahun bernama Michel Siffre turun ke dalam sebuah gua glasier di Pergunungan Alps dan tinggal di situ selama dua bulan tanpa sebarang cara untuk mengetahui jam atau tarikh. Setiap kali dia bangun, makan atau tidur, dia menelefon pasukannya di permukaan. Mereka mencatat semuanya, dan tidak memberitahunya apa-apa.
+    </p>
+    <p class="rf-body"
+       data-en="On 14 September the team called down to say the experiment was over. Siffre was certain it was still 20 August. Almost four weeks of his life had gone by without him registering them. He later described it simply: his psychological time had been compressed by half."
+       data-bm="Pada 14 September, pasukannya menelefon untuk memberitahu eksperimen sudah tamat. Siffre yakin hari itu masih 20 Ogos. Hampir empat minggu daripada hidupnya telah berlalu tanpa dia sedari. Dia kemudiannya menggambarkannya dengan ringkas: masa psikologinya telah dimampatkan separuh.">
+      Pada 14 September, pasukannya menelefon untuk memberitahu eksperimen sudah tamat. Siffre yakin hari itu masih 20 Ogos. Hampir empat minggu daripada hidupnya telah berlalu tanpa dia sedari. Dia kemudiannya menggambarkannya dengan ringkas: masa psikologinya telah dimampatkan separuh.
+    </p>
+    <p class="rf-body"
+       data-en="Ten years later he went further. In 1972 he lived for 205 days in Midnight Cave in Texas. Sometimes his body ran thirty-six hours awake followed by twelve hours asleep, and from the inside he could not tell those days apart from ordinary ones. Isolation wore him down badly. But the data he brought back helped lay the ground for a new science: chronobiology, the study of the body's internal clock."
+       data-bm="Sepuluh tahun kemudian dia pergi lebih jauh. Pada tahun 1972, dia hidup selama 205 hari di dalam Midnight Cave di Texas. Ada ketikanya tubuhnya berjaga tiga puluh enam jam diikuti dua belas jam tidur, dan dari dalam, dia tidak mampu membezakan hari-hari itu daripada hari biasa. Kesunyian itu menghakisnya dengan teruk. Tetapi data yang dibawanya pulang membantu meletakkan asas kepada satu bidang sains baharu: kronobiologi, kajian tentang jam dalaman tubuh.">
+      Sepuluh tahun kemudian dia pergi lebih jauh. Pada tahun 1972, dia hidup selama 205 hari di dalam Midnight Cave di Texas. Ada ketikanya tubuhnya berjaga tiga puluh enam jam diikuti dua belas jam tidur, dan dari dalam, dia tidak mampu membezakan hari-hari itu daripada hari biasa. Kesunyian itu menghakisnya dengan teruk. Tetapi data yang dibawanya pulang membantu meletakkan asas kepada satu bidang sains baharu: kronobiologi, kajian tentang jam dalaman tubuh.
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="What he found" data-bm="Apa yang ditemuinya">Apa yang ditemuinya</span></div>
+    <p class="rf-body"
+       data-en="One small test from the cave says more than the rest. Siffre was asked to count to 120 at the pace of one number per second. He believed he had counted two minutes. It had taken him five."
+       data-bm="Satu ujian kecil dari dalam gua itu berkata lebih banyak daripada yang lain. Siffre diminta mengira sehingga 120, satu nombor bagi setiap saat. Dia percaya dia telah mengira dua minit. Hakikatnya ia mengambil masa lima minit.">
+      Satu ujian kecil dari dalam gua itu berkata lebih banyak daripada yang lain. Siffre diminta mengira sehingga 120, satu nombor bagi setiap saat. Dia percaya dia telah mengira dua minit. Hakikatnya ia mengambil masa lima minit.
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="Time is built, not read" data-bm="Masa dibina, bukan dibaca">Masa dibina, bukan dibaca</h3>
+        <p data-en="Take away the sun, the clock and other people, and the mind does not keep accurate time on its own. It estimates, and the estimate drifts." data-bm="Buang matahari, jam dan manusia lain, dan minda tidak mampu menyimpan masa dengan tepat sendirian. Ia menganggar, dan anggaran itu hanyut.">Buang matahari, jam dan manusia lain, dan minda tidak mampu menyimpan masa dengan tepat sendirian. Ia menganggar, dan anggaran itu hanyut.</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="It drifts shorter" data-bm="Ia hanyut menjadi lebih pendek">Ia hanyut menjadi lebih pendek</h3>
+        <p data-en="Siffre's errors did not go both ways. Looking back, he always believed less time had passed than really had." data-bm="Kesilapan Siffre tidak berlaku ke dua arah. Apabila menoleh ke belakang, dia sentiasa menyangka masa yang berlalu lebih sedikit daripada hakikatnya.">Kesilapan Siffre tidak berlaku ke dua arah. Apabila menoleh ke belakang, dia sentiasa menyangka masa yang berlalu lebih sedikit daripada hakikatnya.</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3 data-en="Sameness erases days" data-bm="Hari yang serupa terpadam">Hari yang serupa terpadam</h3>
+        <p data-en="Memory measures duration by the markers it holds. Days with nothing to tell them apart leave almost nothing behind, and a stretch of them collapses into what feels like a short while." data-bm="Ingatan mengukur tempoh berdasarkan penanda yang disimpannya. Hari-hari yang tiada beza antara satu sama lain hampir tidak meninggalkan apa-apa, dan sederet hari sebegitu runtuh menjadi sesuatu yang terasa sekejap.">Ingatan mengukur tempoh berdasarkan penanda yang disimpannya. Hari-hari yang tiada beza antara satu sama lain hampir tidak meninggalkan apa-apa, dan sederet hari sebegitu runtuh menjadi sesuatu yang terasa sekejap.</p>
+      </div></li>
+    </ul>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="A healthy man, fully conscious, reporting every time he woke and slept, still lost almost a month out of two. <em>Now imagine the gap between this world and the next.</em>"
+       data-bm="Seorang lelaki yang sihat, sedar sepenuhnya, melaporkan setiap kali dia bangun dan tidur, masih kehilangan hampir sebulan dalam dua bulan. <em>Bayangkan pula jurang antara dunia ini dan akhirat.</em>">
+      Seorang lelaki yang sihat, sedar sepenuhnya, melaporkan setiap kali dia bangun dan tidur, masih kehilangan hampir sebulan dalam dua bulan. <em>Bayangkan pula jurang antara dunia ini dan akhirat.</em>
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="The phrase that repeats" data-bm="Frasa yang berulang">Frasa yang berulang</span></div>
+    <p class="rf-word" lang="ar" dir="rtl">يَوْمًا أَوْ بَعْضَ يَوْمٍ</p>
+    <p class="rf-body"
+       data-en="<em>Yawman aw ba&lsquo;da yawm.</em> A day, or part of a day. The Qur'an puts these exact words in three different mouths, and each time the speaker has been cut off from time and got it badly wrong."
+       data-bm="<em>Yawman aw ba&lsquo;da yawm.</em> Sehari, atau sebahagian hari. Al-Quran meletakkan kata-kata yang sama ini di tiga mulut yang berbeza, dan setiap kali, yang berkata itu telah terputus daripada masa lalu tersilap teruk.">
+      <em>Yawman aw ba&lsquo;da yawm.</em> Sehari, atau sebahagian hari. Al-Quran meletakkan kata-kata yang sama ini di tiga mulut yang berbeza, dan setiap kali, yang berkata itu telah terputus daripada masa lalu tersilap teruk.
+    </p>
+    <div class="rf-subeyebrow" data-en="The sleepers of the cave" data-bm="Pemuda-pemuda gua">Pemuda-pemuda gua</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">قَالَ قَآئِلٌ مِّنْهُمْ كَمْ لَبِثْتُمْ ۖ قَالُوا۟ لَبِثْنَا يَوْمًا أَوْ بَعْضَ يَوْمٍ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;One of them said: How long have you remained? They said: We have remained a day, or part of a day.&rdquo;"
+       data-bm="&ldquo;Salah seorang daripada mereka bertanya: Berapa lama kamu tinggal di sini? Mereka menjawab: Kami tinggal sehari atau sebahagian hari.&rdquo;">
+      &ldquo;Salah seorang daripada mereka bertanya: Berapa lama kamu tinggal di sini? Mereka menjawab: Kami tinggal sehari atau sebahagian hari.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Kahf 18:19</p>
+    <p class="rf-body" style="margin-top:22px"
+       data-en="The young men of the cave slept, by the Qur'an's own count, three hundred years and nine (18:25). They woke up and guessed a day. The original cave experiment, with no team on the surface, recorded fourteen centuries before Midnight Cave."
+       data-bm="Pemuda-pemuda Kahfi tidur, menurut hitungan Al-Quran sendiri, tiga ratus tahun dan sembilan (18:25). Mereka bangun lalu meneka sehari. Inilah eksperimen gua yang asal, tanpa pasukan di permukaan, dirakam empat belas abad sebelum Midnight Cave.">
+      Pemuda-pemuda Kahfi tidur, menurut hitungan Al-Quran sendiri, tiga ratus tahun dan sembilan (18:25). Mereka bangun lalu meneka sehari. Inilah eksperimen gua yang asal, tanpa pasukan di permukaan, dirakam empat belas abad sebelum Midnight Cave.
+    </p>
+    <div class="rf-subeyebrow" data-en="The man by the ruined town" data-bm="Lelaki di kota yang runtuh">Lelaki di kota yang runtuh</div>
+    <p class="rf-ayah" lang="ar" dir="rtl">قَالَ كَمْ لَبِثْتَ ۖ قَالَ لَبِثْتُ يَوْمًا أَوْ بَعْضَ يَوْمٍ ۖ قَالَ بَل لَّبِثْتَ مِائَةَ عَامٍ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;He said: How long have you remained? He said: I have remained a day, or part of a day. He said: Rather, you have remained a hundred years.&rdquo;"
+       data-bm="&ldquo;Allah bertanya: Berapa lama engkau tinggal di sini? Dia menjawab: Aku tinggal sehari atau sebahagian hari. Allah berfirman: Bahkan engkau telah tinggal seratus tahun.&rdquo;">
+      &ldquo;Allah bertanya: Berapa lama engkau tinggal di sini? Dia menjawab: Aku tinggal sehari atau sebahagian hari. Allah berfirman: Bahkan engkau telah tinggal seratus tahun.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Baqarah 2:259</p>
+    <p class="rf-body" style="margin-top:22px"
+       data-en="A man (many of the commentators name him &lsquo;Uzayr) was caused to die for a century and then raised. His estimate: a day. His food beside him had not even spoiled, which is part of why he believed it. His donkey, beside it, was bones."
+       data-bm="Seorang lelaki (ramai mufassir menamakannya &lsquo;Uzair) dimatikan selama seabad lalu dihidupkan semula. Anggarannya: sehari. Makanannya di sisinya pun tidak basi, dan itu antara sebab dia mempercayainya. Keldainya, di sebelah, sudah tinggal tulang.">
+      Seorang lelaki (ramai mufassir menamakannya &lsquo;Uzair) dimatikan selama seabad lalu dihidupkan semula. Anggarannya: sehari. Makanannya di sisinya pun tidak basi, dan itu antara sebab dia mempercayainya. Keldainya, di sebelah, sudah tinggal tulang.
+    </p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Three hundred years. A hundred years. A whole lifetime. <em>Three times, the same three words.</em> The Qur'an is teaching us what a cut-off mind says about time."
+       data-bm="Tiga ratus tahun. Seratus tahun. Seumur hidup. <em>Tiga kali, tiga patah kata yang sama.</em> Al-Quran sedang mengajar kita apa yang diucapkan oleh minda yang terputus tentang masa.">
+      Tiga ratus tahun. Seratus tahun. Seumur hidup. <em>Tiga kali, tiga patah kata yang sama.</em> Al-Quran sedang mengajar kita apa yang diucapkan oleh minda yang terputus tentang masa.
+    </p>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="The estimates on that Day" data-bm="Anggaran pada Hari itu">Anggaran pada Hari itu</span></div>
+    <h2 class="rf-big"
+        data-en="On the Day of Rising, people will argue about how long they lived. <em>Every guess is short.</em>"
+        data-bm="Pada Hari Kebangkitan, manusia akan berbalah tentang berapa lama mereka hidup. <em>Setiap tekaan itu pendek.</em>">
+      Pada Hari Kebangkitan, manusia akan berbalah tentang berapa lama mereka hidup. <em>Setiap tekaan itu pendek.</em>
+    </h2>
+    <ul class="rf-steps">
+      <li><span class="n">10</span><div>
+        <h3 data-en="&ldquo;Ten, no more&rdquo; <span class='ar'>إِلَّا عَشْرًا</span>" data-bm="&ldquo;Tak lebih sepuluh&rdquo; <span class='ar'>إِلَّا عَشْرًا</span>">&ldquo;Tak lebih sepuluh&rdquo; <span class="ar">إِلَّا عَشْرًا</span></h3>
+        <p data-en="They whisper among themselves: you stayed no more than ten. (Taha 20:103)" data-bm="Mereka berbisik sesama sendiri: kamu tidak tinggal melainkan sepuluh. (Taha 20:103)">Mereka berbisik sesama sendiri: kamu tidak tinggal melainkan sepuluh. (Taha 20:103)</p>
+      </div></li>
+      <li><span class="n">1</span><div>
+        <h3 data-en="&ldquo;Only a day&rdquo; <span class='ar'>إِلَّا يَوْمًا</span>" data-bm="&ldquo;Sehari sahaja&rdquo; <span class='ar'>إِلَّا يَوْمًا</span>">&ldquo;Sehari sahaja&rdquo; <span class="ar">إِلَّا يَوْمًا</span></h3>
+        <p data-en="Then the one &ldquo;best in judgement&rdquo; among them corrects the others: you stayed only a day. (Taha 20:104)" data-bm="Lalu yang paling &ldquo;baik pertimbangannya&rdquo; antara mereka membetulkan yang lain: kamu tidak tinggal melainkan sehari. (Taha 20:104)">Lalu yang paling &ldquo;baik pertimbangannya&rdquo; antara mereka membetulkan yang lain: kamu tidak tinggal melainkan sehari. (Taha 20:104)</p>
+      </div></li>
+      <li><span class="n">&frac12;</span><div>
+        <h3 data-en="&ldquo;An evening, or its morning&rdquo; <span class='ar'>عَشِيَّةً أَوْ ضُحَىٰهَا</span>" data-bm="&ldquo;Satu petang, atau paginya&rdquo; <span class='ar'>عَشِيَّةً أَوْ ضُحَىٰهَا</span>">&ldquo;Satu petang, atau paginya&rdquo; <span class="ar">عَشِيَّةً أَوْ ضُحَىٰهَا</span></h3>
+        <p data-en="On the day they see it, it will be as if they had stayed no more than an evening or the morning after. (An-Nazi&lsquo;at 79:46)" data-bm="Pada hari mereka melihatnya, seolah-olah mereka tidak tinggal melainkan satu petang atau paginya. (An-Nazi&lsquo;at 79:46)">Pada hari mereka melihatnya, seolah-olah mereka tidak tinggal melainkan satu petang atau paginya. (An-Nazi&lsquo;at 79:46)</p>
+      </div></li>
+      <li><span class="n">&#8987;</span><div>
+        <h3 data-en="&ldquo;Not more than an hour&rdquo; <span class='ar'>غَيْرَ سَاعَةٍ</span>" data-bm="&ldquo;Tak lebih sesaat&rdquo; <span class='ar'>غَيْرَ سَاعَةٍ</span>">&ldquo;Tak lebih sesaat&rdquo; <span class="ar">غَيْرَ سَاعَةٍ</span></h3>
+        <p data-en="The guilty swear they stayed no more than an hour. (Ar-Rum 30:55) &ldquo;As if they had stayed but an hour of a day, recognising one another.&rdquo; (Yunus 10:45)" data-bm="Orang-orang yang berdosa bersumpah mereka tidak tinggal melainkan sesaat. (Ar-Rum 30:55) &ldquo;Seolah-olah mereka tidak tinggal melainkan sesaat di siang hari, saling berkenalan.&rdquo; (Yunus 10:45)">Orang-orang yang berdosa bersumpah mereka tidak tinggal melainkan sesaat. (Ar-Rum 30:55) &ldquo;Seolah-olah mereka tidak tinggal melainkan sesaat di siang hari, saling berkenalan.&rdquo; (Yunus 10:45)</p>
+      </div></li>
+    </ul>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Look at the order. The guesses only shrink. And the one the Qur'an calls <em>amthaluhum tariqah,</em> the soundest of them, is not the one who guesses longest. He is the one who guesses shortest. The closer a person's sight gets to the truth of that Day, the smaller this world looks."
+       data-bm="Lihat susunannya. Tekaan itu hanya mengecil. Dan yang disebut Al-Quran sebagai <em>amthaluhum tariqah,</em> yang paling waras antara mereka, bukan yang meneka paling lama. Dialah yang meneka paling singkat. Semakin hampir pandangan seseorang kepada hakikat Hari itu, semakin kecil dunia ini kelihatan.">
+      Lihat susunannya. Tekaan itu hanya mengecil. Dan yang disebut Al-Quran sebagai <em>amthaluhum tariqah,</em> yang paling waras antara mereka, bukan yang meneka paling lama. Dialah yang meneka paling singkat. Semakin hampir pandangan seseorang kepada hakikat Hari itu, semakin kecil dunia ini kelihatan.
+    </p>
+    <p class="rf-body"
+       data-en="Siffre lost a month because nothing in the cave marked the days. On that Day the issue is the reverse: the scale has changed. The Qur'an speaks of a day whose measure is fifty thousand years (Al-Ma&lsquo;arij 70:4). Hold sixty years against that and the answer &ldquo;a day&rdquo; is not exaggeration. It is generous."
+       data-bm="Siffre kehilangan sebulan kerana tiada apa di dalam gua yang menandakan hari. Pada Hari itu masalahnya terbalik: skalanya sudah berubah. Al-Quran menyebut satu hari yang kadarnya lima puluh ribu tahun (Al-Ma&lsquo;arij 70:4). Letakkan enam puluh tahun di sebelahnya, dan jawapan &ldquo;sehari&rdquo; itu bukan berlebih-lebihan. Ia sudah murah hati.">
+      Siffre kehilangan sebulan kerana tiada apa di dalam gua yang menandakan hari. Pada Hari itu masalahnya terbalik: skalanya sudah berubah. Al-Quran menyebut satu hari yang kadarnya lima puluh ribu tahun (Al-Ma&lsquo;arij 70:4). Letakkan enam puluh tahun di sebelahnya, dan jawapan &ldquo;sehari&rdquo; itu bukan berlebih-lebihan. Ia sudah murah hati.
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="One dip" data-bm="Sekali celup">Sekali celup</span></div>
+    <p class="rf-body"
+       data-en="Siffre also found that how you feel bends how long things seem. Low and lonely in the dark, his sense of time came loose. The Prophet &#65018; described the most extreme version of this there could ever be:"
+       data-bm="Siffre juga mendapati bahawa perasaan membengkokkan rasa panjang pendeknya masa. Ketika murung dan sunyi dalam gelap, rasa masanya terlerai. Nabi &#65018; menggambarkan bentuk paling melampau bagi hakikat ini:">
+      Siffre juga mendapati bahawa perasaan membengkokkan rasa panjang pendeknya masa. Ketika murung dan sunyi dalam gelap, rasa masanya terlerai. Nabi &#65018; menggambarkan bentuk paling melampau bagi hakikat ini:
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;The person who lived the most comfortable life in this world, of the people of the Fire, will be brought on the Day of Resurrection and dipped once into the Fire. Then it will be said: O son of Adam, did you ever see any good? Did you ever know any comfort? He will say: No, by Allah, my Lord. And the person who lived the most miserable life in this world, of the people of Paradise, will be dipped once into Paradise, and it will be said: Did you ever see any hardship? He will say: No, by Allah, my Lord.&rdquo;"
+         data-bm="&ldquo;Akan didatangkan pada Hari Kiamat penghuni dunia yang paling senang hidupnya, daripada ahli neraka, lalu dicelup ke dalam neraka sekali celup. Kemudian ditanya: Wahai anak Adam, pernahkah engkau melihat sebarang kebaikan? Pernahkah engkau merasai sebarang nikmat? Dia menjawab: Tidak, demi Allah, wahai Tuhanku. Dan didatangkan penghuni dunia yang paling susah hidupnya, daripada ahli syurga, lalu dicelup ke dalam syurga sekali celup, lalu ditanya: Pernahkah engkau melihat sebarang kesusahan? Dia menjawab: Tidak, demi Allah, wahai Tuhanku.&rdquo;">
+        &ldquo;Akan didatangkan pada Hari Kiamat penghuni dunia yang paling senang hidupnya, daripada ahli neraka, lalu dicelup ke dalam neraka sekali celup. Kemudian ditanya: Wahai anak Adam, pernahkah engkau melihat sebarang kebaikan? Pernahkah engkau merasai sebarang nikmat? Dia menjawab: Tidak, demi Allah, wahai Tuhanku. Dan didatangkan penghuni dunia yang paling susah hidupnya, daripada ahli syurga, lalu dicelup ke dalam syurga sekali celup, lalu ditanya: Pernahkah engkau melihat sebarang kesusahan? Dia menjawab: Tidak, demi Allah, wahai Tuhanku.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; MUSLIM 2807</p>
+    </div>
+    <p class="rf-tagline" style="margin-top:30px"
+       data-en="One moment of what is real erases a lifetime of what felt real. <em>Seventy years of pleasure, gone in a dip. Seventy years of pain, gone in a dip.</em>"
+       data-bm="Satu detik daripada yang hakiki memadamkan seumur hidup daripada yang terasa hakiki. <em>Tujuh puluh tahun nikmat, hilang dalam sekali celup. Tujuh puluh tahun derita, hilang dalam sekali celup.</em>">
+      Satu detik daripada yang hakiki memadamkan seumur hidup daripada yang terasa hakiki. <em>Tujuh puluh tahun nikmat, hilang dalam sekali celup. Tujuh puluh tahun derita, hilang dalam sekali celup.</em>
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="We have clocks" data-bm="Kita ada jam">Kita ada jam</span></div>
+    <h2 class="rf-big"
+        data-en="Siffre had no clock and lost a month. We have clocks on every wall and still <em>lose years.</em>"
+        data-bm="Siffre tiada jam dan kehilangan sebulan. Kita ada jam di setiap dinding dan masih <em>kehilangan bertahun-tahun.</em>">
+      Siffre tiada jam dan kehilangan sebulan. Kita ada jam di setiap dinding dan masih <em>kehilangan bertahun-tahun.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The cave is not only a place without sunlight. It is any life where every day is the same as the one before: the same scroll, the same worry, the same postponed intention. Days like that leave no markers. Look back on a decade of them and it really does feel like a day or part of a day."
+       data-bm="Gua itu bukan sekadar tempat tanpa cahaya matahari. Ia ialah mana-mana hidup yang setiap harinya sama seperti semalam: skrol yang sama, risau yang sama, niat yang sama ditangguhkan. Hari-hari sebegitu tidak meninggalkan penanda. Toleh ke belakang pada sedekad hari sebegitu, dan ia benar-benar terasa sehari atau sebahagian hari.">
+      Gua itu bukan sekadar tempat tanpa cahaya matahari. Ia ialah mana-mana hidup yang setiap harinya sama seperti semalam: skrol yang sama, risau yang sama, niat yang sama ditangguhkan. Hari-hari sebegitu tidak meninggalkan penanda. Toleh ke belakang pada sedekad hari sebegitu, dan ia benar-benar terasa sehari atau sebahagian hari.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;Be in this world as though you were a stranger, or a traveller passing through.&rdquo;"
+         data-bm="&ldquo;Jadilah engkau di dunia ini seolah-olah orang asing, atau seorang pengembara yang melintas.&rdquo;">
+        &ldquo;Jadilah engkau di dunia ini seolah-olah orang asing, atau seorang pengembara yang melintas.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; AL-BUKHARI 6416</p>
+    </div>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;What have I to do with this world? I am in it only like a rider who takes shade beneath a tree, then moves on and leaves it.&rdquo;"
+         data-bm="&ldquo;Apa urusanku dengan dunia? Aku di dunia ini hanyalah seperti seorang penunggang yang berteduh di bawah sebatang pokok, kemudian dia pergi dan meninggalkannya.&rdquo;">
+        &ldquo;Apa urusanku dengan dunia? Aku di dunia ini hanyalah seperti seorang penunggang yang berteduh di bawah sebatang pokok, kemudian dia pergi dan meninggalkannya.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; AT-TIRMIDHI 2377</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="A traveller knows the stop is short, so he does not mistake the shade for home. That is the whole difference between the two answers to Allah's question. Both people will say &ldquo;a day.&rdquo; One will say it with regret. The other will say it with relief, because he spent that day knowing it was one."
+       data-bm="Seorang pengembara tahu persinggahan itu singkat, maka dia tidak menyangka teduhan itu rumahnya. Itulah seluruh perbezaan antara dua jawapan kepada soalan Allah. Kedua-duanya akan menjawab &ldquo;sehari.&rdquo; Seorang menyebutnya dengan penyesalan. Seorang lagi menyebutnya dengan lega, kerana dia telah menghabiskan hari itu dengan sedar bahawa ia memang sehari.">
+      Seorang pengembara tahu persinggahan itu singkat, maka dia tidak menyangka teduhan itu rumahnya. Itulah seluruh perbezaan antara dua jawapan kepada soalan Allah. Kedua-duanya akan menjawab &ldquo;sehari.&rdquo; Seorang menyebutnya dengan penyesalan. Seorang lagi menyebutnya dengan lega, kerana dia telah menghabiskan hari itu dengan sedar bahawa ia memang sehari.
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Siffre had to go into the dark to learn that time is not what it seems. We were <em>told in advance.</em>"
+        data-bm="Siffre terpaksa masuk ke dalam gelap untuk belajar bahawa masa bukan seperti yang disangka. Kita sudah <em>diberitahu lebih awal.</em>">
+      Siffre terpaksa masuk ke dalam gelap untuk belajar bahawa masa bukan seperti yang disangka. Kita sudah <em>diberitahu lebih awal.</em>
+    </h2>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">وَٱلْعَصْرِ<br>إِنَّ ٱلْإِنسَـٰنَ لَفِى خُسْرٍ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;By time. Indeed, mankind is in loss.&rdquo;"
+       data-bm="&ldquo;Demi masa. Sesungguhnya manusia itu benar-benar dalam kerugian.&rdquo;">
+      &ldquo;Demi masa. Sesungguhnya manusia itu benar-benar dalam kerugian.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-&lsquo;Asr 103:1&ndash;2</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The question <em>kam labithtum,</em> how long did you stay, has already been asked once, in the Qur'an, so that it would not catch us unprepared the second time. The day or part of a day is happening now. This is the part of it we still get to choose."
+       data-bm="Soalan <em>kam labithtum,</em> berapa lama kamu tinggal, sudah pun ditanya sekali, di dalam Al-Quran, supaya ia tidak menangkap kita tanpa persediaan pada kali kedua. Sehari atau sebahagian hari itu sedang berlangsung sekarang. Inilah bahagiannya yang masih boleh kita pilih.">
+      Soalan <em>kam labithtum,</em> berapa lama kamu tinggal, sudah pun ditanya sekali, di dalam Al-Quran, supaya ia tidak menangkap kita tanpa persediaan pada kali kedua. Sehari atau sebahagian hari itu sedang berlangsung sekarang. Inilah bahagiannya yang masih boleh kita pilih.
+    </p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON A DAY OR PART OF A DAY" data-bm="TENTANG SEHARI ATAU SEBAHAGIAN HARI">TENTANG SEHARI ATAU SEBAHAGIAN HARI</div>
+    <h2 class="rf-big">Sehari Atau Separuh</h2>
+    <p class="rf-body"
+       data-en="May Allah let us spend this short day knowing that it is short, fill it with markers worth remembering, and make our answer on that Day one of relief rather than regret. <em>Aameen.</em>"
+       data-bm="Semoga Allah mengizinkan kita menghabiskan hari yang singkat ini dengan sedar bahawa ia singkat, mengisinya dengan penanda yang layak diingati, dan menjadikan jawapan kita pada Hari itu jawapan yang lega, bukan yang menyesal. <em>Aameen.</em>">
+      Semoga Allah mengizinkan kita menghabiskan hari yang singkat ini dengan sedar bahawa ia singkat, mengisinya dengan penanda yang layak diingati, dan menjadikan jawapan kita pada Hari itu jawapan yang lega, bukan yang menyesal. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="The details of Michel Siffre's experiments (1962 in the Scarasson glacier cave, 1972 in Midnight Cave, Texas) follow his own account in his 2008 interview with Cabinet magazine. The science here is used as an analogy for reflection, not as proof of the verses; the verses do not depend on it. Naming the man in Al-Baqarah 2:259 as &lsquo;Uzayr follows many of the classical commentators; the Qur'an itself does not name him. The words here, and any mistakes in them, are mine."
+       data-bm="Butiran eksperimen Michel Siffre (1962 di gua glasier Scarasson, 1972 di Midnight Cave, Texas) mengikut penceritaannya sendiri dalam wawancara bersama majalah Cabinet pada tahun 2008. Sains di sini digunakan sebagai analogi untuk renungan, bukan sebagai bukti kepada ayat; ayat-ayat itu tidak bergantung kepadanya. Penamaan lelaki dalam Al-Baqarah 2:259 sebagai &lsquo;Uzair mengikut ramai mufassir klasik; Al-Quran sendiri tidak menamakannya. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.">
+      Butiran eksperimen Michel Siffre (1962 di gua glasier Scarasson, 1972 di Midnight Cave, Texas) mengikut penceritaannya sendiri dalam wawancara bersama majalah Cabinet pada tahun 2008. Sains di sini digunakan sebagai analogi untuk renungan, bukan sebagai bukti kepada ayat; ayat-ayat itu tidak bergantung kepadanya. Penamaan lelaki dalam Al-Baqarah 2:259 sebagai &lsquo;Uzair mengikut ramai mufassir klasik; Al-Quran sendiri tidak menamakannya. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="empat-penjuru.html" class="btn btn-ghost btn-lg" data-en="&larr; Empat penjuru" data-bm="&larr; Empat penjuru">&larr; Empat penjuru</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
