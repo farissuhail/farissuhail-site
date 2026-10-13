@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kisah jurutulis wahyu yang murtad lalu mendakwa Al-Quran karangannya sendiri, dan bumi yang memuntahkan jasadnya tiga kali. Sahih al-Bukhari 3617, Sahih Muslim 2781 dan Al-Hijr 15:9. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Bumi Pun Enggan · kalam &amp; amanah · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="When the earth refused him: the scribe who said he wrote the Qur'an" />
+  <meta property="og:description" content="He memorised Al-Baqarah and Ali 'Imran and wrote down revelation. Then he claimed he had written it himself. Three times they buried him; three mornings the earth gave him back." />
+  <meta property="og:url" content="https://farissuhail.com/bumi-pun-enggan.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bumi Pun Enggan: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bila bumi pun enggan menerima: kisah bekas jurutulis wahyu" />
+  <meta name="twitter:description" content="Dia mendakwa Al-Quran tulisannya sendiri. Tiga kali dikebumikan, tiga pagi bumi memuntahkannya." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(64px, 9.4vw, 116px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .story-titleblock .rf-cow { font-size: clamp(56px, 18vw, 84px); }
+      .story-titleblock .rf-the { font-size: clamp(30px, 9vw, 44px); }
+    }
+    .story-intro > * { min-width: 0; }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/bumi-pun-enggan.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "When the earth refused him: the scribe of revelation who claimed he wrote the Qur'an (Al-Bukhari 3617, Muslim 2781)",
+    "alternativeHeadline": "Bila bumi pun enggan menerima: kisah bekas jurutulis wahyu yang menghina Al-Quran",
+    "url": "https://farissuhail.com/bumi-pun-enggan.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Hadith",
+      "Sahih al-Bukhari",
+      "Surah Al-Hijr",
+      "Steadfastness of faith"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH 15 &middot; AL-HIJR</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the">bila bumi pun</span>
+        <span class="rf-cow">ENGGAN</span>
+      </h1>
+      <div class="rf-arabic">AL-BUKHARI 3617 &middot; MUSLIM 2781</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">Baharu</span>
+        <span class="story-badge" data-en="The Word &amp; its trust" data-bm="Kalam &amp; amanah">Kalam &amp; amanah</span>
+        <span class="story-badge" data-en="8 min read" data-bm="Baca 8 minit">Baca 8 minit</span>
+      </div>
+      <h2 data-en="He wrote down revelation with his own hand. Then he claimed he had <em>written it himself.</em>"
+          data-bm="Dia mencatat wahyu dengan tangannya sendiri. Kemudian dia mendakwa dialah yang <em>mengarangnya.</em>">
+        Dia mencatat wahyu dengan tangannya sendiri. Kemudian dia mendakwa dialah yang <em>mengarangnya.</em>
+      </h2>
+      <p data-en="We know the names of the Prophet's open enemies: Abu Jahl, Umayyah ibn Khalaf. Fewer of us know the man who sat close enough to write the Qur'an down as it came, then walked away and called it his own work. His story is in Sahih al-Bukhari and Sahih Muslim, and it ends with the earth itself refusing to keep him."
+         data-bm="Kita kenal nama-nama musuh terang Nabi &#65018;: Abu Jahal, Umayyah bin Khalaf. Tidak ramai yang kenal lelaki yang pernah duduk cukup dekat untuk mencatat Al-Quran ketika ia turun, kemudian berpaling dan mendakwa ia hasil tulisannya. Kisahnya dirakam dalam Sahih al-Bukhari dan Sahih Muslim, dan ia berakhir dengan bumi sendiri enggan menyimpannya.">
+        Kita kenal nama-nama musuh terang Nabi &#65018;: Abu Jahal, Umayyah bin Khalaf. Tidak ramai yang kenal lelaki yang pernah duduk cukup dekat untuk mencatat Al-Quran ketika ia turun, kemudian berpaling dan mendakwa ia hasil tulisannya. Kisahnya dirakam dalam Sahih al-Bukhari dan Sahih Muslim, dan ia berakhir dengan bumi sendiri enggan menyimpannya.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The scribe" data-bm="Si jurutulis">Si jurutulis</span></div>
+    <h2 class="rf-big"
+        data-en="He was not an outsider. <em>He was one of the hands that wrote it down.</em>"
+        data-bm="Dia bukan orang luar. <em>Dia antara tangan yang menuliskannya.</em>">
+      Dia bukan orang luar. <em>Dia antara tangan yang menuliskannya.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Anas ibn Malik, who served the Prophet &#65018; for ten years, tells it. There was a Christian man who accepted Islam. He did not stop at the basics: he learned Al-Baqarah and Ali &lsquo;Imran, the two longest surahs, the two the Prophet &#65018; called <em>az-zahrawan,</em> the two radiant ones."
+       data-bm="Anas bin Malik, yang berkhidmat kepada Nabi &#65018; selama sepuluh tahun, menceritakannya. Ada seorang lelaki Nasrani yang memeluk Islam. Dia tidak berhenti setakat asas: dia mempelajari Al-Baqarah dan Ali &lsquo;Imran, dua surah terpanjang, dua surah yang Nabi &#65018; gelar <em>az-zahrawan,</em> dua yang bercahaya.">
+      Anas bin Malik, yang berkhidmat kepada Nabi &#65018; selama sepuluh tahun, menceritakannya. Ada seorang lelaki Nasrani yang memeluk Islam. Dia tidak berhenti setakat asas: dia mempelajari Al-Baqarah dan Ali &lsquo;Imran, dua surah terpanjang, dua surah yang Nabi &#65018; gelar <em>az-zahrawan,</em> dua yang bercahaya.
+    </p>
+    <p class="rf-body"
+       data-en="Among the Companions, a man who carried those two surahs was held in real esteem. Anas himself said of that time: whoever had read Al-Baqarah and Ali &lsquo;Imran was counted great among us. This man could also write, which was rarer than it is now, so the Prophet &#65018; gave him a trust very few were given. He became one of the scribes of revelation."
+       data-bm="Dalam kalangan para Sahabat, lelaki yang membawa dua surah itu dipandang tinggi. Anas sendiri berkata tentang zaman itu: sesiapa yang telah membaca Al-Baqarah dan Ali &lsquo;Imran, dia dianggap besar di sisi kami. Lelaki ini juga pandai menulis, satu kemahiran yang lebih jarang ketika itu, maka Nabi &#65018; memberinya amanah yang hanya diberi kepada segelintir. Dia menjadi salah seorang jurutulis wahyu.">
+      Dalam kalangan para Sahabat, lelaki yang membawa dua surah itu dipandang tinggi. Anas sendiri berkata tentang zaman itu: sesiapa yang telah membaca Al-Baqarah dan Ali &lsquo;Imran, dia dianggap besar di sisi kami. Lelaki ini juga pandai menulis, satu kemahiran yang lebih jarang ketika itu, maka Nabi &#65018; memberinya amanah yang hanya diberi kepada segelintir. Dia menjadi salah seorang jurutulis wahyu.
+    </p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Knowledge, closeness, trust. He had all three. <em>And then he turned back.</em>"
+       data-bm="Ilmu, kedekatan, amanah. Dia memiliki ketiga-tiganya. <em>Kemudian dia berpaling.</em>">
+      Ilmu, kedekatan, amanah. Dia memiliki ketiga-tiganya. <em>Kemudian dia berpaling.</em>
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="The claim" data-bm="Dakwaan itu">Dakwaan itu</span></div>
+    <p class="rf-body"
+       data-en="He left Islam and went back to Christianity. Had he gone quietly, the story might have ended there. He did not. He took the one thing that made him valuable, that he had once written revelation, and turned it into a weapon."
+       data-bm="Dia keluar daripada Islam dan kembali kepada agama Nasrani. Kalau dia pergi senyap-senyap, mungkin kisahnya berakhir di situ. Tetapi tidak. Dia mengambil satu-satunya perkara yang membuatkan dirinya bernilai, bahawa dia pernah menulis wahyu, lalu menjadikannya senjata.">
+      Dia keluar daripada Islam dan kembali kepada agama Nasrani. Kalau dia pergi senyap-senyap, mungkin kisahnya berakhir di situ. Tetapi tidak. Dia mengambil satu-satunya perkara yang membuatkan dirinya bernilai, bahawa dia pernah menulis wahyu, lalu menjadikannya senjata.
+    </p>
+    <p class="rf-word" lang="ar" dir="rtl" style="font-size:clamp(38px,7vw,68px);margin-top:34px">مَا يَدْرِي مُحَمَّدٌ إِلَّا مَا كَتَبْتُ لَهُ</p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;Muhammad knows nothing except what I wrote for him.&rdquo;"
+         data-bm="&ldquo;Muhammad tidak tahu apa-apa melainkan apa yang aku tuliskan untuknya.&rdquo;">
+        &ldquo;Muhammad tidak tahu apa-apa melainkan apa yang aku tuliskan untuknya.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; AL-BUKHARI 3617</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Read what the sentence is really saying. Not that the Qur'an is wrong, but that it has no heavenly source at all: the words came from his pen, not from Allah. And it comes with the weight of an insider. Who could contradict a man who was in the room?"
+       data-bm="Baca apa yang sebenarnya dimaksudkan oleh ayat itu. Bukan sekadar Al-Quran itu salah, tetapi ia langsung tiada sumber dari langit: kata-kata itu datang dari penanya, bukan daripada Allah. Dan ia datang dengan berat seorang orang dalam. Siapa yang mampu menyanggah lelaki yang pernah berada di dalam bilik itu?">
+      Baca apa yang sebenarnya dimaksudkan oleh ayat itu. Bukan sekadar Al-Quran itu salah, tetapi ia langsung tiada sumber dari langit: kata-kata itu datang dari penanya, bukan daripada Allah. Dan ia datang dengan berat seorang orang dalam. Siapa yang mampu menyanggah lelaki yang pernah berada di dalam bilik itu?
+    </p>
+    <p class="rf-body"
+       data-en="In Muslim's narration, the people he joined were delighted with him. They raised him up and repeated it proudly: this man used to write for Muhammad. He had become their proof."
+       data-bm="Dalam riwayat Muslim, kaum yang disertainya amat gembira dengannya. Mereka mengangkatnya dan berbangga mengulang-ulang: lelaki ini dahulu menulis untuk Muhammad. Dia telah menjadi bukti mereka.">
+      Dalam riwayat Muslim, kaum yang disertainya amat gembira dengannya. Mereka mengangkatnya dan berbangga mengulang-ulang: lelaki ini dahulu menulis untuk Muhammad. Dia telah menjadi bukti mereka.
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="Three mornings" data-bm="Tiga pagi">Tiga pagi</span></div>
+    <h2 class="rf-big"
+        data-en="It did not last long. <em>Allah took his life among the very people who had raised him up.</em>"
+        data-bm="Ia tidak lama. <em>Allah mematikannya di tengah-tengah kaum yang mengangkatnya.</em>">
+      Ia tidak lama. <em>Allah mematikannya di tengah-tengah kaum yang mengangkatnya.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="They buried him the ordinary way. What happened next, Anas reports in plain, almost flat words, the way people report something they find hard to believe themselves."
+       data-bm="Mereka mengebumikannya seperti biasa. Apa yang berlaku seterusnya dilaporkan Anas dengan kata-kata yang ringkas, hampir mendatar, seperti orang melaporkan sesuatu yang mereka sendiri sukar percaya.">
+      Mereka mengebumikannya seperti biasa. Apa yang berlaku seterusnya dilaporkan Anas dengan kata-kata yang ringkas, hampir mendatar, seperti orang melaporkan sesuatu yang mereka sendiri sukar percaya.
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="The first morning <span class='ar'>لَفَظَتْهُ الأَرْضُ</span>" data-bm="Pagi pertama <span class='ar'>لَفَظَتْهُ الأَرْضُ</span>">Pagi pertama <span class="ar">لَفَظَتْهُ الأَرْضُ</span></h3>
+        <p data-en="They woke to find the body lying on top of the ground. The earth had spat him out. Their first thought was sabotage: &ldquo;This is Muhammad and his Companions. He ran from them, so they dug up our friend and threw him out.&rdquo;" data-bm="Mereka bangun dan mendapati jasadnya terbaring di atas tanah. Bumi telah memuntahkannya. Sangkaan pertama mereka ialah khianat: &ldquo;Ini kerja Muhammad dan sahabat-sahabatnya. Dia lari daripada mereka, maka mereka gali kubur kawan kita dan campakkannya keluar.&rdquo;">Mereka bangun dan mendapati jasadnya terbaring di atas tanah. Bumi telah memuntahkannya. Sangkaan pertama mereka ialah khianat: &ldquo;Ini kerja Muhammad dan sahabat-sahabatnya. Dia lari daripada mereka, maka mereka gali kubur kawan kita dan campakkannya keluar.&rdquo;</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="The second morning" data-bm="Pagi kedua">Pagi kedua</h3>
+        <p data-en="So they dug again, deeper this time, and buried him. The next morning the earth had cast him out again. They repeated the same accusation." data-bm="Maka mereka menggali semula, lebih dalam kali ini, dan menanamnya. Keesokan paginya, bumi telah mencampakkannya keluar lagi. Mereka mengulang tuduhan yang sama.">Maka mereka menggali semula, lebih dalam kali ini, dan menanamnya. Keesokan paginya, bumi telah mencampakkannya keluar lagi. Mereka mengulang tuduhan yang sama.</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3 data-en="The third morning" data-bm="Pagi ketiga">Pagi ketiga</h3>
+        <p data-en="The third time they dug as deep as their strength would allow. In the morning the body was once again lying on the surface." data-bm="Kali ketiga, mereka menggali sedalam-dalam yang mampu dicapai tenaga mereka. Pagi itu, jasadnya sekali lagi terdampar di permukaan tanah.">Kali ketiga, mereka menggali sedalam-dalam yang mampu dicapai tenaga mereka. Pagi itu, jasadnya sekali lagi terdampar di permukaan tanah.</p>
+      </div></li>
+    </ul>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Three times they gave him to the earth. <em>Three times the earth gave him back.</em>"
+       data-bm="Tiga kali mereka menyerahkannya kepada bumi. <em>Tiga kali bumi memulangkannya.</em>">
+      Tiga kali mereka menyerahkannya kepada bumi. <em>Tiga kali bumi memulangkannya.</em>
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="Not the work of people" data-bm="Bukan kerja manusia">Bukan kerja manusia</span></div>
+    <p class="rf-word" lang="ar" dir="rtl" style="font-size:clamp(40px,7.4vw,72px)">فَعَلِمُوا أَنَّهُ لَيْسَ مِنَ النَّاسِ</p>
+    <p class="rf-body"
+       data-en="&ldquo;So they knew it was not from people.&rdquo; The ones who said it were not the Companions. They were his own side, the people who had every reason to blame the Muslims and keep blaming them. Three mornings were enough to break that story. They left the body where it lay, unburied."
+       data-bm="&ldquo;Maka mereka tahu ia bukan perbuatan manusia.&rdquo; Yang mengakuinya bukan para Sahabat. Mereka ialah pihaknya sendiri, orang yang ada segala sebab untuk menyalahkan orang Islam dan terus menyalahkan mereka. Tiga pagi sudah cukup untuk meruntuhkan cerita itu. Mereka membiarkan jasadnya di situ, tidak berkubur.">
+      &ldquo;Maka mereka tahu ia bukan perbuatan manusia.&rdquo; Yang mengakuinya bukan para Sahabat. Mereka ialah pihaknya sendiri, orang yang ada segala sebab untuk menyalahkan orang Islam dan terus menyalahkan mereka. Tiga pagi sudah cukup untuk meruntuhkan cerita itu. Mereka membiarkan jasadnya di situ, tidak berkubur.
+    </p>
+    <p class="rf-body"
+       data-en="Ibn Taymiyyah paused on this in <em>as-Sarim al-Maslul.</em> The earth takes in almost everyone: the wicked, the unbelieving, the cruel. Most of the dead, he notes, suffer nothing like this. That is exactly what makes it a sign. Something outside the normal course, aimed at one man, told everyone watching that this was a punishment for what he said, and that he had been lying."
+       data-bm="Ibnu Taimiyyah berhenti merenung kisah ini dalam <em>as-Sarim al-Maslul.</em> Bumi menerima hampir semua orang: yang jahat, yang kafir, yang zalim. Kebanyakan orang mati, katanya, tidak ditimpa apa-apa seperti ini. Itulah yang menjadikannya satu tanda. Sesuatu yang di luar kebiasaan, ditujukan kepada seorang lelaki, memberitahu setiap yang menyaksikannya bahawa ini balasan atas apa yang diucapkannya, dan bahawa dia berdusta.">
+      Ibnu Taimiyyah berhenti merenung kisah ini dalam <em>as-Sarim al-Maslul.</em> Bumi menerima hampir semua orang: yang jahat, yang kafir, yang zalim. Kebanyakan orang mati, katanya, tidak ditimpa apa-apa seperti ini. Itulah yang menjadikannya satu tanda. Sesuatu yang di luar kebiasaan, ditujukan kepada seorang lelaki, memberitahu setiap yang menyaksikannya bahawa ini balasan atas apa yang diucapkannya, dan bahawa dia berdusta.
+    </p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="He claimed to be the source of the Book. <em>The ground beneath him gave the answer.</em>"
+       data-bm="Dia mendakwa dialah sumber Kitab itu. <em>Tanah di bawahnya yang memberi jawapan.</em>">
+      Dia mendakwa dialah sumber Kitab itu. <em>Tanah di bawahnya yang memberi jawapan.</em>
+    </p>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="The Book is guarded" data-bm="Kitab yang dijaga">Kitab yang dijaga</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">إِنَّا نَحْنُ نَزَّلْنَا ٱلذِّكْرَ وَإِنَّا لَهُۥ لَحَـٰفِظُونَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Indeed, it is We who sent down the Reminder, and indeed, We are its guardians.&rdquo;"
+       data-bm="&ldquo;Sesungguhnya Kamilah yang menurunkan Al-Quran, dan sesungguhnya Kamilah yang benar-benar memeliharanya.&rdquo;">
+      &ldquo;Sesungguhnya Kamilah yang menurunkan Al-Quran, dan sesungguhnya Kamilah yang benar-benar memeliharanya.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Hijr 15:9</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Look at the emphasis packed into one verse: <em>inna,</em> <em>nahnu,</em> <em>inna</em> again, and the <em>la-</em> on <em>hafizun.</em> Allah does not leave the guarding of His Word to scribes, scholars or memorisers, though He uses all of them. He takes it on Himself."
+       data-bm="Lihat penegasan yang dipadatkan dalam satu ayat: <em>inna,</em> <em>nahnu,</em> <em>inna</em> sekali lagi, dan <em>la-</em> pada <em>hafizun.</em> Allah tidak menyerahkan penjagaan kalam-Nya kepada jurutulis, ulama atau penghafaz, walaupun Dia menggunakan mereka semua. Dia memikulnya sendiri.">
+      Lihat penegasan yang dipadatkan dalam satu ayat: <em>inna,</em> <em>nahnu,</em> <em>inna</em> sekali lagi, dan <em>la-</em> pada <em>hafizun.</em> Allah tidak menyerahkan penjagaan kalam-Nya kepada jurutulis, ulama atau penghafaz, walaupun Dia menggunakan mereka semua. Dia memikulnya sendiri.
+    </p>
+    <p class="rf-body"
+       data-en="So a scribe walking away changed nothing about the Book. The verses he had written were still being recited by hundreds who had heard them from the Prophet's own mouth. The only thing that changed was the scribe."
+       data-bm="Maka seorang jurutulis yang berpaling tidak mengubah apa-apa pada Kitab itu. Ayat-ayat yang pernah ditulisnya masih dibaca oleh ratusan orang yang mendengarnya terus dari lisan Nabi &#65018;. Satu-satunya yang berubah ialah jurutulis itu sendiri.">
+      Maka seorang jurutulis yang berpaling tidak mengubah apa-apa pada Kitab itu. Ayat-ayat yang pernah ditulisnya masih dibaca oleh ratusan orang yang mendengarnya terus dari lisan Nabi &#65018;. Satu-satunya yang berubah ialah jurutulis itu sendiri.
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;Falsehood cannot approach it from before it or from behind it: a revelation from One Wise, Praiseworthy.&rdquo;"
+         data-bm="&ldquo;Ia tidak didatangi kebatilan dari hadapan mahupun dari belakangnya; diturunkan daripada Tuhan Yang Maha Bijaksana, lagi Maha Terpuji.&rdquo;">
+        &ldquo;Ia tidak didatangi kebatilan dari hadapan mahupun dari belakangnya; diturunkan daripada Tuhan Yang Maha Bijaksana, lagi Maha Terpuji.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">Fussilat 41:42</p>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="Knowledge is not safety" data-bm="Ilmu bukan jaminan">Ilmu bukan jaminan</span></div>
+    <h2 class="rf-big"
+        data-en="Two long surahs memorised. A seat beside the Prophet &#65018;. <em>And still he died outside the faith.</em>"
+        data-bm="Dua surah panjang dihafal. Duduk di sisi Nabi &#65018;. <em>Namun dia tetap mati di luar iman.</em>">
+      Dua surah panjang dihafal. Duduk di sisi Nabi &#65018;. <em>Namun dia tetap mati di luar iman.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="This is the part of the story that should unsettle us most. Not the grave, but the beginning. He had what many of us quietly assume will protect us: knowledge of the Qur'an, nearness to good people, a respected role in religious work. None of it held him."
+       data-bm="Inilah bahagian kisah yang sepatutnya paling menggusarkan kita. Bukan kuburnya, tetapi permulaannya. Dia memiliki apa yang ramai antara kita diam-diam anggap akan melindungi kita: ilmu Al-Quran, berdampingan dengan orang soleh, peranan yang dihormati dalam kerja agama. Tiada satu pun yang mampu menahannya.">
+      Inilah bahagian kisah yang sepatutnya paling menggusarkan kita. Bukan kuburnya, tetapi permulaannya. Dia memiliki apa yang ramai antara kita diam-diam anggap akan melindungi kita: ilmu Al-Quran, berdampingan dengan orang soleh, peranan yang dihormati dalam kerja agama. Tiada satu pun yang mampu menahannya.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">وَٱتْلُ عَلَيْهِمْ نَبَأَ ٱلَّذِىٓ ءَاتَيْنَـٰهُ ءَايَـٰتِنَا فَٱنسَلَخَ مِنْهَا</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;And recite to them the news of the one to whom We gave Our signs, but he slipped out of them.&rdquo;"
+       data-bm="&ldquo;Dan bacakanlah kepada mereka berita tentang orang yang telah Kami berikan ayat-ayat Kami, lalu dia melepaskan diri daripadanya.&rdquo;">
+      &ldquo;Dan bacakanlah kepada mereka berita tentang orang yang telah Kami berikan ayat-ayat Kami, lalu dia melepaskan diri daripadanya.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-A&lsquo;raf 7:175</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="<em>Fansalakha,</em> he slipped out of them, the way a snake slips out of its skin. The Qur'an already had a word for this man before he was born. Knowledge is a gift; whether it stays in the heart is another gift, <em>tawfiq,</em> and that one is never in our own hands."
+       data-bm="<em>Fansalakha,</em> dia melepaskan diri, seperti ular menanggalkan kulitnya. Al-Quran sudah pun ada perkataan untuk lelaki ini sebelum dia dilahirkan. Ilmu itu satu kurniaan; kekalnya ilmu itu di dalam hati ialah kurniaan yang lain, <em>taufiq,</em> dan yang itu tidak pernah berada di tangan kita.">
+      <em>Fansalakha,</em> dia melepaskan diri, seperti ular menanggalkan kulitnya. Al-Quran sudah pun ada perkataan untuk lelaki ini sebelum dia dilahirkan. Ilmu itu satu kurniaan; kekalnya ilmu itu di dalam hati ialah kurniaan yang lain, <em>taufiq,</em> dan yang itu tidak pernah berada di tangan kita.
+    </p>
+    <p class="rf-body"
+       data-en="And the door stayed open for him until the end. History records another scribe, &lsquo;Abdullah ibn Sa&lsquo;d ibn Abi Sarh, who also left Islam and also spoke against revelation. He came back, was forgiven, and lived and died a Muslim. The difference between the two men was not how far they fell. It was whether they returned before the earth closed over them."
+       data-bm="Dan pintu itu kekal terbuka untuknya sehingga ke akhir. Sejarah merakam seorang lagi jurutulis, &lsquo;Abdullah bin Sa&lsquo;d bin Abi Sarh, yang juga pernah murtad dan juga pernah bercakap menentang wahyu. Dia kembali, diampunkan, lalu hidup dan mati sebagai Muslim. Beza antara dua lelaki itu bukan sejauh mana mereka jatuh. Bezanya ialah sama ada mereka kembali sebelum tanah menutup mereka.">
+      Dan pintu itu kekal terbuka untuknya sehingga ke akhir. Sejarah merakam seorang lagi jurutulis, &lsquo;Abdullah bin Sa&lsquo;d bin Abi Sarh, yang juga pernah murtad dan juga pernah bercakap menentang wahyu. Dia kembali, diampunkan, lalu hidup dan mati sebagai Muslim. Beza antara dua lelaki itu bukan sejauh mana mereka jatuh. Bezanya ialah sama ada mereka kembali sebelum tanah menutup mereka.
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="The du&lsquo;a he repeated" data-bm="Doa yang baginda ulang">Doa yang baginda ulang</span></div>
+    <p class="rf-body"
+       data-en="If anyone could have felt secure, it was the Prophet &#65018;. Yet Anas reports that the du&lsquo;a he made most often was a plea for a steady heart. When Anas asked why, given that they already believed in him, the answer was that hearts are held between two of the fingers of Allah, and He turns them as He wills."
+       data-bm="Jika ada sesiapa yang layak berasa selamat, dialah Nabi &#65018;. Namun Anas meriwayatkan bahawa doa yang paling kerap baginda baca ialah permohonan agar hati diteguhkan. Apabila Anas bertanya mengapa, sedangkan mereka sudah beriman dengannya, baginda menjawab bahawa hati-hati berada di antara dua jari daripada jari-jari Allah, dan Dia membolak-balikkannya sebagaimana yang Dia kehendaki.">
+      Jika ada sesiapa yang layak berasa selamat, dialah Nabi &#65018;. Namun Anas meriwayatkan bahawa doa yang paling kerap baginda baca ialah permohonan agar hati diteguhkan. Apabila Anas bertanya mengapa, sedangkan mereka sudah beriman dengannya, baginda menjawab bahawa hati-hati berada di antara dua jari daripada jari-jari Allah, dan Dia membolak-balikkannya sebagaimana yang Dia kehendaki.
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="margin-top:30px">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;O Turner of hearts, keep my heart firm upon Your religion.&rdquo;"
+       data-bm="&ldquo;Wahai Tuhan yang membolak-balikkan hati, tetapkanlah hatiku di atas agama-Mu.&rdquo;">
+      &ldquo;Wahai Tuhan yang membolak-balikkan hati, tetapkanlah hatiku di atas agama-Mu.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">HADITH &middot; AT-TIRMIDHI 2140</p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="The scribe trusted what he knew. The Prophet &#65018; never stopped asking. <em>That is the whole lesson in one contrast.</em>"
+       data-bm="Si jurutulis bersandar pada apa yang diketahuinya. Nabi &#65018; tidak pernah berhenti memohon. <em>Itulah seluruh pengajarannya dalam satu perbandingan.</em>">
+      Si jurutulis bersandar pada apa yang diketahuinya. Nabi &#65018; tidak pernah berhenti memohon. <em>Itulah seluruh pengajarannya dalam satu perbandingan.</em>
+    </p>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="The earth obeyed its Lord when a man would not. <em>Be among those it is glad to receive.</em>"
+        data-bm="Bumi taat kepada Tuhannya ketika seorang manusia enggan. <em>Jadilah antara mereka yang bumi gembira menerimanya.</em>">
+      Bumi taat kepada Tuhannya ketika seorang manusia enggan. <em>Jadilah antara mereka yang bumi gembira menerimanya.</em>
+    </h2>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The earth is not neutral ground. It is a creature that submits to Allah, and the Qur'an says it will one day speak of what was done upon it (Az-Zalzalah 99:4). For one man, it refused to keep quiet even before that Day. For the rest of us, the question is simpler: what will it have to say about us?"
+       data-bm="Bumi bukan tanah yang berkecuali. Ia makhluk yang tunduk kepada Allah, dan Al-Quran menyebut bahawa ia akan menceritakan suatu hari nanti apa yang dilakukan di atasnya (Az-Zalzalah 99:4). Untuk seorang lelaki, ia enggan berdiam diri walaupun sebelum Hari itu tiba. Bagi kita yang lain, soalannya lebih mudah: apa yang akan ia ceritakan tentang kita?">
+      Bumi bukan tanah yang berkecuali. Ia makhluk yang tunduk kepada Allah, dan Al-Quran menyebut bahawa ia akan menceritakan suatu hari nanti apa yang dilakukan di atasnya (Az-Zalzalah 99:4). Untuk seorang lelaki, ia enggan berdiam diri walaupun sebelum Hari itu tiba. Bagi kita yang lain, soalannya lebih mudah: apa yang akan ia ceritakan tentang kita?
+    </p>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON THE SCRIBE THE EARTH REFUSED" data-bm="TENTANG JURUTULIS YANG DITOLAK BUMI">TENTANG JURUTULIS YANG DITOLAK BUMI</div>
+    <h2 class="rf-big">Bumi Pun Enggan</h2>
+    <p class="rf-body"
+       data-en="May Allah keep our hearts firm on His religion, make the Qur'an beloved to us and a witness for us rather than against us, and not let us die except as Muslims. <em>Aameen.</em>"
+       data-bm="Semoga Allah meneguhkan hati kita di atas agama-Nya, menjadikan Al-Quran kecintaan kita dan saksi yang membela kita, bukan yang menghujah kita, dan tidak mematikan kita melainkan sebagai Muslim. <em>Aameen.</em>">
+      Semoga Allah meneguhkan hati kita di atas agama-Nya, menjadikan Al-Quran kecintaan kita dan saksi yang membela kita, bukan yang menghujah kita, dan tidak mematikan kita melainkan sebagai Muslim. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="The story follows the narration of Anas ibn Malik in Sahih al-Bukhari 3617, which describes the man as a Christian who became Muslim. The version in Sahih Muslim 2781 calls him a man of Banu an-Najjar who joined the People of the Book, and adds that they praised him and that Allah struck him down among them. Neither narration names him. Anas's remark on the standing of those who knew Al-Baqarah and Ali &lsquo;Imran is from his narration of the same story in Musnad Ahmad. Ibn Taymiyyah's comment is from <em>as-Sarim al-Maslul.</em> The account of Ibn Abi Sarh's return is found in the books of sirah and in Sunan Abi Dawud. The words here, and any mistakes in them, are mine."
+       data-bm="Kisah ini mengikut riwayat Anas bin Malik dalam Sahih al-Bukhari 3617, yang menyifatkan lelaki itu sebagai seorang Nasrani yang memeluk Islam. Riwayat dalam Sahih Muslim 2781 menyebutnya sebagai lelaki daripada Bani an-Najjar yang menyertai Ahli Kitab, dan menambah bahawa mereka memujinya lalu Allah membinasakannya di tengah-tengah mereka. Kedua-dua riwayat tidak menamakannya. Kata-kata Anas tentang kedudukan mereka yang menguasai Al-Baqarah dan Ali &lsquo;Imran diambil daripada riwayatnya bagi kisah yang sama dalam Musnad Ahmad. Ulasan Ibnu Taimiyyah diambil daripada <em>as-Sarim al-Maslul.</em> Kisah kembalinya Ibn Abi Sarh terdapat dalam kitab-kitab sirah dan Sunan Abi Dawud. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.">
+      Kisah ini mengikut riwayat Anas bin Malik dalam Sahih al-Bukhari 3617, yang menyifatkan lelaki itu sebagai seorang Nasrani yang memeluk Islam. Riwayat dalam Sahih Muslim 2781 menyebutnya sebagai lelaki daripada Bani an-Najjar yang menyertai Ahli Kitab, dan menambah bahawa mereka memujinya lalu Allah membinasakannya di tengah-tengah mereka. Kedua-dua riwayat tidak menamakannya. Kata-kata Anas tentang kedudukan mereka yang menguasai Al-Baqarah dan Ali &lsquo;Imran diambil daripada riwayatnya bagi kisah yang sama dalam Musnad Ahmad. Ulasan Ibnu Taimiyyah diambil daripada <em>as-Sarim al-Maslul.</em> Kisah kembalinya Ibn Abi Sarh terdapat dalam kitab-kitab sirah dan Sunan Abi Dawud. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="sehari-atau-separuh-hari.html" class="btn btn-ghost btn-lg" data-en="&larr; Sehari atau separuh" data-bm="&larr; Sehari atau separuh">&larr; Sehari atau separuh</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
