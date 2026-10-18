@@ -216,6 +216,18 @@
    "citation":[{"@type":"CreativeWork","name":"Michel Cuypers, Semitic rhetorical analysis of the Qur'an"},
                {"@type":"CreativeWork","name":"Raymond Farrin, Structure and Qur'anic Interpretation"}]}
   </script>
+<link rel="stylesheet" href="/assets/nazm-player/nazm-player.css">
+<script defer src="/assets/nazm-player/films-data.js"></script>
+<script defer src="/assets/nazm-player/film-engine.js"></script>
+<script defer src="/assets/nazm-player/nazm-player.js"></script>
+<style>
+  #watch { padding: 86px 40px; background: #111214; color: #f4f1ea; }
+  #watch .watch-inner { max-width: 1120px; margin: 0 auto; }
+  #watch .watch-kicker { color: #a8e05f; font: 10px/1.5 "JetBrains Mono", monospace; letter-spacing: 2px; }
+  #watch h2 { margin: 16px 0; font: 400 clamp(34px, 5vw, 56px)/1.1 "Cormorant Garamond", Georgia, serif; }
+  #watch .watch-lede { max-width: 650px; margin: 0 0 30px; color: #abb0b8; font: 13px/1.9 Inter, Arial, sans-serif; }
+  @media (max-width: 640px) { #watch { padding: 58px 22px; } }
+</style>
 </head>
 <body class="blueprint">
   <div id="progress"></div>
@@ -231,7 +243,7 @@
     </div>
     <div class="links">
       <a href="#mirror" data-en="The mirror" data-bm="Cermin">The mirror</a>
-      <a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
+      <a href="#watch">Watch</a><a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
       <a href="ring-structure.html" data-en="The essay" data-bm="Esei">The essay</a>
       <a href="ring-atlas.html" data-en="Atlas" data-bm="Atlas">Atlas</a>
     </div>
@@ -241,7 +253,7 @@
   </nav>
   <div id="mobile-menu" aria-hidden="true">
     <a href="#mirror" data-en="The mirror" data-bm="Cermin">The mirror</a>
-    <a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
+    <a href="#watch">Watch</a><a href="#composition" data-en="Composition" data-bm="Komposisi">Composition</a>
     <a href="ring-structure.html" data-en="The essay" data-bm="Esei">The essay</a>
     <a href="ring-atlas.html" class="atlas" data-en="Enter the Atlas →" data-bm="Buka Atlas →">Enter the Atlas →</a>
     <a href="reflections.html" data-en="← Reflections" data-bm="← Refleksi">← Reflections</a>
@@ -304,6 +316,16 @@
   </section>
 
   <!-- ============ COMPOSITION (warm) ============ -->
+  <section id="watch" aria-labelledby="watch-title">
+  <div class="watch-inner">
+    <p class="watch-kicker">NAẒM IN MOTION · ENGLISH</p>
+    <h2 id="watch-title">See the structure unfold.</h2>
+    <p class="watch-lede">Follow the movements, explore the mirror connections, and pause at the proposed centre. These silent, caption-led films visualise the study’s thematic readings.</p>
+    <nazm-film id="nazm-film" surah="1" data-base="/assets/nazm-films/"></nazm-film>
+    <noscript><p><a href="/assets/nazm-films/al-fatiha.mp4">Download the Al-Fātiḥa film</a> or continue with the written study.</p></noscript>
+  </div>
+</section>
+
   <section id="composition">
     <div class="wrap grid">
       <div class="art" id="compArt"></div>
@@ -383,7 +405,7 @@
     var SURAHS = {
       1:{name:"Al-Fātiḥa", tr:"The Opening", ar:"الفاتحة", fn:"al-fatiha",
         src:"Michel Cuypers, Semitic rhetorical analysis; also treated by Farrin.",
-        lede:"Seven verses folding around a single hinge: the sūrah pivots from speaking ABOUT God to speaking TO God at exactly verse 5.",
+        lede:"Seven verses folding around a single hinge: the sūrah turns from speaking ABOUT God to speaking TO God at verse 5, the pivot in this proposed arrangement.",
         secs:[
           ["A","vv. 1–3","Praise of God","Lord of the worlds; the Merciful, the Compassionate: God's attributes declared."],
           ["B","v. 4","Master of the Day of Judgment","The vertical relation: God as sovereign of humanity's final destiny."],
@@ -392,23 +414,23 @@
           ["A′","v. 7","The two ways of humanity","Those favored vs. those under wrath / astray, mirroring God's attributes."]]},
       101:{name:"Al-Qāriʿah", tr:"The Calamity", ar:"القارعة", fn:"al-qariah",
         src:"Michel Cuypers, A Qur'anic Apocalypse (2018).",
-        lede:"Eleven verses, perfectly concentric: two terrifying questions frame a centre where everything is weighed.",
+        lede:"Eleven verses read as a proposed concentric arrangement: two terrifying questions frame a centre where everything is weighed.",
         secs:[
           ["A","vv. 1–3","“The Striking Calamity: what is it?”","The triple naming: announcement, question, and 'what will make you know?'"],
           ["B","vv. 4–5","The world undone","People like scattered moths; mountains like carded wool: solidity dissolved."],
-          ["X","vv. 6–9","The Scales","Heavy scales → a pleasing life. Light scales → the Abyss. Deeds weighed at the exact centre."],
-          ["B′","v. 10","“And what will make you know what it is?”","The framing question returns: the world's dissolution answered by the soul's."],
-          ["A′","v. 11","“A scorching Fire.”","Two words close what three verses opened: the Calamity named at last."]]},
+          ["X","vv. 6–9","The Scales","Heavy scales → a pleasing life. Light scales → the Abyss. Deeds weighed at the pivot in this proposed arrangement."],
+          ["B′","v. 10","“And what will make you know what it is?”","The question turns to the Abyss named in verse 9."],
+          ["A′","v. 11","“A scorching Fire.”","The closing answer identifies the Abyss as a fiercely blazing fire."]]},
       18:{name:"Al-Kahf", tr:"The Cave", ar:"الكهف", fn:"al-kahf",
         src:"Contemporary coherence studies (e.g., Khan & Randhawa, Divine Speech, 2016).",
-        lede:"Four famous stories arranged as two mirrored pairs around a central parable, each story a trial: faith, wealth, knowledge, power.",
+        lede:"Four famous stories arranged as two mirrored pairs around a central parable, each story a trial: faith, wealth, knowledge, power. This simplified map omits vv. 27–31, a transition on recitation, faithful company and accountability that sits between the first and second stories.",
         secs:[
           ["A","vv. 1–8","Prologue","The straight Book; a warning and good news; the earth's adornment as a test."],
-          ["B","vv. 9–26","Youths of the cave · FAITH","Young believers flee a persecuting power; God shelters and wakes them."],
-          ["C","vv. 32–44","The two gardens · WEALTH","A rich man's arrogance; his garden destroyed; wealth as the adornment of this life."],
+          ["B","vv. 9–26","Youths of the cave · FAITH","Young believers seek refuge; God shelters them and later awakens them."],
+          ["C","vv. 32–44","The two gardens · WEALTH","A rich man's confidence in lasting prosperity is overturned when his garden is destroyed."],
           ["X","vv. 45–59","The parable of this world","Water, vegetation, then chaff; the Record laid open: why every trial exists."],
           ["C′","vv. 60–82","Moses and Khiḍr · KNOWLEDGE","Hidden mercy inside apparent harm, inverting C's visible wealth and hidden ruin."],
-          ["B′","vv. 83–98","Dhū'l-Qarnayn · POWER","A righteous king shelters the weak behind a wall, inverting B's persecuting king."],
+          ["B′","vv. 83–98","Dhū'l-Qarnayn · POWER","A ruler uses his power to build a barrier protecting a vulnerable people."],
           ["A′","vv. 99–110","Epilogue","The seas as ink for God's words; “your Lord is One, so work righteousness.”"]]},
       5:{name:"Al-Māʾidah", tr:"The Table", ar:"المائدة", fn:"al-maidah",
         src:"Michel Cuypers, The Banquet: A Reading of the Fifth Sura (2009).",
@@ -417,8 +439,8 @@
           ["A","vv. 1–11","Covenant and completion","Lawful food; “Today I have perfected your religion” (5:3)."],
           ["B","vv. 12–26","Covenants broken before","Israel's covenant and the Christians': both taken, both strained."],
           ["C","vv. 27–40","Cain and Abel","The first blood; “whoever kills a soul…” (5:32); law answering violence."],
-          ["X","vv. 41–50","“To each We gave a law and a way… so compete in good” (5:48)","Torah, Gospel, Qur'an confirmed; plurality of paths declared at the exact centre."],
-          ["C′","vv. 51–71","Living beside the communities","Alliances, mockery, food and marriage across communities: Cain's question socialized."],
+          ["X","vv. 41–50","“To each We gave a law and a way… so compete in good” (5:48)","Torah, Gospel, Qur'an confirmed; plurality of paths declared at the pivot in this proposed arrangement."],
+          ["C′","vv. 51–71","Living beside the communities","Warnings about allegiance and mockery; calls to uphold revelation; covenant and accountability."],
           ["B′","vv. 72–86","Christ's status resolved","Neither God nor son of God, yet “nearest in love are those who say: we are Christians”."],
           ["A′","vv. 87–120","The Table itself","Food laws return; the disciples ask for a table from heaven; Jesus cleared on Judgment Day."]]},
       3:{name:"Āl ʿImrān", tr:"Family of ʿImrān", ar:"آل عمران", fn:"al-imran",
@@ -430,17 +452,17 @@
           ["C","vv. 64–99","Debate with the People of the Book","Come to a common word; Abraham was neither Jew nor Christian."],
           ["X","vv. 100–120","“Hold fast, all together, to the rope of God” (3:103)","The centre commands communal unity: the best nation must not fracture."],
           ["C′","vv. 121–175","Unity tested at Badr and Uḥud","Victory, then near-collapse when ranks broke: the cost of dividing."],
-          ["B′","vv. 176–189","The faithful dead and the deniers","Martyrs alive with their Lord; those who sell the covenant."],
+          ["B′","vv. 176–189","Disbelief, trial, and the covenant","Warnings against disbelief and withholding; death and testing; the covenant to make scripture known."],
           ["A′","vv. 190–200","Revelation answered","Those who remember God standing, sitting, lying down; persevere, bind together."]]},
       12:{name:"Yūsuf", tr:"Joseph", ar:"يوسف", fn:"yusuf",
-        src:"Long noted; recent formal treatments map Q12's ring composition in detail.",
-        lede:"The Qur'an's most sustained narrative is also its cleanest chiasm: a dream opens it, the dream's fulfilment closes it, and Joseph's vindication sits at the hinge.",
+        src:"Site's proposed nine-part reading; compare Mustansir Mir (1986) on reverse-order resolution in Joseph's story.",
+        lede:"The Qur'an's most sustained narrative is read here as a proposed nine-part arrangement: a dream opens it, its fulfilment closes it, and Joseph's rise to authority sits at the hinge.",
         secs:[
           ["A","vv. 1–3","“The best of stories”","Prologue: the Arabic Qur'an and the promise of narrative meaning."],
           ["B","vv. 4–6","The dream","Eleven stars, sun and moon bow to the boy; Jacob warns him to conceal it."],
           ["C","vv. 7–18","Betrayal and the false shirt","The well; the shirt with fake blood deceives Jacob into grief."],
           ["D","vv. 19–35","Egypt and the torn shirt","Sold; the seduction; a shirt torn from behind proves innocence, yet prison follows."],
-          ["X","vv. 36–57","Dreams decoded, Joseph raised","“Today you are established and trusted” (12:54). Descent turns to ascent at the exact middle."],
+          ["X","vv. 36–57","Dreams decoded, Joseph raised","“Today you are established and trusted” (12:54). Joseph interprets dreams, his innocence is investigated, and the king entrusts him with authority."],
           ["D′","vv. 58–79","Egypt reversed","The planted cup mirrors the planted shirt; Benjamin held as Joseph once was taken."],
           ["C′","vv. 80–98","Recognition and the healing shirt","Joseph's shirt cast on Jacob's face restores his sight, undoing the shirt of C."],
           ["B′","vv. 99–101","The dream fulfilled","“He raised his parents upon the throne, and they fell down before him” (12:100)."],
@@ -665,6 +687,15 @@
         nd.addEventListener('click', function(){ highlight(sec); });
       });
       [].forEach.call(document.querySelectorAll('#dRows .srow'), function(r){
+        r.tabIndex = 0;
+        r.setAttribute('role', 'button');
+        r.setAttribute('aria-label', 'Explore section ' + r.dataset.sec);
+        r.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            r.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          }
+        });
         r.addEventListener('mouseenter', function(){ highlight(r.dataset.sec); });
         r.addEventListener('click', function(){ highlight(r.dataset.sec); });
       });
@@ -687,6 +718,8 @@
       document.getElementById('cNote').textContent = s.lede;
       document.getElementById('cSrc').textContent = s.src;
       wireInteractions();
+      var p = document.getElementById('nazm-film');
+      if (p) p.setAttribute('surah', String(n));
       highlight(m);                       // default: the centre
       // entrance for hud nodes + comp bar
       if(window.gsap){
@@ -699,6 +732,65 @@
     // hero + crop art (static signature = Al-Fātiḥa)
     document.getElementById('heroArt').innerHTML = buildRings(1,'dark',true);
     document.getElementById('cropArt').innerHTML = buildHudDecor(1);
+// Film bridge: existing surah tabs remain the source of selection.
+function filmPlayer() { return document.getElementById('nazm-film'); }
+function filmRecord(n) {
+  return (window.NAZM_FILMS || []).find(function (r) { return r.id === Number(n); });
+}
+function markFilmSections(indices) {
+  var selected = indices.map(String);
+  [].forEach.call(hudArt.querySelectorAll('.node'), function (node) {
+    node.classList.toggle('hot', selected.indexOf(node.dataset.sec) !== -1);
+  });
+  [].forEach.call(document.querySelectorAll('#dRows .srow'), function (row) {
+    row.classList.toggle('on', selected.indexOf(row.dataset.sec) !== -1);
+  });
+}
+function syncFilmHighlight(event) {
+  var p = filmPlayer(), d = event.detail || {}, r = filmRecord(current);
+  if (!p || event.target !== p || Number(d.surahId) !== Number(current) || !r) return;
+  var pair = Number.isInteger(d.pairIndex) ? r.pairs[d.pairIndex] : null;
+  var centre = d.centre || (d.chapter && d.chapter.kind === 'centre');
+  if (pair) markFilmSections([pair.a, pair.b]);
+  else if (centre) markFilmSections([r.centreIndex]);
+  else markFilmSections([]);
+}
+document.addEventListener('nazm:chapter', syncFilmHighlight);
+document.addEventListener('nazm:pair', syncFilmHighlight);
+
+function seekFilmSection(index) {
+  var p = filmPlayer(), r = filmRecord(current);
+  if (!p || typeof p.playChapter !== 'function' || !r) return;
+  var section = Number(index);
+  var pairIndex = r.pairs.findIndex(function (pair) {
+    return pair.a === section || pair.b === section;
+  });
+  var chapterIndex = r.chapters.findIndex(function (chapter) {
+    return section === r.centreIndex ? chapter.kind === 'centre' :
+      chapter.kind === 'pair' && chapter.pairIndex === pairIndex;
+  });
+  if (chapterIndex >= 0) p.playChapter(chapterIndex);
+  // Seeking preserves play/pause state. Hover never seeks or starts playback.
+}
+function activateFilmSection(event) {
+  var node = event.target.closest('[data-sec]');
+  if (node) seekFilmSection(node.dataset.sec);
+}
+hudArt.addEventListener('click', activateFilmSection);
+document.getElementById('dRows').addEventListener('click', activateFilmSection);
+hudArt.addEventListener('keydown', function (event) {
+  if (event.target.closest('.node') && (event.key === 'Enter' || event.key === ' ')) {
+    event.preventDefault();
+    event.target.closest('.node').dispatchEvent(new MouseEvent('click', { bubbles: true }));
+  }
+});
+
+// Deferred player scripts finish after the original inline IIFE initializes.
+customElements.whenDefined('nazm-film').then(function () {
+  var p = filmPlayer();
+  if (p) p.setSurah(current);
+});
+
     selectSurah(current);
 
     /* ============ MOTION ============ */
