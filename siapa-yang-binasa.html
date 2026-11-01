@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="&quot;Ummah ini sudah tamat.&quot; Hadith Sahih Muslim 2623 tentang orang yang berkata manusia telah binasa, dibaca bersama enam ayat yang menolak putus asa. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Siapa Yang Binasa · harapan &amp; ummah · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="&quot;The Ummah is finished.&quot; Then who is really ruined?" />
+  <meta property="og:description" content="The Prophet &#65018; said: when a man says the people are ruined, he is the most ruined of them. Sahih Muslim 2623, read with six verses that refuse despair." />
+  <meta property="og:url" content="https://farissuhail.com/siapa-yang-binasa.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Siapa Yang Binasa: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="&quot;Ummah ini sudah tamat.&quot; Jadi siapa yang sebenarnya binasa?" />
+  <meta name="twitter:description" content="Sesiapa yang menulis ummah sebagai tamat, sebenarnya telah menamatkan dirinya sendiri. Sahih Muslim 2623." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(64px, 9.4vw, 116px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .story-titleblock .rf-cow { font-size: clamp(56px, 18vw, 84px); }
+      .story-titleblock .rf-the { font-size: clamp(30px, 9vw, 44px); }
+    }
+    .story-intro > * { min-width: 0; }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/siapa-yang-binasa.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "\"The Ummah is finished.\" Then who is really ruined? (Sahih Muslim 2623)",
+    "alternativeHeadline": "Siapa yang sebenarnya binasa: tentang orang yang berkata ummah sudah tamat",
+    "url": "https://farissuhail.com/siapa-yang-binasa.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Hadith",
+      "Sahih Muslim",
+      "Hope",
+      "Ummah"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">HADITH &middot; SAHIH MUSLIM</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the" data-en="who is really" data-bm="siapa yang">siapa yang</span>
+        <span class="rf-cow" data-en="RUINED" data-bm="BINASA">BINASA</span>
+      </h1>
+      <div class="rf-arabic">MUSLIM 2623 &middot; YUSUF 12:87</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">Baharu</span>
+        <span class="story-badge" data-en="Hope &amp; the Ummah" data-bm="Harapan &amp; ummah">Harapan &amp; ummah</span>
+        <span class="story-badge" data-en="6 min read" data-bm="Baca 6 minit">Baca 6 minit</span>
+      </div>
+      <h2 data-en="&ldquo;The Ummah is finished.&rdquo; <em>Then who is really ruined?</em>"
+          data-bm="&ldquo;Ummah ini sudah tamat.&rdquo; <em>Jadi siapa yang sebenarnya binasa?</em>">
+        &ldquo;Ummah ini sudah tamat.&rdquo; <em>Jadi siapa yang sebenarnya binasa?</em>
+      </h2>
+      <p data-en="We hear it after every bad headline, in every comment section and every group chat: it's over, there's no hope for us. Fourteen centuries ago the Prophet &#65018; gave a one-line verdict on the person who says it. And the Qur'an, again and again, refuses to let the believer give up."
+         data-bm="Kita dengar setiap kali ada berita buruk, di setiap ruangan komen dan setiap group chat: dah habis, tiada harapan lagi untuk kita. Empat belas abad lalu, Nabi &#65018; memberi satu kalimah ringkas tentang orang yang mengucapkannya. Dan Al-Quran, berulang kali, enggan membiarkan orang beriman berputus asa.">
+        Kita dengar setiap kali ada berita buruk, di setiap ruangan komen dan setiap group chat: dah habis, tiada harapan lagi untuk kita. Empat belas abad lalu, Nabi &#65018; memberi satu kalimah ringkas tentang orang yang mengucapkannya. Dan Al-Quran, berulang kali, enggan membiarkan orang beriman berputus asa.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="The sentence" data-bm="Kalimah itu">Kalimah itu</span></div>
+    <h2 class="rf-big"
+        data-en="&ldquo;It's over.&rdquo; <em>Two words that feel like honesty.</em>"
+        data-bm="&ldquo;Dah tamat.&rdquo; <em>Dua perkataan yang terasa seperti kejujuran.</em>">
+      &ldquo;Dah tamat.&rdquo; <em>Dua perkataan yang terasa seperti kejujuran.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="It sounds like realism. Look at the divisions, the weakness, the scandals, the suffering we cannot stop. Saying &ldquo;the Ummah is finished&rdquo; can feel like the only clear-eyed thing left to say."
+       data-bm="Ia kedengaran seperti realistik. Lihat perpecahan, kelemahan, skandal, penderitaan yang tidak mampu kita hentikan. Berkata &ldquo;ummah ini sudah tamat&rdquo; boleh terasa seperti satu-satunya kenyataan yang jujur.">
+      Ia kedengaran seperti realistik. Lihat perpecahan, kelemahan, skandal, penderitaan yang tidak mampu kita hentikan. Berkata &ldquo;ummah ini sudah tamat&rdquo; boleh terasa seperti satu-satunya kenyataan yang jujur.
+    </p>
+    <p class="rf-body"
+       data-en="But notice where the speaker stands when he says it. Outside. Pointing in. He has quietly stepped out of the crowd he is condemning."
+       data-bm="Tetapi perhatikan di mana dia berdiri ketika mengucapkannya. Di luar. Menuding ke dalam. Dia telah diam-diam melangkah keluar daripada kelompok yang sedang dihukumnya.">
+      Tetapi perhatikan di mana dia berdiri ketika mengucapkannya. Di luar. Menuding ke dalam. Dia telah diam-diam melangkah keluar daripada kelompok yang sedang dihukumnya.
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="The verdict" data-bm="Keputusannya">Keputusannya</span></div>
+    <p class="rf-word" lang="ar" dir="rtl" style="font-size:clamp(34px,6.4vw,62px);margin-top:10px">إِذَا قَالَ الرَّجُلُ هَلَكَ النَّاسُ فَهُوَ أَهْلَكُهُمْ</p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;When a man says, &lsquo;The people are ruined,&rsquo; he is&hellip;&rdquo;"
+         data-bm="&ldquo;Apabila seseorang berkata, &lsquo;Manusia telah binasa,&rsquo; maka dialah&hellip;&rdquo;">
+        &ldquo;Apabila seseorang berkata, &lsquo;Manusia telah binasa,&rsquo; maka dialah&hellip;&rdquo;
+      </p>
+      <p class="rf-ayah-ref">HADITH &middot; SAHIH MUSLIM 2623 &middot; ABU HURAIRAH</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="The narrator, Abu Ishaq, admitted he was not sure how the last word was voiced. Imam Muslim kept his doubt in the record. Both readings are carried, and both land hard."
+       data-bm="Perawinya, Abu Ishaq, mengakui dia tidak pasti baris perkataan terakhir itu. Imam Muslim mengekalkan keraguannya dalam riwayat. Kedua-dua bacaan dibawa, dan kedua-duanya tajam.">
+      Perawinya, Abu Ishaq, mengakui dia tidak pasti baris perkataan terakhir itu. Imam Muslim mengekalkan keraguannya dalam riwayat. Kedua-dua bacaan dibawa, dan kedua-duanya tajam.
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="Ahlakuhum <span class='ar'>أَهْلَكُهُمْ</span>" data-bm="Ahlakuhum <span class='ar'>أَهْلَكُهُمْ</span>">Ahlakuhum <span class="ar">أَهْلَكُهُمْ</span></h3>
+        <p data-en="<em>The most ruined of them.</em> In writing everyone off, he has become the worst case in the crowd he is judging." data-bm="<em>Dialah yang paling binasa antara mereka.</em> Dengan menolak semua orang, dia sendiri menjadi kes paling teruk dalam kelompok yang dihakiminya."><em>Dialah yang paling binasa antara mereka.</em> Dengan menolak semua orang, dia sendiri menjadi kes paling teruk dalam kelompok yang dihakiminya.</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="Ahlakahum <span class='ar'>أَهْلَكَهُمْ</span>" data-bm="Ahlakahum <span class='ar'>أَهْلَكَهُمْ</span>">Ahlakahum <span class="ar">أَهْلَكَهُمْ</span></h3>
+        <p data-en="<em>He is the one who ruined them.</em> Despair spreads. Say it enough, and people stop trying. The prophecy fulfils itself, and he helped write it." data-bm="<em>Dialah yang membinasakan mereka.</em> Putus asa itu berjangkit. Ulanglah cukup kerap, dan orang berhenti berusaha. Ramalan itu menjadi nyata, dan dia turut menulisnya."><em>Dialah yang membinasakan mereka.</em> Putus asa itu berjangkit. Ulanglah cukup kerap, dan orang berhenti berusaha. Ramalan itu menjadi nyata, dan dia turut menulisnya.</p>
+      </div></li>
+    </ul>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Whoever writes off the Ummah <em>has already written himself off.</em>"
+       data-bm="Sesiapa yang menamatkan ummah <em>sebenarnya telah menamatkan dirinya sendiri.</em>">
+      Sesiapa yang menamatkan ummah <em>sebenarnya telah menamatkan dirinya sendiri.</em>
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="Grief is not the problem" data-bm="Sedih bukan masalahnya">Sedih bukan masalahnya</span></div>
+    <h2 class="rf-big"
+        data-en="It is not a ban on being sad. <em>It is a warning about where you stand.</em>"
+        data-bm="Ini bukan larangan untuk bersedih. <em>Ini amaran tentang di mana kamu berdiri.</em>">
+      Ini bukan larangan untuk bersedih. <em>Ini amaran tentang di mana kamu berdiri.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Imam Malik drew the line clearly. If someone says it out of grief, pained by what he sees in people's religion, there is no harm in it. What is blamed is saying it out of self-admiration, looking down on people from a height he has given himself."
+       data-bm="Imam Malik meletakkan garisnya dengan jelas. Jika seseorang mengucapkannya kerana sedih, pedih melihat keadaan agama manusia, tiada salahnya. Yang dicela ialah mengucapkannya kerana kagum dengan diri sendiri, memandang rendah manusia dari ketinggian yang dia berikan kepada dirinya.">
+      Imam Malik meletakkan garisnya dengan jelas. Jika seseorang mengucapkannya kerana sedih, pedih melihat keadaan agama manusia, tiada salahnya. Yang dicela ialah mengucapkannya kerana kagum dengan diri sendiri, memandang rendah manusia dari ketinggian yang dia berikan kepada dirinya.
+    </p>
+    <p class="rf-body"
+       data-en="So the test is simple. Does what you see break your heart and send you to work and to du&lsquo;a? Or does it make you feel above it all? One is concern. The other is ruin wearing the clothes of concern."
+       data-bm="Maka ujiannya mudah. Adakah apa yang kamu lihat meremukkan hati lalu menghantar kamu kepada usaha dan doa? Atau ia membuatkan kamu berasa lebih tinggi daripada semua? Yang pertama ialah keprihatinan. Yang kedua ialah kebinasaan yang memakai baju keprihatinan.">
+      Maka ujiannya mudah. Adakah apa yang kamu lihat meremukkan hati lalu menghantar kamu kepada usaha dan doa? Atau ia membuatkan kamu berasa lebih tinggi daripada semua? Yang pertama ialah keprihatinan. Yang kedua ialah kebinasaan yang memakai baju keprihatinan.
+    </p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="Despair is not an option" data-bm="Putus asa bukan pilihan">Putus asa bukan pilihan</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;And do not give up on the relief that comes from Allah.&rdquo;"
+       data-bm="&ldquo;Dan janganlah kamu berputus asa daripada rahmat Allah.&rdquo;">
+      &ldquo;Dan janganlah kamu berputus asa daripada rahmat Allah.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Yusuf 12:87</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Ya&lsquo;qub said this after losing two sons, with eyes gone white from weeping. If anyone had the right to say &ldquo;it's over,&rdquo; it was him. He sent his sons out searching instead. (We read this verse more slowly in <a href='yusuf.html' style='color:var(--accent)'>the Yusuf reflection</a>.)"
+       data-bm="Ya&lsquo;qub mengucapkannya selepas kehilangan dua anak, dengan mata yang memutih kerana tangisan. Jika ada sesiapa yang berhak berkata &ldquo;dah tamat,&rdquo; dialah orangnya. Sebaliknya dia menghantar anak-anaknya keluar mencari. (Ayat ini kita renung dengan lebih perlahan dalam <a href='yusuf.html' style='color:var(--accent)'>refleksi Yusuf</a>.)">
+      Ya&lsquo;qub mengucapkannya selepas kehilangan dua anak, dengan mata yang memutih kerana tangisan. Jika ada sesiapa yang berhak berkata &ldquo;dah tamat,&rdquo; dialah orangnya. Sebaliknya dia menghantar anak-anaknya keluar mencari. (Ayat ini kita renung dengan lebih perlahan dalam <a href="yusuf.html" style="color:var(--accent)">refleksi Yusuf</a>.)
+    </p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;Do not despair of the mercy of Allah.&rdquo;"
+         data-bm="&ldquo;Janganlah kamu berputus asa daripada rahmat Allah.&rdquo;">
+        &ldquo;Janganlah kamu berputus asa daripada rahmat Allah.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">Az-Zumar 39:53</p>
+    </div>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="And that verse was addressed to people who had sinned against themselves. If Allah forbids despair even for them, how can we declare it for an entire Ummah?"
+       data-bm="Dan ayat itu ditujukan kepada mereka yang telah menzalimi diri sendiri dengan dosa. Jika Allah melarang putus asa walaupun untuk mereka, bagaimana kita boleh mengisytiharkannya untuk seluruh ummah?">
+      Dan ayat itu ditujukan kepada mereka yang telah menzalimi diri sendiri dengan dosa. Jika Allah melarang putus asa walaupun untuk mereka, bagaimana kita boleh mengisytiharkannya untuk seluruh ummah?
+    </p>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="Change begins inside" data-bm="Perubahan bermula di dalam">Perubahan bermula di dalam</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Allah does not change the condition of a people until they change what is within themselves.&rdquo;"
+       data-bm="&ldquo;Sesungguhnya Allah tidak mengubah keadaan sesuatu kaum sehingga mereka mengubah apa yang ada pada diri mereka sendiri.&rdquo;">
+      &ldquo;Sesungguhnya Allah tidak mengubah keadaan sesuatu kaum sehingga mereka mengubah apa yang ada pada diri mereka sendiri.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Ar-Ra&lsquo;d 13:11</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="This verse is the opposite of &ldquo;it's over.&rdquo; It says the condition of a people is not fixed. It can move. And it tells you where the lever is: not in the headlines, but in the selves that make up the Ummah. Including yours."
+       data-bm="Ayat ini ialah lawan kepada &ldquo;dah tamat.&rdquo; Ia menyatakan bahawa keadaan sesuatu kaum tidak kekal. Ia boleh berubah. Dan ia memberitahu di mana tuasnya: bukan pada tajuk berita, tetapi pada diri-diri yang membentuk ummah. Termasuk diri kamu.">
+      Ayat ini ialah lawan kepada &ldquo;dah tamat.&rdquo; Ia menyatakan bahawa keadaan sesuatu kaum tidak kekal. Ia boleh berubah. Dan ia memberitahu di mana tuasnya: bukan pada tajuk berita, tetapi pada diri-diri yang membentuk ummah. Termasuk diri kamu.
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="Hold on, together" data-bm="Berpegang, bersama">Berpegang, bersama</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Hold firmly to the rope of Allah, all of you together, and do not split apart.&rdquo;"
+       data-bm="&ldquo;Berpegang teguhlah kamu semua kepada tali Allah, dan janganlah kamu bercerai-berai.&rdquo;">
+      &ldquo;Berpegang teguhlah kamu semua kepada tali Allah, dan janganlah kamu bercerai-berai.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Ali &lsquo;Imran 3:103</p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;The believers are nothing but brothers, so make peace between your brothers.&rdquo;"
+         data-bm="&ldquo;Sesungguhnya orang-orang beriman itu bersaudara, maka damaikanlah antara saudara-saudara kamu.&rdquo;">
+        &ldquo;Sesungguhnya orang-orang beriman itu bersaudara, maka damaikanlah antara saudara-saudara kamu.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">Al-Hujurat 49:10</p>
+    </div>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="The man who says &ldquo;the people are ruined&rdquo; has already let go of the rope's other end. Allah's instruction runs the other way: grip together, and when brothers fall out, step in and mend it. You cannot repair a family you have already disowned."
+       data-bm="Orang yang berkata &ldquo;manusia telah binasa&rdquo; sudah pun melepaskan hujung tali yang satu lagi. Perintah Allah ke arah sebaliknya: berpeganglah bersama, dan apabila saudara bertelagah, masuklah dan damaikan. Kamu tidak boleh membaiki keluarga yang telah kamu buang.">
+      Orang yang berkata &ldquo;manusia telah binasa&rdquo; sudah pun melepaskan hujung tali yang satu lagi. Perintah Allah ke arah sebaliknya: berpeganglah bersama, dan apabila saudara bertelagah, masuklah dan damaikan. Kamu tidak boleh membaiki keluarga yang telah kamu buang.
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="Ease is promised" data-bm="Kemudahan dijanjikan">Kemudahan dijanjikan</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;So surely with hardship comes ease. Surely with hardship comes ease.&rdquo;"
+       data-bm="&ldquo;Maka sesungguhnya bersama kesulitan ada kemudahan. Sesungguhnya bersama kesulitan ada kemudahan.&rdquo;">
+      &ldquo;Maka sesungguhnya bersama kesulitan ada kemudahan. Sesungguhnya bersama kesulitan ada kemudahan.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Ash-Sharh 94:5&ndash;6</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Said twice, so it would not be doubted. Not <em>after</em> hardship, but <em>with</em> it: the ease is already travelling alongside. Many scholars noted that <em>al-&lsquo;usr</em> comes with &ldquo;the,&rdquo; one specific hardship, while <em>yusr</em> comes without it, as if to say one hardship is met by more than one ease."
+       data-bm="Diulang dua kali supaya tidak diragui. Bukan <em>selepas</em> kesulitan, tetapi <em>bersama</em>nya: kemudahan itu sudah pun berjalan seiring. Ramai ulama memerhatikan bahawa <em>al-&lsquo;usr</em> datang dengan &ldquo;al,&rdquo; satu kesulitan yang tertentu, manakala <em>yusr</em> datang tanpanya, seolah-olah satu kesulitan dihadapi dengan lebih daripada satu kemudahan.">
+      Diulang dua kali supaya tidak diragui. Bukan <em>selepas</em> kesulitan, tetapi <em>bersama</em>nya: kemudahan itu sudah pun berjalan seiring. Ramai ulama memerhatikan bahawa <em>al-&lsquo;usr</em> datang dengan &ldquo;al,&rdquo; satu kesulitan yang tertentu, manakala <em>yusr</em> datang tanpanya, seolah-olah satu kesulitan dihadapi dengan lebih daripada satu kemudahan.
+    </p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="Weakness, trials, division: real. <em>Beyond Allah's power to change: never.</em>"
+       data-bm="Kelemahan, ujian, perpecahan: benar. <em>Di luar kuasa Allah untuk mengubahnya: tidak sekali-kali.</em>">
+      Kelemahan, ujian, perpecahan: benar. <em>Di luar kuasa Allah untuk mengubahnya: tidak sekali-kali.</em>
+    </p>
+  </section>
+
+  <!-- 08 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">08</span><span class="rf-head-label" data-en="Instead of the verdict" data-bm="Daripada menjatuhkan hukuman">Daripada menjatuhkan hukuman</span></div>
+    <h2 class="rf-big"
+        data-en="Don't announce the Ummah's funeral. <em>Join its revival.</em>"
+        data-bm="Jangan umumkan kematian ummah. <em>Sertai kebangkitannya.</em>">
+      Jangan umumkan kematian ummah. <em>Sertai kebangkitannya.</em>
+    </h2>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="Sincere faith" data-bm="Iman yang ikhlas">Iman yang ikhlas</h3>
+        <p data-en="Start with the one heart you are answerable for. Fix your prayer before you diagnose the world." data-bm="Mulakan dengan satu hati yang kamu bertanggungjawab ke atasnya. Baiki solatmu sebelum mendiagnosis dunia.">Mulakan dengan satu hati yang kamu bertanggungjawab ke atasnya. Baiki solatmu sebelum mendiagnosis dunia.</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="Unity" data-bm="Perpaduan">Perpaduan</h3>
+        <p data-en="Make peace where you can reach: your family, your masjid, your group chat." data-bm="Damaikan di mana tanganmu sampai: keluarga, masjid, group chat kamu.">Damaikan di mana tanganmu sampai: keluarga, masjid, group chat kamu.</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3 data-en="Patience" data-bm="Kesabaran">Kesabaran</h3>
+        <p data-en="Revival is measured in generations, not news cycles. Plant what you may never see grow." data-bm="Kebangkitan diukur dengan generasi, bukan kitaran berita. Tanamlah walaupun kamu mungkin tidak sempat melihatnya tumbuh.">Kebangkitan diukur dengan generasi, bukan kitaran berita. Tanamlah walaupun kamu mungkin tidak sempat melihatnya tumbuh.</p>
+      </div></li>
+      <li><span class="n">4</span><div>
+        <h3 data-en="Righteous action" data-bm="Amal soleh">Amal soleh</h3>
+        <p data-en="Do the next good thing in front of you, and leave the outcome with Allah." data-bm="Lakukan kebaikan seterusnya yang ada di hadapanmu, dan serahkan hasilnya kepada Allah.">Lakukan kebaikan seterusnya yang ada di hadapanmu, dan serahkan hasilnya kepada Allah.</p>
+      </div></li>
+    </ul>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="Our duty is not to call the Ummah finished. <em>It is to keep working for it, and leave the ending to Allah.</em>"
+        data-bm="Tugas kita bukan menyatakan ummah ini sudah tamat. <em>Tugas kita terus berusaha untuknya, dan menyerahkan pengakhirannya kepada Allah.</em>">
+      Tugas kita bukan menyatakan ummah ini sudah tamat. <em>Tugas kita terus berusaha untuknya, dan menyerahkan pengakhirannya kepada Allah.</em>
+    </h2>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON THOSE WHO SAY IT'S OVER" data-bm="TENTANG MEREKA YANG BERKATA DAH TAMAT">TENTANG MEREKA YANG BERKATA DAH TAMAT</div>
+    <h2 class="rf-big">Siapa Yang Binasa</h2>
+    <p class="rf-body"
+       data-en="May Allah keep us from despair and from looking down on His servants, unite the hearts of this Ummah, and make us among those through whom He revives it. <em>Aameen.</em>"
+       data-bm="Semoga Allah menjauhkan kita daripada putus asa dan daripada memandang rendah hamba-hamba-Nya, menyatukan hati ummah ini, dan menjadikan kita antara mereka yang melaluinya Dia menghidupkannya semula. <em>Aameen.</em>">
+      Semoga Allah menjauhkan kita daripada putus asa dan daripada memandang rendah hamba-hamba-Nya, menyatukan hati ummah ini, dan menjadikan kita antara mereka yang melaluinya Dia menghidupkannya semula. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="The hadith is narrated by Abu Hurairah in Sahih Muslim 2623; the note on the two readings, <em>ahlakuhum</em> and <em>ahlakahum,</em> is from the narrator Abu Ishaq in the same report. Imam Malik's explanation is recorded in Sunan Abi Dawud 4983 and is cited by an-Nawawi in his commentary on Muslim. The remark on <em>al-&lsquo;usr</em> and <em>yusr</em> is found in the books of tafsir on Ash-Sharh. The words here, and any mistakes in them, are mine."
+       data-bm="Hadith ini diriwayatkan oleh Abu Hurairah dalam Sahih Muslim 2623; catatan tentang dua bacaan, <em>ahlakuhum</em> dan <em>ahlakahum,</em> datang daripada perawi Abu Ishaq dalam riwayat yang sama. Penjelasan Imam Malik dirakam dalam Sunan Abi Dawud 4983 dan dinukil oleh an-Nawawi dalam syarahnya ke atas Sahih Muslim. Catatan tentang <em>al-&lsquo;usr</em> dan <em>yusr</em> terdapat dalam kitab-kitab tafsir bagi surah Ash-Sharh. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.">
+      Hadith ini diriwayatkan oleh Abu Hurairah dalam Sahih Muslim 2623; catatan tentang dua bacaan, <em>ahlakuhum</em> dan <em>ahlakahum,</em> datang daripada perawi Abu Ishaq dalam riwayat yang sama. Penjelasan Imam Malik dirakam dalam Sunan Abi Dawud 4983 dan dinukil oleh an-Nawawi dalam syarahnya ke atas Sahih Muslim. Catatan tentang <em>al-&lsquo;usr</em> dan <em>yusr</em> terdapat dalam kitab-kitab tafsir bagi surah Ash-Sharh. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="bumi-pun-enggan.html" class="btn btn-ghost btn-lg" data-en="&larr; Bumi pun enggan" data-bm="&larr; Bumi pun enggan">&larr; Bumi pun enggan</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
