@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ms" data-lang="bm">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Khaulah binti Tha&lsquo;labah, wanita yang aduannya didengar Allah dari atas tujuh langit dan diabadikan dalam Surah Al-Mujadilah 58:1&ndash;4. Kisah inspirasi oleh The Mdrn Urban. BM / English." />
+  <title>Suara Yang Didengar · doa &amp; yang dizalimi · Kisah Inspirasi · The Mdrn Urban</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
+  <meta property="og:title" content="The woman whose whispered complaint Allah heard from above the seven heavens" />
+  <meta property="og:description" content="Aisyah, in the same room, missed half of what Khaulah said. Allah heard all of it, and answered in Surah Al-Mujadilah." />
+  <meta property="og:url" content="https://farissuhail.com/suara-yang-didengar.html" />
+  <meta property="og:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Suara Yang Didengar: kisah inspirasi oleh The Mdrn Urban." />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aisyah di sebelah pun tak dengar. Allah dengar dari atas tujuh langit." />
+  <meta name="twitter:description" content="Kisah Khaulah binti Tha&lsquo;labah dan Surah Al-Mujadilah 58:1&ndash;4." />
+  <meta name="twitter:image" content="https://farissuhail.com/assets/og-inspiration.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inspiration-story.css" />
+  <link rel="stylesheet" href="inspiration-atmos.css" />
+  <style>
+    /* ----- Arabic + translation ----- */
+    .rf-ayah { font-family: 'Amiri', serif; font-size: clamp(26px, 4.4vw, 46px); line-height: 1.95; color: var(--text); direction: rtl; margin: 0 0 22px; }
+    .rf-ayah-tr { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.6vw, 29px); line-height: 1.4; color: var(--text); margin: 0 0 12px; }
+    .rf-ayah-ref { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0; }
+    .rf-nav-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ----- reading-progress bar ----- */
+    .rf-progress { position: fixed; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,0.05); z-index: 9500; }
+    .rf-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffc24d, #ffd27a); box-shadow: 0 0 14px rgba(255,194,77,0.6); }
+
+    /* ----- two-column intro ----- */
+    .story-intro { max-width: 1080px; margin: 0 auto; padding: 84px 32px 70px; display: grid; grid-template-columns: 1.02fr 1fr; gap: 52px; align-items: center; min-height: 80vh; position: relative; z-index: 1; }
+    .story-titleblock { display: flex; flex-direction: column; align-items: flex-start; }
+    .story-titleblock .rf-surah { margin: 0 0 14px; }
+    .story-titleblock .rf-the { font-size: clamp(34px, 5.4vw, 64px); margin-bottom: -4px; }
+    .story-titleblock .rf-cow { font-size: clamp(56px, 7.2vw, 92px); text-align: left; }
+    .story-titleblock .rf-arabic { margin: 14px 0 0; }
+    .story-card { background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)); border: 1px solid var(--border); border-radius: 20px; padding: 30px 30px 32px; box-shadow: 0 34px 80px -34px rgba(0,0,0,0.75); }
+    .story-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .story-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; }
+    .story-badge.live { color: #0a0a0f; background: var(--accent); border-color: transparent; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+    .story-badge.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #0a0a0f; animation: rf-bob 1.8s ease-in-out infinite; }
+    .story-card h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 16px; color: var(--text); }
+    .story-card h2 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-card p { font-size: 15.5px; line-height: 1.65; color: var(--text-dim); margin: 0 0 24px; }
+    .story-cta { display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: #0a0a0f; background: var(--accent); border: 0; border-radius: 11px; padding: 13px 22px; cursor: pointer; text-decoration: none; transition: transform 0.15s; }
+    .story-cta:hover { transform: translateY(-2px); }
+
+    /* ----- inline section head ----- */
+    .rf-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+    .rf-head-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .rf-head-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ----- sub-eyebrow ----- */
+    .rf-subeyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+    .rf-subeyebrow::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+
+    /* ----- big single Arabic word ----- */
+    .rf-word { font-family: 'Amiri', serif; font-size: clamp(56px, 11vw, 104px); color: var(--accent); text-align: center; direction: rtl; line-height: 1; margin: 0 0 30px; text-shadow: 0 0 44px rgba(255,194,77,0.38); }
+
+    /* ----- quote card ----- */
+    .rf-quotecard { margin: 30px 0 0; padding: 24px 28px; border-left: 2px solid var(--accent); background: linear-gradient(90deg, rgba(255,194,77,0.07), transparent); border-radius: 0 14px 14px 0; }
+    .rf-quotecard p { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.35; color: var(--text); margin: 0 0 10px; }
+    .rf-quotecard .rf-ayah-ref { margin: 0; }
+
+    /* ----- numbered stations ----- */
+    .rf-steps { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; }
+    .rf-steps li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .rf-steps .n { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); flex-shrink: 0; width: 26px; }
+    .rf-steps h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--text); }
+    .rf-steps h3 .ar { font-family: 'Amiri', serif; font-weight: 400; color: var(--accent); margin-left: 8px; }
+    .rf-steps p { font-size: 15px; line-height: 1.62; color: var(--text-dim); margin: 0; }
+
+    @media (max-width: 760px) {
+      .story-intro { grid-template-columns: 1fr; gap: 30px; padding: 64px 24px 48px; min-height: auto; }
+      .story-titleblock .rf-cow { font-size: clamp(50px, 15.5vw, 84px); }
+      .story-titleblock .rf-the { font-size: clamp(30px, 9vw, 44px); }
+    }
+    .story-intro > * { min-width: 0; }
+  </style>
+  <link rel="canonical" href="https://farissuhail.com/suara-yang-didengar.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The voice that was heard: Khaulah binti Tha'labah and Surah Al-Mujadilah",
+    "alternativeHeadline": "Suara yang didengar: wanita yang aduannya diabadikan dalam Surah Al-Mujadilah",
+    "url": "https://farissuhail.com/suara-yang-didengar.html",
+    "inLanguage": "ms",
+    "author": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "publisher": {
+      "@id": "https://farissuhail.com/#person"
+    },
+    "isPartOf": {
+      "@id": "https://farissuhail.com/#website"
+    },
+    "about": [
+      "Qur'an",
+      "Hadith",
+      "Surah Al-Mujadilah",
+      "Khaulah binti Tha'labah",
+      "Du'a"
+    ]
+  }
+  </script>
+</head>
+<body class="inspiration-story">
+
+<!-- Nav -->
+<header class="rf-nav">
+  <a href="index.html" class="brand"><span class="brand-name">FARISSUHAIL</span></a>
+  <div class="rf-nav-right">
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">
+      <span class="lang-en">EN</span><span class="lang-sep">/</span><span class="lang-bm active">BM</span>
+    </button>
+    <a href="inspiration.html" class="rf-back">&larr; <span data-en="All inspiration stories" data-bm="Semua kisah inspirasi">Semua kisah inspirasi</span></a>
+  </div>
+</header>
+
+<main>
+
+
+  <!-- ===== INTRO ===== -->
+  <section class="story-intro">
+    <div class="story-titleblock">
+      <div class="rf-surah">SURAH AL-MUJADILAH &middot; 58:1</div>
+      <h1 class="rf-title" style="align-items:flex-start">
+        <span class="rf-the" data-en="the voice that was" data-bm="suara yang">suara yang</span>
+        <span class="rf-cow" data-en="HEARD" data-bm="DIDENGAR">DIDENGAR</span>
+      </h1>
+      <div class="rf-arabic">KHAULAH BINTI THA&lsquo;LABAH</div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-badges">
+        <span class="story-badge live" data-en="New" data-bm="Baharu">Baharu</span>
+        <span class="story-badge" data-en="Du&lsquo;a &amp; the oppressed" data-bm="Doa &amp; yang dizalimi">Doa &amp; yang dizalimi</span>
+        <span class="story-badge" data-en="7 min read" data-bm="Baca 7 minit">Baca 7 minit</span>
+      </div>
+      <h2 data-en="Aisyah, in the same room, could not hear her. <em>Allah heard her from above the seven heavens.</em>"
+          data-bm="Aisyah di bilik yang sama pun tidak dengar. <em>Allah dengar dari atas tujuh langit.</em>">
+        Aisyah di bilik yang sama pun tidak dengar. <em>Allah dengar dari atas tujuh langit.</em>
+      </h2>
+      <p data-en="She was not a queen, not a wife of the Prophet &#65018;, not wealthy. An older Ansari woman, wronged by one angry sentence from her husband, who complained so quietly that the person beside her missed half of it. Allah answered with verses that open a surah named after her, recited until the end of time."
+         data-bm="Dia bukan permaisuri, bukan isteri Nabi &#65018;, bukan orang kaya. Seorang wanita Ansar yang sudah berusia, dizalimi oleh satu ayat marah suaminya, yang mengadu begitu perlahan sehingga orang di sebelahnya terlepas separuh. Allah menjawab dengan ayat-ayat yang membuka sebuah surah dinamakan sempena dirinya, dibaca hingga akhir zaman.">
+        Dia bukan permaisuri, bukan isteri Nabi &#65018;, bukan orang kaya. Seorang wanita Ansar yang sudah berusia, dizalimi oleh satu ayat marah suaminya, yang mengadu begitu perlahan sehingga orang di sebelahnya terlepas separuh. Allah menjawab dengan ayat-ayat yang membuka sebuah surah dinamakan sempena dirinya, dibaca hingga akhir zaman.
+      </p>
+      <a href="#start" class="story-cta">
+        <span data-en="Read the story" data-bm="Baca kisah">Baca kisah</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="rf-slide" id="start">
+    <div class="rf-head"><span class="rf-head-num">01</span><span class="rf-head-label" data-en="Where we go first" data-bm="Ke mana kita pergi dulu">Ke mana kita pergi dulu</span></div>
+    <h2 class="rf-big"
+        data-en="A problem at home. <em>We tell a friend, a status, a group chat.</em>"
+        data-bm="Ada masalah rumah tangga. <em>Kita cerita pada kawan, pada status, pada group chat.</em>">
+      Ada masalah rumah tangga. <em>Kita cerita pada kawan, pada status, pada group chat.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="None of that is wrong in itself. But somewhere in the rush to be heard, we forget the One who heard us before we opened our mouths. This is the story of a woman who did not forget."
+       data-bm="Semua itu tidak salah pada asasnya. Tetapi dalam tergesa-gesa mahu didengari, kita lupa kepada Dia yang sudah mendengar sebelum kita membuka mulut. Ini kisah seorang wanita yang tidak lupa.">
+      Semua itu tidak salah pada asasnya. Tetapi dalam tergesa-gesa mahu didengari, kita lupa kepada Dia yang sudah mendengar sebelum kita membuka mulut. Ini kisah seorang wanita yang tidak lupa.
+    </p>
+  </section>
+
+  <!-- 02 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">02</span><span class="rf-head-label" data-en="One sentence of Jahiliyyah" data-bm="Satu kalimah jahiliah">Satu kalimah jahiliah</span></div>
+    <p class="rf-word" lang="ar" dir="rtl" style="font-size:clamp(40px,7.4vw,72px);margin-top:10px">أَنْتِ عَلَيَّ كَظَهْرِ أُمِّي</p>
+    <div class="rf-quotecard">
+      <p data-en="&ldquo;To me, you are like my mother's back.&rdquo;"
+         data-bm="&ldquo;Bagiku, engkau seperti belakang ibuku.&rdquo;">
+        &ldquo;Bagiku, engkau seperti belakang ibuku.&rdquo;
+      </p>
+      <p class="rf-ayah-ref">ZIHAR &middot; AUS BIN AS-SAMIT TO KHAULAH BINTI THA&lsquo;LABAH</p>
+    </div>
+    <p class="rf-body" style="margin-top:28px"
+       data-en="Khaulah binti Tha&lsquo;labah was a woman of the Ansar. Her husband, Aus bin as-Samit, was an older man with a short temper. One day, in anger, he said these words to her: the old formula called <em>zihar</em>."
+       data-bm="Khaulah binti Tha&lsquo;labah ialah seorang wanita Ansar. Suaminya, Aus bin as-Samit, seorang lelaki tua yang cepat marah. Suatu hari, dalam keadaan marah, dia melafazkan kata-kata ini kepadanya: lafaz lama yang dipanggil <em>zihar</em>.">
+      Khaulah binti Tha&lsquo;labah ialah seorang wanita Ansar. Suaminya, Aus bin as-Samit, seorang lelaki tua yang cepat marah. Suatu hari, dalam keadaan marah, dia melafazkan kata-kata ini kepadanya: lafaz lama yang dipanggil <em>zihar</em>.
+    </p>
+    <p class="rf-body"
+       data-en="In the Jahiliyyah it was crueller than divorce. A divorced woman could move on. A wife declared &ldquo;like my mother&rdquo; was forbidden to her husband forever, yet still not free. No marriage, no release. Just hanging."
+       data-bm="Pada zaman jahiliah, ia lebih kejam daripada talak. Wanita yang ditalak boleh meneruskan hidup. Isteri yang diisytiharkan &ldquo;seperti ibuku&rdquo; haram bagi suaminya selama-lamanya, tetapi tetap tidak bebas. Tiada perkahwinan, tiada pelepasan. Tergantung.">
+      Pada zaman jahiliah, ia lebih kejam daripada talak. Wanita yang ditalak boleh meneruskan hidup. Isteri yang diisytiharkan &ldquo;seperti ibuku&rdquo; haram bagi suaminya selama-lamanya, tetapi tetap tidak bebas. Tiada perkahwinan, tiada pelepasan. Tergantung.
+    </p>
+  </section>
+
+  <!-- 03 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">03</span><span class="rf-head-label" data-en="A complaint in a whisper" data-bm="Aduan dalam bisikan">Aduan dalam bisikan</span></div>
+    <h2 class="rf-big"
+        data-en="She went to the Prophet &#65018;. <em>And she spoke so softly.</em>"
+        data-bm="Dia pergi menemui Nabi &#65018;. <em>Dan dia bercakap begitu perlahan.</em>">
+      Dia pergi menemui Nabi &#65018;. <em>Dan dia bercakap begitu perlahan.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="He was in the house of Aisyah. Khaulah sat and pleaded her case, weeping, her voice low. Aisyah was in the same room, and afterwards she said:"
+       data-bm="Baginda berada di rumah Aisyah. Khaulah duduk dan membentangkan halnya sambil menangis, suaranya rendah. Aisyah berada di bilik yang sama, dan selepas itu beliau berkata:">
+      Baginda berada di rumah Aisyah. Khaulah duduk dan membentangkan halnya sambil menangis, suaranya rendah. Aisyah berada di bilik yang sama, dan selepas itu beliau berkata:
+    </p>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="font-size:clamp(22px,3.4vw,34px)">تَبَارَكَ الَّذِي وَسِعَ سَمْعُهُ كُلَّ شَيْءٍ، إِنِّي لَأَسْمَعُ كَلَامَ خَوْلَةَ بِنْتِ ثَعْلَبَةَ وَيَخْفَى عَلَيَّ بَعْضُهُ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Blessed is the One whose hearing encompasses all things. I could hear Khaulah binti Tha&lsquo;labah, yet some of what she said was hidden from me.&rdquo;"
+       data-bm="&ldquo;Maha Suci Dia yang pendengaran-Nya meliputi segala sesuatu. Aku mendengar kata-kata Khaulah binti Tha&lsquo;labah, namun sebahagiannya tersembunyi daripadaku.&rdquo;">
+      &ldquo;Maha Suci Dia yang pendengaran-Nya meliputi segala sesuatu. Aku mendengar kata-kata Khaulah binti Tha&lsquo;labah, namun sebahagiannya tersembunyi daripadaku.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">SUNAN AN-NASA&lsquo;I 3460 &middot; SUNAN IBN MAJAH 188 &middot; AL-BUKHARI, KITAB AT-TAUHID</p>
+  </section>
+
+  <!-- 04 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">04</span><span class="rf-head-label" data-en="She turned to Allah" data-bm="Dia berpaling kepada Allah">Dia berpaling kepada Allah</span></div>
+    <h2 class="rf-big"
+        data-en="No ruling had come yet. <em>So she raised her hands.</em>"
+        data-bm="Belum ada hukum yang turun. <em>Maka dia mengangkat tangannya.</em>">
+      Belum ada hukum yang turun. <em>Maka dia mengangkat tangannya.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="The Prophet &#65018; had received nothing about her case, and by the custom everyone knew, it looked like she was already lost to her husband. She kept arguing, and then she took it higher. She complained to Allah of her poverty, her loneliness, and the young children she feared for."
+       data-bm="Nabi &#65018; belum menerima apa-apa wahyu tentang halnya, dan menurut adat yang semua orang tahu, dia seolah-olah sudah pun haram bagi suaminya. Dia terus berhujah, kemudian dia membawanya lebih tinggi. Dia mengadu kepada Allah tentang kefakirannya, kesunyiannya, dan anak-anak kecil yang dia risaukan.">
+      Nabi &#65018; belum menerima apa-apa wahyu tentang halnya, dan menurut adat yang semua orang tahu, dia seolah-olah sudah pun haram bagi suaminya. Dia terus berhujah, kemudian dia membawanya lebih tinggi. Dia mengadu kepada Allah tentang kefakirannya, kesunyiannya, dan anak-anak kecil yang dia risaukan.
+    </p>
+    <p class="rf-tagline" style="margin-top:28px"
+       data-en="She did not stop at the door of the creation. <em>She knocked on the door of the Creator.</em>"
+       data-bm="Dia tidak berhenti di pintu makhluk. <em>Dia mengetuk pintu Khaliq.</em>">
+      Dia tidak berhenti di pintu makhluk. <em>Dia mengetuk pintu Khaliq.</em>
+    </p>
+  </section>
+
+  <!-- 05 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">05</span><span class="rf-head-label" data-en="The answer from above" data-bm="Jawapan dari atas">Jawapan dari atas</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl">قَدْ سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ فِي زَوْجِهَا وَتَشْتَكِي إِلَى اللَّهِ وَاللَّهُ يَسْمَعُ تَحَاوُرَكُمَا ۚ إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Allah has certainly heard the words of the woman who disputes with you about her husband and complains to Allah. And Allah hears your conversation. Indeed, Allah is All-Hearing, All-Seeing.&rdquo;"
+       data-bm="&ldquo;Sesungguhnya Allah telah mendengar perkataan perempuan yang berbantah denganmu tentang suaminya, dan mengadu kepada Allah. Dan Allah mendengar perbualan kamu berdua. Sesungguhnya Allah Maha Mendengar, Maha Melihat.&rdquo;">
+      &ldquo;Sesungguhnya Allah telah mendengar perkataan perempuan yang berbantah denganmu tentang suaminya, dan mengadu kepada Allah. Dan Allah mendengar perbualan kamu berdua. Sesungguhnya Allah Maha Mendengar, Maha Melihat.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">Al-Mujadilah 58:1</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Look at the tense: <em>qad sami&lsquo;a</em>, &ldquo;has <em>already</em> heard.&rdquo; Before the verse came down, before she finished, it had been heard. And the surah carries her forever in its name: <em>Al-Mujadilah</em>, the woman who pleaded."
+       data-bm="Lihat kata kerjanya: <em>qad sami&lsquo;a</em>, &ldquo;<em>telah</em> mendengar.&rdquo; Sebelum ayat itu turun, sebelum dia selesai, ia sudah didengar. Dan surah ini membawa dirinya selama-lamanya pada namanya: <em>Al-Mujadilah</em>, wanita yang berbantah.">
+      Lihat kata kerjanya: <em>qad sami&lsquo;a</em>, &ldquo;<em>telah</em> mendengar.&rdquo; Sebelum ayat itu turun, sebelum dia selesai, ia sudah didengar. Dan surah ini membawa dirinya selama-lamanya pada namanya: <em>Al-Mujadilah</em>, wanita yang berbantah.
+    </p>
+  </section>
+
+  <!-- 06 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">06</span><span class="rf-head-label" data-en="A way out, not a life sentence" data-bm="Jalan keluar, bukan hukuman seumur hidup">Jalan keluar, bukan hukuman seumur hidup</span></div>
+    <h2 class="rf-big"
+        data-en="Allah called the sentence <em>a lie and an evil word.</em>"
+        data-bm="Allah menyebut lafaz itu <em>dusta dan perkataan yang mungkar.</em>">
+      Allah menyebut lafaz itu <em>dusta dan perkataan yang mungkar.</em>
+    </h2>
+    <p class="rf-body"
+       data-en="&ldquo;Their mothers are none but those who gave birth to them&rdquo; (58:2). A wife does not become a mother because an angry man says so. The verses that follow replace the old life sentence with an expiation, and the marriage can return:"
+       data-bm="&ldquo;Ibu-ibu mereka tidak lain hanyalah perempuan yang melahirkan mereka&rdquo; (58:2). Seorang isteri tidak menjadi ibu hanya kerana seorang lelaki yang marah berkata begitu. Ayat-ayat seterusnya menggantikan hukuman seumur hidup itu dengan kaffarah, dan perkahwinan boleh kembali:">
+      &ldquo;Ibu-ibu mereka tidak lain hanyalah perempuan yang melahirkan mereka&rdquo; (58:2). Seorang isteri tidak menjadi ibu hanya kerana seorang lelaki yang marah berkata begitu. Ayat-ayat seterusnya menggantikan hukuman seumur hidup itu dengan kaffarah, dan perkahwinan boleh kembali:
+    </p>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="Free a slave" data-bm="Memerdekakan seorang hamba">Memerdekakan seorang hamba</h3>
+        <p data-en="Before the couple touch one another again (58:3)." data-bm="Sebelum suami isteri itu bersentuhan semula (58:3).">Sebelum suami isteri itu bersentuhan semula (58:3).</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="Or fast two consecutive months" data-bm="Atau berpuasa dua bulan berturut-turut">Atau berpuasa dua bulan berturut-turut</h3>
+        <p data-en="For the one who cannot find a slave to free (58:4)." data-bm="Bagi yang tidak mampu memerdekakan hamba (58:4).">Bagi yang tidak mampu memerdekakan hamba (58:4).</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3 data-en="Or feed sixty poor people" data-bm="Atau memberi makan enam puluh orang miskin">Atau memberi makan enam puluh orang miskin</h3>
+        <p data-en="For the one who cannot fast (58:4)." data-bm="Bagi yang tidak mampu berpuasa (58:4).">Bagi yang tidak mampu berpuasa (58:4).</p>
+      </div></li>
+    </ul>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Aus could manage none of it. He was old, and poor. So the Prophet &#65018; helped him with a basket of dates, and Khaulah, the wronged wife, offered a second basket of her own so he could complete it (Abi Dawud 2214). The woman who had complained helped pay her husband's way back."
+       data-bm="Aus tidak mampu satu pun. Dia sudah tua, dan miskin. Maka Nabi &#65018; membantunya dengan sebakul kurma, dan Khaulah, isteri yang dizalimi itu, menawarkan sebakul lagi miliknya supaya kaffarah itu sempurna (Abi Dawud 2214). Wanita yang mengadu itulah yang membantu suaminya kembali.">
+      Aus tidak mampu satu pun. Dia sudah tua, dan miskin. Maka Nabi &#65018; membantunya dengan sebakul kurma, dan Khaulah, isteri yang dizalimi itu, menawarkan sebakul lagi miliknya supaya kaffarah itu sempurna (Abi Dawud 2214). Wanita yang mengadu itulah yang membantu suaminya kembali.
+    </p>
+  </section>
+
+  <!-- 07 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">07</span><span class="rf-head-label" data-en="No veil in between" data-bm="Tiada hijab di antara">Tiada hijab di antara</span></div>
+    <p class="rf-ayah" lang="ar" dir="rtl" style="font-size:clamp(24px,3.8vw,40px)">وَاتَّقِ دَعْوَةَ الْمَظْلُومِ، فَإِنَّهُ لَيْسَ بَيْنَهُ وَبَيْنَ اللَّهِ حِجَابٌ</p>
+    <p class="rf-ayah-tr"
+       data-en="&ldquo;Beware the supplication of the wronged, for there is no veil between it and Allah.&rdquo;"
+       data-bm="&ldquo;Takutlah doa orang yang dizalimi, kerana tiada hijab antaranya dengan Allah.&rdquo;">
+      &ldquo;Takutlah doa orang yang dizalimi, kerana tiada hijab antaranya dengan Allah.&rdquo;
+    </p>
+    <p class="rf-ayah-ref">SAHIH AL-BUKHARI 1496 &middot; SAHIH MUSLIM 19</p>
+    <p class="rf-body" style="margin-top:26px"
+       data-en="Khaulah had no rank, no money, no loud voice. What she had was a wrong done to her and a Lord she turned to. That was enough to bring down revelation. Never underestimate the quiet person who has been wronged, and never be the reason someone has to raise their hands like that."
+       data-bm="Khaulah tiada pangkat, tiada harta, tiada suara yang lantang. Yang dia ada hanyalah kezaliman yang menimpanya dan Tuhan yang dia tuju. Itu sudah cukup untuk menurunkan wahyu. Jangan sesekali meremehkan orang yang diam tetapi dizalimi, dan jangan sesekali menjadi sebab seseorang terpaksa mengangkat tangan seperti itu.">
+      Khaulah tiada pangkat, tiada harta, tiada suara yang lantang. Yang dia ada hanyalah kezaliman yang menimpanya dan Tuhan yang dia tuju. Itu sudah cukup untuk menurunkan wahyu. Jangan sesekali meremehkan orang yang diam tetapi dizalimi, dan jangan sesekali menjadi sebab seseorang terpaksa mengangkat tangan seperti itu.
+    </p>
+  </section>
+
+  <!-- 08 -->
+  <section class="rf-slide rf-slide-accent">
+    <div class="rf-head"><span class="rf-head-num">08</span><span class="rf-head-label" data-en="The Caliph who stopped" data-bm="Khalifah yang berhenti">Khalifah yang berhenti</span></div>
+    <h2 class="rf-big"
+        data-en="Allah listened to her. <em>Should Umar not?</em>"
+        data-bm="Allah mendengarnya. <em>Takkan Umar tidak?</em>">
+      Allah mendengarnya. <em>Takkan Umar tidak?</em>
+    </h2>
+    <p class="rf-body"
+       data-en="Years later, it is reported, an old woman stopped Umar bin al-Khattab, then Caliph, on the road and lectured him at length. He stood and listened until she finished. When someone asked why he had let her hold him up, he said she was Khaulah, whose complaint Allah had heard from above the seven heavens. How could Umar not hear her out?"
+       data-bm="Bertahun-tahun kemudian, diriwayatkan, seorang wanita tua menahan Umar bin al-Khattab, yang ketika itu khalifah, di tengah jalan dan menasihatinya panjang lebar. Beliau berdiri dan mendengar sehingga wanita itu selesai. Apabila ditanya mengapa beliau membiarkan dirinya ditahan, Umar menjawab bahawa itulah Khaulah, yang aduannya didengar Allah dari atas tujuh langit. Bagaimana mungkin Umar tidak mendengarnya?">
+      Bertahun-tahun kemudian, diriwayatkan, seorang wanita tua menahan Umar bin al-Khattab, yang ketika itu khalifah, di tengah jalan dan menasihatinya panjang lebar. Beliau berdiri dan mendengar sehingga wanita itu selesai. Apabila ditanya mengapa beliau membiarkan dirinya ditahan, Umar menjawab bahawa itulah Khaulah, yang aduannya didengar Allah dari atas tujuh langit. Bagaimana mungkin Umar tidak mendengarnya?
+    </p>
+    <p class="rf-body"
+       data-en="A quiet rebuke to every husband, boss and leader who is too busy for the complaints of the weak."
+       data-bm="Teguran halus buat setiap suami, majikan dan pemimpin yang terlalu sibuk untuk mendengar keluhan orang yang lemah.">
+      Teguran halus buat setiap suami, majikan dan pemimpin yang terlalu sibuk untuk mendengar keluhan orang yang lemah.
+    </p>
+  </section>
+
+  <!-- 09 -->
+  <section class="rf-slide">
+    <div class="rf-head"><span class="rf-head-num">09</span><span class="rf-head-label" data-en="Do what Khaulah did" data-bm="Buat seperti Khaulah">Buat seperti Khaulah</span></div>
+    <h2 class="rf-big"
+        data-en="She did not choose between people and Allah. <em>She went to both, in the right order of trust.</em>"
+        data-bm="Dia tidak memilih antara manusia dan Allah. <em>Dia pergi kepada kedua-duanya, dengan tempat bergantung yang betul.</em>">
+      Dia tidak memilih antara manusia dan Allah. <em>Dia pergi kepada kedua-duanya, dengan tempat bergantung yang betul.</em>
+    </h2>
+    <ul class="rf-steps">
+      <li><span class="n">1</span><div>
+        <h3 data-en="Tell Allah first" data-bm="Adu kepada Allah dahulu">Adu kepada Allah dahulu</h3>
+        <p data-en="Before the status, before the group chat: close the door, raise your hands, say it all. He hears what even the person beside you would miss." data-bm="Sebelum status, sebelum group chat: tutup pintu, angkat tangan, luahkan semuanya. Dia mendengar apa yang orang di sebelahmu pun terlepas.">Sebelum status, sebelum group chat: tutup pintu, angkat tangan, luahkan semuanya. Dia mendengar apa yang orang di sebelahmu pun terlepas.</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3 data-en="Take it to someone who can help" data-bm="Bawa kepada yang mampu membantu">Bawa kepada yang mampu membantu</h3>
+        <p data-en="Khaulah went to the Prophet &#65018;, not to the marketplace. Seek a trusted, qualified person: a scholar, a counsellor, family who can act. Not an audience." data-bm="Khaulah pergi kepada Nabi &#65018;, bukan ke pasar. Carilah orang yang amanah dan layak: ustaz, kaunselor, keluarga yang boleh bertindak. Bukan penonton.">Khaulah pergi kepada Nabi &#65018;, bukan ke pasar. Carilah orang yang amanah dan layak: ustaz, kaunselor, keluarga yang boleh bertindak. Bukan penonton.</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3 data-en="Guard your tongue at home" data-bm="Jaga lidah di rumah">Jaga lidah di rumah</h3>
+        <p data-en="One sentence spoken in anger nearly broke a family. Islam gave a way back, but it came at a cost. Words said to a spouse are never small." data-bm="Satu ayat yang diucap dalam marah hampir meruntuhkan sebuah keluarga. Islam memberi jalan kembali, tetapi ada harganya. Kata-kata kepada pasangan tidak pernah kecil.">Satu ayat yang diucap dalam marah hampir meruntuhkan sebuah keluarga. Islam memberi jalan kembali, tetapi ada harganya. Kata-kata kepada pasangan tidak pernah kecil.</p>
+      </div></li>
+    </ul>
+  </section>
+
+  <!-- THE REAL POINT -->
+  <section class="rf-slide rf-slide-quiet">
+    <h2 class="rf-mega"
+        data-en="The softest voice on earth <em>arrives clearly in the heavens.</em> The One who heard Khaulah hears you too."
+        data-bm="Suara paling perlahan di bumi <em>sampai dengan jelas di langit.</em> Dia yang mendengar Khaulah, mendengar kamu juga.">
+      Suara paling perlahan di bumi <em>sampai dengan jelas di langit.</em> Dia yang mendengar Khaulah, mendengar kamu juga.
+    </h2>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="rf-slide rf-closing">
+    <div class="rf-publisher" data-en="ON THE WOMAN WHO PLEADED" data-bm="TENTANG WANITA YANG BERBANTAH">TENTANG WANITA YANG BERBANTAH</div>
+    <h2 class="rf-big">Suara Yang Didengar</h2>
+    <p class="rf-body"
+       data-en="May Allah make us among those who turn to Him first, guard our tongues with those we love, and never let us be the cause of anyone's tears. <em>Aameen.</em>"
+       data-bm="Semoga Allah menjadikan kita antara mereka yang berpaling kepada-Nya dahulu, menjaga lidah kita terhadap orang yang kita sayangi, dan tidak sesekali menjadikan kita punca air mata sesiapa. <em>Aameen.</em>">
+      Semoga Allah menjadikan kita antara mereka yang berpaling kepada-Nya dahulu, menjaga lidah kita terhadap orang yang kita sayangi, dan tidak sesekali menjadikan kita punca air mata sesiapa. <em>Aameen.</em>
+    </p>
+    <p class="rf-body" style="margin-top:18px;font-size:14.5px;opacity:0.72"
+       data-en="Aisyah's words are narrated in Sunan an-Nasa&lsquo;i 3460 and Sunan Ibn Majah 188, and al-Bukhari cites them without a chain in Kitab at-Tauhid; the ruling of zihar and its expiation are in Al-Mujadilah 58:1&ndash;4. The story of the baskets of dates is in Sunan Abi Dawud 2214, where she is also named Khuwailah. The hadith on the supplication of the wronged is in al-Bukhari 1496 and Muslim 19. The account of Umar is reported by Ibn Abi Hatim and cited by Ibn Kathir in his tafsir of the surah; its chain is weak, so it is told here as a report. The words here, and any mistakes in them, are mine."
+       data-bm="Kata-kata Aisyah diriwayatkan dalam Sunan an-Nasa&lsquo;i 3460 dan Sunan Ibn Majah 188, dan al-Bukhari menukilnya tanpa sanad dalam Kitab at-Tauhid; hukum zihar dan kaffarahnya terdapat dalam Al-Mujadilah 58:1&ndash;4. Kisah bakul kurma terdapat dalam Sunan Abi Dawud 2214, yang turut menamakannya Khuwailah. Hadith tentang doa orang yang dizalimi terdapat dalam al-Bukhari 1496 dan Muslim 19. Kisah Umar diriwayatkan oleh Ibn Abi Hatim dan dinukil Ibn Kathir dalam tafsir surah ini; sanadnya lemah, maka ia diceritakan di sini sebagai riwayat. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.">
+      Kata-kata Aisyah diriwayatkan dalam Sunan an-Nasa&lsquo;i 3460 dan Sunan Ibn Majah 188, dan al-Bukhari menukilnya tanpa sanad dalam Kitab at-Tauhid; hukum zihar dan kaffarahnya terdapat dalam Al-Mujadilah 58:1&ndash;4. Kisah bakul kurma terdapat dalam Sunan Abi Dawud 2214, yang turut menamakannya Khuwailah. Hadith tentang doa orang yang dizalimi terdapat dalam al-Bukhari 1496 dan Muslim 19. Kisah Umar diriwayatkan oleh Ibn Abi Hatim dan dinukil Ibn Kathir dalam tafsir surah ini; sanadnya lemah, maka ia diceritakan di sini sebagai riwayat. Olahan kata di sini, dan sebarang kesilapan padanya, adalah milik saya.
+    </p>
+    <div class="rf-credit">
+      <div>THE MDRN URBAN · MODERNLINE</div>
+      <a href="https://farissuhail.com">www.farissuhail.com</a>
+    </div>
+    <div class="rf-actions">
+      <a href="siapa-yang-binasa.html" class="btn btn-ghost btn-lg" data-en="&larr; Siapa yang binasa" data-bm="&larr; Siapa yang binasa">&larr; Siapa yang binasa</a>
+      <a href="inspiration.html" class="btn btn-primary btn-lg" data-en="All stories &rarr;" data-bm="Semua kisah &rarr;">Semua kisah &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+
+<div class="rf-progress" aria-hidden="true"><i></i></div>
+
+<footer class="rf-footer">
+  <p>
+    <a href="index.html">FARISSUHAIL</a> &nbsp;·&nbsp;
+    <span data-en="An inspiration story by THE MDRN URBAN" data-bm="Kisah inspirasi oleh THE MDRN URBAN">Kisah inspirasi oleh THE MDRN URBAN</span> &nbsp;·&nbsp;
+    <span>© <span id="year"></span></span>
+  </p>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function () {
+    var html = document.documentElement, lb = document.getElementById('langToggle');
+    function apply(lang) {
+      html.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-en][data-bm]').forEach(function (el) {
+        el.innerHTML = lang === 'bm' ? el.dataset.bm : el.dataset.en;
+      });
+      document.querySelectorAll('[data-en-ph][data-bm-ph]').forEach(function (el) {
+        el.setAttribute('placeholder', lang === 'bm' ? el.dataset.bmPh : el.dataset.enPh);
+      });
+      lb.querySelector('.lang-en').classList.toggle('active', lang === 'en');
+      lb.querySelector('.lang-bm').classList.toggle('active', lang === 'bm');
+      try { localStorage.setItem('fs-lang', lang); } catch (e) {}
+    }
+    lb.addEventListener('click', function () { apply(html.getAttribute('data-lang') === 'en' ? 'bm' : 'en'); });
+    try { var s = localStorage.getItem('fs-lang'); if (s === 'en' || s === 'bm') apply(s); } catch (e) {}
+  })();
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rf-slide').forEach(function (s) { io.observe(s); });
+
+  (function () {
+    var fill = document.querySelector('.rf-progress i');
+    function upd() {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      var top = window.pageYOffset || d.scrollTop || 0;
+      fill.style.width = (max > 0 ? Math.min(100, top / max * 100) : 0).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+
+  document.querySelector('.story-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('start');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+<script src="inspiration-atmos.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
