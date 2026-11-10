@@ -36,6 +36,9 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
   }
   const model=hwu?buildHWU():land?buildLandRig():buildJackup();scene.add(model.group);model.group.updateMatrixWorld(true);
   const parts=model.parts instanceof Map?model.parts:new Map(Object.entries(model.parts));
+  // Keep clean local transforms so the construction sequence can replay
+  // without rebuilding the authored rig geometry.
+  const constructionParts=[...parts.entries()].map(([id,part],index)=>({id,part,index,position:part.position.clone(),quaternion:part.quaternion.clone(),scale:part.scale.clone()}));
   const componentLookup=new Map(components.map(c=>[c.id,c]));
   const renderables=[];const materialCache=new Map();const baseMaterials=new Map();
   for(const [id,part] of parts){part.userData.componentId=id;part.traverse(o=>{if(o.isMesh){o.userData.componentId=id;let parent=o,isInterior=false;while(parent&&parent!==part){if(parent.userData.interior)isInterior=true;parent=parent.parent;}const sources=Array.isArray(o.material)?o.material:[o.material];const ms=sources.map(m=>{const key=id+':'+isInterior+':'+m.uuid;if(!materialCache.has(key)){const copy=m.clone();materialCache.set(key,copy);baseMaterials.set(copy,{opacity:copy.opacity,transparent:copy.transparent,depthWrite:copy.depthWrite,color:copy.color?.clone(),emissive:copy.emissive?.clone(),emissiveIntensity:copy.emissiveIntensity});}return materialCache.get(key);});o.material=Array.isArray(o.material)?ms:ms[0];o.castShadow=true;o.receiveShadow=true;renderables.push(o);}});}
@@ -43,6 +46,7 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
   const selectionBox=new THREE.Box3Helper(new THREE.Box3(),'#72f3d0');selectionBox.visible=false;selectionBox.material.transparent=true;selectionBox.material.opacity=.7;selectionBox.material.depthTest=false;selectionBox.renderOrder=10;scene.add(selectionBox);
   const connectionsGroup=new THREE.Group();scene.add(connectionsGroup);
   let selected=null,isolate=false,fade=false,internals=false,subsurface=false,connections=false;
+  let construction=null;
   const hidden=new Set(),hiddenSystems=new Set();let targetCamera=null,targetLook=null;const clock=new THREE.Clock();let lastRender=0;let fps=0,frames=0,fpsAt=0;
   const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();let pointerDown=null,pointerLatest=null,hovered=null;
   function ancestorVisible(o){while(o){if(!o.visible)return false;o=o.parent;}return true;}
@@ -68,15 +72,48 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
     if(terrain){terrain.material.transparent=subsurface;terrain.material.opacity=subsurface?.17:1;terrain.material.depthWrite=!subsurface;}
     selectionBox.visible=!!selected&&parts.get(selected)?.visible; if(selectionBox.visible)selectionBox.box.copy(bounds(selected));updateConnections();
   }
+  function restoreConstruction(){
+    construction=null;
+    for(const item of constructionParts){item.part.position.copy(item.position);item.part.quaternion.copy(item.quaternion);item.part.scale.copy(item.scale);}
+  }
+  function startConstruction(){
+    restoreConstruction();
+    // With an assembly selected, build that assembly. Otherwise build the rig.
+    const targets=selected?constructionParts.filter(item=>item.id===selected):constructionParts;
+    isolate=fade=internals=connections=false;hidden.clear();hiddenSystems.clear();apply();
+    construction={startedAt:clock.getElapsedTime(),targets:targets.map((item,order)=>{
+      const angle=item.index*2.3999632297;
+      const offset=new THREE.Vector3(Math.cos(angle)*(10+(item.index%4)*2.4),7+(item.index%5)*2.25,Math.sin(angle)*(10+(item.index%3)*2.6));
+      const fromPosition=item.position.clone().add(offset);
+      const turn=new THREE.Quaternion().setFromEuler(new THREE.Euler(.18+(item.index%3)*.08,angle*.28,.1));
+      return{...item,order,fromPosition,fromQuaternion:item.quaternion.clone().multiply(turn),fromScale:item.scale.clone().multiplyScalar(.035)};
+    })};
+    return targets.length;
+  }
+  function updateConstruction(time){
+    if(!construction)return;
+    let complete=true;
+    for(const item of construction.targets){
+      const progress=THREE.MathUtils.clamp((time-construction.startedAt-item.order*.12)/.68,0,1);
+      const eased=1-Math.pow(1-progress,4);
+      item.part.position.lerpVectors(item.fromPosition,item.position,eased);
+      item.part.quaternion.slerpQuaternions(item.fromQuaternion,item.quaternion,eased);
+      item.part.scale.lerpVectors(item.fromScale,item.scale,eased);
+      if(progress<1)complete=false;
+    }
+    if(selectionBox.visible&&selected)selectionBox.box.copy(bounds(selected));
+    if(connections&&selected)updateConnections();
+    if(complete)construction=null;
+  }
   function select(id,frame=false){if(!parts.has(id))return false;selected=id;internals=false;hidden.delete(id);hiddenSystems.delete(componentLookup.get(id)?.system);apply();if(frame)focus(id);return true;}
   function hasInternals(id=selected){return interiors.some(o=>{let p=o;while(p){if(p.userData.componentId===id)return true;p=p.parent;}return false;});}
-  function action(action){if(['focus','isolate','fade','hide','internals','connections'].includes(action)&&!selected)return{message:'Select a component in the rig or navigator first.'};if(action==='focus'){focus();return{};}if(action==='isolate')isolate=!isolate;if(action==='fade')fade=!fade;if(action==='hide'){hidden.add(selected);isolate=false;}if(action==='unhide'){hidden.clear();hiddenSystems.clear();}if(action==='internals'){if(!hasInternals())return{message:'No authored internal assembly is available for this component.'};internals=!internals;}if(action==='connections')connections=!connections;if(action==='subsurface')subsurface=!subsurface;if(action==='reset'){selected=null;isolate=fade=internals=subsurface=connections=false;hidden.clear();hiddenSystems.clear();setView('iso');}if(action==='escape'){if(isolate||fade||internals||connections){isolate=fade=internals=connections=false;}else selected=null;}apply();return{selected,isolate,fade,internals,subsurface,connections};}
+  function action(action){if(['focus','isolate','fade','hide','internals','connections'].includes(action)&&!selected)return{message:'Select a component in the rig or navigator first.'};if(action==='construction'){const count=startConstruction();return{selected,construction:true,constructionCount:count};}if(action==='focus'){focus();return{};}if(action==='isolate')isolate=!isolate;if(action==='fade')fade=!fade;if(action==='hide'){hidden.add(selected);isolate=false;}if(action==='unhide'){hidden.clear();hiddenSystems.clear();}if(action==='internals'){if(!hasInternals())return{message:'No authored internal assembly is available for this component.'};internals=!internals;}if(action==='connections')connections=!connections;if(action==='subsurface')subsurface=!subsurface;if(action==='reset'){restoreConstruction();selected=null;isolate=fade=internals=subsurface=connections=false;hidden.clear();hiddenSystems.clear();setView('iso');}if(action==='escape'){if(isolate||fade||internals||connections){isolate=fade=internals=connections=false;}else selected=null;}apply();return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction};}
   function setView(view){const views=hwu?{iso:{position:[64,48,65],target:[0,15,0]},top:{position:[0,100,1],target:[0,8,0]},deck:{position:[32,26,33],target:[0,17,0]}}:land?{iso:{position:[108,85,114],target:[-5,22,0]},top:{position:[-5,175,1],target:[-5,9,0]},deck:{position:[54,30,46],target:[0,10,0]}}:{iso:{position:[151,113,170],target:[0,29,0]},top:{position:[0,211,1],target:[0,19,0]},deck:{position:[87,52,85],target:[0,23,-4]}};const v=views[view]||views.iso;animateCamera(new THREE.Vector3(...v.position),new THREE.Vector3(...v.target));}
   function toggleSystem(system){hiddenSystems.has(system)?hiddenSystems.delete(system):hiddenSystems.add(system);apply();return!hiddenSystems.has(system);}
   let disposed=false,animationHandle;
   function dispose(){disposed=true;cancelAnimationFrame(animationHandle);resizeObserver.disconnect();controls.dispose();renderer.dispose();scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material]))m.dispose();});renderer.domElement.remove();}
-  function frame(time){if(disposed)return;animationHandle=requestAnimationFrame(frame);if(document.hidden||container.clientWidth<1||time-lastRender<1000/35)return;lastRender=time;const t=clock.getElapsedTime();waterMaterial.uniforms.uTime.value=t;waterMaterial.uniforms.uEye.value.copy(camera.position);if(targetCamera){camera.position.lerp(targetCamera,.085);controls.target.lerp(targetLook,.085);if(camera.position.distanceTo(targetCamera)<.03){camera.position.copy(targetCamera);controls.target.copy(targetLook);targetCamera=targetLook=null;}}controls.update();renderer.render(scene,camera);frames++;if(time-fpsAt>1500){fps=Math.round(frames*1000/(time-fpsAt));fpsAt=time;frames=0;}}
+  function frame(time){if(disposed)return;animationHandle=requestAnimationFrame(frame);if(document.hidden||container.clientWidth<1||time-lastRender<1000/35)return;lastRender=time;const t=clock.getElapsedTime();waterMaterial.uniforms.uTime.value=t;waterMaterial.uniforms.uEye.value.copy(camera.position);updateConstruction(t);if(targetCamera){camera.position.lerp(targetCamera,.085);controls.target.lerp(targetLook,.085);if(camera.position.distanceTo(targetCamera)<.03){camera.position.copy(targetCamera);controls.target.copy(targetLook);targetCamera=targetLook=null;}}controls.update();renderer.render(scene,camera);frames++;if(time-fpsAt>1500){fps=Math.round(frames*1000/(time-fpsAt));fpsAt=time;frames=0;}}
   if(hwu){camera.position.set(64,48,65);controls.target.set(0,15,0);}else if(land){camera.position.set(108,85,114);controls.target.set(-5,22,0);}
   animationHandle=requestAnimationFrame(frame);
-  return{select,action,focus,setView,toggleSystem,hasInternals,resize,dispose,get selected(){return selected;},get state(){return{selected,isolate,fade,internals,subsurface,connections,hiddenSystems:[...hiddenSystems],hiddenComponents:[...hidden]};},integrity(){const modelIds=[...parts.keys()];const unmatched=components.filter(c=>!parts.has(c.id)).map(c=>c.id);return{components:components.length,modelled:modelIds.length,meshes:renderables.length,triangles:renderer.info.render.triangles,unmatched,fps,internals:interiors.length};}};
+  return{select,action,focus,setView,toggleSystem,hasInternals,resize,dispose,get selected(){return selected;},get state(){return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction,hiddenSystems:[...hiddenSystems],hiddenComponents:[...hidden]};},integrity(){const modelIds=[...parts.keys()];const unmatched=components.filter(c=>!parts.has(c.id)).map(c=>c.id);return{components:components.length,modelled:modelIds.length,meshes:renderables.length,triangles:renderer.info.render.triangles,unmatched,fps,internals:interiors.length};}};
 }
