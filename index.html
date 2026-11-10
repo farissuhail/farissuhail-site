@@ -63,6 +63,10 @@
   .vault-hit .vault-arrow { font-style:normal; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.82em; color:#d8f686; transition:transform .35s ease; }
   .vault-hit:hover, .vault-hit:focus-visible { background:rgba(24,62,40,.62); box-shadow:0 0 0 1px rgba(214,246,134,.6), 0 0 38px rgba(190,246,120,.55), inset 0 0 22px rgba(190,246,120,.2); outline:none; }
   .vault-hit:hover .vault-arrow, .vault-hit:focus-visible .vault-arrow { transform:translateX(4px); }
+  .vault-foot { position:absolute; left:50%; top:95.25%; transform:translate(-50%,-50%); pointer-events:auto; text-decoration:none; white-space:nowrap;
+    padding:.9em 1.4em; font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif; font-weight:400; text-transform:uppercase;
+    letter-spacing:.36em; text-indent:.36em; font-size:.8vw; font-size:clamp(10px,.8cqw,22px); color:#e6ede2; transition:color .3s ease, text-shadow .3s ease; }
+  .vault-foot:hover, .vault-foot:focus-visible { color:#d8f686; text-shadow:0 0 14px rgba(190,246,120,.6); outline:none; }
   @media (max-width:640px) { .vault-hit { font-size:13.5px; padding:.7em 1.15em .76em; gap:.5em; letter-spacing:.03em; } }
   #scroll-host { height:1180vh; }
   #scroll-hint {
@@ -211,7 +215,7 @@
   });
   // Mark as entered when they click through, so the intro shows once per session.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('#enterLink, #skip, #heroEnter');
+    var a = e.target.closest && e.target.closest('#enterLink, #enterFoot, #skip');
     if (a) { try { sessionStorage.setItem('fs-entered', '1'); } catch (err) {} }
   });
 })();
@@ -249,6 +253,7 @@
   <div class="vault-frame">
     <h2 class="vault-name">farissuhail.com</h2>
     <a id="enterLink" class="vault-hit" href="/thought-space.html">Ancient light, modern questions<span class="vault-arrow" aria-hidden="true">&#8594;</span></a>
+    <a id="enterFoot" class="vault-foot" href="/thought-space.html">Click to enter</a>
   </div>
 </div>
 
