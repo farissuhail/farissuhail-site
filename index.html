@@ -7,7 +7,10 @@
 <meta name="description" content="A personal site by Faris Suhail: Qur'an and hadith, book summaries, tech and AI experiments, and a travel-footprint globe. Scroll through the light and enter." />
 <link rel="canonical" href="https://farissuhail.com/" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="theme-color" content="#0a0524" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+<meta name="theme-color" content="#030806" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Faris Suhail · The Mdrn Urban" />
 <meta property="og:title" content="Faris Suhail · The Mdrn Urban" />
@@ -37,38 +40,89 @@
 }
 </script>
 <style>
-  html, body { margin:0; padding:0; background:#000; }
+  html, body { margin:0; padding:0; background:#030806; }
   body { height:100%; }
-  #scene { position:fixed; inset:0; width:100vw; height:100vh; display:block; }
-  #scroll-host { height:560vh; }
+  #scene { position:fixed; inset:0; width:100vw; height:100vh; display:block; mix-blend-mode:screen; }
+  /* Closing scene: the vault artwork is a still image; only the particle spiral drawn over it moves. */
+  #vaultArt { position:fixed; inset:0; overflow:hidden; opacity:0; background:#020806; pointer-events:none; }
+  .vault-frame { position:absolute; left:50%; top:50%; width:max(100vw, calc(100vh * 2026 / 1134)); aspect-ratio:2026 / 1134; transform:translate(-50%,-50%); }
+  #vaultArt .vault-frame { background:url(/assets/intro-vault.jpg) center / cover no-repeat; }
+  #enter .vault-frame { container-type:inline-size; }
+  .vault-name { position:absolute; left:0; right:0; top:39%; margin:0; transform:translateY(-50%); text-align:center; white-space:nowrap;
+    font-family:'Pinyon Script','Snell Roundhand','Apple Chancery','Edwardian Script ITC',cursive; font-weight:400; text-transform:none; letter-spacing:.01em;
+    font-size:3.8vw; font-size:clamp(40px,3.8cqw,112px); opacity:.68; line-height:1.2; padding:.15em 0; color:#d9ffc4;
+    background:linear-gradient(180deg,#ffffff 8%,#e6ffc9 38%,#9dfcb4 66%,#58eaa6 96%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 4px rgba(214,255,190,.5)) drop-shadow(0 0 16px rgba(140,255,170,.32)); }
+  .vault-hit { position:absolute; left:50%; top:57.2%; transform:translate(-50%,-50%); pointer-events:auto; text-decoration:none; white-space:nowrap;
+    display:inline-flex; align-items:center; gap:.7em; padding:.72em 1.7em .78em; border-radius:999px;
+    border:1px solid rgba(214,246,134,.85); background:rgba(6,26,16,.5);
+    font-family:'Cormorant Garamond','Iowan Old Style',Georgia,'Times New Roman',serif; font-style:italic; font-weight:500; letter-spacing:.05em;
+    font-size:1.2vw; font-size:clamp(15px,1.22cqw,30px); color:#f2f8ea;
+    box-shadow:0 0 0 1px rgba(214,246,134,.12), 0 0 26px rgba(190,246,120,.32), inset 0 0 18px rgba(190,246,120,.12);
+    transition:box-shadow .35s ease, background .35s ease; }
+  .vault-hit .vault-arrow { font-style:normal; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.82em; color:#d8f686; transition:transform .35s ease; }
+  .vault-hit:hover, .vault-hit:focus-visible { background:rgba(24,62,40,.62); box-shadow:0 0 0 1px rgba(214,246,134,.6), 0 0 38px rgba(190,246,120,.55), inset 0 0 22px rgba(190,246,120,.2); outline:none; }
+  .vault-hit:hover .vault-arrow, .vault-hit:focus-visible .vault-arrow { transform:translateX(4px); }
+  @media (max-width:640px) { .vault-hit { font-size:13.5px; padding:.7em 1.15em .76em; gap:.5em; letter-spacing:.03em; } }
+  #scroll-host { height:1180vh; }
   #scroll-hint {
-    position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-    color:#ffffff; font:600 13px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    letter-spacing:.28em; text-transform:uppercase; pointer-events:none;
-    text-shadow:0 0 12px rgba(43,240,255,.9), 0 0 30px rgba(122,60,255,.5);
+    position:fixed; left:0; right:0; bottom:clamp(18px,4.6vh,46px); z-index:4;
+    display:flex; flex-direction:column; align-items:center; gap:13px;
+    color:#e9f5ec; font:500 clamp(9px,.86vw,12px)/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing:.34em; text-transform:uppercase; pointer-events:none;
   }
+  #scroll-hint span { display:flex; align-items:center; gap:18px; padding-left:.34em; }
+  #scroll-hint .hint-count { color:#a9d9c1; }
+  #scroll-hint .hint-count::before, #scroll-hint .hint-count::after { content:''; width:clamp(28px,4vw,62px); height:1px; background:rgba(160,236,200,.4); }
+  #scroll-hint .hint-label::before, #scroll-hint .hint-label::after { content:''; width:clamp(40px,24vw,400px); height:1px; }
+  #scroll-hint .hint-label::before { background:linear-gradient(90deg,transparent,rgba(160,236,200,.42)); }
+  #scroll-hint .hint-label::after { background:linear-gradient(270deg,transparent,rgba(160,236,200,.42)); }
+  #brand {
+    position:fixed; top:clamp(18px,4.4vh,40px); left:clamp(20px,3.8vw,64px); right:clamp(120px,14vw,220px); z-index:4;
+    display:flex; align-items:center; gap:clamp(14px,1.8vw,28px); pointer-events:none; white-space:nowrap;
+    color:#e9f5ec; font:500 clamp(9px,.86vw,12px)/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing:.3em; text-transform:uppercase;
+  }
+  #brand::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(160,236,200,.42),rgba(160,236,200,.08) 34%,transparent 36%,transparent 64%,rgba(160,236,200,.08) 66%,rgba(160,236,200,.42)); }
   .overlay {
     position:fixed; inset:0; display:flex; flex-direction:column;
     align-items:center; justify-content:center; text-align:center;
     pointer-events:none; color:#eaf6ff; will-change:opacity, transform;
     font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
-  #hero h1 {
-    margin:0; font-weight:700; font-size:clamp(12px, 1.5vw, 18px);
-    letter-spacing:.01em; line-height:1.1; color:#ffffff;
-    max-width:min(124px, 32vw); text-align:center;
-    text-shadow:0 0 12px rgba(43,240,255,.9), 0 0 24px rgba(43,240,255,.6), 0 0 46px rgba(122,60,255,.5);
+  #hero { padding-bottom:0; z-index:3; }
+  #hero::before { content:''; position:absolute; left:50%; top:50%; width:min(96vw,860px); height:min(76vh,520px); transform:translate(-50%,-50%); z-index:-1;
+    background:radial-gradient(ellipse at center, rgba(2,8,6,.96) 0%, rgba(2,8,6,.82) 40%, rgba(2,8,6,0) 72%); }
+  #hero h1, #enter .vault-title {
+    margin:0; font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    font-weight:400; font-size:clamp(38px, 4.5vw, 82px);
+    letter-spacing:.09em; line-height:1.14; color:#f4fbf3; text-align:center; padding-left:.09em;
+    text-shadow:0 2px 14px rgba(2,10,6,.95), 0 0 2px rgba(2,10,6,.9);
   }
-  #hero p {
-    margin:6px 0 0; font-weight:600; font-size:clamp(5.5px,0.6vw,7px);
-    letter-spacing:.14em; text-transform:uppercase; color:#ffffff; max-width:min(124px, 32vw);
-    text-shadow:0 0 9px rgba(43,240,255,.85), 0 0 20px rgba(122,60,255,.5);
+  #hero h1 span, #enter .vault-title span { display:block; }
+  #hero p, #enter .vault-sub {
+    margin:clamp(16px,2.6vh,30px) 0 0; display:flex; align-items:center; gap:clamp(12px,1.4vw,22px);
+    font-weight:500; font-size:clamp(9px,.86vw,12px); padding-left:.34em;
+    letter-spacing:.34em; text-transform:uppercase; color:#e9f5ec;
+    text-shadow:0 0 14px rgba(4,20,14,.95);
   }
-  #hero .chev {
-    margin-top:12px; font-size:12px; color:rgba(180,225,255,.7);
-    animation:bob 2.2s ease-in-out infinite;
+  #hero p::before, #hero p::after, #enter .vault-sub::before, #enter .vault-sub::after { content:''; width:clamp(26px,3.2vw,54px); height:1px; background:rgba(190,240,214,.5); }
+  .hero-cta {
+    pointer-events:auto; margin-top:clamp(26px,5vh,54px); text-decoration:none; display:inline-block;
+    padding:clamp(13px,1.7vh,17px) clamp(26px,2.5vw,40px); border-radius:999px;
+    border:1px solid rgba(214,246,134,.85); background:rgba(6,24,16,.74);
+    color:#f2f8ea; font-weight:500; font-size:clamp(10px,.92vw,13px); letter-spacing:.24em; text-transform:uppercase;
+    box-shadow:0 0 0 1px rgba(214,246,134,.12), 0 0 26px rgba(190,246,120,.32), inset 0 0 18px rgba(190,246,120,.12);
+    transition:background .35s ease, box-shadow .35s ease, transform .35s ease;
   }
-  @keyframes bob { 0%,100%{ transform:translateY(0); opacity:.5 } 50%{ transform:translateY(9px); opacity:1 } }
+  .hero-cta:hover, .hero-cta:focus-visible { background:rgba(24,62,40,.6); transform:translateY(-1px);
+    box-shadow:0 0 0 1px rgba(214,246,134,.3), 0 0 38px rgba(190,246,120,.5), inset 0 0 22px rgba(190,246,120,.2); outline:none; }
+  @media (max-width:640px) {
+    #brand { top:17px; right:118px; letter-spacing:.2em; font-size:8.5px; }
+    #skip { top:17px !important; }
+    #brand::after { background:linear-gradient(90deg,rgba(160,236,200,.42),transparent); }
+    #hero h1, #enter .vault-title { font-size:clamp(34px,10.4vw,46px); }
+  }
   .wp { opacity:0; will-change:opacity, transform; }
   .wp h2 {
     margin:0; font-weight:700; font-size:clamp(20px, 3vw, 38px);
@@ -80,6 +134,26 @@
     letter-spacing:.22em; text-transform:uppercase; color:rgba(200,232,255,.82); text-align:center; max-width:80vw;
     text-shadow:0 0 12px rgba(43,240,255,.7);
   }
+  /* Scroll chapters: editorial systems language, not floating screenshot cards. */
+  #waypoints .wp { width:min(1120px,88vw); margin-inline:auto; min-height:56vh; padding:42px 0 34px; display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(220px,.56fr); grid-template-rows:auto 1fr auto;
+    gap:18px 56px; align-items:start; justify-content:stretch; text-align:left; color:#eaf3ed; }
+  #waypoints .wp::before { content:''; grid-column:1/-1; height:1px; background:linear-gradient(90deg,var(--wc),rgba(136,236,204,.16),transparent); box-shadow:0 0 20px -7px var(--wc); }
+  .wp-topline { grid-column:1/-1; display:flex; justify-content:space-between; align-items:center; color:color-mix(in srgb,var(--wc) 45%,#aab5b0); font:700 9px/1 'Helvetica Neue',Arial,sans-serif; letter-spacing:.2em; text-transform:uppercase; }
+  .wp-topline span:last-child { color:var(--wc); }
+  .wp-title { align-self:center; }
+  #waypoints .wp .wp-kicker { margin:0 0 17px; max-width:none; color:color-mix(in srgb,var(--wc) 62%,#e6ece8); font-size:9px; letter-spacing:.22em; text-align:left; text-shadow:none; }
+  #waypoints .wp h2 { margin:0; max-width:760px; color:#f0f5f1; text-align:left; font-size:clamp(41px,6.2vw,88px); font-weight:600; line-height:.91; letter-spacing:-.07em; text-transform:uppercase; text-shadow:none; }
+  #waypoints .wp h2 em { display:block; color:var(--wc); font-family:Georgia,'Times New Roman',serif; font-size:.75em; font-weight:400; letter-spacing:-.055em; line-height:1.02; text-transform:none; }
+  .wp-side { align-self:center; padding:23px 0 19px 22px; border-left:1px solid color-mix(in srgb,var(--wc) 34%,transparent); }
+  .wp-side p { margin:0; max-width:300px; color:#c0d1c7; font-size:clamp(12px,1.25vw,15px); font-weight:400; letter-spacing:0; line-height:1.7; text-align:left; text-transform:none; text-shadow:none; }
+  .wp-schematic { position:relative; height:76px; margin-top:25px; overflow:hidden; border-top:1px solid rgba(151,236,206,.25); border-bottom:1px solid rgba(151,236,206,.1); }
+  .wp-schematic::before { content:''; position:absolute; left:0; top:50%; width:92%; height:1px; background:linear-gradient(90deg,var(--wc),transparent); box-shadow:0 0 12px var(--wc); }
+  .wp-schematic::after { content:''; position:absolute; left:45%; top:calc(50% - 4px); width:8px; height:8px; border-radius:50%; background:var(--wc); box-shadow:0 0 0 5px color-mix(in srgb,var(--wc) 10%,transparent),0 0 18px var(--wc); animation:signal-drift 4s ease-in-out infinite; }
+  .wp-meta { grid-column:1/-1; display:flex; justify-content:space-between; gap:20px; padding-top:13px; border-top:1px solid rgba(147,235,203,.15); color:#90a99d; font:700 9px/1.4 'Helvetica Neue',Arial,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+  .wp-meta span:last-child { color:#cce0d5; }
+  @keyframes signal-drift { 0%,100%{ transform:translateX(-35px); opacity:.42; } 50%{ transform:translateX(90px); opacity:1; } }
+  @media (max-width:640px) { #waypoints .wp { width:calc(100vw - 42px); min-height:58vh; grid-template-columns:1fr; gap:19px; padding:25px 0; } .wp-side { padding:15px 0 0; border-left:0; border-top:1px solid rgba(147,235,203,.22); } #waypoints .wp h2 { font-size:clamp(40px,13vw,66px); } .wp-schematic { height:52px; margin-top:17px; } .wp-meta { font-size:8px; } }
   /* mini "page glimpse" card per section */
   .wp-glimpse {
     width:clamp(184px,26vw,258px); aspect-ratio:16/10; margin:0 0 18px; position:relative; overflow:hidden;
@@ -95,64 +169,15 @@
   }
   @keyframes shot-zoom { from{ transform:scale(1); } to{ transform:scale(1.09); } }
   @media (prefers-reduced-motion: reduce) { .wp-shot { animation:none; } }
-  #enter { opacity:0; }
-  /* center core floats above the screenshot rows on a soft dark halo */
-  .enter-core { position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:34px; padding:44px 78px; }
-  .enter-core::before { content:''; position:absolute; inset:-40px -70px; z-index:-1;
-    background:radial-gradient(ellipse at center, rgba(4,10,8,0.97) 0%, rgba(5,10,9,0.85) 42%, rgba(4,10,8,0) 74%); }
-  #enter p {
-    margin:0; font-weight:300; font-size:clamp(11px,1.2vw,14px);
-    letter-spacing:.42em; text-transform:uppercase; color:#7fd8b8;
-    animation:label-glow 4s ease-in-out infinite;
-  }
-  @keyframes label-glow { 0%,100%{ opacity:.55; } 50%{ opacity:.9; } }
-  #enter a {
-    pointer-events:auto; position:relative; overflow:hidden; text-decoration:none;
-    display:inline-block; padding:18px 60px; border-radius:10px;
-    border:1px solid rgba(52,211,153,.5); background:rgba(6,26,20,.85);
-    color:#d6ffee; font-weight:400; font-size:16px; letter-spacing:.44em; text-transform:uppercase;
-    animation:ember-flicker 3.2s ease-in-out infinite;
-    transition:transform .35s ease;
-  }
-  #enter a:hover { transform:translateY(-2px); }
-  #enter a .enter-txt { position:relative; z-index:2; padding-left:.44em; }
-  #enter a .enter-scan {
-    position:absolute; left:0; width:100%; height:2px; z-index:1;
-    background:linear-gradient(90deg, transparent, rgba(52,211,153,.9), transparent);
-    animation:scan-move 2.4s ease-in-out infinite alternate;
-  }
-  @keyframes scan-move { 0%{ top:8%; opacity:.75; } 50%{ opacity:1; } 100%{ top:88%; opacity:.75; } }
-  @keyframes ember-flicker {
-    0%,100%{ box-shadow:0 0 0 1px rgba(52,211,153,.4), 0 0 26px rgba(16,185,129,.28); }
-    50%{ box-shadow:0 0 0 1px rgba(52,211,153,.65), 0 0 46px rgba(16,185,129,.5); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #enter p, #enter a, #enter a .enter-scan { animation:none; }
-  }
+  #enter { opacity:0; z-index:3; }
   #skip {
-    position:fixed; top:18px; right:22px; z-index:5; pointer-events:auto; text-decoration:none;
-    color:rgba(180,225,255,.55); font:600 10px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    letter-spacing:.24em; text-transform:uppercase; transition:color .3s ease;
+    position:fixed; top:clamp(18px,4.4vh,40px); right:clamp(20px,3.8vw,64px); z-index:5; pointer-events:auto; text-decoration:none;
+    color:#e9f5ec; font:500 clamp(9px,.86vw,12px)/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing:.3em; text-transform:uppercase; transition:color .3s ease;
   }
-  #skip:hover { color:#dff8ff; }
+  #skip:hover { color:#d8f686; }
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-  /* Enter screen: two slow marquee rows of section screenshots around the button */
-  .enter-row { position:absolute; left:0; width:100%; height:calc(50vh - 108px); overflow:hidden; z-index:1;
-    -webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
-    mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); }
-  .enter-row.top { top:0; }
-  .enter-row.bot { bottom:0; }
-  .enter-track { display:flex; gap:22px; height:100%; width:max-content; will-change:transform; }
-  .enter-row.top .enter-track { animation:enter-marq-l 55s linear infinite; }
-  .enter-row.bot .enter-track { animation:enter-marq-r 50s linear infinite; }
-  @keyframes enter-marq-l { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-  @keyframes enter-marq-r { from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
-  .enter-shot { flex:0 0 auto; height:100%; aspect-ratio:16/10; border-radius:12px; overflow:hidden;
-    border:1px solid rgba(43,240,255,.35); box-shadow:0 0 30px -10px rgba(43,240,255,.55); background:#0a1420; }
-  .enter-shot img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; opacity:.9; }
-  @media (max-width:640px) { .enter-row { height:auto; } .enter-row.top { top:6%; } .enter-row.bot { bottom:6%; }
-    .enter-shot { height:auto; width:72vw; } }
 </style>
 <script type="importmap">
 {
@@ -179,97 +204,56 @@
       if (!window.__tunnelReady) {
         var en = document.getElementById('enter');
         if (en) { en.style.opacity = '1'; en.style.transform = 'none'; }
+        var va = document.getElementById('vaultArt'); if (va) va.style.opacity = '1';
         var h = document.getElementById('scroll-hint'); if (h) h.style.display = 'none';
       }
     }, 5000);
   });
   // Mark as entered when they click through, so the intro shows once per session.
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('#enterLink, #skip');
+    var a = e.target.closest && e.target.closest('#enterLink, #skip, #heroEnter');
     if (a) { try { sessionStorage.setItem('fs-entered', '1'); } catch (err) {} }
   });
 })();
 </script>
 </head>
 <body>
+<div id="vaultArt" aria-hidden="true"><div class="vault-frame"></div></div>
 <canvas id="scene"></canvas>
 
 <a id="skip" href="/thought-space.html">Skip intro &#8594;</a>
 
+<div id="brand" aria-hidden="true">Faris Suhail / The Mdrn Urban</div>
+
 <div id="hero" class="overlay">
-  <h1>SELAMAT DATANG</h1>
+  <h1><span>SELAMAT</span><span>DATANG</span></h1>
   <p>Scroll into the light</p>
-  <div class="chev">&#8595;</div>
 </div>
 
 <div id="waypoints">
-  <div class="overlay wp" data-c="0.24" style="--wc:#4fd8ff">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/notes.jpg" alt=""></div>
-    <h2>Notes</h2><p>Working essays where the engineering lens meets the tradition</p>
-  </div>
-  <div class="overlay wp" data-c="0.32" style="--wc:#6ee7a8">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/reflections.jpg" alt=""></div>
-    <h2>Reflections</h2><p>One surah at a time, EN &amp; BM</p>
-  </div>
-  <div class="overlay wp" data-c="0.40" style="--wc:#b48cff">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/nazm.jpg" alt=""></div>
-    <h2>Na&#7827;m &middot; Ring Structure</h2><p>How s&#363;rahs fold around their centres</p>
-  </div>
-  <div class="overlay wp" data-c="0.49" style="--wc:#ffc46b">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/kalam.jpg" alt=""></div>
-    <h2>Kalam</h2><p>The Qur'an in data, computed from the text</p>
-  </div>
-  <div class="overlay wp" data-c="0.57" style="--wc:#ff6fae">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/inspiration.jpg" alt=""></div>
-    <h2>Inspiration</h2><p>Everyday moments read through revelation</p>
-  </div>
-  <div class="overlay wp" data-c="0.65" style="--wc:#ffcf6b">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/books.jpg" alt=""></div>
-    <h2>Book Summaries</h2><p>What I read, distilled</p>
-  </div>
-  <div class="overlay wp" data-c="0.74" style="--wc:#6cc6ff">
-    <div class="wp-glimpse"><img class="wp-shot" src="/assets/glimpse/ai.jpg" alt=""></div>
-    <h2>Learn AI &amp; more</h2><p>Plus the political read, apps and personal corners</p>
-  </div>
+  <article class="overlay wp" data-c="0.17" style="--wc:#5ff0c4"><div class="wp-topline"><span>01 / 12 &middot; Notes</span><span>Study system</span></div><div class="wp-title"><p class="wp-kicker">THE COLLECTION / A STARTING POINT</p><h2>12 SECTIONS.<em>One website.</em></h2></div><aside class="wp-side"><p>Working essays where an engineering lens meets the tradition—questions, sources and ideas kept in motion.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Notes</span><span>Question → evidence → revision</span></div></article>
+  <article class="overlay wp" data-c="0.23" style="--wc:#ffc857"><div class="wp-topline"><span>02 / 12 &middot; Reflections</span><span>Revelation</span></div><div class="wp-title"><p class="wp-kicker">QUR'AN / READ SLOWLY</p><h2>114 S&#362;RAHS.<em>One text.</em></h2></div><aside class="wp-side"><p>Reflections in English and Bahasa Melayu: a place to pause, return and carry a question into everyday life.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Reflections</span><span>Read → pause → reflect</span></div></article>
+  <article class="overlay wp" data-c="0.29" style="--wc:#b48cff"><div class="wp-topline"><span>03 / 12 &middot; Na&#7827;m</span><span>Structure</span></div><div class="wp-title"><p class="wp-kicker">RING STRUCTURE / THE ARCHITECTURE OF MEANING</p><h2>MIRRORED PARTS.<em>Find the centre.</em></h2></div><aside class="wp-side"><p>Explore how s&#363;rahs can fold around a centre—and how structure can make coherence easier to see.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Na&#7827;m &middot; Ring Structure</span><span>Opening ↔ centre ↔ closing</span></div></article>
+  <article class="overlay wp" data-c="0.35" style="--wc:#56c2ff"><div class="wp-topline"><span>04 / 12 &middot; Kalam</span><span>Text system</span></div><div class="wp-title"><p class="wp-kicker">QUR'AN / A COMPUTED LENS</p><h2>TEXT. DATA.<em>Meaning.</em></h2></div><aside class="wp-side"><p>Words, roots, names and s&#363;rahs become a field of connections—computed from the text, then read with care.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Kalam</span><span>Roots → words → s&#363;rahs</span></div></article>
+  <article class="overlay wp" data-c="0.41" style="--wc:#ff9a4d"><div class="wp-topline"><span>05 / 12 &middot; Inspiration</span><span>Everyday life</span></div><div class="wp-title"><p class="wp-kicker">THE ORDINARY / SEEN AGAIN</p><h2>ORDINARY DAYS.<em>Read again.</em></h2></div><aside class="wp-side"><p>Small struggles, quiet change and everyday moments viewed through the light of revelation.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Inspiration</span><span>Notice → reflect → carry forward</span></div></article>
+  <article class="overlay wp" data-c="0.47" style="--wc:#ff6f9c"><div class="wp-topline"><span>06 / 12 &middot; Book Summaries</span><span>Reading system</span></div><div class="wp-title"><p class="wp-kicker">THE READING SHELF / DISTILLED</p><h2>IDEAS READ.<em>Ideas retained.</em></h2></div><aside class="wp-side"><p>Books on money, mindset, history and more—reduced to the ideas worth keeping and testing in life.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Book Summaries</span><span>Key idea → context → application</span></div></article>
+  <article class="overlay wp" data-c="0.53" style="--wc:#8a7dff"><div class="wp-topline"><span>07 / 12 &middot; Learn AI</span><span>Learning system</span></div><div class="wp-title"><p class="wp-kicker">AI / MAKE THE ABSTRACT TANGIBLE</p><h2>LEARN. MAKE.<em>Use.</em></h2></div><aside class="wp-side"><p>Short lessons, real examples and useful tools: a practical way to build understanding without getting lost in jargon.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Learn AI</span><span>Input → context → response</span></div></article>
+  <article class="overlay wp" data-c="0.59" style="--wc:#ff5f5f"><div class="wp-topline"><span>08 / 12 &middot; Political Read</span><span>Public life</span></div><div class="wp-title"><p class="wp-kicker">MALAYSIA / A WIDER CONVERSATION</p><h2>BEYOND HEADLINES.<em>More context.</em></h2></div><aside class="wp-side"><p>An independent space to compare narratives, ask better questions and make room for competing perspectives.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Political Read</span><span>Claim → context → perspective</span></div></article>
+  <article class="overlay wp" data-c="0.65" style="--wc:#3fe0e6"><div class="wp-topline"><span>09 / 12 &middot; Analitika Malaya</span><span>Signal system</span></div><div class="wp-title"><p class="wp-kicker">PUBLIC CONVERSATION / MALAYSIA</p><h2>SIGNALS.<em>With context.</em></h2></div><aside class="wp-side"><p>Narratives, sentiment and changing public signals—read as a landscape, not a dashboard without a story.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Analitika Malaya</span><span>Narratives → sentiment → trends</span></div></article>
+  <article class="overlay wp" data-c="0.71" style="--wc:#ffe04a"><div class="wp-topline"><span>10 / 12 &middot; Sneakerz</span><span>Design system</span></div><div class="wp-title"><p class="wp-kicker">DETAILS WE WEAR / A PERSONAL COLLECTION</p><h2>DESIGN.<em>From the sole up.</em></h2></div><aside class="wp-side"><p>A personal collection shaped by construction, material, motorsport and the stories carried by each pair.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Sneakerz</span><span>Outsole → cushioning → upper</span></div></article>
+  <article class="overlay wp" data-c="0.77" style="--wc:#ff7a3c"><div class="wp-topline"><span>11 / 12 &middot; Petrolhead Technica</span><span>Machine system</span></div><div class="wp-title"><p class="wp-kicker">MECHANICS / MAKE MOTION LEGIBLE</p><h2>TORQUE.<em>Made visible.</em></h2></div><aside class="wp-side"><p>Interactive transmission labs that unpack the physical relationships inside a machine—from input to output.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Petrolhead Technica</span><span>Input shaft → gears → output</span></div></article>
+  <article class="overlay wp" data-c="0.83" style="--wc:#d07bff"><div class="wp-topline"><span>12 / 12 &middot; Apps &amp; Experiments</span><span>Build system</span></div><div class="wp-title"><p class="wp-kicker">FROM IDEA TO USEFUL THING</p><h2>PROBLEMS.<em>Made useful.</em></h2></div><aside class="wp-side"><p>Apps and experiments built around real needs—designed carefully, then tested in the everyday world.</p><div class="wp-schematic"></div></aside><div class="wp-meta"><span>Apps &amp; Experiments</span><span>Design → build → use</span></div></article>
 </div>
 
 <div id="enter" class="overlay">
-  <div class="enter-row top" aria-hidden="true"><div class="enter-track">
-    <span class="enter-shot"><img src="/assets/glimpse/notes.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/reflections.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/nazm.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/kalam.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/inspiration.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/books.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/notes.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/reflections.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/nazm.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/kalam.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/inspiration.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/books.jpg" alt=""></span>
-  </div></div>
-  <div class="enter-core">
-    <p>farissuhail.com</p>
-    <a id="enterLink" href="/thought-space.html"><span class="enter-txt">Enter</span><span class="enter-scan"></span></a>
+  <div class="vault-frame">
+    <h2 class="vault-name">farissuhail.com</h2>
+    <a id="enterLink" class="vault-hit" href="/thought-space.html">Ancient light, modern questions<span class="vault-arrow" aria-hidden="true">&#8594;</span></a>
   </div>
-  <div class="enter-row bot" aria-hidden="true"><div class="enter-track">
-    <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/npam.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/sneakers.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/apps.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/about.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/ai.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/npam.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/analitika-malaya.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/sneakers.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/apps.jpg" alt=""></span>
-    <span class="enter-shot"><img src="/assets/glimpse/about.jpg" alt=""></span>
-  </div></div>
 </div>
 
 <div id="scroll-host"></div>
-<div id="scroll-hint">scroll to enter &#8595;</div>
+<div id="scroll-hint"><span class="hint-count">01 / 01</span><span class="hint-label">Scroll to enter</span></div>
 
 <noscript>
   <meta http-equiv="refresh" content="0; url=/thought-space.html" />
@@ -310,6 +294,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
 import { GammaCorrectionShader } from 'three/addons/shaders/GammaCorrectionShader.js'
 import { CopyShader } from 'three/addons/shaders/CopyShader.js'
+import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 
 // ---------- helpers ----------
 const Lerp = (a, b, t) => a + (b - a) * t
@@ -320,18 +305,20 @@ function hexToVec3(hex) {
 }
 
 // ---------- fixed parameters ----------
-const bgColor = '#0a0524'
-const flameColor = '#2bf0ff', flameColor2 = '#7a3cff', flameAmt = 0.2
-const atmoColor = '#8fe6ff', atmoCount = 300, atmoSize = 24, atmoSpeed = 1.0
-const colorLow = '#180a3a', colorHigh = '#2bf0ff'
-const opacity = 1.44, pointSize = 5, brightness = 0.4
-const swirl = 0.39, spin = 0.065, scale = 0.17
+const bgColor = '#030806'
+const flameColor = '#146b54', flameColor2 = '#d8f686', flameAmt = 0.035
+const atmoColor = '#2fe46c', atmoCount = 150, atmoSize = 12, atmoSpeed = 0.45
+const colorLow = '#06361c', colorHigh = '#12e052'
+const opacity = 1.1, pointSize = 3.2, brightness = 0.3
+const swirl = 0.16, spin = 0.018, scale = 0.17
 const scrollFly = 34, scrollSwirl = 1.5, scrollRoll = 0.05
 const steer = 0.6, parallax = 0.12, pointerRadius = 2.4, pointerStrength = 0.8
 
 // ---------- renderer / scene / camera ----------
 const canvas = document.getElementById('scene')
 const heroEl = document.getElementById('hero')
+const brandEl = document.getElementById('brand')
+const artEl = document.getElementById('vaultArt'), skipEl = document.getElementById('skip')
 const enterEl = document.getElementById('enter')
 const hintEl = document.getElementById('scroll-hint')
 const wpEls = Array.from(document.querySelectorAll('#waypoints .wp'))
@@ -468,6 +455,268 @@ const group = new THREE.Group()
 group.add(points)
 scene.add(group)
 
+// ---------- cinematic light vault ----------
+// Closing composition: a glass light-vault on a glowing plinth, wrapped in slow
+// particle ribbons. The intro opens straight on the spiral tunnel; the vault only
+// appears at the end, holding the auto-cycling section form behind the Enter button.
+const vaultGroup = new THREE.Group()
+const vaultU = { uPresence: { value: 1 }, uTime: { value: 0 } }
+const VAULT_R = 3.9, VAULT_H = 10.7, VAULT_Y = 0.9
+const VAULT_TOP = VAULT_Y + VAULT_H / 2, VAULT_FLOOR = VAULT_Y - VAULT_H / 2
+let vaultFit = 1
+const vaultMaterials = []
+function vaultLayer(object, bloom = false) {
+  object.layers.enable(LAYERS.ENTIRE_SCENE)
+  if (bloom) object.layers.enable(LAYERS.BLOOM_SCENE)
+  object.frustumCulled = false
+  vaultGroup.add(object)
+  return object
+}
+function vaultShader(color, gain, body) {
+  return new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, depthTest: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending,
+    uniforms: { uPresence: vaultU.uPresence, uTime: vaultU.uTime, uColor: { value: hexToVec3(color) }, uGain: { value: gain } },
+    vertexShader: `varying vec2 vUv; varying vec3 vN; varying vec3 vV;
+      void main(){ vUv = uv; vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform float uPresence; uniform float uTime; uniform vec3 uColor; uniform float uGain;
+      varying vec2 vUv; varying vec3 vN; varying vec3 vV;
+      void main(){ float facing = abs(dot(normalize(vN), normalize(vV))); float a = 0.0;
+        ${body}
+        gl_FragColor = vec4(uColor * a * uGain * uPresence, 1.0); }`
+  })
+}
+function vaultRing(radius, tube, color, opacityBase, y, bloom) {
+  const material = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: opacityBase, depthWrite: false, depthTest: false, fog: false, blending: THREE.AdditiveBlending })
+  vaultMaterials.push({ material, base: opacityBase })
+  const ring = vaultLayer(new THREE.Mesh(new THREE.TorusGeometry(radius, tube, 8, 160), material), bloom)
+  ring.position.y = y; ring.rotation.x = Math.PI * 0.5
+  return ring
+}
+// glass walls: bright at the silhouette, almost clear face-on, with fine vertical striations
+const GLASS = `float fr = pow(1.0 - facing, 3.2);
+  float streak = 0.6 + 0.4 * sin(vUv.x * 240.0) * sin(vUv.x * 41.0 + 1.3);
+  float vert = smoothstep(0.0, 0.06, vUv.y) * (0.5 + 0.5 * vUv.y);
+  a = (0.03 + fr * streak) * vert;`
+vaultLayer(new THREE.Mesh(new THREE.CylinderGeometry(VAULT_R, VAULT_R, VAULT_H, 96, 1, true), vaultShader('#7ff0c0', 0.85, GLASS))).position.y = VAULT_Y
+vaultLayer(new THREE.Mesh(new THREE.CylinderGeometry(VAULT_R * 0.63, VAULT_R * 0.63, VAULT_H, 96, 1, true), vaultShader('#9af5b4', 0.4, GLASS))).position.y = VAULT_Y
+// inner light: strong at the crown and the plinth, held back through the middle so the title stays readable
+vaultLayer(new THREE.Mesh(new THREE.CylinderGeometry(VAULT_R * 0.5, VAULT_R * 0.62, VAULT_H, 64, 1, true), vaultShader('#3fd884', 0.5,
+  `float core = pow(facing, 2.4);
+   float ends = 0.07 + 0.93 * pow(abs(vUv.y - 0.44) / 0.56, 2.4);
+   float rays = 0.72 + 0.28 * sin(vUv.x * 110.0 + uTime * 0.25);
+   a = core * ends * rays;`))).position.y = VAULT_Y
+// plinth glow, crown glow and the reflection that falls onto the floor
+const DISC = `float d = distance(vUv, vec2(0.5)) * 2.0; a = pow(max(0.0, 1.0 - d), 2.6);`
+const plinthGlow = vaultLayer(new THREE.Mesh(new THREE.CircleGeometry(VAULT_R * 1.05, 64), vaultShader('#c9f98a', 0.8, DISC)), true)
+plinthGlow.position.y = VAULT_FLOOR + 0.06; plinthGlow.rotation.x = -Math.PI * 0.5
+const crownGlow = vaultLayer(new THREE.Mesh(new THREE.CircleGeometry(VAULT_R * 0.95, 64), vaultShader('#8ff0b0', 0.42, DISC)), true)
+crownGlow.position.y = VAULT_TOP; crownGlow.rotation.x = Math.PI * 0.5
+const reflection = vaultLayer(new THREE.Mesh(new THREE.PlaneGeometry(VAULT_R * 1.7, 4.4), vaultShader('#8cf0a8', 0.5,
+  `float x = abs(vUv.x - 0.5) * 2.0; a = pow(max(0.0, 1.0 - x), 3.0) * pow(vUv.y, 2.2);`)))
+reflection.position.set(0, VAULT_FLOOR - 2.2, 0.2)
+// soft green haze behind the vault so the frame is never flat black
+const haze = vaultLayer(new THREE.Mesh(new THREE.PlaneGeometry(40, 24), vaultShader('#0d6a40', 0.5,
+  `float d = length((vUv - 0.5) * vec2(2.0, 2.0)); a = pow(max(0.0, 1.0 - d), 1.8);`)))
+haze.position.set(0, VAULT_Y - 0.6, -5)
+// rims and floor rings
+vaultRing(VAULT_R, 0.016, 0x9af0c0, 0.5, VAULT_TOP, true)
+vaultRing(VAULT_R * 1.34, 0.012, 0x8de8ca, 0.4, VAULT_TOP - 0.55, false)
+vaultRing(VAULT_R * 1.08, 0.022, 0xd8f686, 0.55, VAULT_FLOOR, true)
+vaultRing(VAULT_R * 1.5, 0.012, 0xd8f686, 0.4, VAULT_FLOOR - 0.12, false)
+vaultRing(VAULT_R * 2.2, 0.01, 0x8de8ca, 0.3, VAULT_FLOOR - 0.2, false)
+
+// particle ribbons spiralling out from the plinth
+const RIBBON_N = 16000
+const ribPos = new Float32Array(RIBBON_N * 3), ribSize = new Float32Array(RIBBON_N), ribTone = new Float32Array(RIBBON_N)
+const gauss = () => Math.random() + Math.random() + Math.random() - 1.5
+for (let i = 0; i < RIBBON_N; i++) {
+  const k = i % 3, t = Math.pow(Math.random(), 0.8)
+  const a = t * Math.PI * 2 * 1.3 + k * 2.1
+  const r = 5.6 + t * 10.5 + k * 0.7
+  const spread = 0.12 + t * 0.55
+  ribPos[i*3]   = Math.cos(a) * r + gauss() * spread
+  ribPos[i*3+1] = VAULT_FLOOR - 0.3 + t * 8.6 + Math.sin(a * 1.5 + k) * 0.9 + gauss() * spread * 0.6
+  ribPos[i*3+2] = Math.sin(a) * r * 0.55 + gauss() * spread
+  ribSize[i] = Math.random() < 0.03 ? 4 + Math.random() * 5 : 1.1 + Math.random() * 1.9
+  ribTone[i] = k + Math.random() * 0.99
+}
+const ribbonGeo = new THREE.BufferGeometry()
+ribbonGeo.setAttribute('position', new THREE.Float32BufferAttribute(ribPos, 3))
+ribbonGeo.setAttribute('size', new THREE.Float32BufferAttribute(ribSize, 1))
+ribbonGeo.setAttribute('tone', new THREE.Float32BufferAttribute(ribTone, 1))
+const ribbonMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+  uniforms: { uPresence: vaultU.uPresence, uPx: { value: 1 } },
+  vertexShader: `attribute float size; attribute float tone; uniform float uPx; varying float vTone; varying float vSoft;
+    void main(){ vTone = tone; vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      float ps = size * uPx * (20.0 / max(0.5, -mv.z)); vSoft = smoothstep(4.0, 9.0, ps);
+      gl_PointSize = max(ps, 1.2); gl_Position = projectionMatrix * mv; }`,
+  fragmentShader: `uniform float uPresence; varying float vTone; varying float vSoft;
+    void main(){ float l = length(gl_PointCoord - 0.5); if (l > 0.5) discard;
+      float a = smoothstep(0.5, 0.05, l) * mix(0.6, 0.22, vSoft);
+      vec3 c = mix(vec3(0.1, 0.74, 0.46), vec3(0.6, 1.0, 0.74), fract(vTone));
+      gl_FragColor = vec4(c * a * uPresence, 1.0); }`
+})
+const ribbons = vaultLayer(new THREE.Points(ribbonGeo, ribbonMat))
+for (const o of vaultGroup.children) if (o !== ribbons) o.visible = false
+scene.add(vaultGroup)
+
+// ---------- section forms ----------
+// Each of the 12 sections shows its real pages on floating holographic screens:
+// a dark slab with a lit rim, glowing edges and a scan sweep. A particle cloud
+// sampled from the same surfaces carries the change between sections.
+const FORM_N = 9000
+const TAU = Math.PI * 2
+const sstep = (a, b, x) => { const k = clamp((x - a) / (b - a), 0, 1); return k * k * (3 - 2 * k) }
+const _m4 = new THREE.Matrix4(), _q = new THREE.Quaternion(), _e = new THREE.Euler(), _v1 = new THREE.Vector3(), _v2 = new THREE.Vector3()
+function P(g, x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, sc = 1) {
+  if (g.index) g = g.toNonIndexed()
+  g.applyMatrix4(_m4.compose(_v1.set(x, y, z), _q.setFromEuler(_e.set(rx, ry, rz)), _v2.set(sc, sc, sc)))
+  return g
+}
+function ex(shape, depth, bevel, ...r) {
+  const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: bevel > 0, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 2, curveSegments: 24 })
+  g.translate(0, 0, -depth / 2)
+  return P(g, ...r)
+}
+function rrShape(w, h, r) {
+  const sh = new THREE.Shape(), x = -w / 2, y = -h / 2
+  sh.moveTo(x + r, y); sh.lineTo(x + w - r, y); sh.quadraticCurveTo(x + w, y, x + w, y + r); sh.lineTo(x + w, y + h - r)
+  sh.quadraticCurveTo(x + w, y + h, x + w - r, y + h); sh.lineTo(x + r, y + h); sh.quadraticCurveTo(x, y + h, x, y + h - r)
+  sh.lineTo(x, y + r); sh.quadraticCurveTo(x, y, x + r, y)
+  return sh
+}
+function sampleSurface(geo, count) {
+  const pos = geo.attributes.position.array, tris = pos.length / 9, cum = new Float32Array(tris)
+  const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3()
+  let total = 0
+  for (let i = 0; i < tris; i++) {
+    a.fromArray(pos, i * 9); b.fromArray(pos, i * 9 + 3); c.fromArray(pos, i * 9 + 6)
+    total += b.sub(a).cross(c.sub(a)).length() * 0.5; cum[i] = total
+  }
+  const out = new Float32Array(count * 3)
+  for (let n = 0; n < count; n++) {
+    const r = Math.random() * total; let lo = 0, hi = tris - 1
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (cum[mid] < r) lo = mid + 1; else hi = mid }
+    let u = Math.random(), v = Math.random(); if (u + v > 1) { u = 1 - u; v = 1 - v }
+    const o = lo * 9, w = 1 - u - v
+    out[n*3]   = pos[o]   * w + pos[o+3] * u + pos[o+6] * v
+    out[n*3+1] = pos[o+1] * w + pos[o+4] * u + pos[o+7] * v
+    out[n*3+2] = pos[o+2] * w + pos[o+5] * u + pos[o+8] * v
+  }
+  return out
+}
+const holoU = { uColor: { value: new THREE.Vector3(0.37, 0.94, 0.77) }, uTime: { value: 0 } }
+const HOLO_VERT = `varying vec3 vN; varying vec3 vV; varying vec3 vP;
+  void main(){ vP = position; vec4 mv = modelViewMatrix * vec4(position, 1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }`
+const HOLO_FRAG = `uniform vec3 uColor; uniform float uTime; uniform float uVis; varying vec3 vN; varying vec3 vV; varying vec3 vP;
+  void main(){ vec3 N = normalize(vN);
+    float fres = pow(1.0 - max(dot(N, normalize(vV)), 0.0), 2.2);
+    float diff = max(dot(N, normalize(vec3(-0.45, 0.72, 0.52))), 0.0);
+    float spec = pow(max(dot(N, normalize(vec3(-0.3, 0.55, 0.78))), 0.0), 26.0);
+    float lines = smoothstep(0.88, 1.0, 0.5 + 0.5 * sin(vP.y * 44.0 - uTime * 1.5));
+    float sweep = exp(-pow((vP.y - (mod(uTime * 0.85, 7.0) - 3.5)) * 2.6, 2.0));
+    vec3 col = uColor * (0.045 + 0.2 * diff) + uColor * (fres * 0.85 + lines * 0.09 + sweep * 0.5) + vec3(1.0) * (spec * 0.3 + fres * fres * 0.2);
+    gl_FragColor = vec4(col, uVis * (0.86 + 0.14 * fres)); }`
+const formSpin = new THREE.Group()
+// Every section shows the real pages: three floating holographic screens, each carrying a screenshot.
+// index -> [centre image, its aspect]; the two side screens are <name>-2.jpg and <name>-3.jpg (1.628).
+const MODEL_SCREENS = [['thought-space', 1.913], ['reflections', 1.628], ['nazm', 1.781], ['kalam', 1.366], ['inspiration', 1.628], ['books', 1.693],
+  ['learn-ai', 1.628], ['npam', 1.628], ['analitika-malaya', 1.628], ['sneakers', 0.807], ['r32', 1.763], ['drilltech', 1.502]]
+const SCREEN_FRAG = `uniform sampler2D map; uniform vec3 uColor; uniform float uTime; uniform float uVis; uniform float uDim; varying vec2 vUv;
+  void main(){ vec3 tex = texture2D(map, vUv).rgb;
+    float scan = 0.95 + 0.05 * sin(vUv.y * 520.0);
+    float sweep = exp(-pow((vUv.y - fract(uTime * 0.12)) * 9.0, 2.0));
+    vec2 e = smoothstep(vec2(0.0), vec2(0.012), vUv) * smoothstep(vec2(0.0), vec2(0.012), 1.0 - vUv);
+    gl_FragColor = vec4((tex * 1.22 * scan + uColor * sweep * 0.1) * uDim, uVis * e.x * e.y); }`
+const texLoader = new THREE.TextureLoader()
+const wide0 = clamp((innerWidth / innerHeight - 0.5) / 0.8, 0, 1)
+// wide screens: side screens flank the centre; narrow screens: they rise behind it so all three stay visible
+const sideLayout = (w) => ({ x: Lerp(1.5, 4.3, w), y: Lerp(1.95, 0, clamp(w / 0.5, 0, 1)), z: Lerp(-1.3, -0.9, w), ry: Lerp(0.16, 0.52, w), s: Lerp(0.6, 0.7, w) })
+function placeSides(panels, w) {
+  const L = sideLayout(w)
+  panels.slice(0, 2).forEach((p, k) => { const d = k ? 1 : -1; p.group.position.set(d * L.x, L.y, L.z); p.group.rotation.y = -d * L.ry; p.group.scale.setScalar(L.s) })
+}
+function makePanel(url, aspect, radius, order, dim) {
+  const geo = BufferGeometryUtils.mergeBufferGeometries([ex(rrShape(2 * aspect, 2, 0.07), 0.07, 0.02)])
+  geo.center(); geo.computeBoundingSphere()
+  const fit = radius / geo.boundingSphere.radius
+  geo.scale(fit, fit, fit); geo.computeBoundingBox()
+  const bb = geo.boundingBox
+  const mat = new THREE.ShaderMaterial({ transparent: true, depthTest: false, uniforms: { uColor: holoU.uColor, uTime: holoU.uTime, uVis: { value: 0 } }, vertexShader: HOLO_VERT, fragmentShader: HOLO_FRAG })
+  const mesh = new THREE.Mesh(geo, mat)
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 26), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, fog: false, depthTest: false }))
+  const tex = texLoader.load(url); tex.minFilter = THREE.LinearMipmapLinearFilter; tex.anisotropy = 4
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry((bb.max.x - bb.min.x) * 0.972, (bb.max.y - bb.min.y) * 0.955),
+    new THREE.ShaderMaterial({ transparent: true, depthWrite: false, depthTest: false, uniforms: { map: { value: tex }, uColor: holoU.uColor, uTime: holoU.uTime, uVis: { value: 0 }, uDim: { value: dim } },
+      vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`, fragmentShader: SCREEN_FRAG }))
+  screen.position.z = bb.max.z + 0.012
+  // screens draw in front of the tunnel particles so the pages stay readable; the centre screen draws last
+  mesh.renderOrder = order; screen.renderOrder = order + 1; edges.renderOrder = order + 2
+  const g = new THREE.Group()
+  for (const o of [mesh, screen, edges]) { o.frustumCulled = false; o.layers.enable(LAYERS.ENTIRE_SCENE); g.add(o) }
+  edges.layers.enable(LAYERS.BLOOM_SCENE)
+  g.visible = false; formSpin.add(g)
+  return { group: g, geo, mat, edges, screen }
+}
+const MODELS = MODEL_SCREENS.map(([name, aspect]) => {
+  const base = '/assets/intro/' + name
+  const panels = [makePanel(base + '-2.jpg', 1.628, 3.0, 4, 0.78), makePanel(base + '-3.jpg', 1.628, 3.0, 4, 0.78), makePanel(base + '.jpg', aspect, aspect < 1 ? 2.75 : 3.0, 8, 1)]
+  placeSides(panels, wide0)
+  // the particle cloud is sampled from all three screens
+  const merged = BufferGeometryUtils.mergeBufferGeometries(panels.map((p) => { p.group.updateMatrix(); return p.geo.clone().applyMatrix4(p.group.matrix) }))
+  return { panels, pts: sampleSurface(merged, FORM_N) }
+})
+const FORMS = MODELS.map((M) => M.pts)
+const formGeo = new THREE.BufferGeometry()
+const formFromAttr = new THREE.BufferAttribute(new Float32Array(FORMS[0]), 3)
+const formToAttr = new THREE.BufferAttribute(new Float32Array(FORMS[1]), 3)
+const formSeed = new Float32Array(FORM_N); for (let i = 0; i < FORM_N; i++) formSeed[i] = Math.random()
+formGeo.setAttribute('position', formFromAttr)
+formGeo.setAttribute('aTo', formToAttr)
+formGeo.setAttribute('aSeed', new THREE.BufferAttribute(formSeed, 1))
+const formMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+  uniforms: { uMix: { value: 0 }, uTime: { value: 0 }, uPx: { value: 1 }, uPresence: { value: 0 }, uColor: { value: new THREE.Vector3(0.37, 0.94, 0.77) } },
+  vertexShader: `attribute vec3 aTo; attribute float aSeed; uniform float uMix; uniform float uTime; uniform float uPx; varying float vSeed;
+    void main(){ vSeed = aSeed;
+      float stagger = clamp(uMix * 1.5 - fract(aSeed * 7.13) * 0.5, 0.0, 1.0);
+      float e = stagger * stagger * (3.0 - 2.0 * stagger);
+      vec3 p = mix(position, aTo, e);
+      float burst = sin(e * 3.14159265);
+      vec3 drift = vec3(sin(aSeed * 91.7 + uTime * 0.7), cos(aSeed * 57.3 + uTime * 0.6), sin(aSeed * 33.1 + uTime * 0.5));
+      p += drift * (0.022 + burst * (0.35 + fract(aSeed * 3.71) * 0.9));
+      p.x += burst * sin(aSeed * 12.0) * 1.2;
+      vec4 mv = modelViewMatrix * vec4(p, 1.0);
+      gl_PointSize = max(1.3, uPx * (1.8 + fract(aSeed * 13.7) * 1.9) * (10.0 / -mv.z));
+      gl_Position = projectionMatrix * mv; }`,
+  fragmentShader: `uniform float uPresence; uniform vec3 uColor; varying float vSeed;
+    void main(){ float l = length(gl_PointCoord - 0.5); if (l > 0.5) discard;
+      float a = smoothstep(0.5, 0.08, l);
+      vec3 c = mix(uColor, vec3(1.0), step(0.8, vSeed) * 0.6);
+      gl_FragColor = vec4(c * a * 0.95 * uPresence, 1.0); }`
+})
+const formPoints = new THREE.Points(formGeo, formMat)
+formPoints.frustumCulled = false
+formPoints.layers.enable(LAYERS.ENTIRE_SCENE)
+const formGroup = new THREE.Group()
+formSpin.add(formPoints)
+formGroup.add(formSpin)
+// emitter rings under the object
+const emitMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false, fog: false, blending: THREE.AdditiveBlending })
+for (const [R, tube] of [[1.7, 0.014], [2.15, 0.008], [2.6, 0.005]]) {
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(R, tube, 6, 120), emitMat)
+  ring.rotation.x = Math.PI / 2; ring.position.y = -2.62; ring.frustumCulled = false
+  ring.layers.enable(LAYERS.ENTIRE_SCENE); ring.layers.enable(LAYERS.BLOOM_SCENE); formGroup.add(ring)
+}
+camera.add(formGroup)
+let formIdx = -1
+// each section carries its own colour (--wc); the form, tunnel and motes follow it
+const SECTION_COLS = wpEls.map((el) => hexToVec3(el.style.getPropertyValue('--wc').trim() || '#5ff0c4'))
+const TUNNEL_BASE = hexToVec3(colorHigh), ATMO_BASE = hexToVec3(atmoColor)
+const formCol = new THREE.Vector3()
+
 // ---------- atmosphere motes ----------
 const N = atmoCount
 const aPositions = new Float32Array(N * 3), aSizes = new Float32Array(N), aSeeds = new Float32Array(N)
@@ -558,7 +807,7 @@ torusComposer.addPass(new ShaderPass(CopyShader))
 
 const bloomComposer = new EffectComposer(renderer); bloomComposer.renderToScreen = false
 bloomComposer.addPass(renderScene)
-bloomComposer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.6, 0))
+bloomComposer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.42, 0.45, 0))
 bloomComposer.addPass(new ShaderPass(GammaCorrectionShader))
 
 const finalPass = new ShaderPass(FinalPass)
@@ -625,6 +874,56 @@ const sceneObj = {
     updatePointerWorld()
 
     uniforms.uSwirl.value = swirl * (1 + scroll * scrollSwirl)
+    // the vault returns for the closing scene, placed ahead of wherever the camera has flown to
+    const endK = clamp((scroll - 0.9) / 0.08, 0, 1)
+    const vaultPresence = endK
+    vaultGroup.position.set(0, 0, -scrollFly)
+    vaultGroup.visible = vaultPresence > 0.001
+    vaultU.uPresence.value = vaultPresence * uniforms.uAppear.value
+    vaultU.uTime.value = t
+    vaultGroup.scale.setScalar(vaultFit * (1 + Math.sin(t * 0.6) * 0.004))
+    ribbons.rotation.y = t * 0.05
+    for (const item of vaultMaterials) item.material.opacity = item.base * vaultPresence * uniforms.uAppear.value
+    // the tunnel stays as quiet depth behind the section forms
+    uniforms.uOpacity.value = opacity * Lerp(1, 0.13, clamp((scroll - 0.03) / 0.07, 0, 1)) * (1 - endK)
+    const formPos = clamp((scroll - 0.17) / 0.06, 0, FORMS.length - 1)
+    const fa = Math.min(FORMS.length - 2, Math.floor(formPos)), fb = fa + 1
+    const fmix = clamp((formPos - fa - 0.3) / 0.4, 0, 1)
+    const fkey = fa * 100 + fb
+    if (fkey !== formIdx) {
+      formIdx = fkey
+      formFromAttr.array.set(FORMS[fa]); formToAttr.array.set(FORMS[fb])
+      formFromAttr.needsUpdate = true; formToAttr.needsUpdate = true
+    }
+    formMat.uniforms.uMix.value = fmix
+    formMat.uniforms.uTime.value = t
+    formCol.copy(SECTION_COLS[fa]).lerp(SECTION_COLS[fb], fmix)
+    formMat.uniforms.uColor.value.copy(formCol)
+    const tint = clamp((scroll - 0.1) / 0.07, 0, 1)
+    uniforms.uColHigh.value.copy(TUNNEL_BASE).lerp(formCol, tint)
+    uniforms.uColLow.value.copy(uniforms.uColHigh.value).multiplyScalar(0.32)
+    atmoMat.uniforms.uColor.value.copy(ATMO_BASE).lerp(formCol, tint * 0.75).multiplyScalar(1 - endK)
+    finalPass.uniforms.uFlameAmt.value = flameAmt * (1 - endK)
+    const formP = clamp((scroll - 0.1) / 0.05, 0, 1) * clamp((0.895 - scroll) / 0.03, 0, 1)
+    // particles carry the change; the solid hologram holds while a section is in view
+    formMat.uniforms.uPresence.value = formP * (0.12 + 0.88 * Math.sin(Math.PI * fmix))
+    holoU.uColor.value.copy(formCol); holoU.uTime.value = t
+    for (let i = 0; i < MODELS.length; i++) {
+      const M = MODELS[i]
+      const vis = i === fa ? formP * (1 - sstep(0, 0.24, fmix)) : i === fb ? formP * sstep(0.76, 1, fmix) : 0
+      for (const pn of M.panels) {
+        pn.group.visible = vis > 0.003
+        if (vis <= 0.003) continue
+        pn.mat.uniforms.uVis.value = vis
+        pn.screen.material.uniforms.uVis.value = vis
+        pn.edges.material.opacity = vis * 0.9
+        pn.edges.material.color.setRGB(Math.min(1, formCol.x * 1.15 + 0.1), Math.min(1, formCol.y * 1.15 + 0.1), Math.min(1, formCol.z * 1.15 + 0.1))
+      }
+    }
+    emitMat.opacity = formP * 0.6; emitMat.color.setRGB(formCol.x, formCol.y, formCol.z)
+    formGroup.visible = formP > 0.001
+    formSpin.rotation.y = Math.sin(t * 0.38) * 0.36 + m.x * 0.3
+    formSpin.rotation.x = 0.24 - m.y * 0.12
     this.rollPhase += dt * (spin + scroll * scrollRoll)
     group.rotation.z = this.rollPhase
 
@@ -647,6 +946,13 @@ function onResize() {
     c.setSize(w, h)
   }
   atmoMat.uniforms.uRes.value.set(w * dpr, h * dpr)
+  vaultFit = 1
+  ribbonMat.uniforms.uPx.value = dpr * (h / 900)
+  const wide = clamp((camera.aspect - 0.5) / 0.8, 0, 1)
+  formGroup.scale.setScalar(0.6 + 0.28 * wide)
+  formGroup.position.set(0, 1.3 - 0.3 * wide, -10)
+  for (const M of MODELS) placeSides(M.panels, wide)
+  formMat.uniforms.uPx.value = dpr * (h / 900)
 }
 window.addEventListener('resize', onResize)
 onResize()
@@ -660,17 +966,22 @@ function render() {
   mouse.x = Lerp(mouse.x, mouseTarget.x, 0.06)
   mouse.y = Lerp(mouse.y, mouseTarget.y, 0.06)
   sceneObj.render(scrollCurrent, mouse)
-  const hero = clamp(1 - scrollCurrent / 0.18, 0, 1)
+  const hero = clamp(1 - scrollCurrent / 0.12, 0, 1)
   heroEl.style.opacity = hero
+  heroEl.style.visibility = hero < 0.02 ? 'hidden' : 'visible'
   heroEl.style.transform = `translateY(${-scrollCurrent * 60}px)`
-  const enter = clamp((scrollCurrent - 0.82) / 0.16, 0, 1)
+  const enter = clamp((scrollCurrent - 0.90) / 0.10, 0, 1)
   enterEl.style.opacity = enter
-  enterEl.style.transform = `translateY(${(1 - enter) * 30}px)`
-  hintEl.style.opacity = clamp(1 - scrollCurrent / 0.12, 0, 1) * (1 - enter)
+  enterEl.style.visibility = enter < 0.02 ? 'hidden' : 'visible'
+  artEl.style.opacity = enter
+  skipEl.style.opacity = 1 - enter
+  skipEl.style.pointerEvents = enter > 0.5 ? 'none' : 'auto'
+  hintEl.style.opacity = hero
+  brandEl.style.opacity = hero
   // section titles fly in and out one by one across the middle of the scroll
   for (const el of wpEls) {
     const c = parseFloat(el.dataset.c)
-    el.style.opacity = clamp(1 - Math.abs(scrollCurrent - c) / 0.05, 0, 1)
+    el.style.opacity = clamp(1 - Math.abs(scrollCurrent - c) / 0.034, 0, 1)
     el.style.transform = `translateY(${(c - scrollCurrent) * 300}px)`
   }
   camera.layers.set(LAYERS.TORUS_SCENE);  torusComposer.render()
