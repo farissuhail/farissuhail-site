@@ -143,7 +143,33 @@ app = replaceOnce(
   'source filename',
 );
 
+// Educational hover card: hovering a part shows its name plus the engineering
+// and safety notes already held in the equipment data (the upstream app shows
+// the name only). Re-rendered only when the hovered part changes, and kept
+// inside the viewport.
+app = replaceOnce(
+  app,
+  "label.textContent=hover.name;label.hidden=false;label.style.left=Math.min(hover.x+14,$('#viewport').clientWidth-180)+'px';label.style.top=Math.max(10,hover.y-36)+'px';",
+  `const hc=byId.get(hover.id),hk=mode+':'+hover.id;if(label.dataset.key!==hk){label.dataset.key=hk;label.classList.add('rich');label.innerHTML='<div class="hl-top"><b>'+esc(hover.name)+'</b>'+(hc?'<code>'+esc(hc.code)+'</code>':'')+'</div>'+(hc?'<span class="hl-head">Engineering</span><p>'+esc(hc.engineering)+'</p><span class="hl-head hl-safety">Safety</span><ul>'+hc.hazards.map(h=>'<li>'+esc(h)+'</li>').join('')+'</ul><small>Educational awareness only \\u00b7 illustrative model</small>':'');}label.hidden=false;const vp=$('#viewport'),lw=label.offsetWidth,lh=label.offsetHeight;let lx=hover.x+16;if(lx+lw>vp.clientWidth-8)lx=hover.x-16-lw;let ly=hover.y+16;if(ly+lh>vp.clientHeight-8)ly=hover.y-16-lh;label.style.left=Math.max(8,lx)+'px';label.style.top=Math.max(8,ly)+'px';`,
+  'hover card',
+);
+
 await writeFile(path.join(TARGET, 'app.js'), app);
+
+let css = await readFile(path.join(TARGET, 'style.css'), 'utf8');
+css += `
+/* Educational hover card (added by tools/build-mtr-drilltech.mjs) */
+.hover-label.rich{width:300px;max-width:calc(100% - 16px);padding:12px 14px;border-radius:9px;line-height:1.45;box-shadow:0 10px 34px #061b2166}
+.hover-label.rich .hl-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+.hover-label.rich .hl-top b{font-size:13.5px;font-weight:650;color:#eafff7}
+.hover-label.rich .hl-top code{font-size:10px;color:#8aa5ad;white-space:nowrap}
+.hover-label.rich .hl-head{display:block;margin-top:9px;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#75cfb3}
+.hover-label.rich .hl-head.hl-safety{color:#f4a03a}
+.hover-label.rich p{margin:3px 0 0;font-size:11.5px;color:#cfe6e0}
+.hover-label.rich ul{margin:3px 0 0;padding-left:16px;font-size:11.5px;color:#f1dcc0}
+.hover-label.rich small{display:block;margin-top:9px;padding-top:7px;border-top:1px solid #ffffff14;font-size:9.5px;color:#8aa5ad}
+`;
+await writeFile(path.join(TARGET, 'style.css'), css);
 
 /* ---------------------------------------------------------------- */
 /* Report                                                            */
