@@ -1,0 +1,1 @@
+window.MTR_ACCESS=[{"u":"faris@mtr.com.my","s":"40e73388c89d29ec6f2582ecafd537f9","n":200000,"h":"2057d049b45b3a6d2ef4c8e4eb16455d635cce898982edeeeaa1d9e42e5bc94c"}];

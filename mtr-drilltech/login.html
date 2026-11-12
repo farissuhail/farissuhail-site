@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b2027" />
+  <meta name="robots" content="noindex" />
+  <title>MTR DRILLTECH · Sign in</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23009473'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='26' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
+  <script src="access.js"></script>
+  <script src="gate.js" data-login></script>
+  <style>
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{display:grid;place-items:center;padding:24px 16px;background:radial-gradient(1200px 700px at 50% -10%,#12414a 0%,#0b2027 55%,#071518 100%);color:#e6f1ef;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+    .card{width:100%;max-width:400px;padding:32px 28px 26px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .brand img{height:34px;width:auto}
+    .brand span{font-weight:800;letter-spacing:.12em;font-size:15px}
+    .brand small{display:block;font-weight:600;font-size:10px;letter-spacing:.2em;color:#7fd6c2}
+    h1{margin:0 0 6px;font-size:22px;line-height:1.25}
+    p.lead{margin:0 0 22px;color:#a9c4c0;font-size:14px}
+    label{display:block;margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a9c4c0}
+    input{width:100%;margin:0 0 16px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.28);color:#fff;font:inherit;outline:none}
+    input:focus{border-color:#19c39c;box-shadow:0 0 0 3px rgba(25,195,156,.22)}
+    button.go{width:100%;padding:13px 14px;border:0;border-radius:10px;background:#009473;color:#fff;font:700 15px/1 inherit;cursor:pointer}
+    button.go:hover{background:#00a782}
+    button.go:disabled{opacity:.6;cursor:progress}
+    .error{min-height:20px;margin:12px 0 0;color:#ff9c8f;font-size:13px}
+    .signed{display:none}
+    .signed .row{display:flex;gap:10px}
+    .signed a.go,.signed button.alt{flex:1;text-align:center;padding:13px 14px;border-radius:10px;font:700 15px/1 inherit;cursor:pointer;text-decoration:none}
+    .signed a.go{background:#009473;color:#fff}
+    .signed button.alt{background:transparent;color:#e6f1ef;border:1px solid rgba(255,255,255,.22)}
+    .request{margin:22px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);color:#a9c4c0;font-size:13px}
+    .request a{color:#7fd6c2;font-weight:700}
+    .back{display:inline-block;margin-top:14px;color:#8aa6a2;font-size:12px}
+  </style>
+</head>
+<body>
+<main class="card">
+  <div class="brand"><img src="assets/mtr-logo-white.png" alt="Master Team Resources" /><span>DRILLTECH<small>RIG EXPLORER</small></span></div>
+
+  <form id="form" autocomplete="on">
+    <h1>Sign in</h1>
+    <p class="lead">An account is needed for the 3D Rig Explorer and the HWU Level 2 Simulator.</p>
+    <label for="user">Username</label>
+    <input id="user" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus />
+    <label for="pass">Password</label>
+    <input id="pass" name="password" type="password" autocomplete="current-password" required />
+    <button class="go" id="go" type="submit">Sign in</button>
+    <p class="error" id="error" role="alert"></p>
+  </form>
+
+  <div class="signed" id="signed">
+    <h1>You are signed in</h1>
+    <p class="lead">Signed in as <strong id="who"></strong>.</p>
+    <div class="row"><a class="go" id="continue" href="./">Continue</a><button class="alt" id="out" type="button">Sign out</button></div>
+  </div>
+
+  <p class="request">No account yet? Email <a href="mailto:faris@mtr.com.my?subject=MTR%20DRILLTECH%20access%20request">faris@mtr.com.my</a> to request access.</p>
+  <a class="back" href="../mtr-drilltech.html">← About MTR DRILLTECH</a>
+</main>
+<script>
+(function () {
+  'use strict';
+  var DAYS = 30;
+  var access = window.mtrAccess;
+  var users = window.MTR_ACCESS || [];
+  var $ = function (id) { return document.getElementById(id); };
+
+  // Only follow a "next" address that stays inside this folder.
+  function destination() {
+    var here = new URL('./', location.href);
+    try {
+      var next = new URL(new URLSearchParams(location.search).get('next') || './', location.origin);
+      if (next.origin === here.origin && next.pathname.indexOf(here.pathname) === 0 &&
+          !/login\.html$/.test(next.pathname)) return next.pathname + next.search + next.hash;
+    } catch (error) { /* fall through */ }
+    return here.pathname;
+  }
+
+  function hex(buffer) {
+    return Array.prototype.map.call(new Uint8Array(buffer), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+  }
+  function bytes(text) {
+    var out = new Uint8Array(text.length / 2);
+    for (var i = 0; i < out.length; i++) out[i] = parseInt(text.substr(i * 2, 2), 16);
+    return out;
+  }
+  function derive(password, user) {
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']).then(function (key) {
+      return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: bytes(user.s), iterations: user.n }, key, 256);
+    }).then(hex);
+  }
+
+  var current = access.session();
+  if (current) {
+    $('form').style.display = 'none';
+    $('signed').style.display = 'block';
+    $('who').textContent = current.user;
+    $('continue').href = destination();
+    $('out').addEventListener('click', access.signOut);
+    return;
+  }
+
+  $('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var name = $('user').value.trim().toLowerCase();
+    var password = $('pass').value;
+    var user = users.filter(function (u) { return u.u === name; })[0];
+    var fail = function () {
+      $('go').disabled = false;
+      $('error').textContent = 'Username or password is not correct.';
+      $('pass').value = '';
+      $('pass').focus();
+    };
+    $('go').disabled = true;
+    $('error').textContent = '';
+    if (!window.crypto || !crypto.subtle) { $('go').disabled = false; $('error').textContent = 'This browser cannot sign in here. Open the page over https.'; return; }
+    // An unknown username still spends the same work as a known one.
+    derive(password, user || { s: '00000000000000000000000000000000', n: 200000 }).then(function (hash) {
+      if (!user || hash !== user.h) return fail();
+      localStorage.setItem(access.key, JSON.stringify({ u: user.u, k: hash, exp: Date.now() + DAYS * 864e5 }));
+      location.replace(destination());
+    }).catch(fail);
+  });
+})();
+</script>
+</body>
+</html>

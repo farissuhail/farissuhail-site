@@ -27,6 +27,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { applyWalkMode } from './mtr-drilltech-walk/apply.mjs';
+import { applyAccessGate } from './mtr-drilltech-access/apply.mjs';
 
 const SITE = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const SOURCE = path.resolve(
@@ -206,6 +207,15 @@ await writeFile(path.join(TARGET, 'style.css'), css);
 // A crew member you can walk around the rig. The feature and the patches it
 // needs live in tools/mtr-drilltech-walk/ so they can also be applied on their own.
 await applyWalkMode(TARGET);
+
+/* ---------------------------------------------------------------- */
+/* Account gate                                                      */
+/* ---------------------------------------------------------------- */
+
+// Sign-in page in front of the explorer (and level2/, which carries the same
+// two script tags by hand). Accounts: node tools/mtr-access.mjs.
+const accountCount = await applyAccessGate(TARGET);
+console.log(`Access gate: ${accountCount} account(s)`);
 
 /* ---------------------------------------------------------------- */
 /* Report                                                            */
