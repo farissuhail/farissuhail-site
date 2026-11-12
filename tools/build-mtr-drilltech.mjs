@@ -22,7 +22,8 @@
  *
  * Usage:  node tools/build-mtr-drilltech.mjs
  */
-import { cp, mkdir, readFile, rm, writeFile, readdir, stat } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile, readdir, stat } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { applyWalkMode } from './mtr-drilltech-walk/apply.mjs';
@@ -51,9 +52,27 @@ async function walk(dir, base = dir) {
   return out;
 }
 
+// Hand-authored parts of the published folder that do not come from the
+// upstream app. They are set aside before the folder is regenerated and put
+// back afterwards: level2/ is the HWU Level 2 operations simulator.
+const SITE_ONLY = ['level2'];
+const keep = await mkdtemp(path.join(os.tmpdir(), 'mtr-drilltech-keep-'));
+for (const rel of SITE_ONLY) {
+  await cp(path.join(TARGET, rel), path.join(keep, rel), { recursive: true }).catch((error) => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+}
+
 await rm(TARGET, { recursive: true, force: true });
 await mkdir(TARGET, { recursive: true });
 await cp(SOURCE, TARGET, { recursive: true });
+
+for (const rel of SITE_ONLY) {
+  await cp(path.join(keep, rel), path.join(TARGET, rel), { recursive: true }).catch((error) => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+}
+await rm(keep, { recursive: true, force: true });
 
 for (const rel of WITHHELD) {
   await rm(path.join(TARGET, rel), { force: true });
@@ -103,6 +122,14 @@ html = replaceOnce(
   '<div class="header-right">',
   '<div class="header-right"><a class="icon-btn" href="/mtr-drilltech.html" title="Back to the MTR DRILLTECH section on farissuhail.com" aria-label="Back to the MTR DRILLTECH section">&#8592;</a>',
   'back link',
+);
+
+// Top-bar link to the HWU Level 2 simulator (mtr-drilltech/level2/).
+html = replaceOnce(
+  html,
+  '<span class="count">11</span></button></nav>',
+  '<span class="count">11</span></button><a class="nav-tab" href="level2/" title="HWU Level 2 operations simulator">HWU Level 2 Simulator</a></nav>',
+  'level 2 link',
 );
 
 await writeFile(path.join(TARGET, 'index.html'), html);
