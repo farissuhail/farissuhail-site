@@ -179,12 +179,37 @@ function loadWorkerAsset() {
   return assetPromise;
 }
 
+/**
+ * The site's MTR logo is white for dark backgrounds. On a hi-vis vest and a
+ * white hard hat it is printed dark instead: white becomes navy, the green
+ * stays green.
+ */
+function logoTexture(THREE) {
+  const canvas = document.createElement('canvas'); canvas.width = 512; canvas.height = 170;
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4;
+  const img = new Image();
+  img.onload = () => {
+    const c = canvas.getContext('2d');
+    c.drawImage(img, 12, 6, canvas.width - 24, canvas.height - 12);
+    const px = c.getImageData(0, 0, canvas.width, canvas.height), d = px.data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (Math.min(d[i], d[i + 1], d[i + 2]) > 150) { d[i] = 13; d[i + 1] = 38; d[i + 2] = 64; }
+    }
+    c.putImageData(px, 0, 0);
+    texture.needsUpdate = true;
+  };
+  img.src = new URL('./assets/mtr-logo-white.png', import.meta.url).href;
+  return texture;
+}
+
 const DRESS_VERTEX = `
 attribute vec4 zone;
 varying vec4 vZone;
 varying vec3 vRest;
+varying float vFacing;
 void main() {
-  vZone = zone; vRest = position;`;
+  vZone = zone; vRest = position; vFacing = normal.z;`;
 const DRESS_FRAGMENT = `
 #include <map_fragment>
 {
@@ -197,6 +222,14 @@ const DRESS_FRAGMENT = `
     + step(1.295, y) * step(0.085, ax) * step(ax, 0.13);
   c = mix(c, vec3(0.72, 0.84, 0.02), vest);                              // hi-vis vest
   c = mix(c, vec3(0.78), vest * clamp(tape, 0.0, 1.0));                  // reflective tape
+  // Company logo: across the back between the tapes, and on the chest between the braces.
+  vec2 luv = vec2(-1.0);
+  if (vFacing < -0.25) luv = vec2((0.12 - vRest.x) / 0.24, (1.238 - y) / 0.08);
+  else if (vFacing > 0.25) luv = vec2((vRest.x + 0.075) / 0.15, (1.41 - y) / 0.05);
+  if (luv.x >= 0.0 && luv.x <= 1.0 && luv.y >= 0.0 && luv.y <= 1.0) {
+    vec4 logo = texture2D(uLogo, luv);
+    c = mix(c, logo.rgb, logo.a * vest);
+  }
   c = mix(c, vec3(0.025, 0.022, 0.02), step(y, 0.27));                   // boots
   c = mix(c, vec3(0.66, 0.36, 0.05), step(0.5, vZone.y));                // gloves
   float skin = step(0.5, vZone.x) * step(1.55, y);
@@ -228,7 +261,9 @@ function buildRealWorker(THREE, { meta, bin }) {
     eyes: new THREE.MeshStandardMaterial({ map: tex('eye.png'), roughness: 0.35 }),
     brows: new THREE.MeshStandardMaterial({ color: '#2a1d14', roughness: 0.9 }),
   };
+  const logo = logoTexture(THREE); textures.push(logo);
   materials.body.onBeforeCompile = (shader) => {
+    shader.uniforms.uLogo = { value: logo };
     // Clothing sits a little off the body, the vest a little more.
     shader.vertexShader = shader.vertexShader.replace('void main() {', DRESS_VERTEX).replace(
       '#include <begin_vertex>',
@@ -238,7 +273,7 @@ function buildRealWorker(THREE, { meta, bin }) {
       transformed += objectNormal * (1.0 - bare) * (0.012 + 0.014 * vestV);`,
     );
     shader.fragmentShader = shader.fragmentShader
-      .replace('void main() {', 'varying vec4 vZone;\nvarying vec3 vRest;\nvoid main() {')
+      .replace('void main() {', 'uniform sampler2D uLogo;\nvarying vec4 vZone;\nvarying vec3 vRest;\nvarying float vFacing;\nvoid main() {')
       .replace('#include <map_fragment>', DRESS_FRAGMENT);
   };
   for (const key of ['body', 'eyes', 'brows']) {
@@ -267,6 +302,14 @@ function buildRealWorker(THREE, { meta, bin }) {
   const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.02, 0.2), hatMat); ridge.position.y = 0.098;
   hat.add(dome, brim, peak, ridge);
   hat.traverse((o) => { o.castShadow = true; });
+  // Logo on the front of the shell: a strip that follows the dome's curve.
+  const strip = new THREE.CylinderGeometry(0.1015, 0.1155, 0.028, 16, 1, true, -0.36, 0.72);
+  const suv = strip.attributes.uv; for (let i = 0; i < suv.count; i++) suv.setY(i, 1 - suv.getY(i));
+  const decal = new THREE.Mesh(strip, new THREE.MeshStandardMaterial({
+    map: logo, transparent: true, depthWrite: false, roughness: 0.4, polygonOffset: true, polygonOffsetFactor: -2,
+  }));
+  decal.position.y = 0.045; decal.scale.z = 1.14;
+  hat.add(decal);
   hat.position.set(0, 1.735, 0.012); hat.rotation.x = -0.06;
   root.add(hat); root.updateMatrixWorld(true);
   boneNamed('Head').attach(hat);
