@@ -1,0 +1,11 @@
+Crew member model for walk mode
+
+Body mesh and skeleton: "Universal Base Characters" by Quaternius
+Animations: "Universal Animation Library" by Quaternius
+https://quaternius.com
+
+Licence: CC0 1.0 Universal (public domain dedication)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Packed into worker.json / worker.bin by tools/mtr-drilltech-walk/convert-worker.mjs.
+Clothing (coverall, vest, boots, gloves, hard hat) is added at runtime by walk.js.

@@ -36,6 +36,17 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
   }
   const model=hwu?buildHWU():land?buildLandRig():buildJackup();scene.add(model.group);model.group.updateMatrixWorld(true);
   const parts=model.parts instanceof Map?model.parts:new Map(Object.entries(model.parts));
+  const walkDeck=hwu?{spawn:[-12,8.18,10],y:8.18,x:18,z:14.2}:land?{spawn:[4.6,9.45,3],y:9.45,x:6.6,z:11.4}:{spawn:[0,16.3,0],y:16.3,x:31,z:27};
+  // A deliberately simple PPE-clad operator keeps the walkthrough educational
+  // and avoids suggesting any real operating procedure or work authorisation.
+  const operator=new THREE.Group();operator.name='Walk mode operator · illustrative';
+  const avatarMaterial={skin:new THREE.MeshStandardMaterial({color:'#ad7659',roughness:.8}),helmet:new THREE.MeshStandardMaterial({color:'#f5f4e9',roughness:.55,metalness:.15}),visor:new THREE.MeshStandardMaterial({color:'#20353a',roughness:.25,metalness:.5}),vest:new THREE.MeshStandardMaterial({color:'#e7c93f',roughness:.7}),coveralls:new THREE.MeshStandardMaterial({color:'#193f49',roughness:.72}),boots:new THREE.MeshStandardMaterial({color:'#17252a',roughness:.9})};
+  const avatarBox=(size,pos,material)=>{const mesh=new THREE.Mesh(new THREE.BoxGeometry(...size),material);mesh.position.set(...pos);mesh.castShadow=true;mesh.receiveShadow=true;operator.add(mesh);};
+  const avatarCylinder=(radius,height,pos,material)=>{const mesh=new THREE.Mesh(new THREE.CylinderGeometry(radius,radius,height,10),material);mesh.position.set(...pos);mesh.castShadow=true;mesh.receiveShadow=true;operator.add(mesh);};
+  avatarCylinder(.22,.95,[-.16,.5,0],avatarMaterial.coveralls);avatarCylinder(.22,.95,[.16,.5,0],avatarMaterial.coveralls);avatarBox([.28,.13,.48],[-.16,.06,0],avatarMaterial.boots);avatarBox([.28,.13,.48],[.16,.06,0],avatarMaterial.boots);
+  avatarBox([.58,.78,.3],[0,1.42,0],avatarMaterial.vest);avatarBox([.54,.76,.28],[0,1.36,.025],avatarMaterial.coveralls);avatarCylinder(.18,.78,[-.43,1.35,0],avatarMaterial.coveralls);avatarCylinder(.18,.78,[.43,1.35,0],avatarMaterial.coveralls);
+  avatarCylinder(.25,.38,[0,2.1,0],avatarMaterial.skin);const helmet=new THREE.Mesh(new THREE.SphereGeometry(.3,14,10,0,Math.PI*2,0,Math.PI*.58),avatarMaterial.helmet);helmet.position.set(0,2.32,0);helmet.castShadow=true;operator.add(helmet);avatarBox([.28,.12,.04],[0,2.12,.245],avatarMaterial.visor);
+  operator.scale.setScalar(.78);operator.visible=false;scene.add(operator);
   // Keep clean local transforms so the construction sequence can replay
   // without rebuilding the authored rig geometry.
   const constructionParts=[...parts.entries()].map(([id,part],index)=>({id,part,index,position:part.position.clone(),quaternion:part.quaternion.clone(),scale:part.scale.clone()}));
@@ -47,15 +58,17 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
   const connectionsGroup=new THREE.Group();scene.add(connectionsGroup);
   let selected=null,isolate=false,fade=false,internals=false,subsurface=false,connections=false;
   let construction=null;
+  let walk=null,lastWalkUpdate=0;
+  const walkKeys=new Set();
   const hidden=new Set(),hiddenSystems=new Set();let targetCamera=null,targetLook=null;const clock=new THREE.Clock();let lastRender=0;let fps=0,frames=0,fpsAt=0;
   const raycaster=new THREE.Raycaster();const pointer=new THREE.Vector2();let pointerDown=null,pointerLatest=null,hovered=null;
   function ancestorVisible(o){while(o){if(!o.visible)return false;o=o.parent;}return true;}
   function hitTest(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(renderables,false).find(hit=>ancestorVisible(hit.object))?.object.userData.componentId??null;}
-  renderer.domElement.addEventListener('pointerdown',e=>{pointerDown={x:e.clientX,y:e.clientY};targetCamera=null;targetLook=null;});
-  renderer.domElement.addEventListener('pointerup',e=>{if(pointerDown&&Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)<5&&e.button===0){const id=hitTest(e);if(id)onSelect(id,false);}pointerDown=null;});
-  renderer.domElement.addEventListener('pointermove',e=>{pointerLatest=e;if(pointerDown){onHover(null);return;}const id=hitTest(e);if(id!==hovered){hovered=id;renderer.domElement.style.cursor=id?'pointer':'grab';}const rect=container.getBoundingClientRect();onHover(id?{id,name:componentLookup.get(id)?.name??id,x:e.clientX-rect.left,y:e.clientY-rect.top}:null);});
+  renderer.domElement.addEventListener('pointerdown',e=>{if(walk){renderer.domElement.requestPointerLock?.();return;}pointerDown={x:e.clientX,y:e.clientY};targetCamera=null;targetLook=null;});
+  renderer.domElement.addEventListener('pointerup',e=>{if(walk)return;if(!frameHook&&pointerDown&&Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)<5&&e.button===0){const id=hitTest(e);if(id)onSelect(id,false);}pointerDown=null;});
+  renderer.domElement.addEventListener('pointermove',e=>{if(walk)return;pointerLatest=e;if(frameHook||pointerDown){onHover(null);return;}const id=hitTest(e);if(id!==hovered){hovered=id;renderer.domElement.style.cursor=id?'pointer':'grab';}const rect=container.getBoundingClientRect();onHover(id?{id,name:componentLookup.get(id)?.name??id,x:e.clientX-rect.left,y:e.clientY-rect.top}:null);});
   renderer.domElement.addEventListener('pointerleave',()=>onHover(null));
-  renderer.domElement.addEventListener('dblclick',e=>{const id=hitTest(e);if(id){onSelect(id,true);focus(id);}});
+  renderer.domElement.addEventListener('dblclick',e=>{if(walk||frameHook)return;const id=hitTest(e);if(id){onSelect(id,true);focus(id);}});
   renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());
   const resize=()=>{const w=container.clientWidth,h=container.clientHeight;if(w>0&&h>0){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}};const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(container);resize();
   function bounds(id){return new THREE.Box3().setFromObject(parts.get(id));}
@@ -105,15 +118,46 @@ export function createScene(container,components,onSelect,onHover,mode='jackup')
     if(connections&&selected)updateConnections();
     if(complete)construction=null;
   }
+  function nearestAssembly(){
+    let nearest=null,distance=Infinity;
+    for(const [id] of parts){const d=center(id).distanceTo(operator.position);if(d<distance){distance=d;nearest=id;}}
+    return distance<8?nearest:null;
+  }
+  function startWalk(){
+    restoreConstruction();
+    walk={yaw:0,pitch:-.08};lastWalkUpdate=0;walkKeys.clear();
+    operator.position.set(...walkDeck.spawn);operator.position.y=walkDeck.y;operator.rotation.set(0,walk.yaw,0);operator.visible=true;
+    targetCamera=targetLook=null;controls.enabled=false;renderer.domElement.style.cursor='crosshair';onHover(null);
+  }
+  function stopWalk(){
+    if(!walk)return;
+    walk=null;walkKeys.clear();operator.visible=false;controls.enabled=true;renderer.domElement.style.cursor='grab';
+    if(document.pointerLockElement===renderer.domElement)document.exitPointerLock?.();
+  }
+  function updateWalk(time){
+    if(!walk)return;
+    const delta=lastWalkUpdate?Math.min(.05,Math.max(0,time-lastWalkUpdate)):0;lastWalkUpdate=time;
+    const forward=new THREE.Vector3(Math.sin(walk.yaw),0,Math.cos(walk.yaw)),right=new THREE.Vector3(forward.z,0,-forward.x),input=new THREE.Vector3();
+    if(walkKeys.has('KeyW'))input.add(forward);if(walkKeys.has('KeyS'))input.sub(forward);if(walkKeys.has('KeyD'))input.add(right);if(walkKeys.has('KeyA'))input.sub(right);
+    if(input.lengthSq()){input.normalize().multiplyScalar((walkKeys.has('ShiftLeft')||walkKeys.has('ShiftRight')?8.2:4.2)*delta);operator.position.add(input);operator.position.x=THREE.MathUtils.clamp(operator.position.x,-walkDeck.x,walkDeck.x);operator.position.z=THREE.MathUtils.clamp(operator.position.z,-walkDeck.z,walkDeck.z);}
+    operator.position.y=walkDeck.y;operator.rotation.y=walk.yaw;
+    const cameraPosition=operator.position.clone().addScaledVector(forward,-13.5);cameraPosition.y+=7.4+walk.pitch*2.4;
+    const lookAt=operator.position.clone().addScaledVector(forward,2.8);lookAt.y+=1.15+walk.pitch*2.2;
+    camera.position.lerp(cameraPosition,.14);camera.lookAt(lookAt);controls.target.copy(lookAt);
+  }
+  const onWalkKeyDown=e=>{if(!walk)return;if(['KeyW','KeyA','KeyS','KeyD','ShiftLeft','ShiftRight','KeyE'].includes(e.code))e.preventDefault();if(e.code==='KeyE'&&!e.repeat){const id=nearestAssembly();if(id)onSelect(id,false);}else walkKeys.add(e.code);};
+  const onWalkKeyUp=e=>{if(walk)walkKeys.delete(e.code);};
+  const onWalkMouse=e=>{if(walk&&document.pointerLockElement===renderer.domElement){walk.yaw-=e.movementX*.003;walk.pitch=THREE.MathUtils.clamp(walk.pitch-e.movementY*.002,-.35,.35);}};
+  document.addEventListener('keydown',onWalkKeyDown);document.addEventListener('keyup',onWalkKeyUp);document.addEventListener('mousemove',onWalkMouse);
   function select(id,frame=false){if(!parts.has(id))return false;selected=id;internals=false;hidden.delete(id);hiddenSystems.delete(componentLookup.get(id)?.system);apply();if(frame)focus(id);return true;}
   function hasInternals(id=selected){return interiors.some(o=>{let p=o;while(p){if(p.userData.componentId===id)return true;p=p.parent;}return false;});}
-  function action(action){if(['focus','isolate','fade','hide','internals','connections'].includes(action)&&!selected)return{message:'Select a component in the rig or navigator first.'};if(action==='construction'){const count=startConstruction();return{selected,construction:true,constructionCount:count};}if(action==='focus'){focus();return{};}if(action==='isolate')isolate=!isolate;if(action==='fade')fade=!fade;if(action==='hide'){hidden.add(selected);isolate=false;}if(action==='unhide'){hidden.clear();hiddenSystems.clear();}if(action==='internals'){if(!hasInternals())return{message:'No authored internal assembly is available for this component.'};internals=!internals;}if(action==='connections')connections=!connections;if(action==='subsurface')subsurface=!subsurface;if(action==='reset'){restoreConstruction();selected=null;isolate=fade=internals=subsurface=connections=false;hidden.clear();hiddenSystems.clear();setView('iso');}if(action==='escape'){if(isolate||fade||internals||connections){isolate=fade=internals=connections=false;}else selected=null;}apply();return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction};}
+  function action(action){if(action==='walk'){window.mtrWalk?.toggle();return{selected,walk:!!frameHook};}if(action==='escape'&&walk){stopWalk();setView('iso');apply();return{selected,walk:false};}if(['focus','isolate','fade','hide','internals','connections'].includes(action)&&!selected)return{message:'Select a component in the rig or navigator first.'};if(action==='construction'){const count=startConstruction();return{selected,construction:true,constructionCount:count};}if(action==='focus'){focus();return{};}if(action==='isolate')isolate=!isolate;if(action==='fade')fade=!fade;if(action==='hide'){hidden.add(selected);isolate=false;}if(action==='unhide'){hidden.clear();hiddenSystems.clear();}if(action==='internals'){if(!hasInternals())return{message:'No authored internal assembly is available for this component.'};internals=!internals;}if(action==='connections')connections=!connections;if(action==='subsurface')subsurface=!subsurface;if(action==='reset'){stopWalk();restoreConstruction();selected=null;isolate=fade=internals=subsurface=connections=false;hidden.clear();hiddenSystems.clear();setView('iso');}if(action==='escape'){if(isolate||fade||internals||connections){isolate=fade=internals=connections=false;}else selected=null;}apply();return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction,walk:!!walk};}
   function setView(view){const views=hwu?{iso:{position:[64,48,65],target:[0,15,0]},top:{position:[0,100,1],target:[0,8,0]},deck:{position:[32,26,33],target:[0,17,0]}}:land?{iso:{position:[108,85,114],target:[-5,22,0]},top:{position:[-5,175,1],target:[-5,9,0]},deck:{position:[54,30,46],target:[0,10,0]}}:{iso:{position:[151,113,170],target:[0,29,0]},top:{position:[0,211,1],target:[0,19,0]},deck:{position:[87,52,85],target:[0,23,-4]}};const v=views[view]||views.iso;animateCamera(new THREE.Vector3(...v.position),new THREE.Vector3(...v.target));}
   function toggleSystem(system){hiddenSystems.has(system)?hiddenSystems.delete(system):hiddenSystems.add(system);apply();return!hiddenSystems.has(system);}
-  let disposed=false,animationHandle;
-  function dispose(){disposed=true;cancelAnimationFrame(animationHandle);resizeObserver.disconnect();controls.dispose();renderer.dispose();scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material]))m.dispose();});renderer.domElement.remove();}
-  function frame(time){if(disposed)return;animationHandle=requestAnimationFrame(frame);if(document.hidden||container.clientWidth<1||time-lastRender<1000/35)return;lastRender=time;const t=clock.getElapsedTime();waterMaterial.uniforms.uTime.value=t;waterMaterial.uniforms.uEye.value.copy(camera.position);updateConstruction(t);if(targetCamera){camera.position.lerp(targetCamera,.085);controls.target.lerp(targetLook,.085);if(camera.position.distanceTo(targetCamera)<.03){camera.position.copy(targetCamera);controls.target.copy(targetLook);targetCamera=targetLook=null;}}controls.update();renderer.render(scene,camera);frames++;if(time-fpsAt>1500){fps=Math.round(frames*1000/(time-fpsAt));fpsAt=time;frames=0;}}
+  let disposed=false,animationHandle,frameHook=null;
+  function dispose(){dispatchEvent(new CustomEvent('mtr-scene-dispose'));if(window.__mtrScene===api)window.__mtrScene=null;disposed=true;stopWalk();cancelAnimationFrame(animationHandle);resizeObserver.disconnect();document.removeEventListener('keydown',onWalkKeyDown);document.removeEventListener('keyup',onWalkKeyUp);document.removeEventListener('mousemove',onWalkMouse);controls.dispose();renderer.dispose();scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material]))m.dispose();});renderer.domElement.remove();}
+  function frame(time){if(disposed)return;animationHandle=requestAnimationFrame(frame);if(document.hidden||container.clientWidth<1||time-lastRender<(frameHook?1000/62:1000/35))return;lastRender=time;const t=clock.getElapsedTime();waterMaterial.uniforms.uTime.value=t;waterMaterial.uniforms.uEye.value.copy(camera.position);updateConstruction(t);if(frameHook)frameHook(t);else if(walk)updateWalk(t);else{if(targetCamera&&!frameHook){camera.position.lerp(targetCamera,.085);controls.target.lerp(targetLook,.085);if(camera.position.distanceTo(targetCamera)<.03){camera.position.copy(targetCamera);controls.target.copy(targetLook);targetCamera=targetLook=null;}}controls.update();}renderer.render(scene,camera);frames++;if(time-fpsAt>1500){fps=Math.round(frames*1000/(time-fpsAt));fpsAt=time;frames=0;}}
   if(hwu){camera.position.set(64,48,65);controls.target.set(0,15,0);}else if(land){camera.position.set(108,85,114);controls.target.set(-5,22,0);}
   animationHandle=requestAnimationFrame(frame);
-  return{select,action,focus,setView,toggleSystem,hasInternals,resize,dispose,get selected(){return selected;},get state(){return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction,hiddenSystems:[...hiddenSystems],hiddenComponents:[...hidden]};},integrity(){const modelIds=[...parts.keys()];const unmatched=components.filter(c=>!parts.has(c.id)).map(c=>c.id);return{components:components.length,modelled:modelIds.length,meshes:renderables.length,triangles:renderer.info.render.triangles,unmatched,fps,internals:interiors.length};}};
+  const api={select,action,focus,setView,toggleSystem,hasInternals,resize,dispose,get selected(){return selected;},get state(){return{selected,isolate,fade,internals,subsurface,connections,construction:!!construction,walk:!!frameHook,hiddenSystems:[...hiddenSystems],hiddenComponents:[...hidden]};},integrity(){const modelIds=[...parts.keys()];const unmatched=components.filter(c=>!parts.has(c.id)).map(c=>c.id);return{components:components.length,modelled:modelIds.length,meshes:renderables.length,triangles:renderer.info.render.triangles,unmatched,fps,internals:interiors.length};}};api.walkKit={THREE,scene,camera,controls,renderer,container,renderables,parts,components,mode,onSelect,setFrameHook(fn){frameHook=fn;}};window.__mtrScene=api;dispatchEvent(new CustomEvent('mtr-scene',{detail:api}));return api;
 }

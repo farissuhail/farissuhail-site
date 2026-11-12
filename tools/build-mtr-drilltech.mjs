@@ -25,6 +25,7 @@
 import { cp, mkdir, readFile, rm, writeFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyWalkMode } from './mtr-drilltech-walk/apply.mjs';
 
 const SITE = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const SOURCE = path.resolve(
@@ -170,6 +171,14 @@ css += `
 .hover-label.rich small{display:block;margin-top:9px;padding-top:7px;border-top:1px solid #ffffff14;font-size:9.5px;color:#8aa5ad}
 `;
 await writeFile(path.join(TARGET, 'style.css'), css);
+
+/* ---------------------------------------------------------------- */
+/* Walk mode                                                         */
+/* ---------------------------------------------------------------- */
+
+// A crew member you can walk around the rig. The feature and the patches it
+// needs live in tools/mtr-drilltech-walk/ so they can also be applied on their own.
+await applyWalkMode(TARGET);
 
 /* ---------------------------------------------------------------- */
 /* Report                                                            */
