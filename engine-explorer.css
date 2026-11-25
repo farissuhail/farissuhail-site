@@ -60,6 +60,10 @@ body.engine-explorer a { color: inherit; }
   outline: 2px solid var(--ex-accent); outline-offset: 2px;
 }
 .ex-btn-primary { color: var(--ex-accent); border-color: #bcd0ec; background: var(--ex-accent-soft); }
+.ex-btn-ignition { color: #fff4ec; background: #26212a; border-color: #26212a; white-space: nowrap; }
+.ex-btn-ignition:hover { color: #fff; background: #572735; border-color: #572735; }
+.ex-btn-ignition svg { color: #ff9a67; flex: none; }
+.ex-btn:disabled { cursor: default; opacity: .55; }
 .ex-btn svg { width: 13px; height: 13px; }
 .ex-lang { background: none; border: 1px solid var(--ex-line-2); border-radius: 8px; padding: 8px 10px; cursor: pointer; font-family: var(--ex-mono); font-size: 10px; letter-spacing: .1em; color: var(--ex-faint); }
 .ex-lang .on { color: var(--ex-accent); }
@@ -227,12 +231,36 @@ body.cine-on .ex-callouts { display: none; }
   position: absolute; left: 20px; bottom: max(40px, env(safe-area-inset-bottom)); z-index: 2; max-width: min(78vw, 520px);
 }
 .ex-cine-caption .ex-lbl { display: block; margin-bottom: 7px; }
+.ex-cine-caption [hidden] { display: none; }
 .ex-cine-caption p { margin: 0; font-size: clamp(15px, 2.2vw, 19px); letter-spacing: -0.01em; }
 .ex-cine-caption b { font-weight: 600; }
 .ex-cine-caption .pct { color: var(--ex-accent); font-weight: 600; }
 .ex-cine-play { position: absolute; right: 20px; bottom: max(40px, env(safe-area-inset-bottom)); z-index: 2; display: flex; align-items: center; gap: 10px; }
 .ex-cine-play input[type="range"] { width: clamp(90px, 20vw, 180px); }
 .ex-cine-hint { position: absolute; left: 0; right: 0; bottom: max(10px, env(safe-area-inset-bottom)); text-align: center; font-size: 10.5px; color: var(--ex-faint); z-index: 1; margin: 0; }
+
+/* Ignition runs on the same canvas, with an independent studio lighting rig. */
+body.ignition-on .ex-stage { background: #0c0d11; }
+.ignition-on .ex-cine {
+  --ex-ink: #fff4ed;
+  --ex-faint: #bac1d0;
+  --ex-accent: #ff9b6d;
+  background: linear-gradient(180deg, #080a10a8, transparent 17%, transparent 72%, #080a10e8);
+  color: var(--ex-ink);
+}
+.ignition-on .ex-cine-top { padding-inline: clamp(16px, 4vw, 56px); }
+.ignition-on .ex-cine-brand b { font-size: 15px; }
+.ignition-on .ex-cine-caption,
+.ignition-on .ex-cine-play { bottom: max(46px, calc(env(safe-area-inset-bottom) + 24px)); }
+.ignition-on .ex-cine-caption { left: clamp(16px, 4vw, 56px); }
+.ignition-on .ex-cine-caption .ex-lbl { color: var(--ex-accent); font-size: 12px; }
+.ignition-on .ex-cine-play { right: clamp(16px, 4vw, 56px); }
+.ignition-on .ex-cine .ex-btn,
+.ignition-on .ex-cine .ex-tool { background: #10141de8; border-color: #52596b; color: var(--ex-ink); }
+.ignition-on .ex-cine .ex-btn:hover,
+.ignition-on .ex-cine .ex-tool:hover { border-color: var(--ex-accent); }
+.ignition-on .ex-cine-hint { bottom: max(12px, env(safe-area-inset-bottom)); }
+.ignition-on .ex-cine-play .ex-range { accent-color: var(--ex-accent); width: clamp(100px, 21vw, 260px); }
 
 /* ── callouts and separation guides ─────────────────────────── */
 .ex-callouts { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; overflow: hidden; pointer-events: none; }
@@ -278,6 +306,22 @@ body.cine-on .ex-callouts { display: none; }
   .ex-cine-play input[type="range"] { width: 86px; }
   .ex-cine-caption { bottom: max(64px, env(safe-area-inset-bottom)); }
   .ex-cine-play { bottom: max(26px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 640px) {
+  .ex-nav-actions { gap: 5px; }
+  .ex-btn-ignition { padding-inline: 8px; letter-spacing: .02em; }
+  .ignition-on .ex-cine-caption { bottom: max(94px, calc(env(safe-area-inset-bottom) + 72px)); }
+  .ignition-on .ex-cine-play { left: 16px; right: 16px; bottom: max(37px, calc(env(safe-area-inset-bottom) + 22px)); }
+  .ignition-on .ex-cine-play .ex-range { flex: 1; }
+}
+@media (max-width: 480px) {
+  .ex-nav { gap: 8px; padding-inline: 12px; }
+  .ex-btn-ignition .wide { display: none; }
+}
+@media (max-width: 370px) {
+  .ex-nav { gap: 6px; padding-inline: 10px; }
+  .ex-nav-actions .ex-btn { padding-inline: 7px; }
+  .ex-btn-ignition svg { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ex-btn, .ex-tool, .ex-preset, .ex-bar i { transition: none; }

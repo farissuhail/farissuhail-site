@@ -28,6 +28,7 @@ const smootherWindow = (p, a, b) => easeInOut(clamp01((p - a) / Math.max(1e-6, b
 
 const BG = 0xf7f8fa;          // explorer studio
 const BG_CINE = 0xfcfcfd;     // cinematic: nearer white
+const BG_IGNITION = 0x0c0d11;   // ignition: dark graphite studio
 
 /* With the AO composer the background is rendered into a linear target and then
    tone-mapped, which would grey a near-white studio. Khronos Neutral maps a
@@ -124,6 +125,20 @@ export function createEngineViewer(host, opts = {}) {
   ground.visible = quality.shadows;
   scene.add(ground);
 
+  const studioFloor = new T.Mesh(new T.PlaneGeometry(24, 24),
+    new T.MeshStandardMaterial({ color: 0x0f1114, roughness: 0.6, metalness: 0.2 }));
+  studioFloor.rotation.x = -Math.PI / 2;
+  studioFloor.receiveShadow = quality.shadows;
+  studioFloor.visible = false;
+  scene.add(studioFloor);
+  /* warm spill from the hot exhaust onto its neighbours (ignition only) */
+  const glowLights = [0, 1].map(() => {
+    const l = new T.PointLight(0xff5a1c, 0, 1.4, 2);
+    l.visible = false;
+    scene.add(l);
+    return l;
+  });
+
   /* optional restrained ambient occlusion (desktop only, failure-tolerant) */
   let composer = null, gtao = null;
   async function initAO() {
@@ -152,7 +167,7 @@ export function createEngineViewer(host, opts = {}) {
       // the shadow-catcher plane is huge and would be darkened by AO; contact
       // occlusion replaces it while the composer runs
       ground.visible = false;
-      paintBackground(cinematic ? BG_CINE : BG);
+      paintBackground(ignition ? BG_IGNITION : cinematic ? BG_CINE : BG);
     } catch (err) {
       console.warn('Ambient occlusion unavailable, continuing without it:', err);
       composer = null; gtao = null;
@@ -171,6 +186,8 @@ export function createEngineViewer(host, opts = {}) {
   let selected = null;
   let autoRotate = false;
   let cinematic = false, cineT = 0, cinePaused = false, cineSaved = null, cineBase = null;
+  let ignition = false, hotMaterials = [], hotHome = null, hotHomes = [];
+  const studioMaterials = new Map();
   let loadToken = 0;                 // guards stale async loads
   let disposed = false, visible = true, userMoved = false;
   let labelsOn = false;
@@ -355,6 +372,7 @@ export function createEngineViewer(host, opts = {}) {
     poseBox.setFromObject(built.group);
     poseBox.getBoundingSphere(poseSphere);
     ground.position.y = poseBox.min.y - 0.004;
+    studioFloor.position.y = ground.position.y - 0.002;
     poseDirty = false;
   }
 
@@ -411,10 +429,73 @@ export function createEngineViewer(host, opts = {}) {
   }
 
   /* ── cinematic ────────────────────────────────────────────── */
-  const CINE_SECONDS = 12;
-  function enterCinematic() {
-    if (cinematic || !built) return;
-    const off = camera.position.clone().sub(controls.target);
+  function setIgnition(on) {
+    ignition = on;
+    studioFloor.visible = on;
+    for (const l of glowLights) { l.visible = false; l.intensity = 0; }
+    scene.environmentIntensity = on ? 0.82 : 0.62;
+    hemi.intensity = on ? 0.27 : 0.55;
+    key.intensity = on ? 3.5 : 2.6;
+    fill.intensity = on ? 1.25 : 0.7;
+    rim.color.setHex(on ? 0x9bbaff : 0xffffff);
+    rim.intensity = on ? 2.3 : 0.9;
+    if (!on) {
+      for (const [material, base] of studioMaterials) {
+        material.color.copy(base.color);
+        material.metalness = base.metalness;
+        material.roughness = base.roughness;
+        material.emissive.copy(base.emissive);
+        material.emissiveIntensity = base.emissiveIntensity;
+      }
+      studioMaterials.clear();
+      hotMaterials = [];
+      hotHome = null;
+      hotHomes = [];
+      return;
+    }
+
+    const exhaust = comps.filter(c => c.id.startsWith('exhaust') && c.homeValid);
+    if (exhaust.length) {
+      // A flat engine has a header on each bank. Averaging them lands under the
+      // crankcase, so the close-up takes the bank that faces the opening camera.
+      updatePose();
+      const view = defaultDir().setY(0);
+      const facing = c => c.home.clone().sub(poseSphere.center).setY(0).dot(view);
+      hotHomes = exhaust.map(c => c.home.clone());
+      hotHome = exhaust.reduce((best, c) => (facing(c) > facing(best) ? c : best)).home.clone();
+    }
+    const red = new T.Color(0xc01426);
+    const bronze = new T.Color(0x9d5030);
+    for (const c of comps) {
+      const hot = c.id.startsWith('exhaust') || c.id === 'turbocharger';
+      const painted = c.spec.cat === 'trim' || c.id.startsWith('cam-cover');
+      for (const m of c.ownedMaterials) {
+        if (!m.isMeshStandardMaterial || m.transparent) continue;
+        studioMaterials.set(m, {
+          color: m.color.clone(), metalness: m.metalness, roughness: m.roughness,
+          emissive: m.emissive.clone(), emissiveIntensity: m.emissiveIntensity,
+        });
+        if (hot) {
+          m.color.lerp(bronze, 0.83);
+          m.metalness = 0.65;
+          m.roughness = 0.31;
+          m.emissive.setHex(0xff3206);
+          hotMaterials.push(m);
+        } else if (painted) {
+          m.color.lerp(red, 0.9);
+          m.metalness = 0.45;
+          m.roughness = 0.3;
+        } else if (m.metalness > 0.2) {
+          m.roughness = Math.max(0.24, m.roughness * 0.72);
+        }
+      }
+    }
+  }
+
+  function enterCinematic(theme = 'classic') {
+    if (cinematic || !built) return false;
+    const themed = theme === 'ignition';
+    const off = themed ? defaultDir() : camera.position.clone().sub(controls.target);
     cineSaved = {
       pos: camera.position.clone(), tgt: controls.target.clone(),
       selected, autoRotate, progress, userMoved,
@@ -427,13 +508,19 @@ export function createEngineViewer(host, opts = {}) {
     };
     cinematic = true; cineT = 0; cinePaused = REDUCED();
     glide = null; animating = false; controls.enabled = false;
-    paintBackground(BG_CINE);
+    if (themed) {
+      applyProgress(0);
+      setIgnition(true);
+    }
+    paintBackground(themed ? BG_IGNITION : BG_CINE);
     opts.onCinematic?.(true);
+    return true;
   }
 
   function exitCinematic() {
     if (!cinematic) return;
     cinematic = false; controls.enabled = true;
+    if (ignition) setIgnition(false);
     paintBackground(BG);
     if (cineSaved) {
       applyProgress(cineSaved.progress);
@@ -448,16 +535,48 @@ export function createEngineViewer(host, opts = {}) {
   }
 
   function cinematicFrame(dt) {
-    if (!cinePaused) cineT = (cineT + dt / CINE_SECONDS) % 1;
+    if (!cinePaused) cineT = (cineT + dt / (ignition ? 14 : 12)) % 1;
     const a = cineT * Math.PI * 2;
     // One closed, continuous loop: a gentle yaw sweep, a slow pitch breath and
     // a dolly that follows the pose's own bounds, so the whole assembly stays
     // framed at every explosion amount and the loop seam is invisible.
-    const yaw = cineBase.yaw + Math.sin(a) * 0.62;
+    const yaw = cineBase.yaw + Math.sin(a) * (ignition ? 0.88 : 0.62);
     const pitch = T.MathUtils.clamp(cineBase.pitch + (1 - Math.cos(a)) * 0.05, 0.05, 0.75);
     const dir = new T.Vector3(Math.cos(yaw) * Math.cos(pitch), Math.sin(pitch), Math.sin(yaw) * Math.cos(pitch));
+    let closeUp = 0;
+    if (ignition) {
+      const spread = smootherWindow(cineT, 0.40, 0.68) - smootherWindow(cineT, 0.78, 1);
+      if (Math.abs(progress - spread) > 0.0001) applyProgress(spread);
+      const heat = smootherWindow(cineT, 0.07, 0.26) - smootherWindow(cineT, 0.68, 0.96);
+      for (const m of hotMaterials) m.emissiveIntensity = 0.025 + 0.95 * heat;
+      // the spill light stays with the assembled engine and fades as it comes apart
+      const spill = heat * (1 - spread);
+      if (spill > 0.001) updatePose();
+      glowLights.forEach((light, i) => {
+        const home = hotHomes[i];
+        light.visible = !!home && spill > 0.001;
+        if (!light.visible) return;
+        const out = home.clone().sub(poseSphere.center).setY(0);
+        if (out.lengthSq() > 1e-6) out.normalize();
+        light.position.copy(home).addScaledVector(out, 0.09);
+        light.intensity = 0.34 * spill;
+      });
+      if (hotHome && !REDUCED()) {
+        closeUp = smootherWindow(cineT, 0.08, 0.21) - smootherWindow(cineT, 0.31, 0.45);
+        if (closeUp > 0) {
+          updatePose();
+          const outward = hotHome.clone().sub(poseSphere.center);
+          outward.y = 0;
+          if (outward.lengthSq() > 0.0001) {
+            outward.normalize().setY(0.28).normalize();
+            dir.lerp(outward, closeUp * 0.86).normalize();
+          }
+        }
+      }
+    }
     const f = fitDistance(dir, 1.14);
-    const dist = f.dist * (1 + (1 - Math.cos(a)) * 0.03);
+    if (closeUp > 0) f.centre.lerp(hotHome, closeUp * 0.72);
+    const dist = f.dist * (1 + (1 - Math.cos(a)) * 0.03) * (1 - 0.37 * closeUp);
     camera.position.copy(f.centre).addScaledVector(dir, dist);
     camera.lookAt(f.centre);
     controls.target.copy(f.centre);
@@ -717,6 +836,7 @@ export function createEngineViewer(host, opts = {}) {
     get built() { return built; },
     dispose() {
       disposed = true;
+      if (ignition) setIgnition(false);
       ro.disconnect();
       document.removeEventListener('visibilitychange', visHandler);
       canvas.removeEventListener('webglcontextlost', lostHandler);
@@ -725,6 +845,7 @@ export function createEngineViewer(host, opts = {}) {
       composer?.dispose?.(); gtao?.dispose?.();
       envTex.dispose();
       ground.geometry.dispose(); ground.material.dispose();
+      studioFloor.geometry.dispose(); studioFloor.material.dispose();
       controls.dispose();
       pmrem.dispose();
       renderer.dispose();

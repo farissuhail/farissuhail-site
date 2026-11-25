@@ -65,6 +65,11 @@
       border-top: 1px solid var(--tc-line); padding-top: 16px; margin-bottom: 22px;
     }
     .hub-h h2 { margin: 0; font-size: 15px; color: var(--tc-bright); letter-spacing: -0.01em; }
+    body.technica .hub-ignition {
+      color: #ffad85; border: 1px solid #754b43; border-radius: 6px; padding: 5px 9px;
+      font: 600 10px/1.4 "JetBrains Mono", monospace; text-decoration: none;
+    }
+    body.technica .hub-ignition:hover, body.technica .hub-ignition:focus-visible { color: #fff4ed; border-color: #ffad85; }
 
     .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 18px; }
     .lab-card {
@@ -167,7 +172,7 @@
 
   <div class="hub-h">
     <h2 data-en="Engine explorer" data-bm="Penjelajah enjin">Engine explorer</h2>
-    <span class="tc-lbl" data-en="Take the engine apart, component by component" data-bm="Buka enjin, komponen demi komponen">Take the engine apart, component by component</span>
+    <a class="hub-ignition" href="engine-explorer.html?car=r32&amp;mode=ignition" data-en="Try Ignition Studio →" data-bm="Cuba Ignition Studio →">Try Ignition Studio →</a>
   </div>
 
   <div class="hub-grid">

@@ -5,7 +5,7 @@
    EN/BM toggle.
    ========================================================================== */
 import { CARS, CAR_ORDER, CATEGORIES, STATUS, NOTE_GEOMETRY, componentCount } from './engine-catalog.js';
-import { createEngineViewer } from './engine-viewer.js';
+import { createEngineViewer } from './engine-viewer.js?v=3';
 
 const $ = s => document.querySelector(s);
 const html = document.documentElement;
@@ -38,6 +38,7 @@ let stepIndex = 0;
 let steps = [];              // [[id, progress], …]
 let overlay = null, overlayRaf = 0;
 let cineReturnFocus = null;
+let autoOpenIgnition = new URLSearchParams(location.search).get('mode') === 'ignition';
 
 const T = {
   does:    { en: 'What it does',      bm: 'Apa fungsinya' },
@@ -264,16 +265,27 @@ function bindOverlayClicks() {
 /* ── cinematic ────────────────────────────────────────────── */
 /* The stage itself becomes the full-viewport scene, so the renderer, camera
    aspect and framing all follow the real size. Nothing is re-parented. */
-function enterCine() {
-  if ($('#cine').classList.contains('on')) return;
+function enterCine(theme) {
+  if (!viewer.enterCinematic(theme)) return;
+  const ignition = theme === 'ignition';
   const row = $('.ex-stage-row');
   row.style.minHeight = `${row.offsetHeight}px`;       // hold the layout while the stage leaves it
-  cineReturnFocus = document.activeElement;
+  cineReturnFocus = ignition ? $('#ignitionBtn') : $('#cineBtn');
+  document.body.classList.toggle('ignition-on', ignition);
   document.body.classList.add('cine-on');
+  $('#cineClassicLabel').hidden = ignition;
+  $('#cineIgnitionLabel').hidden = !ignition;
+  const exit = $('#cineExit');
+  exit.dataset.en = ignition ? 'Exit Ignition Studio' : 'Exit cinematic';
+  exit.dataset.bm = ignition ? 'Keluar Ignition Studio' : 'Keluar sinematik';
+  exit.textContent = exit.dataset[lang()];
+  $('#cine').setAttribute('aria-label', ignition ? 'Ignition Studio'
+    : lang() === 'bm' ? 'Paparan enjin sinematik' : 'Cinematic engine view');
   $('#cine').classList.add('on');
   $('#cine').setAttribute('aria-hidden', 'false');
   $('#cineCar').textContent = `${car.model[lang()]} · ${car.code}`;
-  viewer.enterCinematic();
+  $('#cineScrub').value = 0;
+  cinePauseIcon();
   $('#cineExit').focus();
 }
 function exitCine() {
@@ -281,8 +293,13 @@ function exitCine() {
   viewer.exitCinematic();
   $('#cine').classList.remove('on');
   $('#cine').setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('cine-on');
+  document.body.classList.remove('cine-on', 'ignition-on');
   $('.ex-stage-row').style.minHeight = '';
+  const url = new URL(location.href);
+  if (url.searchParams.get('mode') === 'ignition') {
+    url.searchParams.delete('mode');
+    history.replaceState(history.state, '', url);
+  }
   (cineReturnFocus && document.contains(cineReturnFocus) ? cineReturnFocus : $('#cineBtn')).focus?.();
 }
 function cinePauseIcon() {
@@ -296,7 +313,13 @@ function cinePauseIcon() {
 /* ── errors / loading ─────────────────────────────────────── */
 function showError(kind) {
   const box = $('#errorBox');
-  if (!kind) { box.hidden = true; return; }
+  if (!kind) {
+    box.hidden = true;
+    if (viewer?.built && $('#loading').hidden) setCinematicButtons(true);
+    return;
+  }
+  if ($('#cine').classList.contains('on')) exitCine();
+  setCinematicButtons(false);
   const k = kind === 'webgl' ? ['webgl', 'webglSub'] : kind === 'load' ? ['loadFail', 'loadFailSub'] : ['lost', 'lostSub'];
   $('#errMsg').textContent = t(k[0]);
   $('#errSub').textContent = t(k[1]);
@@ -311,6 +334,12 @@ function showError(kind) {
 function onLoading(on, f) {
   $('#loading').hidden = !on;
   $('#loadBar').style.width = `${Math.round((f ?? 0) * 100)}%`;
+  setCinematicButtons(!on);
+}
+
+function setCinematicButtons(ready) {
+  $('#cineBtn').disabled = !ready;
+  $('#ignitionBtn').disabled = !ready;
 }
 
 /* ── load a car ───────────────────────────────────────────── */
@@ -336,6 +365,10 @@ async function loadCar(id, pushUrl = true) {
   if (want.has('p')) viewer.scrubTo(Math.min(100, Math.max(0, Number(want.get('p')))) / 100);
   if (want.has('sel') && car.components.some(c => c.id === want.get('sel'))) viewer.setSelected(want.get('sel'));
   if (want.get('labels') === '1' && !viewer.labels) $('#labelTool').click();
+  if (autoOpenIgnition) {
+    autoOpenIgnition = false;
+    enterCine('ignition');
+  }
 }
 
 function renderAll() {
@@ -430,7 +463,8 @@ function renderAll() {
   $('#retryBtn').addEventListener('click', () => { showError(null); loadCar(car.id, false); });
   bindOverlayClicks();
 
-  $('#cineBtn').addEventListener('click', () => { enterCine(); cinePauseIcon(); });
+  $('#cineBtn').addEventListener('click', () => enterCine('classic'));
+  $('#ignitionBtn').addEventListener('click', () => enterCine('ignition'));
   $('#cineExit').addEventListener('click', exitCine);
   $('#cinePause').addEventListener('click', () => { viewer.toggleCinePause(); cinePauseIcon(); });
   $('#cineScrub').addEventListener('input', e => viewer.setCineTime(Number(e.target.value) / 1000));
